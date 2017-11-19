@@ -23,6 +23,16 @@ pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift4
 pod 'TTTAttributedLabel'
 pod 'Hero'
 pod 'FoldingTabBar'
+pod 'SwiftyJSON'
+pod 'PySwiftyRegex'
+pod 'LGButton'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Messaging'
+pod 'PhoneNumberKit'
+pod 'JDStatusBarNotification'
+pod 'ReachabilitySwift'
+pod 'RxOptional'
 
   target 'ZIP_iosTests' do
     inherit! :search_paths

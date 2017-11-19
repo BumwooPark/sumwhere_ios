@@ -41,6 +41,13 @@ class MainTabBarController: YALFoldingTabBarController {
     return naviVC
   }()
   
+  let button: UIButton = {
+    let button = UIButton()
+    button.setTitle("로그아웃", for: .normal)
+    button.setTitleColor(.blue, for: .normal)
+    return button
+  }()
+  
   //  lazy var tabBarView: YALFoldingTabBar = {
   //    let tabBar = YALFoldingTabBar(controller: self)
   //    tabBar.dotColor = .red
@@ -61,6 +68,18 @@ class MainTabBarController: YALFoldingTabBarController {
     self.tabBarView.backgroundColor = .blue
     self.tabBarView.tabBarColor = .yellow
     self.tabBarView.dotColor = .red
+    
+    self.view.addSubview(button)
+    button.snp.makeConstraints { (make) in
+      make.center.equalToSuperview()
+    }
+    button.rx.controlEvent(.touchUpInside)
+      .subscribe { (event) in
+        KOSession.shared().logoutAndClose(completionHandler: { (status, error) in
+          
+        })
+        
+    }
     
   }
 }

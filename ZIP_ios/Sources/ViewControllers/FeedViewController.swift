@@ -33,6 +33,5 @@ class FeedViewController: UIViewController{
     super.viewDidLoad()
     self.view.backgroundColor = .white
     self.view = mainCollectionView
-    
   }
 }

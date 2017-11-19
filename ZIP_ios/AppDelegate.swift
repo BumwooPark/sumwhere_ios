@@ -13,7 +13,12 @@ import GooglePlaces
 import SwiftyBeaver
 import RxSwift
 import RxCocoa
-
+import RxOptional
+import Moya
+import SwiftyJSON
+import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 let log = SwiftyBeaver.self
 @UIApplicationMain
@@ -21,62 +26,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   let disposeBag = DisposeBag()
-  
+  let gcmMessageIDKey = "gcm.message_id"
+    
+  static var instance: AppDelegate? {
+    return UIApplication.shared.delegate as? AppDelegate
+  }
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    
+    
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = UIViewController()
+    
+    FirebaseApp.configure()
+    loggingSetting()
+    
+    Messaging.messaging().delegate = self
+    
+    UNUserNotificationCenter.current().delegate = self
+    let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+    UNUserNotificationCenter.current().requestAuthorization(
+      options: authOptions,
+      completionHandler: {_, _ in })
+    application.registerForRemoteNotifications()
+    
+    GMSServices.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
+    GMSPlacesClient.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     
     NotificationCenter.default.rx
       .notification(NSNotification.Name.KOSessionDidChange)
-      .subscribe { [weak self](event) in
-        log.verbose(event)
-        self?.makeRootController()
-      }.disposed(by: disposeBag)
-    
-    loggingSetting()
-    GMSServices.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
-    GMSPlacesClient.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
-    kakaoAppConnect()
-    window = UIWindow(frame: UIScreen.main.bounds)
-    window?.makeKeyAndVisible()
-    makeRootController()
-    
+      .observeOn(MainScheduler.instance)
+      .bind(onNext: test)
+    .disposed(by: disposeBag)
+
+     UserDefaults.standard.rx.observe(Bool.self, "login")
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: {[weak self] result in
+        guard let strongSelf = self else {return}
+        if let result = result{
+          strongSelf.window?.rootViewController = result ? MainTabBarController() : WelcomeViewController()
+        }else{
+          strongSelf.window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
+        }
+      }).disposed(by: disposeBag)
+
+  
     return true
   }
   
-  private func makeRootController(){
-    let isopen = KOSession.shared().isOpen()
-    if isopen{
-      KOSessionTask.meTask(completionHandler: {[weak self] (result, error) in
-        if (result != nil){
-          if let user = result as? KOUser{
-            let email = user.email ?? ""
-            let userId = "\(user.id)"
-            let nickname = user.property(forKey: KOUserNicknamePropertyKey) as? String
-            log.info("email:\(email), userId:\(userId), nickname: \(nickname)")
-          }
-        }
-      })
-    }
-    
-    window?.rootViewController = isopen ? MainTabBarController() : WelcomeViewController()
+  private func test(noti: Notification){
+    window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
   }
-  
-  private func kakaoAppConnect(){
-    
-    KOSessionTask.signupTask(withProperties: nil) { (status, error) in
-      if status {
-        log.info("success")
-      }else{
-        log.error(error?.localizedDescription)
-      }
-    }
-  }
+
   
   private func loggingSetting(){
     // add log destinations. at least one is needed!
     let console = ConsoleDestination()  // log to Xcode Console
-    let file = FileDestination()  // log to default swiftybeaver.log file
     let cloud = SBPlatformDestination(appID: "", appSecret: "", encryptionKey: "") // to cloud
     
     // use custom format and set console output to short time, log level & message
@@ -97,14 +102,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
     if KOSession.handleOpen(url) {
-      return true
+      return KOSession.handleOpen(url)
     }
     return false
   }
   
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-    if KOSession.handleOpen(url) {
-      return true
+    if KOSession.isKakaoAccountLoginCallback(url) {
+      return KOSession.handleOpen(url)
     }
     return false
   }
@@ -113,18 +118,108 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if KOSession.handleOpen(url) {
       return true
     }
+    
     return false
   }
-  
+ 
   func applicationDidBecomeActive(_ application: UIApplication) {
     KOSession.handleDidBecomeActive()
   }
   func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
     log.error("didFailToRegisterForRemoteNotificationsWithError=\(error.localizedDescription)")
   }
+  
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    //    self.deviceToken = deviceToken
-    //    log.error("didRegisterForRemoteNotificationsWithDeviceToken=\(deviceToken)")
+    Auth.auth().setAPNSToken(deviceToken, type: .unknown)
+    Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
+    var token = ""
+    for i in 0..<deviceToken.count {
+    token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+    }
+    
+    if let refreshedToken = InstanceID.instanceID().token() {
+      log.verbose("InstanceID token: \(refreshedToken)")
+    }
+  
+    log.info("디바이스토큰:\(token)")
+  }
+  
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+    
+    // Print message ID.
+    if let messageID = userInfo[gcmMessageIDKey] {
+      log.info("Message ID: \(messageID)")
+    }
+    
+    // Print full message.
+    log.info(userInfo)
+  }
+  
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                   fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
+    
+    // Print full message.
+    print(userInfo)
+    
+    completionHandler(UIBackgroundFetchResult.newData)
   }
 }
+
+extension AppDelegate : UNUserNotificationCenterDelegate {
+  
+  // Receive displayed notifications for iOS 10 devices.
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              willPresent notification: UNNotification,
+                              withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    let userInfo = notification.request.content.userInfo
+    
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+//     Messaging.messaging().appDidReceiveMessage(userInfo)
+    
+    // Print message ID.
+    if let messageID = userInfo[gcmMessageIDKey] {
+      log.info("Message ID: \(messageID)")
+    }
+    
+    // Print full message.
+    log.info(userInfo)
+    
+    // Change this to your preferred presentation option
+    completionHandler([])
+  }
+  
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              didReceive response: UNNotificationResponse,
+                              withCompletionHandler completionHandler: @escaping () -> Void) {
+    let userInfo = response.notification.request.content.userInfo
+    // Print message ID.
+    if let messageID = userInfo[gcmMessageIDKey] {
+      log.info("Message ID: \(messageID)")
+    }
+    
+    // Print full message.
+    log.info(userInfo)
+    
+    completionHandler()
+  }
+}
+
+extension AppDelegate : MessagingDelegate {
+  // [START refresh_token]
+  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    log.info("Firebase registration token: \(fcmToken)")
+    
+    // TODO: If necessary send token to application server.
+    // Note: This callback is fired at each app startup and whenever a new token is generated.
+  }
+
+  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+    log.info("Received data message: \(remoteMessage.appData)")
+  }
+}
+
 

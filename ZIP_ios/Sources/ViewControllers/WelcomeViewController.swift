@@ -12,6 +12,9 @@ import SkyFloatingLabelTextField
 import SnapKit
 import Spring
 import Hero
+import Moya
+import SwiftyJSON
+import JDStatusBarNotification
 
 #if !RX_NO_MODULE
   import RxSwift
@@ -22,8 +25,9 @@ import Hero
 class WelcomeViewController: UIViewController{
   
   let disposeBag = DisposeBag()
-  
+  let provider = AuthManager.sharedManager.provider
   let joinVC = JoinViewController()
+  let smsVC = SMSCertViewController()
   
   let imageView: UIImageView = {
     let image = UIImageView(image: #imageLiteral(resourceName: "bare-1985858_1920"))
@@ -92,7 +96,6 @@ class WelcomeViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
     self.view.addSubview(imageView)
     view.insertSubview(kobutton, aboveSubview: imageView)
     view.addSubview(emailField)
@@ -101,39 +104,47 @@ class WelcomeViewController: UIViewController{
     view.addSubview(joinButton)
     view.addSubview(zipImageView)
     
+    JDStatusBarNotification.addStyleNamed("loginfail") {
+      $0?.barColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+      $0?.textColor = .white
+      return $0
+    }
+    
+    let viewModel = WelcomeViewModel(emailText: emailField.rx.text.orEmpty.asDriver()
+      , passwordText: passwordField.rx.text.orEmpty.asDriver())
+    
     heroSetting()
     addConstraint()
-    let emailObserver = emailField.rx.text.map{$0!.isEmpty}
-    let passwordObserver = passwordField.rx.text.map{$0!.isEmpty}
     
+    viewModel.credentialsValid
+      .drive(onNext: {[weak self] vaild in
+        self?.loginButton.isEnabled = vaild
+        self?.loginButton.backgroundColor = vaild ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : .gray
+      }).disposed(by: disposeBag)
     
-    Observable.combineLatest(emailObserver, passwordObserver) {
-      return ($0, $1)
-      }.subscribe {[weak self] (tuple) in
-        guard let element = tuple.element else {return}
-        if element == (false,false){
-          self?.loginButton.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-          self?.loginButton.isEnabled = true
-        }else{
-          self?.loginButton.backgroundColor = .gray
-          self?.loginButton.isEnabled = false
+    loginButton.rx.tap
+      .withLatestFrom(viewModel.credentialsValid)
+      .filter{$0}
+      .flatMapLatest { [unowned self] vaild in
+        viewModel.login(email: self.emailField.text!, password: self.passwordField.text!)
+      }.observeOn(MainScheduler.instance)
+      .subscribe(onNext:{ [weak self]json in
+        guard let `self` = self else {return}
+        switch json{
+        case .error(let message):
+          JDStatusBarNotification.show(withStatus: message.string, dismissAfter: 2, styleName: "loginfail")
+        case .success(let access_token, let refresh_token, let phoneNumber):
+          UserDefaults.standard.set(access_token.stringValue, forKey: "access_token")
+          if phoneNumber.boolValue{
+            AppDelegate.instance?.window?.rootViewController = MainTabBarController()
+          }else{
+            self.smsVC.userEmail = self.emailField.text
+            self.present(self.smsVC, animated: true, completion: nil)
+          }
         }
-      }.disposed(by: disposeBag)
-    
-    
-    let samplevc = MainTabBarController()
-    loginButton.rx.controlEvent(.touchUpInside)
-      .subscribe {[weak self] (_) in
-        self?.present(samplevc, animated: true, completion: nil)
-      }.disposed(by: disposeBag)
-    
-    
-    joinButton.rx.controlEvent(.touchUpInside)
-      .subscribe {[weak self] (_) in
-        guard let strongSelf = self else {return}
-        strongSelf.present(strongSelf.joinVC, animated: true, completion: nil)
-      }.disposed(by: disposeBag)
-    
+      })
+      .disposed(by: disposeBag)
+
     RxKeyboard.instance.visibleHeight
       .drive(onNext: {[weak self] frame in
         DispatchQueue.main.async {
@@ -152,7 +163,7 @@ class WelcomeViewController: UIViewController{
     UIView.animate(withDuration: 20, delay: 0, options: .curveLinear, animations: {
       self.imageView.transform = CGAffineTransform(translationX: -250, y: 0)
     }) { (status: Bool) in
-      print(status)
+      log.error(status)
     }
   }
   
@@ -211,24 +222,40 @@ class WelcomeViewController: UIViewController{
   
   private func kakaoLogin(){
     let session: KOSession = KOSession.shared()
-    log.info(session)
     
     if session.isOpen() {
       session.close()
     }
     
-    session.open(completionHandler: { (error) -> Void in
-      
-      if !session.isOpen() {
-        switch ((error as NSError!).code) {
-        case Int(KOErrorCancelled.rawValue):
-          break;
-        default:
-          UIAlertView(title: "에러", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "확인").show()
-          break;
+    session.open(completionHandler: {[weak self] (error) -> Void in
+      guard let `self` = self else {return}
+      if KOSession.shared().isOpen(){
+        KOSessionTask.meTask{(result, error) in
+          if (result != nil){
+            guard let user = result as? KOUser else {return}
+            let email = user.email ?? ""
+            let userId = "\(user.id ?? 0)"
+            let nickname = user.property(forKey: KOUserNicknamePropertyKey) as? String
+            
+            self.provider.request(.login(email: email, kakao_id: "kakao_\(userId)", password: "", nickname: nickname ?? "", fcm_token: "", type: "kakao"))
+              .asObservable()
+              .map({ event -> JSON in
+                return JSON(data: event.data)
+              }).subscribe(onNext: {result in
+                if result["result"]["status_code"] == 200{
+                  UserDefaults.standard.set(result["result"]["access_token"].stringValue, forKey: "access_token")
+                  UserDefaults.standard.set(result["result"]["refresh_token"].stringValue, forKey: "refresh_token")
+                }
+                log.info("login success!")
+              }, onError: { error in
+                //TODO: 에러 처리 알림 필(네트워크 에러)
+                log.error(error)
+              }).disposed(by: self.disposeBag)
+          }
         }
       }
-    }, authTypes: [NSNumber(value: KOAuthType.talk.rawValue), NSNumber(value: KOAuthType.account.rawValue)])
+    }, authTypes: [NSNumber(value: KOAuthType.talk.rawValue),
+                   NSNumber(value: KOAuthType.account.rawValue)])
   }
 }
 
@@ -243,7 +270,3 @@ extension WelcomeViewController: UITextFieldDelegate{
     return true
   }
 }
-
-
-
-
