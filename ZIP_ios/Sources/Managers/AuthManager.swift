@@ -11,8 +11,6 @@ import RxSwift
 import Moya
 import SwiftyJSON
 
-
-
 struct AuthPlugin: PluginType {
   let token: String
   

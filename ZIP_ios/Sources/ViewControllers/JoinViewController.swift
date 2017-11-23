@@ -27,7 +27,6 @@ class JoinViewController: UIViewController{
   
   let disposeBag = DisposeBag()
   let provider = MoyaProvider<ZIP>().rx
-  let smsVC = SMSCertViewController()
   
   let backImageView: SpringImageView = {
     let imageView = SpringImageView(image: #imageLiteral(resourceName: "bare-1985858_1920"))
@@ -193,24 +192,29 @@ class JoinViewController: UIViewController{
         , fcm_token: fcmtoken, type: "default")
       )
       .asObservable()
-      .map{(JSON(data: $0.data)["result"]["errorType"].string
-        ,JSON(data: $0.data)["result"]["message"].string)}
-      .subscribe {[weak self] data in
-        guard let tuple = data.element else {return}
-        self?.joinButton.hideLoading()
-        if tuple.0 == "email"{
-          self?.emailField.errorMessage = tuple.1
-        }else if tuple.0 == "nickname"{
-          self?.nicknameField.errorMessage = tuple.1
-        }else{
-          self?.presentView(email: self?.emailField.text)
+      .jsonMap()
+      .debug()
+      .subscribe(onNext: {[weak self] (json) in
+        guard let strongSelf = self else {return}
+        log.info(json)
+        switch json["result"]["status_code"]{
+        case 200:
+          UserDefaults.standard.set(json["result"]["access_token"].stringValue, forKey: "access_token")
+          UserDefaults.standard.set(json["result"]["refresh_token"].stringValue, forKey: "refresh_token")
+          UserDefaults.standard.set(true, forKey: "login")
+        case 401:
+          if json["result"]["errorType"].stringValue == "email"{
+            strongSelf.emailField.errorMessage = json["result"]["message"].stringValue
+          }else if json["result"]["errorType"].stringValue == "nickname"{
+            strongSelf.nicknameField.errorMessage = json["result"]["message"].stringValue
+          }
+        default:
+          break
         }
-      }.disposed(by: self.disposeBag)
-  }
-  
-  private func presentView(email: String?){
-    smsVC.userEmail = email
-    self.present(smsVC, animated: true, completion: nil)
+      }, onError: {
+        log.error($0)
+      })
+      .disposed(by: self.disposeBag)
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

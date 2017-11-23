@@ -56,28 +56,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     NotificationCenter.default.rx
       .notification(NSNotification.Name.KOSessionDidChange)
       .observeOn(MainScheduler.instance)
-      .bind(onNext: test)
+      .subscribe({[weak self] _ in
+        self?.window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
+      })
     .disposed(by: disposeBag)
-
+    
      UserDefaults.standard.rx.observe(Bool.self, "login")
       .observeOn(MainScheduler.instance)
+      .filterNil()
       .subscribe(onNext: {[weak self] result in
         guard let strongSelf = self else {return}
-        if let result = result{
-          strongSelf.window?.rootViewController = result ? MainTabBarController() : WelcomeViewController()
-        }else{
-          strongSelf.window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
-        }
-      }).disposed(by: disposeBag)
+        strongSelf.window?.rootViewController = result ? MainTabBarController() : WelcomeViewController()}
+        ,onError:{log.error($0)})
+      .disposed(by: disposeBag)
 
-  
     return true
   }
-  
-  private func test(noti: Notification){
-    window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
-  }
-
   
   private func loggingSetting(){
     // add log destinations. at least one is needed!

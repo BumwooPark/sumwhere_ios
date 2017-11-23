@@ -75,6 +75,7 @@ class MainTabBarController: YALFoldingTabBarController {
     }
     button.rx.controlEvent(.touchUpInside)
       .subscribe { (event) in
+        UserDefaults.standard.set(false, forKey: "login")
         KOSession.shared().logoutAndClose(completionHandler: { (status, error) in
           
         })

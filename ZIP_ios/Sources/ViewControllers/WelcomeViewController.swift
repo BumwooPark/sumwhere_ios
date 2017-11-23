@@ -15,6 +15,7 @@ import Hero
 import Moya
 import SwiftyJSON
 import JDStatusBarNotification
+import Firebase
 
 #if !RX_NO_MODULE
   import RxSwift
@@ -27,7 +28,6 @@ class WelcomeViewController: UIViewController{
   let disposeBag = DisposeBag()
   let provider = AuthManager.sharedManager.provider
   let joinVC = JoinViewController()
-  let smsVC = SMSCertViewController()
   
   let imageView: UIImageView = {
     let image = UIImageView(image: #imageLiteral(resourceName: "bare-1985858_1920"))
@@ -122,6 +122,12 @@ class WelcomeViewController: UIViewController{
         self?.loginButton.backgroundColor = vaild ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : .gray
       }).disposed(by: disposeBag)
     
+    joinButton.rx.tap
+      .subscribe {[weak self] (_) in
+        guard let strongSelf = self else {return}
+        strongSelf.present(strongSelf.joinVC, animated: true, completion: nil)
+    }.disposed(by: disposeBag)
+    
     loginButton.rx.tap
       .withLatestFrom(viewModel.credentialsValid)
       .filter{$0}
@@ -135,12 +141,8 @@ class WelcomeViewController: UIViewController{
           JDStatusBarNotification.show(withStatus: message.string, dismissAfter: 2, styleName: "loginfail")
         case .success(let access_token, let refresh_token, let phoneNumber):
           UserDefaults.standard.set(access_token.stringValue, forKey: "access_token")
-          if phoneNumber.boolValue{
-            AppDelegate.instance?.window?.rootViewController = MainTabBarController()
-          }else{
-            self.smsVC.userEmail = self.emailField.text
-            self.present(self.smsVC, animated: true, completion: nil)
-          }
+          UserDefaults.standard.set(true, forKey: "login")
+          AppDelegate.instance?.window?.rootViewController = MainTabBarController()
         }
       })
       .disposed(by: disposeBag)
@@ -236,21 +238,26 @@ class WelcomeViewController: UIViewController{
             let email = user.email ?? ""
             let userId = "\(user.id ?? 0)"
             let nickname = user.property(forKey: KOUserNicknamePropertyKey) as? String
-            
-            self.provider.request(.login(email: email, kakao_id: "kakao_\(userId)", password: "", nickname: nickname ?? "", fcm_token: "", type: "kakao"))
+            let fcmtoken = Messaging.messaging().fcmToken ?? ""
+            self.provider.request(.login(email: email, kakao_id: "kakao_\(userId)", password: "", nickname: nickname ?? "", fcm_token: fcmtoken, type: "kakao"))
               .asObservable()
-              .map({ event -> JSON in
-                return JSON(data: event.data)
-              }).subscribe(onNext: {result in
-                if result["result"]["status_code"] == 200{
-                  UserDefaults.standard.set(result["result"]["access_token"].stringValue, forKey: "access_token")
-                  UserDefaults.standard.set(result["result"]["refresh_token"].stringValue, forKey: "refresh_token")
-                }
-                log.info("login success!")
-              }, onError: { error in
-                //TODO: 에러 처리 알림 필(네트워크 에러)
-                log.error(error)
+              .map{try JSONDecoder().decode(LoginModel.self, from: $0.data)}
+              .subscribe({ (event) in
+                log.info(event)
               }).disposed(by: self.disposeBag)
+              
+//              .map({ event -> JSON in
+//                return JSON(data: event.data)
+//              }).subscribe(onNext: {result in
+//                if result["result"]["status_code"] == 200{
+//                  UserDefaults.standard.set(result["result"]["access_token"].stringValue, forKey: "access_token")
+//                  UserDefaults.standard.set(result["result"]["refresh_token"].stringValue, forKey: "refresh_token")
+//                }
+//                log.info("login success!")
+//              }, onError: { error in
+//                //TODO: 에러 처리 알림 필(네트워크 에러)
+//                log.error(error)
+//              }).disposed(by: self.disposeBag)
           }
         }
       }

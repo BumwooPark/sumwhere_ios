@@ -9,9 +9,9 @@
 import Moya
 
 public enum ZIP{
-  case login(email:String, kakao_id:String,password:String,nickname:String,fcm_token:String,type:String)
-  case join(email:String, kakao_id:String,password:String,nickname:String,fcm_token:String,type:String)
-  case phone_update(email:String, phone_number: String)
+  case login(email: String, kakao_id: String, password: String, nickname: String, fcm_token: String, type: String)
+  case join(email: String, kakao_id: String, password: String, nickname: String, fcm_token: String, type: String)
+  case phone_update(email: String, phone_number: String)
   case defaultLogin(email: String, password: String)
   case auth
 }
@@ -26,7 +26,7 @@ extension ZIP: TargetType{
     case .join:
       return "/intro/join"
     case .login:
-      return "/intro/login"
+      return "/intro/kakaologin"
     case .phone_update:
       return "/intro/phone_update"
     case .defaultLogin:
@@ -68,7 +68,7 @@ extension ZIP: TargetType{
     case .phone_update(let email, let phoneNumber):
       return .requestParameters(parameters: ["phone_number": phoneNumber,"e_mail": email], encoding: URLEncoding.httpBody)
     case .defaultLogin(let email, let password):
-      return .requestParameters(parameters: ["e_mail":email, "password":password], encoding: URLEncoding.httpBody)
+      return .requestParameters(parameters: ["email":email, "password":password], encoding: URLEncoding.httpBody)
     case .auth:
       return .requestPlain
     }
