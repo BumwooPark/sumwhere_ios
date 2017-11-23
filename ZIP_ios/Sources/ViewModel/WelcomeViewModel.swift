@@ -36,14 +36,10 @@ struct WelcomeViewModel{
     credentialsValid = Driver.combineLatest(emailVaild, passwordVaild) { $0 && $1 }
   }
   
-  func login(email: String, password: String) -> Observable<AutenticationStatus>{
-    return AuthManager.sharedManager.login(email, password)
-      .map({ json in
-      if json["result"]["status_code"] == 200{
-        return AutenticationStatus.success(access_token: json["result"]["access_token"], refresh_token: json["result"]["refresh_token"], phone_number: json["result"]["phone_number"])
-      }else{
-        return AutenticationStatus.error(message: json["result"]["message"])
-      }
-    })
+  func login(_ email: String, _ password: String) -> PrimitiveSequence<SingleTrait, LoginModel>{
+    return AuthManager.sharedManager
+      .provider
+      .request(.defaultLogin(email: email, password: password))
+      .map(LoginModel.self)
   }
 }

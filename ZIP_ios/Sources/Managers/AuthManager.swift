@@ -36,12 +36,5 @@ class AuthManager{
   static var sharedManager = AuthManager()
   
   fileprivate init(){}
-  
-  func login(_ email: String, _ password: String) -> Observable<JSON>{
-    
-    return provider.request(.defaultLogin(email: email, password: password))
-      .asObservable()
-      .jsonMap()
-  }
 }
 

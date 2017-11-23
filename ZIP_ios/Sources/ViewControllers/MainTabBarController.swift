@@ -12,15 +12,15 @@ import FoldingTabBar
 class MainTabBarController: YALFoldingTabBarController {
   
   let firstItem = YALTabBarItem(
-    itemImage: #imageLiteral(resourceName: "nearby_icon"),
-    leftItemImage: nil,
-    rightItemImage: nil
+    itemImage: #imageLiteral(resourceName: "chats_icon"),
+    leftItemImage: #imageLiteral(resourceName: "profile_icon"),
+    rightItemImage: #imageLiteral(resourceName: "profile_icon")
   )
   
   let secondItem = YALTabBarItem(
     itemImage: #imageLiteral(resourceName: "profile_icon"),
     leftItemImage: #imageLiteral(resourceName: "edit_icon"),
-    rightItemImage: nil
+    rightItemImage: #imageLiteral(resourceName: "profile_icon")
   )
   
   let thirdItem = YALTabBarItem(
@@ -31,8 +31,8 @@ class MainTabBarController: YALFoldingTabBarController {
   
   let forthItem = YALTabBarItem(
     itemImage: #imageLiteral(resourceName: "settings_icon"),
-    leftItemImage: nil,
-    rightItemImage: nil
+    leftItemImage: #imageLiteral(resourceName: "profile_icon"),
+    rightItemImage: #imageLiteral(resourceName: "profile_icon")
   )
   
   let feedVC: UINavigationController = {
@@ -48,26 +48,19 @@ class MainTabBarController: YALFoldingTabBarController {
     return button
   }()
   
-  //  lazy var tabBarView: YALFoldingTabBar = {
-  //    let tabBar = YALFoldingTabBar(controller: self)
-  //    tabBar.dotColor = .red
-  //
-  //    return tabBar
-  //  }()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .gray
-    //    self.tabBarView.
+    self.view.backgroundColor = .white
     self.leftBarItems = [firstItem, secondItem]
     self.rightBarItems = [thirdItem, forthItem]
     self.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight
     self.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets
     self.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets
     self.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset
-    self.tabBarView.backgroundColor = .blue
-    self.tabBarView.tabBarColor = .yellow
-    self.tabBarView.dotColor = .red
+    self.centerButtonImage = UIImage(named:"plus_icon")!
+    self.tabBarView.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0, blue: 149.0/255.0, alpha: 1)
+    self.tabBarView.tabBarColor = UIColor(red: 72.0/255.0, green: 211.0/255.0, blue: 178.0/255.0, alpha: 1)
     
     self.view.addSubview(button)
     button.snp.makeConstraints { (make) in
@@ -75,7 +68,7 @@ class MainTabBarController: YALFoldingTabBarController {
     }
     button.rx.controlEvent(.touchUpInside)
       .subscribe { (event) in
-        UserDefaults.standard.set(false, forKey: "login")
+//        UserDefaults.standard.set(false, forKey: "login")
         KOSession.shared().logoutAndClose(completionHandler: { (status, error) in
           
         })

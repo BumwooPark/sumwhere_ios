@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       .observeOn(MainScheduler.instance)
       .filterNil()
       .subscribe(onNext: {[weak self] result in
+        log.info(result)
         guard let strongSelf = self else {return}
         strongSelf.window?.rootViewController = result ? MainTabBarController() : WelcomeViewController()}
         ,onError:{log.error($0)})

@@ -13,13 +13,13 @@ struct LoginModel: Codable{
 }
 
 struct Result: Codable{
-  let statusCode: Int
-  var errorType: String
-  var message: String
-  var accessToken: String
-  var refreshToken: String
+  var statusCode: Int
+  var errorType: String?
+  var message: String?
+  var accessToken: String?
+  var refreshToken: String?
   
-  enum CodingKeys: String, CodingKeys{
+  enum CodingKeys: String, CodingKey{
     case statusCode = "status_code"
     case errorType
     case message

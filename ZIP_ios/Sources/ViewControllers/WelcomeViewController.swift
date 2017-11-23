@@ -42,7 +42,7 @@ class WelcomeViewController: UIViewController{
     return imageView
   }()
   
-  let kobutton: KOLoginButton = {
+  let kakaoButton: KOLoginButton = {
     let button = KOLoginButton()
     button.setTitle("카카오톡으로 로그인", for: .normal)
     button.layer.cornerRadius = 10
@@ -73,7 +73,6 @@ class WelcomeViewController: UIViewController{
     return field
   }()
   
-  
   let loginButton: UIButton = {
     let button = UIButton()
     button.setTitle("로그인", for: .normal)
@@ -97,24 +96,21 @@ class WelcomeViewController: UIViewController{
     super.viewDidLoad()
     
     self.view.addSubview(imageView)
-    view.insertSubview(kobutton, aboveSubview: imageView)
+    view.insertSubview(kakaoButton, aboveSubview: imageView)
     view.addSubview(emailField)
     view.addSubview(passwordField)
     view.addSubview(loginButton)
     view.addSubview(joinButton)
     view.addSubview(zipImageView)
     
-    JDStatusBarNotification.addStyleNamed("loginfail") {
-      $0?.barColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-      $0?.textColor = .white
-      return $0
-    }
+    // Settings
+    
+    JTAlertSetting()
+    heroSetting()
+    addConstraint()
     
     let viewModel = WelcomeViewModel(emailText: emailField.rx.text.orEmpty.asDriver()
       , passwordText: passwordField.rx.text.orEmpty.asDriver())
-    
-    heroSetting()
-    addConstraint()
     
     viewModel.credentialsValid
       .drive(onNext: {[weak self] vaild in
@@ -128,25 +124,19 @@ class WelcomeViewController: UIViewController{
         strongSelf.present(strongSelf.joinVC, animated: true, completion: nil)
     }.disposed(by: disposeBag)
     
+    
     loginButton.rx.tap
+      .throttle(0.3, scheduler: MainScheduler.instance)
       .withLatestFrom(viewModel.credentialsValid)
       .filter{$0}
-      .flatMapLatest { [unowned self] vaild in
-        viewModel.login(email: self.emailField.text!, password: self.passwordField.text!)
-      }.observeOn(MainScheduler.instance)
-      .subscribe(onNext:{ [weak self]json in
-        guard let `self` = self else {return}
-        switch json{
-        case .error(let message):
-          JDStatusBarNotification.show(withStatus: message.string, dismissAfter: 2, styleName: "loginfail")
-        case .success(let access_token, let refresh_token, let phoneNumber):
-          UserDefaults.standard.set(access_token.stringValue, forKey: "access_token")
-          UserDefaults.standard.set(true, forKey: "login")
-          AppDelegate.instance?.window?.rootViewController = MainTabBarController()
-        }
-      })
+      .bind(onNext: network)
       .disposed(by: disposeBag)
-
+    
+    kakaoButton.rx.controlEvent(.touchUpInside)
+      .throttle(0.3, scheduler: MainScheduler.instance)
+      .bind(onNext: kakaoLogin)
+      .disposed(by: disposeBag)
+    
     RxKeyboard.instance.visibleHeight
       .drive(onNext: {[weak self] frame in
         DispatchQueue.main.async {
@@ -157,16 +147,33 @@ class WelcomeViewController: UIViewController{
         }
       }).disposed(by: disposeBag)
     
-    kobutton.rx.controlEvent(.touchUpInside)
-      .throttle(0.3, scheduler: MainScheduler.instance)
-      .bind(onNext: kakaoLogin)
-      .disposed(by: disposeBag)
-    
     UIView.animate(withDuration: 20, delay: 0, options: .curveLinear, animations: {
       self.imageView.transform = CGAffineTransform(translationX: -250, y: 0)
     }) { (status: Bool) in
       log.error(status)
     }
+  }
+  
+  
+  /// 로그인 처리
+  ///
+  // TODO: - 심플하게 처리하는 방법이 없을지 생각
+  private func network(result: Bool){
+    AuthManager.sharedManager.provider.request(.defaultLogin(email: emailField.text!, password: passwordField.text!))
+      .map(LoginModel.self)
+      .subscribe(onSuccess: { (model) in
+        if model.result.statusCode == 200{
+          UserDefaults.standard.set(model.result.accessToken, forKey: "access_token")
+          UserDefaults.standard.set(model.result.refreshToken, forKey: "refresh_token")
+          UserDefaults.standard.set(true, forKey: "login")
+          AppDelegate.instance?.window?.rootViewController = MainTabBarController()
+        }else{
+          JDStatusBarNotification.show(withStatus: model.result.message, dismissAfter: 2, styleName: "loginfail")
+        }
+      }, onError: {
+        log.error($0)
+        //    TODO: Alert창으로 서버 오류를 표기해야됨
+      }).disposed(by: disposeBag)
   }
   
   private func addConstraint(){
@@ -206,11 +213,19 @@ class WelcomeViewController: UIViewController{
       make.centerX.equalToSuperview()
     }
     
-    kobutton.snp.makeConstraints { (make) in
+    kakaoButton.snp.makeConstraints { (make) in
       make.top.equalTo(joinButton).offset(60)
       make.height.equalTo(40)
       make.width.equalTo(passwordField)
       make.centerX.equalToSuperview()
+    }
+  }
+  
+  private func JTAlertSetting(){
+    JDStatusBarNotification.addStyleNamed("loginfail") {
+      $0?.barColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+      $0?.textColor = .white
+      return $0
     }
   }
   
@@ -222,6 +237,8 @@ class WelcomeViewController: UIViewController{
     self.view.heroID = "welcomeview"
   }
   
+  
+  //  TODO: - 토큰 방식으로 변경 예정
   private func kakaoLogin(){
     let session: KOSession = KOSession.shared()
     
@@ -239,25 +256,24 @@ class WelcomeViewController: UIViewController{
             let userId = "\(user.id ?? 0)"
             let nickname = user.property(forKey: KOUserNicknamePropertyKey) as? String
             let fcmtoken = Messaging.messaging().fcmToken ?? ""
-            self.provider.request(.login(email: email, kakao_id: "kakao_\(userId)", password: "", nickname: nickname ?? "", fcm_token: fcmtoken, type: "kakao"))
-              .asObservable()
-              .map{try JSONDecoder().decode(LoginModel.self, from: $0.data)}
+            
+            self.provider.request(.login(email: email
+              , kakao_id: "kakao_\(userId)"
+              , password: ""
+              , nickname: nickname ?? ""
+              , fcm_token: fcmtoken
+              , type: "kakao"))
+              .map(LoginModel.self)
               .subscribe({ (event) in
-                log.info(event)
+                switch event{
+                case .success(let model):
+                  log.info(model.result)
+                case .error(let error):
+                  if let moyaError: MoyaError? = error as? MoyaError{
+                    log.error(moyaError?.response?.statusCode)
+                  }
+                }
               }).disposed(by: self.disposeBag)
-              
-//              .map({ event -> JSON in
-//                return JSON(data: event.data)
-//              }).subscribe(onNext: {result in
-//                if result["result"]["status_code"] == 200{
-//                  UserDefaults.standard.set(result["result"]["access_token"].stringValue, forKey: "access_token")
-//                  UserDefaults.standard.set(result["result"]["refresh_token"].stringValue, forKey: "refresh_token")
-//                }
-//                log.info("login success!")
-//              }, onError: { error in
-//                //TODO: 에러 처리 알림 필(네트워크 에러)
-//                log.error(error)
-//              }).disposed(by: self.disposeBag)
           }
         }
       }
