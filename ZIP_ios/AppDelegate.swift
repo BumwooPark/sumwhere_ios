@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     FirebaseApp.configure()
     loggingSetting()
+    appearanceSetting()
     
     Messaging.messaging().delegate = self
     
@@ -77,16 +78,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   private func loggingSetting(){
     // add log destinations. at least one is needed!
     let console = ConsoleDestination()  // log to Xcode Console
-    let cloud = SBPlatformDestination(appID: "", appSecret: "", encryptionKey: "") // to cloud
-    
-    // use custom format and set console output to short time, log level & message
     console.format = "$DHH:mm:ss$d $C$L$c $N.$F:$l - $M"
     // or use this for JSON output: console.format = "$J"
-    
-    // add the destinations to SwiftyBeaver
     log.addDestination(console)
-    log.addDestination(cloud)
+    
   }
+  
+  private func appearanceSetting(){
+    
+    UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.8399493107, green: 0.9450547045, blue: 1, alpha: 1)
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
+    UINavigationBar.appearance().isTranslucent = false
+  }
+  
   
   func applicationDidEnterBackground(_ application: UIApplication) {
     KOSession.handleDidEnterBackground()

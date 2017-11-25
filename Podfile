@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'ZIP_ios' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -22,7 +22,6 @@ pod 'RxKeyboard'
 pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift4'
 pod 'TTTAttributedLabel'
 pod 'Hero'
-pod 'FoldingTabBar'
 pod 'SwiftyJSON'
 pod 'PySwiftyRegex'
 pod 'LGButton'
@@ -33,7 +32,6 @@ pod 'PhoneNumberKit'
 pod 'JDStatusBarNotification'
 pod 'ReachabilitySwift'
 pod 'RxOptional'
-
   target 'ZIP_iosTests' do
     inherit! :search_paths
     # Pods for testing
