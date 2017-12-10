@@ -10,25 +10,21 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-import RxDataSources
+
 
 class MainViewController: UIViewController{
   
   let disposeBag = DisposeBag()
-  
   let tableView: UITableView = {
     let tableView = UITableView()
     tableView.tableHeaderView = MainHeaderView()
-    tableView.backgroundColor = .white
     return tableView
   }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view = tableView
+    view = tableView
     navigationController?.navigationBar.prefersLargeTitles = true
-    navigationItem.largeTitleDisplayMode = .always
-    navigationItem.title = "ZIP"
-
+    self.navigationItem.title = "ZIP"
   }
 }

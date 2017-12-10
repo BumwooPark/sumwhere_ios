@@ -1,12 +1,18 @@
+//
+//  MainTabBarController.swift
+//  ZIP_ios
+//
+//  Created by park bumwoo on 2017. 11. 4..
+//  Copyright © 2017년 park bumwoo. All rights reserved.
+//
 
 import UIKit
-
-
 
 class MainTabBarController: UITabBarController{
   
   let feedViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: FeedViewController())
+    naviVC.navigationBar.prefersLargeTitles = true
     let tabBar = UITabBarItem(title: "피드", image: #imageLiteral(resourceName: "chats_icon"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
@@ -15,6 +21,8 @@ class MainTabBarController: UITabBarController{
   let writerViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: WriteViewController())
     let tabBar = UITabBarItem(title: "글쓰기", image: #imageLiteral(resourceName: "edit_icon"), tag: 0)
+    naviVC.navigationBar.prefersLargeTitles = true
+    naviVC.navigationItem.largeTitleDisplayMode = .automatic
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
@@ -30,6 +38,8 @@ class MainTabBarController: UITabBarController{
   let searchPersonViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: UIViewController())
     let tabBar = UITabBarItem(title: "모으기", image: #imageLiteral(resourceName: "search_icon"), tag: 0)
+    naviVC.navigationBar.prefersLargeTitles = true
+    naviVC.navigationItem.largeTitleDisplayMode = .always
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
@@ -37,6 +47,8 @@ class MainTabBarController: UITabBarController{
   let settingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: UIViewController())
     let tabBar = UITabBarItem(title: "설정", image: #imageLiteral(resourceName: "profile_icon"), tag: 0)
+    naviVC.navigationBar.prefersLargeTitles = true
+    naviVC.navigationItem.largeTitleDisplayMode = .always
     naviVC.tabBarItem = tabBar
     return naviVC
   }()

@@ -11,7 +11,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 final class WriteViewController: UIViewController{
   
   let disposeBag = DisposeBag()
@@ -25,6 +24,7 @@ final class WriteViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.navigationItem.title = "작성"
     self.view.backgroundColor = .white
     self.view.addSubview(button)
     

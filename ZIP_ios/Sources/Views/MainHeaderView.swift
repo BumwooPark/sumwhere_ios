@@ -52,7 +52,7 @@ final class MainHeaderView: UIView{
     pageView.alwaysBounceHorizontal = true
     pageView.dataSource = self
     pageView.delegate = self
-    pageView.automaticSlidingInterval = 3.0
+    pageView.automaticSlidingInterval = 4.0
     pageView.isInfinite = true
     pageView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
     return pageView
@@ -116,40 +116,40 @@ final class MainHeaderView: UIView{
       make.width.equalToSuperview().dividedBy(4)
       make.height.equalTo(travelButton.snp.width)
     }
-    
+
     meetButton.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.top.equalTo(travelButton)
       make.width.equalTo(travelButton)
       make.height.equalTo(travelButton)
     }
-    
+
     sampleButton.snp.makeConstraints { (make) in
       make.right.equalToSuperview().inset(20)
       make.top.equalTo(travelButton)
       make.width.equalTo(travelButton)
       make.height.equalTo(travelButton)
     }
-    
+
     pageView.snp.makeConstraints { (make) in
       make.top.equalTo(travelButton.snp.bottom).offset(7.5)
       make.left.equalToSuperview()
       make.right.equalToSuperview()
       make.height.equalTo(130)
     }
-    
+
     pageControl.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.bottom.equalToSuperview().inset(15)
     }
-    
+
     adLabel.snp.makeConstraints { (make) in
       make.left.equalToSuperview()
       make.right.equalToSuperview()
       make.top.equalTo(pageView.snp.bottom)
       make.height.equalTo(20)
     }
-    
+
     moreButton.snp.makeConstraints { (make) in
       make.top.equalTo(adLabel.snp.bottom)
       make.left.equalToSuperview().inset(20)
