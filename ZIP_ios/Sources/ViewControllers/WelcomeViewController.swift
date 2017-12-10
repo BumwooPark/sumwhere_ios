@@ -153,27 +153,21 @@ class WelcomeViewController: UIViewController{
       log.error(status)
     }
   }
-  
+
   
   /// 로그인 처리
   ///
   // TODO: - 심플하게 처리하는 방법이 없을지 생각
   private func network(result: Bool){
-    AuthManager.sharedManager.provider.request(.defaultLogin(email: emailField.text!, password: passwordField.text!))
-      .map(LoginModel.self)
+    self.provider.request(.login(email: emailField.text!, password: passwordField.text!))
+      .filter(statusCodes: 200...400)
+      .map(TokenModel.self)
       .subscribe(onSuccess: { (model) in
-        if model.result.statusCode == 200{
-          UserDefaults.standard.set(model.result.accessToken, forKey: "access_token")
-          UserDefaults.standard.set(model.result.refreshToken, forKey: "refresh_token")
-          UserDefaults.standard.set(true, forKey: "login")
-          AppDelegate.instance?.window?.rootViewController = MainTabBarController()
-        }else{
-          JDStatusBarNotification.show(withStatus: model.result.message, dismissAfter: 2, styleName: "loginfail")
-        }
-      }, onError: {
-        log.error($0)
-        //    TODO: Alert창으로 서버 오류를 표기해야됨
-      }).disposed(by: disposeBag)
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: model)
+        UserDefaults.standard.set(encodedData, forKey: "token")
+      }) { (error) in
+        JDStatusBarNotification.show(withStatus: error.localizedDescription, dismissAfter: 2, styleName: "loginfail")
+    }.disposed(by: disposeBag)
   }
   
   private func addConstraint(){
@@ -251,29 +245,15 @@ class WelcomeViewController: UIViewController{
       if KOSession.shared().isOpen(){
         KOSessionTask.meTask{(result, error) in
           if (result != nil){
-            guard let user = result as? KOUser else {return}
-            let email = user.email ?? ""
-            let userId = "\(user.id ?? 0)"
-            let nickname = user.property(forKey: KOUserNicknamePropertyKey) as? String
-            let fcmtoken = Messaging.messaging().fcmToken ?? ""
-            
-            self.provider.request(.login(email: email
-              , kakao_id: "kakao_\(userId)"
-              , password: ""
-              , nickname: nickname ?? ""
-              , fcm_token: fcmtoken
-              , type: "kakao"))
-              .map(LoginModel.self)
-              .subscribe({ (event) in
-                switch event{
-                case .success(let model):
-                  log.info(model.result)
-                case .error(let error):
-                  if let moyaError: MoyaError? = error as? MoyaError{
-                    log.error(moyaError?.response?.statusCode)
-                  }
-                }
-              }).disposed(by: self.disposeBag)
+            let token = KOSession.shared().accessToken
+//            self.provider.request(.kakaoLogin(kakaoToken: token!))
+//              .filter(statusCode: 200)
+//              .subscribe(onSuccess: { (response) in
+//                log.info(response.description)
+//              }, onError: { (error) in
+//                log.error(error)
+//              }).disposed(by: self.disposeBag)
+
           }
         }
       }

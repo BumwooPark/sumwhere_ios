@@ -21,33 +21,32 @@ class FeedViewController: UIViewController{
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
     let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    cv.register(SampleCell.self, forCellWithReuseIdentifier: SampleCell.id)
     return cv
   }()
   
   let dataSources = RxCollectionViewSectionedReloadDataSource<FeedViewModel>(
     configureCell: { (ds, cv, index, model) -> UICollectionViewCell in
-    return UICollectionViewCell()
+      let cell = cv.dequeueReusableCell(withReuseIdentifier: SampleCell.id, for: index) as! SampleCell
+      return cell
   }, configureSupplementaryView: { ds,cv,index,model in
     return UICollectionReusableView()
   })
   
-  var cellViewModels = BehaviorSubject<[FeedViewModel]>(value: [])
+  let cellViewModels = Variable<[FeedViewModel]>([])
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-//    self.view = collectionView
+    self.view = collectionView
     self.navigationItem.title = "MAIN"
     
-//    collectionView
-//      .rx
-//      .setDataSource(dataSources)
-//      .disposed(by: disposeBag)
-//
-//    cellViewModels
-//      .asDriver(onErrorJustReturn: [])
-//      .drive(collectionView.rx.items(dataSource: dataSources))
-//      .disposed(by: disposeBag)
+    
+    cellViewModels
+      .asObservable()
+      .observeOn(MainScheduler.instance)
+      .bind(to: collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
     
   }
 }
@@ -65,6 +64,17 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout{
     log.info(height)
     log.info(width)
     return CGSize(width: width, height: height)
+  }
+}
+
+class SampleCell: UICollectionViewCell{
+  static let id = "sample"
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 }
 

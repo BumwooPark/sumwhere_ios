@@ -34,10 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-    
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = UIViewController()
+    window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
     
+    ProxyViewController()
     FirebaseApp.configure()
     loggingSetting()
     appearanceSetting()
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self?.window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
       })
     .disposed(by: disposeBag)
-    
+
      UserDefaults.standard.rx.observe(Bool.self, "login")
       .observeOn(MainScheduler.instance)
       .filterNil()

@@ -29,13 +29,11 @@ final class WriteViewController: UIViewController{
     self.view.addSubview(button)
     
     button.snp.makeConstraints{
-      $0.top.equalToSuperview()
-      $0.centerX.equalToSuperview()
+      $0.center.equalToSuperview()
     }
     
     button.rx.tap
-      .bind {
-        print("tap")
-    }.disposed(by: disposeBag)
+      .bind {print("tap")}
+      .disposed(by: disposeBag)
   }
 }

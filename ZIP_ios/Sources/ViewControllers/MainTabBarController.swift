@@ -19,6 +19,14 @@ class MainTabBarController: UITabBarController{
     return naviVC
   }()
   
+  let mainViewController: UINavigationController = {
+    let naviVC = UINavigationController(rootViewController: MainViewController())
+    let tabBar = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icons8-prop_plane"), tag: 0)
+    tabBar.imageInsets = UIEdgeInsets(top: 8, left: 0, bottom: -8, right: 0)
+    naviVC.tabBarItem = tabBar
+    return naviVC
+  }()
+  
   let searchPersonViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: UIViewController())
     let tabBar = UITabBarItem(title: "모으기", image: #imageLiteral(resourceName: "search_icon"), tag: 0)
@@ -33,12 +41,12 @@ class MainTabBarController: UITabBarController{
     return naviVC
   }()
   
-  
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     self.viewControllers = [
-      feedViewController, writerViewController
+      feedViewController, writerViewController, mainViewController
       , searchPersonViewController, settingViewController
     ]
   }

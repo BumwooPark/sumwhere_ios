@@ -189,32 +189,18 @@ class JoinViewController: UIViewController{
       .request(.join(email: emailField.text!, kakao_id: ""
         , password: passwordField.text!
         , nickname: nicknameField.text!
-        , fcm_token: fcmtoken, type: "default")
+        , fcmToken: fcmtoken
+        )
       )
-      .asObservable()
-      .jsonMap()
-      .debug()
-      .subscribe(onNext: {[weak self] (json) in
-        guard let strongSelf = self else {return}
-        log.info(json)
-        switch json["result"]["status_code"]{
-        case 200:
-          UserDefaults.standard.set(json["result"]["access_token"].stringValue, forKey: "access_token")
-          UserDefaults.standard.set(json["result"]["refresh_token"].stringValue, forKey: "refresh_token")
-          UserDefaults.standard.set(true, forKey: "login")
-        case 401:
-          if json["result"]["errorType"].stringValue == "email"{
-            strongSelf.emailField.errorMessage = json["result"]["message"].stringValue
-          }else if json["result"]["errorType"].stringValue == "nickname"{
-            strongSelf.nicknameField.errorMessage = json["result"]["message"].stringValue
-          }
-        default:
-          break
-        }
-      }, onError: {
-        log.error($0)
-      })
-      .disposed(by: self.disposeBag)
+      .filter(statusCode: 200)
+      .mapJSON(failsOnEmptyData: true)
+      .subscribe(onSuccess: {[weak self] _ in
+        self?.dismiss(animated: true, completion: nil)
+      }) { (error) in
+//        가입실패
+        log.error(error)
+    }
+    self.joinButton.hideLoading()
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -32,6 +32,8 @@ pod 'PhoneNumberKit'
 pod 'JDStatusBarNotification'
 pod 'ReachabilitySwift'
 pod 'RxOptional'
+pod 'LTMorphingLabel'
+pod 'FSPagerView'
   target 'ZIP_iosTests' do
     inherit! :search_paths
     # Pods for testing
