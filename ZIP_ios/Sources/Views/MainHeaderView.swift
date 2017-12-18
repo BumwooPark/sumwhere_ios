@@ -25,25 +25,36 @@ final class MainHeaderView: UIView{
   let travelButton: UIButton = {
     let button = UIButton()
     button.setTitle("여행", for: .normal)
+    button.setBackgroundImage(#imageLiteral(resourceName: "travle").image(alpha: 0.6), for: .normal)
     button.layer.shadowColor = UIColor.gray.cgColor
     button.layer.shadowOffset = CGSize(width: 2, height: 2)
     button.layer.shadowOpacity = 1
     button.layer.masksToBounds = false
-    button.backgroundColor = .blue
+    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+    button.layer.cornerRadius = 5
+    button.backgroundColor = .lightGray
     return button
   }()
   
   let meetButton: UIButton = {
     let button = UIButton()
     button.setTitle("모임", for: .normal)
-    button.backgroundColor = .blue
+    button.setBackgroundImage(#imageLiteral(resourceName: "meet").image(alpha: 0.6), for: .normal)
+    button.layer.shadowColor = UIColor.gray.cgColor
+    button.layer.shadowOffset = CGSize(width: 2, height: 2)
+    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+    button.layer.shadowOpacity = 1
+    button.layer.masksToBounds = false
+    button.layer.cornerRadius = 5
+    button.backgroundColor = .lightGray
     return button
   }()
   
   let sampleButton: UIButton = {
     let button = UIButton()
     button.setTitle("샘플", for: .normal)
-    button.backgroundColor = .blue
+    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+    button.backgroundColor = .lightGray
     return button
   }()
   

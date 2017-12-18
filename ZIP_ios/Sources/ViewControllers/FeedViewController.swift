@@ -41,7 +41,6 @@ class FeedViewController: UIViewController{
     self.view = collectionView
     self.navigationItem.title = "MAIN"
     
-    
     cellViewModels
       .asObservable()
       .observeOn(MainScheduler.instance)

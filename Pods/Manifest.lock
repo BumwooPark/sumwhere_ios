@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.5.1)
   - Differentiator (3.0.1)
+  - Eureka (4.0.1)
   - Firebase/Auth (4.5.0):
     - Firebase/Core
     - FirebaseAuth (= 4.3.1)
@@ -114,6 +115,7 @@ PODS:
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
+  - Eureka
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Messaging
@@ -156,6 +158,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Differentiator: ffe513ce1ea4e7198b89fac94d6e281c673055a9
+  Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
   Firebase: d83d287bdb6b1c78320561482706d1fcfc8ddfc1
   FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
   FirebaseAuth: e7c2b1359c2df4af23a568100a8eace0b8c507e4
@@ -193,6 +196,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 04d25be5b2b81815fdf8ab487a27252edba4a5dc
+PODFILE CHECKSUM: cf85d6ca62aefa75e74e8a2bee99538744eb8a64
 
 COCOAPODS: 1.4.0.beta.2

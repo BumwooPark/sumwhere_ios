@@ -88,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     UINavigationBar.appearance().barTintColor = .white
     UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+    UINavigationBar.appearance().shadowImage = UIImage()
   }
   
   

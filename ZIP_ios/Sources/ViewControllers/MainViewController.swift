@@ -15,15 +15,15 @@ import RxCocoa
 class MainViewController: UIViewController{
   
   let disposeBag = DisposeBag()
-  let tableView: UITableView = {
-    let tableView = UITableView()
-    tableView.tableHeaderView = MainHeaderView()
-    return tableView
+  let collectionView: UICollectionView = {
+    let collectionView = UICollectionView()
+//    collectionView.header = MainHeaderView()
+    return collectionView
   }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view = tableView
+    view = collectionView
     navigationController?.navigationBar.prefersLargeTitles = true
     self.navigationItem.title = "ZIP"
   }

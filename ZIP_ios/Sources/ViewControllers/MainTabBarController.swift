@@ -35,9 +35,9 @@ class MainTabBarController: UITabBarController{
     return naviVC
   }()
   
-  let searchPersonViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: UIViewController())
-    let tabBar = UITabBarItem(title: "모으기", image: #imageLiteral(resourceName: "search_icon"), tag: 0)
+  let chatNVViewController: UINavigationController = {
+    let naviVC = UINavigationController(rootViewController: ChatViewController())
+    let tabBar = UITabBarItem(title: "수다", image: #imageLiteral(resourceName: "icons8-comment_discussion"), tag: 0)
     naviVC.navigationBar.prefersLargeTitles = true
     naviVC.navigationItem.largeTitleDisplayMode = .always
     naviVC.tabBarItem = tabBar
@@ -59,7 +59,7 @@ class MainTabBarController: UITabBarController{
     
     self.viewControllers = [
       feedViewController, writerViewController, mainViewController
-      , searchPersonViewController, settingViewController
+      , chatNVViewController, settingViewController
     ]
   }
 }

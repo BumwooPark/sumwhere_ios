@@ -14,6 +14,8 @@
 		0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */; };
 		0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1F91FC057A8005DCE32 /* AuthManager.swift */; };
 		0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1FB1FC05ACA005DCE32 /* ObservableType+Extension.swift */; };
+		0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */; };
+		0A3C3FED1FE7ECE6005FF52B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C3FEC1FE7ECE6005FF52B /* ChatViewController.swift */; };
 		0A409E2E1FB74161001FE583 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A409E2D1FB74161001FE583 /* GoogleService-Info.plist */; };
 		0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */; };
 		0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71236A1FACC01200512EB7 /* AppDelegate.swift */; };
@@ -55,6 +57,8 @@
 		0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		0A23C1F91FC057A8005DCE32 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		0A23C1FB1FC05ACA005DCE32 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
+		0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		0A3C3FEC1FE7ECE6005FF52B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		0A409E2D1FB74161001FE583 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		0A7123671FACC01200512EB7 /* ZIP_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZIP_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +227,7 @@
 				0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */,
 				0AA0361D1FDADBC6000D4451 /* ProxyViewController.swift */,
 				0A09A7FF1FDD361B00DC47A7 /* MainViewController.swift */,
+				0A3C3FEC1FE7ECE6005FF52B /* ChatViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 			children = (
 				0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */,
 				0A23C1FB1FC05ACA005DCE32 /* ObservableType+Extension.swift */,
+				0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -479,6 +486,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -552,7 +560,9 @@
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
 				0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */,
 				0AB6AC261FC31F4900D4902D /* TokenModel.swift in Sources */,
+				0A3C3FED1FE7ECE6005FF52B /* ChatViewController.swift in Sources */,
 				0A71239E1FACC27300512EB7 /* FeedModel.swift in Sources */,
+				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
 				0A7123A01FACC28600512EB7 /* FeedViewModel.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,

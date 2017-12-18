@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import Eureka
+
 
 final class WriteViewController: UIViewController{
   
