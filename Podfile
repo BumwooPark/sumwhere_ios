@@ -35,6 +35,8 @@ pod 'RxOptional'
 pod 'LTMorphingLabel'
 pod 'FSPagerView'
 pod 'Eureka'
+pod "Pastel"
+pod 'ReSwift'
   target 'ZIP_iosTests' do
     inherit! :search_paths
     # Pods for testing

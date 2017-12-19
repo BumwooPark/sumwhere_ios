@@ -18,6 +18,7 @@
 		0A3C3FED1FE7ECE6005FF52B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C3FEC1FE7ECE6005FF52B /* ChatViewController.swift */; };
 		0A409E2E1FB74161001FE583 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A409E2D1FB74161001FE583 /* GoogleService-Info.plist */; };
 		0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */; };
+		0A6C88A61FE9609D002019DE /* TravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C88A51FE9609D002019DE /* TravelViewController.swift */; };
 		0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71236A1FACC01200512EB7 /* AppDelegate.swift */; };
 		0A71236D1FACC01200512EB7 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A71236C1FACC01200512EB7 /* art.scnassets */; };
 		0A71236F1FACC01200512EB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71236E1FACC01200512EB7 /* ViewController.swift */; };
@@ -29,7 +30,6 @@
 		0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123951FACC1E900512EB7 /* MainTabBarController.swift */; };
 		0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123971FACC1FB00512EB7 /* JoinViewController.swift */; };
 		0A71239E1FACC27300512EB7 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71239D1FACC27300512EB7 /* FeedModel.swift */; };
-		0A7123A01FACC28600512EB7 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71239F1FACC28600512EB7 /* FeedViewModel.swift */; };
 		0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123A11FACC29A00512EB7 /* Targets.swift */; };
 		0AA0361E1FDADBC6000D4451 /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0361D1FDADBC6000D4451 /* ProxyViewController.swift */; };
 		0AB6AC261FC31F4900D4902D /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB6AC251FC31F4900D4902D /* TokenModel.swift */; };
@@ -61,6 +61,7 @@
 		0A3C3FEC1FE7ECE6005FF52B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		0A409E2D1FB74161001FE583 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		0A6C88A51FE9609D002019DE /* TravelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelViewController.swift; sourceTree = "<group>"; };
 		0A7123671FACC01200512EB7 /* ZIP_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZIP_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A71236A1FACC01200512EB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A71236C1FACC01200512EB7 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		0A7123971FACC1FB00512EB7 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		0A71239A1FACC24400512EB7 /* ZIP_ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZIP_ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A71239D1FACC27300512EB7 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
-		0A71239F1FACC28600512EB7 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		0A7123A11FACC29A00512EB7 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
 		0AA0361D1FDADBC6000D4451 /* ProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyViewController.swift; sourceTree = "<group>"; };
 		0AB6AC251FC31F4900D4902D /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
@@ -202,7 +202,6 @@
 		0A71238E1FACC16B00512EB7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				0A71239F1FACC28600512EB7 /* FeedViewModel.swift */,
 				0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */,
 				0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */,
 			);
@@ -228,6 +227,7 @@
 				0AA0361D1FDADBC6000D4451 /* ProxyViewController.swift */,
 				0A09A7FF1FDD361B00DC47A7 /* MainViewController.swift */,
 				0A3C3FEC1FE7ECE6005FF52B /* ChatViewController.swift */,
+				0A6C88A51FE9609D002019DE /* TravelViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -463,9 +463,11 @@
 				"${BUILT_PRODUCTS_DIR}/LGButton/LGButton.framework",
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Pastel/Pastel.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/PySwiftyRegex/PySwiftyRegex.framework",
+				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -496,9 +498,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pastel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PySwiftyRegex.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -556,6 +560,7 @@
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
 				0AB9F72E1FC98FA100F30E36 /* FeedViewController.swift in Sources */,
 				0A09A8001FDD361B00DC47A7 /* MainViewController.swift in Sources */,
+				0A6C88A61FE9609D002019DE /* TravelViewController.swift in Sources */,
 				0AA0361E1FDADBC6000D4451 /* ProxyViewController.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
 				0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */,
@@ -564,7 +569,6 @@
 				0A71239E1FACC27300512EB7 /* FeedModel.swift in Sources */,
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
-				0A7123A01FACC28600512EB7 /* FeedViewModel.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */,

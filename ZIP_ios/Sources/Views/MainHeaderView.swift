@@ -9,15 +9,18 @@
 import UIKit
 import FSPagerView
 import LTMorphingLabel
+import RxSwift
+import RxCocoa
 
 final class MainHeaderView: UIView{
   
   let sampledatas:[UIImage] = [#imageLiteral(resourceName: "bmw-2964072_640"),#imageLiteral(resourceName: "kitty-2948404_640")]
   
+  let disposeBag = DisposeBag()
   let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "관심사"
-    label.font = UIFont.boldSystemFont(ofSize: 18)
+    label.font = UIFont.boldSystemFont(ofSize: 25)
     label.sizeToFit()
     return label
   }()
@@ -52,8 +55,14 @@ final class MainHeaderView: UIView{
   
   let sampleButton: UIButton = {
     let button = UIButton()
-    button.setTitle("샘플", for: .normal)
+    button.setBackgroundImage(#imageLiteral(resourceName: "cake-3019645_640").image(alpha: 0.6), for: .normal)
+    button.setTitle("맛집", for: .normal)
+    button.layer.shadowColor = UIColor.gray.cgColor
+    button.layer.shadowOffset = CGSize(width: 2, height: 2)
     button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+    button.layer.shadowOpacity = 1
+    button.layer.masksToBounds = false
+    button.layer.cornerRadius = 5
     button.backgroundColor = .lightGray
     return button
   }()
@@ -96,7 +105,7 @@ final class MainHeaderView: UIView{
   }()
   
   override init(frame: CGRect) {
-    super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 500))
+    super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
     
     addSubview(titleLabel)
     addSubview(travelButton)
@@ -105,9 +114,7 @@ final class MainHeaderView: UIView{
     addSubview(pageView)
     pageView.addSubview(pageControl)
     addSubview(adLabel)
-    addSubview(moreButton)
     addconstraint()
-    
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -120,6 +127,7 @@ final class MainHeaderView: UIView{
       make.left.equalToSuperview().inset(20)
       make.top.equalToSuperview().inset(20)
     }
+    titleLabel.sizeToFit()
     
     travelButton.snp.makeConstraints { (make) in
       make.left.equalToSuperview().inset(20)
@@ -146,7 +154,7 @@ final class MainHeaderView: UIView{
       make.top.equalTo(travelButton.snp.bottom).offset(7.5)
       make.left.equalToSuperview()
       make.right.equalToSuperview()
-      make.height.equalTo(130)
+      make.height.equalTo(150)
     }
 
     pageControl.snp.makeConstraints { (make) in
@@ -161,11 +169,11 @@ final class MainHeaderView: UIView{
       make.height.equalTo(20)
     }
 
-    moreButton.snp.makeConstraints { (make) in
-      make.top.equalTo(adLabel.snp.bottom)
-      make.left.equalToSuperview().inset(20)
-    }
-    moreButton.sizeToFit()
+//    moreButton.snp.makeConstraints { (make) in
+//      make.top.equalTo(adLabel.snp.bottom)
+//      make.left.equalToSuperview().inset(20)
+//    }
+//    moreButton.sizeToFit()
   }
 }
 

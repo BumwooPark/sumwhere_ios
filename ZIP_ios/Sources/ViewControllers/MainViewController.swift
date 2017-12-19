@@ -10,21 +10,40 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-
+import RxDataSources
 
 class MainViewController: UIViewController{
   
   let disposeBag = DisposeBag()
-  let collectionView: UICollectionView = {
-    let collectionView = UICollectionView()
-//    collectionView.header = MainHeaderView()
-    return collectionView
+  let dataSources = RxTableViewSectionedReloadDataSource<MainViewModel>(
+    configureCell: { (ds, tv, index, _) -> UITableViewCell in
+    return UITableViewCell()
+  })
+  
+  let mainHeaderView = MainHeaderView()
+  
+  let tableView: UITableView = {
+    let tableView = UITableView()
+    return tableView
   }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view = collectionView
+    view = tableView
+    tableView.tableHeaderView = mainHeaderView
     navigationController?.navigationBar.prefersLargeTitles = true
-    self.navigationItem.title = "ZIP"
+    navigationItem.title = "ZIP"
+
+    mainHeaderView
+      .travelButton
+      .rx
+      .tap
+      .subscribe {[weak self] (event) in
+      self?.navigationController?.pushViewController(TravelViewController(), animated: true)
+    }
+  }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBar.isHidden = true
   }
 }

@@ -15,7 +15,6 @@ class ChatViewController: UIViewController{
     return tableView
   }()
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "수다방"

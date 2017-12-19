@@ -20,6 +20,7 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 
+
 let log = SwiftyBeaver.self
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -85,10 +86,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   private func appearanceSetting(){
+
     
-    UINavigationBar.appearance().barTintColor = .white
     UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
     UINavigationBar.appearance().shadowImage = UIImage()
+    UINavigationBar.appearance().tintColor = nil
   }
   
   
