@@ -11,31 +11,41 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Eureka
+import ReSwift
 
 
-final class WriteViewController: UIViewController{
+final class WriteViewController: FormViewController{
   
   let disposeBag = DisposeBag()
-  
-  let button: UIButton = {
-    let button = UIButton()
-    button.setTitle("글쓰기", for: .normal)
-    button.setTitleColor(.blue, for: .normal)
-    return button
-  }()
+ 
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "작성"
     self.view.backgroundColor = .white
-    self.view.addSubview(button)
     
-    button.snp.makeConstraints{
-      $0.center.equalToSuperview()
-    }
-    
-    button.rx.tap
-      .bind {print("tap")}
-      .disposed(by: disposeBag)
+    tableView.separatorStyle = .none
+    form +++ Section()
+      <<< WriterRow().cellSetup({ (cell, row) in
+        cell.setup(title: "제목")
+        cell.height = {return 100}
+      })
+      <<< WriterRow().cellSetup({ (cell, row) in
+        cell.setup(title: "일자")
+        cell.height = {return 100}
+      })
+      <<< WriterRow().cellSetup({ (cell, row) in
+        cell.setup(title: "위치")
+        cell.height = {return 100}
+      })
+      <<< WriterRow().cellSetup({ (cell, row) in
+        cell.setup(title: "준비물")
+        cell.height = {return 100}
+      })
+      <<< WriterRow().cellSetup({ (cell, row) in
+        cell.setup(title: "환율")
+        cell.height = {return 100}
+      })
+  
   }
 }
