@@ -19,6 +19,7 @@ import SwiftyJSON
 import Firebase
 import FirebaseMessaging
 import UserNotifications
+import ReSwift
 
 
 let log = SwiftyBeaver.self
@@ -28,7 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   let disposeBag = DisposeBag()
   let gcmMessageIDKey = "gcm.message_id"
-    
+  let store = Store(
+    reducer: loginReducer,
+    state: nil,   // You may also start with `nil`
+    middleware: [])      // Middlewares are optional
+  
   static var instance: AppDelegate? {
     return UIApplication.shared.delegate as? AppDelegate
   }

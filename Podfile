@@ -37,6 +37,9 @@ pod 'FSPagerView'
 pod 'Eureka'
 pod "Pastel"
 pod 'ReSwift'
+pod 'DZNEmptyDataSet'
+pod 'CryptoSwift'
+pod 'Hue'
   target 'ZIP_iosTests' do
     inherit! :search_paths
     # Pods for testing
