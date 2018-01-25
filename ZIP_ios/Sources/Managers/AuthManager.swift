@@ -11,30 +11,25 @@ import RxSwift
 import Moya
 import SwiftyJSON
 
-struct AuthPlugin: PluginType {
-  let token: String
-  
-  func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
-    var request = request
-    request.addValue("jwt " + token, forHTTPHeaderField: "Authorization")
-    return request
-  }
-}
 
 class AuthManager{
-  
+
   var fireBaseId: String?
-  let provider = MoyaProvider<ZIP>().rx
-  let authProvider: MoyaProvider<ZIP> = {
+  let provider: Reactive<MoyaProvider<ZIP>> = {
     if let token = UserDefaults.standard.string(forKey: "access_token") {
-      return MoyaProvider<ZIP>(plugins: [AuthPlugin(token: token)])
+      log.info(token)
+      return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: token)]).rx
     }else{
-      return MoyaProvider<ZIP>()
+      log.error("왜이게 나오지?")
+      return MoyaProvider<ZIP>().rx
     }
   }()
-  
+
   static var sharedManager = AuthManager()
-  
+
   fileprivate init(){}
 }
+
+
+
 

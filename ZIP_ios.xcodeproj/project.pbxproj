@@ -30,6 +30,8 @@
 		0A6C88A61FE9609D002019DE /* TravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C88A51FE9609D002019DE /* TravelViewController.swift */; };
 		0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C88AC1FEE3E66002019DE /* WriterCell.swift */; };
 		0A6C88AF1FEE82AA002019DE /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C88AE1FEE82AA002019DE /* PlanViewController.swift */; };
+		0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FEE7E1FF622A100A2D347 /* JoinView.swift */; };
+		0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FEE801FF629C600A2D347 /* EnumManager.swift */; };
 		0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71236A1FACC01200512EB7 /* AppDelegate.swift */; };
 		0A71236D1FACC01200512EB7 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A71236C1FACC01200512EB7 /* art.scnassets */; };
 		0A71236F1FACC01200512EB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71236E1FACC01200512EB7 /* ViewController.swift */; };
@@ -84,6 +86,8 @@
 		0A6C88A51FE9609D002019DE /* TravelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelViewController.swift; sourceTree = "<group>"; };
 		0A6C88AC1FEE3E66002019DE /* WriterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterCell.swift; sourceTree = "<group>"; };
 		0A6C88AE1FEE82AA002019DE /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
+		0A6FEE7E1FF622A100A2D347 /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
+		0A6FEE801FF629C600A2D347 /* EnumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumManager.swift; sourceTree = "<group>"; };
 		0A7123671FACC01200512EB7 /* ZIP_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZIP_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A71236A1FACC01200512EB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A71236C1FACC01200512EB7 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				0A6C88AB1FEE3E51002019DE /* Cells */,
 				0A09A8061FDD3F2D00DC47A7 /* MainHeaderView.swift */,
 				0A1B11DA1FF1181D004B42B6 /* WelComeView.swift */,
+				0A6FEE7E1FF622A100A2D347 /* JoinView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			children = (
 				0A23C1F91FC057A8005DCE32 /* AuthManager.swift */,
 				0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */,
+				0A6FEE801FF629C600A2D347 /* EnumManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -644,6 +650,7 @@
 				0AA0361E1FDADBC6000D4451 /* ProxyViewController.swift in Sources */,
 				0A1B11D71FF11651004B42B6 /* Actions.swift in Sources */,
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
+				0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */,
 				0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */,
 				0A059CAB1FEFB3B50057E26E /* PlanModel.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
@@ -657,6 +664,7 @@
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */,
+				0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,8 +25,6 @@ class ProxyViewController{
   
   init() {
     
-    
-    
     UserDefaults.standard.rx.observe(TokenModel.self, "token")
       .observeOn(MainScheduler.instance)
       .filterNil()

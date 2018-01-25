@@ -12,12 +12,14 @@ import RxSwift
 import RxCocoa
 import Eureka
 import ReSwift
+import Moya
 
 
 final class WriteViewController: FormViewController{
   
   let disposeBag = DisposeBag()
- 
+  
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()

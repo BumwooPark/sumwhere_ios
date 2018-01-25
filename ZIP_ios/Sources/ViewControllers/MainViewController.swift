@@ -15,6 +15,7 @@ import RxDataSources
 class MainViewController: UIViewController{
   
   let disposeBag = DisposeBag()
+  let provider = AuthManager.sharedManager.provider
   let dataSources = RxTableViewSectionedReloadDataSource<MainViewModel>(
     configureCell: { (ds, tv, index, _) -> UITableViewCell in
     return UITableViewCell()
@@ -33,6 +34,15 @@ class MainViewController: UIViewController{
     tableView.tableHeaderView = mainHeaderView
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.title = "ZIP"
+    
+    provider.request(.main)
+      .filter(statusCode: 200)
+      .mapJSON()
+      .subscribe(onSuccess: { (event) in
+        log.info(event)
+      }) { (error) in
+        log.error(error.localizedDescription)
+    }.disposed(by: disposeBag)
 
     mainHeaderView
       .travelButton
@@ -41,7 +51,21 @@ class MainViewController: UIViewController{
       .subscribe {[weak self] (event) in
       self?.navigationController?.pushViewController(TravelViewController(), animated: true)
     }
+    test()
   }
+  
+  func test(){
+    guard let data = UserDefaults.standard.data(forKey: UDType.TokenModel.rawValue) else {return}
+    let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+    log.info(unarchiver)
+    do{
+      let model = try unarchiver.decodeDecodable(TokenModel.self, forKey: UDType.TokenModel.rawValue)
+      log.info(model)
+    }catch let error{
+      log.error(error)
+    }
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.navigationBar.isHidden = true

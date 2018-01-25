@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
     window = UIWindow(frame: UIScreen.main.bounds)
+    
     window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
     
     ProxyViewController()
@@ -60,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     GMSServices.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     GMSPlacesClient.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     
+    
     NotificationCenter.default.rx
       .notification(NSNotification.Name.KOSessionDidChange)
       .observeOn(MainScheduler.instance)
@@ -67,17 +69,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self?.window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
       })
     .disposed(by: disposeBag)
-
-     UserDefaults.standard.rx.observe(Bool.self, "login")
-      .observeOn(MainScheduler.instance)
-      .filterNil()
-      .subscribe(onNext: {[weak self] result in
-        log.info(result)
-        guard let strongSelf = self else {return}
-        strongSelf.window?.rootViewController = result ? MainTabBarController() : WelcomeViewController()}
-        ,onError:{log.error($0)})
-      .disposed(by: disposeBag)
-
+    
+    UserDefaults.standard.rx.observe(Bool.self, UDType.Login.rawValue)
+      .subscribe(onNext: { [weak self] in
+        if $0 == nil || $0 == false{
+          self?.window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
+        }else{
+          self?.window?.rootViewController = MainTabBarController()
+        }
+      }).disposed(by: disposeBag)
+    
     return true
   }
   
@@ -91,7 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   private func appearanceSetting(){
-
     
     UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
     UINavigationBar.appearance().shadowImage = UIImage()

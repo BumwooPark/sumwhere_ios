@@ -23,5 +23,10 @@ class ConfigureViewController: FormViewController{
             print(error)
           })
         })
+      <<< LabelRow(){
+        $0.title = "default로그아웃"
+        }.onCellSelection({ (cell, row) in
+          UserDefaults.standard.set(false, forKey: UDType.Login.rawValue)
+        })
   }
 }

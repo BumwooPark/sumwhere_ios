@@ -1,5 +1,5 @@
 //
-//  WelcomeViewController.swift
+//  회원이 아닐경우 맨처음 보이는 ViewController
 //  ZIP_ios
 //
 //  Created by park bumwoo on 2017. 11. 4..
@@ -103,19 +103,27 @@ class WelcomeViewController: UIViewController, StoreSubscriber{
   ///
   // TODO: - 심플하게 처리하는 방법이 없을지 생각
   private func network(result: Bool){
-    
     do {
-      let aes = try AES(key: "bumwoopark", iv: "zipbumwoopark") // aes128
+      let aes = try AES(key: "bumwooparkbumwoo", iv: "bumwooparkbumwoo") // aes256
       guard let ciphertext = try aes.encrypt(Array(welcomeView.passwordField.text!.utf8)).toBase64() else {return}
       self.provider.request(.login(email: welcomeView.emailField.text!, password: ciphertext))
         .filter(statusCodes: 200...400)
         .map(TokenModel.self)
         .subscribe(onSuccess: { (model) in
-          UserDefaults.standard.set(true, forKey: "login")
+          UserDefaults.standard.set(true, forKey: UDType.Login.rawValue)
+          let archiver = NSKeyedArchiver()
+          do{
+            try archiver.encodeEncodable(model, forKey: UDType.TokenModel.rawValue)
+          }catch let error{
+            log.error(error)
+          }
+          let data = archiver.encodedData
+          UserDefaults.standard.set(data, forKey: UDType.TokenModel.rawValue)
+          UserDefaults.standard.set(model.access_token, forKey: UDType.accessToken.rawValue)
         }) { (error) in
           JDStatusBarNotification.show(withStatus: "계정이 없거나 이메일 또는 비밀번호가 다릅니다", dismissAfter: 2, styleName: "loginfail")
         }.disposed(by: disposeBag)
-    } catch { }
+    } catch let error{log.error(error)}
   }
 
   private func JTAlertSetting(){
@@ -149,14 +157,6 @@ class WelcomeViewController: UIViewController, StoreSubscriber{
         KOSessionTask.meTask{(result, error) in
           if (result != nil){
             let token = KOSession.shared().accessToken
-//            self.provider.request(.kakaoLogin(kakaoToken: token!))
-//              .filter(statusCode: 200)
-//              .subscribe(onSuccess: { (response) in
-//                log.info(response.description)
-//              }, onError: { (error) in
-//                log.error(error)
-//              }).disposed(by: self.disposeBag)
-
           }
         }
       }
