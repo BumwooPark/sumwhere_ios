@@ -19,3 +19,5 @@
 #import <KakaoCommon/KCMConfiguration.h>
 #import <KakaoCommon/KCMAgent.h>
 #import <KakaoCommon/KCMError.h>
+#import <KakaoCommon/KCMUtils.h>
+#import <KakaoCommon/KCMException.h>

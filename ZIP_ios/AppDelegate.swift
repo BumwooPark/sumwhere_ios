@@ -19,7 +19,8 @@ import SwiftyJSON
 import Firebase
 import FirebaseMessaging
 import UserNotifications
-import ReSwift
+import FBSDKCoreKit
+
 
 
 let log = SwiftyBeaver.self
@@ -29,10 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   let disposeBag = DisposeBag()
   let gcmMessageIDKey = "gcm.message_id"
-  let store = Store(
-    reducer: loginReducer,
-    state: nil,   // You may also start with `nil`
-    middleware: [])      // Middlewares are optional
   
   static var instance: AppDelegate? {
     return UIApplication.shared.delegate as? AppDelegate
@@ -41,13 +38,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
     window = UIWindow(frame: UIScreen.main.bounds)
+    window?.makeKeyAndVisible()
+    let proxyController = ProxyController(window: window)
+    proxyController.makeRootViewController()
     
-    window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
-    
-    ProxyViewController()
+    faceBookSetting(application: application, didFinishLaunchingWithOptions: launchOptions)
     FirebaseApp.configure()
     loggingSetting()
     appearanceSetting()
+    JDSetting()
     
     Messaging.messaging().delegate = self
     
@@ -60,26 +59,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     GMSServices.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     GMSPlacesClient.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
-    
-    
-    NotificationCenter.default.rx
-      .notification(NSNotification.Name.KOSessionDidChange)
-      .observeOn(MainScheduler.instance)
-      .subscribe({[weak self] _ in
-        self?.window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
-      })
-    .disposed(by: disposeBag)
-    
-    UserDefaults.standard.rx.observe(Bool.self, UDType.Login.rawValue)
-      .subscribe(onNext: { [weak self] in
-        if $0 == nil || $0 == false{
-          self?.window?.rootViewController = KOSession.shared().isOpen() ? MainTabBarController() : WelcomeViewController()
-        }else{
-          self?.window?.rootViewController = MainTabBarController()
-        }
-      }).disposed(by: disposeBag)
-    
     return true
+  }
+  
+  private func faceBookSetting(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable: Any]?){
+    FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    log.info(FBSDKAccessToken.current().tokenString)
   }
   
   private func loggingSetting(){
@@ -106,7 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillEnterForeground(_ application: UIApplication) {
     KOSession.handleDidBecomeActive()
   }
+  
   func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+    
     if KOSession.handleOpen(url) {
       return KOSession.handleOpen(url)
     }
@@ -114,6 +101,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    if FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation){
+      return true
+    }
+    
     if KOSession.isKakaoAccountLoginCallback(url) {
       return KOSession.handleOpen(url)
     }
@@ -121,6 +112,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    
+//    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+//      openURL:url
+//      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+//      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+    
+    
+    if FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options){
+      return true
+    }
+    
     if KOSession.handleOpen(url) {
       return true
     }

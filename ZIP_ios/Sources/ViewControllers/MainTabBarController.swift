@@ -44,7 +44,6 @@ class MainTabBarController: UITabBarController{
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
-  
 
   override func viewDidLoad() {
     super.viewDidLoad()

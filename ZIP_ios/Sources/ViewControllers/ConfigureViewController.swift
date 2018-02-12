@@ -26,7 +26,8 @@ class ConfigureViewController: FormViewController{
       <<< LabelRow(){
         $0.title = "default로그아웃"
         }.onCellSelection({ (cell, row) in
-          UserDefaults.standard.set(false, forKey: UDType.Login.rawValue)
+          UserDefaults.standard.removeObject(forKey: UserDefaultType.token.rawValue)
+          UserDefaults.standard.set(false, forKey: UserDefaultType.isLogin.rawValue)
         })
   }
 }

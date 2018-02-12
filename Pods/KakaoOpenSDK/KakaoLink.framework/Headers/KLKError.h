@@ -86,6 +86,16 @@ typedef NS_ENUM(NSInteger, KLKServerErrorCode) {
 
 // NSError userInfo key names.
 /*!
- @constant KLKErrorExceedSizeLimitURLUserInfoKey 길이 제한이 초과된 카카오톡링크 URL의 키. KLKErrorCodeExceedSizeLimit 에러 발생 시 사용 가능.
+ @constant KLKErrorExceedSizeLimitURLUserInfoKey 길이 제한이 초과된 카카오톡링크 URL. KLKErrorCodeExceedSizeLimit 에러에 포함될 수 있음.
  */
 extern NSString *const KLKErrorExceedSizeLimitURLUserInfoKey;
+
+/*!
+ @constant KLKErrorHTTPStatusCodeUserInfoKey 서버로부터 받은 HTTP status code. KLKErrorCodeBadResponse 에러에 포함될 수 있음.
+ */
+extern NSString *const KLKErrorHTTPStatusCodeUserInfoKey;
+
+/*!
+ @constant KLKErrorResponseJSONUserInfoKey 서버로부터 받은 JSON 객체. KLKErrorCodeBadResponse 에러에 포함될 수 있음.
+ */
+extern NSString *const KLKErrorResponseJSONUserInfoKey;

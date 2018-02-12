@@ -17,7 +17,6 @@
 #import <KakaoOpenSDK/KOError.h>
 #import <KakaoOpenSDK/KOImages.h>
 #import <KakaoOpenSDK/KOLoginButton.h>
-#import <KakaoOpenSDK/KOAppCall.h>
 #import <KakaoOpenSDK/KOSession.h>
 #import <KakaoOpenSDK/KOUtils.h>
 #import <KakaoOpenSDK/KOAgeAuthQueryStringBuilder.h>
@@ -30,4 +29,4 @@
 #import <KakaoOpenSDK/KOSessionTask+FriendAPI.h>
 #import <KakaoOpenSDK/KOSessionTask+AgeAuthAPI.h>
 
-#define KAKAO_SDK_IOS_VERSION_STRING @"1.5.1"
+#define KAKAO_SDK_IOS_VERSION_STRING @"1.6.0"

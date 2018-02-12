@@ -16,8 +16,7 @@ class AuthManager{
 
   var fireBaseId: String?
   let provider: Reactive<MoyaProvider<ZIP>> = {
-    if let token = UserDefaults.standard.string(forKey: "access_token") {
-      log.info(token)
+    if let token = UserDefaults.standard.string(forKey: UserDefaultType.token.rawValue) {
       return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: token)]).rx
     }else{
       log.error("왜이게 나오지?")

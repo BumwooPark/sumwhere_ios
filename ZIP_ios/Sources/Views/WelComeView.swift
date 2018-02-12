@@ -12,14 +12,25 @@ import RxSwift
 import RxCocoa
 import SkyFloatingLabelTextField
 import SnapKit
+import FBSDKLoginKit
+import Pastel
 
 class WelComeView: UIView{
-
-  let imageView: UIImageView = {
-    let image = UIImageView(image: #imageLiteral(resourceName: "bare-1985858_1920"))
-    image.contentMode = .scaleAspectFill
-    image.alpha = 0.9
+ 
+  let imageView: PastelView = {
+    let image = PastelView(frame: UIScreen.main.bounds)
+    image.startPastelPoint = .bottomLeft
+    image.endPastelPoint = .topRight
+    image.animationDuration = 3.0
+    image.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
+                          UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+                          UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
+                          UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
+                          UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                          UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
+                          UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
     image.heroID = "backImageView"
+    image.startAnimation()
     return image
   }()
   
@@ -30,7 +41,7 @@ class WelComeView: UIView{
   
   let kakaoButton: KOLoginButton = {
     let button = KOLoginButton()
-    button.setTitle("카카오톡으로 로그인", for: .normal)
+    button.setTitle("카카오톡으로 갈래?", for: .normal)
     button.layer.cornerRadius = 10
     return button
   }()
@@ -59,7 +70,7 @@ class WelComeView: UIView{
   
   let loginButton: UIButton = {
     let button = UIButton()
-    button.setTitle("로그인", for: .normal)
+    button.setTitle("로그인하러 갈래?", for: .normal)
     button.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
     button.layer.cornerRadius = 10
     button.isEnabled = false
@@ -68,9 +79,16 @@ class WelComeView: UIView{
   
   let joinButton: UIButton = {
     let button = UIButton()
-    button.setTitle("가입하기", for: .normal)
+    button.setTitle("가입하러 갈래?", for: .normal)
     button.layer.cornerRadius = 10
     button.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+    return button
+  }()
+  
+  let faceBookButton: UIButton = {
+    let button = UIButton()
+    button.setTitle("페이스북으로 갈래?", for: .normal)
+    button.backgroundColor = #colorLiteral(red: 0.2034977426, green: 0.3029115768, blue: 1, alpha: 1)
     return button
   }()
   
@@ -85,6 +103,7 @@ class WelComeView: UIView{
     addSubview(passwordField)
     addSubview(loginButton)
     addSubview(joinButton)
+    addSubview(faceBookButton)
     addConstraint()
   }
   
@@ -93,6 +112,9 @@ class WelComeView: UIView{
   }
   
   private func addConstraint(){
+    imageView.snp.makeConstraints { (make) in
+      make.edges.equalToSuperview()
+    }
     
     zipImageView.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
@@ -116,24 +138,31 @@ class WelComeView: UIView{
     }
     
     loginButton.snp.makeConstraints { (make) in
-      make.top.equalTo(passwordField).offset(60)
-      make.height.equalTo(passwordField)
+      make.top.equalTo(passwordField.snp.bottom).offset(20)
+      make.height.equalTo(40)
       make.width.equalTo(passwordField)
       make.centerX.equalToSuperview()
     }
     
     joinButton.snp.makeConstraints { (make) in
-      make.top.equalTo(loginButton).offset(60)
-      make.height.equalTo(loginButton)
+      make.top.equalTo(loginButton.snp.bottom).offset(20)
+      make.height.equalTo(40)
       make.width.equalTo(loginButton)
-      make.centerX.equalToSuperview()
+      make.centerX.equalTo(loginButton)
     }
     
     kakaoButton.snp.makeConstraints { (make) in
-      make.top.equalTo(joinButton).offset(60)
+      make.top.equalTo(joinButton.snp.bottom).offset(20)
       make.height.equalTo(40)
-      make.width.equalTo(passwordField)
-      make.centerX.equalToSuperview()
+      make.width.equalTo(loginButton)
+      make.centerX.equalTo(loginButton)
+    }
+    
+    faceBookButton.snp.makeConstraints { (make) in
+      make.top.equalTo(kakaoButton.snp.bottom).offset(20)
+      make.height.equalTo(40)
+      make.width.equalTo(loginButton)
+      make.centerX.equalTo(loginButton)
     }
   }
 }

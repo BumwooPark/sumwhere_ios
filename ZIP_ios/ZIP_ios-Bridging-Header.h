@@ -4,9 +4,9 @@
 
 #import <KakaoOpenSDK/KakaoOpenSDK.h>
 
-#import <KakaoOpenSDK/KOAppCall.h>
-#import <KakaoOpenSDK/KakaoTalkLinkAction.h>
-#import <KakaoOpenSDK/KakaoTalkLinkObject.h>
+
+
+
 
 
 #import <KakaoOpenSDK/KOError.h>

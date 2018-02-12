@@ -46,3 +46,6 @@ typedef NS_ENUM(NSInteger, KCMErrorCode) {
     KCMErrorCodeInternal = 13,
     KCMErrorCodeIllegalState = 14,
 };
+
+extern NSString *const KCMErrorUnexpectedExceptionUserInfoKey;
+extern NSString *const KCMErrorMalformedURLStringUserInfoKey;

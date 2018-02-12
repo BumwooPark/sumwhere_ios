@@ -35,11 +35,4 @@ struct WelcomeViewModel{
     
     credentialsValid = Driver.combineLatest(emailVaild, passwordVaild) { $0 && $1 }
   }
-  
-  func login(_ email: String, _ password: String) -> PrimitiveSequence<SingleTrait, TokenModel>{
-    return AuthManager.sharedManager
-      .provider
-      .request(.login(email: email, password: password))
-      .map(TokenModel.self)
-  }
 }

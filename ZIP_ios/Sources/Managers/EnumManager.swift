@@ -6,13 +6,11 @@
 //  Copyright © 2017년 park bumwoo. All rights reserved.
 //
 
-enum UDType: String{
-  case Login = "Login"
-  case TokenModel = "TokenModel"
-  case accessToken = "accessToken"
+enum UserDefaultType: String{
+  case token = "token"
+  case isLogin = "isLogin"
 }
 
-enum JDType: String{
-  case LoginSuccess = "LoginSuccess"
-  
-}
+
+
+

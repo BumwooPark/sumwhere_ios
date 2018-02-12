@@ -15,17 +15,6 @@
  */
 
 #import <KakaoLink/KLKTalkLinkCenter.h>
+#import <KakaoLink/KLKTalkLinkCore.h>
 #import <KakaoLink/KLKImageStorage.h>
 #import <KakaoLink/KLKError.h>
-
-#import <KakaoLink/KLKFeedTemplate.h>
-#import <KakaoLink/KLKListTemplate.h>
-#import <KakaoLink/KLKLocationTemplate.h>
-#import <KakaoLink/KLKCommerceTemplate.h>
-#import <KakaoLink/KLKTextTemplate.h>
-
-#import <KakaoLink/KLKContentObject.h>
-#import <KakaoLink/KLKLinkObject.h>
-#import <KakaoLink/KLKSocialObject.h>
-#import <KakaoLink/KLKButtonObject.h>
-#import <KakaoLink/KLKCommerceObject.h>

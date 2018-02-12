@@ -11,7 +11,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Eureka
-import ReSwift
 import Moya
 
 

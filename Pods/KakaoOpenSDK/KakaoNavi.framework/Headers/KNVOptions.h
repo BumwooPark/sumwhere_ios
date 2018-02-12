@@ -60,6 +60,7 @@ typedef NS_ENUM(NSUInteger, KNVVehicleType) {
  @constant KNVRpOptionWide Wide
  @constant KNVRpOptionHighway Highway
  @constant KNVRpOptionNormal Normal
+ @constant KNVRpOptionRecommended 추천경로 (기본값)
  */
 typedef NS_ENUM(NSUInteger, KNVRpOption) {
     KNVRpOptionFast = 1,
@@ -69,6 +70,7 @@ typedef NS_ENUM(NSUInteger, KNVRpOption) {
     KNVRpOptionWide = 5,
     KNVRpOptionHighway = 6,
     KNVRpOptionNormal = 8,
+    KNVRpOptionRecommended = 100,
 };
 
 /*!

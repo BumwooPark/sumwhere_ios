@@ -9,34 +9,35 @@
 import Moya
 
 public enum ZIP{
-  case login(email: String, password: String)
-  case join(email: String, kakao_id: String, password: String, nickname: String, fcmToken: String)
-  case main
+  case signUp(email: String, password: String, username: String)
+  case signIn(email: String, password: String)
+  case profile(profileImage: Data, image1: Data)
+  
 }
 
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
-  public var baseURL: URL {return URL(string: "http://54.92.58.119:8080")!}
+  public var baseURL: URL {return URL(string: "http://192.168.0.7:8080")!}
   
   public var path: String{
     switch self {
-    case .join:
-      return "/intro/join"
-    case .login:
-      return "/intro/login"
-    case .main:
-      return "/api/main"
+    case .signUp:
+      return "/signup"
+    case .signIn:
+      return "/signin"
+    case .profile:
+      return "/profile"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .join:
+    case .signUp:
       return .post
-    case .login:
+    case .signIn:
       return .post
-    case .main:
-      return .get
+    case .profile:
+      return .post
     }
   }
   
@@ -57,12 +58,14 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var task: Task {
     switch self {
-    case .join(let email,let kakao_id, let password, let nickname, let fcmToken):
-      return .requestParameters(parameters: ["email":email,"kakao_id":kakao_id,"password":password,"nickname":nickname, "fcm_Token":fcmToken], encoding: URLEncoding.httpBody)
-    case .login(let email,let password):
-      return .requestParameters(parameters: ["email":email,"password":password], encoding: URLEncoding.httpBody)
-    case .main:
-      return .requestPlain
+    case .signUp(let email, let password, let username):
+      return .requestParameters(parameters: ["email":email,"password":password,"username":username], encoding: URLEncoding.httpBody)
+    case .signIn(let email,let password):
+      return .requestParameters(parameters: ["username":email,"password":password], encoding: URLEncoding.httpBody)
+    case .profile(let profileImage, let image1):
+      return .uploadMultipart([MultipartFormData(provider: .data(profileImage), name: "profileImage",fileName: "name",mimeType: "image/jpeg"),
+                               MultipartFormData(provider: .data(image1), name: "image1"),
+                               MultipartFormData(provider: .data(<#T##Data#>), name: <#T##String#>)])
     }
   }
   
@@ -72,8 +75,6 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var authorizationType: AuthorizationType {
     switch self {
-    case .main:
-      return .bearer
     default:
       return .none
     }

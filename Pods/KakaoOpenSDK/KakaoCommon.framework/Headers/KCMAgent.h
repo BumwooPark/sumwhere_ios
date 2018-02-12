@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSString *res;
 @property (readonly) NSString *device;
 @property (readonly) NSString *origin;
+@property (readonly) NSString *appVer;
 
 + (instancetype)currentAgent;
 
