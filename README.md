@@ -15,10 +15,10 @@
 
 2. Server
 - Python
-- Flask
-- Flask-restful
-- AWS
-- Sqlalchemy
+- Django
+- Django-Rest-FrameWork
+- Respberrypi
+- Push & Chat Server : go websocket , golang Server
 
 3. Android 
 - 추후 
