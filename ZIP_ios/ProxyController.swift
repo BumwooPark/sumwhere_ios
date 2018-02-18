@@ -9,17 +9,15 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import SwiftyUserDefaults
+import Moya
+
 
 class ProxyController{
   let disposeBag = DisposeBag()
   let mainVC = MainTabBarController()
   let welcomeVC = WelcomeViewController()
-  let kakao = NotificationCenter.default.rx
-    .notification(NSNotification.Name.KOSessionDidChange)
-    .map{ _ in KOSession.shared().isOpen()}
-    .observeOn(MainScheduler.instance)
-    .share()
-  
+  let provider = AuthManager.sharedManager.provider
   let defaultLogin = UserDefaults.standard.rx
     .observe(Bool.self, UserDefaultType.isLogin.rawValue)
     .filterNil()
@@ -31,21 +29,35 @@ class ProxyController{
   init(window: UIWindow?) {
     self.window = window
 
-    Observable<Bool>.merge([kakao,defaultLogin])
-      .map { _ in return ()}
-      .debug()
+    defaultLogin
+      .filter{$0}
+      .map({ _ -> () in return ()})
       .bind(onNext: makeRootViewController)
       .disposed(by: disposeBag)
   }
   
+  private func serverHaveProfile(){
+      provider.request(.isProfile)
+        .filter(statusCode: 200)
+        .subscribe(onSuccess: { [weak self](response) in
+          guard let retainSelf = self else {return}
+          retainSelf.window?.rootViewController = MainTabBarController()
+        }) { [weak self](error) in
+          let moyaError = error as? MoyaError
+          if moyaError?.response?.statusCode == 406,
+            let retainSelf = self {
+          retainSelf.window?.rootViewController = SetProfileViewController()
+          }else{
+            log.error(error)
+          }
+    }.disposed(by: disposeBag)
+  }
+  
   func makeRootViewController(){
-    let isLogin = UserDefaults.standard.bool(forKey: UserDefaultType.isLogin.rawValue)
-    
-    if isLogin || KOSession.shared().isOpen(){
+    if Defaults[.isLogin]{
       window?.rootViewController = MainTabBarController()
-      return
+    }else{
+      window?.rootViewController = WelcomeViewController()
     }
-    
-    window?.rootViewController = WelcomeViewController()
   }
 }

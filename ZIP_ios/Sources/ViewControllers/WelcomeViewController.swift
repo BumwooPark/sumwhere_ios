@@ -17,7 +17,7 @@ import Firebase
 import CryptoSwift
 import Security
 import FBSDKLoginKit
-
+import SwiftyUserDefaults
 #if !RX_NO_MODULE
   import RxSwift
   import RxCocoa
@@ -94,22 +94,29 @@ class WelcomeViewController: UIViewController{
       .mapJSON()
       .map{JSON($0)}
       .subscribe(onSuccess: { (json) in
-        UserDefaults.standard.set(json["token"].stringValue, forKey: UserDefaultType.token.rawValue)
-        UserDefaults.standard.set(true, forKey: UserDefaultType.isLogin.rawValue)
+        Defaults[.isLogin] = true
+        Defaults[.token] = json["access_token"].stringValue
       }) { error in
         JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
     }.disposed(by: disposeBag)
   }
   
   private func facebookLogin(manager: FBSDKLoginManager){
-    manager.logIn(withReadPermissions: ["public_profile","email"], from: self) { (result, error) in
+    manager.logIn(withReadPermissions: ["public_profile","email"], from: self) {[weak self] (result, error) in
+      guard let retainSelf = self else {return}
       if (error != nil){
         log.info(error!)
-      }else if (result?.isCancelled)!{
-        log.info("cancel")
       }else{
-        log.info(FBSDKAccessToken.current().tokenString)
-        log.info("login!")
+        retainSelf.provider.request(.facebook(access_token: FBSDKAccessToken.current().tokenString))
+          .filter(statusCode: 200)
+          .mapJSON()
+          .map{JSON($0)}
+          .subscribe(onSuccess: { (json) in
+            Defaults[.isLogin] = true
+            Defaults[.token] = json["access_token"].stringValue
+          }, onError: { (error) in
+            log.error(error)
+          }).disposed(by:retainSelf.disposeBag)
       }
     }
   }
@@ -126,18 +133,25 @@ class WelcomeViewController: UIViewController{
   //  TODO: - 토큰 방식으로 변경 예정
   private func kakaoLogin(){
     let session: KOSession = KOSession.shared()
-    
-    if session.isOpen() {
-      session.close()
-    }
+
+    if session.isOpen() {session.close()}
     
     session.open(completionHandler: {[weak self] (error) -> Void in
-      guard let `self` = self else {return}
+      guard let retainSelf = self else {return}
       if KOSession.shared().isOpen(){
         KOSessionTask.meTask{(result, error) in
           if (result != nil){
             let token = KOSession.shared().accessToken
-            log.info(token)
+            retainSelf.provider.request(.kakao(access_token: token!))
+              .filter(statusCode: 200)
+              .mapJSON()
+              .map{JSON($0)}
+              .subscribe(onSuccess: { (json) in
+                Defaults[.isLogin] = true
+                Defaults[.token] = json["access_token"].stringValue
+              }, onError: { (error) in
+                log.error(error)
+              }).disposed(by: retainSelf.disposeBag)
           }
         }
       }

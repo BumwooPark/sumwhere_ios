@@ -10,16 +10,18 @@ import RxCocoa
 import RxSwift
 import Moya
 import SwiftyJSON
-
+import SwiftyUserDefaults
 
 class AuthManager{
-
+  
   var fireBaseId: String?
   let provider: Reactive<MoyaProvider<ZIP>> = {
-    if let token = UserDefaults.standard.string(forKey: UserDefaultType.token.rawValue) {
-      return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: token)]).rx
+    if Defaults.hasKey("token"){
+      print("토큰이 있다")
+      print(Defaults[.token])
+      return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
     }else{
-      log.error("왜이게 나오지?")
+      print("왜이게 나오지?")
       return MoyaProvider<ZIP>().rx
     }
   }()

@@ -12,14 +12,14 @@ import LTMorphingLabel
 import RxSwift
 import RxCocoa
 
-final class MainHeaderView: UIView{
+final class MainHeaderView: UICollectionReusableView{
   
-  let sampledatas:[UIImage] = [#imageLiteral(resourceName: "bmw-2964072_640"),#imageLiteral(resourceName: "kitty-2948404_640")]
+  let sampledatas:[UIImage] = [#imageLiteral(resourceName: "maxresdefault"),#imageLiteral(resourceName: "maxresdefault")]
   
   let disposeBag = DisposeBag()
   let titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "관심사"
+    label.text = "여행갈래?"
     label.font = UIFont.boldSystemFont(ofSize: 25)
     label.sizeToFit()
     return label
@@ -113,7 +113,7 @@ final class MainHeaderView: UIView{
     addSubview(sampleButton)
     addSubview(pageView)
     pageView.addSubview(pageControl)
-    addSubview(adLabel)
+//    addSubview(adLabel)
     addconstraint()
   }
   
@@ -131,7 +131,7 @@ final class MainHeaderView: UIView{
     
     travelButton.snp.makeConstraints { (make) in
       make.left.equalToSuperview().inset(20)
-      make.top.equalTo(titleLabel.snp.bottom).offset(20)
+      make.top.equalTo(pageView.snp.bottom).offset(20)
       make.width.equalToSuperview().dividedBy(4)
       make.height.equalTo(travelButton.snp.width)
     }
@@ -151,7 +151,7 @@ final class MainHeaderView: UIView{
     }
 
     pageView.snp.makeConstraints { (make) in
-      make.top.equalTo(travelButton.snp.bottom).offset(7.5)
+      make.top.equalTo(titleLabel.snp.bottom).offset(20)
       make.left.equalToSuperview()
       make.right.equalToSuperview()
       make.height.equalTo(150)
@@ -162,12 +162,12 @@ final class MainHeaderView: UIView{
       make.bottom.equalToSuperview().inset(15)
     }
 
-    adLabel.snp.makeConstraints { (make) in
-      make.left.equalToSuperview()
-      make.right.equalToSuperview()
-      make.top.equalTo(pageView.snp.bottom)
-      make.height.equalTo(20)
-    }
+//    adLabel.snp.makeConstraints { (make) in
+//      make.left.equalToSuperview()
+//      make.right.equalToSuperview()
+//      make.top.equalTo(titleLabel.snp.bottom).offset(20)
+//      make.height.equalTo(20)
+//    }
 
 //    moreButton.snp.makeConstraints { (make) in
 //      make.top.equalTo(adLabel.snp.bottom)
@@ -192,8 +192,9 @@ extension MainHeaderView: FSPagerViewDataSource{
   public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
     let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
     cell.imageView?.image = sampledatas[index]
-    adLabel.text = "\(index)"
-    cell.textLabel?.text = "good"
+//    adLabel.text = "\(index)"
+    cell.textLabel?.text = "우리여행"
+    cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 13)
     return cell
   }
 }

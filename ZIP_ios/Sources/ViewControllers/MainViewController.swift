@@ -16,48 +16,67 @@ class MainViewController: UIViewController{
   
   let disposeBag = DisposeBag()
   let provider = AuthManager.sharedManager.provider
-  let dataSources = RxTableViewSectionedReloadDataSource<MainViewModel>(
-    configureCell: { (ds, tv, index, _) -> UITableViewCell in
-    return UITableViewCell()
+  let dataSources = RxCollectionViewSectionedReloadDataSource<MainViewModel>(
+    configureCell: {(ds, cv, idx, item) -> UICollectionViewCell in
+      
+    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MainCell.self), for: idx) as! MainCell
+    return cell
+  },configureSupplementaryView:{ (ds,cv,name,idx) in
+    let view = cv.dequeueReusableSupplementaryView(
+      ofKind: UICollectionElementKindSectionHeader,
+      withReuseIdentifier: String(describing: MainHeaderView.self),
+      for: idx) as! MainHeaderView
+
+    return view
   })
   
   let mainHeaderView = MainHeaderView()
   
-  let tableView: UITableView = {
-    let tableView = UITableView()
-    return tableView
+  lazy var collectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.minimumLineSpacing = 0
+    layout.minimumInteritemSpacing = 0
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.register(MainCell.self, forCellWithReuseIdentifier: String(describing: MainCell.self))
+    collectionView.register(MainHeaderView.self,
+                            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                            withReuseIdentifier: String(describing: MainHeaderView.self))
+    
+    collectionView.backgroundColor = .white
+    collectionView.delegate = self
+    return collectionView
   }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view = tableView
-    tableView.tableHeaderView = mainHeaderView
+    view = collectionView
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.title = "ZIP"
     
-    mainHeaderView
-      .travelButton
-      .rx
-      .tap
-      .subscribe {[weak self] (event) in
-      self?.navigationController?.pushViewController(TravelViewController(), animated: true)
-    }
+    
+    Observable.of([MainViewModel(items: [MainModel(title: "123"),MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2")]),
+                   MainViewModel(items: [MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2")]),
+                   MainViewModel(items: [MainModel(title: "2")])])
+        .bind(to: collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
   }
   
-//  func test(){
-//    guard let data = UserDefaults.standard.data(forKey: UDType.TokenModel.rawValue) else {return}
-//    let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
-//    log.info(unarchiver)
-//    do{
-//      let model = try unarchiver.decodeDecodable(TokenModel.self, forKey: UDType.TokenModel.rawValue)
-//      log.info(model)
-//    }catch let error{
-//      log.error(error)
-//    }
-//  }
+
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.navigationBar.isHidden = true
+  }
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout{
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      referenceSizeForHeaderInSection section: Int) -> CGSize {
+    return (section == 0) ? CGSize(width: UIScreen.main.bounds.width, height: 350) : .zero
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.bounds.width/2, height: 300)
   }
 }

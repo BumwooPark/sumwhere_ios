@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import PopupDialog
+import SwiftyUserDefaults
 
 class MainTabBarController: UITabBarController{
   
   let mainViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MainViewController())
-    let tabBar = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icons8-prop_plane"), tag: 0)
-    tabBar.imageInsets = UIEdgeInsets(top: 8, left: 0, bottom: -8, right: 0)
+    let tabBar = UITabBarItem(title: "여행", image: #imageLiteral(resourceName: "icons8-prop_plane"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
@@ -27,15 +28,6 @@ class MainTabBarController: UITabBarController{
     return naviVC
   }()
   
-  let chatNVViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: ChatViewController())
-    let tabBar = UITabBarItem(title: "수다", image: #imageLiteral(resourceName: "chats_icon"), tag: 0)
-    naviVC.navigationBar.prefersLargeTitles = true
-    naviVC.navigationItem.largeTitleDisplayMode = .always
-    naviVC.tabBarItem = tabBar
-    return naviVC
-  }()
-  
   let settingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: ConfigureViewController())
     let tabBar = UITabBarItem(title: "설정", image: #imageLiteral(resourceName: "profile_icon"), tag: 0)
@@ -44,13 +36,36 @@ class MainTabBarController: UITabBarController{
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     self.viewControllers = [
      mainViewController, writerViewController
-      , chatNVViewController, settingViewController
+      , settingViewController
     ]
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+      self?.profileAlertView()
+    }
+  }
+  
+  private func profileAlertView(){
+    
+    guard Defaults.hasKey(.isProfileSet) || !Defaults[.isProfileSet] else {return}
+    
+    let popup = PopupDialog(title: "회원정보", message: "회원정보를 입력해 보세요!")
+    let goButton = DefaultButton(title: "입력하러 갈래", height: 60, dismissOnTap: true) {[weak self] in
+      self?.present(SetProfileViewController(), animated: true, completion: nil)
+    }
+    let cancelButton = DefaultButton(title: "나중에 할래", height: 60, dismissOnTap: true){
+      Defaults[.isProfileSet] = true
+    }
+    popup.addButtons([goButton,cancelButton])
+    self.present(popup, animated: true, completion: nil)
   }
 }

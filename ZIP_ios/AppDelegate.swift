@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
+    window?.rootViewController = UIViewController()
     let proxyController = ProxyController(window: window)
     proxyController.makeRootViewController()
     
@@ -64,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   private func faceBookSetting(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable: Any]?){
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-    log.info(FBSDKAccessToken.current().tokenString)
   }
   
   private func loggingSetting(){
@@ -82,8 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().shadowImage = UIImage()
     UINavigationBar.appearance().tintColor = nil
   }
-  
-  
+
   func applicationDidEnterBackground(_ application: UIApplication) {
     KOSession.handleDidEnterBackground()
   }

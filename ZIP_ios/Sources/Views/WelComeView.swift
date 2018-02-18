@@ -42,7 +42,9 @@ class WelComeView: UIView{
   let kakaoButton: KOLoginButton = {
     let button = KOLoginButton()
     button.setTitle("카카오톡으로 갈래?", for: .normal)
-    button.layer.cornerRadius = 10
+    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+    button.layer.cornerRadius = 5
+    button.layer.masksToBounds = true
     return button
   }()
   
@@ -71,8 +73,9 @@ class WelComeView: UIView{
   let loginButton: UIButton = {
     let button = UIButton()
     button.setTitle("로그인하러 갈래?", for: .normal)
+    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 15)
     button.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-    button.layer.cornerRadius = 10
+    button.layer.cornerRadius = 5
     button.isEnabled = false
     return button
   }()
@@ -80,7 +83,8 @@ class WelComeView: UIView{
   let joinButton: UIButton = {
     let button = UIButton()
     button.setTitle("가입하러 갈래?", for: .normal)
-    button.layer.cornerRadius = 10
+    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+    button.layer.cornerRadius = 5
     button.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
     return button
   }()
@@ -88,6 +92,8 @@ class WelComeView: UIView{
   let faceBookButton: UIButton = {
     let button = UIButton()
     button.setTitle("페이스북으로 갈래?", for: .normal)
+    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+    button.layer.cornerRadius = 5
     button.backgroundColor = #colorLiteral(red: 0.2034977426, green: 0.3029115768, blue: 1, alpha: 1)
     return button
   }()

@@ -52,7 +52,7 @@ class PlanFlowLayout: UICollectionViewFlowLayout{
     for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
 
       let indexPath = IndexPath(item: item, section: 0)
-      print(indexPath)
+
 
 //       4. 델리게이트로부터 height를 받아서 frame 크기를 계산한다
       let photoHeight = delegate.collectionView(collectionView, heightForPhotoAtIndexPath: indexPath)

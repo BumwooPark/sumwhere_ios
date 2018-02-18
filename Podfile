@@ -44,6 +44,10 @@ pod 'FBSDKShareKit'
 pod 'SQLite.swift'
 pod 'MessageKit'
 pod 'Spring'
+pod 'SwiftyUserDefaults'
+pod 'PopupDialog'
+pod 'TLPhotoPicker'
+pod 'FSCalendar'
   target 'ZIP_iosTests' do
     inherit! :search_paths
     # Pods for testing

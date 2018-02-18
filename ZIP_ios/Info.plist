@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NotoSans-Bold.otf</string>
+		<string>NotoSans-Light.otf</string>
+		<string>NotoSans-Medium.otf</string>
+		<string>NotoSans-Regular.otf</string>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -69,6 +76,8 @@
 	<string>This application will use the camera for Augmented Reality.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>카메라 동의</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>접근 하시겠습니까?</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
