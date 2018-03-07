@@ -17,7 +17,7 @@ class ProxyController{
   let disposeBag = DisposeBag()
   let mainVC = MainTabBarController()
   let welcomeVC = WelcomeViewController()
-  let provider = AuthManager.sharedManager.provider
+  let provider = AuthManager.provider
   let defaultLogin = UserDefaults.standard.rx
     .observe(Bool.self, UserDefaultType.isLogin.rawValue)
     .filterNil()
@@ -41,7 +41,7 @@ class ProxyController{
         .filter(statusCode: 200)
         .subscribe(onSuccess: { [weak self](response) in
           guard let retainSelf = self else {return}
-          retainSelf.window?.rootViewController = MainTabBarController()
+          retainSelf.window?.rootViewController = MainViewController()
         }) { [weak self](error) in
           let moyaError = error as? MoyaError
           if moyaError?.response?.statusCode == 406,
@@ -55,7 +55,7 @@ class ProxyController{
   
   func makeRootViewController(){
     if Defaults[.isLogin]{
-      window?.rootViewController = MainTabBarController()
+      window?.rootViewController = UINavigationController(rootViewController:  MainViewController())
     }else{
       window?.rootViewController = WelcomeViewController()
     }

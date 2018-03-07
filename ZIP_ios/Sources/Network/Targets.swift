@@ -14,12 +14,14 @@ public enum ZIP{
   case facebook(access_token: String)
   case kakao(access_token: String)
   case isProfile
+  case country
 //  case profile(profileImage: Data, image1: Data)
 }
 
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
   public var baseURL: URL {return URL(string: "http://210.100.238.118:8080")!}
+//  public var baseURL: URL {return URL(string: "https://httpbin.org/get")!}
   
   public var path: String{
     switch self {
@@ -33,6 +35,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/kakao"
     case .isProfile:
       return "/profile"
+    case .country:
+      return "/country/"
 //    case .profile:
 //      return "/profile"
     }
@@ -48,7 +52,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .post
     case .kakao:
       return .post
-    case .isProfile:
+    default:
       return .get
 //    case .profile:
 //      return .post
@@ -80,7 +84,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
     case .kakao(let token):
       return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
-    case .isProfile:
+    default:
       return .requestPlain
 //    case .profile(let profileImage, let image1):
 //      return .uploadMultipart([MultipartFormData(provider: .data(profileImage), name: "profileImage",fileName: "name",mimeType: "image/jpeg"),
@@ -90,7 +94,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   }
   
   public var headers: [String : String]? {
-    return [:]
+//    return ["content-type":"application/json","Accept-Language":"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]
+    return nil
   }
   
   public var authorizationType: AuthorizationType {

@@ -47,7 +47,8 @@ pod 'Spring'
 pod 'SwiftyUserDefaults'
 pod 'PopupDialog'
 pod 'TLPhotoPicker'
-pod 'FSCalendar'
+pod 'JTAppleCalendar'
+pod 'SwiftyImage'
   target 'ZIP_iosTests' do
     inherit! :search_paths
     # Pods for testing

@@ -26,7 +26,7 @@ import JDStatusBarNotification
 class JoinViewController: UIViewController{
   
   let disposeBag = DisposeBag()
-  let provider = AuthManager.sharedManager.provider
+  let provider = AuthManager.provider
   
   let joinView = JoinView()
   

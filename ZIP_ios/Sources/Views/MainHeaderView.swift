@@ -15,16 +15,8 @@ import RxCocoa
 final class MainHeaderView: UICollectionReusableView{
   
   let sampledatas:[UIImage] = [#imageLiteral(resourceName: "maxresdefault"),#imageLiteral(resourceName: "maxresdefault")]
-  
-  let disposeBag = DisposeBag()
-  let titleLabel: UILabel = {
-    let label = UILabel()
-    label.text = "여행갈래?"
-    label.font = UIFont.boldSystemFont(ofSize: 25)
-    label.sizeToFit()
-    return label
-  }()
-  
+  weak var mainViewController: MainViewController?
+  private let disposeBag = DisposeBag()
   let travelButton: UIButton = {
     let button = UIButton()
     button.setTitle("여행", for: .normal)
@@ -36,6 +28,7 @@ final class MainHeaderView: UICollectionReusableView{
     button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     button.layer.cornerRadius = 5
     button.backgroundColor = .lightGray
+    button.isUserInteractionEnabled = true
     return button
   }()
   
@@ -106,15 +99,21 @@ final class MainHeaderView: UICollectionReusableView{
   
   override init(frame: CGRect) {
     super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
-    
-    addSubview(titleLabel)
+  
     addSubview(travelButton)
     addSubview(meetButton)
     addSubview(sampleButton)
     addSubview(pageView)
     pageView.addSubview(pageControl)
-//    addSubview(adLabel)
     addconstraint()
+    
+    travelButton
+      .rx
+      .tap
+      .subscribe{[weak self] _ in
+        self?.mainViewController?.eventAction.onNext(.Travel)
+    }.disposed(by: disposeBag)
+    
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -122,12 +121,6 @@ final class MainHeaderView: UICollectionReusableView{
   }
   
   private func addconstraint(){
-    
-    titleLabel.snp.makeConstraints { (make) in
-      make.left.equalToSuperview().inset(20)
-      make.top.equalToSuperview().inset(20)
-    }
-    titleLabel.sizeToFit()
     
     travelButton.snp.makeConstraints { (make) in
       make.left.equalToSuperview().inset(20)
@@ -151,9 +144,7 @@ final class MainHeaderView: UICollectionReusableView{
     }
 
     pageView.snp.makeConstraints { (make) in
-      make.top.equalTo(titleLabel.snp.bottom).offset(20)
-      make.left.equalToSuperview()
-      make.right.equalToSuperview()
+      make.right.top.left.equalToSuperview()
       make.height.equalTo(150)
     }
 

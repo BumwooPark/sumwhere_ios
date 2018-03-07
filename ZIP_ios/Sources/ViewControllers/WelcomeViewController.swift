@@ -27,7 +27,7 @@ import SwiftyUserDefaults
 class WelcomeViewController: UIViewController{
   
   let disposeBag = DisposeBag()
-  let provider = AuthManager.sharedManager.provider
+  let provider = AuthManager.provider
   let joinVC = JoinViewController()
   
   lazy var welcomeView: WelComeView = {

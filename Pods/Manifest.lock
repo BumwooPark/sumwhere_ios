@@ -45,7 +45,6 @@ PODS:
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
-  - FSCalendar (2.7.9)
   - FSPagerView (0.7.1)
   - GoogleMaps (2.5.0):
     - GoogleMaps/Maps (= 2.5.0)
@@ -70,6 +69,7 @@ PODS:
   - Hero (1.0.1)
   - Hue (3.0.1)
   - JDStatusBarNotification (1.5.6)
+  - JTAppleCalendar (7.1.5)
   - KakaoOpenSDK (1.6.0):
     - KakaoOpenSDK/KakaoCommon (= 1.6.0)
     - KakaoOpenSDK/KakaoLink (= 1.6.0)
@@ -90,10 +90,10 @@ PODS:
   - LGButton (1.0.5)
   - LTMorphingLabel (0.5.6)
   - MessageKit (0.13.1)
-  - Moya/Core (10.0.2):
+  - Moya/Core (11.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
-  - Moya/RxSwift (10.0.2):
+  - Moya/RxSwift (11.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
   - nanopb (0.3.8):
@@ -137,6 +137,7 @@ PODS:
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
   - SwiftyBeaver (1.5.1)
+  - SwiftyImage (1.2.0)
   - SwiftyJSON (4.0.0)
   - SwiftyUserDefaults (3.0.0)
   - TLPhotoPicker (1.4.9)
@@ -152,13 +153,13 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Messaging
-  - FSCalendar
   - FSPagerView
   - GoogleMaps
   - GooglePlaces
   - Hero
   - Hue
   - JDStatusBarNotification
+  - JTAppleCalendar
   - KakaoOpenSDK
   - Kingfisher
   - LGButton
@@ -181,6 +182,7 @@ DEPENDENCIES:
   - Spring
   - SQLite.swift
   - SwiftyBeaver
+  - SwiftyImage
   - SwiftyJSON
   - SwiftyUserDefaults
   - TLPhotoPicker
@@ -203,7 +205,6 @@ SPEC CHECKSUMS:
   FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   FirebaseMessaging: dfdcd307c2382290a1e297a81d0f18370f5b1bcd
-  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   GooglePlaces: dd70d9d71ea1c7944846afe67de3712c99b30a77
@@ -212,12 +213,13 @@ SPEC CHECKSUMS:
   Hero: cee286821578e170d8c0c9c9cda7897357401112
   Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
   JDStatusBarNotification: d5829a8f2f291b23b8a54b87fac8bf2549945a2f
+  JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   KakaoOpenSDK: 485fb01a89b47c3ce7410a4e8fd278662f149572
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
   LTMorphingLabel: bdb51d4682e9822da89da6f567bd8aa456fd6650
   MessageKit: fc74d71d9b05385138d47b3a4b7beef5c687daf1
-  Moya: 2b0531a9fef318e0bc484030c3db1e6f279ccb66
+  Moya: 3d594ada51a21cc02b18739ab578a1984f900c8a
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Pastel: 738740c84f2b15bbcd96ebe99c4e6c2f5dd42262
   PhoneNumberKit: 62003f40ff75315fd3738286558bc365365ac222
@@ -237,11 +239,12 @@ SPEC CHECKSUMS:
   Spring: 17901566c8ecf3a1327902b940406c64512f9bb1
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftyBeaver: 4f74563624b2c1e821c522c54142b5dd5ebb0f30
+  SwiftyImage: ebaa7c7b6163cd4ad102f3bb05a8fb276d35b4f3
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   TLPhotoPicker: d4dd55a6e305cb0c9a1bb63318934480d52839b4
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 5ee0938c9ebe41b9c5f098f56829bf956d39269f
+PODFILE CHECKSUM: ccc3b52fcd29f04a82d11ad8e2401364f42555b3
 
 COCOAPODS: 1.4.0

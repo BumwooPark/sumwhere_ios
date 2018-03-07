@@ -20,6 +20,7 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 import FBSDKCoreKit
+import SwiftyImage
 
 
 

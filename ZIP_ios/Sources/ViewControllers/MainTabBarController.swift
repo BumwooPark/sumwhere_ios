@@ -22,8 +22,6 @@ class MainTabBarController: UITabBarController{
   let writerViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: PlanViewController())
     let tabBar = UITabBarItem(title: "계획", image: #imageLiteral(resourceName: "edit_icon"), tag: 0)
-    naviVC.navigationBar.prefersLargeTitles = true
-    naviVC.navigationItem.largeTitleDisplayMode = .automatic
     naviVC.tabBarItem = tabBar
     return naviVC
   }()

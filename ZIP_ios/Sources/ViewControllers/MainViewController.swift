@@ -12,11 +12,26 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+enum MainButtonEvent{
+  case Travel
+  case Meet
+  case none
+}
+
 class MainViewController: UIViewController{
   
-  let disposeBag = DisposeBag()
-  let provider = AuthManager.sharedManager.provider
-  let dataSources = RxCollectionViewSectionedReloadDataSource<MainViewModel>(
+  private let disposeBag = DisposeBag()
+  private let provider = AuthManager.provider
+  private let leftBarItem: UIBarButtonItem = {
+    let label = UILabel()
+    label.text = "여행갈래?"
+    label.font = UIFont.NotoSansKRBold(size: 22)
+    return UIBarButtonItem(customView: label)
+  }()
+  
+  let eventAction: PublishSubject = PublishSubject<MainButtonEvent>()
+  
+  lazy var dataSources = RxCollectionViewSectionedReloadDataSource<MainViewModel>(
     configureCell: {(ds, cv, idx, item) -> UICollectionViewCell in
       
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MainCell.self), for: idx) as! MainCell
@@ -26,11 +41,9 @@ class MainViewController: UIViewController{
       ofKind: UICollectionElementKindSectionHeader,
       withReuseIdentifier: String(describing: MainHeaderView.self),
       for: idx) as! MainHeaderView
-
+    view.mainViewController = self
     return view
   })
-  
-  let mainHeaderView = MainHeaderView()
   
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -47,25 +60,42 @@ class MainViewController: UIViewController{
     return collectionView
   }()
   
+  
+  override func loadView(){
+    super.loadView()
+    navigationBarInit()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view = collectionView
-    navigationController?.navigationBar.prefersLargeTitles = true
-    navigationItem.title = "ZIP"
-    
     
     Observable.of([MainViewModel(items: [MainModel(title: "123"),MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2")]),
                    MainViewModel(items: [MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2")]),
                    MainViewModel(items: [MainModel(title: "2")])])
         .bind(to: collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
+    
+    
+    eventAction
+      .asDriver(onErrorJustReturn: .none)
+      .drive(onNext: {[weak self] (type) in
+        switch type{
+        case .Travel:
+          self?.navigationController?.pushViewController(PlanViewController(), animated: true)
+        case .Meet,.none:
+          break
+        }
+      }).disposed(by: disposeBag)
   }
   
-
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    self.navigationController?.navigationBar.isHidden = true
+  private func navigationBarInit(){
+    self.navigationController?
+      .navigationBar
+      .setBackgroundImage(
+        UIImage.resizable().color(.white).image, for: UIBarMetrics.default
+    )
+    self.navigationItem.leftBarButtonItem = leftBarItem
   }
 }
 

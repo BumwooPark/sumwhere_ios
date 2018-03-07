@@ -9,40 +9,34 @@
 import UIKit
 import FSCalendar
 
-class SetPlanViewController: UIViewController, UIGestureRecognizerDelegate{
+class SetDateViewController: UIViewController{
   
-  fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
-    [unowned self] in
-    let panGesture = UIPanGestureRecognizer(target: self.calendar, action: #selector(self.calendar.handleScopeGesture(_:)))
-    panGesture.delegate = self
-    panGesture.minimumNumberOfTouches = 1
-    panGesture.maximumNumberOfTouches = 2
-    return panGesture
-    }()
-  
-  lazy var calendar: FSCalendar = {
-    let view = FSCalendar()
-    view.delegate = self
-    view.dataSource = self
-    view.allowsMultipleSelection = true
-    return view
-  }()
+
+  fileprivate var calendar: FSCalendar!
+  fileprivate let gregorian = Calendar(identifier: .gregorian)
+  override func loadView() {
+    let view = UIView(frame: UIScreen.main.bounds)
+    view.backgroundColor = UIColor.groupTableViewBackground
+    self.view = view
+    
+    let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
+    let calendar = FSCalendar(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.maxY, width: self.view.bounds.width, height: height))
+    calendar.dataSource = self
+    calendar.delegate = self
+    calendar.backgroundColor = UIColor.white
+    calendar.allowsMultipleSelection = true
+    calendar.appearance.headerDateFormat = "YYYY년 MM월"
+    calendar.appearance.caseOptions = [.weekdayUsesUpperCase,.weekdayUsesSingleUpperCase]
+    calendar.locale = Locale.current
+    calendar.calendarHeaderView.calendar.locale = Locale(identifier: "ko_KR")
+    calendar.register(DIYCalendarCell.self, forCellReuseIdentifier: String(describing: DIYCalendarCell.self))
+    self.view.addSubview(calendar)
+    self.calendar = calendar
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    view.addSubview(calendar)
-    addConstraint()
-  }
-  
-  private func addConstraint(){
-    calendar.snp.makeConstraints { (make) in
-      make.top.equalToSuperview()
-      make.left.equalToSuperview()
-      make.right.equalToSuperview()
-      make.height.equalTo(300)
-    }
-    self.view.layoutIfNeeded()
   }
   
   private func configureVisibleCells() {
@@ -55,23 +49,9 @@ class SetPlanViewController: UIViewController, UIGestureRecognizerDelegate{
   private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition){
     
   }
-
-//  func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-//    let shouldBegin = self.tableView.contentOffset.y <= -self.tableView.contentInset.top
-//    if shouldBegin {
-//      let velocity = self.scopeGesture.velocity(in: self.view)
-//      switch self.calendar.scope {
-//      case .month:
-//        return velocity.y < 0
-//      case .week:
-//        return velocity.y > 0
-//      }
-//    }
-//    return shouldBegin
-//  }
 }
 
-extension SetPlanViewController: FSCalendarDelegate{
+extension SetDateViewController: FSCalendarDelegate{
   
   func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
     calendar.snp.updateConstraints { (make) in
@@ -81,12 +61,50 @@ extension SetPlanViewController: FSCalendarDelegate{
   }
 }
 
-extension SetPlanViewController: FSCalendarDataSource{
-  func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-    log.info(date)
-    configureVisibleCells()
+extension SetDateViewController: FSCalendarDataSource{
+//  func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+//    log.info(date)
+//    configureVisibleCells()
+//  }
+  func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+    let cell = calendar.dequeueReusableCell(withIdentifier: String(describing: DIYCalendarCell.self), for: date, at: position)
+    return cell
   }
   
+  func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    if monthPosition == .previous || monthPosition == .next {
+      calendar.setCurrentPage(date, animated: true)
+    }
+    log.info(date)
+  }
   
+  func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    if monthPosition == .previous || monthPosition == .next {
+      calendar.setCurrentPage(date, animated: true)
+    }
+  }
+  func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+    if self.gregorian.isDateInToday(date) {
+      return "오늘"
+    }
+    return nil
+  }
   
+  func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
+    if self.gregorian.isDateInToday(date) {
+      return "오늘"
+    }
+    return nil
+  }
+}
+
+class DIYCalendarCell: FSCalendarCell{
+  override init!(frame: CGRect) {
+    super.init(frame: frame)
+    self.titleLabel.text = "선택!!"
+  }
+  
+  required init!(coder aDecoder: NSCoder!) {
+    fatalError("init(coder:) has not been implemented")
+  }
 }
