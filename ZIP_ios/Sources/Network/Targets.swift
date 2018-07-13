@@ -20,8 +20,7 @@ public enum ZIP{
 
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
-  public var baseURL: URL {return URL(string: "http://210.100.238.118:8080")!}
-//  public var baseURL: URL {return URL(string: "https://httpbin.org/get")!}
+  public var baseURL: URL {return URL(string: "http://52.197.13.138/momal")!}
   
   public var path: String{
     switch self {
@@ -30,9 +29,9 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .signIn:
       return "/signin"
     case .facebook:
-      return "/facebook"
+      return "/signin/facebook"
     case .kakao:
-      return "/kakao"
+      return "/signin/kakao"
     case .isProfile:
       return "/profile"
     case .country:

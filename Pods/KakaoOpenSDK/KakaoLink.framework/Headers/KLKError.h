@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Kakao Corp.
+ * Copyright 2017-2018 Kakao Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 /*!
  @header KLKError.h
- KakaoLink API를 호출할 때 발생하는 오류들을 정의합니다.
+ @abstract KakaoLink API를 호출할 때 발생하는 오류들을 정의합니다.
  */
 #import <KakaoCommon/KCMError.h>
 
@@ -29,8 +29,9 @@ extern NSString *const KLKErrorDomain;
  @abstract SDK 오류 코드 정의
  @constant KLKErrorCodeUnknown 알 수 없는 오류
  @constant KLKErrorCodeCancelled 요청이 취소 됨
+ @constant KLKErrorCodeOperationInProgress 이전 요청이 아직 실행중이어서 작업을 진행할 수 없음
  @constant KLKErrorCodeBadResponse 요청에 대한 응답에 기대하는 값이 없거나 문제가 있음
- @constant KLKErrorCodeNetworkError 네트워크 오류
+ @constant KLKErrorCodeNetwork 네트워크 오류
  @constant KLKErrorCodeHTTP http 프로토콜 오류
  @constant KLKErrorCodeBadParameter 파라미터 이상
  @constant KLKErrorCodeMisconfigured 개발환경 설정 오류
@@ -41,6 +42,7 @@ extern NSString *const KLKErrorDomain;
 typedef NS_ENUM(NSInteger, KLKErrorCode) {
     KLKErrorCodeUnknown = KCMErrorCodeUnknown,
     KLKErrorCodeCancelled = KCMErrorCodeCancelled,
+    KLKErrorCodeOperationInProgress = KCMErrorCodeOperationInProgress,
     KLKErrorCodeBadResponse = 7,
     KLKErrorCodeNetwork = 8,
     KLKErrorCodeHTTP = 9,

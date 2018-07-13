@@ -7,8 +7,8 @@ target 'ZIP_ios' do
 
   # Pods for ZIP_ios
 pod 'SnapKit'
-pod 'RxSwift', '~> 4.0'
-pod 'RxCocoa', '~> 4.0'
+pod 'RxSwift'
+pod 'RxCocoa'
 pod 'RxGesture'
 pod 'RxDataSources'
 pod 'GoogleMaps'

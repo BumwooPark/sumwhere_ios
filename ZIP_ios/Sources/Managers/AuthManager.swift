@@ -16,8 +16,6 @@ class AuthManager{
   
   var fireBaseId: String?
   
-  
-  
   static let provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG

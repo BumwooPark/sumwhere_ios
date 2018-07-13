@@ -16,7 +16,7 @@ import Moya
 class ProxyController{
   let disposeBag = DisposeBag()
   let mainVC = MainTabBarController()
-  let welcomeVC = WelcomeViewController()
+  let welcomeVC = LoginViewController()
   let provider = AuthManager.provider
   let defaultLogin = UserDefaults.standard.rx
     .observe(Bool.self, UserDefaultType.isLogin.rawValue)
@@ -54,10 +54,10 @@ class ProxyController{
   }
   
   func makeRootViewController(){
-    if Defaults[.isLogin]{
-      window?.rootViewController = UINavigationController(rootViewController:  MainViewController())
-    }else{
-      window?.rootViewController = WelcomeViewController()
+    if Defaults[.token].length != 0 {
+       window?.rootViewController = UINavigationController(rootViewController:  MainViewController())
+    }else {
+      window?.rootViewController = LoginViewController()
     }
   }
 }
