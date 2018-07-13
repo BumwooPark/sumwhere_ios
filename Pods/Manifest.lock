@@ -11,6 +11,7 @@ PODS:
   - DynamicBlurView (2.0.2)
   - DZNEmptyDataSet (1.8.1)
   - Eureka (4.2.0)
+  - expanding-collection (2.1.0)
   - FBSDKCoreKit (4.34.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.34.0):
@@ -31,13 +32,13 @@ PODS:
   - FirebaseAnalytics (5.0.1):
     - FirebaseCore (~> 5.0)
     - FirebaseInstanceID (~> 3.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseAuth (5.0.2):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (5.0.5):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (3.1.1):
     - FirebaseCore (~> 5.0)
   - FirebaseMessaging (3.0.3):
@@ -56,7 +57,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.4)
   - GoogleToolboxForMac/Logger (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GoogleToolboxForMac/NSData+zlib (2.1.4):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GTMSessionFetcher/Core (1.1.15)
   - Hero (1.2.0)
@@ -94,7 +95,6 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Pastel (0.4.0)
   - PhoneNumberKit (2.1.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 2.1.0)
     - PhoneNumberKit/UIKit (= 2.1.0)
@@ -104,7 +104,6 @@ PODS:
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
   - Protobuf (3.6.0)
-  - PySwiftyRegex (2.0.1)
   - ReachabilitySwift (4.1.0)
   - Result (3.2.4)
   - RxCocoa (4.2.0):
@@ -124,6 +123,7 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - SkyFloatingLabelTextField (3.5.1)
+  - SlideMenuControllerSwift (4.0.0)
   - SnapKit (4.0.0)
   - Spring (1.0.5)
   - SQLite.swift (0.11.5):
@@ -140,6 +140,7 @@ DEPENDENCIES:
   - CryptoSwift
   - DZNEmptyDataSet
   - Eureka
+  - expanding-collection
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -159,10 +160,8 @@ DEPENDENCIES:
   - LTMorphingLabel
   - MessageKit
   - Moya/RxSwift
-  - Pastel
   - PhoneNumberKit
   - PopupDialog
-  - PySwiftyRegex
   - ReachabilitySwift
   - RxCocoa
   - RxDataSources
@@ -171,6 +170,7 @@ DEPENDENCIES:
   - RxOptional
   - RxSwift
   - SkyFloatingLabelTextField
+  - SlideMenuControllerSwift
   - SnapKit
   - Spring
   - SQLite.swift
@@ -181,6 +181,64 @@ DEPENDENCIES:
   - TLPhotoPicker
   - TTTAttributedLabel
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Bolts
+    - CryptoSwift
+    - Differentiator
+    - DynamicBlurView
+    - DZNEmptyDataSet
+    - Eureka
+    - expanding-collection
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FSPagerView
+    - GoogleMaps
+    - GooglePlaces
+    - GoogleToolboxForMac
+    - GTMSessionFetcher
+    - Hero
+    - Hue
+    - JDStatusBarNotification
+    - JTAppleCalendar
+    - KakaoOpenSDK
+    - Kingfisher
+    - LGButton
+    - LTMorphingLabel
+    - MessageKit
+    - Moya
+    - nanopb
+    - PhoneNumberKit
+    - PopupDialog
+    - Protobuf
+    - ReachabilitySwift
+    - Result
+    - RxCocoa
+    - RxDataSources
+    - RxGesture
+    - RxKeyboard
+    - RxOptional
+    - RxSwift
+    - SkyFloatingLabelTextField
+    - SlideMenuControllerSwift
+    - SnapKit
+    - Spring
+    - SQLite.swift
+    - SwiftyBeaver
+    - SwiftyImage
+    - SwiftyJSON
+    - SwiftyUserDefaults
+    - TLPhotoPicker
+    - TTTAttributedLabel
+
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -189,6 +247,7 @@ SPEC CHECKSUMS:
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
+  expanding-collection: 6dadfb6777d94c7487ca471604d6916e7a3ba81b
   FBSDKCoreKit: 0ff57f093b85c8c9d5aba697d3edf68a8960ce78
   FBSDKLoginKit: 8c78f57a145afb756e4755e69195ebe08a42466e
   FBSDKShareKit: 511d1dfc71204c0a8d69e6c5e3c964dcf0d4f3d9
@@ -214,11 +273,9 @@ SPEC CHECKSUMS:
   MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Pastel: 7fa5e26123b3dbe11f7ed255654bf37100b199a5
   PhoneNumberKit: 62003f40ff75315fd3738286558bc365365ac222
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
-  PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
@@ -228,6 +285,7 @@ SPEC CHECKSUMS:
   RxOptional: bd32ff8ca9df4177683d56ffeb618a9d4d5d5cad
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Spring: 17901566c8ecf3a1327902b940406c64512f9bb1
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
@@ -238,6 +296,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 74b15c69079c55cdae6c6d60db252215291cd0cd
+PODFILE CHECKSUM: 7ec1c548187ce9bae36570491a6f96ad1e95f677
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 import TTTAttributedLabel
 import LGButton
 import Spring
-import Pastel
+
 
 class JoinView: UIView{
   

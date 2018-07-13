@@ -55,7 +55,8 @@ class ProxyController{
   
   func makeRootViewController(){
     if Defaults[.token].length != 0 {
-       window?.rootViewController = UINavigationController(rootViewController:  MainViewController())
+//       window?.rootViewController = UINavigationController(rootViewController:  MainViewController())
+      window?.rootViewController = UINavigationController(rootViewController: MainViewController2())
     }else {
       window?.rootViewController = LoginViewController()
     }
