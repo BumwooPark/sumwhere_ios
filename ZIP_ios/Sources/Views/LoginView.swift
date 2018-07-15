@@ -13,6 +13,7 @@ import RxCocoa
 import SkyFloatingLabelTextField
 import SnapKit
 import FBSDKLoginKit
+import TTTAttributedLabel
 
 class LoginView: UIView{
   
@@ -28,28 +29,6 @@ class LoginView: UIView{
     button.layer.cornerRadius = 5
     button.layer.masksToBounds = true
     return button
-  }()
-  
-  lazy var emailField: SkyFloatingLabelTextField = {
-    let field = SkyFloatingLabelTextField()
-    field.placeholder = "E-mail"
-    field.placeholderColor = .black
-    field.lineColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
-    field.keyboardType = .emailAddress
-    field.returnKeyType = .done
-    field.hero.id = "emailField"
-    return field
-  }()
-  
-  lazy var passwordField: SkyFloatingLabelTextField = {
-    let field = SkyFloatingLabelTextField()
-    field.placeholder = "Password"
-    field.placeholderColor = .black
-    field.lineColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
-    field.returnKeyType = .done
-    field.isSecureTextEntry = true
-    field.hero.id = "passwordField"
-    return field
   }()
   
   let loginButton: UIButton = {
@@ -71,6 +50,17 @@ class LoginView: UIView{
     return button
   }()
   
+  let joinLabel: TTTAttributedLabel = {
+    let label = TTTAttributedLabel(frame: .zero)
+    label.text = "아이디가 없으면 여기를 눌러!"
+    label.font = UIFont.NotoSansKRMedium(size: 15)
+    label.textColor = .black
+    let range = NSRange(location: 9, length: 2)
+    label.addLink(to: URL(fileURLWithPath: ""), with: range)
+    return label
+  }()
+  
+  
   var constaint: Constraint!
   
   override init(frame: CGRect) {
@@ -79,10 +69,9 @@ class LoginView: UIView{
     backgroundColor = .white
     addSubview(kakaoButton)
     addSubview(zipImageView)
-    addSubview(emailField)
-    addSubview(passwordField)
     addSubview(loginButton)
     addSubview(faceBookButton)
+    addSubview(joinLabel)
     addConstraint()
   }
   
@@ -98,25 +87,10 @@ class LoginView: UIView{
       make.width.equalTo(150)
     }
     
-    emailField.snp.makeConstraints {[weak self] (make) in
-      make.centerX.equalToSuperview()
-      self?.constaint = make.centerY.equalToSuperview().constraint
+    loginButton.snp.makeConstraints { (make) in
+      make.centerY.centerX.equalToSuperview()
       make.height.equalTo(40)
       make.width.equalToSuperview().dividedBy(1.5)
-    }
-    
-    passwordField.snp.makeConstraints { (make) in
-      make.centerX.equalTo(emailField)
-      make.width.equalTo(emailField)
-      make.height.equalTo(emailField)
-      make.top.equalTo(emailField).offset(60)
-    }
-    
-    loginButton.snp.makeConstraints { (make) in
-      make.top.equalTo(passwordField.snp.bottom).offset(20)
-      make.height.equalTo(40)
-      make.width.equalTo(passwordField)
-      make.centerX.equalToSuperview()
     }
     
     kakaoButton.snp.makeConstraints { (make) in
@@ -132,5 +106,11 @@ class LoginView: UIView{
       make.width.equalTo(loginButton)
       make.centerX.equalTo(loginButton)
     }
+    
+    joinLabel.snp.makeConstraints { (make) in
+      make.bottom.equalToSuperview().inset(40)
+      make.centerX.equalTo(faceBookButton)
+    }
+    joinLabel.sizeToFit()
   }
 }

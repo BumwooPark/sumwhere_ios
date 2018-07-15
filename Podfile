@@ -31,6 +31,7 @@ pod 'JTAppleCalendar'
 pod 'PopupDialog'
 pod 'Spring'
 pod 'SwiftyUserDefaults'
+pod 'PySwiftyRegex'
 # UI
 pod 'GoogleMaps'
 pod 'GooglePlaces'

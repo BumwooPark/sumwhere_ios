@@ -19,15 +19,11 @@ class ConfigureViewController: FormViewController{
       <<< LabelRow(){
         $0.title = "로그아웃"
         }.onCellSelection({ (cell, row) in
-          KOSession.shared().logoutAndClose(completionHandler: { (bool, error) in
-            print(error)
-          })
+          tokenObserver.onNext("")
         })
       <<< LabelRow(){
         $0.title = "default로그아웃"
         }.onCellSelection({ (cell, row) in
-          UserDefaults.standard.removeObject(forKey: UserDefaultType.token.rawValue)
-          UserDefaults.standard.set(false, forKey: UserDefaultType.isLogin.rawValue)
         })
   }
 }

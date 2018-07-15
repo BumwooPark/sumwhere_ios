@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5679D81E84E0D6FA1C238041CC03DD12'
-               BlueprintName = 'PySwiftyRegex'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'PySwiftyRegex.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "809E55A8A672B287CDFD1CD258FCD5A8"
+               BlueprintName = "PySwiftyRegex"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "PySwiftyRegex.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

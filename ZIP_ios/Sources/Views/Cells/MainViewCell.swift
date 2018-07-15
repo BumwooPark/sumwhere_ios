@@ -9,7 +9,17 @@
 import expanding_collection
 
 class MainViewCell: BasePageCollectionCell{
-  override init(frame: CGRect) {
-    
+  
+  @IBOutlet weak var titleLabel: UILabel!
+  
+  @IBOutlet weak var imageView: UIImageView!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    let coverLayer = CALayer()
+    coverLayer.frame = imageView.bounds
+    coverLayer.backgroundColor = UIColor.black.cgColor
+    coverLayer.opacity = 0.5
+    imageView.layer.addSublayer(coverLayer)
   }
 }

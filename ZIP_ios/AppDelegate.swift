@@ -21,9 +21,10 @@ import FirebaseMessaging
 import UserNotifications
 import FBSDKCoreKit
 import SwiftyImage
+import SwiftyUserDefaults
 
 
-
+let tokenObserver = PublishSubject<String>()
 let log = SwiftyBeaver.self
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,6 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.rootViewController = UIViewController()
     let proxyController = ProxyController(window: window)
     proxyController.makeRootViewController()
+    
+    tokenObserver
+      .subscribe(onNext: { (token) in
+      Defaults[.token] = token
+      proxyController.makeRootViewController()
+    }).disposed(by: disposeBag)
     
     faceBookSetting(application: application, didFinishLaunchingWithOptions: launchOptions)
     FirebaseApp.configure()

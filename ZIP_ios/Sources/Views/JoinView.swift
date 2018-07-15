@@ -15,23 +15,6 @@ import Spring
 
 class JoinView: UIView{
   
-  let backImageView: PastelView = {
-    let image = PastelView(frame: UIScreen.main.bounds)
-    image.startPastelPoint = .bottomLeft
-    image.endPastelPoint = .topRight
-    image.animationDuration = 3.0
-    image.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
-                     UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
-                     UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
-                     UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
-                     UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
-                     UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
-                     UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
-    image.heroID = "backImageView"
-    image.startAnimation()
-    return image
-  }()
-  
   let emailField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
     field.placeholder = "이메일 주소"
@@ -43,18 +26,6 @@ class JoinView: UIView{
     field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     field.textColor = .white
     field.keyboardType = .emailAddress
-    return field
-  }()
-  
-  let nicknameField: SkyFloatingLabelTextField = {
-    let field = SkyFloatingLabelTextField()
-    field.placeholder = "닉네임"
-    field.placeholderColor = .black
-    field.lineColor = .black
-    field.selectedLineColor = .white
-    field.selectedTitleColor = .blue
-    field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.textColor = .white
     return field
   }()
   
@@ -120,17 +91,17 @@ class JoinView: UIView{
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    addSubview(backImageView)
+    
+    backgroundColor = .white
     addSubview(emailField)
-    addSubview(nicknameField)
     addSubview(passwordField)
     addSubview(passwordConfField)
     addSubview(joinButton)
     addSubview(backButton)
     addSubview(infoAgreeLabel)
-    emailField.heroID = "emailField"
-    passwordField.heroID = "passwordField"
-    backImageView.heroID = "backImageView"
+    emailField.hero.id = "emailField"
+    passwordField.hero.id = "passwordField"
+    
     
     addConstraint()
   }
@@ -140,27 +111,17 @@ class JoinView: UIView{
   }
   
   private func addConstraint(){
-    
-    backImageView.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview()
-    }
-    
+
     emailField.snp.makeConstraints { (make) in
       make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(100)
       make.centerX.equalToSuperview()
       make.width.equalToSuperview().dividedBy(1.5)
     }
     
-    nicknameField.snp.makeConstraints { (make) in
+    passwordField.snp.makeConstraints { (make) in
       make.top.equalTo(emailField.snp.bottom).offset(25)
       make.centerX.equalToSuperview()
       make.width.equalTo(emailField)
-    }
-    
-    passwordField.snp.makeConstraints { (make) in
-      make.top.equalTo(nicknameField.snp.bottom).offset(25)
-      make.centerX.equalToSuperview()
-      make.width.equalTo(nicknameField)
     }
     
     passwordConfField.snp.makeConstraints { (make) in

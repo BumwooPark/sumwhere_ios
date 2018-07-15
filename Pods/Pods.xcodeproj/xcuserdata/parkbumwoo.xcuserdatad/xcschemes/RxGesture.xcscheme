@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8DFFBCD65064AA380CE45CBC72941516'
-               BlueprintName = 'RxGesture'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RxGesture.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2A4A3DEF03816FD44C35E19599F808C7"
+               BlueprintName = "RxGesture"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "RxGesture.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

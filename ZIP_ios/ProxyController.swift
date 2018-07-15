@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import SwiftyUserDefaults
 import Moya
-
+import SlideMenuControllerSwift
 
 class ProxyController{
   let disposeBag = DisposeBag()
@@ -56,9 +56,10 @@ class ProxyController{
   func makeRootViewController(){
     if Defaults[.token].length != 0 {
 //       window?.rootViewController = UINavigationController(rootViewController:  MainViewController())
-      window?.rootViewController = UINavigationController(rootViewController: MainViewController2())
+      window?.rootViewController = SlideMenuController(mainViewController: UINavigationController(rootViewController: MainViewController2()), rightMenuViewController: SideMenuViewController())
     }else {
       window?.rootViewController = LoginViewController()
+//       window?.rootViewController = SlideMenuController(mainViewController: UINavigationController(rootViewController: MainViewController2()), rightMenuViewController: SideMenuViewController())
     }
   }
 }

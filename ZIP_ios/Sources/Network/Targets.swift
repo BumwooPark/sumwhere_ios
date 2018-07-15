@@ -9,7 +9,7 @@
 import Moya
 
 public enum ZIP{
-  case signUp(email: String, password: String, username: String)
+  case signUp(email: String, password: String)
   case signIn(email: String, password: String)
   case facebook(access_token: String)
   case kakao(access_token: String)
@@ -20,7 +20,7 @@ public enum ZIP{
 
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
-  public var baseURL: URL {return URL(string: "http://52.197.13.138/momal")!}
+  public var baseURL: URL {return URL(string: "http://52.197.13.138/galmal")!}
   
   public var path: String{
     switch self {

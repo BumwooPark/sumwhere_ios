@@ -18,6 +18,7 @@ import CryptoSwift
 import Security
 import FBSDKLoginKit
 import SwiftyUserDefaults
+import TTTAttributedLabel
 #if !RX_NO_MODULE
   import RxSwift
   import RxCocoa
@@ -32,28 +33,27 @@ class LoginViewController: UIViewController{
   
   lazy var loginView: LoginView = {
     let view = LoginView(frame: self.view.bounds)
-    view.emailField.delegate = self
-    view.passwordField.delegate = self
+    view.joinLabel.delegate = self
     return view
   }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view = loginView
-    self.view.hero.id = "welcomeview"
+    self.view.hero.id = String(describing: LoginViewController.self)
     
-    let viewModel = WelcomeViewModel(emailText: loginView.emailField.rx.text.orEmpty.asDriver()
-      , passwordText: loginView.passwordField.rx.text.orEmpty.asDriver())
+//    let viewModel = WelcomeViewModel(emailText: loginView.emailField.rx.text.orEmpty.asDriver()
+//      , passwordText: loginView.passwordField.rx.text.orEmpty.asDriver())
+//
+//    viewModel.credentialsValid
+//      .drive(onNext: {[weak self] vaild in
+//        self?.loginView.loginButton.isEnabled = vaild
+//        self?.loginView.loginButton.backgroundColor = vaild ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : .gray
+//      }).disposed(by: disposeBag)
     
-    viewModel.credentialsValid
-      .drive(onNext: {[weak self] vaild in
-        self?.loginView.loginButton.isEnabled = vaild
-        self?.loginView.loginButton.backgroundColor = vaild ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : .gray
-      }).disposed(by: disposeBag)
-        
-    loginView.loginButton.rx.tap
-      .bind(onNext: signIn)
-      .disposed(by: disposeBag)
+//    loginView.loginButton.rx.tap
+//      .bind(onNext: signIn)
+//      .disposed(by: disposeBag)
 
     loginView.kakaoButton.rx
       .controlEvent(.touchUpInside)
@@ -66,30 +66,6 @@ class LoginViewController: UIViewController{
       .map {return FBSDKLoginManager()}
       .bind(onNext: facebookLogin)
       .disposed(by: disposeBag)
-    
-    
-    RxKeyboard.instance.visibleHeight
-      .drive(onNext: {[weak self] frame in
-        DispatchQueue.main.async {
-          UIView.animate(withDuration: 2, delay: 0, options: .curveLinear, animations: {[weak self] in
-            self?.loginView.constaint.update(offset: -(frame/4))
-            self?.loginView.setNeedsLayout()
-          }, completion: nil)
-        }
-      }).disposed(by: disposeBag)
-  }
-  
-  private func signIn(){
-    provider.request(.signIn(email: loginView.emailField.text ?? "", password: loginView.passwordField.text ?? ""))
-      .filter(statusCode: 200)
-      .mapJSON()
-      .map{JSON($0)}
-      .subscribe(onSuccess: { (json) in
-        Defaults[.isLogin] = true
-        Defaults[.token] = json["access_token"].stringValue
-      }) { error in
-        JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
-    }.disposed(by: disposeBag)
   }
   
   private func facebookLogin(manager: FBSDKLoginManager){
@@ -104,12 +80,13 @@ class LoginViewController: UIViewController{
         .map(ResultModel.self)
         .map{ $0.result["token", default: ""]}
         .subscribe(onSuccess: { (token) in
-          Defaults[.token] = token
+          tokenObserver.onNext(token)
         }, onError: { (error) in
-          log.error(error)
-        }).disposed(by: self.disposeBag)
+          JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+        })
+        .disposed(by: self.disposeBag)
       }else{
-//        error handling
+        JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
       }
     }
   }
@@ -126,25 +103,21 @@ class LoginViewController: UIViewController{
           .request(.kakao(access_token: KOSession.shared().token.accessToken))
           .filterSuccessfulStatusCodes()
           .map(ResultModel.self)
-          .subscribe(onSuccess: { (result) in
-            log.info(result)
+          .map{ $0.result["token", default: ""]}
+          .subscribe(onSuccess: { (token) in
+            tokenObserver.onNext(token)
           }, onError: { (error) in
-            log.error(error)
-          }).disposed(by: self.disposeBag)
+            JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+          })
+          .disposed(by: self.disposeBag)
       }else{
-//        error handling
+        JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
       }
     }
   }
 }
-
-extension LoginViewController: UITextFieldDelegate{
-  func textFieldDidEndEditing(_ textField: UITextField) {
-    textField.resignFirstResponder()
-  }
-  
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    textField.resignFirstResponder()
-    return true
+extension LoginViewController: TTTAttributedLabelDelegate{
+  func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+    present(JoinViewController(), animated: true, completion: nil)
   }
 }

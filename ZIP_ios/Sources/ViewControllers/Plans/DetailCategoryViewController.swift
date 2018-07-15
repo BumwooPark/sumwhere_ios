@@ -19,26 +19,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import Pastel
 
 class DetailCategoryViewController: UIViewController{
-  
-  let imageView: PastelView = {
-    let image = PastelView(frame: UIScreen.main.bounds)
-    image.startPastelPoint = .bottomLeft
-    image.endPastelPoint = .topRight
-    image.animationDuration = 3.0
-    image.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
-                     UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
-                     UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
-                     UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
-                     UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
-                     UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
-                     UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
-    image.heroID = "backImageView"
-    image.startAnimation()
-    return image
-  }()
   
   let api = AuthManager.provider
   let disposeBag = DisposeBag()
@@ -56,7 +38,6 @@ class DetailCategoryViewController: UIViewController{
     layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(CountryCell.self, forCellWithReuseIdentifier: String(describing: CountryCell.self))
-    collectionView.backgroundView = imageView
     return collectionView
   }()
   
