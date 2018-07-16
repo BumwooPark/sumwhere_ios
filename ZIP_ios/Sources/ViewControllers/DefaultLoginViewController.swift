@@ -120,14 +120,18 @@ final class DefaultLoginViewController: UIViewController{
 
   /// API Login
   private func login(){
-    AuthManager.provider.request(.signIn(email: emailField.text ?? String(), password: passwordField.text ?? String()))
-      .map(ResultModel.self)
+
+    AuthManager.provider
+      .request(.signIn(email: emailField.text ?? String(), password: passwordField.text ?? String()))
+      .map(ResultModel<TokenModel>.self)
       .subscribe(onSuccess: {[weak self] (result) in
         guard let `self` = self else {return}
         if result.success{
-          self.dismiss(animated: true, completion: {tokenObserver.onNext(result.result["token",default: String()])})
+           log.info(result)
+          self.dismiss(animated: true, completion: {tokenObserver.onNext(result.result?.token ?? String())})
         }else{
-          JDStatusBarNotification.show(withStatus: result.error.details, dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+          log.info(result)
+          JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
         }
       }) { (error) in
          log.error(error)

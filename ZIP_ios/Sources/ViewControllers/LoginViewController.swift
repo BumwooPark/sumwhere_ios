@@ -76,21 +76,38 @@ class LoginViewController: UIViewController{
   
   private func facebookLogin(manager: FBSDKLoginManager){
     
-    LoginKit.facebookLogin(manager: manager, Permissions: ["public_profile","email"], from: self) {[weak self] (result) in
-      guard let `self` = self else {return}
+    LoginKit.facebookLogin(manager: manager, Permissions: ["public_profile","email"], from: self) {(result) in
       
       if result{
       AuthManager.provider
         .request(.facebook(access_token: FBSDKAccessToken.current().tokenString))
-        .filterSuccessfulStatusCodes()
-        .map(ResultModel.self)
-        .map{ $0.result["token", default: ""]}
-        .subscribe(onSuccess: { (token) in
-          tokenObserver.onNext(token)
-        }, onError: { (error) in
-          JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
-        })
-        .disposed(by: self.disposeBag)
+        .map(ResultModel<TokenModel>.self)
+        .subscribe(onSuccess: { (model) in
+          log.info(model)
+//          JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+        }, onError: {error in
+          log.error(error)
+        }).disposed(by: self.disposeBag)
+      }
+    }
+  }
+  
+  private func kakaoLogin(){
+    LoginKit.kakaoLogin {[weak self] (result) in
+      guard let `self` = self else {return}
+      if result{
+        AuthManager.provider
+          .request(.kakao(access_token: KOSession.shared().token.accessToken))
+          .map(ResultModel<TokenModel>.self)
+          .subscribe(onSuccess: {(result) in
+            if result.success{
+              tokenObserver.onNext(result.result?.token ?? "")
+            }else {
+              JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+            }
+          }, onError: { (error) in
+            JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+          }).disposed(by: self.disposeBag)
       }else{
         JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
       }
@@ -100,28 +117,10 @@ class LoginViewController: UIViewController{
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
   }
-  
-  private func kakaoLogin(){
-    LoginKit.kakaoLogin {[weak self] (result) in
-      guard let `self` = self else {return}
-      if result{
-        AuthManager.provider
-          .request(.kakao(access_token: KOSession.shared().token.accessToken))
-          .filterSuccessfulStatusCodes()
-          .map(ResultModel.self)
-          .map{ $0.result["token", default: ""]}
-          .subscribe(onSuccess: { (token) in
-            tokenObserver.onNext(token)
-          }, onError: { (error) in
-            JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
-          })
-          .disposed(by: self.disposeBag)
-      }else{
-        JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
-      }
-    }
-  }
 }
+  
+  
+  
 extension LoginViewController: TTTAttributedLabelDelegate{
   func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
     present(JoinViewController(), animated: true, completion: nil)

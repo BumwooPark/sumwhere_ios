@@ -131,14 +131,17 @@ class JoinViewController: UIViewController{
                           nickname: self.joinView.nicknameField.text ?? String())
     
     provider.request(.signUp(model: model))
-      .filterSuccessfulStatusCodes()
-      .map(ResultModel.self)
-      .map{ $0.result["token", default: ""]}
-      .subscribe(onSuccess: {[weak self] (token) in
+      .map(ResultModel<TokenModel>.self)
+      .subscribe(onSuccess: {[weak self] (result) in
         guard let `self` = self else {return}
-        self.dismiss(animated: true, completion: {
-          tokenObserver.onNext(token)
-        })
+        
+        if result.success{
+          self.dismiss(animated: true, completion: {
+            tokenObserver.onNext(result.result?.token ?? String())
+          })
+        }else{
+          JDStatusBarNotification.show(withStatus: result.error?.details ?? "가입 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+        }
       }, onError: { (error) in
         JDStatusBarNotification.show(withStatus: "가입 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
       })
