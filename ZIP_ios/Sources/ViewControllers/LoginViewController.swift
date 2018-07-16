@@ -40,7 +40,7 @@ class LoginViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view = loginView
-    self.view.hero.id = String(describing: LoginViewController.self)
+    self.view.hero.id = "loginToDefaultLogin"
     
 //    let viewModel = WelcomeViewModel(emailText: loginView.emailField.rx.text.orEmpty.asDriver()
 //      , passwordText: loginView.passwordField.rx.text.orEmpty.asDriver())
@@ -51,9 +51,10 @@ class LoginViewController: UIViewController{
 //        self?.loginView.loginButton.backgroundColor = vaild ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : .gray
 //      }).disposed(by: disposeBag)
     
-//    loginView.loginButton.rx.tap
-//      .bind(onNext: signIn)
-//      .disposed(by: disposeBag)
+    loginView.loginButton.rx
+      .tap
+      .bind(onNext: signIn)
+      .disposed(by: disposeBag)
 
     loginView.kakaoButton.rx
       .controlEvent(.touchUpInside)
@@ -66,6 +67,11 @@ class LoginViewController: UIViewController{
       .map {return FBSDKLoginManager()}
       .bind(onNext: facebookLogin)
       .disposed(by: disposeBag)
+  }
+  
+  private func signIn(){
+    log.info("click")
+    present(DefaultLoginViewController(), animated: true, completion: nil)
   }
   
   private func facebookLogin(manager: FBSDKLoginManager){

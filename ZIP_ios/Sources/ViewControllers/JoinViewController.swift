@@ -42,21 +42,64 @@ class JoinViewController: UIViewController{
     let emailVaild = joinView.emailField.rx.text
       .orEmpty
       .map {!re.findall("^[a-z0-9_+.-]+@([a-z0-9-]+\\.)+[a-z0-9]{2,4}$", $0).isEmpty}
+      .skip(2)
       .share(replay: 1)
-
+    
+    joinView.nicknameField.rx
+      .text
+      .orEmpty
+      .skip(2)
+      .flatMap {
+        AuthManager.provider.request(.nicknameConfirm(nickname: $0))
+          .filterSuccessfulStatusCodes()
+          .map(NicknameModel.self)
+          .map{$0.result}
+          .catchErrorJustReturn(false)
+      }.subscribe(onNext: { [weak self](result) in
+        guard let `self` = self else {return}
+        if result{
+          self.joinView.nicknameField.errorMessage = String()
+        }else{
+          self.joinView.nicknameField.errorMessage = "이미 존재합니다!"
+        }
+      }).disposed(by: disposeBag)
+    
     let passwordVaild = joinView.passwordField.rx.text
       .orEmpty
       .map{!re.findall("^[A-Za-z0-9]{6,20}$", $0).isEmpty}
+      .skip(1)
       .share(replay: 1)
 
     let passwordConfVaild = joinView.passwordConfField.rx.text
       .map{[weak self] in
         self?.joinView.passwordField.text == $0
-      }.share(replay: 1)
+      }.share(replay: 2)
+    
+    emailVaild
+      .subscribe(onNext: {[weak self] (result) in
+        guard let `self` = self else {return}
+      if !result{
+        self.joinView.emailField.errorMessage = "이메일 형식이 아니에요!"
+      }else{
+        self.joinView.emailField.errorMessage = String()
+      }
+    }).disposed(by: disposeBag)
+    
+    passwordConfVaild
+      .subscribe(onNext: {[weak self] (result) in
+      guard let `self` = self else {return}
+        if !result{
+          self.joinView.passwordConfField.errorMessage = "비밀번호가 동일하지 않아요!"
+        }else {
+          self.joinView.passwordConfField.errorMessage = String()
+        }
+    }).disposed(by: disposeBag)
+    
 
-    Observable<Bool>.combineLatest(emailVaild, passwordVaild, passwordConfVaild)
-    {return $0 && $1 && $2}
+    Observable<Bool>.combineLatest(passwordVaild, passwordConfVaild)
+    {return $0 && $1}
       .subscribe(onNext: { (vaild) in
+        
       })
       .disposed(by: disposeBag)
     
@@ -73,7 +116,7 @@ class JoinViewController: UIViewController{
     
     view.hero.id = String(describing: JoinViewController.self)
     hero.isEnabled = true
-    hero.modalAnimationType = .selectBy(presenting: .pageIn(direction: .up), dismissing: .pageOut(direction: .down))
+    hero.modalAnimationType = .selectBy(presenting: .push(direction: .up), dismissing: .pull(direction: .down))
   }
 
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,14 +125,24 @@ class JoinViewController: UIViewController{
   }
   
   private func signUp(){
-    provider.request(.signUp(email: self.joinView.emailField.text ?? "",
-                             password: self.joinView.passwordField.text ?? ""))
-      .filter(statusCodes: 200...201)
-      .subscribe(onSuccess: { (response) in
-        log.info(response)
-      }) { (error) in
-        log.error(error)
-    }.disposed(by: disposeBag)
+    
+    let model = JoinModel(email: self.joinView.emailField.text ?? String(),
+                          password: self.joinView.passwordField.text ?? String(),
+                          nickname: self.joinView.nicknameField.text ?? String())
+    
+    provider.request(.signUp(model: model))
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel.self)
+      .map{ $0.result["token", default: ""]}
+      .subscribe(onSuccess: {[weak self] (token) in
+        guard let `self` = self else {return}
+        self.dismiss(animated: true, completion: {
+          tokenObserver.onNext(token)
+        })
+      }, onError: { (error) in
+        JDStatusBarNotification.show(withStatus: "가입 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+      })
+      .disposed(by: self.disposeBag)
   }
 }
 
@@ -98,5 +151,3 @@ extension JoinViewController: TTTAttributedLabelDelegate{
     print("click")
   }
 }
-
-

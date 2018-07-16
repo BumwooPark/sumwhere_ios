@@ -73,6 +73,8 @@
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController2.swift */; };
 		B1D4E51020F8968000524CE2 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50F20F8968000524CE2 /* MainViewCell.swift */; };
+		B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E51120FC232900524CE2 /* JoinModel.swift */; };
+		B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */; };
 		BAB35871AF3A20A85A1D01CD /* Pods_ZIP_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +161,8 @@
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController2.swift; sourceTree = "<group>"; };
 		B1D4E50F20F8968000524CE2 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		B1D4E51120FC232900524CE2 /* JoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinModel.swift; sourceTree = "<group>"; };
+		B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewController.swift; sourceTree = "<group>"; };
 		BBBA05947428AB4BFEF7859A /* Pods-ZIP_iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_iosTests/Pods-ZIP_iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZIP_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D974C1FB255F6BC0FD4F84C5 /* Pods-ZIP_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				0A059CAA1FEFB3B50057E26E /* PlanModel.swift */,
 				0AD3BC12204A7B690051D7E3 /* CountryModel.swift */,
 				B1D4E50920F8446400524CE2 /* ResultModel.swift */,
+				B1D4E51120FC232900524CE2 /* JoinModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				0A7740AC20415B550096936E /* Plans */,
+				B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */,
 				0A7123911FACC1B600512EB7 /* LoginViewController.swift */,
 				0A7123971FACC1FB00512EB7 /* JoinViewController.swift */,
 				0A671AC120342C4C00034CE0 /* SetProfileViewController.swift */,
@@ -708,6 +714,7 @@
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
+				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
 				0A7740AB20415A3F0096936E /* PlanPageController.swift in Sources */,
 				0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
@@ -716,6 +723,7 @@
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
 				0A6C88AF1FEE82AA002019DE /* PlanViewController.swift in Sources */,
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
+				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,
 				0AF2C01B20FB2D9600775EA8 /* SideMenuViewController.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
 				0A09A8001FDD361B00DC47A7 /* MainViewController.swift in Sources */,

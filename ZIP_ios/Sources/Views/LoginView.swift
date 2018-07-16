@@ -37,7 +37,6 @@ class LoginView: UIView{
     button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 15)
     button.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
     button.layer.cornerRadius = 5
-    button.isEnabled = false
     return button
   }()
   
