@@ -15,7 +15,7 @@ import RxCocoa
 final class MainHeaderView: UICollectionReusableView{
   
   let sampledatas:[UIImage] = [#imageLiteral(resourceName: "maxresdefault"),#imageLiteral(resourceName: "maxresdefault")]
-  weak var mainViewController: MainViewController?
+  weak var mainViewController: MainViewController3?
   private let disposeBag = DisposeBag()
   let travelButton: UIButton = {
     let button = UIButton()

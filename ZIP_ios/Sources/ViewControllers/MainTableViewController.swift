@@ -18,12 +18,7 @@ class MainTableViewController: ExpandingTableViewController {
       tableView.contentInsetAdjustmentBehavior = .never
     }
     
-    
-    
-    
     tableView.register(TempCell.self, forCellReuseIdentifier: String(describing: TempCell.self))
-    
-    
     
   }
 }

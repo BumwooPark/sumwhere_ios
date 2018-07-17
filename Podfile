@@ -45,6 +45,8 @@ pod 'Eureka'
 pod 'DZNEmptyDataSet'
 pod 'SlideMenuControllerSwift'
 pod 'expanding-collection'
+pod "Floaty"
+pod 'HGPlaceholders'
 # RX
 pod 'RxSwift'
 pod 'RxCocoa'

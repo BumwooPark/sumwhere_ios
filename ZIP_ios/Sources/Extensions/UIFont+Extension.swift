@@ -22,6 +22,24 @@ extension UIFont{
   static func NotoSansKRRegular(size: CGFloat) -> UIFont {
     return UIFont(name: "NotoSansKR-Medium", size: size)!
   }
+  static func GodoRoundedL(size: CGFloat) -> UIFont {
+    return UIFont(name: "godoRounded L", size: size)!
+  }
+  static func GodoRoundedR(size: CGFloat) -> UIFont {
+    return UIFont(name: "godoRounded R", size: size)!
+  }
+  static func GodoMaum(size: CGFloat) -> UIFont {
+    return UIFont(name: "godoMaum", size: size)!
+  }
+  
+  static func BMHANNA(size: CGFloat) -> UIFont {
+    return UIFont(name: "BMHANNA11yrsoldOTF", size: size)!
+  }
+  static func BMJUA(size: CGFloat) -> UIFont {
+    return UIFont(name: "BMJUAOTF", size: size)!
+  }
+
+  
 }
 
 

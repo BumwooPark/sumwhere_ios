@@ -2,13 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>NotoSans-Bold.otf</string>
-		<string>NotoSans-Light.otf</string>
-		<string>NotoSans-Medium.otf</string>
-		<string>NotoSans-Regular.otf</string>
-	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>ZIP</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -31,10 +40,16 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 	<key>FacebookAppID</key>
 	<string>391080511351341</string>
 	<key>FacebookDisplayName</key>
 	<string>갈래말래</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>KAKAO_APP_KEY</key>
+	<string>dfa56e763013a7867d10e02ff91955ee</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fb-messenger-share-api</string>
@@ -48,28 +63,6 @@
 		<string>kakaotalk-4.5.0</string>
 		<string>kakaostory-2.9.0</string>
 	</array>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDisplayName</key>
-	<string>ZIP</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<true/>
-	<key>KAKAO_APP_KEY</key>
-	<string>dfa56e763013a7867d10e02ff91955ee</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
@@ -78,6 +71,18 @@
 	<string>카메라 동의</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>접근 하시겠습니까?</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>godoRounded L.ttf</string>
+		<string>godoRounded R.ttf</string>
+		<string>godoMaum.ttf</string>
+		<string>BMHANNA.otf</string>
+		<string>BMJUA.otf</string>
+		<string>NotoSans-Bold.otf</string>
+		<string>NotoSans-Light.otf</string>
+		<string>NotoSans-Medium.otf</string>
+		<string>NotoSans-Regular.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

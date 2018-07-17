@@ -82,12 +82,16 @@ class LoginViewController: UIViewController{
       AuthManager.provider
         .request(.facebook(access_token: FBSDKAccessToken.current().tokenString))
         .map(ResultModel<TokenModel>.self)
-        .subscribe(onSuccess: { (model) in
-          log.info(model)
-//          JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
-        }, onError: {error in
-          log.error(error)
-        }).disposed(by: self.disposeBag)
+        .subscribe(onSuccess: { (result) in
+          if result.success{
+            tokenObserver.onNext(result.result?.token ?? String())
+          }else {
+            JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+          }
+        }, onError: { (error) in
+          log.error(error.localizedDescription)
+          JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+        })
       }
     }
   }
@@ -109,6 +113,7 @@ class LoginViewController: UIViewController{
             JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
           }).disposed(by: self.disposeBag)
       }else{
+        
         JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
       }
     }

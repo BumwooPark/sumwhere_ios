@@ -130,7 +130,6 @@ final class DefaultLoginViewController: UIViewController{
            log.info(result)
           self.dismiss(animated: true, completion: {tokenObserver.onNext(result.result?.token ?? String())})
         }else{
-          log.info(result)
           JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
         }
       }) { (error) in

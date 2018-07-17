@@ -9,6 +9,7 @@
 import UIKit
 import PopupDialog
 import SwiftyUserDefaults
+import SwiftyImage
 
 class MainTabBarController: UITabBarController{
   
@@ -38,6 +39,8 @@ class MainTabBarController: UITabBarController{
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    tabBar.backgroundImage = UIImage.resizable().color(.clear).image
+    tabBar.shadowImage = UIImage()
     self.viewControllers = [
      mainViewController, writerViewController
       , settingViewController

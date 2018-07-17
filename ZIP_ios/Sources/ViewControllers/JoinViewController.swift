@@ -49,6 +49,7 @@ class JoinViewController: UIViewController{
       .text
       .orEmpty
       .skip(2)
+      .debounce(1, scheduler: MainScheduler.instance)
       .flatMap {
         AuthManager.provider.request(.nicknameConfirm(nickname: $0))
           .filterSuccessfulStatusCodes()

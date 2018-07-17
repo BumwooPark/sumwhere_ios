@@ -18,14 +18,14 @@ import TTTAttributedLabel
 class LoginView: UIView{
   
   let zipImageView: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "Rectangle 6"))
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "icon"))
     return imageView
   }()
   
   let kakaoButton: KOLoginButton = {
     let button = KOLoginButton()
     button.setTitle("카카오톡으로 갈래?", for: .normal)
-    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+    button.titleLabel?.font = UIFont.BMJUA(size: 20)
     button.layer.cornerRadius = 5
     button.layer.masksToBounds = true
     return button
@@ -34,7 +34,7 @@ class LoginView: UIView{
   let loginButton: UIButton = {
     let button = UIButton()
     button.setTitle("로그인하러 갈래?", for: .normal)
-    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+    button.titleLabel?.font = UIFont.BMJUA(size: 20)
     button.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
     button.layer.cornerRadius = 5
     return button
@@ -43,7 +43,7 @@ class LoginView: UIView{
   let faceBookButton: UIButton = {
     let button = UIButton()
     button.setTitle("페이스북으로 갈래?", for: .normal)
-    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+    button.titleLabel?.font = UIFont.BMJUA(size: 20)
     button.layer.cornerRadius = 5
     button.backgroundColor = #colorLiteral(red: 0.2034977426, green: 0.3029115768, blue: 1, alpha: 1)
     return button
@@ -51,8 +51,9 @@ class LoginView: UIView{
   
   let joinLabel: TTTAttributedLabel = {
     let label = TTTAttributedLabel(frame: .zero)
-    label.text = "아이디가 없으면 여기를 눌러!"
-    label.font = UIFont.NotoSansKRMedium(size: 15)
+    let attstring = NSAttributedString(string: "아이디가 없으면 여기를 눌러!",
+                                       attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 20)])
+    label.attributedText = attstring
     label.textColor = .black
     let range = NSRange(location: 9, length: 2)
     label.addLink(to: URL(fileURLWithPath: ""), with: range)
@@ -82,8 +83,7 @@ class LoginView: UIView{
     zipImageView.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.top.equalToSuperview().inset(100)
-      make.height.equalTo(150)
-      make.width.equalTo(150)
+      make.height.width.equalTo(200)
     }
     
     loginButton.snp.makeConstraints { (make) in

@@ -41,7 +41,7 @@ class ProxyController{
         .filter(statusCode: 200)
         .subscribe(onSuccess: { [weak self](response) in
           guard let retainSelf = self else {return}
-          retainSelf.window?.rootViewController = MainViewController()
+          retainSelf.window?.rootViewController = MainViewController3()
         }) { [weak self](error) in
           let moyaError = error as? MoyaError
           if moyaError?.response?.statusCode == 406,
@@ -55,11 +55,9 @@ class ProxyController{
   
   func makeRootViewController(){
     if Defaults[.token].length != 0 {
-//       window?.rootViewController = UINavigationController(rootViewController:  MainViewController())
-      window?.rootViewController = SlideMenuController(mainViewController: UINavigationController(rootViewController: MainViewController2()), rightMenuViewController: SideMenuViewController())
+      window?.rootViewController = SlideMenuController(mainViewController: MainTabBarController(), rightMenuViewController: SideMenuViewController())
     }else {
       window?.rootViewController = LoginViewController()
-//       window?.rootViewController = SlideMenuController(mainViewController: UINavigationController(rootViewController: MainViewController2()), rightMenuViewController: SideMenuViewController())
     }
   }
 }

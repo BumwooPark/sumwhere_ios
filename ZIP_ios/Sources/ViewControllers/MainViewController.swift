@@ -2,111 +2,152 @@
 //  MainViewController.swift
 //  ZIP_ios
 //
-//  Created by park bumwoo on 2017. 12. 10..
-//  Copyright © 2017년 park bumwoo. All rights reserved.
+//  Created by xiilab on 2018. 7. 13..
+//  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-import Foundation
-import UIKit
+import expanding_collection
+import Floaty
 import RxSwift
 import RxCocoa
-import RxDataSources
+import DZNEmptyDataSet
 
-enum MainButtonEvent{
-  case Travel
-  case Meet
-  case none
+internal func Init<Type>(_ value: Type, block: (_ object: Type) -> Void) -> Type {
+  block(value)
+  return value
 }
 
-class MainViewController: UIViewController{
+final class MainViewController: ExpandingViewController{
   
-  private let disposeBag = DisposeBag()
-  private let provider = AuthManager.provider
-  private let leftBarItem: UIBarButtonItem = {
-    let label = UILabel()
-    label.text = "여행갈래?"
-    label.font = UIFont.NotoSansKRBold(size: 22)
-    return UIBarButtonItem(customView: label)
-  }()
+  var didUpdateConstraint = false
+   fileprivate var cellsIsOpen = [Bool]()
   
-  let eventAction: PublishSubject = PublishSubject<MainButtonEvent>()
-  
-  lazy var dataSources = RxCollectionViewSectionedReloadDataSource<MainViewModel>(
-    configureCell: {(ds, cv, idx, item) -> UICollectionViewCell in
-      
-    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MainCell.self), for: idx) as! MainCell
-    return cell
-  },configureSupplementaryView:{ (ds,cv,name,idx) in
-    let view = cv.dequeueReusableSupplementaryView(
-      ofKind: UICollectionElementKindSectionHeader,
-      withReuseIdentifier: String(describing: MainHeaderView.self),
-      for: idx) as! MainHeaderView
-    view.mainViewController = self
-    return view
-  })
-  
-  lazy var collectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    layout.minimumLineSpacing = 0
-    layout.minimumInteritemSpacing = 0
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView.register(MainCell.self, forCellWithReuseIdentifier: String(describing: MainCell.self))
-    collectionView.register(MainHeaderView.self,
-                            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                            withReuseIdentifier: String(describing: MainHeaderView.self))
+  lazy var floaty: Floaty = {
+    let floaty = Floaty()
+    floaty.addItem(title: "친구 추가", handler: { (item) in
+      self.navigationController?.pushViewController(FriendsViewController(), animated: true)
+    })
+    floaty.addItem(title: "여행 추가")
     
-    collectionView.backgroundColor = .white
-    collectionView.delegate = self
-    return collectionView
+    floaty.items.forEach{
+      $0.titleLabel.font = UIFont.BMJUA(size: 13)
+    }
+    floaty.plusColor = .white
+    floaty.buttonColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    return floaty
   }()
-  
-  
-  override func loadView(){
-    super.loadView()
-    navigationBarInit()
-  }
   
   override func viewDidLoad() {
+    itemSize = CGSize(width: 256, height: 460)
     super.viewDidLoad()
-    view = collectionView
     
-    Observable.of([MainViewModel(items: [MainModel(title: "123"),MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2")]),
-                   MainViewModel(items: [MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2"),MainModel(title: "2")]),
-                   MainViewModel(items: [MainModel(title: "2")])])
-        .bind(to: collectionView.rx.items(dataSource: dataSources))
-      .disposed(by: disposeBag)
+    collectionView?.emptyDataSetSource = self
+    collectionView?.emptyDataSetDelegate = self
+
+    view.backgroundColor = .white
+    view.addSubview(self.floaty)
+    addGesture(to: collectionView!)
+    let nib = UINib(nibName: String(describing: MainViewCell.self), bundle: nil)
+    collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: MainViewCell.self))
+//    cellsIsOpen = Array(repeating: false, count: items.count)
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    self.navigationController?.navigationBar.shadowImage = UIImage()
+
+    self.addRightBarButtonWithImage(#imageLiteral(resourceName: "icons8-menu-48"))
     
-    
-    eventAction
-      .asDriver(onErrorJustReturn: .none)
-      .drive(onNext: {[weak self] (type) in
-        switch type{
-        case .Travel:
-          self?.navigationController?.pushViewController(PlanViewController(), animated: true)
-        case .Meet,.none:
-          break
-        }
-      }).disposed(by: disposeBag)
   }
-  
-  private func navigationBarInit(){
-    self.navigationController?
-      .navigationBar
-      .setBackgroundImage(
-        UIImage.resizable().color(.white).image, for: UIBarMetrics.default
-    )
-    self.navigationItem.leftBarButtonItem = leftBarItem
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    view.setNeedsUpdateConstraints()
   }
 }
 
-extension MainViewController: UICollectionViewDelegateFlowLayout{
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      referenceSizeForHeaderInSection section: Int) -> CGSize {
-    return (section == 0) ? CGSize(width: UIScreen.main.bounds.width, height: 350) : .zero
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: collectionView.bounds.width/2, height: 300)
+
+// Constraint
+extension MainViewController{
+  override func updateViewConstraints() {
+    if !didUpdateConstraint {
+      
+      floaty.snp.makeConstraints { (make) in
+        make.right.equalTo(self.view.snp.rightMargin)
+        make.bottom.equalToSuperview().inset(100)
+        make.height.width.equalTo(70)
+      }
+      
+      didUpdateConstraint = true
+    }
+    super.updateViewConstraints()
   }
 }
+
+
+extension MainViewController{
+  fileprivate func addGesture(to view: UIView) {
+    let upGesture = Init(UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.swipeHandler(_:)))) {
+      $0.direction = .up
+    }
+    
+    let downGesture = Init(UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.swipeHandler(_:)))) {
+      $0.direction = .down
+    }
+    view.addGestureRecognizer(upGesture)
+    view.addGestureRecognizer(downGesture)
+  }
+}
+
+extension MainViewController{
+  
+  @objc func swipeHandler(_ sender: UISwipeGestureRecognizer) {
+    let indexPath = IndexPath(row: currentIndex, section: 0)
+    guard let cell = collectionView?.cellForItem(at: indexPath) as? MainViewCell else { return }
+    // double swipe Up transition
+    if cell.isOpened == true && sender.direction == .up {
+      pushToViewController(MainTableViewController())
+    }
+    
+    let open = sender.direction == .up ? true : false
+    cell.cellIsOpen(open)
+    cellsIsOpen[indexPath.row] = cell.isOpened
+  }
+  
+  override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+//    return items.count
+    return 0
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MainViewCell.self), for: indexPath) as! MainViewCell
+    return cell
+  }
+  override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
+    guard let cell = cell as? MainViewCell else { return }
+    
+//    let index = indexPath.row % items.count
+//    let info = items[index]
+//    cell.cellIsOpen(cellsIsOpen[index], animated: false)
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let cell = collectionView.cellForItem(at: indexPath) as? MainViewCell
+      , currentIndex == indexPath.row else { return }
+    
+    if cell.isOpened == false {
+      cell.cellIsOpen(true)
+    } else {
+      pushToViewController(MainTableViewController())
+    }
+  }
+}
+
+extension MainViewController: DZNEmptyDataSetSource{
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string: "앗! 등록하신 여행이 없네요!!",
+                              attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 15)])
+  }
+}
+
+extension MainViewController: DZNEmptyDataSetDelegate{
+}
+
+
