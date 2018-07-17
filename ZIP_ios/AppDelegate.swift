@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    Auth.auth().setAPNSToken(deviceToken, type: .unknown)
+//    Auth.auth().setAPNSToken(deviceToken, type: .unknown)
     Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
     var token = ""
     for i in 0..<deviceToken.count {

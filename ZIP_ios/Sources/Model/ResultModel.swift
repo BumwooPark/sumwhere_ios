@@ -16,6 +16,12 @@ struct ResultModel<T: Codable>: Codable{
   let success: Bool
 }
 
+struct ResultArrayModel<T: Codable>: Codable{
+  let error: ResultError?
+  let result: [T]?
+  let success: Bool
+}
+
 struct ResultError: Codable{
   let code: Int
   let message: String

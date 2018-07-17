@@ -9,7 +9,11 @@
 import expanding_collection
 
 class MainViewCell: BasePageCollectionCell{
-  
+  var item: TravelModel? {
+    didSet{
+      titleLabel.text = item?.travelType.destination
+    }
+  }
   @IBOutlet weak var titleLabel: UILabel!
   
   @IBOutlet weak var imageView: UIImageView!

@@ -10,6 +10,7 @@ import expanding_collection
 import Floaty
 import RxSwift
 import RxCocoa
+import RxDataSources
 import DZNEmptyDataSet
 
 internal func Init<Type>(_ value: Type, block: (_ object: Type) -> Void) -> Type {
@@ -19,8 +20,12 @@ internal func Init<Type>(_ value: Type, block: (_ object: Type) -> Void) -> Type
 
 final class MainViewController: ExpandingViewController{
   
+  let disposeBag = DisposeBag()
   var didUpdateConstraint = false
-   fileprivate var cellsIsOpen = [Bool]()
+  fileprivate var cellsIsOpen = [Bool]()
+  
+  var datas = [TravelModel]()
+  
   
   lazy var floaty: Floaty = {
     let floaty = Floaty()
@@ -43,6 +48,22 @@ final class MainViewController: ExpandingViewController{
     
     collectionView?.emptyDataSetSource = self
     collectionView?.emptyDataSetDelegate = self
+    
+    AuthManager.provider
+      .request(.travelGetAll(order: "desc", sortby: "id", skipCount: 0))
+      .map(ResultModel<[TravelModel]>.self)
+      .asObservable()
+      .map{$0.result}
+      .filterNil()
+      .do(onNext: { [weak self] (models) in
+        self?.datas = models
+      })
+      .subscribe(onNext: {[weak self] (models) in
+        guard let `self` = self else {return}
+        self.collectionView?.reloadData()
+        self.cellsIsOpen = Array(repeating: false, count: models.count)
+      }).disposed(by: disposeBag)
+    
 
     view.backgroundColor = .white
     view.addSubview(self.floaty)
@@ -52,7 +73,7 @@ final class MainViewController: ExpandingViewController{
 //    cellsIsOpen = Array(repeating: false, count: items.count)
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
-
+    collectionView?.alwaysBounceHorizontal = true
     self.addRightBarButtonWithImage(#imageLiteral(resourceName: "icons8-menu-48"))
     
   }
@@ -111,20 +132,18 @@ extension MainViewController{
   }
   
   override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-//    return items.count
-    return 0
+    return datas.count
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MainViewCell.self), for: indexPath) as! MainViewCell
+    cell.item = datas[indexPath.item]
     return cell
   }
   override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
     guard let cell = cell as? MainViewCell else { return }
     
-//    let index = indexPath.row % items.count
-//    let info = items[index]
 //    cell.cellIsOpen(cellsIsOpen[index], animated: false)
   }
   

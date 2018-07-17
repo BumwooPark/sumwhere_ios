@@ -54,7 +54,8 @@ class ProxyController{
   }
   
   func makeRootViewController(){
-    if Defaults[.token].length != 0 {
+    
+    if Defaults.hasKey("token") {
       window?.rootViewController = SlideMenuController(mainViewController: MainTabBarController(), rightMenuViewController: SideMenuViewController())
     }else {
       window?.rootViewController = LoginViewController()

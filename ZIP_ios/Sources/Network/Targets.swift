@@ -16,7 +16,7 @@ public enum ZIP{
   case nicknameConfirm(nickname: String)
   case isProfile
   case country
-
+  case travelGetAll(order: String, sortby: String, skipCount: Int)
 }
 
 
@@ -39,6 +39,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/country/"
     case .nicknameConfirm(let nickname):
       return "/nickname/\(nickname)"
+    case .travelGetAll:
+      return "/restrict/travel"
 //    case .profile:
 //      return "/profile"
     }
@@ -90,6 +92,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
     case .nicknameConfirm:
       return .requestPlain
+    case let .travelGetAll(order, sortby, skipCount):
+      return .requestParameters(parameters: ["order":order,"password":sortby,"skipCount": skipCount], encoding: URLEncoding.queryString)
     default:
       return .requestPlain
     }

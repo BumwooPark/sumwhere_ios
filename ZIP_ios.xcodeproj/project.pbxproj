@@ -67,6 +67,8 @@
 		0AF2C01B20FB2D9600775EA8 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01A20FB2D9600775EA8 /* SideMenuViewController.swift */; };
 		0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */; };
 		0AF2C02120FB3DC200775EA8 /* TempCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02020FB3DC200775EA8 /* TempCell.swift */; };
+		0AF2C02320FE23BD00775EA8 /* TravelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02220FE23BD00775EA8 /* TravelModel.swift */; };
+		0AF2C02520FE2AB600775EA8 /* TravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02420FE2AB600775EA8 /* TravelViewModel.swift */; };
 		59397C0A34F660FD927A0699 /* Pods_ZIP_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4C508F8A9A5C1DE80D8E10 /* Pods_ZIP_iosTests.framework */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
@@ -160,6 +162,8 @@
 		0AF2C01A20FB2D9600775EA8 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		0AF2C02020FB3DC200775EA8 /* TempCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCell.swift; sourceTree = "<group>"; };
+		0AF2C02220FE23BD00775EA8 /* TravelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelModel.swift; sourceTree = "<group>"; };
+		0AF2C02420FE2AB600775EA8 /* TravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelViewModel.swift; sourceTree = "<group>"; };
 		0AFC96D21FB7281F003C6F8E /* ZIP_ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZIP_ios.entitlements; sourceTree = "<group>"; };
 		7B9C4226FE4FE2EB23EB73C6 /* Pods-ZIP_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 				0AD3BC12204A7B690051D7E3 /* CountryModel.swift */,
 				B1D4E50920F8446400524CE2 /* ResultModel.swift */,
 				B1D4E51120FC232900524CE2 /* JoinModel.swift */,
+				0AF2C02220FE23BD00775EA8 /* TravelModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */,
 				0A0FDDF420387E3D0046E76F /* ProfileViewModel.swift */,
 				0AD3BC16204A85E00051D7E3 /* CountryViewModel.swift */,
+				0AF2C02420FE2AB600775EA8 /* TravelViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -748,6 +754,7 @@
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,
 				0A7123921FACC1B600512EB7 /* LoginViewController.swift in Sources */,
 				B1D4E51820FDC8F700524CE2 /* CreateMatchViewController.swift in Sources */,
+				0AF2C02320FE23BD00775EA8 /* TravelModel.swift in Sources */,
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
 				0A6C88AF1FEE82AA002019DE /* PlanViewController.swift in Sources */,
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
@@ -779,6 +786,7 @@
 				B1D4E51020F8968000524CE2 /* MainViewCell.swift in Sources */,
 				0A0FDDF320387D250046E76F /* ProfileHeaderView.swift in Sources */,
 				0A3C3FED1FE7ECE6005FF52B /* ChatViewController.swift in Sources */,
+				0AF2C02520FE2AB600775EA8 /* TravelViewModel.swift in Sources */,
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
