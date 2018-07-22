@@ -15,6 +15,7 @@ import SwiftyUserDefaults
 class AuthManager{
   
   var fireBaseId: String?
+  static let imageURL = "http://52.197.13.138/images"
   
   static let provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){

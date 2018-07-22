@@ -36,27 +36,9 @@ class ProxyController{
       .disposed(by: disposeBag)
   }
   
-  private func serverHaveProfile(){
-      provider.request(.isProfile)
-        .filter(statusCode: 200)
-        .subscribe(onSuccess: { [weak self](response) in
-          guard let retainSelf = self else {return}
-          retainSelf.window?.rootViewController = MainViewController3()
-        }) { [weak self](error) in
-          let moyaError = error as? MoyaError
-          if moyaError?.response?.statusCode == 406,
-            let retainSelf = self {
-          retainSelf.window?.rootViewController = SetProfileViewController()
-          }else{
-            log.error(error)
-          }
-    }.disposed(by: disposeBag)
-  }
-  
   func makeRootViewController(){
-    
-    if Defaults.hasKey("token") {
-      window?.rootViewController = SlideMenuController(mainViewController: MainTabBarController(), rightMenuViewController: SideMenuViewController())
+    if Defaults[.token].length != 0{
+      window?.rootViewController = SlideMenuController(mainViewController: MainTabBarController(), leftMenuViewController: SideMenuViewController())
     }else {
       window?.rootViewController = LoginViewController()
     }

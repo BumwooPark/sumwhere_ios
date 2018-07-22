@@ -4,7 +4,7 @@
 //
 //  Created by xiilab on 2018. 7. 13..
 //  Copyright © 2018년 park bumwoo. All rights reserved.
-//
+//  메인 페이지 컬랙션뷰
 
 import expanding_collection
 import Floaty
@@ -49,6 +49,26 @@ final class MainViewController: ExpandingViewController{
     collectionView?.emptyDataSetSource = self
     collectionView?.emptyDataSetDelegate = self
     
+    view.backgroundColor = .white
+    view.addSubview(self.floaty)
+    addGesture(to: collectionView!)
+    let nib = UINib(nibName: String(describing: MainViewCell.self), bundle: nil)
+    collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: MainViewCell.self))
+    //    cellsIsOpen = Array(repeating: false, count: items.count)
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    self.navigationController?.navigationBar.shadowImage = UIImage()
+    collectionView?.alwaysBounceHorizontal = true
+    self.addLeftBarButtonWithImage(#imageLiteral(resourceName: "icons8-menu-48"))
+    connection()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    view.setNeedsUpdateConstraints()
+  }
+  
+  //  NetWorking
+  private func connection(){
     AuthManager.provider
       .request(.travelGetAll(order: "desc", sortby: "id", skipCount: 0))
       .map(ResultModel<[TravelModel]>.self)
@@ -63,23 +83,6 @@ final class MainViewController: ExpandingViewController{
         self.collectionView?.reloadData()
         self.cellsIsOpen = Array(repeating: false, count: models.count)
       }).disposed(by: disposeBag)
-    
-
-    view.backgroundColor = .white
-    view.addSubview(self.floaty)
-    addGesture(to: collectionView!)
-    let nib = UINib(nibName: String(describing: MainViewCell.self), bundle: nil)
-    collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: MainViewCell.self))
-//    cellsIsOpen = Array(repeating: false, count: items.count)
-    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    self.navigationController?.navigationBar.shadowImage = UIImage()
-    collectionView?.alwaysBounceHorizontal = true
-    self.addRightBarButtonWithImage(#imageLiteral(resourceName: "icons8-menu-48"))
-    
-  }
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    view.setNeedsUpdateConstraints()
   }
 }
 
@@ -144,7 +147,7 @@ extension MainViewController{
     super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
     guard let cell = cell as? MainViewCell else { return }
     
-//    cell.cellIsOpen(cellsIsOpen[index], animated: false)
+    //    cell.cellIsOpen(cellsIsOpen[index], animated: false)
   }
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

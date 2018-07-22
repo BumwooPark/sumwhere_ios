@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Kingfisher
 
 extension UIImageView{
   func addBlurEffect()
@@ -20,3 +20,14 @@ extension UIImageView{
     self.addSubview(blurEffectView)
   }
 }
+
+extension Kingfisher where Base: UIImageView{
+  public func setImageWithZIP(image: String){
+    self.setImage(with: URL(string: AuthManager.imageURL+image))
+  }
+}
+
+
+
+
+

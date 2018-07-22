@@ -10,9 +10,11 @@ import UIKit
 import PopupDialog
 import SwiftyUserDefaults
 import SwiftyImage
+import RxSwift
+import RxCocoa
 
 class MainTabBarController: UITabBarController{
-  
+  private let disposeBag = DisposeBag()
   let mainViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MainViewController())
     let tabBar = UITabBarItem(title: "여행", image: #imageLiteral(resourceName: "icons8-prop_plane"), tag: 0)
@@ -38,7 +40,7 @@ class MainTabBarController: UITabBarController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     tabBar.backgroundImage = UIImage.resizable().color(.clear).image
     tabBar.shadowImage = UIImage()
     self.viewControllers = [
@@ -49,24 +51,37 @@ class MainTabBarController: UITabBarController{
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
-      self?.profileAlertView()
-    }
+    profileCheck()
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+//      self?.profileAlertView()
+//    }
   }
   
-  private func profileAlertView(){
-    
-    guard Defaults.hasKey(.isProfileSet) || !Defaults[.isProfileSet] else {return}
-    
-    let popup = PopupDialog(title: "회원정보", message: "회원정보를 입력해 보세요!")
-    let goButton = DefaultButton(title: "입력하러 갈래", height: 60, dismissOnTap: true) {[weak self] in
-      self?.present(SetProfileViewController(), animated: true, completion: nil)
-    }
-    let cancelButton = DefaultButton(title: "나중에 할래", height: 60, dismissOnTap: true){
-      Defaults[.isProfileSet] = true
-    }
-    popup.addButtons([goButton,cancelButton])
-    self.present(popup, animated: true, completion: nil)
+  private func profileCheck(){
+    AuthManager.provider.request(.isProfile)
+      .map(ResultModel<Bool>.self)
+      .asObservable()
+      .subscribe(onNext: {[weak self] (model) in
+        if model.success{
+          if !model.result!{
+            self?.present(SetProfileViewController(), animated: true, completion: nil)
+          }
+        }
+      }).disposed(by: disposeBag)
   }
+  
+//  private func profileAlertView(){
+//
+//    guard Defaults.hasKey(.isProfileSet) || !Defaults[.isProfileSet] else {return}
+//
+//    let popup = PopupDialog(title: "회원정보", message: "회원정보를 입력해 주세요")
+//    let goButton = DefaultButton(title: "입력하러 갈래", height: 60, dismissOnTap: true) {[weak self] in
+//      self?.present(SetProfileViewController(), animated: true, completion: nil)
+//    }
+//    let cancelButton = DefaultButton(title: "나중에 할래", height: 60, dismissOnTap: true){
+//      Defaults[.isProfileSet] = true
+//    }
+//    popup.addButtons([goButton,cancelButton])
+//    self.present(popup, animated: true, completion: nil)
+//  }
 }

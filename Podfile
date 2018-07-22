@@ -47,6 +47,7 @@ pod 'SlideMenuControllerSwift'
 pod 'expanding-collection'
 pod "Floaty"
 pod 'HGPlaceholders'
+pod 'TagListView', '~> 1.0'
 # RX
 pod 'RxSwift'
 pod 'RxCocoa'

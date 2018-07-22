@@ -34,15 +34,13 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .kakao:
       return "/signin/kakao"
     case .isProfile:
-      return "/profile"
+      return "/restrict/existProfile"
     case .country:
       return "/country/"
     case .nicknameConfirm(let nickname):
       return "/nickname/\(nickname)"
     case .travelGetAll:
       return "/restrict/travel"
-//    case .profile:
-//      return "/profile"
     }
   }
   

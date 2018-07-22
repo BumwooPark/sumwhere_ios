@@ -12,6 +12,7 @@ class MainViewCell: BasePageCollectionCell{
   var item: TravelModel? {
     didSet{
       titleLabel.text = item?.travelType.destination
+      imageView.kf.setImageWithZIP(image: item?.travelType.imageURL ?? String())
     }
   }
   @IBOutlet weak var titleLabel: UILabel!
