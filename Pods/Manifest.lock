@@ -132,6 +132,7 @@ PODS:
   - SQLite.swift (0.11.5):
     - SQLite.swift/standard (= 0.11.5)
   - SQLite.swift/standard (0.11.5)
+  - SwiftDate (5.0.3)
   - SwiftyBeaver (1.6.0)
   - SwiftyImage (1.2.0)
   - SwiftyJSON (4.1.0)
@@ -181,6 +182,7 @@ DEPENDENCIES:
   - SnapKit
   - Spring
   - SQLite.swift
+  - SwiftDate
   - SwiftyBeaver
   - SwiftyImage
   - SwiftyJSON
@@ -243,6 +245,7 @@ SPEC REPOS:
     - SnapKit
     - Spring
     - SQLite.swift
+    - SwiftDate
     - SwiftyBeaver
     - SwiftyImage
     - SwiftyJSON
@@ -304,6 +307,7 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Spring: 17901566c8ecf3a1327902b940406c64512f9bb1
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+  SwiftDate: 5c02893dd1f658de4bc6d817a86246140eec9ae3
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   SwiftyImage: ebaa7c7b6163cd4ad102f3bb05a8fb276d35b4f3
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
@@ -312,6 +316,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 30422f01129208aa9d3db7e886333925b7cca8e3
+PODFILE CHECKSUM: 77085178655aff93dd11447675ea44be56a53654
 
 COCOAPODS: 1.5.3

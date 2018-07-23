@@ -32,6 +32,7 @@ pod 'PopupDialog'
 pod 'Spring'
 pod 'SwiftyUserDefaults'
 pod 'PySwiftyRegex'
+pod 'SwiftDate'
 # UI
 pod 'GoogleMaps'
 pod 'GooglePlaces'

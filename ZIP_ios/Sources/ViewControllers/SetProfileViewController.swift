@@ -12,6 +12,7 @@ import TLPhotoPicker
 import RxCocoa
 import RxSwift
 import RxGesture
+import SwiftDate
 
 class SetProfileViewController: FormViewController{
   let disposeBag = DisposeBag()
@@ -30,6 +31,7 @@ class SetProfileViewController: FormViewController{
         header.onSetupView = {[unowned self] view, _ in
           view.backgroundColor = .white
           view.viewController = self
+          view.item = self.item
         }
         section.header = header
       }
@@ -56,15 +58,23 @@ class SetProfileViewController: FormViewController{
         $0.options = ["서울","경기"]
         }.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
+        }).onChange({ (row) in
+          self.item?.area = row.value ?? String()
+        }).cellUpdate({ (cell, row) in
+          row.value = self.item?.area
         })
       
       <<< DateInlineRow(){
         $0.title = "생년월일"
         $0.tag = "birthday"
-        $0.value = Date(timeIntervalSinceNow: 0)
         }.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+        }).cellUpdate({[weak self] (cell, row) in
+          row.value = (self?.item?.birthday ?? String()).toISODate()?.date
+        }).onChange({[weak self] (row) in
+          guard let `self` = self else {return}
+          self.item?.birthday =  row.value?.toString() ?? String()
         })
       
       <<< TextRow(){
@@ -74,9 +84,10 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.textField.font = UIFont.BMJUA(size: 15)
         }).cellUpdate({ (cell, row) in
-           row.cell.textField.text = self.item?.job
-        }).onChange({ (row) in
-          row.
+           cell.textField.text = self.item?.job
+        }).onChange({[weak self] (row) in
+          guard let `self` = self else {return}
+          self.item?.job =  row.cell.textField.text ?? String()
         })
       
       +++ Section("여행 스타일")

@@ -10,12 +10,25 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import TLPhotoPicker
+import Kingfisher
 
 class ProfileHeaderView: UIView {
   
   let disposeBag = DisposeBag()
   weak var viewController: SetProfileViewController?
   private var currentIndex = 0
+  var item: ProfileModel?{
+    didSet{
+      imageUrls?.append(item?.image1 ?? String())
+      imageUrls?.append(item?.image2 ?? String())
+      imageUrls?.append(item?.image3 ?? String())
+      imageUrls?.append(item?.image4 ?? String())
+      imageUrls?.append(item?.image5 ?? String())
+      collectionView.reloadData()
+    }
+  }
+  
+  var imageUrls: [String]?
   var profiles = [UIImage?](repeating: nil, count: 5)
   
   lazy var collectionView: UICollectionView = {
@@ -32,8 +45,7 @@ class ProfileHeaderView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-  
-  
+
     addSubview(collectionView)
     addConstraint()
   }
@@ -55,7 +67,8 @@ extension ProfileHeaderView: UICollectionViewDataSource{
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileViewCell.self), for: indexPath) as! ProfileViewCell
-    cell.profileView.image = profiles[indexPath.item]
+//    cell.profileView.image = profiles[indexPath.item]
+    cell.profileView.kf.setImageWithZIP(image: imageUrls?[indexPath.item] ?? String())
     return cell
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
