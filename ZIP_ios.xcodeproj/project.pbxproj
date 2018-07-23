@@ -84,6 +84,7 @@
 		B1D4E52020FDCBB200524CE2 /* godoMaum.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1D4E51B20FDCA2C00524CE2 /* godoMaum.ttf */; };
 		B1D4E52120FDCBB200524CE2 /* BMHANNA.otf in Resources */ = {isa = PBXBuildFile; fileRef = B1D4E51A20FDCA2300524CE2 /* BMHANNA.otf */; };
 		B1D4E52220FDCBB200524CE2 /* BMJUA.otf in Resources */ = {isa = PBXBuildFile; fileRef = B1D4E51920FDCA1F00524CE2 /* BMJUA.otf */; };
+		B1D4E5242105AE5A00524CE2 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E5232105AE5A00524CE2 /* ProfileModel.swift */; };
 		BAB35871AF3A20A85A1D01CD /* Pods_ZIP_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +182,7 @@
 		B1D4E51B20FDCA2C00524CE2 /* godoMaum.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoMaum.ttf; sourceTree = "<group>"; };
 		B1D4E51C20FDCA3800524CE2 /* godoRounded L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "godoRounded L.ttf"; sourceTree = "<group>"; };
 		B1D4E51D20FDCA3800524CE2 /* godoRounded R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "godoRounded R.ttf"; sourceTree = "<group>"; };
+		B1D4E5232105AE5A00524CE2 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		BBBA05947428AB4BFEF7859A /* Pods-ZIP_iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_iosTests/Pods-ZIP_iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZIP_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D974C1FB255F6BC0FD4F84C5 /* Pods-ZIP_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				B1D4E50920F8446400524CE2 /* ResultModel.swift */,
 				B1D4E51120FC232900524CE2 /* JoinModel.swift */,
 				0AF2C02220FE23BD00775EA8 /* TravelModel.swift */,
+				B1D4E5232105AE5A00524CE2 /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				0A0FDDF520387E3D0046E76F /* ProfileViewModel.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */,
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,
+				B1D4E5242105AE5A00524CE2 /* ProfileModel.swift in Sources */,
 				0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

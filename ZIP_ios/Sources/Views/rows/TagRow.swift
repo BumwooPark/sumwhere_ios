@@ -12,7 +12,6 @@ import TagListView
 
 public class TagCell: Cell<String>, CellType, TagListViewDelegate{
   
-  
   public lazy var tagListView: TagListView = {
     let view = TagListView()
     view.alignment = .center
@@ -39,8 +38,13 @@ public class TagCell: Cell<String>, CellType, TagListViewDelegate{
   }
   
   public func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
-    log.info(title)
-    tagView.tagBackgroundColor = .blue
+    if tagView.isSelected{
+      tagView.isSelected = false
+      tagView.tagBackgroundColor = .gray
+    }else{
+      tagView.isSelected = true
+      tagView.tagBackgroundColor = .blue
+    }
   }
 }
 

@@ -20,7 +20,9 @@ class SideMenuViewController: FormViewController{
       $0.header = header
       }
       
-      <<< LabelRow(){$0.title = "프로필 수정"}
+      <<< LabelRow(){$0.title = "프로필 수정"}.onCellSelection({[weak self] (cell, row) in
+        self?.present(SetProfileViewController(), animated: true, completion: nil)
+      })
       <<< LabelRow(){$0.title = "내 여행"}
       <<< LabelRow(){$0.title = "알림"}
       <<< LabelRow(){$0.title = "상점"}
