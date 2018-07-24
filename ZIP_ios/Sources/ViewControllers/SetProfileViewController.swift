@@ -13,25 +13,28 @@ import RxCocoa
 import RxSwift
 import RxGesture
 import SwiftDate
+import Moya
+
 
 class SetProfileViewController: FormViewController{
   let disposeBag = DisposeBag()
 
   var item: ProfileModel?
+  var images: [UIImage]?
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.backgroundColor = .white
-    network()
+    getProfile()
     form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
     form
       +++ Section(){ section in
+        section.tag = "headersection"
         var header = HeaderFooterView<ProfileHeaderView>(.class)
-        header.height = {200}
+        header.height = {100}
         
         header.onSetupView = {[unowned self] view, _ in
           view.backgroundColor = .white
           view.viewController = self
-          view.item = self.item
         }
         section.header = header
       }
@@ -102,22 +105,46 @@ class SetProfileViewController: FormViewController{
       <<< ButtonRow(){
         $0.title = "완료"
         }.onCellSelection({ [weak self](cell, row) in
-          self?.dismiss(animated: true, completion: nil)
+          self?.putProfile{
+            self?.dismiss(animated: true, completion: nil)
+          }
         }).cellSetup({ (button, row) in
           button.textLabel?.font = UIFont.BMJUA(size: 15)
           button.tintColor = .black
         })
   }
   
-  private func network(){
+  private func getProfile(){
     AuthManager.provider.request(.getProfile)
       .map(ResultModel<ProfileModel>.self)
+      .retry(3)
       .subscribe(onSuccess: {[weak self] (model) in
         guard let `self` = self else {return}
         self.item = model.result
         for row in self.form.rows{
           row.updateCell()
         }
+        self.tableView.reloadData()
+      }) { (error) in
+        log.error(error)
+    }.disposed(by: disposeBag)
+  }
+  
+  private func putProfile(complete: @escaping ()->Void ){
+    var multiparts:[MultipartFormData] = []
+    
+    
+    multiparts.append(MultipartFormData(provider: .data((item?.area.data(using: .utf8))!), name: "area"))
+    multiparts.append(MultipartFormData(provider: .data((item?.job.data(using: .utf8))!), name: "job"))
+    multiparts.append(MultipartFormData(provider: .data((item?.birthday.data(using: .utf8))!), name: "birthday"))
+    multiparts.append(MultipartFormData(provider: .data((item?.username.data(using: .utf8))!), name: "username"))
+    
+    AuthManager.provider.request(.createProfile(data: multiparts))
+      .map(ResultModel<ProfileModel>.self)
+      .retry(3)
+      .subscribe(onSuccess: { (model) in
+        log.info(model)
+        complete()
       }) { (error) in
         log.error(error)
     }.disposed(by: disposeBag)

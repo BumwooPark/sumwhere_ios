@@ -17,7 +17,7 @@ public enum ZIP{
   case isProfile
   case country
   case travelGetAll(order: String, sortby: String, skipCount: Int)
-  case createProfile
+  case createProfile(data: [MultipartFormData])
   case getProfile
 }
 
@@ -72,8 +72,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
     case let .travelGetAll(order, sortby, skipCount):
       return .requestParameters(parameters: ["order":order,"password":sortby,"skipCount": skipCount], encoding: URLEncoding.queryString)
-    case .createProfile:
-      return .uploadMultipart([])
+    case .createProfile(let data):
+      return .uploadMultipart(data)
     default:
       return .requestPlain
     }

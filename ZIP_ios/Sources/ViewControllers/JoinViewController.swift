@@ -45,26 +45,6 @@ class JoinViewController: UIViewController{
       .skip(2)
       .share(replay: 1)
     
-    joinView.nicknameField.rx
-      .text
-      .orEmpty
-      .skip(2)
-      .debounce(1, scheduler: MainScheduler.instance)
-      .flatMap {
-        AuthManager.provider.request(.nicknameConfirm(nickname: $0))
-          .filterSuccessfulStatusCodes()
-          .map(NicknameModel.self)
-          .map{$0.result}
-          .catchErrorJustReturn(false)
-      }.subscribe(onNext: { [weak self](result) in
-        guard let `self` = self else {return}
-        if result{
-          self.joinView.nicknameField.errorMessage = String()
-        }else{
-          self.joinView.nicknameField.errorMessage = "이미 존재합니다!"
-        }
-      }).disposed(by: disposeBag)
-    
     let passwordVaild = joinView.passwordField.rx.text
       .orEmpty
       .map{!re.findall("^[A-Za-z0-9]{6,20}$", $0).isEmpty}
@@ -128,8 +108,7 @@ class JoinViewController: UIViewController{
   private func signUp(){
     
     let model = JoinModel(email: self.joinView.emailField.text ?? String(),
-                          password: self.joinView.passwordField.text ?? String(),
-                          nickname: self.joinView.nicknameField.text ?? String())
+                          password: self.joinView.passwordField.text ?? String())
     
     provider.request(.signUp(model: model))
       .map(ResultModel<TokenModel>.self)
