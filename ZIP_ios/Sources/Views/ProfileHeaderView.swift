@@ -12,6 +12,16 @@ import RxDataSources
 import TLPhotoPicker
 import Kingfisher
 
+
+struct ImageModel {
+  var images: [UIImage?]
+  var imageURL: [String]
+  init() {
+    self.images = [UIImage?](repeating: nil, count: 5)
+    self.imageURL = [String](repeating: String(), count: 5)
+  }
+}
+
 class ProfileHeaderView: UIView {
   
   let disposeBag = DisposeBag()
@@ -20,30 +30,7 @@ class ProfileHeaderView: UIView {
       let item = viewController?.item
       guard let image1 = item?.image1, let image2 = item?.image2,
         let image3 = item?.image3, let image4 = item?.image4, let image5 = item?.image5 else {return}
-      
-      KingfisherManager.shared.retrieveImage(with: URL(string: AuthManager.imageURL + image1)!, options: nil, progressBlock: nil) {
-        (image, error, cache, url) in
-        self.profiles[0] = image
-      }
-      KingfisherManager.shared.retrieveImage(with: URL(string: AuthManager.imageURL + image2)!, options: nil, progressBlock: nil) {
-        (image, error, cache, url) in
-        self.profiles[1] = image
-      }
-      KingfisherManager.shared.retrieveImage(with: URL(string: AuthManager.imageURL + image3)!, options: nil, progressBlock: nil) {
-        (image, error, cache, url) in
-        self.profiles[2] = image
-      }
-      KingfisherManager.shared.retrieveImage(with: URL(string: AuthManager.imageURL + image4)!, options: nil, progressBlock: nil) {
-        (image, error, cache, url) in
-        self.profiles[3] = image
-      }
-      KingfisherManager.shared.retrieveImage(with: URL(string: AuthManager.imageURL + image5)!, options: nil, progressBlock: nil) {
-        (image, error, cache, url) in
-        self.profiles[4] = image
-      }
-      
-      
-      
+      self.images.imageURL = [image1,image2,image3,image4,image5]
       collectionView.reloadData()
     }
   }
@@ -51,7 +38,7 @@ class ProfileHeaderView: UIView {
   private var currentIndex = 0
   
   var profiles = [UIImage?](repeating: nil, count: 5)
-  
+  var images = ImageModel()
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
@@ -83,12 +70,18 @@ class ProfileHeaderView: UIView {
 
 extension ProfileHeaderView: UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return profiles.count
+    return images.images.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileViewCell.self), for: indexPath) as! ProfileViewCell
-    cell.profileView.image = profiles[indexPath.item]
+    
+    if images.imageURL[indexPath.item] == String(){
+      cell.profileView.image = images.images[indexPath.item]
+    }else{
+      cell.profileView.kf.setImageWithZIP(image: images.imageURL[indexPath.item])
+    }
+    
     return cell
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -114,7 +107,8 @@ extension ProfileHeaderView: UICollectionViewDelegateFlowLayout, UICollectionVie
   }
   
   func dismissPhotoPicker(withTLPHAssets: [TLPHAsset]) {
-    profiles[currentIndex] = withTLPHAssets.first?.fullResolutionImage
+    images.images[currentIndex] = withTLPHAssets.first?.fullResolutionImage
+    viewController?.images[currentIndex] = withTLPHAssets.first?.fullResolutionImage
     collectionView.reloadData()
   }
 }
@@ -124,6 +118,7 @@ class ProfileViewCell: UICollectionViewCell{
     let imageView = UIImageView()
     imageView.layer.cornerRadius = 5
     imageView.layer.masksToBounds = true
+    imageView.backgroundColor = .lightGray
     imageView.contentMode = .scaleAspectFill
     return imageView
   }()

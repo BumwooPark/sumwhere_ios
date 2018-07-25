@@ -20,7 +20,7 @@ class SetProfileViewController: FormViewController{
   let disposeBag = DisposeBag()
 
   var item: ProfileModel?
-  var images: [UIImage]?
+  var images = [UIImage?](repeating: nil, count: 5)
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.backgroundColor = .white
@@ -42,17 +42,17 @@ class SetProfileViewController: FormViewController{
       +++ Section("프로필")
       
       <<< TextRow(){
-        $0.title = "이름"
-        $0.tag = "username"
+        $0.title = "닉네임"
+        $0.tag = "nickname"
         }.cellSetup({(cell, row) in
-          cell.textField.attributedPlaceholder = NSAttributedString(string: "이름을 입력해 주세요", attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 15)])
+          cell.textField.attributedPlaceholder = NSAttributedString(string: "닉네임을 입력해 주세요", attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 15)])
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.textField.font = UIFont.BMJUA(size: 15)
         }).onChange({[weak self] (row) in
-          self?.item?.username = row.cell.textField.text!
+          self?.item?.nickname = row.cell.textField.text!
         }).cellUpdate({ (cell, row) in
-          row.cell.textField.text = self.item?.username
+          row.cell.textField.text = self.item?.nickname
         })
       
       <<< PickerInlineRow<String>(){
@@ -74,10 +74,14 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         }).cellUpdate({[weak self] (cell, row) in
-          row.value = (self?.item?.birthday ?? String()).toISODate()?.date
+          if self?.item?.birthday == String(){
+            row.value = Date(timeIntervalSinceNow: 0)
+          }else{
+            row.value = self?.item?.birthday.toISODate()?.date
+          }
         }).onChange({[weak self] (row) in
           guard let `self` = self else {return}
-          self.item?.birthday =  row.value?.toString() ?? String()
+          self.item?.birthday =  (row.value?.toFormat("yyyy-MM-dd"))!
         })
       
       <<< TextRow(){
@@ -93,15 +97,15 @@ class SetProfileViewController: FormViewController{
           self.item?.job =  row.cell.textField.text ?? String()
         })
       
-      +++ Section("여행 스타일")
+      +++ Section("여행 스타일 - 최대 3개")
       <<< TagRow(){
           $0.tag = "style"
         }.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.tagListView.addTags(["전망 좋은대 갈래","먹방투어 갈래","각종 쇼핑투어 갈래","이색적인 관광지 갈래","레저스포츠 갈래","스포츠(등산 골프 운동 볼링)갈래","명소 갈래","대중교통 투어 갈래","저녁에 야시장에서 맥주 갈래","문화 공연 페스티벌 갈래","호텔 노블레스 휴가 갈래","외국 밤문화 갈래","해변가 갈래"])
+          cell.tagListView.addTags(["명소투어","먹방투어","쇼핑투어","레저스포츠투어","이색투어","문화투어","호캉스","전망투어","스포츠투어","드라이브투어","패스티벌투어"])
         })
       
-      +++ Section("가즈아")
+      +++ Section()
       <<< ButtonRow(){
         $0.title = "완료"
         }.onCellSelection({ [weak self](cell, row) in
@@ -131,19 +135,25 @@ class SetProfileViewController: FormViewController{
   }
   
   private func putProfile(complete: @escaping ()->Void ){
+    
     var multiparts:[MultipartFormData] = []
-    
-    
     multiparts.append(MultipartFormData(provider: .data((item?.area.data(using: .utf8))!), name: "area"))
     multiparts.append(MultipartFormData(provider: .data((item?.job.data(using: .utf8))!), name: "job"))
     multiparts.append(MultipartFormData(provider: .data((item?.birthday.data(using: .utf8))!), name: "birthday"))
-    multiparts.append(MultipartFormData(provider: .data((item?.username.data(using: .utf8))!), name: "username"))
+    multiparts.append(MultipartFormData(provider: .data((item?.nickname.data(using: .utf8))!), name: "nickname"))
     
+    for (idx,image) in images.enumerated(){
+      if image != nil {
+        multiparts.append(MultipartFormData(provider: .data(UIImageJPEGRepresentation(image!, 1)!), name: "image\(idx+1)", fileName: "image\(idx+1)", mimeType: "image/jpeg"))
+      }
+    }
+  
     AuthManager.provider.request(.createProfile(data: multiparts))
       .map(ResultModel<ProfileModel>.self)
       .retry(3)
+      .do(onSuccess: {$0.alert(success: "업로드 되었습니다.")})
+      .delay(2, scheduler: MainScheduler.instance)
       .subscribe(onSuccess: { (model) in
-        log.info(model)
         complete()
       }) { (error) in
         log.error(error)

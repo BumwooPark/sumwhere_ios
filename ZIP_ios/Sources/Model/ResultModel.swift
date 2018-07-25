@@ -7,13 +7,21 @@
 //
 
 import Foundation
-
+import JDStatusBarNotification
 
 // error와 result가 정상적으로 받아도 파싱이 안됨
 struct ResultModel<T: Codable>: Codable{
   let error: ResultError?
   let result: T?
   let success: Bool
+  
+  func alert(success: String){
+    if self.success{
+      JDStatusBarNotification.show(withStatus: success, dismissAfter: 2, styleName: JDType.LoginSuccess.rawValue)
+    }else{
+      JDStatusBarNotification.show(withStatus: self.error?.message, dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+    }
+  }
 }
 
 struct ResultArrayModel<T: Codable>: Codable{

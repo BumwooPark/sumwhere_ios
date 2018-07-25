@@ -29,9 +29,8 @@ public class TagCell: Cell<String>, CellType, TagListViewDelegate{
   public override func setup() {
     super.setup()
     addSubview(tagListView)
-    height = {200}
+    height = {100}
     selectionStyle = .none
-    
     tagListView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
     }

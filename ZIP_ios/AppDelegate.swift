@@ -46,8 +46,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     proxyController.makeRootViewController()
     
     tokenObserver
+      .do(onNext: { (token) in
+        Defaults[.token] = token
+      })
+      .delay(1, scheduler: MainScheduler.instance)
       .subscribe(onNext: { (token) in
-      Defaults[.token] = token
       proxyController.makeRootViewController()
     }).disposed(by: disposeBag)
     
