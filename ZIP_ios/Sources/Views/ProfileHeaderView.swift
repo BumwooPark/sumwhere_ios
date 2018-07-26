@@ -28,8 +28,8 @@ class ProfileHeaderView: UIView {
   weak var viewController: SetProfileViewController?{
     didSet{
       let item = viewController?.item
-      guard let image1 = item?.image1, let image2 = item?.image2,
-        let image3 = item?.image3, let image4 = item?.image4, let image5 = item?.image5 else {return}
+      guard let image1 = item?.profile?.image1, let image2 = item?.profile?.image2,
+        let image3 = item?.profile?.image3, let image4 = item?.profile?.image4, let image5 = item?.profile?.image5 else {return}
       self.images.imageURL = [image1,image2,image3,image4,image5]
       collectionView.reloadData()
     }

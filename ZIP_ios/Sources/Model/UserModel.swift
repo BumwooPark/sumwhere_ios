@@ -8,11 +8,26 @@
 
 import Foundation
 
+struct UserModel: Codable{
+  let id: Int
+  let email: String
+  let password: String?
+  var username: String?
+  var nickname: String?
+  let hasProfile: Bool
+  let kakao_token: String?
+  let facebook_token: String?
+  let kakao_id: Int?
+  let facebook_id: String?
+  let point: Int
+  var profile: ProfileModel?
+}
+
 struct ProfileModel: Codable{
-  var nickname: String
   var area: String
   var job: String
   var birthday: String
+  var travelType: [Int]
   var image1: String
   var image2: String
   var image3: String

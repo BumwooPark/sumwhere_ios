@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   let disposeBag = DisposeBag()
   let gcmMessageIDKey = "gcm.message_id"
+  var proxyController: ProxyController!
   
   static var instance: AppDelegate? {
     return UIApplication.shared.delegate as? AppDelegate
@@ -41,17 +42,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
+//    window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
     window?.rootViewController = UIViewController()
-    let proxyController = ProxyController(window: window)
+    proxyController = ProxyController(window: window)
     proxyController.makeRootViewController()
     
     tokenObserver
       .do(onNext: { (token) in
+        if token.length > 0 {
         Defaults[.token] = token
+        AuthManager.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true)]).rx
+        }else{
+          Defaults.remove("token")
+        }
+        Defaults.synchronize()
       })
       .delay(1, scheduler: MainScheduler.instance)
-      .subscribe(onNext: { (token) in
-      proxyController.makeRootViewController()
+      .subscribe(onNext: {[weak self] (token) in
+        self?.proxyController.makeRootViewController()
     }).disposed(by: disposeBag)
     
     faceBookSetting(application: application, didFinishLaunchingWithOptions: launchOptions)

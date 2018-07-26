@@ -15,11 +15,12 @@ struct ResultModel<T: Codable>: Codable{
   let result: T?
   let success: Bool
   
-  func alert(success: String){
+  func alert(success: String, complete: @escaping ()->Void ){
     if self.success{
       JDStatusBarNotification.show(withStatus: success, dismissAfter: 2, styleName: JDType.LoginSuccess.rawValue)
+      complete()
     }else{
-      JDStatusBarNotification.show(withStatus: self.error?.message, dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+      JDStatusBarNotification.show(withStatus: self.error?.details, dismissAfter: 2, styleName: JDType.LoginFail.rawValue)
     }
   }
 }

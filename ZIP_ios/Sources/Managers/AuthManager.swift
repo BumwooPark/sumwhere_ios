@@ -17,9 +17,16 @@ class AuthManager{
   var fireBaseId: String?
   static let imageURL = "http://52.197.13.138/images"
   
-  static let provider: Reactive<MoyaProvider<ZIP>> = {
+  static let instance = AuthManager()
+  
+  
+  
+  
+  
+  static var provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG
+      log.info(Defaults[.token])
         return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true)]).rx
       #else
         return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
@@ -28,6 +35,7 @@ class AuthManager{
       return MoyaProvider<ZIP>(plugins:[NetworkLoggerPlugin(verbose: true)]).rx
     }
   }()
+  
   fileprivate init(){}
 }
 

@@ -19,7 +19,7 @@ import Moya
 class SetProfileViewController: FormViewController{
   let disposeBag = DisposeBag()
 
-  var item: ProfileModel?
+  var item: UserModel?
   var images = [UIImage?](repeating: nil, count: 5)
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -62,9 +62,9 @@ class SetProfileViewController: FormViewController{
         }.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
         }).onChange({ (row) in
-          self.item?.area = row.value ?? String()
+          self.item?.profile?.area = row.value ?? String()
         }).cellUpdate({ (cell, row) in
-          row.value = self.item?.area
+          row.value = self.item?.profile?.area
         })
       
       <<< DateInlineRow(){
@@ -74,14 +74,14 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         }).cellUpdate({[weak self] (cell, row) in
-          if self?.item?.birthday == String(){
+          if self?.item?.profile?.birthday == String(){
             row.value = Date(timeIntervalSinceNow: 0)
           }else{
-            row.value = self?.item?.birthday.toISODate()?.date
+            row.value = self?.item?.profile?.birthday.toISODate()?.date
           }
         }).onChange({[weak self] (row) in
           guard let `self` = self else {return}
-          self.item?.birthday =  (row.value?.toFormat("yyyy-MM-dd"))!
+          self.item?.profile?.birthday =  (row.value?.toFormat("yyyy-MM-dd"))!
         })
       
       <<< TextRow(){
@@ -91,10 +91,10 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.textField.font = UIFont.BMJUA(size: 15)
         }).cellUpdate({ (cell, row) in
-           cell.textField.text = self.item?.job
+           cell.textField.text = self.item?.profile?.job
         }).onChange({[weak self] (row) in
           guard let `self` = self else {return}
-          self.item?.job =  row.cell.textField.text ?? String()
+          self.item?.profile?.job =  row.cell.textField.text ?? String()
         })
       
       +++ Section("여행 스타일 - 최대 3개")
@@ -109,9 +109,7 @@ class SetProfileViewController: FormViewController{
       <<< ButtonRow(){
         $0.title = "완료"
         }.onCellSelection({ [weak self](cell, row) in
-          self?.putProfile{
-            self?.dismiss(animated: true, completion: nil)
-          }
+          self?.putProfile()
         }).cellSetup({ (button, row) in
           button.textLabel?.font = UIFont.BMJUA(size: 15)
           button.tintColor = .black
@@ -119,8 +117,8 @@ class SetProfileViewController: FormViewController{
   }
   
   private func getProfile(){
-    AuthManager.provider.request(.getProfile)
-      .map(ResultModel<ProfileModel>.self)
+    AuthManager.provider.request(.user)
+      .map(ResultModel<UserModel>.self)
       .retry(3)
       .subscribe(onSuccess: {[weak self] (model) in
         guard let `self` = self else {return}
@@ -134,13 +132,13 @@ class SetProfileViewController: FormViewController{
     }.disposed(by: disposeBag)
   }
   
-  private func putProfile(complete: @escaping ()->Void ){
+  private func putProfile(){
     
     var multiparts:[MultipartFormData] = []
-    multiparts.append(MultipartFormData(provider: .data((item?.area.data(using: .utf8))!), name: "area"))
-    multiparts.append(MultipartFormData(provider: .data((item?.job.data(using: .utf8))!), name: "job"))
-    multiparts.append(MultipartFormData(provider: .data((item?.birthday.data(using: .utf8))!), name: "birthday"))
-    multiparts.append(MultipartFormData(provider: .data((item?.nickname.data(using: .utf8))!), name: "nickname"))
+    multiparts.append(MultipartFormData(provider: .data((item?.profile?.area.data(using: .utf8))!), name: "area"))
+    multiparts.append(MultipartFormData(provider: .data((item?.profile?.job.data(using: .utf8))!), name: "job"))
+    multiparts.append(MultipartFormData(provider: .data((item?.profile?.birthday.data(using: .utf8))!), name: "birthday"))
+    multiparts.append(MultipartFormData(provider: .data((item?.nickname?.data(using: .utf8))!), name: "nickname"))
     
     for (idx,image) in images.enumerated(){
       if image != nil {
@@ -149,12 +147,18 @@ class SetProfileViewController: FormViewController{
     }
   
     AuthManager.provider.request(.createProfile(data: multiparts))
-      .map(ResultModel<ProfileModel>.self)
-      .retry(3)
-      .do(onSuccess: {$0.alert(success: "업로드 되었습니다.")})
-      .delay(2, scheduler: MainScheduler.instance)
+      .map(ResultModel<UserModel>.self)
       .subscribe(onSuccess: { (model) in
-        complete()
+        model.alert(success: "환영합니다"){[weak self] in
+          if self?.navigationController == nil {
+           self?.dismiss(animated: true, completion: nil)
+          }else{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+              AppDelegate.instance?.proxyController.makeRootViewController()
+            })
+            self?.navigationController?.popViewController(animated: true)
+          }
+        }
       }) { (error) in
         log.error(error)
     }.disposed(by: disposeBag)

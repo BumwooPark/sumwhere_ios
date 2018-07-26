@@ -14,7 +14,10 @@ import SwiftyUserDefaults
 class LoginKit{
   static func facebookLogin(manager: FBSDKLoginManager, Permissions:[String], from: UIViewController, result: @escaping (Bool) -> ()){
     
-    manager.logIn(withReadPermissions: Permissions, from: from) { (_, error) in
+    manager.logIn(withReadPermissions: Permissions, from: from) { (fbresult, error) in
+      if !(fbresult?.isCancelled)!{
+        result(false)
+      }
       if (error != nil){
         result(false)
       }else{

@@ -29,11 +29,12 @@ final class MainViewController: ExpandingViewController{
   
   lazy var floaty: Floaty = {
     let floaty = Floaty()
-    floaty.addItem(title: "친구 추가", handler: { (item) in
-      self.navigationController?.pushViewController(FriendsViewController(), animated: true)
+    floaty.addItem(title: "친구 추가", handler: {[weak self] _ in
+      self?.navigationController?.pushViewController(FriendsViewController(), animated: true)
     })
-    floaty.addItem(title: "여행 추가")
-    
+    floaty.addItem(title: "여행 추가", handler: {[weak self] _ in
+      self?.navigationController?.pushViewController(CreateTravelViewController(), animated: true)
+    })
     floaty.items.forEach{
       $0.titleLabel.font = UIFont.BMJUA(size: 13)
     }

@@ -18,7 +18,7 @@ public enum ZIP{
   case country
   case travelGetAll(order: String, sortby: String, skipCount: Int)
   case createProfile(data: [MultipartFormData])
-  case getProfile
+  case user
 }
 
 
@@ -43,8 +43,10 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/nickname/\(nickname)"
     case .travelGetAll:
       return "/restrict/travel"
-    case .createProfile,.getProfile:
+    case .createProfile:
       return "/restrict/profile"
+    case .user:
+      return "/restrict/user"
     }
   }
   

@@ -36,11 +36,30 @@ class ProxyController{
       .disposed(by: disposeBag)
   }
   
+  func profileCheck(){
+    
+    AuthManager.provider.request(.isProfile)
+      .map(ResultModel<Bool>.self)
+      .asObservable()
+      .subscribe(onNext: {[weak self] (model) in
+        if model.success{
+          if !model.result!{
+            let rootview = self?.window?.rootViewController as? UINavigationController
+            let profileView = SetProfileViewController()
+            profileView.navigationItem.hidesBackButton = true 
+            rootview?.pushViewController(profileView, animated: true)
+          }else {
+            self?.window?.rootViewController = SlideMenuController(mainViewController: MainTabBarController(), leftMenuViewController: SideMenuViewController())
+          }
+        }
+      }).disposed(by: disposeBag)
+  }
+  
   func makeRootViewController(){
     if Defaults[.token].length != 0{
-      window?.rootViewController = SlideMenuController(mainViewController: MainTabBarController(), leftMenuViewController: SideMenuViewController())
+      profileCheck()
     }else {
-      window?.rootViewController = LoginViewController()
+      window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
     }
   }
 }

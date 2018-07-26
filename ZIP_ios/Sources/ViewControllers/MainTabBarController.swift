@@ -51,23 +51,10 @@ class MainTabBarController: UITabBarController{
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    profileCheck()
+    
 //    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
 //      self?.profileAlertView()
 //    }
-  }
-  
-  private func profileCheck(){
-    AuthManager.provider.request(.isProfile)
-      .map(ResultModel<Bool>.self)
-      .asObservable()
-      .subscribe(onNext: {[weak self] (model) in
-        if model.success{
-          if !model.result!{
-            self?.present(SetProfileViewController(), animated: true, completion: nil)
-          }
-        }
-      }).disposed(by: disposeBag)
   }
   
 //  private func profileAlertView(){
