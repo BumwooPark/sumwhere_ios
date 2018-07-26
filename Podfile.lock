@@ -8,6 +8,7 @@ PODS:
   - Bolts/Tasks (1.9.0)
   - CryptoSwift (0.10.0)
   - Differentiator (3.0.2)
+  - DropDown (2.3.2)
   - DynamicBlurView (2.0.2)
   - DZNEmptyDataSet (1.8.1)
   - Eureka (4.2.0)
@@ -143,6 +144,7 @@ PODS:
 
 DEPENDENCIES:
   - CryptoSwift
+  - DropDown
   - DZNEmptyDataSet
   - Eureka
   - expanding-collection
@@ -197,6 +199,7 @@ SPEC REPOS:
     - Bolts
     - CryptoSwift
     - Differentiator
+    - DropDown
     - DynamicBlurView
     - DZNEmptyDataSet
     - Eureka
@@ -259,6 +262,7 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
+  DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
@@ -316,6 +320,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 77085178655aff93dd11447675ea44be56a53654
+PODFILE CHECKSUM: d9760b6e05b173ad0e8d4726c6e2897a3226c8ec
 
 COCOAPODS: 1.5.3

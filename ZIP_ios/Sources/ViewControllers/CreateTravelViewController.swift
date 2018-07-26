@@ -9,24 +9,14 @@
 class CreateTravelViewController: UIViewController{
   
   var didUpdateConstraint = false
-  
-  let ticketView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .blue
-    view.layer.cornerRadius = 5
-    view.layer.masksToBounds = true
-    return view
-  }()
-  
+  let ticketView = TicketView.loadXib(nibName: "TicketView") as! TicketView
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     view.addSubview(ticketView)
-    
     view.setNeedsUpdateConstraints()
   }
-  
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{
@@ -34,7 +24,8 @@ class CreateTravelViewController: UIViewController{
         make.left.equalTo(self.view.snp.leftMargin)
         make.right.equalTo(self.view.snp.rightMargin)
         make.top.equalTo(self.view.snp.topMargin)
-        make.height.equalTo(150)
+        make.height.equalTo(175
+        )
       }
       didUpdateConstraint = true
     }

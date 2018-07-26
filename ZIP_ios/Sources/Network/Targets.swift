@@ -23,8 +23,15 @@ public enum ZIP{
 
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
-  public var baseURL: URL {return URL(string: "http://52.197.13.138/galmal")!}
+//  public var baseURL: URL {return URL(string: "http://52.197.13.138/galmal")!}
   
+  public var baseURL: URL {
+    #if DEBUG
+    return URL(string: "http://192.168.0.3:8080/galmal")!
+    #else
+    return URL(string: "http://52.197.13.138/galmal")!
+    #endif
+  }
   public var path: String{
     switch self {
     case .signUp:
