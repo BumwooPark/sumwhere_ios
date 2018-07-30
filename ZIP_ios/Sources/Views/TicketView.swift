@@ -9,7 +9,8 @@
 class TicketView: UIView{
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var countryLabel: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var startLabel: UILabel!
+  @IBOutlet weak var endLabel: UILabel!
   @IBOutlet weak var peopleCountLabel: UILabel!
   
   required init?(coder aDecoder: NSCoder) {

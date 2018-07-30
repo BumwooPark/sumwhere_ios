@@ -68,12 +68,12 @@ extension PlanViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   }
   
   func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-    let vc = InsertPlanViewController()
-    vc.modalPresentationStyle = .overCurrentContext
-    vc.commitAction = {[weak self] in
-      self?.navigationController?.pushViewController(DetailCategoryViewController(), animated: true)
-    }
-    self.present(vc, animated: true, completion: nil)
+//    let vc = InsertPlanViewController()
+//    vc.modalPresentationStyle = .overCurrentContext
+//    vc.commitAction = {[weak self] in
+//      self?.navigationController?.pushViewController(DetailCategoryViewController(), animated: true)
+//    }
+//    self.present(vc, animated: true, completion: nil)
   }
 }
 

@@ -50,6 +50,8 @@ pod "Floaty"
 pod 'HGPlaceholders'
 pod 'TagListView', '~> 1.0'
 pod 'DropDown'
+
+
 # RX
 pod 'RxSwift'
 pod 'RxCocoa'

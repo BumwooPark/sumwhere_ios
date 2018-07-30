@@ -39,13 +39,14 @@ final class MainViewController: ExpandingViewController{
       $0.titleLabel.font = UIFont.BMJUA(size: 13)
     }
     floaty.plusColor = .white
-    floaty.buttonColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    floaty.buttonColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
     return floaty
   }()
   
   override func viewDidLoad() {
     itemSize = CGSize(width: 256, height: 460)
     super.viewDidLoad()
+    
     
     collectionView?.emptyDataSetSource = self
     collectionView?.emptyDataSetDelegate = self
@@ -59,7 +60,8 @@ final class MainViewController: ExpandingViewController{
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
     collectionView?.alwaysBounceHorizontal = true
-    self.addLeftBarButtonWithImage(#imageLiteral(resourceName: "icons8-menu-48"))
+    self.addLeftBarButtonWithImage(#imageLiteral(resourceName: "menuOff"))
+    self.addRightBarButtonWithImage(#imageLiteral(resourceName: "search"))
     connection()
   }
   
@@ -70,8 +72,13 @@ final class MainViewController: ExpandingViewController{
   
   //  NetWorking
   private func connection(){
+    
+    
+    
+//    AuthManager.provider
+//      .request(.travelGetAll(order: "desc", sortby: "id", skipCount: 0))
     AuthManager.provider
-      .request(.travelGetAll(order: "desc", sortby: "id", skipCount: 0))
+      .request(.myTravel)
       .map(ResultModel<[TravelModel]>.self)
       .asObservable()
       .map{$0.result}

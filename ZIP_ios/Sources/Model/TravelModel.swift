@@ -16,11 +16,14 @@ struct TravelModel: Codable{
 struct Travel: Codable{
   let id: Int
   let userId: Int
-  let destination: Int
+  let destinationId: Int
+  let startDate: String
+  let endDate: String
 }
 
 struct TravelType: Codable{
   let id: Int
-  let destination: String
+  let travel: String
+  let country: String
   let imageURL: String
 }

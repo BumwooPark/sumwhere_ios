@@ -14,6 +14,7 @@ class SideMenuViewController: FormViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.backgroundColor = .white
+    tableView.isScrollEnabled = false
     form +++ Section("갈래말래"){
       var header = HeaderFooterView<MenuHeaderView>(.class)
       header.height = {200}

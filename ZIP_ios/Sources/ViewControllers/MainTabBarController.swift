@@ -17,21 +17,21 @@ class MainTabBarController: UITabBarController{
   private let disposeBag = DisposeBag()
   let mainViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MainViewController())
-    let tabBar = UITabBarItem(title: "여행", image: #imageLiteral(resourceName: "icons8-prop_plane"), tag: 0)
+    let tabBar = UITabBarItem(title: "여행", image: #imageLiteral(resourceName: "on"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let writerViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: PlanViewController())
-    let tabBar = UITabBarItem(title: "계획", image: #imageLiteral(resourceName: "edit_icon"), tag: 0)
+    let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let settingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: ConfigureViewController())
-    let tabBar = UITabBarItem(title: "설정", image: #imageLiteral(resourceName: "profile_icon"), tag: 0)
+    let tabBar = UITabBarItem(title: "설정", image: #imageLiteral(resourceName: "configoff"), tag: 0)
     naviVC.navigationBar.prefersLargeTitles = true
     naviVC.navigationItem.largeTitleDisplayMode = .always
     naviVC.tabBarItem = tabBar
@@ -43,6 +43,12 @@ class MainTabBarController: UITabBarController{
 
     tabBar.backgroundImage = UIImage.resizable().color(.clear).image
     tabBar.shadowImage = UIImage()
+    
+    let titleLabel = UILabel()
+    titleLabel.text = "갈래말래"
+    titleLabel.font = UIFont.BMJUA(size: 15)
+    titleLabel.textColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
+    self.navigationItem.titleView = titleLabel
     self.viewControllers = [
      mainViewController, writerViewController
       , settingViewController

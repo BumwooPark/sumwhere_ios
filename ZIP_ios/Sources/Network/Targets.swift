@@ -19,6 +19,9 @@ public enum ZIP{
   case travelGetAll(order: String, sortby: String, skipCount: Int)
   case createProfile(data: [MultipartFormData])
   case user
+  case createTravel(model: Encodable)
+  case myTravel
+  case searchDestination(data: String)
 }
 
 
@@ -52,6 +55,12 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/travel"
     case .createProfile:
       return "/restrict/profile"
+    case .searchDestination:
+      return "/restrict/traveltype"
+    case .createTravel:
+      return "/restrict/travel"
+    case .myTravel:
+      return "/restrict/mytravel"
     case .user:
       return "/restrict/user"
     }
@@ -59,7 +68,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var method: Moya.Method {
     switch self {
-    case .signUp,.createProfile,.kakao,.facebook:
+    case .signUp,.createProfile,.kakao,.facebook,.createTravel:
       return .post
     default:
       return .get
@@ -83,6 +92,10 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["order":order,"password":sortby,"skipCount": skipCount], encoding: URLEncoding.queryString)
     case .createProfile(let data):
       return .uploadMultipart(data)
+    case .searchDestination(let data):
+      return .requestParameters(parameters: ["name":data], encoding: URLEncoding.queryString)
+    case .createTravel(let json):
+      return .requestJSONEncodable(json)
     default:
       return .requestPlain
     }

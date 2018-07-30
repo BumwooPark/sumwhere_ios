@@ -18,7 +18,7 @@ import TTTAttributedLabel
 class LoginView: UIView{
   
   let zipImageView: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "icon"))
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "logo"))
     return imageView
   }()
   

@@ -130,9 +130,11 @@
             <connections>
                 <outlet property="backConstraintY" destination="6DO-9h-Grw" id="Wm1-yD-o3D"/>
                 <outlet property="backContainerView" destination="rbd-6U-uYZ" id="fl2-yE-o3C"/>
+                <outlet property="endLabel" destination="KvF-xU-5tQ" id="h26-iE-3kV"/>
                 <outlet property="frontConstraintY" destination="Tfa-DL-h41" id="0Ce-KS-Dk0"/>
                 <outlet property="frontContainerView" destination="4h2-Xv-xjU" id="I8b-Ry-4pI"/>
                 <outlet property="imageView" destination="K0d-wt-UOq" id="Jpj-db-Bdz"/>
+                <outlet property="startLabel" destination="3id-Aw-49n" id="Irz-sA-7WR"/>
                 <outlet property="titleLabel" destination="dRV-hZ-AfF" id="65N-kE-kNG"/>
             </connections>
             <point key="canvasLocation" x="514" y="509"/>
