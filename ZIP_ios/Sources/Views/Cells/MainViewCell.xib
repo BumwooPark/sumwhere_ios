@@ -55,6 +55,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="256" height="335"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대한민국" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRV-hZ-AfF">
+                                <rect key="frame" x="81" y="62" width="94.5" height="29.5"/>
+                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="29"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oce-vs-fcR" userLabel="LeftView">
                                 <rect key="frame" x="20" y="300" width="93" height="28"/>
                                 <subviews>
@@ -73,19 +79,10 @@
                                     <constraint firstItem="3id-Aw-49n" firstAttribute="trailing" secondItem="oce-vs-fcR" secondAttribute="trailingMargin" id="kSN-me-DJ6"/>
                                 </constraints>
                             </view>
-                            <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKg-XH-vNU" userLabel="RightView">
+                            <view tag="4" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EKg-XH-vNU" userLabel="RightView">
                                 <rect key="frame" x="130" y="300" width="126" height="28"/>
                                 <color key="backgroundColor" red="1" green="0.20707914213106515" blue="0.8013088377544425" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대한민국" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRV-hZ-AfF">
-                                <rect key="frame" x="81.5" y="62" width="94.5" height="61"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="61" id="MBz-9U-s4e"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="29"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-12-31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvF-xU-5tQ">
                                 <rect key="frame" x="126" y="299" width="104" height="29"/>
                                 <constraints>
@@ -99,22 +96,21 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="oce-vs-fcR" firstAttribute="leading" secondItem="4h2-Xv-xjU" secondAttribute="leading" constant="20" id="0gU-VF-jyh"/>
+                            <constraint firstItem="K0d-wt-UOq" firstAttribute="top" secondItem="4h2-Xv-xjU" secondAttribute="top" id="0rf-0f-BH6"/>
                             <constraint firstItem="KvF-xU-5tQ" firstAttribute="leading" secondItem="oce-vs-fcR" secondAttribute="trailing" constant="13" id="0vQ-PQ-TQU"/>
-                            <constraint firstItem="K0d-wt-UOq" firstAttribute="centerY" secondItem="4h2-Xv-xjU" secondAttribute="centerY" id="1bC-74-z3s"/>
                             <constraint firstItem="KvF-xU-5tQ" firstAttribute="bottom" secondItem="EKg-XH-vNU" secondAttribute="bottom" id="2jW-F3-1UM"/>
-                            <constraint firstItem="K0d-wt-UOq" firstAttribute="centerX" secondItem="4h2-Xv-xjU" secondAttribute="centerX" id="2vW-Rq-yQy"/>
-                            <constraint firstItem="dRV-hZ-AfF" firstAttribute="top" secondItem="4h2-Xv-xjU" secondAttribute="top" constant="62" id="5K5-vy-as7"/>
-                            <constraint firstItem="K0d-wt-UOq" firstAttribute="height" secondItem="4h2-Xv-xjU" secondAttribute="height" id="7Zr-kE-Ao2"/>
+                            <constraint firstAttribute="trailing" secondItem="K0d-wt-UOq" secondAttribute="trailing" id="9fb-il-gCT"/>
+                            <constraint firstItem="dRV-hZ-AfF" firstAttribute="centerX" secondItem="4h2-Xv-xjU" secondAttribute="centerX" id="Ehb-IW-cx0"/>
+                            <constraint firstItem="K0d-wt-UOq" firstAttribute="leading" secondItem="4h2-Xv-xjU" secondAttribute="leading" id="IUO-ku-s0n"/>
                             <constraint firstAttribute="bottom" secondItem="oce-vs-fcR" secondAttribute="bottom" constant="7" id="IY0-8B-8h0"/>
                             <constraint firstItem="EKg-XH-vNU" firstAttribute="top" secondItem="oce-vs-fcR" secondAttribute="top" id="Qdu-gy-awe"/>
-                            <constraint firstItem="K0d-wt-UOq" firstAttribute="width" secondItem="4h2-Xv-xjU" secondAttribute="width" id="X5m-cG-XSS"/>
-                            <constraint firstItem="EKg-XH-vNU" firstAttribute="trailing" secondItem="K0d-wt-UOq" secondAttribute="trailing" id="Zlr-hk-Jyr"/>
+                            <constraint firstItem="dRV-hZ-AfF" firstAttribute="top" secondItem="4h2-Xv-xjU" secondAttribute="top" constant="62" id="ZJz-LH-Hmr"/>
                             <constraint firstItem="EKg-XH-vNU" firstAttribute="leading" secondItem="oce-vs-fcR" secondAttribute="trailing" constant="17" id="e7K-ln-uET"/>
                             <constraint firstAttribute="width" constant="256" id="esJ-om-luc"/>
                             <constraint firstAttribute="height" constant="335" id="gJn-3O-Lq2"/>
                             <constraint firstItem="EKg-XH-vNU" firstAttribute="bottom" secondItem="oce-vs-fcR" secondAttribute="bottom" id="nlr-pM-fQE"/>
                             <constraint firstItem="KvF-xU-5tQ" firstAttribute="centerY" secondItem="EKg-XH-vNU" secondAttribute="centerY" id="uXq-Oq-5hX"/>
-                            <constraint firstItem="dRV-hZ-AfF" firstAttribute="centerX" secondItem="K0d-wt-UOq" secondAttribute="centerX" id="zFM-c3-Ebl"/>
+                            <constraint firstAttribute="bottom" secondItem="K0d-wt-UOq" secondAttribute="bottom" id="ufQ-x4-z4g"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -137,7 +133,7 @@
                 <outlet property="startLabel" destination="3id-Aw-49n" id="Irz-sA-7WR"/>
                 <outlet property="titleLabel" destination="dRV-hZ-AfF" id="65N-kE-kNG"/>
             </connections>
-            <point key="canvasLocation" x="514" y="509"/>
+            <point key="canvasLocation" x="514" y="508.5"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -85,8 +85,11 @@ class RegisterViewController: UIViewController{
   func register(){
     viewController
       .viewModel
-      .createTravel().subscribe(onNext: { (model) in
-      log.info(model)
+      .createTravel()
+      .subscribe(onNext: { (model) in
+        if model.success{
+          
+        }
     }).disposed(by: disposeBag)
   }
   

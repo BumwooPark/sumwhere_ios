@@ -66,6 +66,7 @@
 		0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568C210E132B00F8A0C9 /* String + Extension.swift */; };
 		0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */; };
 		0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */; };
+		0A745693210F567900F8A0C9 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745692210F567900F8A0C9 /* MatchCell.swift */; };
 		0A7740AB20415A3F0096936E /* PlanPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7740AA20415A3F0096936E /* PlanPageController.swift */; };
 		0A7E9CED204300F40014D549 /* InsertPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */; };
 		0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBCF2109E8420057F1A9 /* UserModel.swift */; };
@@ -83,10 +84,9 @@
 		0AD3BC19204BEBBB0051D7E3 /* DetailCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BC18204BEBBB0051D7E3 /* DetailCategoryViewController.swift */; };
 		0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */; };
 		0AF2C01720F8F16C00775EA8 /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF2C01620F8F16B00775EA8 /* MainViewCell.xib */; };
-		0AF2C01920F9CA7300775EA8 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01820F9CA7300775EA8 /* MainTableViewController.swift */; };
+		0AF2C01920F9CA7300775EA8 /* MatchDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */; };
 		0AF2C01B20FB2D9600775EA8 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01A20FB2D9600775EA8 /* SideMenuViewController.swift */; };
 		0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */; };
-		0AF2C02120FB3DC200775EA8 /* TempCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02020FB3DC200775EA8 /* TempCell.swift */; };
 		0AF2C02320FE23BD00775EA8 /* TravelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02220FE23BD00775EA8 /* TravelModel.swift */; };
 		0AF2C02520FE2AB600775EA8 /* TravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02420FE2AB600775EA8 /* TravelViewModel.swift */; };
 		0AF2C02A2104C8E500775EA8 /* TagRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C0292104C8E500775EA8 /* TagRow.swift */; };
@@ -184,6 +184,7 @@
 		0A74568C210E132B00F8A0C9 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0A745692210F567900F8A0C9 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MatchCell.swift; path = /Users/parkbumwoo/Desktop/ZIP_ios/ZIP_ios/Sources/Views/Cells/MatchCell.swift; sourceTree = "<absolute>"; };
 		0A7740AA20415A3F0096936E /* PlanPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPageController.swift; sourceTree = "<group>"; };
 		0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanViewController.swift; sourceTree = "<group>"; };
 		0A90EBCF2109E8420057F1A9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -201,10 +202,9 @@
 		0AD3BC18204BEBBB0051D7E3 /* DetailCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryViewController.swift; sourceTree = "<group>"; };
 		0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		0AF2C01620F8F16B00775EA8 /* MainViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewCell.xib; sourceTree = "<group>"; };
-		0AF2C01820F9CA7300775EA8 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailTableViewController.swift; sourceTree = "<group>"; };
 		0AF2C01A20FB2D9600775EA8 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
-		0AF2C02020FB3DC200775EA8 /* TempCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCell.swift; sourceTree = "<group>"; };
 		0AF2C02220FE23BD00775EA8 /* TravelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelModel.swift; sourceTree = "<group>"; };
 		0AF2C02420FE2AB600775EA8 /* TravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelViewModel.swift; sourceTree = "<group>"; };
 		0AF2C0292104C8E500775EA8 /* TagRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRow.swift; sourceTree = "<group>"; };
@@ -298,13 +298,13 @@
 		0A6C88AB1FEE3E51002019DE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				0A745692210F567900F8A0C9 /* MatchCell.swift */,
 				0A6C88AC1FEE3E66002019DE /* WriterCell.swift */,
 				0A3D1D091FF0D33B009427B5 /* PlanCell.swift */,
 				0A0F7A6F203556D000F72C2B /* MainCell.swift */,
 				0AD3BC1020491F2C0051D7E3 /* CountryCell.swift */,
 				B1D4E50F20F8968000524CE2 /* MainViewCell.swift */,
 				0AF2C01620F8F16B00775EA8 /* MainViewCell.xib */,
-				0AF2C02020FB3DC200775EA8 /* TempCell.swift */,
 				0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */,
 				0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */,
 			);
@@ -427,7 +427,7 @@
 				0A671AC120342C4C00034CE0 /* SetProfileViewController.swift */,
 				0A7123951FACC1E900512EB7 /* MainTabBarController.swift */,
 				B1D4E50D20F895EF00524CE2 /* MainViewController.swift */,
-				0AF2C01820F9CA7300775EA8 /* MainTableViewController.swift */,
+				0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */,
 				B1D4E51520FDC83B00524CE2 /* FriendsViewController.swift */,
 				0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */,
 				0A09A7FF1FDD361B00DC47A7 /* MainViewController3.swift */,
@@ -876,7 +876,7 @@
 				0A74567A210D875F00F8A0C9 /* FriendsViewModel.swift in Sources */,
 				0A745670210CD09600F8A0C9 /* InsertPeopleViewController.swift in Sources */,
 				0A745687210E04C600F8A0C9 /* SearchDestTVModel.swift in Sources */,
-				0AF2C01920F9CA7300775EA8 /* MainTableViewController.swift in Sources */,
+				0AF2C01920F9CA7300775EA8 /* MatchDetailTableViewController.swift in Sources */,
 				0A745665210C971C00F8A0C9 /* DestinationSearchCell.swift in Sources */,
 				0A6C88A61FE9609D002019DE /* TravelViewController.swift in Sources */,
 				B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */,
@@ -892,8 +892,8 @@
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
-				0AF2C02120FB3DC200775EA8 /* TempCell.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
+				0A745693210F567900F8A0C9 /* MatchCell.swift in Sources */,
 				0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */,
 				0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */,
 				0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */,

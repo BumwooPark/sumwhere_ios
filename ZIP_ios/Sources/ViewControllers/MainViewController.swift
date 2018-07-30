@@ -23,6 +23,7 @@ final class MainViewController: ExpandingViewController{
   let disposeBag = DisposeBag()
   var didUpdateConstraint = false
   fileprivate var cellsIsOpen = [Bool]()
+  let tableView = MatchDetailTableViewController()
   
   var datas = [TravelModel]()
   
@@ -73,10 +74,6 @@ final class MainViewController: ExpandingViewController{
   //  NetWorking
   private func connection(){
     
-    
-    
-//    AuthManager.provider
-//      .request(.travelGetAll(order: "desc", sortby: "id", skipCount: 0))
     AuthManager.provider
       .request(.myTravel)
       .map(ResultModel<[TravelModel]>.self)
@@ -134,7 +131,7 @@ extension MainViewController{
     guard let cell = collectionView?.cellForItem(at: indexPath) as? MainViewCell else { return }
     // double swipe Up transition
     if cell.isOpened == true && sender.direction == .up {
-      pushToViewController(MainTableViewController())
+      pushToViewController(tableView)
     }
     
     let open = sender.direction == .up ? true : false
@@ -155,7 +152,8 @@ extension MainViewController{
     super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
     guard let cell = cell as? MainViewCell else { return }
     
-    //    cell.cellIsOpen(cellsIsOpen[index], animated: false)
+    cell.cellIsOpen(cellsIsOpen[indexPath.item], animated: false)
+
   }
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -165,7 +163,9 @@ extension MainViewController{
     if cell.isOpened == false {
       cell.cellIsOpen(true)
     } else {
-      pushToViewController(MainTableViewController())
+      let tv = ExpandingTableViewController()
+      tv.tableView.contentInsetAdjustmentBehavior = .never
+      pushToViewController(tv)
     }
   }
 }

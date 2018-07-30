@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/parkbumwoo/Desktop/ZIP_ios/ZIP_ios/Sources/Views/Cells/MatchCell.swift">
+   </FileRef>
+   <FileRef
       location = "group:ZIP_ios.xcodeproj">
    </FileRef>
    <FileRef
