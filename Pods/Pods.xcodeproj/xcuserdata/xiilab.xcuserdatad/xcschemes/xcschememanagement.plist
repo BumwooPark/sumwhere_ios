@@ -39,6 +39,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>DropDown.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>57</integer>
+		</dict>
 		<key>DynamicBlurView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -336,7 +341,7 @@
 		<key>SwiftDate.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>56</integer>
+			<integer>58</integer>
 		</dict>
 		<key>SwiftyBeaver.xcscheme</key>
 		<dict>
@@ -390,7 +395,7 @@
 		<key>TagListView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>58</integer>
+			<integer>59</integer>
 		</dict>
 		<key>expanding-collection.xcscheme</key>
 		<dict>

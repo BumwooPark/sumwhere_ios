@@ -66,7 +66,6 @@
 		0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568C210E132B00F8A0C9 /* String + Extension.swift */; };
 		0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */; };
 		0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */; };
-		0A745693210F567900F8A0C9 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745692210F567900F8A0C9 /* MatchCell.swift */; };
 		0A7740AB20415A3F0096936E /* PlanPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7740AA20415A3F0096936E /* PlanPageController.swift */; };
 		0A7E9CED204300F40014D549 /* InsertPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */; };
 		0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBCF2109E8420057F1A9 /* UserModel.swift */; };
@@ -94,6 +93,10 @@
 		B105597921096E9D00AC769C /* MoyaErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597821096E9D00AC769C /* MoyaErrorUtil.swift */; };
 		B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597A210992EC00AC769C /* LoginVIewModel.swift */; };
 		B105597D2109C0E800AC769C /* CreateTravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597C2109C0E800AC769C /* CreateTravelViewController.swift */; };
+		B1055990210FED2500AC769C /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105598F210FED2500AC769C /* MatchCell.swift */; };
+		B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105599321100A1C00AC769C /* MatchHeaderView.swift */; };
+		B1055997211021F300AC769C /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1055996211021F300AC769C /* MatchViewModel.swift */; };
+		B10559992110223300AC769C /* MatchTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10559982110223300AC769C /* MatchTypeModel.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController.swift */; };
@@ -184,7 +187,6 @@
 		0A74568C210E132B00F8A0C9 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		0A745692210F567900F8A0C9 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MatchCell.swift; path = /Users/parkbumwoo/Desktop/ZIP_ios/ZIP_ios/Sources/Views/Cells/MatchCell.swift; sourceTree = "<absolute>"; };
 		0A7740AA20415A3F0096936E /* PlanPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPageController.swift; sourceTree = "<group>"; };
 		0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanViewController.swift; sourceTree = "<group>"; };
 		0A90EBCF2109E8420057F1A9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -213,6 +215,10 @@
 		B105597821096E9D00AC769C /* MoyaErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaErrorUtil.swift; sourceTree = "<group>"; };
 		B105597A210992EC00AC769C /* LoginVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVIewModel.swift; sourceTree = "<group>"; };
 		B105597C2109C0E800AC769C /* CreateTravelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTravelViewController.swift; sourceTree = "<group>"; };
+		B105598F210FED2500AC769C /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		B105599321100A1C00AC769C /* MatchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderView.swift; sourceTree = "<group>"; };
+		B1055996211021F300AC769C /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
+		B10559982110223300AC769C /* MatchTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeModel.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +270,7 @@
 				0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */,
 				0A90EBD12109F76D0057F1A9 /* TicketView.swift */,
 				0A90EBD32109F7B10057F1A9 /* TicketView.xib */,
+				B105599321100A1C00AC769C /* MatchHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,7 +305,6 @@
 		0A6C88AB1FEE3E51002019DE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				0A745692210F567900F8A0C9 /* MatchCell.swift */,
 				0A6C88AC1FEE3E66002019DE /* WriterCell.swift */,
 				0A3D1D091FF0D33B009427B5 /* PlanCell.swift */,
 				0A0F7A6F203556D000F72C2B /* MainCell.swift */,
@@ -307,6 +313,7 @@
 				0AF2C01620F8F16B00775EA8 /* MainViewCell.xib */,
 				0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */,
 				0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */,
+				B105598F210FED2500AC769C /* MatchCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -386,6 +393,7 @@
 				0A90EBCF2109E8420057F1A9 /* UserModel.swift */,
 				0A74567B210D877E00F8A0C9 /* FriendsModel.swift */,
 				0A745688210E04FC00F8A0C9 /* DestinationModel.swift */,
+				B10559982110223300AC769C /* MatchTypeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -393,6 +401,7 @@
 		0A71238E1FACC16B00512EB7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B1055995211021E500AC769C /* Main */,
 				0A745681210DFB5C00F8A0C9 /* RegisterTravel */,
 				0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */,
 				0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */,
@@ -526,6 +535,14 @@
 				FB4C508F8A9A5C1DE80D8E10 /* Pods_ZIP_iosTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1055995211021E500AC769C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B1055996211021F300AC769C /* MatchViewModel.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -854,8 +871,11 @@
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
 				0A7740AB20415A3F0096936E /* PlanPageController.swift in Sources */,
+				B10559992110223300AC769C /* MatchTypeModel.swift in Sources */,
+				B1055997211021F300AC769C /* MatchViewModel.swift in Sources */,
 				0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
+				B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */,
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,
 				0A7123921FACC1B600512EB7 /* LoginViewController.swift in Sources */,
 				0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */,
@@ -893,7 +913,6 @@
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
-				0A745693210F567900F8A0C9 /* MatchCell.swift in Sources */,
 				0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */,
 				0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */,
 				0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */,
@@ -906,6 +925,7 @@
 				B1D4E51020F8968000524CE2 /* MainViewCell.swift in Sources */,
 				0A0FDDF320387D250046E76F /* ProfileHeaderView.swift in Sources */,
 				0A3C3FED1FE7ECE6005FF52B /* ChatViewController.swift in Sources */,
+				B1055990210FED2500AC769C /* MatchCell.swift in Sources */,
 				0AF2C02520FE2AB600775EA8 /* TravelViewModel.swift in Sources */,
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,

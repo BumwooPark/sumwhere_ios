@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import DZNEmptyDataSet
+import Hero
 
 internal func Init<Type>(_ value: Type, block: (_ object: Type) -> Void) -> Type {
   block(value)
@@ -23,8 +24,6 @@ final class MainViewController: ExpandingViewController{
   let disposeBag = DisposeBag()
   var didUpdateConstraint = false
   fileprivate var cellsIsOpen = [Bool]()
-  let tableView = MatchDetailTableViewController()
-  
   var datas = [TravelModel]()
   
   
@@ -48,9 +47,11 @@ final class MainViewController: ExpandingViewController{
     itemSize = CGSize(width: 256, height: 460)
     super.viewDidLoad()
     
-    
     collectionView?.emptyDataSetSource = self
     collectionView?.emptyDataSetDelegate = self
+    
+    
+    heroSetting()
     
     view.backgroundColor = .white
     view.addSubview(self.floaty)
@@ -59,11 +60,15 @@ final class MainViewController: ExpandingViewController{
     collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: MainViewCell.self))
     //    cellsIsOpen = Array(repeating: false, count: items.count)
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    self.navigationController?.navigationBar.shadowImage = UIImage()
     collectionView?.alwaysBounceHorizontal = true
     self.addLeftBarButtonWithImage(#imageLiteral(resourceName: "menuOff"))
     self.addRightBarButtonWithImage(#imageLiteral(resourceName: "search"))
     connection()
+  }
+  
+  private func heroSetting(){
+    navigationController?.hero.navigationAnimationType = .fade
+    navigationController?.hero.isEnabled = true
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -131,7 +136,9 @@ extension MainViewController{
     guard let cell = collectionView?.cellForItem(at: indexPath) as? MainViewCell else { return }
     // double swipe Up transition
     if cell.isOpened == true && sender.direction == .up {
-      pushToViewController(tableView)
+      let matchtv = MatchDetailTableViewController(image: (cell.imageView.image) ?? UIImage())
+      matchtv.heroID = "destination_\(indexPath.item)"
+      navigationController?.pushViewController(matchtv, animated: true)
     }
     
     let open = sender.direction == .up ? true : false
@@ -146,6 +153,7 @@ extension MainViewController{
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MainViewCell.self), for: indexPath) as! MainViewCell
     cell.item = datas[indexPath.item]
+    cell.imageView.hero.id = "destination_\(indexPath.item)"
     return cell
   }
   override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -163,9 +171,9 @@ extension MainViewController{
     if cell.isOpened == false {
       cell.cellIsOpen(true)
     } else {
-      let tv = ExpandingTableViewController()
-      tv.tableView.contentInsetAdjustmentBehavior = .never
-      pushToViewController(tv)
+      let matchtv = MatchDetailTableViewController(image: (cell.imageView.image) ?? UIImage())
+      matchtv.heroID = "destination_\(indexPath.item)"
+      navigationController?.pushViewController(matchtv, animated: true)
     }
   }
 }

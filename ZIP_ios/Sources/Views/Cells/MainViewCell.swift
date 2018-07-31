@@ -13,15 +13,13 @@ class MainViewCell: BasePageCollectionCell{
     didSet{
       titleLabel.text = item?.travelType.travel
       imageView.kf.setImageWithZIP(image: item?.travelType.imageURL ?? String())
-      
       guard let startAt = item?.travel.startDate,let endAt = item?.travel.endDate else {return}
-      
       startLabel.text = String(startAt.prefix(10))
       endLabel.text = String(endAt.prefix(10))
     }
   }
-  @IBOutlet weak var titleLabel: UILabel!
   
+  @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var startLabel: UILabel!
   @IBOutlet weak var endLabel: UILabel!

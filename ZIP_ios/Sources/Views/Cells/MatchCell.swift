@@ -1,68 +1,78 @@
 //
 //  MatchCell.swift
-//  
+//  ZIP_ios
 //
-//  Created by park bumwoo on 2018. 7. 30..
+//  Created by xiilab on 2018. 7. 31..
+//  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-class MatchCell: UITableViewCell{
+import LGButton
+
+class MatchCell: UICollectionViewCell{
   
   var didUpdateConstraint = false
-  
-  var item: MatchType?{
+  var item: MatchTypeModel?{
     didSet{
       detailLabel.text = item?.detail
       titleLabel.text = item?.title
-      keyButton.setTitle("\(item?.key)", for: .normal)
+      keyButton.titleString = "\(item?.key ?? 0)"
     }
   }
   
-  let detailLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont.BMJUA(size: 15)
-    return label
-  }()
-  
-  let titleLabel: UILabel = {
+  private let detailLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.BMJUA(size: 20)
     return label
   }()
   
-  let keyButton: UIButton = {
-    let button = UIButton()
+  private let titleLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.BMJUA(size: 30)
+    return label
+  }()
+  
+  private let keyButton: LGButton = {
+    let button = LGButton()
+    button.leftImageSrc = #imageLiteral(resourceName: "keyWhite")
+    button.fullyRoundedCorners = true
+    button.leftImageWidth = 20
+    button.leftImageHeight = 20
+    button.bgColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
     return button
   }()
   
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
+  override init(frame: CGRect) {
+    super.init(frame: frame)
     contentView.addSubview(detailLabel)
     contentView.addSubview(titleLabel)
+    contentView.addSubview(keyButton)
     setNeedsUpdateConstraints()
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
   }
   
   override func updateConstraints() {
     if !didUpdateConstraint{
       
       detailLabel.snp.makeConstraints { (make) in
-        make.left.equalToSuperview().inset(24)
-        make.top.equalToSuperview().inset(28)
+        make.bottom.equalTo(contentView.snp.centerY).offset(-10)
+        make.left.equalTo(contentView.snp.leftMargin).inset(10)
       }
       
       titleLabel.snp.makeConstraints { (make) in
+        make.top.equalTo(contentView.snp.centerY).offset(10)
         make.left.equalTo(detailLabel)
-        make.top.equalTo(detailLabel).offset(13)
       }
       
+      keyButton.snp.makeConstraints { (make) in
+        make.centerY.equalToSuperview()
+        make.right.equalToSuperview().inset(20)
+      }
       
       didUpdateConstraint = true
     }
     super.updateConstraints()
   }
   
-  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 }

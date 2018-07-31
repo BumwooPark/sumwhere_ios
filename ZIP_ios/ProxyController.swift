@@ -49,7 +49,7 @@ class ProxyController{
             profileView.navigationItem.hidesBackButton = true 
             rootview?.pushViewController(profileView, animated: true)
           }else {
-            let view = SlideMenuController(mainViewController: MainTabBarController(), leftMenuViewController: SideMenuViewController())
+            let view = MainTabBarController()
             view.title = "갈래말래"
             
             self?.window?.rootViewController = view
