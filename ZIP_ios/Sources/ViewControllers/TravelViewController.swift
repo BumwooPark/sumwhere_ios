@@ -1,5 +1,5 @@
 //
-//  TravelViewController.swift
+//  TripViewController.swift
 //  ZIP_ios
 //
 //  Created by park bumwoo on 2017. 12. 19..
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TravelViewController: UIViewController{
+class TripViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "여행"

@@ -11,7 +11,7 @@ class DestinationSearchCell: UITableViewCell{
   var didUpdateConstraint = false
   var item: (DestinationModel?,String?){
     didSet{
-      guard let itemString = item.0?.travel ,let searchString = item.1 else {return}
+      guard let itemString = item.0?.trip ,let searchString = item.1 else {return}
       let attributeString = NSMutableAttributedString(string: itemString)
       
       let range: Range<String.Index> = itemString.range(of: searchString)!

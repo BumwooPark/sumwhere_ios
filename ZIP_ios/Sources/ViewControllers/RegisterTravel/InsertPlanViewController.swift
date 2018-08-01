@@ -26,7 +26,7 @@ final class InsertPlanViewController: UIViewController{
   var dateCount = 0
   var firstDate: Date?{
     didSet{
-      let vc = viewController as! CreateTravelViewController
+      let vc = viewController as! CreateTripViewController
       guard let date = firstDate else {return}
       vc.viewModel.dataSubject.onNext(.startDate(date: gregorian.date(byAdding: .day, value: 1, to: date)!))
     }
@@ -37,7 +37,7 @@ final class InsertPlanViewController: UIViewController{
         totalLabel.text = ""
       }else{
         let totalday = (lastDate?.day ?? 0)  - (firstDate?.day ?? 0)
-        let vc = viewController as! CreateTravelViewController
+        let vc = viewController as! CreateTripViewController
         totalLabel.text = "\(totalday)박 \(totalday + 1)일"
         guard let date = lastDate else {return}
         vc.viewModel.dataSubject.onNext(.endDate(date: gregorian.date(byAdding: .day, value: 1, to: date)!))

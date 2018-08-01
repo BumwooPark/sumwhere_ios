@@ -1,5 +1,5 @@
 //
-//  TravelResigerViewModel.swift
+//  TripResigerViewModel.swift
 //  ZIP_ios
 //
 //  Created by park bumwoo on 2018. 7. 29..
@@ -10,13 +10,13 @@ import RxSwift
 import RxCocoa
 import Moya
 
-enum TravelComponent{
+enum TripComponent{
   case startDate(date: Date)
   case endDate(date: Date)
   case destination(model: DestinationModel)
 }
 
-struct TravelInput{
+struct TripInput{
   var destination: Int
   var startDate: String
   var endDate: String
@@ -32,18 +32,18 @@ struct TravelInput{
     return true
   }
   
-  func ToModel() -> Travel{
-    return Travel(id: 0, userId: 0, destinationId: self.destination, startDate: self.startDate, endDate: self.endDate)
+  func ToModel() -> Trip{
+    return Trip(id: 0, userId: 0, destinationId: self.destination, startDate: self.startDate, endDate: self.endDate)
   }
   
 }
 
-class TravelRegisterViewModel{
+class TripRegisterViewModel{
   
   private let disposeBag = DisposeBag()
-  let dataSubject = PublishSubject<TravelComponent>()
+  let dataSubject = PublishSubject<TripComponent>()
   let ticketView: TicketView
-  var input = TravelInput()
+  var input = TripInput()
   
   init(view: TicketView) {
     self.ticketView = view
@@ -52,7 +52,7 @@ class TravelRegisterViewModel{
       .subscribe(onNext: {[weak self] (component) in
         switch component{
         case .destination(let model):
-          self?.ticketView.destinationLabel.text = model.travel
+          self?.ticketView.destinationLabel.text = model.trip
           self?.ticketView.countryLabel.text = model.country
           self?.input.destination = model.id
         case .endDate(let date):
@@ -65,11 +65,11 @@ class TravelRegisterViewModel{
     }).disposed(by: disposeBag)
   }
   
-  func createTravel() -> Observable<ResultModel<Travel>>{
+  func createTrip() -> Observable<ResultModel<Trip>>{
     
     if input.validate(){
-      return AuthManager.provider.request(.createTravel(model: input.ToModel()))
-        .map(ResultModel<Travel>.self)
+      return AuthManager.provider.request(.createTrip(model: input.ToModel()))
+        .map(ResultModel<Trip>.self)
         .asObservable()
     }else{
       return Observable.error(MoyaError.requestMapping("error"))

@@ -1,5 +1,5 @@
 //
-//  CreateTravelViewController.swift
+//  CreateTripViewController.swift
 //  ZIP_ios
 //
 //  Created by xiilab on 2018. 7. 26..
@@ -35,7 +35,7 @@ class CreateTripViewController: UIViewController{
     return control
   }()
   
-  lazy var viewModel = TravelRegisterViewModel(view: ticketView)
+  lazy var viewModel = TripRegisterViewModel(view: ticketView)
   
   override func viewDidLoad() {
     super.viewDidLoad()

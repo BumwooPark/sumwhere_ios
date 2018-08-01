@@ -25,7 +25,7 @@ final class MainViewController: ExpandingViewController{
   let disposeBag = DisposeBag()
   var didUpdateConstraint = false
   fileprivate var cellsIsOpen = [Bool]()
-  var datas = [TravelModel]()
+  var datas = [TripModel]()
   
   
   lazy var floaty: Floaty = {
@@ -34,7 +34,7 @@ final class MainViewController: ExpandingViewController{
       self?.navigationController?.pushViewController(FriendsViewController(), animated: true)
     })
     floaty.addItem(title: "여행 추가", handler: {[weak self] _ in
-      self?.navigationController?.pushViewController(CreateTravelViewController(), animated: true)
+      self?.navigationController?.pushViewController(CreateTripViewController(), animated: true)
     })
     floaty.items.forEach{
       $0.titleLabel.font = UIFont.BMJUA(size: 13)
@@ -124,8 +124,8 @@ final class MainViewController: ExpandingViewController{
   private func connection(){
     
     AuthManager.provider
-      .request(.myTravel)
-      .map(ResultModel<[TravelModel]>.self)
+      .request(.myTrip)
+      .map(ResultModel<[TripModel]>.self)
       .asObservable()
       .map{$0.result}
       .filterNil()

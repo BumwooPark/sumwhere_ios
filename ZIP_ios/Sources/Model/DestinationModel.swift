@@ -10,7 +10,7 @@ import Foundation
 
 struct DestinationModel: Codable{
   let id: Int
-  let travel: String
+  let trip: String
   let country: String
   let imageURL: String
 }

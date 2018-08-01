@@ -19,7 +19,7 @@ final class MyTripViewController: UIViewController{
     return tableView
   }()
   
-  let dataSources = RxTableViewSectionedReloadDataSource<TravelViewModel>(configureCell: {ds, tv, idx, item in
+  let dataSources = RxTableViewSectionedReloadDataSource<TripViewModel>(configureCell: {ds, tv, idx, item in
     let cell = tv.dequeueReusableCell(withIdentifier: String(describing: MyTripCell.self), for: idx) as! MyTripCell
     return cell
   })

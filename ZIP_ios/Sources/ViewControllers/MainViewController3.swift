@@ -13,7 +13,7 @@ import RxCocoa
 import RxDataSources
 
 enum MainButtonEvent{
-  case Travel
+  case Trip
   case Meet
   case none
 }
@@ -81,7 +81,7 @@ class MainViewController3: UIViewController{
       .asDriver(onErrorJustReturn: .none)
       .drive(onNext: {[weak self] (type) in
         switch type{
-        case .Travel:
+        case .Trip:
           self?.navigationController?.pushViewController(PlanViewController(), animated: true)
         case .Meet,.none:
           break

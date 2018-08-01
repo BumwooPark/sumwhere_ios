@@ -16,11 +16,11 @@ public enum ZIP{
   case nicknameConfirm(nickname: String)
   case isProfile
   case country
-  case travelGetAll(order: String, sortby: String, skipCount: Int)
+  case GetAllTrip(order: String, sortby: String, skipCount: Int)
   case createProfile(data: [MultipartFormData])
   case user
-  case createTravel(model: Encodable)
-  case myTravel
+  case createTrip(model: Encodable)
+  case myTrip
   case searchDestination(data: String)
 }
 
@@ -30,7 +30,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.5:8080/galmal")!
+    return URL(string: "http://192.168.0.3:8080/galmal")!
     #else
     return URL(string: "http://52.197.13.138/galmal")!
     #endif
@@ -51,16 +51,16 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/country/"
     case .nicknameConfirm(let nickname):
       return "/nickname/\(nickname)"
-    case .travelGetAll:
-      return "/restrict/travel"
+    case .GetAllTrip:
+      return "/restrict/trip"
     case .createProfile:
       return "/restrict/profile"
     case .searchDestination:
-      return "/restrict/traveltype"
-    case .createTravel:
-      return "/restrict/travel"
-    case .myTravel:
-      return "/restrict/mytravel"
+      return "/restrict/triptype"
+    case .createTrip:
+      return "/restrict/trip"
+    case .myTrip:
+      return "/restrict/mytrip"
     case .user:
       return "/restrict/user"
     }
@@ -68,7 +68,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var method: Moya.Method {
     switch self {
-    case .signUp,.createProfile,.kakao,.facebook,.createTravel:
+    case .signUp,.createProfile,.kakao,.facebook,.createTrip:
       return .post
     default:
       return .get
@@ -88,13 +88,13 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["email":email,"password":password], encoding: URLEncoding.queryString)
     case .facebook(let token),.kakao(let token):
       return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
-    case let .travelGetAll(order, sortby, skipCount):
+    case let .GetAllTrip(order, sortby, skipCount):
       return .requestParameters(parameters: ["order":order,"password":sortby,"skipCount": skipCount], encoding: URLEncoding.queryString)
     case .createProfile(let data):
       return .uploadMultipart(data)
     case .searchDestination(let data):
       return .requestParameters(parameters: ["name":data], encoding: URLEncoding.queryString)
-    case .createTravel(let json):
+    case .createTrip(let json):
       return .requestJSONEncodable(json)
     default:
       return .requestPlain

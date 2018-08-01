@@ -15,7 +15,7 @@ class RegisterViewController: UIViewController{
   var didUpdateConstraint = false
   let disposeBag = DisposeBag()
   
-  let viewController: CreateTravelViewController
+  let viewController: CreateTripViewController
   
   let infoLabel: UILabel = {
     let label = UILabel()
@@ -51,7 +51,7 @@ class RegisterViewController: UIViewController{
   }()
   
   init(viewController: UIViewController) {
-    self.viewController = viewController as! CreateTravelViewController
+    self.viewController = viewController as! CreateTripViewController
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -85,7 +85,7 @@ class RegisterViewController: UIViewController{
   func register(){
     viewController
       .viewModel
-      .createTravel()
+      .createTrip()
       .subscribe(onNext: { (model) in
         if model.success{
           

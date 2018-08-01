@@ -9,11 +9,11 @@
 import expanding_collection
 
 class MainViewCell: BasePageCollectionCell{
-  var item: TravelModel? {
+  var item: TripModel? {
     didSet{
-      titleLabel.text = item?.travelType.travel
-      imageView.kf.setImageWithZIP(image: item?.travelType.imageURL ?? String())
-      guard let startAt = item?.travel.startDate,let endAt = item?.travel.endDate else {return}
+      titleLabel.text = item?.tripType.destination
+      imageView.kf.setImageWithZIP(image: item?.tripType.imageURL ?? String())
+      guard let startAt = item?.trip.startDate,let endAt = item?.trip.endDate else {return}
       startLabel.text = String(startAt.prefix(10))
       endLabel.text = String(endAt.prefix(10))
     }

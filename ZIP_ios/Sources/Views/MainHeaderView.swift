@@ -17,7 +17,7 @@ final class MainHeaderView: UICollectionReusableView{
   let sampledatas:[UIImage] = [#imageLiteral(resourceName: "maxresdefault"),#imageLiteral(resourceName: "maxresdefault")]
   weak var mainViewController: MainViewController3?
   private let disposeBag = DisposeBag()
-  let travelButton: UIButton = {
+  let tripButton: UIButton = {
     let button = UIButton()
     button.setTitle("여행", for: .normal)
     button.setBackgroundImage(#imageLiteral(resourceName: "travle").image(alpha: 0.6), for: .normal)
@@ -100,20 +100,19 @@ final class MainHeaderView: UICollectionReusableView{
   override init(frame: CGRect) {
     super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
   
-    addSubview(travelButton)
+    addSubview(tripButton)
     addSubview(meetButton)
     addSubview(sampleButton)
     addSubview(pageView)
     pageView.addSubview(pageControl)
     addconstraint()
     
-    travelButton
+    tripButton
       .rx
       .tap
       .subscribe{[weak self] _ in
-        self?.mainViewController?.eventAction.onNext(.Travel)
+        self?.mainViewController?.eventAction.onNext(.Trip)
     }.disposed(by: disposeBag)
-    
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -122,25 +121,25 @@ final class MainHeaderView: UICollectionReusableView{
   
   private func addconstraint(){
     
-    travelButton.snp.makeConstraints { (make) in
+    tripButton.snp.makeConstraints { (make) in
       make.left.equalToSuperview().inset(20)
       make.top.equalTo(pageView.snp.bottom).offset(20)
       make.width.equalToSuperview().dividedBy(4)
-      make.height.equalTo(travelButton.snp.width)
+      make.height.equalTo(tripButton.snp.width)
     }
 
     meetButton.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.top.equalTo(travelButton)
-      make.width.equalTo(travelButton)
-      make.height.equalTo(travelButton)
+      make.top.equalTo(tripButton)
+      make.width.equalTo(tripButton)
+      make.height.equalTo(tripButton)
     }
 
     sampleButton.snp.makeConstraints { (make) in
       make.right.equalToSuperview().inset(20)
-      make.top.equalTo(travelButton)
-      make.width.equalTo(travelButton)
-      make.height.equalTo(travelButton)
+      make.top.equalTo(tripButton)
+      make.width.equalTo(tripButton)
+      make.height.equalTo(tripButton)
     }
 
     pageView.snp.makeConstraints { (make) in

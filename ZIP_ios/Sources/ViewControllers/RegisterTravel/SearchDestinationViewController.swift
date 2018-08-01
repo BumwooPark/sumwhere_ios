@@ -76,7 +76,7 @@ class SearchDestinationViewController: UIViewController{
     tableView.rx
       .modelSelected(DestinationModel.self)
       .subscribe(onNext: {[weak self] (model) in
-        guard let vc = self?.viewController as? CreateTravelViewController else {return}
+        guard let vc = self?.viewController as? CreateTripViewController else {return}
         vc.viewModel.dataSubject.onNext(.destination(model: model))
       }).disposed(by: disposeBag)
     

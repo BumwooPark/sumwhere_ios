@@ -1,5 +1,5 @@
 //
-//  TravelModel.swift
+//  TripModel.swift
 //  ZIP_ios
 //
 //  Created by park bumwoo on 2018. 7. 17..
@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct TravelModel: Codable{
-  let travel: Travel
-  let travelType: TravelType
+struct TripModel: Codable{
+  let trip: Trip
+  let tripType: TripType
 }
 
-struct Travel: Codable{
+struct Trip: Codable{
   let id: Int
   let userId: Int
   let destinationId: Int
@@ -21,9 +21,9 @@ struct Travel: Codable{
   let endDate: String
 }
 
-struct TravelType: Codable{
+struct TripType: Codable{
   let id: Int
-  let travel: String
+  let destination: String
   let country: String
   let imageURL: String
 }

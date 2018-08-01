@@ -6,12 +6,16 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
+import RxSwift
+import RxCocoa
+
 class MenuHeaderView: UIView {
   
+  let disposeBag = DisposeBag()
   var didUpdateConstraints = false
   let profileImage: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = .blue
+    imageView.contentMode = .scaleAspectFill
     return imageView
   }()
   
@@ -44,6 +48,24 @@ class MenuHeaderView: UIView {
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  func profileSetting(observer: Observable<ResultModel<UserModel>>){
+    observer
+      .map{$0.result}
+      .filterNil()
+      .do(onNext: {[weak self] (model) in
+        self?.profileImage.kf.setImageWithZIP(image: model.profile?.image1 ?? String())
+      }).map{"\($0.point)"}
+      .bind(to: keyLabel.rx.text)
+      .disposed(by: disposeBag)
+    
+    observer
+      .map {
+      $0.result?.nickname
+    }.filterNil()
+      .bind(to: nicknameLabel.rx.text)
+      .disposed(by: disposeBag)
   }
   
   override func updateConstraints() {

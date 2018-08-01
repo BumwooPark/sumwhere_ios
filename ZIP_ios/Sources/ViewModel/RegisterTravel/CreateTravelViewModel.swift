@@ -1,5 +1,5 @@
 //
-//  CreateTravelViewModel.swift
+//  CreateTripViewModel.swift
 //  ZIP_ios
 //
 //  Created by park bumwoo on 2018. 7. 29..
@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-class CreateTravelViewModel{
+class CreateTripViewModel{
   
   private let disposeBag = DisposeBag()
   private let provider = AuthManager.provider

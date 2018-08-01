@@ -7,9 +7,24 @@
 //
 
 import Eureka
-
+import RxSwift
+import RxCocoa
 
 class LeftSideMenuViewController: FormViewController{
+  let disposeBag = DisposeBag()
+  
+  let network = AuthManager.provider
+    .request(.user)
+    .map(ResultModel<UserModel>.self)
+    .asObservable()
+    .share()
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    getUserInfo()
+    
+  }
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -17,6 +32,12 @@ class LeftSideMenuViewController: FormViewController{
     tableView.isScrollEnabled = false
     form +++ Section("갈래말래"){
       var header = HeaderFooterView<MenuHeaderView>(.class)
+      header.onSetupView = {[weak self]( view,section) in
+        guard let `self` = self else {return}
+        view.profileSetting(observer: self.network)
+      }
+        
+      
       header.height = {250}
       $0.header = header
       }
@@ -38,4 +59,15 @@ class LeftSideMenuViewController: FormViewController{
         })
     }
   }
+  
+  func getUserInfo(){
+    AuthManager.provider.request(.user)
+      .map(ResultModel<UserModel>.self)
+      .subscribe(onSuccess: { (model) in
+        log.info(model.result)
+      }) { (error) in
+        log.error(error)
+    }.disposed(by: disposeBag)
+  }
+  
 }

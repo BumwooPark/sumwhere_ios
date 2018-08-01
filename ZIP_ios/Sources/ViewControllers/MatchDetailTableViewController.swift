@@ -17,7 +17,7 @@ class MatchDetailTableViewController: UIViewController {
   fileprivate var scrollOffsetY: CGFloat = 0
   let disposeBag = DisposeBag()
   let typeImage: UIImage
-  let travelModel: TravelModel
+  let tripModel: TripModel
   var heroID: String = ""
   
  
@@ -29,6 +29,7 @@ class MatchDetailTableViewController: UIViewController {
     let headerView = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: MatchHeaderView.self), for: idx) as! MatchHeaderView
     guard let `self` = self else {return headerView}
     headerView.imageView.image = self.typeImage
+    headerView.titleLabel.text = self.tripModel.tripType.destination
     headerView.imageView.hero.id = self.heroID
     return headerView
   })
@@ -55,9 +56,9 @@ class MatchDetailTableViewController: UIViewController {
     return collectionView
   }()
   
-  init(image: UIImage, model: TravelModel) {
+  init(image: UIImage, model: TripModel) {
     typeImage = image
-    travelModel = model
+    tripModel = model
     super.init(nibName: nil, bundle: nil)
   }
   

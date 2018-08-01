@@ -18,14 +18,25 @@ class MatchHeaderView: UICollectionReusableView{
     return imageView
   }()
 
+  let titleLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.BMJUA(size: 30)
+    return label
+  }()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(imageView)
+    imageView.addSubview(titleLabel)
     hero.isEnabled = true
     imageView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()
     }
+    
+    titleLabel.snp.makeConstraints { (make) in
+      make.center.equalToSuperview()
+    }
+    
   }
   
   required init?(coder aDecoder: NSCoder) {
