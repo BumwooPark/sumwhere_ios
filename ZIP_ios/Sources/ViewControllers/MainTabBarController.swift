@@ -12,11 +12,15 @@ import SwiftyUserDefaults
 import SwiftyImage
 import RxSwift
 import RxCocoa
+import SideMenu
 
 class MainTabBarController: UITabBarController{
   private let disposeBag = DisposeBag()
   let mainViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MainViewController())
+    naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-back-36")
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-back-36")
+    naviVC.navigationBar.backItem?.title = String()
     let tabBar = UITabBarItem(title: "여행", image: #imageLiteral(resourceName: "on"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC

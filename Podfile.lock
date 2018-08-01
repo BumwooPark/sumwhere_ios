@@ -126,8 +126,8 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
+  - SideMenu (4.0.0)
   - SkyFloatingLabelTextField (3.5.1)
-  - SlideMenuControllerSwift (4.0.0)
   - SnapKit (4.0.0)
   - Spring (1.0.5)
   - SQLite.swift (0.11.5):
@@ -179,8 +179,8 @@ DEPENDENCIES:
   - RxKeyboard
   - RxOptional
   - RxSwift
+  - SideMenu
   - SkyFloatingLabelTextField
-  - SlideMenuControllerSwift
   - SnapKit
   - Spring
   - SQLite.swift
@@ -243,8 +243,8 @@ SPEC REPOS:
     - RxKeyboard
     - RxOptional
     - RxSwift
+    - SideMenu
     - SkyFloatingLabelTextField
-    - SlideMenuControllerSwift
     - SnapKit
     - Spring
     - SQLite.swift
@@ -306,8 +306,8 @@ SPEC CHECKSUMS:
   RxKeyboard: e5efbaa109c35be909dd888e53de0f0efdf5169e
   RxOptional: bd32ff8ca9df4177683d56ffeb618a9d4d5d5cad
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
   SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
-  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Spring: 17901566c8ecf3a1327902b940406c64512f9bb1
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
@@ -320,6 +320,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: d9760b6e05b173ad0e8d4726c6e2897a3226c8ec
+PODFILE CHECKSUM: 2913214c69828bf72ea3dcf93d28cc947d7ad568
 
 COCOAPODS: 1.5.3

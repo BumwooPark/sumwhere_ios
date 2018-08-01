@@ -9,6 +9,8 @@
 import Hero
 
 class MatchHeaderView: UICollectionReusableView{
+  
+  
   let imageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = .scaleAspectFill

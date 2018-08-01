@@ -21,6 +21,19 @@ class SetProfileViewController: FormViewController{
 
   var item: UserModel?
   var images = [UIImage?](repeating: nil, count: 5)
+  let configure: Bool
+  
+  let lastSection = Section()
+  
+  init(config: Bool) {
+    configure = config
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.backgroundColor = .white
@@ -105,7 +118,7 @@ class SetProfileViewController: FormViewController{
           cell.tagListView.addTags(["명소투어","먹방투어","쇼핑투어","레저스포츠투어","이색투어","문화투어","호캉스","전망투어","스포츠투어","드라이브투어","패스티벌투어"])
         })
       
-      +++ Section()
+      +++ lastSection
       <<< ButtonRow(){
         $0.title = "완료"
         }.onCellSelection({ [weak self](cell, row) in
@@ -114,6 +127,18 @@ class SetProfileViewController: FormViewController{
           button.textLabel?.font = UIFont.BMJUA(size: 15)
           button.tintColor = .black
         })
+    
+    
+    if configure{
+      lastSection <<< ButtonRow(){
+        $0.title = "취소"
+        }.onCellSelection({[weak self] (cell, row) in
+          self?.dismiss(animated: true, completion: nil)
+        }).cellSetup({ (button, row) in
+          button.textLabel?.font = UIFont.BMJUA(size: 15)
+          button.tintColor = .black
+        })
+    }
   }
   
   private func getProfile(){

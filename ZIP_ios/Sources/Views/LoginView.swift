@@ -17,8 +17,9 @@ import TTTAttributedLabel
 
 class LoginView: UIView{
   
-  let zipImageView: UIImageView = {
+  let logoImageView: UIImageView = {
     let imageView = UIImageView(image: #imageLiteral(resourceName: "logo"))
+    imageView.hero.id = "logoImageView"
     return imageView
   }()
   
@@ -66,9 +67,10 @@ class LoginView: UIView{
   override init(frame: CGRect) {
     super.init(frame: frame)
     
+    hero.isEnabled = true 
     backgroundColor = .white
     addSubview(kakaoButton)
-    addSubview(zipImageView)
+    addSubview(logoImageView)
     addSubview(loginButton)
     addSubview(faceBookButton)
     addSubview(joinLabel)
@@ -80,10 +82,10 @@ class LoginView: UIView{
   }
   
   private func addConstraint(){
-    zipImageView.snp.makeConstraints { (make) in
+    logoImageView.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.top.equalToSuperview().inset(100)
-      make.height.width.equalTo(200)
+      make.height.width.equalTo(110)
     }
     
     loginButton.snp.makeConstraints { (make) in

@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import SwiftyUserDefaults
 import Moya
-import SlideMenuControllerSwift
+
 
 class ProxyController{
   let disposeBag = DisposeBag()
@@ -23,6 +23,7 @@ class ProxyController{
     .filterNil()
     .observeOn(MainScheduler.instance)
     .share()
+  
 
   let window: UIWindow?
  
@@ -45,11 +46,11 @@ class ProxyController{
         if model.success{
           if !model.result!{
             let rootview = self?.window?.rootViewController as? UINavigationController
-            let profileView = SetProfileViewController()
+            let profileView = SetProfileViewController(config: false)
             profileView.navigationItem.hidesBackButton = true 
             rootview?.pushViewController(profileView, animated: true)
           }else {
-            let view = MainTabBarController()
+            let view =  MainTabBarController()
             view.title = "갈래말래"
             
             self?.window?.rootViewController = view

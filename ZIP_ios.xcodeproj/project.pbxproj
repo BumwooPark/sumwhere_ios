@@ -84,7 +84,7 @@
 		0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */; };
 		0AF2C01720F8F16C00775EA8 /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF2C01620F8F16B00775EA8 /* MainViewCell.xib */; };
 		0AF2C01920F9CA7300775EA8 /* MatchDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */; };
-		0AF2C01B20FB2D9600775EA8 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01A20FB2D9600775EA8 /* SideMenuViewController.swift */; };
+		0AF2C01B20FB2D9600775EA8 /* LeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01A20FB2D9600775EA8 /* LeftSideMenuViewController.swift */; };
 		0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */; };
 		0AF2C02320FE23BD00775EA8 /* TravelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02220FE23BD00775EA8 /* TravelModel.swift */; };
 		0AF2C02520FE2AB600775EA8 /* TravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02420FE2AB600775EA8 /* TravelViewModel.swift */; };
@@ -97,6 +97,8 @@
 		B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105599321100A1C00AC769C /* MatchHeaderView.swift */; };
 		B1055997211021F300AC769C /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1055996211021F300AC769C /* MatchViewModel.swift */; };
 		B10559992110223300AC769C /* MatchTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10559982110223300AC769C /* MatchTypeModel.swift */; };
+		B16BD220211154930045FAA6 /* MyTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD21F211154930045FAA6 /* MyTripViewController.swift */; };
+		B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD221211162AF0045FAA6 /* MyTripCell.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController.swift */; };
@@ -205,7 +207,7 @@
 		0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		0AF2C01620F8F16B00775EA8 /* MainViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewCell.xib; sourceTree = "<group>"; };
 		0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailTableViewController.swift; sourceTree = "<group>"; };
-		0AF2C01A20FB2D9600775EA8 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		0AF2C01A20FB2D9600775EA8 /* LeftSideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSideMenuViewController.swift; sourceTree = "<group>"; };
 		0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		0AF2C02220FE23BD00775EA8 /* TravelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelModel.swift; sourceTree = "<group>"; };
 		0AF2C02420FE2AB600775EA8 /* TravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelViewModel.swift; sourceTree = "<group>"; };
@@ -219,6 +221,8 @@
 		B105599321100A1C00AC769C /* MatchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderView.swift; sourceTree = "<group>"; };
 		B1055996211021F300AC769C /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		B10559982110223300AC769C /* MatchTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeModel.swift; sourceTree = "<group>"; };
+		B16BD21F211154930045FAA6 /* MyTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripViewController.swift; sourceTree = "<group>"; };
+		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 				0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */,
 				0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */,
 				B105598F210FED2500AC769C /* MatchCell.swift */,
+				B16BD221211162AF0045FAA6 /* MyTripCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -445,7 +450,8 @@
 				0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */,
 				0A1B11D21FF101FF004B42B6 /* ConfigureViewController.swift */,
 				0A9174CD20220124000A055A /* MockMessage.swift */,
-				0AF2C01A20FB2D9600775EA8 /* SideMenuViewController.swift */,
+				0AF2C01A20FB2D9600775EA8 /* LeftSideMenuViewController.swift */,
+				B16BD21F211154930045FAA6 /* MyTripViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -754,8 +760,8 @@
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Spring/Spring.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
@@ -809,8 +815,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spring.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
@@ -887,10 +893,11 @@
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
 				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,
 				0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */,
-				0AF2C01B20FB2D9600775EA8 /* SideMenuViewController.swift in Sources */,
+				0AF2C01B20FB2D9600775EA8 /* LeftSideMenuViewController.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
 				0A09A8001FDD361B00DC47A7 /* MainViewController3.swift in Sources */,
 				0AF2C02A2104C8E500775EA8 /* TagRow.swift in Sources */,
+				B16BD220211154930045FAA6 /* MyTripViewController.swift in Sources */,
 				0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */,
 				0AD3BC17204A85E00051D7E3 /* CountryViewModel.swift in Sources */,
 				0A74567A210D875F00F8A0C9 /* FriendsViewModel.swift in Sources */,
@@ -917,6 +924,7 @@
 				0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */,
 				0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */,
 				0A059CAB1FEFB3B50057E26E /* PlanModel.swift in Sources */,
+				B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */,
 				0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
 				0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */,

@@ -99,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
     UINavigationBar.appearance().shadowImage = UIImage()
+    UINavigationBar.appearance().tintColor = .black
   }
 
   func applicationDidEnterBackground(_ application: UIApplication) {

@@ -33,6 +33,7 @@ pod 'Spring'
 pod 'SwiftyUserDefaults'
 pod 'PySwiftyRegex'
 pod 'SwiftDate'
+
 # UI
 pod 'GoogleMaps'
 pod 'GooglePlaces'
@@ -44,7 +45,7 @@ pod 'LTMorphingLabel'
 pod 'FSPagerView'
 pod 'Eureka'
 pod 'DZNEmptyDataSet'
-pod 'SlideMenuControllerSwift'
+pod 'SideMenu'
 pod 'expanding-collection'
 pod "Floaty"
 pod 'HGPlaceholders'

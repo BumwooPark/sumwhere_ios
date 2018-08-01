@@ -27,7 +27,7 @@ struct ProfileModel: Codable{
   var area: String
   var job: String
   var birthday: String
-  var travelType: [Int]
+  var travelType: [Int]?
   var image1: String
   var image2: String
   var image3: String

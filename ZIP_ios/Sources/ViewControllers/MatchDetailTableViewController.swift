@@ -17,7 +17,7 @@ class MatchDetailTableViewController: UIViewController {
   fileprivate var scrollOffsetY: CGFloat = 0
   let disposeBag = DisposeBag()
   let typeImage: UIImage
-  
+  let travelModel: TravelModel
   var heroID: String = ""
   
  
@@ -51,11 +51,13 @@ class MatchDetailTableViewController: UIViewController {
                             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                             withReuseIdentifier: String(describing: MatchHeaderView.self))
     collectionView.backgroundColor = .white
+    collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
     return collectionView
   }()
   
-  init(image: UIImage) {
+  init(image: UIImage, model: TravelModel) {
     typeImage = image
+    travelModel = model
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -70,45 +72,21 @@ class MatchDetailTableViewController: UIViewController {
     if #available(iOS 11.0, *) {
       collectionView.contentInsetAdjustmentBehavior = .never
     }
-  
     
-    hero.isEnabled = true 
-//    hero.modalAnimationType = .selectBy(presenting: .auto , dismissing: .auto)
+    collectionView.rx.didScroll
+      .subscribe(onNext: { [weak self] (_) in
+        guard let `self` = self else {return}
+        if self.collectionView.contentOffset.y < -25,
+          let navigationController = self.navigationController{
+          navigationController.popViewController(animated: true)
+        }
+        self.scrollOffsetY = self.collectionView.contentOffset.y
+      }).disposed(by: disposeBag)
+
+
+    hero.isEnabled = true
     Observable.just(sampleData)
       .bind(to: collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
-  }
-}
-
-
-// MARK: Actions
-
-//extension MatchDetailTableViewController {
-//
-//  @IBAction func backButtonHandler(_: AnyObject) {
-//    // buttonAnimation
-//    popTransitionAnimation()
-//  }
-//}
-
-// MARK: UIScrollViewDelegate
-
-extension MatchDetailTableViewController {
-
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MatchCell.self), for: indexPath) as! MatchCell
-    cell.item = sampleData[indexPath.item]
-    return cell
-  }
-
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return sampleData.count
-  }
-
-  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    if scrollView.contentOffset.y < -25 , let navigationController = navigationController {
-      popTransitionAnimation()
-    }
-    scrollOffsetY = scrollView.contentOffset.y
   }
 }

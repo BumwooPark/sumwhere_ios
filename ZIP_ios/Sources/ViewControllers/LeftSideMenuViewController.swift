@@ -9,7 +9,7 @@
 import Eureka
 
 
-class SideMenuViewController: FormViewController{
+class LeftSideMenuViewController: FormViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -17,14 +17,16 @@ class SideMenuViewController: FormViewController{
     tableView.isScrollEnabled = false
     form +++ Section("갈래말래"){
       var header = HeaderFooterView<MenuHeaderView>(.class)
-      header.height = {200}
+      header.height = {250}
       $0.header = header
       }
       
       <<< LabelRow(){$0.title = "프로필 수정"}.onCellSelection({[weak self] (cell, row) in
-        self?.present(SetProfileViewController(), animated: true, completion: nil)
+        self?.present(SetProfileViewController(config: true), animated: true, completion: nil)
       })
-      <<< LabelRow(){$0.title = "내 여행"}
+      <<< LabelRow(){$0.title = "내 여행"}.onCellSelection({ [weak self] (cell, row) in
+        self?.present(MyTripViewController(), animated: true, completion: nil)
+      })
       <<< LabelRow(){$0.title = "알림"}
       <<< LabelRow(){$0.title = "상점"}
       <<< LabelRow(){$0.title = "문의하기"}

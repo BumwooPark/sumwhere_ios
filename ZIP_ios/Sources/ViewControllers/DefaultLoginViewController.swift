@@ -19,9 +19,9 @@ final class DefaultLoginViewController: UIViewController{
   var didUpdateConstraint = false
   let disposeBag = DisposeBag()
   
-  let zipImageView: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "Rectangle 6"))
-    imageView.hero.id = "zipImageView"
+  let logoImageView: UIImageView = {
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "logo"))
+    imageView.hero.id = "logoImageView"
     return imageView
   }()
   
@@ -86,7 +86,7 @@ final class DefaultLoginViewController: UIViewController{
     view.backgroundColor = .white
     view.hero.id = "loginToDefaultLogin"
     hero.isEnabled = true
-    view.addSubview(zipImageView)
+    view.addSubview(logoImageView)
     view.addSubview(emailField)
     view.addSubview(passwordField)
     view.addSubview(loginButton)
@@ -148,11 +148,10 @@ final class DefaultLoginViewController: UIViewController{
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{
-      zipImageView.snp.makeConstraints { (make) in
+      logoImageView.snp.makeConstraints { (make) in
         make.centerX.equalToSuperview()
         make.top.equalToSuperview().inset(100)
-        make.height.equalTo(150)
-        make.width.equalTo(150)
+        make.height.width.equalTo(150)
       }
       
       emailField.snp.makeConstraints { (make) in
