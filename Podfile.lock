@@ -67,6 +67,7 @@ PODS:
   - Hue (3.0.1)
   - JDStatusBarNotification (1.5.6)
   - JTAppleCalendar (7.1.5)
+  - JVFloatLabeledTextField (1.2.1)
   - KakaoOpenSDK (1.8.2):
     - KakaoOpenSDK/KakaoCommon (= 1.8.2)
     - KakaoOpenSDK/KakaoLink (= 1.8.2)
@@ -163,6 +164,7 @@ DEPENDENCIES:
   - Hue
   - JDStatusBarNotification
   - JTAppleCalendar
+  - JVFloatLabeledTextField
   - KakaoOpenSDK
   - Kingfisher
   - LGButton
@@ -224,6 +226,7 @@ SPEC REPOS:
     - Hue
     - JDStatusBarNotification
     - JTAppleCalendar
+    - JVFloatLabeledTextField
     - KakaoOpenSDK
     - Kingfisher
     - LGButton
@@ -287,6 +290,7 @@ SPEC CHECKSUMS:
   Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
   JDStatusBarNotification: d5829a8f2f291b23b8a54b87fac8bf2549945a2f
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
+  JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   KakaoOpenSDK: c09b1291ef293e2ef3faced8ca14b1d1c077bd96
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
@@ -320,6 +324,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 2913214c69828bf72ea3dcf93d28cc947d7ad568
+PODFILE CHECKSUM: 1c3ed8fb66562a37f8792ef413ed3690d3f1a293
 
 COCOAPODS: 1.5.3

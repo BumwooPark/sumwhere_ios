@@ -36,7 +36,9 @@ class SetProfileViewController: FormViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     self.tableView.backgroundColor = .white
+    title = "프로필 등록"
     getProfile()
     form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
     form
@@ -54,30 +56,16 @@ class SetProfileViewController: FormViewController{
       
       +++ Section("프로필")
       
-      <<< TextRow(){
+      <<< NicknameRow(){
         $0.title = "닉네임"
         $0.tag = "nickname"
-        }.cellSetup({(cell, row) in
-          cell.textField.attributedPlaceholder = NSAttributedString(string: "닉네임을 입력해 주세요", attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 15)])
-          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+        }.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.textField.font = UIFont.BMJUA(size: 15)
+          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         }).onChange({[weak self] (row) in
           self?.item?.nickname = row.cell.textField.text!
         }).cellUpdate({ (cell, row) in
           row.cell.textField.text = self.item?.nickname
-        })
-      
-      <<< PickerInlineRow<String>(){
-        $0.title = "지역"
-        $0.tag = "area"
-        $0.options = ["서울","경기"]
-        }.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-        }).onChange({ (row) in
-          self.item?.profile?.area = row.value ?? String()
-        }).cellUpdate({ (cell, row) in
-          row.value = self.item?.profile?.area
         })
       
       <<< DateInlineRow(){
@@ -97,17 +85,13 @@ class SetProfileViewController: FormViewController{
           self.item?.profile?.birthday =  (row.value?.toFormat("yyyy-MM-dd"))!
         })
       
-      <<< TextRow(){
-        $0.title = "직업"
-        $0.tag = "job"
+      <<< PickerInlineRow<String>(){
+        $0.title = "성별"
+        $0.tag = "gender"
+        $0.options = ["여성","남성"]
         }.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.textField.font = UIFont.BMJUA(size: 15)
-        }).cellUpdate({ (cell, row) in
-           cell.textField.text = self.item?.profile?.job
-        }).onChange({[weak self] (row) in
-          guard let `self` = self else {return}
-          self.item?.profile?.job =  row.cell.textField.text ?? String()
+          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         })
       
       +++ Section("여행 스타일 - 최대 3개")
@@ -117,6 +101,10 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.tagListView.addTags(["명소투어","먹방투어","쇼핑투어","레저스포츠투어","이색투어","문화투어","호캉스","전망투어","스포츠투어","드라이브투어","패스티벌투어"])
         })
+      
+      
+      +++ Section("자기소개")
+      <<< TextAreaRow()
       
       +++ lastSection
       <<< ButtonRow(){

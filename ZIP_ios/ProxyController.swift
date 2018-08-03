@@ -15,56 +15,58 @@ import Moya
 
 class ProxyController{
   let disposeBag = DisposeBag()
-  let mainVC = MainTabBarController()
-  let welcomeVC = LoginViewController()
-  let provider = AuthManager.provider
-  let defaultLogin = UserDefaults.standard.rx
-    .observe(Bool.self, UserDefaultType.isLogin.rawValue)
+  let window: UIWindow?
+  
+  
+  let isProfile = AuthManager.provider.request(.isProfile)
+    .map(ResultModel<Bool>.self)
+    .map{$0.result}
+    .asObservable()
     .filterNil()
-    .observeOn(MainScheduler.instance)
     .share()
   
-
-  let window: UIWindow?
+  let tokenLogin = AuthManager.provider.request(.tokenLogin)
+    .map(ResultModel<Bool>.self)
+    .map{$0.result}
+    .asObservable()
+    .filterNil()
+    .share()
  
   init(window: UIWindow?) {
     self.window = window
-
-    defaultLogin
-      .filter{$0}
-      .map({ _ -> () in return ()})
-      .bind(onNext: makeRootViewController)
-      .disposed(by: disposeBag)
   }
   
   func profileCheck(){
-    
-    AuthManager.provider.request(.isProfile)
-      .map(ResultModel<Bool>.self)
-      .asObservable()
-      .subscribe(onNext: {[weak self] (model) in
-        if model.success{
-          if !model.result!{
-            let rootview = self?.window?.rootViewController as? UINavigationController
-            let profileView = SetProfileViewController(config: false)
-            profileView.navigationItem.hidesBackButton = true 
-            rootview?.pushViewController(profileView, animated: true)
-          }else {
-            let view =  MainTabBarController()
-            view.title = "갈래말래"
-            self?.window?.rootViewController = view
-          }
+    Observable<UIViewController>.combineLatest(isProfile, tokenLogin) { (profile, login)in
+      let loginVC = UINavigationController(rootViewController: LoginViewController())
+      loginVC.navigationBar.prefersLargeTitles = true
+      loginVC.navigationItem.largeTitleDisplayMode = .always
+      loginVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.BMJUA(size: 40),.foregroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
+      loginVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+      
+      if !login {
+        return loginVC
+      }else {
+        if !profile{
+          loginVC.addChildViewController(SetProfileViewController(config: false))
+          loginVC.navigationBar.topItem?.title = "프로필등록"
+          return loginVC
+        }else{
+          return MainTabBarController()
         }
-        },onError:{ error in
-          log.info(error)
+      }
+      }.subscribe(onNext: { (vc) in
+        AppDelegate.instance?.window?.rootViewController = vc
       }).disposed(by: disposeBag)
   }
   
   func makeRootViewController(){
+    
     if Defaults[.token].length != 0{
       profileCheck()
     }else {
       window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+      AppDelegate.instance?.window?.makeKeyAndVisible()
     }
   }
 }

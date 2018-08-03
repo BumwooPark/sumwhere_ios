@@ -11,6 +11,7 @@ import Moya
 public enum ZIP{
   case signUp(model: Encodable)
   case signIn(email: String, password: String)
+  case tokenLogin
   case facebook(access_token: String)
   case kakao(access_token: String)
   case nicknameConfirm(nickname: String)
@@ -42,6 +43,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/signup"
     case .signIn:
       return "/signin/email"
+    case .tokenLogin:
+      return "/restrict/token/vaild"
     case .facebook:
       return "/signin/facebook"
     case .kakao:

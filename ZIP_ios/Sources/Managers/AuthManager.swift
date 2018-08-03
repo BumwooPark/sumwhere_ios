@@ -11,6 +11,7 @@ import RxSwift
 import Moya
 import SwiftyJSON
 import SwiftyUserDefaults
+import Result
 
 class AuthManager{
   
@@ -19,15 +20,11 @@ class AuthManager{
   
   static let instance = AuthManager()
   
-  
-  
-  
-  
+
   static var provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG
-      log.info(Defaults[.token])
-        return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true)]).rx
+        return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
       #else
         return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
       #endif
@@ -38,6 +35,16 @@ class AuthManager{
   
   fileprivate init(){}
 }
+
+final class TokenVaildPlugin: PluginType{
+  func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
+    guard case Result.failure(_) = result else {return}
+    if result.value?.statusCode == 401 {
+      AppDelegate.instance?.window?.rootViewController = LoginViewController()
+    }
+  }
+}
+
 
 
 
