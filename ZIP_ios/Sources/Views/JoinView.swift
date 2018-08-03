@@ -29,20 +29,6 @@ class JoinView: UIView{
     return field
   }()
   
-  let nicknameField: SkyFloatingLabelTextField = {
-    let field = SkyFloatingLabelTextField()
-    field.placeholder = "닉네임"
-    field.disabledColor = .blue
-    field.placeholderColor = .black
-    field.lineColor = .black
-    field.selectedLineColor = .black
-    field.selectedTitleColor = .blue
-    field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.textColor = .black
-    field.keyboardType = .emailAddress
-    return field
-  }()
-  
   let passwordField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
     field.placeholder = "비밀번호"
@@ -115,8 +101,6 @@ class JoinView: UIView{
     addSubview(joinButton)
     addSubview(backButton)
     addSubview(infoAgreeLabel)
-    addSubview(nicknameField)
-    nicknameField.hero.id = "nicknameField"
     emailField.hero.id = "emailField"
     passwordField.hero.id = "passwordField"
     
@@ -136,16 +120,10 @@ class JoinView: UIView{
       make.width.equalToSuperview().dividedBy(1.5)
     }
     
-    nicknameField.snp.makeConstraints { (make) in
+    passwordField.snp.makeConstraints { (make) in
       make.top.equalTo(emailField.snp.bottom).offset(25)
       make.centerX.equalToSuperview()
       make.width.equalTo(emailField)
-    }
-    
-    passwordField.snp.makeConstraints { (make) in
-      make.top.equalTo(nicknameField.snp.bottom).offset(25)
-      make.centerX.equalToSuperview()
-      make.width.equalTo(nicknameField)
     }
     
     passwordConfField.snp.makeConstraints { (make) in

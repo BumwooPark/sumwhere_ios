@@ -97,6 +97,8 @@
 		B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105599321100A1C00AC769C /* MatchHeaderView.swift */; };
 		B1055997211021F300AC769C /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1055996211021F300AC769C /* MatchViewModel.swift */; };
 		B10559992110223300AC769C /* MatchTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10559982110223300AC769C /* MatchTypeModel.swift */; };
+		B12001C02112FD3300DFD676 /* PasswordForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12001BF2112FD3300DFD676 /* PasswordForgetViewController.swift */; };
+		B12001C2211300E800DFD676 /* launchlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B12001C1211300E800DFD676 /* launchlogo.png */; };
 		B16BD220211154930045FAA6 /* MyTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD21F211154930045FAA6 /* MyTripViewController.swift */; };
 		B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD221211162AF0045FAA6 /* MyTripCell.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
@@ -221,6 +223,8 @@
 		B105599321100A1C00AC769C /* MatchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderView.swift; sourceTree = "<group>"; };
 		B1055996211021F300AC769C /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		B10559982110223300AC769C /* MatchTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeModel.swift; sourceTree = "<group>"; };
+		B12001BF2112FD3300DFD676 /* PasswordForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordForgetViewController.swift; sourceTree = "<group>"; };
+		B12001C1211300E800DFD676 /* launchlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchlogo.png; sourceTree = "<group>"; };
 		B16BD21F211154930045FAA6 /* MyTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripViewController.swift; sourceTree = "<group>"; };
 		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 		0A0FDE2120398DA70046E76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B12001C1211300E800DFD676 /* launchlogo.png */,
 				B1D4E51C20FDCA3800524CE2 /* godoRounded L.ttf */,
 				B1D4E51D20FDCA3800524CE2 /* godoRounded R.ttf */,
 				B1D4E51B20FDCA2C00524CE2 /* godoMaum.ttf */,
@@ -435,6 +440,7 @@
 			children = (
 				0A74566A210CA9EE00F8A0C9 /* RegisterTravel */,
 				0A7740AC20415B550096936E /* Plans */,
+				B12001BF2112FD3300DFD676 /* PasswordForgetViewController.swift */,
 				B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */,
 				0A7123911FACC1B600512EB7 /* LoginViewController.swift */,
 				0A7123971FACC1FB00512EB7 /* JoinViewController.swift */,
@@ -660,6 +666,7 @@
 				0A409E2E1FB74161001FE583 /* GoogleService-Info.plist in Resources */,
 				0A0FDE2620398E550046E76F /* NotoSans-Bold.otf in Resources */,
 				0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */,
+				B12001C2211300E800DFD676 /* launchlogo.png in Resources */,
 				0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */,
 				0A0FDE2820398E5A0046E76F /* NotoSans-Medium.otf in Resources */,
 				0A7123741FACC01200512EB7 /* Assets.xcassets in Resources */,
@@ -888,6 +895,7 @@
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
 				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
 				0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */,
+				B12001C02112FD3300DFD676 /* PasswordForgetViewController.swift in Sources */,
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
 				0A6C88AF1FEE82AA002019DE /* PlanViewController.swift in Sources */,
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,

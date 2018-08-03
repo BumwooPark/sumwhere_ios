@@ -10,6 +10,7 @@ import expanding_collection
 import Floaty
 import RxSwift
 import RxCocoa
+import RxGesture
 import RxDataSources
 import DZNEmptyDataSet
 import Hero
@@ -25,7 +26,7 @@ final class MainViewController: ExpandingViewController{
   let disposeBag = DisposeBag()
   var didUpdateConstraint = false
   fileprivate var cellsIsOpen = [Bool]()
-  var datas = [TripModel]()
+  var datas = [TripType]()
   
   
   lazy var floaty: Floaty = {
@@ -124,20 +125,21 @@ final class MainViewController: ExpandingViewController{
   private func connection(){
     
     AuthManager.provider
-      .request(.myTrip)
-      .map(ResultModel<[TripModel]>.self)
-      .asObservable()
+      .request(.AllTripList(sortby: "id", order: "asc", skipCount: 0, maxResultCount: 0))
+      .map(ResultModel<[TripType]>.self)
       .map{$0.result}
+      .asObservable()
       .filterNil()
       .do(onNext: { [weak self] (models) in
         self?.datas = models
         self?.cellsIsOpen = Array(repeating: false, count: models.count)
       })
-      .subscribe(onNext: {[weak self] (models) in
-        guard let `self` = self else {return}
-        self.collectionView?.reloadData()
-        self.cellsIsOpen = Array(repeating: false, count: models.count)
+      .subscribe(onNext: {[weak self] (model) in
+        self?.collectionView?.reloadData()
+      }, onError: { (error) in
+        log.error(error)
       }).disposed(by: disposeBag)
+
   }
 }
 
@@ -161,10 +163,11 @@ extension MainViewController{
 
 extension MainViewController{
   fileprivate func addGesture(to view: UIView) {
+
     let upGesture = Init(UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.swipeHandler(_:)))) {
       $0.direction = .up
     }
-    
+
     let downGesture = Init(UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.swipeHandler(_:)))) {
       $0.direction = .down
     }
@@ -180,9 +183,7 @@ extension MainViewController{
     guard let cell = collectionView?.cellForItem(at: indexPath) as? MainViewCell else { return }
     // double swipe Up transition
     if cell.isOpened == true && sender.direction == .up {
-      let matchtv = MatchDetailTableViewController(image: (cell.imageView.image) ?? UIImage(),model: cell.item!)
-      matchtv.heroID = "destination_\(indexPath.item)"
-      navigationController?.pushViewController(matchtv, animated: true)
+     cellmaptoVC(cell: cell, indexPath: indexPath)
     }
     
     let open = sender.direction == .up ? true : false
@@ -198,6 +199,7 @@ extension MainViewController{
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MainViewCell.self), for: indexPath) as! MainViewCell
     cell.item = datas[indexPath.item]
     cell.imageView.hero.id = "destination_\(indexPath.item)"
+    cell.titleLabel.hero.id = "destination_label_\(indexPath.item)"
     return cell
   }
   
@@ -210,14 +212,21 @@ extension MainViewController{
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let cell = collectionView.cellForItem(at: indexPath) as? MainViewCell
       , currentIndex == indexPath.row else { return }
-    
     if cell.isOpened == false {
       cell.cellIsOpen(true)
+      cellsIsOpen[indexPath.row] = cell.isOpened
     } else {
-      let matchtv = MatchDetailTableViewController(image: (cell.imageView.image) ?? UIImage(),model: cell.item!)
-      matchtv.heroID = "destination_\(indexPath.item)"
-      navigationController?.pushViewController(matchtv, animated: true)
+     cellmaptoVC(cell: cell, indexPath: indexPath)
     }
+    
+  }
+  
+  
+  func cellmaptoVC(cell: MainViewCell, indexPath: IndexPath){
+    let matchtv = MatchDetailTableViewController(image: (cell.imageView.image) ?? UIImage(),model: cell.item!)
+    matchtv.imageHeroID = "destination_\(indexPath.item)"
+    matchtv.labelHeroID = "destination_label_\(indexPath.item)"
+    navigationController?.pushViewController(matchtv, animated: true)
   }
 }
 

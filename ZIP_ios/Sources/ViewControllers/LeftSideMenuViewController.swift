@@ -22,9 +22,7 @@ class LeftSideMenuViewController: FormViewController{
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     getUserInfo()
-    
   }
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()

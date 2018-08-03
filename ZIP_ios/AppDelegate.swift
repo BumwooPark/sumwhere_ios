@@ -178,6 +178,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // Print full message.
+    log.info(application.applicationState)
+    
     log.info(userInfo)
   }
   
@@ -198,6 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate : UNUserNotificationCenterDelegate {
   
   // Receive displayed notifications for iOS 10 devices.
+  // 앱이 실행중 노티처리
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               willPresent notification: UNNotification,
                               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -210,14 +213,21 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     if let messageID = userInfo[gcmMessageIDKey] {
       log.info("Message ID: \(messageID)")
     }
-    
-    // Print full message.
-    log.info(userInfo)
+  
+    if let apns = userInfo[AnyHashable("aps")] as? NSDictionary{
+      if let bedge = apns["badge"] as? Int {
+        log.info("성공")
+        UIApplication.shared.applicationIconBadgeNumber = bedge
+      }else{
+        log.info(apns["badge"])
+      }
+    }
     
     // Change this to your preferred presentation option
-    completionHandler([])
+    completionHandler([.alert,.badge,.sound])
   }
   
+  // 앱이 백그라운드나 종료시 처리
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {

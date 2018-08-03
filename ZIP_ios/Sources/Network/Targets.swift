@@ -22,6 +22,7 @@ public enum ZIP{
   case createTrip(model: Encodable)
   case myTrip
   case searchDestination(data: String)
+  case AllTripList(sortby: String, order: String, skipCount: Int, maxResultCount: Int)
 }
 
 
@@ -30,7 +31,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.3:8080/galmal")!
+    return URL(string: "http://192.168.1.5:8080/galmal")!
     #else
     return URL(string: "http://52.197.13.138/galmal")!
     #endif
@@ -63,6 +64,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/mytrip"
     case .user:
       return "/restrict/user"
+    case .AllTripList:
+      return "/restrict/alltriplist"
     }
   }
   
@@ -96,6 +99,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["name":data], encoding: URLEncoding.queryString)
     case .createTrip(let json):
       return .requestJSONEncodable(json)
+    case .AllTripList(let sortby, let order, let skipCount, let maxResultCount):
+      return .requestParameters(parameters: ["sortby": sortby,"order":order,"skipCount":skipCount,"maxResultCount": maxResultCount], encoding: URLEncoding.queryString)
     default:
       return .requestPlain
     }

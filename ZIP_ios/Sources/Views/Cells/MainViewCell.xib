@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -51,9 +50,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4h2-Xv-xjU">
                         <rect key="frame" x="0.0" y="0.0" width="256" height="335"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boston" translatesAutoresizingMaskIntoConstraints="NO" id="K0d-wt-UOq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K0d-wt-UOq">
                                 <rect key="frame" x="0.0" y="0.0" width="256" height="335"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
@@ -65,44 +64,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oce-vs-fcR" userLabel="LeftView">
-                                <rect key="frame" x="20" y="300" width="93" height="28"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-12-31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3id-Aw-49n">
-                                        <rect key="frame" x="8" y="6" width="77" height="15"/>
-                                        <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oce-vs-fcR" userLabel="LeftView">
+                                <rect key="frame" x="20" y="314" width="93" height="14"/>
                                 <color key="backgroundColor" red="1" green="0.2070791421" blue="0.80130883779999995" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="3id-Aw-49n" firstAttribute="leading" secondItem="oce-vs-fcR" secondAttribute="leadingMargin" id="3VF-ap-b1f"/>
-                                    <constraint firstItem="3id-Aw-49n" firstAttribute="top" secondItem="oce-vs-fcR" secondAttribute="top" constant="6" id="RK2-WR-nMb"/>
-                                    <constraint firstItem="3id-Aw-49n" firstAttribute="centerY" secondItem="oce-vs-fcR" secondAttribute="centerY" id="fci-Sz-rde"/>
-                                    <constraint firstItem="3id-Aw-49n" firstAttribute="trailing" secondItem="oce-vs-fcR" secondAttribute="trailingMargin" id="kSN-me-DJ6"/>
-                                </constraints>
                             </view>
                             <view tag="4" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EKg-XH-vNU" userLabel="RightView">
-                                <rect key="frame" x="130" y="300" width="126" height="28"/>
+                                <rect key="frame" x="130" y="314" width="126" height="14"/>
                                 <color key="backgroundColor" red="1" green="0.20707914213106515" blue="0.8013088377544425" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-12-31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvF-xU-5tQ">
-                                <rect key="frame" x="126" y="299" width="104" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="104" id="hTw-WL-KtE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="oce-vs-fcR" firstAttribute="leading" secondItem="4h2-Xv-xjU" secondAttribute="leading" constant="20" id="0gU-VF-jyh"/>
                             <constraint firstItem="K0d-wt-UOq" firstAttribute="top" secondItem="4h2-Xv-xjU" secondAttribute="top" id="0rf-0f-BH6"/>
-                            <constraint firstItem="KvF-xU-5tQ" firstAttribute="leading" secondItem="oce-vs-fcR" secondAttribute="trailing" constant="13" id="0vQ-PQ-TQU"/>
-                            <constraint firstItem="KvF-xU-5tQ" firstAttribute="bottom" secondItem="EKg-XH-vNU" secondAttribute="bottom" id="2jW-F3-1UM"/>
                             <constraint firstAttribute="trailing" secondItem="K0d-wt-UOq" secondAttribute="trailing" id="9fb-il-gCT"/>
                             <constraint firstItem="dRV-hZ-AfF" firstAttribute="centerX" secondItem="4h2-Xv-xjU" secondAttribute="centerX" id="Ehb-IW-cx0"/>
                             <constraint firstItem="K0d-wt-UOq" firstAttribute="leading" secondItem="4h2-Xv-xjU" secondAttribute="leading" id="IUO-ku-s0n"/>
@@ -113,7 +87,6 @@
                             <constraint firstAttribute="width" constant="256" id="esJ-om-luc"/>
                             <constraint firstAttribute="height" constant="335" id="gJn-3O-Lq2"/>
                             <constraint firstItem="EKg-XH-vNU" firstAttribute="bottom" secondItem="oce-vs-fcR" secondAttribute="bottom" id="nlr-pM-fQE"/>
-                            <constraint firstItem="KvF-xU-5tQ" firstAttribute="centerY" secondItem="EKg-XH-vNU" secondAttribute="centerY" id="uXq-Oq-5hX"/>
                             <constraint firstAttribute="bottom" secondItem="K0d-wt-UOq" secondAttribute="bottom" id="ufQ-x4-z4g"/>
                         </constraints>
                     </view>
@@ -130,17 +103,12 @@
             <connections>
                 <outlet property="backConstraintY" destination="6DO-9h-Grw" id="Wm1-yD-o3D"/>
                 <outlet property="backContainerView" destination="rbd-6U-uYZ" id="fl2-yE-o3C"/>
-                <outlet property="endLabel" destination="KvF-xU-5tQ" id="h26-iE-3kV"/>
                 <outlet property="frontConstraintY" destination="Tfa-DL-h41" id="0Ce-KS-Dk0"/>
                 <outlet property="frontContainerView" destination="4h2-Xv-xjU" id="I8b-Ry-4pI"/>
                 <outlet property="imageView" destination="K0d-wt-UOq" id="Jpj-db-Bdz"/>
-                <outlet property="startLabel" destination="3id-Aw-49n" id="Irz-sA-7WR"/>
                 <outlet property="titleLabel" destination="dRV-hZ-AfF" id="65N-kE-kNG"/>
             </connections>
             <point key="canvasLocation" x="514" y="508.5"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="boston" width="828" height="1472"/>
-    </resources>
 </document>

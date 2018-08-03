@@ -31,7 +31,7 @@ class SearchDestinationViewModel{
   
   func searchAPI(text: String){
     AuthManager.provider.request(.searchDestination(data: text))
-      .map(ResultArrayModel<DestinationModel>.self)
+      .map(ResultModel<[DestinationModel]>.self)
       .map{$0.result}
       .asObservable()
       .filterNil()

@@ -52,10 +52,11 @@ class ProxyController{
           }else {
             let view =  MainTabBarController()
             view.title = "갈래말래"
-            
             self?.window?.rootViewController = view
           }
         }
+        },onError:{ error in
+          log.info(error)
       }).disposed(by: disposeBag)
   }
   

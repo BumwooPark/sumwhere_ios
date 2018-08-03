@@ -13,6 +13,7 @@ import RxSwift
 import RxCocoa
 import RxOptional
 import JDStatusBarNotification
+import TTTAttributedLabel
 
 final class DefaultLoginViewController: UIViewController{
   
@@ -28,6 +29,9 @@ final class DefaultLoginViewController: UIViewController{
   private let emailField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
     field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+    field.placeholderFont = UIFont.BMJUA(size: 15)
+    field.titleFont = UIFont.BMJUA(size: 15)
+    field.font = UIFont.BMJUA(size: 15)
     field.lineColor = .black
     field.lineErrorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     field.selectedLineColor = .blue
@@ -43,6 +47,9 @@ final class DefaultLoginViewController: UIViewController{
     let field = SkyFloatingLabelTextField()
     field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     field.lineColor = .black
+    field.placeholderFont = UIFont.BMJUA(size: 15)
+    field.titleFont = UIFont.BMJUA(size: 15)
+    field.font = UIFont.BMJUA(size: 15)
     field.lineErrorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     field.selectedLineColor = .blue
     field.selectedTitleColor = .blue
@@ -52,6 +59,20 @@ final class DefaultLoginViewController: UIViewController{
     field.returnKeyType = .done
     field.keyboardType = .asciiCapable
     return field
+  }()
+  
+  lazy var forgetLabel: TTTAttributedLabel = {
+    
+    let label = TTTAttributedLabel(frame: .zero)
+    let attstring = NSAttributedString(string: "비밀번호 찾으러 갈래?",
+                                       attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 13)])
+    
+    label.attributedText = attstring
+    label.textColor = .black
+    let range = NSRange(location: 0, length: 4)
+    label.addLink(to: URL(fileURLWithPath: ""), with: range)
+    label.delegate = self
+    return label
   }()
   
   private let loginButton: LGButton = {
@@ -91,6 +112,7 @@ final class DefaultLoginViewController: UIViewController{
     view.addSubview(passwordField)
     view.addSubview(loginButton)
     view.addSubview(dismissButton)
+    view.addSubview(forgetLabel)
     
     behavior()
     heroConfig()
@@ -164,6 +186,11 @@ final class DefaultLoginViewController: UIViewController{
         make.top.equalTo(emailField.snp.bottom).offset(20)
       }
       
+      forgetLabel.snp.makeConstraints { (make) in
+        make.top.equalTo(passwordField.snp.bottom).offset(20)
+        make.centerX.equalToSuperview()
+      }
+      
       loginButton.snp.makeConstraints { (make) in
         make.width.centerX.equalTo(passwordField)
         make.top.equalTo(passwordField.snp.bottom).offset(100)
@@ -177,5 +204,11 @@ final class DefaultLoginViewController: UIViewController{
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
+  }
+}
+
+extension DefaultLoginViewController: TTTAttributedLabelDelegate{
+  func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+    present(JoinViewController(), animated: true, completion: nil)
   }
 }

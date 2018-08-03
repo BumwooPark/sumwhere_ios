@@ -17,8 +17,9 @@ class MatchDetailTableViewController: UIViewController {
   fileprivate var scrollOffsetY: CGFloat = 0
   let disposeBag = DisposeBag()
   let typeImage: UIImage
-  let tripModel: TripModel
-  var heroID: String = ""
+  let tripType: TripType
+  var imageHeroID: String = ""
+  var labelHeroID: String = ""
   
  
   lazy var dataSources = RxCollectionViewSectionedReloadDataSource<MatchViewModel>(configureCell: {ds,cv,idx,item in
@@ -29,8 +30,9 @@ class MatchDetailTableViewController: UIViewController {
     let headerView = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: MatchHeaderView.self), for: idx) as! MatchHeaderView
     guard let `self` = self else {return headerView}
     headerView.imageView.image = self.typeImage
-    headerView.titleLabel.text = self.tripModel.tripType.destination
-    headerView.imageView.hero.id = self.heroID
+    headerView.titleLabel.text = self.tripType.destination
+    headerView.imageView.hero.id = self.imageHeroID
+    headerView.titleLabel.hero.id = self.labelHeroID
     return headerView
   })
   
@@ -56,9 +58,9 @@ class MatchDetailTableViewController: UIViewController {
     return collectionView
   }()
   
-  init(image: UIImage, model: TripModel) {
+  init(image: UIImage, model: TripType) {
     typeImage = image
-    tripModel = model
+    tripType = model
     super.init(nibName: nil, bundle: nil)
   }
   

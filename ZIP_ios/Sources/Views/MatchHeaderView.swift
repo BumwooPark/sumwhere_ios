@@ -20,6 +20,7 @@ class MatchHeaderView: UICollectionReusableView{
 
   let titleLabel: UILabel = {
     let label = UILabel()
+    label.textColor = .white
     label.font = UIFont.BMJUA(size: 30)
     return label
   }()

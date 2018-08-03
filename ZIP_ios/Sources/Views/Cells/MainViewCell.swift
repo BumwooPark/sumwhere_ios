@@ -9,20 +9,15 @@
 import expanding_collection
 
 class MainViewCell: BasePageCollectionCell{
-  var item: TripModel? {
+  var item: TripType? {
     didSet{
-      titleLabel.text = item?.tripType.destination
-      imageView.kf.setImageWithZIP(image: item?.tripType.imageURL ?? String())
-      guard let startAt = item?.trip.startDate,let endAt = item?.trip.endDate else {return}
-      startLabel.text = String(startAt.prefix(10))
-      endLabel.text = String(endAt.prefix(10))
+      titleLabel.text = item?.destination
+      imageView.kf.setImageWithZIP(image: item?.imageURL ?? String())
     }
   }
   
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var imageView: UIImageView!
-  @IBOutlet weak var startLabel: UILabel!
-  @IBOutlet weak var endLabel: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
