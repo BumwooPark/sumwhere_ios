@@ -40,6 +40,7 @@ class SetProfileViewController: FormViewController{
     self.tableView.backgroundColor = .white
     title = "프로필 등록"
     getProfile()
+    
     form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
     form
       +++ Section(){ section in
@@ -95,6 +96,17 @@ class SetProfileViewController: FormViewController{
         })
       
       +++ Section("여행 스타일 - 최대 3개")
+      
+      <<< MultipleSelectorRow<String>(){
+        $0.title = "여행 스타일"
+        $0.optionsProvider = .lazy({form, completion in
+          let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        })
+        }.cellSetup({ (cell, row) in
+          cell.textLabel?.font = UIFont.BMJUA(size: 15)
+          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+        })
+      
       <<< TagRow(){
           $0.tag = "style"
         }.cellSetup({ (cell, row) in
