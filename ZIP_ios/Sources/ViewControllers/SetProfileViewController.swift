@@ -40,6 +40,7 @@ class SetProfileViewController: FormViewController{
     self.tableView.backgroundColor = .white
     title = "프로필 등록"
     getProfile()
+    navigationItem.largeTitleDisplayMode = .always
     
     form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
     form
@@ -97,12 +98,36 @@ class SetProfileViewController: FormViewController{
       
       +++ Section("여행 스타일 - 최대 3개")
       
-      <<< MultipleSelectorRow<String>(){
-        $0.title = "여행 스타일"
-        $0.optionsProvider = .lazy({form, completion in
-          let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+      <<< CustomPresenterRow(){
+        $0.title = "여행스타일"
+        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
+          return TripStyleViewController()
+        }), onDismiss: {vc in
+          _ = vc.navigationController?.popViewController(animated: true)
+        })}.cellSetup({ (cell, row) in
+          cell.textLabel?.font = UIFont.BMJUA(size: 15)
+          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+        })
+      
+      <<< CustomPresenterRow(){
+        $0.title = "성격"
+        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
+          return TripStyleViewController()
+        }), onDismiss: {vc in
+          _ = vc.navigationController?.popViewController(animated: true)
         })
         }.cellSetup({ (cell, row) in
+          cell.textLabel?.font = UIFont.BMJUA(size: 15)
+          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+        })
+      
+      <<< CustomPresenterRow(){
+        $0.title = "매력포인트"
+        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
+          return TripStyleViewController()
+        }), onDismiss: {vc in
+          _ = vc.navigationController?.popViewController(animated: true)
+        })}.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         })

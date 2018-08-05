@@ -165,6 +165,11 @@
 			<key>orderHint</key>
 			<integer>24</integer>
 		</dict>
+		<key>JVFloatLabeledTextField.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>60</integer>
+		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -315,7 +320,7 @@
 		<key>SideMenu.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>60</integer>
+			<integer>61</integer>
 		</dict>
 		<key>SkyFloatingLabelTextField.xcscheme</key>
 		<dict>
