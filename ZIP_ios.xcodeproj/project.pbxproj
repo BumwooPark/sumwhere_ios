@@ -77,7 +77,7 @@
 		0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */; };
 		0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */; };
 		0AA0361E1FDADBC6000D4451 /* ProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0361D1FDADBC6000D4451 /* ProxyController.swift */; };
-		0AAD74872114B06100C860ED /* CustomPresenterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD74862114B06100C860ED /* CustomPresenterRow.swift */; };
+		0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD74862114B06100C860ED /* PresenterRow.swift */; };
 		0AAD748A211708B900C860ED /* TripStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD7489211708B900C860ED /* TripStyleCell.swift */; };
 		0AAD748C21170AA500C860ED /* TripStyleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD748B21170AA500C860ED /* TripStyleHeaderView.swift */; };
 		0AAD749021170FF700C860ED /* TripStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD748F21170FF700C860ED /* TripStyleModel.swift */; };
@@ -106,8 +106,16 @@
 		B12001C2211300E800DFD676 /* launchlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B12001C1211300E800DFD676 /* launchlogo.png */; };
 		B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */; };
 		B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DEE211444C3001D278A /* NicknameRow.swift */; };
+		B16B3DF72117E6F0001D278A /* TripStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DF62117E6F0001D278A /* TripStyleViewController.swift */; };
+		B16B3DF92117E782001D278A /* InitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DF82117E782001D278A /* InitUtil.swift */; };
+		B16B3DFB2117E7E2001D278A /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFA2117E7E2001D278A /* InterestViewController.swift */; };
+		B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFC2117F3B3001D278A /* InterestCell.swift */; };
+		B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFF2117F445001D278A /* InterestViewModel.swift */; };
+		B16B3E032117F46B001D278A /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3E022117F46B001D278A /* InterestModel.swift */; };
 		B16BD220211154930045FAA6 /* MyTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD21F211154930045FAA6 /* MyTripViewController.swift */; };
 		B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD221211162AF0045FAA6 /* MyTripCell.swift */; };
+		B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA42118204200535FB1 /* InterestAddView.swift */; };
+		B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA62118315100535FB1 /* CharacterViewController.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController.swift */; };
@@ -209,7 +217,7 @@
 		0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanFlowLayout.swift; sourceTree = "<group>"; };
 		0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AA0361D1FDADBC6000D4451 /* ProxyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyController.swift; sourceTree = "<group>"; };
-		0AAD74862114B06100C860ED /* CustomPresenterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresenterRow.swift; sourceTree = "<group>"; };
+		0AAD74862114B06100C860ED /* PresenterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterRow.swift; sourceTree = "<group>"; };
 		0AAD7489211708B900C860ED /* TripStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleCell.swift; sourceTree = "<group>"; };
 		0AAD748B21170AA500C860ED /* TripStyleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleHeaderView.swift; sourceTree = "<group>"; };
 		0AAD748F21170FF700C860ED /* TripStyleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleModel.swift; sourceTree = "<group>"; };
@@ -239,8 +247,16 @@
 		B12001C1211300E800DFD676 /* launchlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchlogo.png; sourceTree = "<group>"; };
 		B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JVFloatTextRow.swift; sourceTree = "<group>"; };
 		B16B3DEE211444C3001D278A /* NicknameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRow.swift; sourceTree = "<group>"; };
+		B16B3DF62117E6F0001D278A /* TripStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewController.swift; sourceTree = "<group>"; };
+		B16B3DF82117E782001D278A /* InitUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitUtil.swift; sourceTree = "<group>"; };
+		B16B3DFA2117E7E2001D278A /* InterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
+		B16B3DFC2117F3B3001D278A /* InterestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCell.swift; sourceTree = "<group>"; };
+		B16B3DFF2117F445001D278A /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
+		B16B3E022117F46B001D278A /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 		B16BD21F211154930045FAA6 /* MyTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripViewController.swift; sourceTree = "<group>"; };
 		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
+		B1C4FFA42118204200535FB1 /* InterestAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestAddView.swift; sourceTree = "<group>"; };
+		B1C4FFA62118315100535FB1 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -283,7 +299,7 @@
 		0A09A8051FDD3F1900DC47A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0AF2C0282104C8D200775EA8 /* rows */,
+				B16B3DF12117E5BE001D278A /* SetProfile */,
 				0A6C88AB1FEE3E51002019DE /* Cells */,
 				0A09A8061FDD3F2D00DC47A7 /* MainHeaderView.swift */,
 				0A1B11DA1FF1181D004B42B6 /* LoginView.swift */,
@@ -293,7 +309,6 @@
 				0A90EBD12109F76D0057F1A9 /* TicketView.swift */,
 				0A90EBD32109F7B10057F1A9 /* TicketView.xib */,
 				B105599321100A1C00AC769C /* MatchHeaderView.swift */,
-				0AAD748B21170AA500C860ED /* TripStyleHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -339,7 +354,6 @@
 				0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */,
 				B105598F210FED2500AC769C /* MatchCell.swift */,
 				B16BD221211162AF0045FAA6 /* MyTripCell.swift */,
-				0AAD7489211708B900C860ED /* TripStyleCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -410,6 +424,7 @@
 		0A71238D1FACC16100512EB7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B16B3E012117F460001D278A /* SetProfile */,
 				0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */,
 				0A059CAA1FEFB3B50057E26E /* PlanModel.swift */,
 				0AD3BC12204A7B690051D7E3 /* CountryModel.swift */,
@@ -428,6 +443,7 @@
 		0A71238E1FACC16B00512EB7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B16B3DFE2117F428001D278A /* SetProfile */,
 				B1055995211021E500AC769C /* Main */,
 				0A745681210DFB5C00F8A0C9 /* RegisterTravel */,
 				0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */,
@@ -440,7 +456,6 @@
 				0A745660210C773900F8A0C9 /* AreaViewModel.swift */,
 				0A745679210D875F00F8A0C9 /* FriendsViewModel.swift */,
 				0A74567F210DE0FC00F8A0C9 /* TravelResigerViewModel.swift */,
-				0AAD74912117103000C860ED /* TripStyleViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -456,6 +471,7 @@
 		0A7123901FACC17700512EB7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B16B3DF52117E6E3001D278A /* SetProfile */,
 				0A74566A210CA9EE00F8A0C9 /* RegisterTravel */,
 				0A7740AC20415B550096936E /* Plans */,
 				B12001BF2112FD3300DFD676 /* PasswordForgetViewController.swift */,
@@ -519,6 +535,7 @@
 				0A9174D02024AB85000A055A /* DataBase.swift */,
 				B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */,
 				B105597821096E9D00AC769C /* MoyaErrorUtil.swift */,
+				B16B3DF82117E782001D278A /* InitUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -545,7 +562,7 @@
 				0AF2C0292104C8E500775EA8 /* TagRow.swift */,
 				B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */,
 				B16B3DEE211444C3001D278A /* NicknameRow.swift */,
-				0AAD74862114B06100C860ED /* CustomPresenterRow.swift */,
+				0AAD74862114B06100C860ED /* PresenterRow.swift */,
 			);
 			path = rows;
 			sourceTree = "<group>";
@@ -576,6 +593,61 @@
 				B1055996211021F300AC769C /* MatchViewModel.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		B16B3DF12117E5BE001D278A /* SetProfile */ = {
+			isa = PBXGroup;
+			children = (
+				B16B3DF32117E5EF001D278A /* views */,
+				B16B3DF22117E5D9001D278A /* cells */,
+				0AF2C0282104C8D200775EA8 /* rows */,
+			);
+			path = SetProfile;
+			sourceTree = "<group>";
+		};
+		B16B3DF22117E5D9001D278A /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				0AAD7489211708B900C860ED /* TripStyleCell.swift */,
+				B16B3DFC2117F3B3001D278A /* InterestCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		B16B3DF32117E5EF001D278A /* views */ = {
+			isa = PBXGroup;
+			children = (
+				0AAD748B21170AA500C860ED /* TripStyleHeaderView.swift */,
+				B1C4FFA42118204200535FB1 /* InterestAddView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		B16B3DF52117E6E3001D278A /* SetProfile */ = {
+			isa = PBXGroup;
+			children = (
+				B16B3DF62117E6F0001D278A /* TripStyleViewController.swift */,
+				B16B3DFA2117E7E2001D278A /* InterestViewController.swift */,
+				B1C4FFA62118315100535FB1 /* CharacterViewController.swift */,
+			);
+			path = SetProfile;
+			sourceTree = "<group>";
+		};
+		B16B3DFE2117F428001D278A /* SetProfile */ = {
+			isa = PBXGroup;
+			children = (
+				0AAD74912117103000C860ED /* TripStyleViewModel.swift */,
+				B16B3DFF2117F445001D278A /* InterestViewModel.swift */,
+			);
+			path = SetProfile;
+			sourceTree = "<group>";
+		};
+		B16B3E012117F460001D278A /* SetProfile */ = {
+			isa = PBXGroup;
+			children = (
+				B16B3E022117F46B001D278A /* InterestModel.swift */,
+			);
+			path = SetProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -771,6 +843,7 @@
 				"${BUILT_PRODUCTS_DIR}/JDStatusBarNotification/JDStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/KTCenterFlowLayout/KTCenterFlowLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LGButton/LGButton.framework",
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
@@ -788,6 +861,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
@@ -827,6 +901,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JDStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KTCenterFlowLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
@@ -844,6 +919,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
@@ -895,8 +971,10 @@
 				0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */,
 				B105597921096E9D00AC769C /* MoyaErrorUtil.swift in Sources */,
 				0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */,
+				B16B3DFB2117E7E2001D278A /* InterestViewController.swift in Sources */,
 				B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */,
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
+				B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */,
 				0A745683210DFB7800F8A0C9 /* CreateTravelViewModel.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A1B11D31FF101FF004B42B6 /* ConfigureViewController.swift in Sources */,
@@ -914,6 +992,7 @@
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
 				B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */,
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,
+				B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */,
 				0A7123921FACC1B600512EB7 /* LoginViewController.swift in Sources */,
 				0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */,
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
@@ -926,6 +1005,7 @@
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
 				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,
 				0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */,
+				B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */,
 				0AF2C01B20FB2D9600775EA8 /* LeftSideMenuViewController.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
 				0A09A8001FDD361B00DC47A7 /* MainViewController3.swift in Sources */,
@@ -945,18 +1025,20 @@
 				0A9174CE20220124000A055A /* MockMessage.swift in Sources */,
 				0A9174D12024AB85000A055A /* DataBase.swift in Sources */,
 				0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */,
+				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
 				0AD3BC1120491F2C0051D7E3 /* CountryCell.swift in Sources */,
 				0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */,
 				0A745689210E04FC00F8A0C9 /* DestinationModel.swift in Sources */,
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
 				0AA0361E1FDADBC6000D4451 /* ProxyController.swift in Sources */,
-				0AAD74872114B06100C860ED /* CustomPresenterRow.swift in Sources */,
+				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
 				0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */,
 				0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */,
+				B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */,
 				0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */,
 				0A059CAB1FEFB3B50057E26E /* PlanModel.swift in Sources */,
 				B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */,
@@ -977,11 +1059,13 @@
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
+				B16B3DF72117E6F0001D278A /* TripStyleViewController.swift in Sources */,
 				0A745669210CA37D00F8A0C9 /* PageViewController.swift in Sources */,
 				0A745661210C773900F8A0C9 /* AreaViewModel.swift in Sources */,
 				0A671AC220342C4C00034CE0 /* SetProfileViewController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				0AD3BC19204BEBBB0051D7E3 /* DetailCategoryViewController.swift in Sources */,
+				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,
 				0A0FDDF520387E3D0046E76F /* ProfileViewModel.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */,
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,

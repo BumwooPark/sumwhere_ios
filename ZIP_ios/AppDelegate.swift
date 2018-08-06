@@ -14,6 +14,7 @@ import SwiftyBeaver
 import RxSwift
 import RxCocoa
 import RxOptional
+import RxSwiftExt
 import Moya
 import SwiftyJSON
 import Firebase

@@ -24,6 +24,8 @@ public enum ZIP{
   case myTrip
   case searchDestination(data: String)
   case AllTripList(sortby: String, order: String, skipCount: Int, maxResultCount: Int)
+  case GetAllTripStyle
+  case GetAllInterest
 }
 
 
@@ -32,7 +34,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.3:8080/galmal")!
+    return URL(string: "http://192.168.1.5:8080/galmal")!
     #else
     return URL(string: "http://52.197.13.138/galmal")!
     #endif
@@ -69,6 +71,10 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/user"
     case .AllTripList:
       return "/restrict/alltriplist"
+    case .GetAllTripStyle:
+      return "/restrict/tripstyle"
+    case .GetAllInterest:
+      return "/restrict/interests"
     }
   }
   

@@ -96,9 +96,9 @@ class SetProfileViewController: FormViewController{
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         })
       
-      +++ Section("여행 스타일 - 최대 3개")
+      +++ Section("스타일")
       
-      <<< CustomPresenterRow(){
+      <<< TripStylePresenterRow(){
         $0.title = "여행스타일"
         $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
           return TripStyleViewController()
@@ -108,11 +108,23 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         })
+
+      <<< InterestPresenterRow(){
+        $0.title = "관심사"
+        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
+          return InterestSelectViewController()
+        }), onDismiss: {vc in
+          _ = vc.navigationController?.popViewController(animated: true)
+        })
+        }.cellSetup({ (cell, row) in
+          cell.textLabel?.font = UIFont.BMJUA(size: 15)
+          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+        })
       
-      <<< CustomPresenterRow(){
+      <<< CharacterPresenterRow(){
         $0.title = "성격"
         $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
-          return TripStyleViewController()
+          return CharacterViewController()
         }), onDismiss: {vc in
           _ = vc.navigationController?.popViewController(animated: true)
         })
@@ -120,25 +132,6 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         })
-      
-      <<< CustomPresenterRow(){
-        $0.title = "매력포인트"
-        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
-          return TripStyleViewController()
-        }), onDismiss: {vc in
-          _ = vc.navigationController?.popViewController(animated: true)
-        })}.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
-        })
-      
-      <<< TagRow(){
-          $0.tag = "style"
-        }.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.tagListView.addTags(["명소투어","먹방투어","쇼핑투어","레저스포츠투어","이색투어","문화투어","호캉스","전망투어","스포츠투어","드라이브투어","패스티벌투어"])
-        })
-      
       
       +++ Section("자기소개")
       <<< TextAreaRow()

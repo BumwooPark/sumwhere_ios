@@ -19,19 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchlogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hrm-Ss-yJB">
-                                <rect key="frame" x="112" y="168" width="150" height="134"/>
+                                <rect key="frame" x="112" y="168" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="134" id="rCm-a7-995"/>
-                                    <constraint firstAttribute="width" constant="150" id="vKC-3w-gXO"/>
+                                    <constraint firstAttribute="width" constant="150" id="SDw-r2-UHA"/>
+                                    <constraint firstAttribute="height" constant="150" id="YQf-BK-ycb"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2ps-bM-Zi4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Hrm-Ss-yJB" secondAttribute="bottom" constant="365" id="7RN-HU-JLw"/>
-                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="148" id="mn7-lc-6Hc"/>
-                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="112" id="uMA-PX-BLk"/>
+                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="999" constant="148" id="1B5-bm-1X2"/>
+                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CxP-Jd-4bY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Hrm-Ss-yJB" secondAttribute="bottom" constant="349" id="lOy-47-rbp"/>
+                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="112" id="uEs-KS-O0C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

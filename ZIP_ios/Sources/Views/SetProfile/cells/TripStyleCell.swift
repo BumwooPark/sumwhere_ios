@@ -10,9 +10,16 @@ class TripStyleCell: UICollectionViewCell{
   
   var didUpdateConstraint = false
   
+  var item: TripStyleModel?{
+    didSet{
+      titleLabel.text = "#\(item?.styleName ?? String())"
+    }
+  }
+  
   let titleLabel: UILabel = {
     let label = UILabel()
     label.textColor = .white
+    label.font = UIFont.BMJUA(size: 15)
     return label
   }()
   

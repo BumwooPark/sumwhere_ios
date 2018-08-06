@@ -85,6 +85,7 @@ PODS:
   - KakaoOpenSDK/KakaoS2 (1.8.2):
     - KakaoOpenSDK/KakaoCommon
   - Kingfisher (4.8.0)
+  - KTCenterFlowLayout (1.3.1)
   - LGButton (1.0.5)
   - LTMorphingLabel (0.5.6)
   - MessageKit (1.0.0)
@@ -127,6 +128,10 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
+  - RxSwiftExt (3.3.0):
+    - RxSwiftExt/Core (= 3.3.0)
+  - RxSwiftExt/Core (3.3.0):
+    - RxSwift (~> 4.0)
   - SideMenu (4.0.0)
   - SkyFloatingLabelTextField (3.5.1)
   - SnapKit (4.0.0)
@@ -167,6 +172,7 @@ DEPENDENCIES:
   - JVFloatLabeledTextField
   - KakaoOpenSDK
   - Kingfisher
+  - KTCenterFlowLayout
   - LGButton
   - LTMorphingLabel
   - MessageKit
@@ -181,6 +187,7 @@ DEPENDENCIES:
   - RxKeyboard
   - RxOptional
   - RxSwift
+  - RxSwiftExt
   - SideMenu
   - SkyFloatingLabelTextField
   - SnapKit
@@ -229,6 +236,7 @@ SPEC REPOS:
     - JVFloatLabeledTextField
     - KakaoOpenSDK
     - Kingfisher
+    - KTCenterFlowLayout
     - LGButton
     - LTMorphingLabel
     - MessageKit
@@ -246,6 +254,7 @@ SPEC REPOS:
     - RxKeyboard
     - RxOptional
     - RxSwift
+    - RxSwiftExt
     - SideMenu
     - SkyFloatingLabelTextField
     - SnapKit
@@ -293,6 +302,7 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   KakaoOpenSDK: c09b1291ef293e2ef3faced8ca14b1d1c077bd96
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  KTCenterFlowLayout: 6e02b50ab2bd865025ae82fe266ed13b6d9eaf97
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
   LTMorphingLabel: bdb51d4682e9822da89da6f567bd8aa456fd6650
   MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
@@ -310,6 +320,7 @@ SPEC CHECKSUMS:
   RxKeyboard: e5efbaa109c35be909dd888e53de0f0efdf5169e
   RxOptional: bd32ff8ca9df4177683d56ffeb618a9d4d5d5cad
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
   SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
@@ -324,6 +335,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 1c3ed8fb66562a37f8792ef413ed3690d3f1a293
+PODFILE CHECKSUM: f73e60566d7b082abcd4a0d848654f4f8be2670d
 
 COCOAPODS: 1.5.3

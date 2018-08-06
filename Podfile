@@ -52,6 +52,7 @@ pod 'HGPlaceholders'
 pod 'TagListView', '~> 1.0'
 pod 'DropDown'
 pod 'JVFloatLabeledTextField'
+pod 'KTCenterFlowLayout'
 
 
 # RX
@@ -63,6 +64,7 @@ pod 'Moya/RxSwift'
 pod 'Moya/RxSwift'
 pod 'RxKeyboard'
 pod 'RxOptional'
+pod "RxSwiftExt"
 
 
   target 'ZIP_iosTests' do

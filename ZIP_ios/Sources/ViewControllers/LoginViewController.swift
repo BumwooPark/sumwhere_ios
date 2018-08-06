@@ -40,7 +40,6 @@ class LoginViewController: UIViewController{
   
   override func loadView() {
     super.loadView()
-    navigationController?.navigationBar.isTranslucent = true
     navigationController?.navigationBar.shadowImage = UIImage()
     navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
   }
