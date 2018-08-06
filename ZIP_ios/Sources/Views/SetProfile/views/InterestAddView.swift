@@ -21,7 +21,6 @@ class InterestAddView: UICollectionReusableView{
     button.setTitleColor(.black, for: .normal)
     button.isUserInteractionEnabled = true
     button.isEnabled = true
-    button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
     return button
   }()
   
@@ -29,10 +28,6 @@ class InterestAddView: UICollectionReusableView{
     super.init(frame: frame)
     addSubview(plusButton)    
     
-  }
-  
-  @objc func tap(){
-    log.info("tap")
   }
   
   override func updateConstraints() {

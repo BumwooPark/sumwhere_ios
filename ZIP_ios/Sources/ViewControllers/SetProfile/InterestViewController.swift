@@ -27,7 +27,14 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
     cell.titleLabel.text = item.typeName
     return cell
   },configureSupplementaryView: {[weak self] ds,cv,name,idx in
-    let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: InterestAddView.self), for: idx) as! InterestAddView
+    let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter,
+                                                   withReuseIdentifier: String(describing: InterestAddView.self),
+                                                   for: idx) as! InterestAddView
+    
+    guard let `self` = self else {return view}
+    view.plusButton.rx.tap
+      .bind(onNext: self.showAlertView)
+      .disposed(by: self.disposeBag)
     
     return view
   })
@@ -36,15 +43,20 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
   private let disposeBag = DisposeBag()
   
   lazy var collectionView: UICollectionView = {
-    let layout = KTCenterFlowLayout()
+//    let layout = KTCenterFlowLayout()
+    let layout = UICollectionViewFlowLayout()
     layout.minimumInteritemSpacing = 10
     layout.minimumLineSpacing = 10
     layout.estimatedItemSize = CGSize(width: 100, height: 50)
+    layout.footerReferenceSize = CGSize(width: 200, height: 50)
+    
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.alwaysBounceVertical = true
     collectionView.register(InterestCell.self, forCellWithReuseIdentifier: String(describing: InterestCell.self))
-    collectionView.register(InterestAddView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: InterestAddView.self))
+    collectionView.register(InterestAddView.self,
+                            forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                            withReuseIdentifier: String(describing: InterestAddView.self))
     collectionView.emptyDataSetSource = self
     return collectionView
   }()
@@ -72,19 +84,16 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
       .map(ResultModel<[InterestModel]>.self)
       .map{$0.result}
       .asObservable()
-      .flatMap({ (models) -> Observable<[InterestModel]?> in
-        var model = models
-        model?.append(InterestModel(id:0, typeName: " +  "))
-        return Observable.just(model)
-      })
       .filterNil()
       .map{[InterestViewModel(items: $0)]}
+      .catchErrorJustReturn([])
       .bind(to: datas)
       .disposed(by: disposeBag)
   }
   
   //MARK: - Alert Action
   func showAlertView(){
+    log.info(collectionView.numberOfSections)
     let vc = UIAlertController(title: "관심사 입력", message: nil, preferredStyle: .alert)
     vc.addTextField { (field) in
       field.font = UIFont.BMJUA(size: 14)
