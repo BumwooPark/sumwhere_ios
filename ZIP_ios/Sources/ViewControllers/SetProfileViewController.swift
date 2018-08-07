@@ -23,6 +23,8 @@ class SetProfileViewController: FormViewController{
   var images = [UIImage?](repeating: nil, count: 5)
   let configure: Bool
   
+  lazy var viewModel = ProfileViewModel(viewController: self)
+  
   let lastSection = Section()
   
   init(config: Bool) {
@@ -48,7 +50,6 @@ class SetProfileViewController: FormViewController{
         section.tag = "headersection"
         var header = HeaderFooterView<ProfileHeaderView>(.class)
         header.height = {100}
-        
         header.onSetupView = {[unowned self] view, _ in
           view.backgroundColor = .white
           view.viewController = self
@@ -61,10 +62,19 @@ class SetProfileViewController: FormViewController{
       <<< NicknameRow(){
         $0.title = "닉네임"
         $0.tag = "nickname"
-        }.cellSetup({ (cell, row) in
+        }.cellSetup({[weak self] (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+          guard let `self` = self else {return}
+          cell.checkButton.rx.tap
+            .map{cell.textField.text}
+            .filterNil()
+            .bind(onNext: self.viewModel.overlapAPI)
+            .disposed(by: self.disposeBag)
+          
+//          self?.viewModel.nickname(textField: cell.textField)
         }).onChange({[weak self] (row) in
+          
           self?.item?.nickname = row.cell.textField.text!
         }).cellUpdate({ (cell, row) in
           row.cell.textField.text = self.item?.nickname
@@ -94,6 +104,11 @@ class SetProfileViewController: FormViewController{
         }.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+        }).cellUpdate({[weak self] (cell, row) in
+          row.value = self?.item?.profile?.gender
+        }).onChange({[weak self] (row) in
+          guard let `self` = self else {return}
+          self.item?.profile?.gender = row.value!
         })
       
       +++ Section("스타일")
@@ -101,8 +116,10 @@ class SetProfileViewController: FormViewController{
       <<< TripStylePresenterRow(){
         $0.title = "여행스타일"
         $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
-          return TripStyleViewController()
+          return TripStyleViewController(model: self.item?.profile?.tripType)
         }), onDismiss: {vc in
+          guard let tripvc = vc as? TripStyleViewController else {return}
+          self.item?.profile?.tripType = tripvc.model
           _ = vc.navigationController?.popViewController(animated: true)
         })}.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
@@ -112,6 +129,7 @@ class SetProfileViewController: FormViewController{
       <<< InterestPresenterRow(){
         $0.title = "관심사"
         $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
+          
           return InterestSelectViewController()
         }), onDismiss: {vc in
           _ = vc.navigationController?.popViewController(animated: true)
@@ -180,6 +198,7 @@ class SetProfileViewController: FormViewController{
     var multiparts:[MultipartFormData] = []
     multiparts.append(MultipartFormData(provider: .data((item?.profile?.area.data(using: .utf8))!), name: "area"))
     multiparts.append(MultipartFormData(provider: .data((item?.profile?.job.data(using: .utf8))!), name: "job"))
+    multiparts.append(MultipartFormData(provider: .data((item?.profile?.gender.data(using: .utf8))!), name: "gender"))
     multiparts.append(MultipartFormData(provider: .data((item?.profile?.birthday.data(using: .utf8))!), name: "birthday"))
     multiparts.append(MultipartFormData(provider: .data((item?.nickname?.data(using: .utf8))!), name: "nickname"))
     

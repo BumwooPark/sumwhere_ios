@@ -7,9 +7,12 @@
 //
 
 import Eureka
+import RxSwift
+import RxDataSources
 
 public class NicknameCell: Cell<String>, CellType{
   
+  let disposeBag = DisposeBag()
   let checkButton: UIButton = {
     let button = UIButton()
     button.setTitle("중복확인", for: .normal)
@@ -18,13 +21,14 @@ public class NicknameCell: Cell<String>, CellType{
     button.layer.cornerRadius = 5
     button.layer.borderColor = UIColor.red.cgColor
     button.setTitleColor(.red, for: .normal)
+    button.setTitleColor(#colorLiteral(red: 0.04194890708, green: 0.5622439384, blue: 0.8219085336, alpha: 1), for: .selected)
     button.layer.masksToBounds = true
     return button
   }()
   
   let textField: UITextField = {
     let field = UITextField()
-    field.attributedPlaceholder = NSAttributedString(string: "닉네임 8자", attributes: [.font : UIFont.BMJUA(size: 14)])
+    field.attributedPlaceholder = NSAttributedString(string: "닉네임 2자 이상", attributes: [.font : UIFont.BMJUA(size: 14)])
     return field
   }()
   
@@ -32,6 +36,15 @@ public class NicknameCell: Cell<String>, CellType{
     super.setup()
     addSubview(textField)
     addSubview(checkButton)
+    
+    textField.rx.text
+      .map{$0?.count}
+      .filterNil()
+      .subscribe(onNext:{[weak self] (value) in
+        self?.checkButton.isSelected = (value > 2) ? true : false
+        self?.checkButton.layer.borderColor = (value > 2) ? #colorLiteral(red: 0.04194890708, green: 0.5622439384, blue: 0.8219085336, alpha: 1).cgColor : UIColor.red.cgColor
+        self?.checkButton.isEnabled = (value > 2) ? true : false
+      }).disposed(by: disposeBag)
     
     selectionStyle = .none
     

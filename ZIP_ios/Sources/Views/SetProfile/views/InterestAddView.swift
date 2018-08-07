@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class InterestAddView: UICollectionReusableView{
   
   var didUpdateConstraint = false
@@ -26,15 +27,14 @@ class InterestAddView: UICollectionReusableView{
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    addSubview(plusButton)    
-    
+    self.addSubview(plusButton)
   }
   
   override func updateConstraints() {
     if !didUpdateConstraint{
       plusButton.snp.makeConstraints { (make) in
-        make.center.equalToSuperview()
-        make.height.equalTo(50)
+        make.centerX.bottom.equalToSuperview()
+        make.height.equalTo(40)
         make.width.equalTo(100)
       }
       

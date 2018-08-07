@@ -26,6 +26,7 @@ public enum ZIP{
   case AllTripList(sortby: String, order: String, skipCount: Int, maxResultCount: Int)
   case GetAllTripStyle
   case GetAllInterest
+  case GetAllCharacter
 }
 
 
@@ -56,7 +57,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .country:
       return "/country/"
     case .nicknameConfirm(let nickname):
-      return "/nickname/\(nickname)"
+      return "signup/nickname/\(nickname)"
     case .GetAllTrip:
       return "/restrict/trip"
     case .createProfile:
@@ -75,6 +76,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/tripstyle"
     case .GetAllInterest:
       return "/restrict/interests"
+    case .GetAllCharacter:
+      return "/restrict/characters"
     }
   }
   

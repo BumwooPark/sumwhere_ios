@@ -10,6 +10,12 @@ class TripStyleCell: UICollectionViewCell{
   
   var didUpdateConstraint = false
   
+  override var isSelected: Bool{
+    didSet{
+      imageView.backgroundColor = isSelected ? .blue : .red
+    }
+  }
+  
   var item: TripStyleModel?{
     didSet{
       titleLabel.text = "#\(item?.styleName ?? String())"
@@ -19,13 +25,13 @@ class TripStyleCell: UICollectionViewCell{
   let titleLabel: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.BMJUA(size: 15)
+    label.font = UIFont.BMJUA(size: 25)
     return label
   }()
   
   let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = .blue
+    imageView.layer.borderWidth = 1
     return imageView
   }()
   

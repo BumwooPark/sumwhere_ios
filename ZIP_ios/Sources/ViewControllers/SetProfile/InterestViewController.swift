@@ -12,7 +12,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import DZNEmptyDataSet
-import KTCenterFlowLayout
 import RxSwiftExt
 
 
@@ -43,20 +42,20 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
   private let disposeBag = DisposeBag()
   
   lazy var collectionView: UICollectionView = {
-//    let layout = KTCenterFlowLayout()
     let layout = UICollectionViewFlowLayout()
     layout.minimumInteritemSpacing = 10
     layout.minimumLineSpacing = 10
     layout.estimatedItemSize = CGSize(width: 100, height: 50)
     layout.footerReferenceSize = CGSize(width: 200, height: 50)
-    
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.alwaysBounceVertical = true
+    collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     collectionView.register(InterestCell.self, forCellWithReuseIdentifier: String(describing: InterestCell.self))
     collectionView.register(InterestAddView.self,
                             forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
                             withReuseIdentifier: String(describing: InterestAddView.self))
+    
     collectionView.emptyDataSetSource = self
     return collectionView
   }()
@@ -70,10 +69,24 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
+//    
+//    collectionView.rx.itemSelected
+//      .subscribe(onNext: {[weak self] index in
+//        self?.collectionView.cellForItem(at: index)?.isSelected = true
+//      }).disposed(by: disposeBag)
+//    
+//    collectionView.rx.itemDeselected
+//      .subscribe(onNext: {[weak self] index in
+//        self?.collectionView.cellForItem(at: index)?.isSelected = false
+//      }).disposed(by: disposeBag)
+    
+    
     
 //    collectionView.rx.modelSelected(InterestModel.self)
 //      .filter {$0.isAdd}
 //      .subscribe { (_) in
+    
+    
     
     api()
   }
@@ -100,8 +113,13 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
       field.placeholder = "ex) 여행"
     }
     vc.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-    vc.addAction(UIAlertAction(title: "등록", style: .default, handler: { (action) in
-      log.info(action.title)
+    vc.addAction(UIAlertAction(title: "등록", style: .default, handler: {[weak self](action) in
+      guard let `self` = self,let textValue = vc.textFields?.first?.text else {return}
+      var section = self.datas.value[0]
+      section.items.append(InterestModel(id: 0, typeName: textValue))
+      Observable.just([section])
+        .bind(to: self.datas)
+        .disposed(by: self.disposeBag)
     }))
     
     self.present(vc, animated: true, completion: nil)
