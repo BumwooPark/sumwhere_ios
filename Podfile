@@ -33,6 +33,7 @@ pod 'Spring'
 pod 'SwiftyUserDefaults'
 pod 'PySwiftyRegex'
 pod 'SwiftDate'
+pod 'Validator'
 
 # UI
 pod 'GoogleMaps'

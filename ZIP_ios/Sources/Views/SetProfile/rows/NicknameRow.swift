@@ -37,6 +37,9 @@ public class NicknameCell: Cell<String>, CellType{
     addSubview(textField)
     addSubview(checkButton)
     
+    textLabel?.font = UIFont.BMJUA(size: 15)
+    detailTextLabel?.font = UIFont.BMJUA(size: 15)
+    
     textField.rx.text
       .map{$0?.count}
       .filterNil()

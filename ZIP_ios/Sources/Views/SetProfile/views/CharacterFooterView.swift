@@ -7,6 +7,8 @@
 //
 
 import LGButton
+import RxSwift
+import RxCocoa
 
 class CharacterFooterView: UICollectionReusableView{
   
@@ -19,6 +21,11 @@ class CharacterFooterView: UICollectionReusableView{
     return button
   }()
   
+  lazy var commitAction = commitButton.rx
+    .controlEvent(.touchUpInside)
+    .map{_ in return ()}
+    .share()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(commitButton)
@@ -28,7 +35,6 @@ class CharacterFooterView: UICollectionReusableView{
       make.height.equalTo(40)
       make.width.equalTo(200)
     }
-    
   }
   
   required init?(coder aDecoder: NSCoder) {

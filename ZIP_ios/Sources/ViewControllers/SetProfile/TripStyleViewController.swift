@@ -17,14 +17,22 @@ class TripStyleViewController: UIViewController, TypedRowControllerType{
   var row: RowOf<String>!
   var onDismissCallback: ((UIViewController) -> Void)?
   
-  var model: [TripType]?
+  
+  let datas = BehaviorRelay<[TripStyleViewModel]>(value: [])
+  var viewModel: ProfileViewModel
+  var selectModel: [TripStyleModel] = []
+  var selectedModel: [TripStyleModel] = []
   private let disposeBag = DisposeBag()
   
   lazy var dataSources = RxCollectionViewSectionedReloadDataSource<TripStyleViewModel>(
     configureCell: {[weak self] ds,cv,idx,item in
       let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: TripStyleCell.self), for: idx) as! TripStyleCell
-      guard let `self` = self else {return cell}
-      self.cellInit(cell: cell, item: item)
+      cell.item = item
+      if let `self` = self {
+        for model in self.selectModel{
+          cell.isSelected = (model.id == item.id) ? true : false
+        }
+      }
       return cell
   },configureSupplementaryView: {[weak self]ds,cv,kind,idx in
     
@@ -35,11 +43,19 @@ class TripStyleViewController: UIViewController, TypedRowControllerType{
     case UICollectionElementKindSectionFooter:
       let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: TripStyleFooterView.self), for: idx) as! TripStyleFooterView
       guard let `self` = self else {return view}
-      view.commitButton
-        .rx
-        .tap
+      
+      if self.collectionView.indexPathsForSelectedItems?.count == 0{
+        view.commitButton.isEnabled = false
+        view.commitButton.bgColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+      }else{
+        view.commitButton.isEnabled = true
+        view.commitButton.bgColor = #colorLiteral(red: 0.04194890708, green: 0.5622439384, blue: 0.8219085336, alpha: 1)
+      }
+      
+      view.commitAction
         .bind(onNext: self.commit)
-      .disposed(by: self.disposeBag)
+        .disposed(by: self.disposeBag)
+      
       return view
     default:
       return UICollectionReusableView()
@@ -71,8 +87,8 @@ class TripStyleViewController: UIViewController, TypedRowControllerType{
     return collectionView
   }()
   
-  init(model: [TripType]?) {
-    self.model = model
+  init(viewModel: ProfileViewModel) {
+    self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -85,21 +101,55 @@ class TripStyleViewController: UIViewController, TypedRowControllerType{
     view = collectionView
     navigationItem.largeTitleDisplayMode = .never
     
-    collectionView.rx.itemSelected
-      .subscribe(onNext: { index in
-        log.info(index)
+    let selected = collectionView.rx.modelSelected(TripStyleModel.self)
+    let deselected = collectionView.rx.modelDeselected(TripStyleModel.self)
+    
+    datas.asDriver()
+      .drive(collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
+    
+    Observable.combineLatest(datas.asObservable(), viewModel.getTripType) {$1}
+      .subscribe(onNext: {[weak self] (model) in
+        guard let `self` = self else {return}
+        self.selectModel = model
+        self.collectionView.reloadData()
       }).disposed(by: disposeBag)
+
+    Observable.of(selected,deselected).merge()
+      .map{_ in return ()}
+      .bind(onNext: collectionViewFooterButtonSetting)
+      .disposed(by: disposeBag)
+    
+    selected
+      .subscribe(onNext: {[weak self] (model) in
+        guard let `self` = self else {return}
+        self.selectedModel.append(model)
+      }).disposed(by: disposeBag)
+    
+    deselected
+      .subscribe(onNext: {[weak self] (model) in
+        guard let `self` = self else {return}
+        for (i,item) in self.selectedModel.enumerated(){
+          if item.id == model.id{
+            self.selectedModel.remove(at: i)
+          }
+        }
+      }).disposed(by:disposeBag)
     
     callApi()
   }
   
-  func cellInit(cell: TripStyleCell, item: TripStyleModel){
-    cell.item = item
-    model?.forEach({ (type) in
-      if type.id == item.id{
-        cell.backgroundColor = .blue
-      }
-    })
+  private func collectionViewFooterButtonSetting(){
+    guard let view = collectionView
+      .supplementaryView(forElementKind: UICollectionElementKindSectionFooter,
+                         at: IndexPath(row: 0, section: 0)) as? TripStyleFooterView else {return}
+    if collectionView.indexPathsForSelectedItems?.count == 0{
+      view.commitButton.isEnabled = false
+      view.commitButton.bgColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    }else{
+      view.commitButton.isEnabled = true
+      view.commitButton.bgColor = #colorLiteral(red: 0.04194890708, green: 0.5622439384, blue: 0.8219085336, alpha: 1)
+    }
   }
   
   func callApi(){
@@ -109,14 +159,13 @@ class TripStyleViewController: UIViewController, TypedRowControllerType{
       .asObservable()
       .filterNil()
       .map{[TripStyleViewModel(items: $0)]}
-      .bind(to: collectionView.rx.items(dataSource: dataSources))
+      .bind(to: datas)
       .disposed(by: disposeBag)
   }
   
   func commit(){
     guard let dismiss = onDismissCallback else {return}
     dismiss(self)
-    log.info("commit")
   }
 }
 

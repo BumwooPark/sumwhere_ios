@@ -8,5 +8,5 @@
 
 struct TripStyleModel: Codable{
   let id: Int
-  let styleName: String
+  let typeName: String
 }

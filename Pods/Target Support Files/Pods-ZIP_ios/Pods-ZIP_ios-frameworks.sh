@@ -195,6 +195,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Validator/Validator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/expanding-collection/expanding_collection.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi
@@ -251,6 +252,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Validator/Validator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/expanding-collection/expanding_collection.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi

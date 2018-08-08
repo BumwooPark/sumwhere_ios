@@ -7,6 +7,7 @@
 //
 
 import Eureka
+import LGButton
 import RxCocoa
 import RxSwift
 import RxDataSources
@@ -15,15 +16,21 @@ import DZNEmptyDataSet
 class CharacterViewController: UIViewController, TypedRowControllerType{
   var row: RowOf<String>!
   var onDismissCallback: ((UIViewController) -> Void)?
-  
+  var selectModel: [CharacterModel] = []
   var selectedModel: [CharacterModel] = []
-  let datas = BehaviorRelay<[CharacterViewModel]>(value: [])
-  let disposeBag = DisposeBag()
-  lazy var dataSources = RxCollectionViewSectionedReloadDataSource<CharacterViewModel>(configureCell: {ds,cv,idx,item in
+  let viewModel: ProfileViewModel
+  private let datas = BehaviorRelay<[CharacterViewModel]>(value: [])
+  private let disposeBag = DisposeBag()
+    
+  lazy var dataSources = RxCollectionViewSectionedReloadDataSource<CharacterViewModel>(configureCell: {[weak self] ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: CharacterCell.self), for: idx) as! CharacterCell
+    guard let `self` = self else {return cell}
     cell.titleLabel.text = item.typeName
+    for character in self.selectModel{
+      cell.isSelected = (character.id == item.id) ? true : false
+    }
     return cell
-  },configureSupplementaryView:{ds,cv, kind, idx in
+  },configureSupplementaryView:{[weak self] ds,cv, kind, idx in
     
     switch kind{
     case UICollectionElementKindSectionHeader:
@@ -31,6 +38,10 @@ class CharacterViewController: UIViewController, TypedRowControllerType{
       return view
     case UICollectionElementKindSectionFooter:
       let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: CharacterFooterView.self), for: idx) as! CharacterFooterView
+      guard let `self` = self else {return view}
+      view.commitAction
+        .bind(onNext: self.commit)
+        .disposed(by: self.disposeBag)
       return view
     default:
       log.info("kind default")
@@ -61,23 +72,55 @@ class CharacterViewController: UIViewController, TypedRowControllerType{
     return collectionView
   }()
   
+  init(viewModel: ProfileViewModel) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view = collectionView
     navigationItem.largeTitleDisplayMode = .never
     
-    
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    let selected = collectionView.rx.itemSelected
-    let deselected = collectionView.rx.itemDeselected
+    Observable.combineLatest(datas.asObservable(), viewModel.getCharacterType) {$1}
+      .subscribe(onNext: { [weak self] (model) in
+        guard let `self` = self else {return}
+        self.selectModel = model
+        self.collectionView.reloadData()
+      }).disposed(by: disposeBag)
     
-    Observable.of(selected,deselected).merge()
+    let selected = collectionView.rx.modelSelected(CharacterModel.self)
+    let deselected = collectionView.rx.modelDeselected(CharacterModel.self)
+    
+    Observable.of(selected,deselected)
+      .merge()
       .map{_ in return ()}
       .bind(onNext: collectionViewFooterButtonSetting)
       .disposed(by: disposeBag)
+    
+    selected
+      .subscribe(onNext: {[weak self] (model) in
+        guard let `self` = self else {return}
+        self.selectedModel.append(model)
+      }).disposed(by: disposeBag)
+    
+    deselected
+      .subscribe(onNext: {[weak self] (model) in
+        guard let `self` = self else {return}
+        for (i,item) in self.selectedModel.enumerated(){
+          if item.id == model.id{
+            self.selectedModel.remove(at: i)
+          }
+        }
+      }).disposed(by:disposeBag)
     
     api()
   }
@@ -95,8 +138,14 @@ class CharacterViewController: UIViewController, TypedRowControllerType{
       .disposed(by: disposeBag)
   }
   
+  //MARK: - Commit Action
+  private func commit(){
+    guard let dismiss = onDismissCallback else {return}
+    dismiss(self)
+  }
   
-  func collectionViewFooterButtonSetting(){
+  
+  private func collectionViewFooterButtonSetting(){
     guard let view = collectionView
       .supplementaryView(forElementKind: UICollectionElementKindSectionFooter,
                          at: IndexPath(row: 0, section: 0)) as? CharacterFooterView else {return}
