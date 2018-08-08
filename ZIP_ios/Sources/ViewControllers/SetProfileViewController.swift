@@ -39,9 +39,24 @@ class SetProfileViewController: FormViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    viewModel
+      .getProfile
+      .subscribe { (event) in
+      switch event{
+      case .next(_):
+        for row in self.form.rows{
+          row.updateCell()
+        }
+        self.tableView.reloadData()
+      case .error(let error):
+        log.error(error)
+      case .completed:
+        log.info("completed")
+      }
+      }.disposed(by: disposeBag)
+    
     self.tableView.backgroundColor = .white
     title = "프로필 등록"
-    getProfile()
     navigationItem.largeTitleDisplayMode = .always
     
     form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
@@ -63,8 +78,6 @@ class SetProfileViewController: FormViewController{
         $0.title = "닉네임"
         $0.tag = "nickname"
         }.cellSetup({[weak self] (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
           guard let `self` = self else {return}
           cell.checkButton.rx.tap
             .map{cell.textField.text}
@@ -72,11 +85,14 @@ class SetProfileViewController: FormViewController{
             .bind(onNext: self.viewModel.overlapAPI)
             .disposed(by: self.disposeBag)
           
-//          self?.viewModel.nickname(textField: cell.textField)
-        }).onChange({[weak self] (row) in
+          cell.textField.rx.text
+            .filterNil()
+            .map{ProfileType.nickname(value: $0)}
+            .bind(to: self.viewModel.modelSaver)
+            .disposed(by: self.disposeBag)
           
-          self?.item?.nickname = row.cell.textField.text!
         }).cellUpdate({ (cell, row) in
+          log.info("update")
           row.cell.textField.text = self.item?.nickname
         })
       
@@ -87,14 +103,14 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         }).cellUpdate({[weak self] (cell, row) in
-          if self?.item?.profile?.birthday == String(){
+          if self?.viewModel.item?.profile?.birthday == String(){
             row.value = Date(timeIntervalSinceNow: 0)
           }else{
-            row.value = self?.item?.profile?.birthday.toISODate()?.date
+            row.value = self?.viewModel.item?.profile?.birthday.toISODate()?.date
           }
         }).onChange({[weak self] (row) in
           guard let `self` = self else {return}
-          self.item?.profile?.birthday =  (row.value?.toFormat("yyyy-MM-dd"))!
+          self.viewModel.modelSaver.onNext(.birthDay(value: (row.value?.toFormat("yyyy-MM-dd"))!))
         })
       
       <<< PickerInlineRow<String>(){
@@ -105,21 +121,21 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
           cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
         }).cellUpdate({[weak self] (cell, row) in
-          row.value = self?.item?.profile?.gender
+          row.value = self?.viewModel.item?.profile?.gender
         }).onChange({[weak self] (row) in
           guard let `self` = self else {return}
-          self.item?.profile?.gender = row.value!
+          self.viewModel.modelSaver.onNext(.gender(value: row.value!))
         })
       
       +++ Section("스타일")
       
       <<< TripStylePresenterRow(){
         $0.title = "여행스타일"
-        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
-          return TripStyleViewController(model: self.item?.profile?.tripType)
-        }), onDismiss: {vc in
-          guard let tripvc = vc as? TripStyleViewController else {return}
-          self.item?.profile?.tripType = tripvc.model
+        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {[unowned self] in
+          return TripStyleViewController(viewModel: self.viewModel)
+        }), onDismiss: {[weak self] vc in
+          guard let `self` = self, let tripvc = vc as? TripStyleViewController else {return}
+          self.viewModel.modelSaver.onNext(.tripStyle(value: tripvc.selectedModel))
           _ = vc.navigationController?.popViewController(animated: true)
         })}.cellSetup({ (cell, row) in
           cell.textLabel?.font = UIFont.BMJUA(size: 15)
@@ -128,10 +144,11 @@ class SetProfileViewController: FormViewController{
 
       <<< InterestPresenterRow(){
         $0.title = "관심사"
-        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
-          
-          return InterestSelectViewController()
-        }), onDismiss: {vc in
+        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {[unowned self] in
+          return InterestSelectViewController(viewModel: self.viewModel)
+        }), onDismiss: {[weak self] vc in
+          guard let `self` = self ,let intervc = vc as? InterestSelectViewController else {return}
+          self.viewModel.modelSaver.onNext(.interest(value: intervc.selectedModel))
           _ = vc.navigationController?.popViewController(animated: true)
         })
         }.cellSetup({ (cell, row) in
@@ -141,9 +158,11 @@ class SetProfileViewController: FormViewController{
       
       <<< CharacterPresenterRow(){
         $0.title = "성격"
-        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {
-          return CharacterViewController()
-        }), onDismiss: {vc in
+        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {[unowned self] in
+          return CharacterViewController(viewModel: self.viewModel)
+        }), onDismiss: {[weak self]vc in
+          guard let `self` = self ,let charvc = vc as? CharacterViewController else {return}
+          self.viewModel.modelSaver.onNext(.character(value: charvc.selectedModel))
           _ = vc.navigationController?.popViewController(animated: true)
         })
         }.cellSetup({ (cell, row) in
@@ -152,13 +171,21 @@ class SetProfileViewController: FormViewController{
         })
       
       +++ Section("자기소개")
-      <<< TextAreaRow()
+      <<< TextAreaRow().cellSetup({[unowned self] (cell, row) in
+        cell.textView
+          .rx
+          .text
+          .filterNil()
+          .subscribe(onNext: {(text) in
+            self.viewModel.modelSaver.onNext(.introText(value: text))
+          }).disposed(by: self.disposeBag)
+      })
       
       +++ lastSection
       <<< ButtonRow(){
         $0.title = "완료"
         }.onCellSelection({ [weak self](cell, row) in
-          self?.putProfile()
+          self?.viewModel.commit()
         }).cellSetup({ (button, row) in
           button.textLabel?.font = UIFont.BMJUA(size: 15)
           button.tintColor = .black
@@ -175,55 +202,6 @@ class SetProfileViewController: FormViewController{
           button.tintColor = .black
         })
     }
-  }
-  
-  private func getProfile(){
-    AuthManager.provider.request(.user)
-      .map(ResultModel<UserModel>.self)
-      .retry(3)
-      .subscribe(onSuccess: {[weak self] (model) in
-        guard let `self` = self else {return}
-        self.item = model.result
-        for row in self.form.rows{
-          row.updateCell()
-        }
-        self.tableView.reloadData()
-      }) { (error) in
-        log.error(error)
-    }.disposed(by: disposeBag)
-  }
-  
-  private func putProfile(){
-    
-    var multiparts:[MultipartFormData] = []
-    multiparts.append(MultipartFormData(provider: .data((item?.profile?.area.data(using: .utf8))!), name: "area"))
-    multiparts.append(MultipartFormData(provider: .data((item?.profile?.job.data(using: .utf8))!), name: "job"))
-    multiparts.append(MultipartFormData(provider: .data((item?.profile?.gender.data(using: .utf8))!), name: "gender"))
-    multiparts.append(MultipartFormData(provider: .data((item?.profile?.birthday.data(using: .utf8))!), name: "birthday"))
-    multiparts.append(MultipartFormData(provider: .data((item?.nickname?.data(using: .utf8))!), name: "nickname"))
-    
-    for (idx,image) in images.enumerated(){
-      if image != nil {
-        multiparts.append(MultipartFormData(provider: .data(UIImageJPEGRepresentation(image!, 1)!), name: "image\(idx+1)", fileName: "image\(idx+1)", mimeType: "image/jpeg"))
-      }
-    }
-  
-    AuthManager.provider.request(.createProfile(data: multiparts))
-      .map(ResultModel<UserModel>.self)
-      .subscribe(onSuccess: { (model) in
-        model.alert(success: "환영합니다"){[weak self] in
-          if self?.navigationController == nil {
-           self?.dismiss(animated: true, completion: nil)
-          }else{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-              AppDelegate.instance?.proxyController.makeRootViewController()
-            })
-            self?.navigationController?.popViewController(animated: true)
-          }
-        }
-      }) { (error) in
-        log.error(error)
-    }.disposed(by: disposeBag)
   }
   
   func tableView(_: UITableView, willDisplayHeaderView view: UIView, forSection: Int) {

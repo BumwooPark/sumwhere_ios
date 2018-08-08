@@ -18,7 +18,7 @@ class TripStyleCell: UICollectionViewCell{
   
   var item: TripStyleModel?{
     didSet{
-      titleLabel.text = "#\(item?.styleName ?? String())"
+      titleLabel.text = "#\(item?.typeName ?? String())"
     }
   }
   

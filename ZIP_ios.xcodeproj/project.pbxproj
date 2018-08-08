@@ -316,7 +316,6 @@
 				0A09A8061FDD3F2D00DC47A7 /* MainHeaderView.swift */,
 				0A1B11DA1FF1181D004B42B6 /* LoginView.swift */,
 				0A6FEE7E1FF622A100A2D347 /* JoinView.swift */,
-				0A0FDDF220387D250046E76F /* ProfileHeaderView.swift */,
 				0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */,
 				0A90EBD12109F76D0057F1A9 /* TicketView.swift */,
 				0A90EBD32109F7B10057F1A9 /* TicketView.xib */,
@@ -447,7 +446,6 @@
 				0A74567B210D877E00F8A0C9 /* FriendsModel.swift */,
 				0A745688210E04FC00F8A0C9 /* DestinationModel.swift */,
 				B10559982110223300AC769C /* MatchTypeModel.swift */,
-				0AAD748F21170FF700C860ED /* TripStyleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -629,6 +627,7 @@
 		B16B3DF32117E5EF001D278A /* views */ = {
 			isa = PBXGroup;
 			children = (
+				0A0FDDF220387D250046E76F /* ProfileHeaderView.swift */,
 				0AAD748B21170AA500C860ED /* TripStyleHeaderView.swift */,
 				B1EF95682119902D00F6418F /* TripStyleFooterView.swift */,
 				B1C4FFA42118204200535FB1 /* InterestAddView.swift */,
@@ -662,6 +661,7 @@
 		B16B3E012117F460001D278A /* SetProfile */ = {
 			isa = PBXGroup;
 			children = (
+				0AAD748F21170FF700C860ED /* TripStyleModel.swift */,
 				B16B3E022117F46B001D278A /* InterestModel.swift */,
 				B1EF956021193FC500F6418F /* CharacterModel.swift */,
 			);
@@ -892,6 +892,7 @@
 				"${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
+				"${BUILT_PRODUCTS_DIR}/Validator/Validator.framework",
 				"${BUILT_PRODUCTS_DIR}/expanding-collection/expanding_collection.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -949,6 +950,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TLPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Validator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/expanding_collection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);

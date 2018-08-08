@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LGButton
 
 class InterestAddView: UICollectionReusableView{
   
@@ -25,17 +26,41 @@ class InterestAddView: UICollectionReusableView{
     return button
   }()
   
+  let commitButton: LGButton = {
+    let button = LGButton()
+    button.bgColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    button.titleString = "등록하기"
+    button.titleFontName = "BMJUAOTF"
+    button.titleFontSize = 30
+    button.cornerRadius = 5
+    return button
+  }()
+  
+  lazy var commitAction = commitButton
+    .rx
+    .controlEvent(.touchUpInside)
+    .map{_ in return ()}
+    .share()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.addSubview(plusButton)
+    self.addSubview(commitButton)
   }
   
   override func updateConstraints() {
     if !didUpdateConstraint{
       plusButton.snp.makeConstraints { (make) in
-        make.centerX.bottom.equalToSuperview()
+        make.centerX.equalToSuperview()
+        make.top.equalToSuperview().inset(10)
         make.height.equalTo(40)
         make.width.equalTo(100)
+      }
+      
+      commitButton.snp.makeConstraints { (make) in
+        make.centerX.height.equalTo(plusButton)
+        make.width.equalTo(150)
+        make.top.equalTo(plusButton.snp.bottom).offset(20)
       }
       
       didUpdateConstraint = true

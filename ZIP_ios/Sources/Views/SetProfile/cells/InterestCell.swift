@@ -8,6 +8,12 @@
 
 class InterestCell: UICollectionViewCell{
   
+  override var isSelected: Bool{
+    didSet{
+      titleLabel.textColor = isSelected ? #colorLiteral(red: 0.04194890708, green: 0.5622439384, blue: 0.8219085336, alpha: 1) : .black
+    }
+  }
+  
   let titleLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.BMJUA(size: 30)

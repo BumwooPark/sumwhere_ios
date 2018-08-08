@@ -24,13 +24,12 @@ struct UserModel: Codable{
 }
 
 struct ProfileModel: Codable{
-  var area: String
-  var job: String
   var gender: String
   var birthday: String
-  var tripType: [TripType]?
+  var tripType: [TripStyleModel]?
   var interestType: [InterestModel]?
   var characterType: [CharacterModel]?
+  var introText: String?
   var image1: String
   var image2: String
   var image3: String

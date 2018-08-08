@@ -5,17 +5,24 @@
 //  Created by xiilab on 2018. 8. 7..
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
+import LGButton
 
 class TripStyleFooterView: UICollectionReusableView{
   
-  let commitButton: UIButton = {
-    let button = UIButton()
-    button.setTitle("등록하기", for: .normal)
-    button.backgroundColor = .blue
-    button.layer.cornerRadius = 5
-    button.layer.masksToBounds = true
+  let commitButton: LGButton = {
+    let button = LGButton()
+    button.bgColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    button.titleString = "등록하기"
+    button.titleFontName = "BMJUAOTF"
+    button.titleFontSize = 30
+    button.cornerRadius = 5
     return button
   }()
+  
+  lazy var commitAction = commitButton.rx
+    .controlEvent(.touchUpInside)
+    .map{_ in return ()}
+    .share()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -23,7 +30,7 @@ class TripStyleFooterView: UICollectionReusableView{
     
     commitButton.snp.makeConstraints { (make) in
       make.center.equalToSuperview()
-      make.height.equalTo(40)
+      make.height.equalTo(50)
       make.width.equalTo(200)
     }
   }
