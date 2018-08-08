@@ -170,6 +170,11 @@
 			<key>orderHint</key>
 			<integer>60</integer>
 		</dict>
+		<key>KTCenterFlowLayout.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>61</integer>
+		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -310,6 +315,11 @@
 			<key>orderHint</key>
 			<integer>45</integer>
 		</dict>
+		<key>RxSwiftExt.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>61</integer>
+		</dict>
 		<key>SQLite.swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -320,7 +330,7 @@
 		<key>SideMenu.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>61</integer>
+			<integer>62</integer>
 		</dict>
 		<key>SkyFloatingLabelTextField.xcscheme</key>
 		<dict>
@@ -412,6 +422,11 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>56</integer>
+		</dict>
+		<key>Validator.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>63</integer>
 		</dict>
 		<key>expanding-collection.xcscheme</key>
 		<dict>
