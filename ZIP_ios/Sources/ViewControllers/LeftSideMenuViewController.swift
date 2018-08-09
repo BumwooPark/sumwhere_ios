@@ -44,7 +44,7 @@ class LeftSideMenuViewController: FormViewController{
         self?.present(SetProfileViewController(config: true), animated: true, completion: nil)
       })
       <<< LabelRow(){$0.title = "친구"}.onCellSelection({ [weak self] (cell, row) in
-        self?.present(MyTripViewController(), animated: true, completion: nil)
+        self?.present(FriendsViewController(), animated: true, completion: nil)
       })
       <<< LabelRow(){$0.title = "알림"}
       <<< LabelRow(){$0.title = "스토어"}
