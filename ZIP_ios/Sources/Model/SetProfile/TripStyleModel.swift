@@ -9,4 +9,5 @@
 struct TripStyleModel: Codable{
   let id: Int
   let typeName: String
+  let imageURL: String
 }

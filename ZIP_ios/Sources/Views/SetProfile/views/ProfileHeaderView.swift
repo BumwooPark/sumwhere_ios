@@ -18,7 +18,13 @@ final class ProfileHeaderView: UIView {
   
   var didUpdateContraint = false
   private let disposeBag = DisposeBag()
-  var profiles = [UIImage?](repeating: nil, count: 5)
+  var profiles = [UIImage?](repeating: nil, count: 5){
+    didSet{
+      viewController?.viewModel
+        .modelSaver
+        .onNext(.image(value: profiles))
+    }
+  }
   var viewController: SetProfileViewController?
   
   let datas = BehaviorRelay<[SectionOfCustomData]>(value: [])
@@ -30,7 +36,6 @@ final class ProfileHeaderView: UIView {
     cell.item = item
     cell.vc = self
     cell.tag = idx.item
-    
     cell
       .profileImageAction
       .map{_ in return ()}
@@ -58,6 +63,7 @@ final class ProfileHeaderView: UIView {
     reload()
     
     datas.asDriver()
+      .debug()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
@@ -142,6 +148,7 @@ class ProfileViewCell: UICollectionViewCell{
         cancelButton.isEnabled = true
         cancelButton.isHidden = false
       }else{
+        profileView.image = #imageLiteral(resourceName: "icons8-plus_math_filled").withRenderingMode(.alwaysTemplate)
         cancelButton.isEnabled = false
         cancelButton.isHidden = true
       }
@@ -160,7 +167,8 @@ class ProfileViewCell: UICollectionViewCell{
     let imageView = UIImageView()
     imageView.layer.cornerRadius = 5
     imageView.layer.masksToBounds = true
-    imageView.backgroundColor = .lightGray
+    imageView.layer.borderWidth = 0.3
+    imageView.tintColor = #colorLiteral(red: 0.04194890708, green: 0.5622439384, blue: 0.8219085336, alpha: 1)
     imageView.contentMode = .scaleAspectFill
     return imageView
   }()
@@ -179,7 +187,6 @@ class ProfileViewCell: UICollectionViewCell{
         self.vc?.profiles[self.tag] = nil
         self.vc?.reload()
       }).disposed(by: disposeBag)
-    
     
     profileView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))

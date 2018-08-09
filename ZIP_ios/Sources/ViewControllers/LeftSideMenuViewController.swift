@@ -40,14 +40,15 @@ class LeftSideMenuViewController: FormViewController{
       $0.header = header
       }
       
-      <<< LabelRow(){$0.title = "프로필 수정"}.onCellSelection({[weak self] (cell, row) in
+      <<< LabelRow(){$0.title = "프로필"}.onCellSelection({[weak self] (cell, row) in
         self?.present(SetProfileViewController(config: true), animated: true, completion: nil)
       })
-      <<< LabelRow(){$0.title = "내 여행"}.onCellSelection({ [weak self] (cell, row) in
+      <<< LabelRow(){$0.title = "친구"}.onCellSelection({ [weak self] (cell, row) in
         self?.present(MyTripViewController(), animated: true, completion: nil)
       })
       <<< LabelRow(){$0.title = "알림"}
-      <<< LabelRow(){$0.title = "상점"}
+      <<< LabelRow(){$0.title = "스토어"}
+      <<< LabelRow(){$0.title = "계정설정"}
       <<< LabelRow(){$0.title = "문의하기"}
       <<< LabelRow(){
         $0.title = "설정"
