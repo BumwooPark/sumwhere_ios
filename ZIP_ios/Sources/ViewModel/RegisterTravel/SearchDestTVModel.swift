@@ -18,7 +18,7 @@ struct SearchDestTVModel{
 }
 
 extension SearchDestTVModel: SectionModelType{
-  typealias Item = DestinationModel
+  typealias Item = TripType
   init(original: SearchDestTVModel, items: [Item]) {
     self = original
     self.items = items

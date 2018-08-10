@@ -227,11 +227,11 @@ class ProfileViewModel{
       .subscribe(onSuccess: {[weak self] (result) in
         guard let `self` = self else {return}
         if result.success{
-          JDStatusBarNotification.show(withStatus: "환영 합니다", dismissAfter: 2, styleName: JDType.LoginSuccess.rawValue)
+          JDStatusBarNotification.show(withStatus: "환영 합니다", dismissAfter: 2, styleName: JDType.Success.rawValue)
           self.viewController.navigationController?.popViewController(animated: true)
           AppDelegate.instance?.proxyController.makeRootViewController()
         }else{
-          JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+          JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
         }
       }) { (error) in
         log.error(error)

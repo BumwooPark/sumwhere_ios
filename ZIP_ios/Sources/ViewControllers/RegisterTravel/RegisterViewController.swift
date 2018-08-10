@@ -69,7 +69,7 @@ class RegisterViewController: UIViewController{
       .when(.ended)
       .debounce(1, scheduler: MainScheduler.instance)
       .map {_ in return ()}
-      .bind(onNext: register)
+      .bind(onNext: viewController.register)
       .disposed(by: disposeBag)
     
     cancelButton.rx
@@ -81,18 +81,6 @@ class RegisterViewController: UIViewController{
     
     view.setNeedsUpdateConstraints()
   }
-  
-  func register(){
-    viewController
-      .viewModel
-      .createTrip()
-      .subscribe(onNext: { (model) in
-        if model.success{
-          
-        }
-    }).disposed(by: disposeBag)
-  }
-  
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{

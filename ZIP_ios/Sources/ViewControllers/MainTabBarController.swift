@@ -28,7 +28,7 @@ class MainTabBarController: UITabBarController{
   }()
   
   let writerViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: PlanViewController())
+    let naviVC = UINavigationController(rootViewController: TripViewController())
     let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC

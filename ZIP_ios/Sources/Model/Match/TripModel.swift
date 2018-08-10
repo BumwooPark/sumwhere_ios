@@ -23,7 +23,7 @@ struct Trip: Codable{
 
 struct TripType: Codable{
   let id: Int
-  let destination: String
+  let trip: String
   let country: String
   let imageURL: String
 }

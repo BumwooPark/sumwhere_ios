@@ -53,6 +53,7 @@ pod 'HGPlaceholders'
 pod 'TagListView', '~> 1.0'
 pod 'DropDown'
 pod 'JVFloatLabeledTextField'
+pod 'BubbleTransition'
 
 
 # RX

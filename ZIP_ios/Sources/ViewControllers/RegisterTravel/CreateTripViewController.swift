@@ -13,6 +13,7 @@ import RxSwift
 import RxGesture
 import Hero
 import SnapKit
+import JDStatusBarNotification
 
 class CreateTripViewController: UIViewController{
   
@@ -22,14 +23,13 @@ class CreateTripViewController: UIViewController{
   
   lazy var pageView = PageViewController(pages: [SearchDestinationViewController(viewController: self),
                                                  InsertPlanViewController(viewController: self),
-                                            InsertPeopleViewController(viewController: self),
                                             RegisterViewController(viewController: self)])
   
   var constraint: Constraint?
   
   let control: UIPageControl = {
     let control = UIPageControl()
-    control.numberOfPages = 4
+    control.numberOfPages = 3
     control.pageIndicatorTintColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 0.3925506162)
     control.currentPageIndicatorTintColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
     return control
@@ -48,26 +48,47 @@ class CreateTripViewController: UIViewController{
   
     
     self.navigationItem.hidesBackButton = true
-    pageView.currentIndex = {[weak self] index in
-      self?.control.currentPage = index
-      
-      
-      if index == 3{
-        self?.control.isHidden = true
-        self?.constraint?.update(inset: 100)
-      }else{
-        self?.control.isHidden = false
-        self?.constraint?.update(inset: 0)
-      }
-      
-      UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-        self?.view.setNeedsLayout()
-        self?.view.layoutIfNeeded()
-      }, completion: nil)
-    }
     
+    pageView
+      .currentIndexSubject
+      .bind(to: self.control.rx.currentPage)
+      .disposed(by: disposeBag)
 
+    pageView
+      .currentIndexSubject
+      .subscribe(onNext: {[weak self] index in
+        
+        if index == 2{
+          self?.control.isHidden = true
+          self?.constraint?.update(inset: 100)
+        }else{
+          self?.control.isHidden = false
+          self?.constraint?.update(inset: 0)
+        }
+        UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+          self?.view.setNeedsLayout()
+          self?.view.layoutIfNeeded()
+        }, completion: nil)
+      }).disposed(by: disposeBag)
+  
     view.setNeedsUpdateConstraints()
+  }
+  
+  func register(){
+    log.info("register")
+    
+    if let err = viewModel.validate(){
+      switch err{
+      case .date(let message):
+        JDStatusBarNotification.show(withStatus: message, dismissAfter: 2, styleName: JDType.Fail.rawValue)
+        pageView.scrollToViewController(index: 1)
+      case .destination(let message):
+        JDStatusBarNotification.show(withStatus: message, dismissAfter: 2, styleName: JDType.Fail.rawValue)
+        pageView.scrollToViewController(index: 0)
+      }
+    }else {
+      
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {

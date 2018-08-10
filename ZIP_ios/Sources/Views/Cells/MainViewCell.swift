@@ -11,7 +11,7 @@ import expanding_collection
 class MainViewCell: BasePageCollectionCell{
   var item: TripType? {
     didSet{
-      titleLabel.text = item?.destination
+      titleLabel.text = item?.trip
       imageView.kf.setImageWithZIP(image: item?.imageURL ?? String())
     }
   }

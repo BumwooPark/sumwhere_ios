@@ -9,14 +9,22 @@
 import RxSwift
 import RxCocoa
 import Moya
+import Validator
+import SwiftDate
 
 enum TripComponent{
   case startDate(date: Date)
   case endDate(date: Date)
-  case destination(model: DestinationModel)
+  case destination(model: TripType)
 }
 
 struct TripInput{
+  
+  enum TripInputError: Error{
+    case destination(message: String)
+    case date(message: String)
+  }
+  
   var destination: Int
   var startDate: String
   var endDate: String
@@ -27,9 +35,26 @@ struct TripInput{
     endDate = String()
   }
   
-  func validate() -> Bool{
-    guard destination != 0, startDate.length != 0, endDate.length != 0 else {return false}
-    return true
+  func validate() -> TripInputError?{
+
+    let dateRule = ValidationRuleLength(min: 4, error: TripInputError.date(message: "날짜를 선택해 주세요."))
+    
+    let destinationResult = destination.validate(rule: ValidationRuleCondition<Int>(error: TripInputError.destination(message: "목적지를 입력해 주세요.")) { (result) -> Bool in
+      return (result ?? 0) > 0
+    })
+    
+    let startDateResult = startDate.validate(rule: dateRule)
+    let endDateRusult = endDate.validate(rule: dateRule)
+    
+    switch ValidationResult.merge(results: [destinationResult,startDateResult,endDateRusult]){
+    case .valid:
+      return nil
+    case .invalid(let errors):
+      for err in errors{
+        return err as? TripInputError
+      }
+      return nil
+    }
   }
   
   func ToModel() -> Trip{
@@ -43,7 +68,7 @@ class TripRegisterViewModel{
   private let disposeBag = DisposeBag()
   let dataSubject = PublishSubject<TripComponent>()
   let ticketView: TicketView
-  var input = TripInput()
+  private var input = TripInput()
   
   init(view: TicketView) {
     self.ticketView = view
@@ -65,14 +90,14 @@ class TripRegisterViewModel{
     }).disposed(by: disposeBag)
   }
   
+  func validate() -> TripInput.TripInputError?{
+    return input.validate()
+  }
+  
   func createTrip() -> Observable<ResultModel<Trip>>{
-    
-    if input.validate(){
-      return AuthManager.provider.request(.createTrip(model: input.ToModel()))
-        .map(ResultModel<Trip>.self)
-        .asObservable()
-    }else{
-      return Observable.error(MoyaError.requestMapping("error"))
-    }
+    return AuthManager.provider.request(.createTrip(model: input.ToModel()))
+      .map(ResultModel<Trip>.self)
+      .asObservable()
+      .share()
   }
 }

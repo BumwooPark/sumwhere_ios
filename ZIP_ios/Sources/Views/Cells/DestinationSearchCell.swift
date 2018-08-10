@@ -9,12 +9,12 @@
 class DestinationSearchCell: UITableViewCell{
   
   var didUpdateConstraint = false
-  var item: (DestinationModel?,String?){
+  var item: (TripType?,String?){
     didSet{
       guard let itemString = item.0?.trip ,let searchString = item.1 else {return}
       let attributeString = NSMutableAttributedString(string: itemString)
       
-      let range: Range<String.Index> = itemString.range(of: searchString)!
+      guard let range: Range<String.Index> = itemString.range(of: searchString) else {return}
       let location : Int = itemString.distance(from: itemString.startIndex, to: range.lowerBound)
       let length : Int = searchString.count
       attributeString.addAttributes([.foregroundColor : UIColor.black], range: NSRange(location: location, length: length))

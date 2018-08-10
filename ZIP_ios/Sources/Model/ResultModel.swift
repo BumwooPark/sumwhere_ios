@@ -17,10 +17,10 @@ struct ResultModel<T: Codable>: Codable{
   
   func alert(success: String, complete: @escaping ()->Void ){
     if self.success{
-      JDStatusBarNotification.show(withStatus: success, dismissAfter: 2, styleName: JDType.LoginSuccess.rawValue)
+      JDStatusBarNotification.show(withStatus: success, dismissAfter: 2, styleName: JDType.Success.rawValue)
       complete()
     }else{
-      JDStatusBarNotification.show(withStatus: self.error?.details, dismissAfter: 2, styleName: JDType.LoginFail.rawValue)
+      JDStatusBarNotification.show(withStatus: self.error?.details, dismissAfter: 2, styleName: JDType.Fail.rawValue)
     }
   }
 }

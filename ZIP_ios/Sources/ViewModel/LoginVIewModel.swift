@@ -33,10 +33,10 @@ class LoginViewModel{
             if result.success{
               tokenObserver.onNext(result.result?.token ?? String())
             }else {
-              JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+              JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
             }
           }, onError: { (error) in
-            JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+            JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
           })
       }
     }
@@ -53,14 +53,14 @@ class LoginViewModel{
             if result.success{
               tokenObserver.onNext(result.result?.token ?? "")
             }else {
-              JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+              JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
             }
           }, onError: { (error) in
-            JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+            JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
           }).disposed(by: self.disposeBag)
       }else{
         
-        JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.LoginFail.rawValue)
+        JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
       }
     }
   }

@@ -13,13 +13,13 @@ import RxCocoa
 import RxDataSources
 #endif
 
-struct TripViewModel{
+struct MyTripViewModel{
   var items: [Item]
 }
 
-extension TripViewModel: SectionModelType{
+extension MyTripViewModel: SectionModelType{
   typealias Item = TripModel
-  init(original: TripViewModel, items: [Item]) {
+  init(original: MyTripViewModel, items: [Item]) {
     self = original
     self.items = items
   }
