@@ -16,7 +16,7 @@ public class NicknameCell: Cell<String>, CellType{
   let checkButton: UIButton = {
     let button = UIButton()
     button.setTitle("중복확인", for: .normal)
-    button.titleLabel?.font = UIFont.BMJUA(size: 14)
+    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 14)
     button.layer.borderWidth = 2
     button.layer.cornerRadius = 5
     button.layer.borderColor = UIColor.red.cgColor
@@ -28,7 +28,7 @@ public class NicknameCell: Cell<String>, CellType{
   
   let textField: UITextField = {
     let field = UITextField()
-    field.attributedPlaceholder = NSAttributedString(string: "닉네임 2자 이상", attributes: [.font : UIFont.BMJUA(size: 14)])
+    field.attributedPlaceholder = NSAttributedString(string: "닉네임 2자 이상", attributes: [.font : UIFont.NotoSansKRMedium(size: 14)])
     return field
   }()
   
@@ -37,8 +37,8 @@ public class NicknameCell: Cell<String>, CellType{
     addSubview(textField)
     addSubview(checkButton)
     
-    textLabel?.font = UIFont.BMJUA(size: 15)
-    detailTextLabel?.font = UIFont.BMJUA(size: 15)
+    textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+    detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
     
     textField.rx.text
       .map{$0?.count}

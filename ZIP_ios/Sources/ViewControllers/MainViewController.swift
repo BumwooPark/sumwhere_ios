@@ -33,7 +33,7 @@ final class MainViewController: ExpandingViewController{
       self?.navigationController?.pushViewController(CreateTripViewController(), animated: true)
     })
     floaty.items.forEach{
-      $0.titleLabel.font = UIFont.BMJUA(size: 13)
+      $0.titleLabel.font = UIFont.NotoSansKRMedium(size: 13)
     }
     floaty.plusColor = .white
     floaty.buttonColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
@@ -74,7 +74,7 @@ final class MainViewController: ExpandingViewController{
     let myString = NSMutableAttributedString(string: String())
     myString.append(attributeString)
     myString.append(NSAttributedString(string: "갈래말래",
-                                       attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 24),
+                                       attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 24),
                                                     .foregroundColor: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)]))
     titleLabel.attributedText = myString
     self.navigationItem.titleView = titleLabel
@@ -87,6 +87,12 @@ final class MainViewController: ExpandingViewController{
     SideMenuManager.default.menuAnimationBackgroundColor = .white
     SideMenuManager.default.menuFadeStatusBar = false
     SideMenuManager.default.menuShadowColor = .black
+    
+    
+    titleLabel.rx.tapGesture().when(.ended)
+      .subscribe(onNext: { (_) in
+        log.info("tap")
+      }).disposed(by: disposeBag)
     
     let leftBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "menuOff").withRenderingMode(.alwaysTemplate), style: .plain, target: nil, action: nil)
     leftBarButton.tintColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
@@ -210,10 +216,7 @@ extension MainViewController{
     if cell.isOpened == false {
       cell.cellIsOpen(true)
       cellsIsOpen[indexPath.row] = cell.isOpened
-    } else {
-     cellmaptoVC(cell: cell, indexPath: indexPath)
     }
-    
   }
   
   
@@ -228,7 +231,7 @@ extension MainViewController{
 extension MainViewController: DZNEmptyDataSetSource{
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
     return NSAttributedString(string: "앗! 등록하신 여행이 없네요!!",
-                              attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 15)])
+                              attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 15)])
   }
 }
 

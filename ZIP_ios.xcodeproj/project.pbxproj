@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */; };
 		0A059CAB1FEFB3B50057E26E /* PlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059CAA1FEFB3B50057E26E /* PlanModel.swift */; };
-		0A09A8001FDD361B00DC47A7 /* MainViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A7FF1FDD361B00DC47A7 /* MainViewController3.swift */; };
 		0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */; };
 		0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */; };
-		0A09A8071FDD3F2D00DC47A7 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8061FDD3F2D00DC47A7 /* MainHeaderView.swift */; };
 		0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7A6F203556D000F72C2B /* MainCell.swift */; };
 		0A0FDDF320387D250046E76F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FDDF220387D250046E76F /* ProfileHeaderView.swift */; };
 		0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FDE1B203988CC0046E76F /* UIFont+Extension.swift */; };
@@ -20,6 +18,11 @@
 		0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A0FDE2320398DCF0046E76F /* NotoSans-Light.otf */; };
 		0A0FDE2820398E5A0046E76F /* NotoSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A0FDE2220398DCF0046E76F /* NotoSans-Medium.otf */; };
 		0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A0FDE2420398DCF0046E76F /* NotoSans-Regular.otf */; };
+		0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6CD21280D0A0060290A /* MatchResultController.swift */; };
+		0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6CF21280F420060290A /* MatchResultCell.swift */; };
+		0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A15A6D1212810450060290A /* MatchResultCell.xib */; };
+		0A15A6D4212813DF0060290A /* MatchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6D3212813DF0060290A /* MatchResultModel.swift */; };
+		0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6D52128143E0060290A /* MatchResultViewModel.swift */; };
 		0A1B11D31FF101FF004B42B6 /* ConfigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11D21FF101FF004B42B6 /* ConfigureViewController.swift */; };
 		0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11DA1FF1181D004B42B6 /* LoginView.swift */; };
 		0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */; };
@@ -34,7 +37,6 @@
 		0A671AC220342C4C00034CE0 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A671AC120342C4C00034CE0 /* SetProfileViewController.swift */; };
 		0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */; };
 		0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C88AC1FEE3E66002019DE /* WriterCell.swift */; };
-		0A6C88AF1FEE82AA002019DE /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C88AE1FEE82AA002019DE /* PlanViewController.swift */; };
 		0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FEE7E1FF622A100A2D347 /* JoinView.swift */; };
 		0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FEE801FF629C600A2D347 /* EnumManager.swift */; };
 		0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71236A1FACC01200512EB7 /* AppDelegate.swift */; };
@@ -57,14 +59,15 @@
 		0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74567B210D877E00F8A0C9 /* FriendsModel.swift */; };
 		0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */; };
 		0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74567F210DE0FC00F8A0C9 /* TravelResigerViewModel.swift */; };
-		0A745683210DFB7800F8A0C9 /* CreateTravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745682210DFB7800F8A0C9 /* CreateTravelViewModel.swift */; };
 		0A745685210E013900F8A0C9 /* SearchDestinationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */; };
 		0A745687210E04C600F8A0C9 /* SearchDestTVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745686210E04C600F8A0C9 /* SearchDestTVModel.swift */; };
 		0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568C210E132B00F8A0C9 /* String + Extension.swift */; };
 		0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */; };
 		0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */; };
-		0A7740AB20415A3F0096936E /* PlanPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7740AA20415A3F0096936E /* PlanPageController.swift */; };
 		0A7E9CED204300F40014D549 /* InsertPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */; };
+		0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */; };
+		0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */; };
+		0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEA2129A10200FDF834 /* CalendarCell.swift */; };
 		0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBCF2109E8420057F1A9 /* UserModel.swift */; };
 		0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBD12109F76D0057F1A9 /* TicketView.swift */; };
 		0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A90EBD32109F7B10057F1A9 /* TicketView.xib */; };
@@ -79,10 +82,10 @@
 		0AAD748C21170AA500C860ED /* TripStyleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD748B21170AA500C860ED /* TripStyleHeaderView.swift */; };
 		0AAD749021170FF700C860ED /* TripStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD748F21170FF700C860ED /* TripStyleModel.swift */; };
 		0AAD74922117103000C860ED /* TripStyleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD74912117103000C860ED /* TripStyleViewModel.swift */; };
+		0AAD749B211ECEFB00C860ED /* SelectMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD749A211ECEFB00C860ED /* SelectMatchViewController.swift */; };
 		0AD3BC1120491F2C0051D7E3 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BC1020491F2C0051D7E3 /* CountryCell.swift */; };
 		0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BC12204A7B690051D7E3 /* CountryModel.swift */; };
 		0AD3BC17204A85E00051D7E3 /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BC16204A85E00051D7E3 /* CountryViewModel.swift */; };
-		0AD3BC19204BEBBB0051D7E3 /* DetailCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BC18204BEBBB0051D7E3 /* DetailCategoryViewController.swift */; };
 		0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */; };
 		0AF2C01720F8F16C00775EA8 /* MainViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF2C01620F8F16B00775EA8 /* MainViewCell.xib */; };
 		0AF2C01920F9CA7300775EA8 /* MatchDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */; };
@@ -99,7 +102,6 @@
 		B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105599321100A1C00AC769C /* MatchHeaderView.swift */; };
 		B1055997211021F300AC769C /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1055996211021F300AC769C /* MatchViewModel.swift */; };
 		B10559992110223300AC769C /* MatchTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10559982110223300AC769C /* MatchTypeModel.swift */; };
-		B12001C02112FD3300DFD676 /* PasswordForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12001BF2112FD3300DFD676 /* PasswordForgetViewController.swift */; };
 		B12001C2211300E800DFD676 /* launchlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B12001C1211300E800DFD676 /* launchlogo.png */; };
 		B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */; };
 		B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DEE211444C3001D278A /* NicknameRow.swift */; };
@@ -150,10 +152,8 @@
 /* Begin PBXFileReference section */
 		0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewModel.swift; sourceTree = "<group>"; };
 		0A059CAA1FEFB3B50057E26E /* PlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanModel.swift; sourceTree = "<group>"; };
-		0A09A7FF1FDD361B00DC47A7 /* MainViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController3.swift; sourceTree = "<group>"; };
 		0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
-		0A09A8061FDD3F2D00DC47A7 /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
 		0A0F7A6F203556D000F72C2B /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		0A0FDDF220387D250046E76F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		0A0FDE1B203988CC0046E76F /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -161,6 +161,11 @@
 		0A0FDE2320398DCF0046E76F /* NotoSans-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Light.otf"; sourceTree = SOURCE_ROOT; };
 		0A0FDE2420398DCF0046E76F /* NotoSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.otf"; sourceTree = SOURCE_ROOT; };
 		0A0FDE2520398DCF0046E76F /* NotoSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.otf"; sourceTree = SOURCE_ROOT; };
+		0A15A6CD21280D0A0060290A /* MatchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultController.swift; sourceTree = "<group>"; };
+		0A15A6CF21280F420060290A /* MatchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultCell.swift; sourceTree = "<group>"; };
+		0A15A6D1212810450060290A /* MatchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchResultCell.xib; sourceTree = "<group>"; };
+		0A15A6D3212813DF0060290A /* MatchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultModel.swift; sourceTree = "<group>"; };
+		0A15A6D52128143E0060290A /* MatchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultViewModel.swift; sourceTree = "<group>"; };
 		0A1B11D21FF101FF004B42B6 /* ConfigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureViewController.swift; sourceTree = "<group>"; };
 		0A1B11DA1FF1181D004B42B6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
@@ -175,7 +180,6 @@
 		0A671AC120342C4C00034CE0 /* SetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
 		0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		0A6C88AC1FEE3E66002019DE /* WriterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterCell.swift; sourceTree = "<group>"; };
-		0A6C88AE1FEE82AA002019DE /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		0A6FEE7E1FF622A100A2D347 /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		0A6FEE801FF629C600A2D347 /* EnumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumManager.swift; sourceTree = "<group>"; };
 		0A7123671FACC01200512EB7 /* ZIP_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZIP_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,14 +207,15 @@
 		0A74567B210D877E00F8A0C9 /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
 		0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		0A74567F210DE0FC00F8A0C9 /* TravelResigerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelResigerViewModel.swift; sourceTree = "<group>"; };
-		0A745682210DFB7800F8A0C9 /* CreateTravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTravelViewModel.swift; sourceTree = "<group>"; };
 		0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestinationViewModel.swift; sourceTree = "<group>"; };
 		0A745686210E04C600F8A0C9 /* SearchDestTVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestTVModel.swift; sourceTree = "<group>"; };
 		0A74568C210E132B00F8A0C9 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		0A7740AA20415A3F0096936E /* PlanPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPageController.swift; sourceTree = "<group>"; };
 		0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanViewController.swift; sourceTree = "<group>"; };
+		0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
+		0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarHeaderView.xib; sourceTree = "<group>"; };
+		0A895BEA2129A10200FDF834 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		0A90EBCF2109E8420057F1A9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0A90EBD12109F76D0057F1A9 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		0A90EBD32109F7B10057F1A9 /* TicketView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketView.xib; sourceTree = "<group>"; };
@@ -225,10 +230,10 @@
 		0AAD748B21170AA500C860ED /* TripStyleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleHeaderView.swift; sourceTree = "<group>"; };
 		0AAD748F21170FF700C860ED /* TripStyleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleModel.swift; sourceTree = "<group>"; };
 		0AAD74912117103000C860ED /* TripStyleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewModel.swift; sourceTree = "<group>"; };
+		0AAD749A211ECEFB00C860ED /* SelectMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMatchViewController.swift; sourceTree = "<group>"; };
 		0AD3BC1020491F2C0051D7E3 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		0AD3BC12204A7B690051D7E3 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		0AD3BC16204A85E00051D7E3 /* CountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewModel.swift; sourceTree = "<group>"; };
-		0AD3BC18204BEBBB0051D7E3 /* DetailCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryViewController.swift; sourceTree = "<group>"; };
 		0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		0AF2C01620F8F16B00775EA8 /* MainViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewCell.xib; sourceTree = "<group>"; };
 		0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -246,7 +251,6 @@
 		B105599321100A1C00AC769C /* MatchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderView.swift; sourceTree = "<group>"; };
 		B1055996211021F300AC769C /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		B10559982110223300AC769C /* MatchTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeModel.swift; sourceTree = "<group>"; };
-		B12001BF2112FD3300DFD676 /* PasswordForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordForgetViewController.swift; sourceTree = "<group>"; };
 		B12001C1211300E800DFD676 /* launchlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchlogo.png; sourceTree = "<group>"; };
 		B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JVFloatTextRow.swift; sourceTree = "<group>"; };
 		B16B3DEE211444C3001D278A /* NicknameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRow.swift; sourceTree = "<group>"; };
@@ -311,16 +315,16 @@
 		0A09A8051FDD3F1900DC47A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A895BED2129A5FD00FDF834 /* Login */,
 				B1A1D99B211D23EA0022D2A0 /* Match */,
 				B16B3DF12117E5BE001D278A /* SetProfile */,
 				0A6C88AB1FEE3E51002019DE /* Cells */,
-				0A09A8061FDD3F2D00DC47A7 /* MainHeaderView.swift */,
-				0A1B11DA1FF1181D004B42B6 /* LoginView.swift */,
-				0A6FEE7E1FF622A100A2D347 /* JoinView.swift */,
 				0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */,
 				0A90EBD12109F76D0057F1A9 /* TicketView.swift */,
 				0A90EBD32109F7B10057F1A9 /* TicketView.xib */,
 				B105599321100A1C00AC769C /* MatchHeaderView.swift */,
+				0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */,
+				0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,6 +370,7 @@
 				0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */,
 				B105598F210FED2500AC769C /* MatchCell.swift */,
 				B16BD221211162AF0045FAA6 /* MyTripCell.swift */,
+				0A895BEA2129A10200FDF834 /* CalendarCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -480,21 +485,15 @@
 		0A7123901FACC17700512EB7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A895BEC2129A59900FDF834 /* Login */,
 				B1A1D998211D16B10022D2A0 /* Match */,
 				B16B3DF52117E6E3001D278A /* SetProfile */,
 				0A74566A210CA9EE00F8A0C9 /* RegisterTravel */,
-				0A7740AC20415B550096936E /* Plans */,
-				B12001BF2112FD3300DFD676 /* PasswordForgetViewController.swift */,
-				B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */,
-				0A7123911FACC1B600512EB7 /* LoginViewController.swift */,
-				0A7123971FACC1FB00512EB7 /* JoinViewController.swift */,
-				0A671AC120342C4C00034CE0 /* SetProfileViewController.swift */,
 				0A7123951FACC1E900512EB7 /* MainTabBarController.swift */,
 				B1D4E50D20F895EF00524CE2 /* MainViewController.swift */,
 				0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */,
 				B1D4E51520FDC83B00524CE2 /* FriendsViewController.swift */,
 				0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */,
-				0A09A7FF1FDD361B00DC47A7 /* MainViewController3.swift */,
 				0A3C3FEC1FE7ECE6005FF52B /* ChatViewController.swift */,
 				0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */,
 				0A1B11D21FF101FF004B42B6 /* ConfigureViewController.swift */,
@@ -520,21 +519,30 @@
 		0A745681210DFB5C00F8A0C9 /* RegisterTravel */ = {
 			isa = PBXGroup;
 			children = (
-				0A745682210DFB7800F8A0C9 /* CreateTravelViewModel.swift */,
 				0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */,
 				0A745686210E04C600F8A0C9 /* SearchDestTVModel.swift */,
 			);
 			path = RegisterTravel;
 			sourceTree = "<group>";
 		};
-		0A7740AC20415B550096936E /* Plans */ = {
+		0A895BEC2129A59900FDF834 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				0A7740AA20415A3F0096936E /* PlanPageController.swift */,
-				0A6C88AE1FEE82AA002019DE /* PlanViewController.swift */,
-				0AD3BC18204BEBBB0051D7E3 /* DetailCategoryViewController.swift */,
+				B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */,
+				0A7123911FACC1B600512EB7 /* LoginViewController.swift */,
+				0A7123971FACC1FB00512EB7 /* JoinViewController.swift */,
 			);
-			path = Plans;
+			name = Login;
+			path = ../../..;
+			sourceTree = "<group>";
+		};
+		0A895BED2129A5FD00FDF834 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B11DA1FF1181D004B42B6 /* LoginView.swift */,
+				0A6FEE7E1FF622A100A2D347 /* JoinView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		0A9174CF2024AB6D000A055A /* Util */ = {
@@ -639,6 +647,7 @@
 		B16B3DF52117E6E3001D278A /* SetProfile */ = {
 			isa = PBXGroup;
 			children = (
+				0A671AC120342C4C00034CE0 /* SetProfileViewController.swift */,
 				B16B3DF62117E6F0001D278A /* TripStyleViewController.swift */,
 				B16B3DFA2117E7E2001D278A /* InterestViewController.swift */,
 				B1C4FFA62118315100535FB1 /* CharacterViewController.swift */,
@@ -671,6 +680,8 @@
 			isa = PBXGroup;
 			children = (
 				B1A1D999211D16DC0022D2A0 /* TripViewController.swift */,
+				0AAD749A211ECEFB00C860ED /* SelectMatchViewController.swift */,
+				0A15A6CD21280D0A0060290A /* MatchResultController.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -679,6 +690,8 @@
 			isa = PBXGroup;
 			children = (
 				B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */,
+				0A15A6CF21280F420060290A /* MatchResultCell.swift */,
+				0A15A6D1212810450060290A /* MatchResultCell.xib */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -688,6 +701,7 @@
 			children = (
 				B1A1D99F211D27660022D2A0 /* TripViewModel.swift */,
 				0AF2C02420FE2AB600775EA8 /* MyTripViewModel.swift */,
+				0A15A6D52128143E0060290A /* MatchResultViewModel.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -696,6 +710,7 @@
 			isa = PBXGroup;
 			children = (
 				0AF2C02220FE23BD00775EA8 /* TripModel.swift */,
+				0A15A6D3212813DF0060290A /* MatchResultModel.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -749,7 +764,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "park bumwoo";
 				TargetAttributes = {
 					0A7123661FACC01200512EB7 = {
@@ -807,7 +822,9 @@
 				0A71236D1FACC01200512EB7 /* art.scnassets in Resources */,
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
 				0A409E2E1FB74161001FE583 /* GoogleService-Info.plist in Resources */,
+				0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */,
 				0A0FDE2620398E550046E76F /* NotoSans-Bold.otf in Resources */,
+				0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */,
 				0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */,
 				B12001C2211300E800DFD676 /* launchlogo.png in Resources */,
 				0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */,
@@ -1026,12 +1043,11 @@
 				0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */,
 				B16B3DFB2117E7E2001D278A /* InterestViewController.swift in Sources */,
 				B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */,
+				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
 				B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */,
-				0A745683210DFB7800F8A0C9 /* CreateTravelViewModel.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A1B11D31FF101FF004B42B6 /* ConfigureViewController.swift in Sources */,
-				0A09A8071FDD3F2D00DC47A7 /* MainHeaderView.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,
 				B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */,
@@ -1040,9 +1056,9 @@
 				B1EF95632119450F00F6418F /* CharacterHeaderView.swift in Sources */,
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
-				0A7740AB20415A3F0096936E /* PlanPageController.swift in Sources */,
 				B10559992110223300AC769C /* MatchTypeModel.swift in Sources */,
 				B1055997211021F300AC769C /* MatchViewModel.swift in Sources */,
+				0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */,
 				0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
 				B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */,
@@ -1054,16 +1070,13 @@
 				0AAD748C21170AA500C860ED /* TripStyleHeaderView.swift in Sources */,
 				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
 				0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */,
-				B12001C02112FD3300DFD676 /* PasswordForgetViewController.swift in Sources */,
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
-				0A6C88AF1FEE82AA002019DE /* PlanViewController.swift in Sources */,
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
 				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,
 				0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */,
 				B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */,
 				0AF2C01B20FB2D9600775EA8 /* LeftSideMenuViewController.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
-				0A09A8001FDD361B00DC47A7 /* MainViewController3.swift in Sources */,
 				0AF2C02A2104C8E500775EA8 /* TagRow.swift in Sources */,
 				0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */,
 				0AD3BC17204A85E00051D7E3 /* CountryViewModel.swift in Sources */,
@@ -1084,9 +1097,13 @@
 				B1A1D99A211D16DC0022D2A0 /* TripViewController.swift in Sources */,
 				B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */,
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
+				0AAD749B211ECEFB00C860ED /* SelectMatchViewController.swift in Sources */,
 				0AA0361E1FDADBC6000D4451 /* ProxyController.swift in Sources */,
+				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
+				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
 				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,
+				0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
@@ -1111,6 +1128,7 @@
 				0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */,
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
 				0AAD74922117103000C860ED /* TripStyleViewModel.swift in Sources */,
+				0A15A6D4212813DF0060290A /* MatchResultModel.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,
@@ -1122,7 +1140,6 @@
 				B1EF95652119481700F6418F /* ProfileViewModel.swift in Sources */,
 				0A671AC220342C4C00034CE0 /* SetProfileViewController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
-				0AD3BC19204BEBBB0051D7E3 /* DetailCategoryViewController.swift in Sources */,
 				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,
 				B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */,
@@ -1183,6 +1200,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1190,6 +1208,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1240,6 +1259,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1247,6 +1267,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

@@ -14,8 +14,8 @@ public class JVFloatTextCell: Cell<String>, CellType{
   
   let textField: JVFloatLabeledTextField = {
     let field = JVFloatLabeledTextField()
-    field.font = UIFont.BMJUA(size: 20)
-    field.floatingLabel.font = UIFont.BMJUA(size: 15)
+    field.font = UIFont.NotoSansKRMedium(size: 20)
+    field.floatingLabel.font = UIFont.NotoSansKRMedium(size: 15)
     return field
   }()
   

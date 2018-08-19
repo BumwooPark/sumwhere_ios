@@ -10,6 +10,9 @@ import BubbleTransition
 import RxSwift
 import RxCocoa
 import RxDataSources
+import DZNEmptyDataSet
+import Moya
+import JDStatusBarNotification
 
 class TripViewController: UIViewController{
   
@@ -19,8 +22,7 @@ class TripViewController: UIViewController{
   
   let transition = BubbleTransition()
   let interactiveTransition = BubbleInteractiveTransition()
-  
-  let destViewController = CreateTripViewController()
+  let refreshControl = UIRefreshControl()
   private let addButton: UIButton = {
     let button = UIButton()
     button.setTitle("+", for: .normal)
@@ -39,7 +41,7 @@ class TripViewController: UIViewController{
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "매칭할 티켓을 선택해 보세요."
-    label.font = UIFont.BMJUA(size: 30)
+    label.font = UIFont.NotoSansKRBold(size: 25)
     label.textAlignment = .center
     return label
   }()
@@ -48,10 +50,11 @@ class TripViewController: UIViewController{
   
   private let dataSources = RxCollectionViewSectionedReloadDataSource<MyTripViewModel>(configureCell: {ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: TripTicketCell.self), for: idx) as! TripTicketCell
+    cell.item = item
     return cell
   })
   
-  let collectionView: UICollectionView = {
+  lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
     layout.minimumLineSpacing = 10
@@ -61,6 +64,7 @@ class TripViewController: UIViewController{
     collectionView.register(TripTicketCell.self, forCellWithReuseIdentifier: String(describing: TripTicketCell.self))
     collectionView.backgroundColor = .white
     collectionView.isScrollEnabled = false
+    collectionView.emptyDataSetSource = self
     return collectionView
   }()
   
@@ -73,33 +77,59 @@ class TripViewController: UIViewController{
     scrollView.addSubview(collectionView)
     scrollView.contentInsetAdjustmentBehavior = .never
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    scrollView.refreshControl = refreshControl
+    self.navigationController?.navigationBar.topItem?.title = String()
     view.setNeedsUpdateConstraints()
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    destViewController.transitioningDelegate = self
-    destViewController.modalPresentationStyle = .custom
-    interactiveTransition.attach(to: destViewController)
+    api()
     
+    refreshControl.rx.controlEvent(.valueChanged)
+      .subscribe {[weak self] _ in
+        self?.api()
+    }.disposed(by: disposeBag)
     
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
+    addButton.rx.tap
+      .subscribe {[unowned self] (_) in
+        let destViewController = CreateTripViewController()
+        destViewController.transitioningDelegate = self
+        destViewController.modalPresentationStyle = .custom
+        self.interactiveTransition.attach(to: destViewController)
+        self.present(destViewController, animated: true, completion: nil)
+      }.disposed(by: disposeBag)
+    
+    collectionView.rx.modelSelected(TripModel.self)
+      .subscribe(onNext: {[weak self]model in
+        self?.navigationController?.pushViewController(SelectMatchViewController(), animated: true)
+        log.info(model)
+      }).disposed(by: disposeBag)
+  }
+  
+  func api(){
+    
     viewModel.api
+      .catchError { (error) -> PrimitiveSequence<SingleTrait, ResultModel<[TripModel]>> in
+        if case .statusCode = error as! MoyaError{
+          JDStatusBarNotification.show(withStatus: "관리자에게 문의바랍니다.", dismissAfter: 2, styleName: JDType.Fail.rawValue)
+        }
+        return Single.error(error)
+      }.asObservable()
       .map{$0.result}
       .filterNil()
       .map{[MyTripViewModel(items: $0)]}
       .catchErrorJustReturn([])
+      .do(onNext: {[weak self] (_) in
+        self?.refreshControl.endRefreshing()
+      })
       .bind(to: datas)
       .disposed(by: disposeBag)
-    
-    addButton.rx.tap
-      .subscribe {[unowned self] (_) in
-        self.present(self.destViewController, animated: true, completion: nil)
-      }.disposed(by: disposeBag)
   }
   
   override func viewDidLayoutSubviews() {
@@ -155,5 +185,11 @@ extension TripViewController: UIViewControllerTransitioningDelegate{
   
   func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
     return interactiveTransition
+  }
+}
+
+extension TripViewController: DZNEmptyDataSetSource{
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string: "등록해 보세요!", attributes: [NSAttributedStringKey.font: UIFont.NotoSansKRMedium(size: 20)])
   }
 }

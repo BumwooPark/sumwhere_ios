@@ -20,7 +20,6 @@ class SearchDestinationViewModel{
   init(text: Observable<String?>) {
     self.textObservable = text
     
-    
     self.textObservable
       .filterNil()
       .debounce(0.5, scheduler: MainScheduler.instance)

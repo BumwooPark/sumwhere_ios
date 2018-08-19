@@ -29,9 +29,9 @@ final class DefaultLoginViewController: UIViewController{
   private let emailField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
     field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.placeholderFont = UIFont.BMJUA(size: 15)
-    field.titleFont = UIFont.BMJUA(size: 15)
-    field.font = UIFont.BMJUA(size: 15)
+    field.placeholderFont = UIFont.NotoSansKRMedium(size: 15)
+    field.titleFont = UIFont.NotoSansKRMedium(size: 15)
+    field.font = UIFont.NotoSansKRMedium(size: 15)
     field.lineColor = .black
     field.lineErrorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     field.selectedLineColor = .blue
@@ -47,9 +47,8 @@ final class DefaultLoginViewController: UIViewController{
     let field = SkyFloatingLabelTextField()
     field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     field.lineColor = .black
-    field.placeholderFont = UIFont.BMJUA(size: 15)
-    field.titleFont = UIFont.BMJUA(size: 15)
-    field.font = UIFont.BMJUA(size: 15)
+    field.placeholderFont = UIFont.NotoSansKRMedium(size: 15)
+    field.titleFont = UIFont.NotoSansKRMedium(size: 15)
     field.lineErrorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     field.selectedLineColor = .blue
     field.selectedTitleColor = .blue
@@ -65,7 +64,7 @@ final class DefaultLoginViewController: UIViewController{
     
     let label = TTTAttributedLabel(frame: .zero)
     let attstring = NSAttributedString(string: "비밀번호 찾으러 갈래?",
-                                       attributes: [NSAttributedStringKey.font : UIFont.BMJUA(size: 13)])
+                                       attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 13)])
     
     label.attributedText = attstring
     label.textColor = .black

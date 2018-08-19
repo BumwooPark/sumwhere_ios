@@ -16,7 +16,7 @@ class InterestAddView: UICollectionReusableView{
   lazy var plusButton: UIButton = {
     let button = UIButton()
     button.setTitle("+", for: .normal)
-    button.titleLabel?.font = UIFont.BMJUA(size: 30)
+    button.titleLabel?.font = UIFont.NotoSansKRMedium(size: 30)
     button.layer.borderWidth = 1
     button.layer.cornerRadius = 5
     button.layer.masksToBounds = true
@@ -30,7 +30,7 @@ class InterestAddView: UICollectionReusableView{
     let button = LGButton()
     button.bgColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     button.titleString = "등록하기"
-    button.titleFontName = "BMJUAOTF"
+    button.titleFontName = "NotoSansKR-Medium"
     button.titleFontSize = 30
     button.cornerRadius = 5
     return button

@@ -13,8 +13,14 @@ import Moya
 class TripViewModel{
   
   let api = AuthManager.provider.request(.myTrip)
+    .filterSuccessfulStatusCodes()
     .map(ResultModel<[TripModel]>.self)
-    .asObservable()
+//    .catchError({ (error) -> PrimitiveSequence<SingleTrait, ResultModel<[TripModel]>> in
+//      let err = error as! MoyaError
+//      log.info(err)
+//      return MoyaError.
+//    })
+//    .asObservable()
 
   init() {
   }

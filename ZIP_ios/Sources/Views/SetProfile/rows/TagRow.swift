@@ -15,7 +15,7 @@ public class TagCell: Cell<String>, CellType, TagListViewDelegate{
   public lazy var tagListView: TagListView = {
     let view = TagListView()
     view.alignment = .center
-    view.textFont = UIFont.BMJUA(size: 14)
+    view.textFont = UIFont.NotoSansKRMedium(size: 14)
     view.cornerRadius = 5
     view.tagBackgroundColor = .gray
     view.paddingY = 5

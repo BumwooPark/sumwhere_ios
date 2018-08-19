@@ -21,14 +21,14 @@ class MenuHeaderView: UIView {
   
   let nicknameLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.BMJUA(size: 20)
+    label.font = UIFont.NotoSansKRMedium(size: 20)
     label.text = "nickname"
     return label
   }()
   
   let keyLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.BMJUA(size: 16)
+    label.font = UIFont.NotoSansKRMedium(size: 16)
     label.textColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
     label.text = "50"
     return label

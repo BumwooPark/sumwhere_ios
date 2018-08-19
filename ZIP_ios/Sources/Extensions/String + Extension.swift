@@ -17,4 +17,21 @@ extension String {
     }
     return result
   }
+  
+}
+
+/*
+ "abcde"[0] === "a"
+ "abcde"[0...2] === "abc"
+ "abcde"[2..<4] === "cd"
+ */
+extension String {
+  
+  subscript (i: Int) -> Character {
+    return self[self.index(self.startIndex, offsetBy: i)]
+  }
+  
+  subscript (i: Int) -> String {
+    return String(self[i] as Character)
+  }
 }

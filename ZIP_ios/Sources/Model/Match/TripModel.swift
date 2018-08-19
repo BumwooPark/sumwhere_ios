@@ -16,7 +16,7 @@ struct TripModel: Codable{
 struct Trip: Codable{
   let id: Int
   let userId: Int
-  let destinationId: Int
+  let tripTypeId: Int
   let startDate: String
   let endDate: String
 }

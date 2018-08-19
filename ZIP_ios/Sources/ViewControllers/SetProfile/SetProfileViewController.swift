@@ -100,8 +100,8 @@ class SetProfileViewController: FormViewController{
         $0.title = "생년월일"
         $0.tag = "birthday"
         }.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+          cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+          cell.detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
         }).cellUpdate({[weak self] (cell, row) in
           if self?.viewModel.item?.profile?.birthday == String(){
             row.value = Date(timeIntervalSinceNow: 0)
@@ -118,8 +118,8 @@ class SetProfileViewController: FormViewController{
         $0.tag = "gender"
         $0.options = ["여성","남성"]
         }.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+          cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+          cell.detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
         }).cellUpdate({[weak self] (cell, row) in
           row.value = self?.viewModel.item?.profile?.gender
         }).onChange({[weak self] (row) in
@@ -138,8 +138,8 @@ class SetProfileViewController: FormViewController{
           self.viewModel.modelSaver.onNext(.tripStyle(value: tripvc.selectedModel))
           _ = vc.navigationController?.popViewController(animated: true)
         })}.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+          cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+          cell.detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
         })
 
       <<< InterestPresenterRow(){
@@ -152,8 +152,8 @@ class SetProfileViewController: FormViewController{
           _ = vc.navigationController?.popViewController(animated: true)
         })
         }.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+          cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+          cell.detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
         })
       
       <<< CharacterPresenterRow(){
@@ -166,8 +166,8 @@ class SetProfileViewController: FormViewController{
           _ = vc.navigationController?.popViewController(animated: true)
         })
         }.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.BMJUA(size: 15)
-          cell.detailTextLabel?.font = UIFont.BMJUA(size: 15)
+          cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+          cell.detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
         })
       
       +++ Section("자기소개")
@@ -187,7 +187,7 @@ class SetProfileViewController: FormViewController{
         }.onCellSelection({ [weak self](cell, row) in
           self?.viewModel.commit()
         }).cellSetup({ (button, row) in
-          button.textLabel?.font = UIFont.BMJUA(size: 15)
+          button.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
           button.tintColor = .black
         })
     
@@ -198,7 +198,7 @@ class SetProfileViewController: FormViewController{
         }.onCellSelection({[weak self] (cell, row) in
           self?.dismiss(animated: true, completion: nil)
         }).cellSetup({ (button, row) in
-          button.textLabel?.font = UIFont.BMJUA(size: 15)
+          button.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
           button.tintColor = .black
         })
     }
@@ -207,7 +207,7 @@ class SetProfileViewController: FormViewController{
   func tableView(_: UITableView, willDisplayHeaderView view: UIView, forSection: Int) {
     
     if let view = view as? UITableViewHeaderFooterView {
-      view.textLabel?.font = UIFont.BMJUA(size: 16)
+      view.textLabel?.font = UIFont.NotoSansKRMedium(size: 16)
     }
   }
 }

@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import RxGesture
 
+
 class SearchDestinationViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
@@ -23,8 +24,8 @@ class SearchDestinationViewController: UIViewController{
     let textField = UITextField()
     textField.attributedPlaceholder = NSAttributedString(
       string: "여행지를 입력해 주세요",
-      attributes: [.font : UIFont.BMJUA(size: 15)])
-    textField.font = UIFont.BMJUA(size: 15)
+      attributes: [.font : UIFont.NotoSansKRMedium(size: 15)])
+    textField.font = UIFont.NotoSansKRMedium(size: 15)
     textField.setZIPClearButton()
     textField.clearButtonMode = .never
     textField.backgroundColor = .white
@@ -36,8 +37,6 @@ class SearchDestinationViewController: UIViewController{
     let tableView = UITableView(frame: .zero, style: .plain)
     tableView.rowHeight = 50
     tableView.separatorStyle = .none
-    tableView.allowsSelection = true
-    tableView.allowsSelectionDuringEditing = true
     tableView.register(DestinationSearchCell.self, forCellReuseIdentifier: String(describing: DestinationSearchCell.self))
     return tableView
   }()
@@ -75,11 +74,20 @@ class SearchDestinationViewController: UIViewController{
     
     tableView.rx
       .modelSelected(TripType.self)
-      .subscribe(onNext: {[weak self] (model) in
-        guard let vc = self?.viewController as? CreateTripViewController else {return}
-        vc.viewModel.dataSubject.onNext(.destination(model: model))
+      .asDriver()
+      .flatMapLatest {[unowned self] (resultModel)  -> SharedSequence<DriverSharingStrategy, TripType> in
+      let vc = self.viewController as! CreateTripViewController
+        return vc.viewModel.serverTripValidate(model: resultModel)
+          .asDriver(onErrorRecover: { (error) -> SharedSequence<DriverSharingStrategy, TripType> in
+            vc.validationErrorPopUp(error: error)
+            return Driver.just(TripType(id: 0, trip: String(), country: String(), imageURL: String()))
+          })
+      }.drive(onNext: {[weak self] (model) in
+        if model.id != 0 {
+          (self?.viewController as? CreateTripViewController)?.viewModel.dataSubject.onNext(.destination(model: model))
+        }
       }).disposed(by: disposeBag)
-    
+
     view.setNeedsUpdateConstraints()
   }
   
@@ -100,7 +108,6 @@ class SearchDestinationViewController: UIViewController{
     }
     super.updateViewConstraints()
   }
-  
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()

@@ -43,10 +43,17 @@ struct TripInput{
       return (result ?? 0) > 0
     })
     
+    let dateTodayRule = ValidationRuleCondition<String>(error: TripInputError.date(message: "날짜를 선택해 주세요.")) { (result) -> Bool in
+      guard let dateResult = result?.toDate() else {return false}
+      return !dateResult.isToday
+    }
+    
     let startDateResult = startDate.validate(rule: dateRule)
     let endDateRusult = endDate.validate(rule: dateRule)
+    let startDateTodayResult = startDate.validate(rule: dateTodayRule)
+    let endDateTodayResult = startDate.validate(rule: dateTodayRule)
     
-    switch ValidationResult.merge(results: [destinationResult,startDateResult,endDateRusult]){
+    switch ValidationResult.merge(results: [destinationResult,startDateResult,endDateRusult,startDateTodayResult,endDateTodayResult]){
     case .valid:
       return nil
     case .invalid(let errors):
@@ -58,9 +65,8 @@ struct TripInput{
   }
   
   func ToModel() -> Trip{
-    return Trip(id: 0, userId: 0, destinationId: self.destination, startDate: self.startDate, endDate: self.endDate)
+    return Trip(id: 0, userId: 0, tripTypeId: self.destination, startDate: self.startDate, endDate: self.endDate)
   }
-  
 }
 
 class TripRegisterViewModel{
@@ -94,10 +100,51 @@ class TripRegisterViewModel{
     return input.validate()
   }
   
-  func createTrip() -> Observable<ResultModel<Trip>>{
+  
+  func serverTripValidate(model: TripType) -> Observable<TripType> {
+    return AuthManager.provider.request(.TripDestinationValidate(id: model.id))
+      .map(ResultModel<Int>.self)
+      .asObservable()
+      .flatMap { (resultModel) -> Observable<TripType> in
+        if resultModel.result == 0{
+          return Observable.just(model)
+//          return Observable.create({ (observer) -> Disposable in
+//            observer.on(.next(model))
+//            return Disposables.create()
+//          })
+        }else{
+          return Observable<TripType>.error(MoyaError.requestMapping("이미 등록하신 여행지 입니다."))
+//          return Observable.create({ (observer) -> Disposable in
+//            observer.onError(MoyaError.requestMapping("이미 등록하신 여행지 입니다."))
+//            return Disposables.create()
+//          })
+        }
+    }
+  }
+  
+  func serverDateValidate(){
+    AuthManager.provider
+    .request(.TripDateValidate(start: "date", end: "date"))
+    .map(ResultModel<Int>.self)
+    .asObservable()
+//    .flatMap { (resultModel) -> Observable<TripType> in
+//      if resultModel.result == 0{
+//        return Observable.create({ (observer) -> Disposable in
+//          observer.on(.next(model))
+//          return Disposables.create()
+//        })
+//      }else{
+//        return Observable.create({ (observer) -> Disposable in
+//          observer.onError(MoyaError.requestMapping("이미 등록하신 여행지 입니다."))
+//          return Disposables.create()
+//        })
+//      }
+//    }
+
+  }
+  
+  func createTrip() -> PrimitiveSequence<SingleTrait, ResultModel<Trip>>{
     return AuthManager.provider.request(.createTrip(model: input.ToModel()))
       .map(ResultModel<Trip>.self)
-      .asObservable()
-      .share()
   }
 }

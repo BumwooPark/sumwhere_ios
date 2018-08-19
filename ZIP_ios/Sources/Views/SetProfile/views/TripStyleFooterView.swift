@@ -13,7 +13,7 @@ class TripStyleFooterView: UICollectionReusableView{
     let button = LGButton()
     button.bgColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     button.titleString = "등록하기"
-    button.titleFontName = "BMJUAOTF"
+    button.titleFontName = "NotoSansKR-Medium"
     button.titleFontSize = 30
     button.cornerRadius = 5
     return button

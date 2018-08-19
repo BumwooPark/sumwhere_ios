@@ -161,7 +161,7 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
     log.info(collectionView.numberOfSections)
     let vc = UIAlertController(title: "관심사 입력", message: nil, preferredStyle: .alert)
     vc.addTextField { (field) in
-      field.font = UIFont.BMJUA(size: 14)
+      field.font = UIFont.NotoSansKRMedium(size: 14)
       field.placeholder = "ex) 여행"
     }
     vc.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))

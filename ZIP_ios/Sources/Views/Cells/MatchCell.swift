@@ -21,13 +21,13 @@ class MatchCell: UICollectionViewCell{
   
   private let detailLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.BMJUA(size: 20)
+    label.font = UIFont.NotoSansKRMedium(size: 20)
     return label
   }()
   
   private let titleLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.BMJUA(size: 30)
+    label.font = UIFont.NotoSansKRMedium(size: 30)
     return label
   }()
   

@@ -14,7 +14,7 @@ class CharacterHeaderView: UICollectionReusableView{
   let styleLabel: UILabel = {
     let label = UILabel()
     label.text = "나의 성격을 골라주세요"
-    label.font = UIFont.BMJUA(size: 20)
+    label.font = UIFont.NotoSansKRMedium(size: 20)
     label.textAlignment = .center
     return label
   }()

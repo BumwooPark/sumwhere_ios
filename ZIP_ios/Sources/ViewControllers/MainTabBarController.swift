@@ -29,6 +29,9 @@ class MainTabBarController: UITabBarController{
   
   let writerViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: TripViewController())
+    naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
+    naviVC.navigationBar.backItem?.title = String()
     let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
@@ -51,7 +54,7 @@ class MainTabBarController: UITabBarController{
     
     let titleLabel = UILabel()
     titleLabel.text = "갈래말래"
-    titleLabel.font = UIFont.BMJUA(size: 15)
+    titleLabel.font = UIFont.NotoSansKRMedium(size: 12)
     titleLabel.textColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
     self.navigationItem.titleView = titleLabel
     self.viewControllers = [

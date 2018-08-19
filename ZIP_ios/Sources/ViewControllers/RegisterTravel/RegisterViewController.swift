@@ -20,14 +20,14 @@ class RegisterViewController: UIViewController{
   let infoLabel: UILabel = {
     let label = UILabel()
     label.text = "위와 같은 내용으로 등록하시겠습니까?"
-    label.font = UIFont.BMJUA(size: 18)
+    label.font = UIFont.NotoSansKRMedium(size: 18)
     return label
   }()
   
   let registerButton: LGButton = {
     let button = LGButton()
     button.titleString = "등록"
-    button.titleFontName = "BMJUAOTF"
+    button.titleFontName = "NotoSansKR-Medium"
     button.gradientStartColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
     button.gradientEndColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 0.5)
     button.cornerRadius = 10
@@ -40,7 +40,7 @@ class RegisterViewController: UIViewController{
   let cancelButton: LGButton = {
     let button = LGButton()
     button.titleString = "취소"
-    button.titleFontName = "BMJUAOTF"
+    button.titleFontName = "NotoSansKR-Medium"
     button.gradientStartColor = #colorLiteral(red: 0.7803921569, green: 0.3949215683, blue: 0.3463978405, alpha: 1)
     button.gradientEndColor = #colorLiteral(red: 0.7803921569, green: 0.4357580746, blue: 0.4270587234, alpha: 0.5)
     button.cornerRadius = 10
@@ -76,7 +76,7 @@ class RegisterViewController: UIViewController{
       .tapGesture()
       .when(.ended)
       .subscribe(onNext: {[weak self] (_) in
-        self?.navigationController?.popViewController(animated: true)
+        self?.viewController.dismiss(animated: true, completion: nil)
       }).disposed(by: disposeBag)
     
     view.setNeedsUpdateConstraints()

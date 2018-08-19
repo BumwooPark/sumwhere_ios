@@ -22,9 +22,11 @@ class DestinationSearchCell: UITableViewCell{
     }
   }
   
+  
+  
   let destinationLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.BMJUA(size: 15)
+    label.font = UIFont.NotoSansKRMedium(size: 15)
     label.textColor = .lightGray
     return label
   }()

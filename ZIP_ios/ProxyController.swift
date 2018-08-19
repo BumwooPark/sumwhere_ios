@@ -40,7 +40,7 @@ class ProxyController{
     Observable<UIViewController>.combineLatest(isProfile, tokenLogin) { (profile, login)in
       let loginVC = UINavigationController(rootViewController: LoginViewController())
       loginVC.navigationBar.prefersLargeTitles = true
-      loginVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.BMJUA(size: 40),.foregroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
+      loginVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRMedium(size: 40),.foregroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
       loginVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
       
       if !login {

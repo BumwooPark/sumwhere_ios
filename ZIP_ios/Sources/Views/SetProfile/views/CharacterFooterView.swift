@@ -15,7 +15,7 @@ class CharacterFooterView: UICollectionReusableView{
   let commitButton: LGButton = {
     let button = LGButton()
     button.titleString = "등록하기"
-    button.titleFontName = "BMJUAOTF"
+    button.titleFontName = "NotoSansKR-Medium"
     button.titleFontSize = 30
     button.cornerRadius = 10
     return button

@@ -29,7 +29,7 @@ class TripStyleCell: UICollectionViewCell{
   let titleLabel: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.BMJUA(size: 25)
+    label.font = UIFont.NotoSansKRMedium(size: 25)
     return label
   }()
   

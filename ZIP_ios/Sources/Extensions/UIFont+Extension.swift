@@ -20,7 +20,7 @@ extension UIFont{
     return UIFont(name: "NotoSansKR-Medium", size: size)!
   }
   static func NotoSansKRRegular(size: CGFloat) -> UIFont {
-    return UIFont(name: "NotoSansKR-Medium", size: size)!
+    return UIFont(name: "NotoSansKR-Regular", size: size)!
   }
   static func GodoRoundedL(size: CGFloat) -> UIFont {
     return UIFont(name: "godoRounded L", size: size)!

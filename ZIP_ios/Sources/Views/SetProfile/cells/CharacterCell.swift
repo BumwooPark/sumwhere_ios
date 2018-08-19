@@ -18,7 +18,7 @@ class CharacterCell: UICollectionViewCell{
   
   let titleLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.BMJUA(size: 30)
+    label.font = UIFont.NotoSansKRMedium(size: 30)
     label.textAlignment = .center
     return label
   }()

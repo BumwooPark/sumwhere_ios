@@ -58,12 +58,6 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대한민국" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRV-hZ-AfF">
-                                <rect key="frame" x="81" y="62" width="94.5" height="29.5"/>
-                                <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="29"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oce-vs-fcR" userLabel="LeftView">
                                 <rect key="frame" x="20" y="314" width="93" height="14"/>
                                 <color key="backgroundColor" red="1" green="0.2070791421" blue="0.80130883779999995" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,11 +72,9 @@
                             <constraint firstItem="oce-vs-fcR" firstAttribute="leading" secondItem="4h2-Xv-xjU" secondAttribute="leading" constant="20" id="0gU-VF-jyh"/>
                             <constraint firstItem="K0d-wt-UOq" firstAttribute="top" secondItem="4h2-Xv-xjU" secondAttribute="top" id="0rf-0f-BH6"/>
                             <constraint firstAttribute="trailing" secondItem="K0d-wt-UOq" secondAttribute="trailing" id="9fb-il-gCT"/>
-                            <constraint firstItem="dRV-hZ-AfF" firstAttribute="centerX" secondItem="4h2-Xv-xjU" secondAttribute="centerX" id="Ehb-IW-cx0"/>
                             <constraint firstItem="K0d-wt-UOq" firstAttribute="leading" secondItem="4h2-Xv-xjU" secondAttribute="leading" id="IUO-ku-s0n"/>
                             <constraint firstAttribute="bottom" secondItem="oce-vs-fcR" secondAttribute="bottom" constant="7" id="IY0-8B-8h0"/>
                             <constraint firstItem="EKg-XH-vNU" firstAttribute="top" secondItem="oce-vs-fcR" secondAttribute="top" id="Qdu-gy-awe"/>
-                            <constraint firstItem="dRV-hZ-AfF" firstAttribute="top" secondItem="4h2-Xv-xjU" secondAttribute="top" constant="62" id="ZJz-LH-Hmr"/>
                             <constraint firstItem="EKg-XH-vNU" firstAttribute="leading" secondItem="oce-vs-fcR" secondAttribute="trailing" constant="17" id="e7K-ln-uET"/>
                             <constraint firstAttribute="width" constant="256" id="esJ-om-luc"/>
                             <constraint firstAttribute="height" constant="335" id="gJn-3O-Lq2"/>
@@ -90,14 +82,22 @@
                             <constraint firstAttribute="bottom" secondItem="K0d-wt-UOq" secondAttribute="bottom" id="ufQ-x4-z4g"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대한민국" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRV-hZ-AfF">
+                        <rect key="frame" x="81" y="153" width="95" height="30"/>
+                        <fontDescription key="fontDescription" name="BMJUAOTF" family="BM JUA_OTF" pointSize="29"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="rbd-6U-uYZ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="6DO-9h-Grw"/>
+                <constraint firstItem="dRV-hZ-AfF" firstAttribute="centerX" secondItem="4h2-Xv-xjU" secondAttribute="centerX" id="KE1-ke-83J"/>
                 <constraint firstItem="4h2-Xv-xjU" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Tfa-DL-h41"/>
                 <constraint firstItem="rbd-6U-uYZ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="WIr-5f-zWX"/>
                 <constraint firstItem="4h2-Xv-xjU" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="qVm-AU-jsk"/>
+                <constraint firstItem="dRV-hZ-AfF" firstAttribute="centerY" secondItem="4h2-Xv-xjU" secondAttribute="centerY" id="xbM-rb-LaT"/>
             </constraints>
             <size key="customSize" width="209" height="562"/>
             <connections>

@@ -24,7 +24,7 @@ final class InsertPeopleViewController: UIViewController{
   let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "동행인원"
-    label.font = UIFont.BMJUA(size: 15)
+    label.font = UIFont.NotoSansKRMedium(size: 15)
     return label
   }()
   
@@ -75,6 +75,6 @@ final class InsertPeopleViewController: UIViewController{
 
 extension InsertPeopleViewController: DZNEmptyDataSetSource{
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "등록된 친구가 없습니다.", attributes: [.font : UIFont.BMJUA(size: 15)])
+    return NSAttributedString(string: "등록된 친구가 없습니다.", attributes: [.font : UIFont.NotoSansKRMedium(size: 15)])
   }
 }

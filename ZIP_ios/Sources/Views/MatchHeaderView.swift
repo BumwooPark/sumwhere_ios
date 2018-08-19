@@ -9,8 +9,7 @@
 import Hero
 
 class MatchHeaderView: UICollectionReusableView{
-  
-  
+
   let imageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = .scaleAspectFill
@@ -21,7 +20,7 @@ class MatchHeaderView: UICollectionReusableView{
   let titleLabel: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.BMJUA(size: 30)
+    label.font = UIFont.NotoSansKRMedium(size: 30)
     return label
   }()
   

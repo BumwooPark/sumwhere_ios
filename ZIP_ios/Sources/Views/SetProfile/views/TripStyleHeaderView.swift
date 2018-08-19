@@ -13,7 +13,7 @@ class TripStyleHeaderView: UICollectionReusableView{
   let styleLabel: UILabel = {
     let label = UILabel()
     label.text = "여행 스타일을 골라주세요"
-    label.font = UIFont.BMJUA(size: 20)
+    label.font = UIFont.NotoSansKRMedium(size: 20)
     label.textAlignment = .center
     return label
   }()
@@ -21,7 +21,7 @@ class TripStyleHeaderView: UICollectionReusableView{
   let detailLabel: UILabel = {
     let label = UILabel()
     label.text = "최대 3개 선택 가능"
-    label.font = UIFont.BMJUA(size: 14)
+    label.font = UIFont.NotoSansKRMedium(size: 14)
     label.textAlignment = .center
     return label
   }()

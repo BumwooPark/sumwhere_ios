@@ -14,6 +14,8 @@ import RxGesture
 import Hero
 import SnapKit
 import JDStatusBarNotification
+import PopupDialog
+import Moya
 
 class CreateTripViewController: UIViewController{
   
@@ -74,8 +76,9 @@ class CreateTripViewController: UIViewController{
     view.setNeedsUpdateConstraints()
   }
   
+  
+  //MARK: - 여행 계획 등록
   func register(){
-    log.info("register")
     
     if let err = viewModel.validate(){
       switch err{
@@ -87,10 +90,36 @@ class CreateTripViewController: UIViewController{
         pageView.scrollToViewController(index: 0)
       }
     }else {
-      
+      viewModel
+        .createTrip()
+        .subscribe(onSuccess: { (model) in
+          if model.success{
+            JDStatusBarNotification.show(withStatus: "등록되었습니다", dismissAfter: 2, styleName: JDType.Success.rawValue)
+            self.dismiss(animated: true, completion: nil)
+          }else{
+            JDStatusBarNotification.show(withStatus: model.error?.details ?? String(), dismissAfter: 2, styleName: JDType.Fail.rawValue)
+          }
+      }) { (error) in
+        log.error(error)
+      }.disposed(by: disposeBag)
     }
   }
   
+  //MARK: - 여행 validation 체크
+  func validationErrorPopUp(error: Error){
+    var popup: PopupDialog!
+    
+    if case .requestMapping(let message) = error as! MoyaError{
+      popup = PopupDialog(title: "중복", message: message)
+    }else{
+      popup = PopupDialog(title: "에러", message: "관리자에게 문의 바랍니다.")
+    }
+    
+    let confirmButton = DefaultButton(title: "확인", height: 60, dismissOnTap: true, action: nil)
+    popup.addButtons([confirmButton])
+    self.present(popup, animated: true, completion: nil)
+  }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.tabBarController?.tabBar.isHidden = true

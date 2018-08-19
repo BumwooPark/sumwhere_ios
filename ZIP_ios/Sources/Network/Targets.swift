@@ -27,6 +27,8 @@ public enum ZIP{
   case GetAllTripStyle
   case GetAllInterest
   case GetAllCharacter
+  case TripDateValidate(start: String, end: String)
+  case TripDestinationValidate(id: Int)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
@@ -34,7 +36,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.5:8080/galmal")!
+    return URL(string: "http://192.168.0.3:8080/galmal")!
     #else
     return URL(string: "http://52.197.13.138/galmal")!
     #endif
@@ -77,6 +79,10 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/interests"
     case .GetAllCharacter:
       return "/restrict/characters"
+    case .TripDestinationValidate:
+      return "/restrict/trip/destination/validate"
+    case .TripDateValidate:
+      return "/restrict/trip/date/validate"
     }
   }
   
@@ -111,6 +117,10 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestJSONEncodable(json)
     case .AllTripList(let sortby, let order, let skipCount, let maxResultCount):
       return .requestParameters(parameters: ["sortby": sortby,"order":order,"skipCount":skipCount,"maxResultCount": maxResultCount], encoding: URLEncoding.queryString)
+    case .TripDateValidate(let start, let end):
+      return .requestParameters(parameters: ["start": start,"end":end],encoding: URLEncoding.queryString)
+    case .TripDestinationValidate(let id):
+      return .requestParameters(parameters: ["id": id],encoding: URLEncoding.queryString)
     default:
       return .requestPlain
     }
