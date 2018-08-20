@@ -16,15 +16,12 @@ class RelationShipViewModel{
   init() {
   }
   
-  
-  func api(tripId: Int, startDate: String, endDate: String){
-    AuthManager.provider.request(.RelationShipMatch(tripId: tripId, startDate: startDate, endDate: endDate))
+  func api(tripId: Int, startDate: String, endDate: String) -> Observable<[UserTripJoinModel]> {
+    return AuthManager.provider.request(.RelationShipMatch(tripId: tripId, startDate: startDate, endDate: endDate))
       .map(ResultModel<[UserTripJoinModel]>.self)
-      .subscribe(onSuccess: { (model) in
-        log.info(model)
-      }) { (error) in
-        log.error(error)
-    }.disposed(by: disposeBag)
+      .map{$0.result}
+      .asObservable()
+      .filterNil()
   }
   
 }

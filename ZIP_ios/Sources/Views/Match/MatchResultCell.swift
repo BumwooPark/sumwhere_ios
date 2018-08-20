@@ -7,13 +7,27 @@
 //
 
 class MatchResultCell: UICollectionViewCell{
+  
+  var item: UserTripJoinModel?{
+    didSet{
+      profileImageView.kf.setImageWithZIP(image: item?.user.profile?.image1 ?? String())
+      nickNameLabel.text = item?.user.nickname
+    }
+  }
 
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var nickNameLabel: UILabel!
+  @IBOutlet weak var cellBackView: UIView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
     profileImageView.backgroundColor = .blue
     profileImageView.layer.cornerRadius = 50
+    profileImageView.layer.masksToBounds = true
+    
+    cellBackView.layer.cornerRadius = 10
+    cellBackView.layer.shadowColor = UIColor.lightGray.cgColor
+    cellBackView.layer.shadowOffset = CGSize(width: 2, height: 2)
+    cellBackView.layer.shadowOpacity = 2
   }
 }
