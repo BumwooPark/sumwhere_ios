@@ -34,36 +34,8 @@ final class InsertPlanViewController: UIViewController{
     return label
   }()
   
-  var firstDate: Date?{
-    didSet{
-      if firstDate == nil{
-        viewController.viewModel.dataSubject.onNext(.startDate(date: Date()))
-      }else{
-        guard let date = firstDate else {return}
-        viewController.viewModel.dataSubject.onNext(.startDate(date: date + 1.days))
-      }
-    }
-  }
-  
-  var lastDate: Date?{
-    didSet{
-      if lastDate == nil{
-        viewController.viewModel.dataSubject.onNext(.endDate(date: Date()))
-        totalLabel.text = ""
-      }else{
-        let totalday = (lastDate?.day ?? 0)  - (firstDate?.day ?? 0)
-        totalLabel.text = "\(totalday)박 \(totalday + 1)일"
-        guard let date = lastDate else {return}
-        viewController.viewModel.dataSubject.onNext(.endDate(date: date + 1.days))
-      }
-    }
-  }
-  
   var startDate: Date?
-  var endDate: Date?
-  var fullCount = 0
 
- 
   lazy var calendarView: JTAppleCalendarView = {
     let calendar = JTAppleCalendarView()
     calendar.backgroundColor = .white
@@ -101,6 +73,31 @@ final class InsertPlanViewController: UIViewController{
     headerView.monthLabel.text = String(year) + " " + String(month) + "월"
     
     view.setNeedsUpdateConstraints()
+  }
+  
+  private func deSelectDate(){
+    self.calendarView.deselectAllDates(triggerSelectionDelegate: false)
+    self.startDate = nil
+    self.viewController.viewModel.dataSubject.onNext(.startDate(date: Date() + 1.days))
+    self.viewController.viewModel.dataSubject.onNext(.endDate(date: Date() + 1.days))
+    self.totalLabel.text = String()
+  }
+  
+  func validate(endDate: Date, result: @escaping ()-> ()){
+    viewController.viewModel.serverDateValidate(start: startDate!, end: endDate)
+      .subscribe(weak: self) { (self) -> (Event<Bool>) -> Void in
+        return { event in
+          switch event {
+          case .next:
+            result()
+          case .error(let error):
+            self.viewController.validationErrorPopUp(error: error)
+            self.deSelectDate()
+          case .completed:
+            break
+          }
+        }
+    }.disposed(by: disposeBag)
   }
   
   func handleSelection(cell: JTAppleCell?, cellState: CellState) {
@@ -152,10 +149,7 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
   
   func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
     handleSelection(cell: cell, cellState: cellState)
-    calendarView.deselectAllDates(triggerSelectionDelegate: false)
-    startDate = nil
-    viewController.viewModel.dataSubject.onNext(.startDate(date: Date() + 1.days))
-    viewController.viewModel.dataSubject.onNext(.endDate(date: Date() + 1.days))
+    deSelectDate()
   }
   
   func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
@@ -171,9 +165,15 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
     
     handleSelection(cell: cell, cellState: cellState)
     if startDate != nil {
-      calendarView.selectDates(from: startDate!, to: date,  triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
-      viewController.viewModel.dataSubject.onNext(.startDate(date: startDate! + 1.days))
-      viewController.viewModel.dataSubject.onNext(.endDate(date: date + 1.days))
+      
+      validate(endDate: date) {[weak self]  in
+        guard let `self` = self else {return}
+        self.calendarView.selectDates(from: self.startDate!, to: date,  triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+        self.viewController.viewModel.dataSubject.onNext(.startDate(date: self.startDate! + 1.days))
+        self.viewController.viewModel.dataSubject.onNext(.endDate(date: date + 1.days))
+        let totalday = date.day  - self.startDate!.day
+        self.totalLabel.text = "\(totalday)박 \(totalday + 1)일"
+      }
     }else{
       startDate = date
     }

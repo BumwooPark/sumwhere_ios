@@ -21,7 +21,6 @@
 		0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6CD21280D0A0060290A /* MatchResultController.swift */; };
 		0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6CF21280F420060290A /* MatchResultCell.swift */; };
 		0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A15A6D1212810450060290A /* MatchResultCell.xib */; };
-		0A15A6D4212813DF0060290A /* MatchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6D3212813DF0060290A /* MatchResultModel.swift */; };
 		0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6D52128143E0060290A /* MatchResultViewModel.swift */; };
 		0A1B11D31FF101FF004B42B6 /* ConfigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11D21FF101FF004B42B6 /* ConfigureViewController.swift */; };
 		0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11DA1FF1181D004B42B6 /* LoginView.swift */; };
@@ -115,6 +114,8 @@
 		B1A1D99A211D16DC0022D2A0 /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D999211D16DC0022D2A0 /* TripViewController.swift */; };
 		B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */; };
 		B1A1D9A0211D27660022D2A0 /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D99F211D27660022D2A0 /* TripViewModel.swift */; };
+		B1A1D9A5212A9EB50022D2A0 /* RelationShipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A4212A9EB50022D2A0 /* RelationShipViewModel.swift */; };
+		B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */; };
 		B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA42118204200535FB1 /* InterestAddView.swift */; };
 		B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA62118315100535FB1 /* CharacterViewController.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
@@ -164,7 +165,6 @@
 		0A15A6CD21280D0A0060290A /* MatchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultController.swift; sourceTree = "<group>"; };
 		0A15A6CF21280F420060290A /* MatchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultCell.swift; sourceTree = "<group>"; };
 		0A15A6D1212810450060290A /* MatchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchResultCell.xib; sourceTree = "<group>"; };
-		0A15A6D3212813DF0060290A /* MatchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultModel.swift; sourceTree = "<group>"; };
 		0A15A6D52128143E0060290A /* MatchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultViewModel.swift; sourceTree = "<group>"; };
 		0A1B11D21FF101FF004B42B6 /* ConfigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureViewController.swift; sourceTree = "<group>"; };
 		0A1B11DA1FF1181D004B42B6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -264,6 +264,8 @@
 		B1A1D999211D16DC0022D2A0 /* TripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTicketCell.swift; sourceTree = "<group>"; };
 		B1A1D99F211D27660022D2A0 /* TripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
+		B1A1D9A4212A9EB50022D2A0 /* RelationShipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationShipViewModel.swift; sourceTree = "<group>"; };
+		B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTripJoinModel.swift; sourceTree = "<group>"; };
 		B1C4FFA42118204200535FB1 /* InterestAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestAddView.swift; sourceTree = "<group>"; };
 		B1C4FFA62118315100535FB1 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 				B1A1D99F211D27660022D2A0 /* TripViewModel.swift */,
 				0AF2C02420FE2AB600775EA8 /* MyTripViewModel.swift */,
 				0A15A6D52128143E0060290A /* MatchResultViewModel.swift */,
+				B1A1D9A4212A9EB50022D2A0 /* RelationShipViewModel.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -710,7 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				0AF2C02220FE23BD00775EA8 /* TripModel.swift */,
-				0A15A6D3212813DF0060290A /* MatchResultModel.swift */,
+				B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -1066,6 +1069,7 @@
 				B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */,
 				0A7123921FACC1B600512EB7 /* LoginViewController.swift in Sources */,
 				0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */,
+				B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */,
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
 				0AAD748C21170AA500C860ED /* TripStyleHeaderView.swift in Sources */,
 				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
@@ -1092,6 +1096,7 @@
 				0A9174D12024AB85000A055A /* DataBase.swift in Sources */,
 				0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */,
 				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
+				B1A1D9A5212A9EB50022D2A0 /* RelationShipViewModel.swift in Sources */,
 				0AD3BC1120491F2C0051D7E3 /* CountryCell.swift in Sources */,
 				0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */,
 				B1A1D99A211D16DC0022D2A0 /* TripViewController.swift in Sources */,
@@ -1128,7 +1133,6 @@
 				0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */,
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
 				0AAD74922117103000C860ED /* TripStyleViewModel.swift in Sources */,
-				0A15A6D4212813DF0060290A /* MatchResultModel.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,

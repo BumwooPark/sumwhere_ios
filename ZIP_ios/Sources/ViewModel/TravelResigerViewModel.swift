@@ -108,39 +108,28 @@ class TripRegisterViewModel{
       .flatMap { (resultModel) -> Observable<TripType> in
         if resultModel.result == 0{
           return Observable.just(model)
-//          return Observable.create({ (observer) -> Disposable in
-//            observer.on(.next(model))
-//            return Disposables.create()
-//          })
         }else{
           return Observable<TripType>.error(MoyaError.requestMapping("이미 등록하신 여행지 입니다."))
-//          return Observable.create({ (observer) -> Disposable in
-//            observer.onError(MoyaError.requestMapping("이미 등록하신 여행지 입니다."))
-//            return Disposables.create()
-//          })
         }
     }
   }
   
-  func serverDateValidate(){
-    AuthManager.provider
-    .request(.TripDateValidate(start: "date", end: "date"))
-    .map(ResultModel<Int>.self)
-    .asObservable()
-//    .flatMap { (resultModel) -> Observable<TripType> in
-//      if resultModel.result == 0{
-//        return Observable.create({ (observer) -> Disposable in
-//          observer.on(.next(model))
-//          return Disposables.create()
-//        })
-//      }else{
-//        return Observable.create({ (observer) -> Disposable in
-//          observer.onError(MoyaError.requestMapping("이미 등록하신 여행지 입니다."))
-//          return Disposables.create()
-//        })
-//      }
-//    }
-
+  func serverDateValidate(start: Date, end: Date) -> Observable<Bool>{
+    
+    let startDate = start.toFormat("yyyy-MM-dd")
+    let endDate = end.toFormat("yyyy-MM-dd")
+    
+    return AuthManager.provider
+      .request(.TripDateValidate(start: startDate, end: endDate))
+      .map(ResultModel<Int>.self)
+      .asObservable()
+      .flatMap { (resultModel) -> Observable<Bool> in
+        if resultModel.result == 0{
+          return Observable.just(true)
+        }else{
+          return Observable<Bool>.error(MoyaError.requestMapping("해당 날짜의 여행이 존재합니다."))
+        }
+    }
   }
   
   func createTrip() -> PrimitiveSequence<SingleTrait, ResultModel<Trip>>{

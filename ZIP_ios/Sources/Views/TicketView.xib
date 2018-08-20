@@ -127,10 +127,18 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-menu-vertical-30" translatesAutoresizingMaskIntoConstraints="NO" id="KOX-O2-zr7">
+                    <rect key="frame" x="368" y="45" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="cxy-q8-MYx"/>
+                        <constraint firstAttribute="width" constant="25" id="j4D-Qh-m0t"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="MVa-4j-24e" firstAttribute="centerY" secondItem="D7R-Ff-21e" secondAttribute="centerY" id="4Fx-9b-kGJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="KOX-O2-zr7" secondAttribute="trailing" constant="7" id="4Nk-9z-fL2"/>
                 <constraint firstItem="RkX-ut-6xp" firstAttribute="top" secondItem="Ke7-dL-3PO" secondAttribute="top" id="5aP-3l-n2D"/>
                 <constraint firstItem="XxD-ho-gcA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="A8O-h6-EBa"/>
                 <constraint firstItem="oVs-Q1-SnX" firstAttribute="leading" secondItem="MVa-4j-24e" secondAttribute="leading" id="Fft-Ic-FLQ"/>
@@ -149,6 +157,7 @@
                 <constraint firstItem="Me7-Z9-MgI" firstAttribute="leading" secondItem="7SI-9G-4i3" secondAttribute="trailing" constant="32.5" id="dtH-BV-3tx"/>
                 <constraint firstAttribute="trailing" secondItem="Ke7-dL-3PO" secondAttribute="trailing" constant="16" id="fNs-PB-AeX"/>
                 <constraint firstItem="MVa-4j-24e" firstAttribute="leading" secondItem="RkX-ut-6xp" secondAttribute="trailing" constant="9.5" id="hF3-Ok-A9g"/>
+                <constraint firstItem="KOX-O2-zr7" firstAttribute="top" secondItem="XxD-ho-gcA" secondAttribute="bottom" constant="8" id="jhP-Gr-UmJ"/>
                 <constraint firstItem="XxD-ho-gcA" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="jhs-5F-QN2"/>
                 <constraint firstItem="TU5-QS-jsh" firstAttribute="leading" secondItem="oVs-Q1-SnX" secondAttribute="trailing" constant="8" id="kci-qa-YMY"/>
                 <constraint firstItem="77B-Am-VOl" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="nG9-QQ-1ts"/>
@@ -172,6 +181,7 @@
     </objects>
     <resources>
         <image name="icons8-contacts-52" width="26" height="26"/>
+        <image name="icons8-menu-vertical-30" width="30" height="30"/>
         <image name="plane" width="8" height="8"/>
     </resources>
 </document>

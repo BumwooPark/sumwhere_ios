@@ -29,18 +29,19 @@ public enum ZIP{
   case GetAllCharacter
   case TripDateValidate(start: String, end: String)
   case TripDestinationValidate(id: Int)
+  case RelationShipMatch(tripId: Int, startDate: String, endDate: String)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
-//  public var baseURL: URL {return URL(string: "http://52.197.13.138/galmal")!}
-  
+
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.3:8080/galmal")!
+    return URL(string: "http://192.168.1.5:8080/galmal")!
     #else
     return URL(string: "http://52.197.13.138/galmal")!
     #endif
   }
+  
   public var path: String{
     switch self {
     case .signUp:
@@ -83,6 +84,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/trip/destination/validate"
     case .TripDateValidate:
       return "/restrict/trip/date/validate"
+    case .RelationShipMatch:
+      return "/restrict/match/relationship"
     }
   }
   
@@ -121,6 +124,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["start": start,"end":end],encoding: URLEncoding.queryString)
     case .TripDestinationValidate(let id):
       return .requestParameters(parameters: ["id": id],encoding: URLEncoding.queryString)
+    case .RelationShipMatch(let tripId, let startDate, let endDate):
+      return .requestParameters(parameters: ["tripid":tripId,"start":startDate,"end":endDate], encoding: URLEncoding.queryString)
     default:
       return .requestPlain
     }

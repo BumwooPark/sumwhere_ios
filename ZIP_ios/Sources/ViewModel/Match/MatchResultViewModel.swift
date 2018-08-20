@@ -17,10 +17,9 @@ struct MatchResultViewModel{
 }
 
 extension MatchResultViewModel: SectionModelType{
-  typealias Item = MatchResultModel
+  typealias Item = UserTripJoinModel
   init(original: MatchResultViewModel, items: [Item]) {
     self = original
     self.items = items
   }
 }
-

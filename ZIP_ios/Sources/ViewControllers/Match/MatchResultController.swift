@@ -15,6 +15,8 @@ final class MatchResultController: UIViewController{
   var didUpdateContraint = false
   let disposeBag = DisposeBag()
   
+  let viewModel = RelationShipViewModel()
+  
   let datas = BehaviorRelay<[MatchResultViewModel]>(value: [])
   
   let dataSources = RxCollectionViewSectionedReloadDataSource<MatchResultViewModel>(configureCell: {ds,cv,idx,item in
@@ -32,7 +34,6 @@ final class MatchResultController: UIViewController{
     return collectionView
   }()
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     view = collectionView
@@ -41,16 +42,11 @@ final class MatchResultController: UIViewController{
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    
-    Observable.just([MatchResultViewModel(items: [MatchResultModel(id: 1),MatchResultModel(id: 1),MatchResultModel(id: 1),MatchResultModel(id: 1),MatchResultModel(id: 1),MatchResultModel(id: 1)])])
-      .bind(to: datas)
-      .disposed(by: disposeBag)
-    
+    viewModel.api(tripId: 1, startDate: "2018-08-01", endDate: "2018-09-30")
+        
     view.setNeedsUpdateConstraints()
   }
-  
-  
-  
+
   override func updateViewConstraints() {
     if !didUpdateContraint{
       didUpdateContraint = true
