@@ -75,11 +75,20 @@ class TripViewController: UIViewController{
     view.addSubview(addButton)
     scrollView.addSubview(titleLabel)
     scrollView.addSubview(collectionView)
-    scrollView.contentInsetAdjustmentBehavior = .never
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     scrollView.refreshControl = refreshControl
     self.navigationController?.navigationBar.topItem?.title = String()
     view.setNeedsUpdateConstraints()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.setNavigationBarHidden(true, animated: animated)
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
   override func viewDidLoad() {
@@ -106,9 +115,8 @@ class TripViewController: UIViewController{
       }.disposed(by: disposeBag)
     
     collectionView.rx.modelSelected(TripModel.self)
-      .subscribe(onNext: {[weak self]model in
-        self?.navigationController?.pushViewController(SelectMatchViewController(), animated: true)
-        log.info(model)
+      .subscribe(onNext: {[weak self] model in
+        self?.navigationController?.pushViewController(SelectMatchViewController(title: model.tripType.trip), animated: true)
       }).disposed(by: disposeBag)
   }
   
@@ -147,7 +155,7 @@ class TripViewController: UIViewController{
       }
       
       scrollView.snp.makeConstraints { (make) in
-        make.edges.equalToSuperview()
+        make.edges.equalTo(self.view.safeAreaLayoutGuide)
       }
       
       titleLabel.snp.makeConstraints { (make) in

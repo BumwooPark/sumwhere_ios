@@ -32,8 +32,20 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwz-cE-foG">
-                            <rect key="frame" x="174" y="149" width="47" height="26"/>
-                            <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="17"/>
+                            <rect key="frame" x="177" y="143" width="41.5" height="22.5"/>
+                            <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWy-qo-x4m">
+                            <rect key="frame" x="183.5" y="173.5" width="28" height="22.5"/>
+                            <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pW-xs-QNy">
+                            <rect key="frame" x="177" y="204" width="41.5" height="22.5"/>
+                            <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -41,8 +53,12 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Nzw-3C-k99" firstAttribute="top" secondItem="hCS-1f-1Fu" secondAttribute="top" constant="35" id="Tko-eE-nVG"/>
-                        <constraint firstItem="zwz-cE-foG" firstAttribute="top" secondItem="Nzw-3C-k99" secondAttribute="bottom" constant="14" id="fEQ-Lz-Hum"/>
+                        <constraint firstItem="6pW-xs-QNy" firstAttribute="centerX" secondItem="hCS-1f-1Fu" secondAttribute="centerX" id="Yxo-Hq-P5z"/>
+                        <constraint firstItem="RWy-qo-x4m" firstAttribute="top" secondItem="zwz-cE-foG" secondAttribute="bottom" constant="8" id="cAr-pY-SLb"/>
+                        <constraint firstItem="zwz-cE-foG" firstAttribute="top" secondItem="Nzw-3C-k99" secondAttribute="bottom" constant="8" id="fEQ-Lz-Hum"/>
+                        <constraint firstItem="6pW-xs-QNy" firstAttribute="top" secondItem="RWy-qo-x4m" secondAttribute="bottom" constant="8" id="fMV-f5-nRS"/>
                         <constraint firstItem="Nzw-3C-k99" firstAttribute="centerX" secondItem="hCS-1f-1Fu" secondAttribute="centerX" id="hWD-bA-42b"/>
+                        <constraint firstItem="RWy-qo-x4m" firstAttribute="centerX" secondItem="hCS-1f-1Fu" secondAttribute="centerX" id="hoD-TO-Yqp"/>
                         <constraint firstItem="zwz-cE-foG" firstAttribute="centerX" secondItem="hCS-1f-1Fu" secondAttribute="centerX" id="tES-KE-2G2"/>
                     </constraints>
                 </view>
@@ -57,7 +73,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="ageLabel" destination="RWy-qo-x4m" id="Ggm-CC-GX3"/>
                 <outlet property="cellBackView" destination="hCS-1f-1Fu" id="P6V-rf-01B"/>
+                <outlet property="destinationLabel" destination="6pW-xs-QNy" id="9gb-U2-scv"/>
                 <outlet property="nickNameLabel" destination="zwz-cE-foG" id="6FE-1z-Wkr"/>
                 <outlet property="profileImageView" destination="Nzw-3C-k99" id="g49-Ga-NFR"/>
             </connections>

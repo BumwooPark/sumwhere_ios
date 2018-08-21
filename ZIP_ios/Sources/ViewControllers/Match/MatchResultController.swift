@@ -32,6 +32,7 @@ final class MatchResultController: UIViewController{
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.register(UINib(nibName: "MatchResultCell", bundle:nil), forCellWithReuseIdentifier: String(describing: MatchResultCell.self))
+    collectionView.alwaysBounceVertical = true
     return collectionView
   }()
   
@@ -47,6 +48,17 @@ final class MatchResultController: UIViewController{
       .map{[MatchResultViewModel(items: $0)]}
       .bind(to: datas)
       .disposed(by: disposeBag)
+    
+    
+    collectionView.rx
+      .modelSelected(UserTripJoinModel.self)
+      .subscribeNext(weak: self) { (retainSelf) -> (UserTripJoinModel) -> Void in
+        return {model in
+          retainSelf.navigationController?.pushViewController(DetailUserInfoViewController(model: model), animated: true)
+        }
+    }.disposed(by:disposeBag)
+    
+    self.navigationController?.navigationBar.topItem?.title = String()
     
     view.setNeedsUpdateConstraints()
   }

@@ -53,7 +53,7 @@ pod 'TagListView', '~> 1.0'
 pod 'DropDown'
 pod 'JVFloatLabeledTextField'
 pod 'BubbleTransition'
-
+pod 'IGListKit'
 
 # RX
 pod 'RxSwift'

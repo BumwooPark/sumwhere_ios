@@ -40,14 +40,25 @@ final class SelectMatchViewController: ExpandingViewController{
   fileprivate var cellsIsOpen = [Bool](repeating: false, count: 4)
   private var datas:[MatchType] = [.relationship,.fit,.gps,.transfer]
   
+  init(title: String) {
+    super.init(nibName: nil, bundle: nil)
+    self.title = title
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     collectionView?.emptyDataSetSource = self
     let nib = UINib(nibName: String(describing: MainViewCell.self), bundle: nil)
     collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: MainViewCell.self))
-    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+
     collectionView?.alwaysBounceHorizontal = true
+    navigationItem.largeTitleDisplayMode = .always
+    collectionView?.contentInsetAdjustmentBehavior = .never
   }
   
   override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -57,9 +68,6 @@ final class SelectMatchViewController: ExpandingViewController{
   }
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let cell = collectionView.cellForItem(at: indexPath) as? MainViewCell
-      , currentIndex == indexPath.row else { return }
-    
     self.navigationController?.pushViewController(MatchResultController(), animated: true)
   }
   

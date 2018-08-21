@@ -116,8 +116,15 @@
 		B1A1D9A0211D27660022D2A0 /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D99F211D27660022D2A0 /* TripViewModel.swift */; };
 		B1A1D9A5212A9EB50022D2A0 /* RelationShipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A4212A9EB50022D2A0 /* RelationShipViewModel.swift */; };
 		B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */; };
+		B1A1D9A9212BCA010022D2A0 /* DetailUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A8212BCA010022D2A0 /* DetailUserInfoViewController.swift */; };
 		B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA42118204200535FB1 /* InterestAddView.swift */; };
 		B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA62118315100535FB1 /* CharacterViewController.swift */; };
+		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
+		B1D1CAEB212BF7E6001A9801 /* DetailUserProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAEA212BF7E6001A9801 /* DetailUserProfileInfoCell.swift */; };
+		B1D1CAED212BF7FE001A9801 /* DetailUserProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAEC212BF7FE001A9801 /* DetailUserProfileInfoCell.xib */; };
+		B1D1CAEF212BFAB9001A9801 /* DetailUserIntroduceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAEE212BFAB9001A9801 /* DetailUserIntroduceCell.swift */; };
+		B1D1CAF1212BFADE001A9801 /* DetailUserIntroduceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF0212BFADE001A9801 /* DetailUserIntroduceCell.xib */; };
+		B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController.swift */; };
@@ -266,8 +273,15 @@
 		B1A1D99F211D27660022D2A0 /* TripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
 		B1A1D9A4212A9EB50022D2A0 /* RelationShipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationShipViewModel.swift; sourceTree = "<group>"; };
 		B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTripJoinModel.swift; sourceTree = "<group>"; };
+		B1A1D9A8212BCA010022D2A0 /* DetailUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserInfoViewController.swift; sourceTree = "<group>"; };
 		B1C4FFA42118204200535FB1 /* InterestAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestAddView.swift; sourceTree = "<group>"; };
 		B1C4FFA62118315100535FB1 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
+		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
+		B1D1CAEA212BF7E6001A9801 /* DetailUserProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserProfileInfoCell.swift; sourceTree = "<group>"; };
+		B1D1CAEC212BF7FE001A9801 /* DetailUserProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserProfileInfoCell.xib; sourceTree = "<group>"; };
+		B1D1CAEE212BFAB9001A9801 /* DetailUserIntroduceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserIntroduceCell.swift; sourceTree = "<group>"; };
+		B1D1CAF0212BFADE001A9801 /* DetailUserIntroduceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserIntroduceCell.xib; sourceTree = "<group>"; };
+		B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserImageCell.xib; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -684,6 +698,7 @@
 				B1A1D999211D16DC0022D2A0 /* TripViewController.swift */,
 				0AAD749A211ECEFB00C860ED /* SelectMatchViewController.swift */,
 				0A15A6CD21280D0A0060290A /* MatchResultController.swift */,
+				B1A1D9A8212BCA010022D2A0 /* DetailUserInfoViewController.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -694,6 +709,12 @@
 				B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */,
 				0A15A6CF21280F420060290A /* MatchResultCell.swift */,
 				0A15A6D1212810450060290A /* MatchResultCell.xib */,
+				B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */,
+				B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */,
+				B1D1CAEA212BF7E6001A9801 /* DetailUserProfileInfoCell.swift */,
+				B1D1CAEC212BF7FE001A9801 /* DetailUserProfileInfoCell.xib */,
+				B1D1CAEE212BFAB9001A9801 /* DetailUserIntroduceCell.swift */,
+				B1D1CAF0212BFADE001A9801 /* DetailUserIntroduceCell.xib */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -826,10 +847,13 @@
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
 				0A409E2E1FB74161001FE583 /* GoogleService-Info.plist in Resources */,
 				0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */,
+				B1D1CAED212BF7FE001A9801 /* DetailUserProfileInfoCell.xib in Resources */,
 				0A0FDE2620398E550046E76F /* NotoSans-Bold.otf in Resources */,
+				B1D1CAF1212BFADE001A9801 /* DetailUserIntroduceCell.xib in Resources */,
 				0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */,
 				0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */,
 				B12001C2211300E800DFD676 /* launchlogo.png in Resources */,
+				B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */,
 				0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */,
 				0A0FDE2820398E5A0046E76F /* NotoSans-Medium.otf in Resources */,
 				0A7123741FACC01200512EB7 /* Assets.xcassets in Resources */,
@@ -910,7 +934,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HGPlaceholders/HGPlaceholders.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
-				"${BUILT_PRODUCTS_DIR}/Hue/Hue.framework",
+				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JDStatusBarNotification/JDStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
@@ -969,7 +993,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGPlaceholders.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hue.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JDStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
@@ -1080,6 +1104,8 @@
 				0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */,
 				B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */,
 				0AF2C01B20FB2D9600775EA8 /* LeftSideMenuViewController.swift in Sources */,
+				B1A1D9A9212BCA010022D2A0 /* DetailUserInfoViewController.swift in Sources */,
+				B1D1CAEB212BF7E6001A9801 /* DetailUserProfileInfoCell.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
 				0AF2C02A2104C8E500775EA8 /* TagRow.swift in Sources */,
 				0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */,
@@ -1108,6 +1134,7 @@
 				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
 				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,
+				B1D1CAEF212BFAB9001A9801 /* DetailUserIntroduceCell.swift in Sources */,
 				0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
@@ -1121,6 +1148,7 @@
 				B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */,
 				0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
+				B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */,
 				B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */,
 				0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */,
 				0AAD748A211708B900C860ED /* TripStyleCell.swift in Sources */,

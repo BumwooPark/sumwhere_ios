@@ -32,6 +32,9 @@ class MainTabBarController: UITabBarController{
     naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
+    naviVC.navigationBar.prefersLargeTitles = true
+    naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRBold(size: 40)]
     let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC

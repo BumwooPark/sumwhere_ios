@@ -12,12 +12,16 @@ class MatchResultCell: UICollectionViewCell{
     didSet{
       profileImageView.kf.setImageWithZIP(image: item?.user.profile?.image1 ?? String())
       nickNameLabel.text = item?.user.nickname
+      guard let birthday = item!.user.profile?.birthday.toDate() else {return}
+      ageLabel.text = "만\(Date().year - birthday.year)살"
     }
   }
 
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var nickNameLabel: UILabel!
   @IBOutlet weak var cellBackView: UIView!
+  @IBOutlet weak var ageLabel: UILabel!
+  @IBOutlet weak var destinationLabel: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
