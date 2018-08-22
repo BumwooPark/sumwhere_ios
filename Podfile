@@ -54,6 +54,7 @@ pod 'DropDown'
 pod 'JVFloatLabeledTextField'
 pod 'BubbleTransition'
 pod 'IGListKit'
+pod 'Cosmos'
 
 # RX
 pod 'RxSwift'

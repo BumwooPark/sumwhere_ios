@@ -7,6 +7,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
   - BubbleTransition (3.1.0)
+  - Cosmos (16.0.0)
   - CryptoSwift (0.10.0)
   - Differentiator (3.0.2)
   - DropDown (2.3.2)
@@ -155,6 +156,7 @@ PODS:
 
 DEPENDENCIES:
   - BubbleTransition
+  - Cosmos
   - CryptoSwift
   - DropDown
   - DZNEmptyDataSet
@@ -213,6 +215,7 @@ SPEC REPOS:
     - Alamofire
     - Bolts
     - BubbleTransition
+    - Cosmos
     - CryptoSwift
     - Differentiator
     - DropDown
@@ -280,6 +283,7 @@ SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BubbleTransition: 9c6e1be2dede21aca6ef5388dd9bea9771f7e7fe
+  Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
@@ -343,6 +347,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: 33344295794cb453390f93cb074da1caeacd8045
+PODFILE CHECKSUM: fe372a19e56b62151c6ec6d092e522cce0c88ae3
 
 COCOAPODS: 1.5.3

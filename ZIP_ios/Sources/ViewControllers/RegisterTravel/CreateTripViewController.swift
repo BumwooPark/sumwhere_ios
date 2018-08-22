@@ -25,7 +25,7 @@ class CreateTripViewController: UIViewController{
   
   lazy var pageView = PageViewController(pages: [SearchDestinationViewController(viewController: self),
                                                  InsertPlanViewController(viewController: self),
-                                            RegisterViewController(viewController: self)])
+                                                 RegisterViewController(viewController: self)], spin: false)
   
   var constraint: Constraint?
   

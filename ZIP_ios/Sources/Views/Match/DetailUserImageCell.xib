@@ -28,25 +28,25 @@
                         <constraint firstAttribute="width" constant="220" id="SXa-98-oca"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOA-pU-iwi">
-                    <rect key="frame" x="201" y="270" width="44" height="25.5"/>
-                    <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EvK-AE-GMN">
+                    <rect key="frame" x="195" y="263" width="56.5" height="33"/>
+                    <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="22"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="XOA-pU-iwi" firstAttribute="top" secondItem="VL0-1f-ZJ8" secondAttribute="bottom" constant="30" id="7k1-Mb-QIm"/>
-                <constraint firstItem="XOA-pU-iwi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GOW-OO-sjZ"/>
                 <constraint firstItem="VL0-1f-ZJ8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="T3d-YA-5Sf"/>
+                <constraint firstItem="EvK-AE-GMN" firstAttribute="top" secondItem="VL0-1f-ZJ8" secondAttribute="bottom" constant="23" id="cZK-Re-bZx"/>
                 <constraint firstItem="VL0-1f-ZJ8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="slm-fZ-WM1"/>
+                <constraint firstItem="EvK-AE-GMN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yrQ-IP-auz"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="dateLabel" destination="XOA-pU-iwi" id="jkm-mb-rR5"/>
                 <outlet property="profileImageView" destination="VL0-1f-ZJ8" id="dpu-3n-hDD"/>
+                <outlet property="titleLabel" destination="EvK-AE-GMN" id="q87-IG-wlR"/>
             </connections>
             <point key="canvasLocation" x="61" y="-102"/>
         </view>

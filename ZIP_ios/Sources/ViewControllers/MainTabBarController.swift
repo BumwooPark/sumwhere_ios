@@ -22,6 +22,7 @@ class MainTabBarController: UITabBarController{
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.tintColor = .white
     naviVC.navigationBar.backItem?.title = String()
+    naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "여행", image: #imageLiteral(resourceName: "on"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC

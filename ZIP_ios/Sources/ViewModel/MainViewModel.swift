@@ -14,6 +14,7 @@ import UIKit
 #endif
 
 struct MainViewModel{
+  var header: String
   var items: [Item]
 }
 

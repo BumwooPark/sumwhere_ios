@@ -13,9 +13,11 @@ class PageViewController: UIPageViewController{
   
   var pages: [UIViewController]
   var currentIndexSubject = PublishSubject<Int>()
+  let spin: Bool
   
-  init(pages: [UIViewController]) {
+  init(pages: [UIViewController], spin: Bool) {
     self.pages = pages
+    self.spin = spin
     super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
   }
   
@@ -57,17 +59,19 @@ class PageViewController: UIPageViewController{
   }
 }
 
-extension PageViewController: UIPageViewControllerDelegate{
-}
-
-extension PageViewController: UIPageViewControllerDataSource{
+extension PageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate{
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     guard let viewControllerIndex = pages.index(of: viewController) else {return nil}
     currentIndexSubject.onNext(Int(viewControllerIndex))
     let previousIndex = viewControllerIndex - 1
-    guard previousIndex >= 0 else {return nil}
-    guard pages.count > previousIndex else {return nil}
-    return pages[previousIndex]
+    if !spin{
+      guard previousIndex >= 0 else {return nil}
+      guard pages.count > previousIndex else {return nil}
+      return pages[previousIndex]
+    }else{
+      guard previousIndex >= 0 else {return pages.last}
+      return pages[previousIndex]
+    }
   }
   
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {

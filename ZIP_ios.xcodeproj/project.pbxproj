@@ -122,9 +122,16 @@
 		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
 		B1D1CAEB212BF7E6001A9801 /* DetailUserProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAEA212BF7E6001A9801 /* DetailUserProfileInfoCell.swift */; };
 		B1D1CAED212BF7FE001A9801 /* DetailUserProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAEC212BF7FE001A9801 /* DetailUserProfileInfoCell.xib */; };
-		B1D1CAEF212BFAB9001A9801 /* DetailUserIntroduceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAEE212BFAB9001A9801 /* DetailUserIntroduceCell.swift */; };
-		B1D1CAF1212BFADE001A9801 /* DetailUserIntroduceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF0212BFADE001A9801 /* DetailUserIntroduceCell.xib */; };
 		B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */; };
+		B1D1CAF5212CF1F5001A9801 /* DetailGradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAF4212CF1F5001A9801 /* DetailGradeCell.swift */; };
+		B1D1CAF9212D0165001A9801 /* DetailTripStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAF8212D0165001A9801 /* DetailTripStyleCell.swift */; };
+		B1D1CAFB212D024C001A9801 /* DetailTripStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAFA212D024C001A9801 /* DetailTripStyleCell.xib */; };
+		B1D1CAFD212D0961001A9801 /* DetailCharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAFC212D0961001A9801 /* DetailCharacterCell.swift */; };
+		B1D1CAFF212D0D55001A9801 /* DetailInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAFE212D0D55001A9801 /* DetailInterestCell.swift */; };
+		B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB02212D2086001A9801 /* DetailCommitView.swift */; };
+		B1D1CB05212D28F8001A9801 /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB04212D28F8001A9801 /* AdViewController.swift */; };
+		B1D1CB07212D35D9001A9801 /* MainCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB06212D35D9001A9801 /* MainCollectionCell.swift */; };
+		B1D1CB09212D3B9E001A9801 /* MainCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB08212D3B9E001A9801 /* MainCollectionHeaderView.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController.swift */; };
@@ -279,9 +286,16 @@
 		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
 		B1D1CAEA212BF7E6001A9801 /* DetailUserProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserProfileInfoCell.swift; sourceTree = "<group>"; };
 		B1D1CAEC212BF7FE001A9801 /* DetailUserProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserProfileInfoCell.xib; sourceTree = "<group>"; };
-		B1D1CAEE212BFAB9001A9801 /* DetailUserIntroduceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserIntroduceCell.swift; sourceTree = "<group>"; };
-		B1D1CAF0212BFADE001A9801 /* DetailUserIntroduceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserIntroduceCell.xib; sourceTree = "<group>"; };
 		B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserImageCell.xib; sourceTree = "<group>"; };
+		B1D1CAF4212CF1F5001A9801 /* DetailGradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGradeCell.swift; sourceTree = "<group>"; };
+		B1D1CAF8212D0165001A9801 /* DetailTripStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTripStyleCell.swift; sourceTree = "<group>"; };
+		B1D1CAFA212D024C001A9801 /* DetailTripStyleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTripStyleCell.xib; sourceTree = "<group>"; };
+		B1D1CAFC212D0961001A9801 /* DetailCharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCharacterCell.swift; sourceTree = "<group>"; };
+		B1D1CAFE212D0D55001A9801 /* DetailInterestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInterestCell.swift; sourceTree = "<group>"; };
+		B1D1CB02212D2086001A9801 /* DetailCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommitView.swift; sourceTree = "<group>"; };
+		B1D1CB04212D28F8001A9801 /* AdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
+		B1D1CB06212D35D9001A9801 /* MainCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCell.swift; sourceTree = "<group>"; };
+		B1D1CB08212D3B9E001A9801 /* MainCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionHeaderView.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +355,8 @@
 				B105599321100A1C00AC769C /* MatchHeaderView.swift */,
 				0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */,
 				0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */,
+				B1D1CB06212D35D9001A9801 /* MainCollectionCell.swift */,
+				B1D1CB08212D3B9E001A9801 /* MainCollectionHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -507,6 +523,7 @@
 				0A74566A210CA9EE00F8A0C9 /* RegisterTravel */,
 				0A7123951FACC1E900512EB7 /* MainTabBarController.swift */,
 				B1D4E50D20F895EF00524CE2 /* MainViewController.swift */,
+				B1D1CB04212D28F8001A9801 /* AdViewController.swift */,
 				0AF2C01820F9CA7300775EA8 /* MatchDetailTableViewController.swift */,
 				B1D4E51520FDC83B00524CE2 /* FriendsViewController.swift */,
 				0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */,
@@ -713,8 +730,12 @@
 				B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */,
 				B1D1CAEA212BF7E6001A9801 /* DetailUserProfileInfoCell.swift */,
 				B1D1CAEC212BF7FE001A9801 /* DetailUserProfileInfoCell.xib */,
-				B1D1CAEE212BFAB9001A9801 /* DetailUserIntroduceCell.swift */,
-				B1D1CAF0212BFADE001A9801 /* DetailUserIntroduceCell.xib */,
+				B1D1CAF4212CF1F5001A9801 /* DetailGradeCell.swift */,
+				B1D1CAF8212D0165001A9801 /* DetailTripStyleCell.swift */,
+				B1D1CAFA212D024C001A9801 /* DetailTripStyleCell.xib */,
+				B1D1CAFC212D0961001A9801 /* DetailCharacterCell.swift */,
+				B1D1CAFE212D0D55001A9801 /* DetailInterestCell.swift */,
+				B1D1CB02212D2086001A9801 /* DetailCommitView.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -843,13 +864,13 @@
 				B1D4E52020FDCBB200524CE2 /* godoMaum.ttf in Resources */,
 				B1D4E52120FDCBB200524CE2 /* BMHANNA.otf in Resources */,
 				B1D4E52220FDCBB200524CE2 /* BMJUA.otf in Resources */,
+				B1D1CAFB212D024C001A9801 /* DetailTripStyleCell.xib in Resources */,
 				0A71236D1FACC01200512EB7 /* art.scnassets in Resources */,
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
 				0A409E2E1FB74161001FE583 /* GoogleService-Info.plist in Resources */,
 				0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */,
 				B1D1CAED212BF7FE001A9801 /* DetailUserProfileInfoCell.xib in Resources */,
 				0A0FDE2620398E550046E76F /* NotoSans-Bold.otf in Resources */,
-				B1D1CAF1212BFADE001A9801 /* DetailUserIntroduceCell.xib in Resources */,
 				0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */,
 				0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */,
 				B12001C2211300E800DFD676 /* launchlogo.png in Resources */,
@@ -919,6 +940,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BubbleTransition/BubbleTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
@@ -978,6 +1000,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BubbleTransition.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
@@ -1073,6 +1096,7 @@
 				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
 				B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */,
+				B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A1B11D31FF101FF004B42B6 /* ConfigureViewController.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
@@ -1084,13 +1108,16 @@
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
 				B10559992110223300AC769C /* MatchTypeModel.swift in Sources */,
+				B1D1CAF5212CF1F5001A9801 /* DetailGradeCell.swift in Sources */,
 				B1055997211021F300AC769C /* MatchViewModel.swift in Sources */,
 				0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */,
 				0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
 				B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */,
+				B1D1CB07212D35D9001A9801 /* MainCollectionCell.swift in Sources */,
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,
 				B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */,
+				B1D1CB05212D28F8001A9801 /* AdViewController.swift in Sources */,
 				0A7123921FACC1B600512EB7 /* LoginViewController.swift in Sources */,
 				0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */,
 				B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */,
@@ -1100,6 +1127,7 @@
 				0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */,
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
+				B1D1CAFF212D0D55001A9801 /* DetailInterestCell.swift in Sources */,
 				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,
 				0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */,
 				B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */,
@@ -1134,17 +1162,18 @@
 				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
 				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,
-				B1D1CAEF212BFAB9001A9801 /* DetailUserIntroduceCell.swift in Sources */,
 				0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
+				B1D1CAFD212D0961001A9801 /* DetailCharacterCell.swift in Sources */,
 				0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */,
 				0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */,
 				B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */,
 				B1A1D9A0211D27660022D2A0 /* TripViewModel.swift in Sources */,
 				0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */,
 				0A059CAB1FEFB3B50057E26E /* PlanModel.swift in Sources */,
+				B1D1CB09212D3B9E001A9801 /* MainCollectionHeaderView.swift in Sources */,
 				B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */,
 				0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
@@ -1168,6 +1197,7 @@
 				B16B3DF72117E6F0001D278A /* TripStyleViewController.swift in Sources */,
 				0A745669210CA37D00F8A0C9 /* PageViewController.swift in Sources */,
 				0A745661210C773900F8A0C9 /* AreaViewModel.swift in Sources */,
+				B1D1CAF9212D0165001A9801 /* DetailTripStyleCell.swift in Sources */,
 				B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */,
 				B1EF95652119481700F6418F /* ProfileViewModel.swift in Sources */,
 				0A671AC220342C4C00034CE0 /* SetProfileViewController.swift in Sources */,
