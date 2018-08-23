@@ -30,7 +30,8 @@ class MainTabBarController: UITabBarController{
   }()
   
   let historyViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: UIViewController())
+    let naviVC = UINavigationController(rootViewController: CurrentSendViewController())
+    naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "현황", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
@@ -52,6 +53,7 @@ class MainTabBarController: UITabBarController{
   
   let chattingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: UIViewController())
+      naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "채팅", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC

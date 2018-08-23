@@ -2,7 +2,7 @@
 //  MainViewController.swift
 //  ZIP_ios
 //
-//  Created by xiilab on 2018. 7. 13..
+//  Created by bumwoopark on 2018. 7. 13..
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //  메인 페이지 컬랙션뷰
 
@@ -14,7 +14,6 @@ import RxDataSources
 import DZNEmptyDataSet
 import Hero
 import SnapKit
-
 
 final class MainViewController: UIViewController{
   
@@ -47,6 +46,12 @@ final class MainViewController: UIViewController{
     button.setTitle("33", for: .normal)
     button.setTitleColor(.black, for: .normal)
     button.titleLabel?.font = UIFont.NotoSansKRBold(size: 17)
+    return button
+  }()
+  
+  let alertButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "icons8-google_alerts"), for: .normal)
     return button
   }()
   
@@ -103,24 +108,28 @@ final class MainViewController: UIViewController{
                                        attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 24),
                                                     .foregroundColor: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)]))
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customRightButton)
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-google_alerts"), style: .plain, target: nil, action: nil)
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: alertButton)
     titleLabel.attributedText = myString
     self.navigationItem.titleView = titleLabel
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    Observable<Int>.interval(2, scheduler: MainScheduler.instance)
+      .subscribe { (_) in
+        log.info("hi")
+      }.disposed(by: disposeBag)
 
     view.backgroundColor = .white
     view.addSubview(scrollView)
     scrollView.addSubview(contentView)
-    contentView.addSubview(collectionView)
     addChildViewController(advertiseViewController)
     advertiseViewController.didMove(toParentViewController: self)
+    contentView.addSubview(collectionView)
     contentView.addSubview(advertiseViewController.view)
     pageContainerInitialHeight = advertiseViewController.view.frame.height
     
-    log.info(advertiseViewController.view.frame.height)
     view.setNeedsUpdateConstraints()
     collectionView.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 50, right: 0)
     
@@ -128,7 +137,14 @@ final class MainViewController: UIViewController{
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    Observable.just([MainViewModel(header: "동행이 가장 많은 여행지 TOP4", items: [MainModel(title: "NEW YORK"),MainModel(title: "PRAHA"),MainModel(title: "SHANG HAI"),MainModel(title: "SAN FRANSISCO")]),MainViewModel(header: "회원이 가장 많은 여행지 TOP4", items: [MainModel(title: "OSAKA"),MainModel(title: "JEJU")])])
+    Observable.just([MainViewModel(header: "동행이 가장 많은 여행지 TOP4", items: [
+      MainModel(title: "NEW YORK"),
+      MainModel(title: "PRAHA"),
+      MainModel(title: "SHANG HAI"),
+      MainModel(title: "SAN FRANSISCO")]),
+                     MainViewModel(header: "회원이 가장 많은 여행지 TOP4", items: [
+                      MainModel(title: "OSAKA"),
+                      MainModel(title: "JEJU")])])
       .bind(to: datas)
       .disposed(by: disposeBag)
     

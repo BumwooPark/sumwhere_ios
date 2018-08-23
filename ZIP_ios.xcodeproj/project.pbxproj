@@ -66,6 +66,9 @@
 		0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */; };
 		0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */; };
 		0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEA2129A10200FDF834 /* CalendarCell.swift */; };
+		0A895BEF212EE59800FDF834 /* CurrentSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEE212EE59800FDF834 /* CurrentSendViewController.swift */; };
+		0A895BF4212EEC5A00FDF834 /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BF3212EEC5A00FDF834 /* ReceiveViewController.swift */; };
+		0A895BF7212EF86F00FDF834 /* AlertSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BF6212EF86F00FDF834 /* AlertSettingViewController.swift */; };
 		0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBCF2109E8420057F1A9 /* UserModel.swift */; };
 		0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBD12109F76D0057F1A9 /* TicketView.swift */; };
 		0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A90EBD32109F7B10057F1A9 /* TicketView.xib */; };
@@ -233,6 +236,9 @@
 		0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarHeaderView.xib; sourceTree = "<group>"; };
 		0A895BEA2129A10200FDF834 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		0A895BEE212EE59800FDF834 /* CurrentSendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSendViewController.swift; sourceTree = "<group>"; };
+		0A895BF3212EEC5A00FDF834 /* ReceiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewController.swift; sourceTree = "<group>"; };
+		0A895BF6212EF86F00FDF834 /* AlertSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingViewController.swift; sourceTree = "<group>"; };
 		0A90EBCF2109E8420057F1A9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0A90EBD12109F76D0057F1A9 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		0A90EBD32109F7B10057F1A9 /* TicketView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketView.xib; sourceTree = "<group>"; };
@@ -527,10 +533,12 @@
 		0A7123901FACC17700512EB7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A895BF5212EF84900FDF834 /* Setting */,
 				0A895BEC2129A59900FDF834 /* Login */,
 				B1A1D998211D16B10022D2A0 /* Match */,
 				B16B3DF52117E6E3001D278A /* SetProfile */,
 				0A74566A210CA9EE00F8A0C9 /* RegisterTravel */,
+				0A895BF0212EEC1E00FDF834 /* Request */,
 				0A7123951FACC1E900512EB7 /* MainTabBarController.swift */,
 				B1D4E50D20F895EF00524CE2 /* MainViewController.swift */,
 				B1D1CB04212D28F8001A9801 /* AdViewController.swift */,
@@ -540,7 +548,6 @@
 				0A3C3FEC1FE7ECE6005FF52B /* ChatViewController.swift */,
 				0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */,
 				0A9174CD20220124000A055A /* MockMessage.swift */,
-				0AF2C01A20FB2D9600775EA8 /* ConfigureViewController.swift */,
 				B1D1CB11212EAA6A001A9801 /* AlertViewController.swift */,
 				B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */,
 			);
@@ -587,6 +594,24 @@
 				0A6FEE7E1FF622A100A2D347 /* JoinView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		0A895BF0212EEC1E00FDF834 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				0A895BEE212EE59800FDF834 /* CurrentSendViewController.swift */,
+				0A895BF3212EEC5A00FDF834 /* ReceiveViewController.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		0A895BF5212EF84900FDF834 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0AF2C01A20FB2D9600775EA8 /* ConfigureViewController.swift */,
+				0A895BF6212EF86F00FDF834 /* AlertSettingViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		0A9174CF2024AB6D000A055A /* Util */ = {
@@ -965,6 +990,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HGPlaceholders/HGPlaceholders.framework",
+				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JDStatusBarNotification/JDStatusBarNotification.framework",
@@ -1020,6 +1046,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGPlaceholders.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JDStatusBarNotification.framework",
@@ -1100,6 +1127,7 @@
 				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
 				B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */,
+				0A895BF7212EF86F00FDF834 /* AlertSettingViewController.swift in Sources */,
 				B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
@@ -1196,6 +1224,7 @@
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
 				0AAD74922117103000C860ED /* TripStyleViewModel.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
+				0A895BEF212EE59800FDF834 /* CurrentSendViewController.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
@@ -1211,6 +1240,7 @@
 				B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */,
 				B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */,
+				0A895BF4212EEC5A00FDF834 /* ReceiveViewController.swift in Sources */,
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,
 				0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */,
 			);

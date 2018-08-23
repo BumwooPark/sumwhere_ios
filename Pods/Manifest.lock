@@ -63,6 +63,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.15)
   - Hero (1.2.0)
   - HGPlaceholders (0.3.0)
+  - HMSegmentedControl (1.5.5)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
   - IGListKit/Default (3.4.0):
@@ -165,6 +166,7 @@ DEPENDENCIES:
   - GooglePlaces
   - Hero
   - HGPlaceholders
+  - HMSegmentedControl
   - IGListKit
   - JDStatusBarNotification
   - JTAppleCalendar
@@ -226,6 +228,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Hero
     - HGPlaceholders
+    - HMSegmentedControl
     - IGListKit
     - JDStatusBarNotification
     - JTAppleCalendar
@@ -289,6 +292,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
   HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
+  HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   JDStatusBarNotification: d5829a8f2f291b23b8a54b87fac8bf2549945a2f
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
@@ -326,6 +330,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: c30e42d88ac8ae5e8849a172df44b85f56cb0f12
+PODFILE CHECKSUM: 213f36434697c551fbb548a1da6c7c8544ab80f8
 
 COCOAPODS: 1.5.3

@@ -49,6 +49,7 @@ pod 'JVFloatLabeledTextField'
 pod 'BubbleTransition'
 pod 'IGListKit'
 pod 'Cosmos'
+pod 'HMSegmentedControl'
 
 # RX
 pod 'RxSwift'
