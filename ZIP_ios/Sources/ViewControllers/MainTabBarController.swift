@@ -12,10 +12,11 @@ import SwiftyUserDefaults
 import SwiftyImage
 import RxSwift
 import RxCocoa
-import SideMenu
 
 class MainTabBarController: UITabBarController{
+  
   private let disposeBag = DisposeBag()
+  
   let mainViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MainViewController())
     naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
@@ -23,7 +24,14 @@ class MainTabBarController: UITabBarController{
     naviVC.navigationBar.tintColor = .white
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    let tabBar = UITabBarItem(title: "여행", image: #imageLiteral(resourceName: "on"), tag: 0)
+    let tabBar = UITabBarItem(title: "홈", image: #imageLiteral(resourceName: "on"), tag: 0)
+    naviVC.tabBarItem = tabBar
+    return naviVC
+  }()
+  
+  let historyViewController: UINavigationController = {
+    let naviVC = UINavigationController(rootViewController: UIViewController())
+    let tabBar = UITabBarItem(title: "현황", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
@@ -37,6 +45,14 @@ class MainTabBarController: UITabBarController{
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRBold(size: 40)]
     let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
+    naviVC.tabBarItem = tabBar
+    return naviVC
+  }()
+  
+  
+  let chattingViewController: UINavigationController = {
+    let naviVC = UINavigationController(rootViewController: UIViewController())
+    let tabBar = UITabBarItem(title: "채팅", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
@@ -62,8 +78,11 @@ class MainTabBarController: UITabBarController{
     titleLabel.textColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
     self.navigationItem.titleView = titleLabel
     self.viewControllers = [
-     mainViewController, writerViewController
-      , settingViewController
+     mainViewController,
+     historyViewController,
+     writerViewController,
+     chattingViewController,
+     settingViewController
     ]
   }
   

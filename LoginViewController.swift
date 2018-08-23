@@ -14,7 +14,6 @@ import Moya
 import SwiftyJSON
 import JDStatusBarNotification
 import Firebase
-import CryptoSwift
 import Security
 import FBSDKLoginKit
 import SwiftyUserDefaults

@@ -49,7 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     tokenObserver
       .do(onNext: { (token) in
-        if token.length > 0 {
+        
+        if token.count > 0 {
         Defaults[.token] = token
         AuthManager.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true)]).rx
         }else{

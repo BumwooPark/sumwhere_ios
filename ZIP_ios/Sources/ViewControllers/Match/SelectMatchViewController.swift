@@ -68,7 +68,14 @@ final class SelectMatchViewController: ExpandingViewController{
   }
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    self.navigationController?.pushViewController(MatchResultController(), animated: true)
+    switch datas[indexPath.item]{
+    case .relationship:
+      self.navigationController?.pushViewController(MatchResultController(), animated: true)
+    case .gps:
+      self.navigationController?.pushViewController(GPSMatchResultViewController(), animated: true)
+    default:
+      break
+    }
   }
   
   override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {

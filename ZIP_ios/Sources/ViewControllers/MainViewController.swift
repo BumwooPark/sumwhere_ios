@@ -39,14 +39,15 @@ final class MainViewController: UIViewController{
   let datas = BehaviorRelay<[MainViewModel]>(value: [])
   
   
-  private let advertiseViewController: PageViewController = {
-    let one = UIViewController()
-    one.view.backgroundColor = .yellow
-    let two = UIViewController()
-    two.view.backgroundColor = .blue
-    let vc = PageViewController(pages: [one,two], spin: true)
-    vc.view.backgroundColor = .yellow
-    return vc
+  private let advertiseViewController = AdViewController()
+  
+  private let customRightButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "icons8-key"), for: .normal)
+    button.setTitle("33", for: .normal)
+    button.setTitleColor(.black, for: .normal)
+    button.titleLabel?.font = UIFont.NotoSansKRBold(size: 17)
+    return button
   }()
   
   private let collectionView: UICollectionView = {
@@ -101,6 +102,8 @@ final class MainViewController: UIViewController{
     myString.append(NSAttributedString(string: "갈래말래",
                                        attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 24),
                                                     .foregroundColor: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)]))
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customRightButton)
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-google_alerts"), style: .plain, target: nil, action: nil)
     titleLabel.attributedText = myString
     self.navigationItem.titleView = titleLabel
   }
@@ -133,7 +136,7 @@ final class MainViewController: UIViewController{
       .subscribe(weak: self) { (retainSelf) -> (Event<()>) -> Void in
         return { _ in
           
-          retainSelf.topAnchorValue = retainSelf.scrollView.contentOffset.y - retainSelf.pageContainerInitialHeight
+          retainSelf.topAnchorValue = retainSelf.scrollView.contentOffset.y
           if retainSelf.topAnchorValue > 0 || retainSelf.topAnchorValue ==  -retainSelf.topAnchorValue{
             retainSelf.topAnchorValue = 0
           }
@@ -147,7 +150,7 @@ final class MainViewController: UIViewController{
     super.viewDidLayoutSubviews()
     containerViewHeight?.update(offset: collectionView.contentSize.height + 180)
     scrollView.contentSize = CGSize(width: collectionView.contentSize.width, height: collectionView.contentSize.height + 180)
-    log.info(scrollView.contentSize)
+    log.info(advertiseViewController.view.frame.origin.y)
   }
   
   override func updateViewConstraints() {

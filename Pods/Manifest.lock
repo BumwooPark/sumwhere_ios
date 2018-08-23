@@ -8,7 +8,6 @@ PODS:
   - Bolts/Tasks (1.9.0)
   - BubbleTransition (3.1.0)
   - Cosmos (16.0.0)
-  - CryptoSwift (0.10.0)
   - Differentiator (3.0.2)
   - DropDown (2.3.2)
   - DynamicBlurView (2.0.2)
@@ -49,8 +48,6 @@ PODS:
     - FirebaseInstanceID (~> 3.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
-  - Floaty (4.0.1)
-  - FSPagerView (0.7.1)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -105,12 +102,6 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - PhoneNumberKit (2.1.0):
-    - PhoneNumberKit/PhoneNumberKitCore (= 2.1.0)
-    - PhoneNumberKit/UIKit (= 2.1.0)
-  - PhoneNumberKit/PhoneNumberKitCore (2.1.0)
-  - PhoneNumberKit/UIKit (2.1.0):
-    - PhoneNumberKit/PhoneNumberKitCore
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
   - Protobuf (3.6.0)
@@ -119,6 +110,11 @@ PODS:
   - Result (3.2.4)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
+  - RxCoreLocation (1.3.0):
+    - RxCoreLocation/Core (= 1.3.0)
+  - RxCoreLocation/Core (1.3.0):
+    - RxCocoa (~> 4.2.0)
+    - RxSwift (~> 4.2.0)
   - RxDataSources (3.0.2):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
@@ -137,10 +133,8 @@ PODS:
     - RxSwiftExt/Core (= 3.3.0)
   - RxSwiftExt/Core (3.3.0):
     - RxSwift (~> 4.0)
-  - SideMenu (4.0.0)
   - SkyFloatingLabelTextField (3.5.1)
   - SnapKit (4.0.0)
-  - Spring (1.0.5)
   - SQLite.swift (0.11.5):
     - SQLite.swift/standard (= 0.11.5)
   - SQLite.swift/standard (0.11.5)
@@ -157,7 +151,6 @@ PODS:
 DEPENDENCIES:
   - BubbleTransition
   - Cosmos
-  - CryptoSwift
   - DropDown
   - DZNEmptyDataSet
   - Eureka
@@ -168,8 +161,6 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Messaging
-  - Floaty
-  - FSPagerView
   - GoogleMaps
   - GooglePlaces
   - Hero
@@ -184,21 +175,19 @@ DEPENDENCIES:
   - LTMorphingLabel
   - MessageKit
   - Moya/RxSwift
-  - PhoneNumberKit
   - PopupDialog
   - PySwiftyRegex
   - ReachabilitySwift
   - RxCocoa
+  - RxCoreLocation
   - RxDataSources
   - RxGesture
   - RxKeyboard
   - RxOptional
   - RxSwift
   - RxSwiftExt
-  - SideMenu
   - SkyFloatingLabelTextField
   - SnapKit
-  - Spring
   - SQLite.swift
   - SwiftDate
   - SwiftyBeaver
@@ -216,7 +205,6 @@ SPEC REPOS:
     - Bolts
     - BubbleTransition
     - Cosmos
-    - CryptoSwift
     - Differentiator
     - DropDown
     - DynamicBlurView
@@ -232,8 +220,6 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FirebaseMessaging
-    - Floaty
-    - FSPagerView
     - GoogleMaps
     - GooglePlaces
     - GoogleToolboxForMac
@@ -251,23 +237,21 @@ SPEC REPOS:
     - MessageKit
     - Moya
     - nanopb
-    - PhoneNumberKit
     - PopupDialog
     - Protobuf
     - PySwiftyRegex
     - ReachabilitySwift
     - Result
     - RxCocoa
+    - RxCoreLocation
     - RxDataSources
     - RxGesture
     - RxKeyboard
     - RxOptional
     - RxSwift
     - RxSwiftExt
-    - SideMenu
     - SkyFloatingLabelTextField
     - SnapKit
-    - Spring
     - SQLite.swift
     - SwiftDate
     - SwiftyBeaver
@@ -284,7 +268,6 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BubbleTransition: 9c6e1be2dede21aca6ef5388dd9bea9771f7e7fe
   Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
-  CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
@@ -300,8 +283,6 @@ SPEC CHECKSUMS:
   FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FirebaseMessaging: f43eb0c0e1da096e659de6f713038e74862a62cd
-  Floaty: 82854e1a5ef4fa208281ebd4da2f3d1e51ba67a6
-  FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
@@ -319,23 +300,21 @@ SPEC CHECKSUMS:
   MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  PhoneNumberKit: 62003f40ff75315fd3738286558bc365365ac222
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxCoreLocation: f65296c805cf7782cb219f6947289d6eb3076d32
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxKeyboard: e5efbaa109c35be909dd888e53de0f0efdf5169e
   RxOptional: bd32ff8ca9df4177683d56ffeb618a9d4d5d5cad
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
-  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
   SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  Spring: 17901566c8ecf3a1327902b940406c64512f9bb1
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   SwiftDate: 5c02893dd1f658de4bc6d817a86246140eec9ae3
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
@@ -347,6 +326,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: fe372a19e56b62151c6ec6d092e522cce0c88ae3
+PODFILE CHECKSUM: c30e42d88ac8ae5e8849a172df44b85f56cb0f12
 
 COCOAPODS: 1.5.3

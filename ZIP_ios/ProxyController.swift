@@ -61,7 +61,7 @@ class ProxyController{
   
   func makeRootViewController(){
     
-    if Defaults[.token].length != 0{
+    if Defaults[.token].count != 0{
       profileCheck()
     }else {
       window?.rootViewController = UINavigationController(rootViewController: LoginViewController())

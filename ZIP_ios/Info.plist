@@ -68,9 +68,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This application will use the camera for Augmented Reality.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>카메라 동의</string>
+	<string>위치기반 컨텐츠 추천을 위해 GPS정보가 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>접근 하시겠습니까?</string>
+	<string>사진 데이터 허용에 동의 하시겠습니까?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>godoRounded L.ttf</string>

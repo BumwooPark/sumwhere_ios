@@ -10,8 +10,6 @@ import UIKit
 import SkyFloatingLabelTextField
 import TTTAttributedLabel
 import LGButton
-import Spring
-
 
 class JoinView: UIView{
   

@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CryptoSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -69,11 +64,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FSPagerView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FirebaseAuth.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -85,11 +75,6 @@
 			<false/>
 		</dict>
 		<key>FirebaseMessaging.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Floaty.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -164,11 +149,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PhoneNumberKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-ZIP_ios.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -209,6 +189,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RxCoreLocation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RxDataSources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -244,22 +229,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SideMenu.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SkyFloatingLabelTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SnapKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Spring.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

@@ -15,7 +15,6 @@ import SwiftyJSON
 import TTTAttributedLabel
 import Firebase
 import PySwiftyRegex
-import CryptoSwift
 import JDStatusBarNotification
 
 #if !RX_NO_MODULE

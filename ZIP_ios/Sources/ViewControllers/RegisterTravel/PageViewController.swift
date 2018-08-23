@@ -78,8 +78,12 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
     guard let viewControllerIndex = pages.index(of: viewController) else {return nil}
     currentIndexSubject.onNext(Int(viewControllerIndex))
     let nextIndex = viewControllerIndex + 1
-//    guard nextIndex > pages.count else {return pages.first}
-    guard pages.count > nextIndex else {return nil}
-    return pages[nextIndex]
+    if !spin{
+      guard pages.count > nextIndex else {return nil}
+      return pages[nextIndex]
+    }else{
+      guard pages.count > nextIndex else {return pages.first}
+      return pages[nextIndex]
+    }
   }
 }
