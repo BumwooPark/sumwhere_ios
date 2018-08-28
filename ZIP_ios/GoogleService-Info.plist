@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>76614601538-6vfup0h2t028bithv7f4j1en454cht06.apps.googleusercontent.com</string>
+	<string>940206577010-pg3dgf01vtn5kki7pje2pt2dnr25td1f.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.76614601538-6vfup0h2t028bithv7f4j1en454cht06</string>
+	<string>com.googleusercontent.apps.940206577010-pg3dgf01vtn5kki7pje2pt2dnr25td1f</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDstPguc4gBjDIHZsZIu97AYFFiGQ7094Y</string>
+	<string>AIzaSyBKdafKuklqYxC9AznswrRsmaWNKf0LSC4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>76614601538</string>
+	<string>940206577010</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.bum.ZIPios1</string>
+	<string>com.bum.galmal</string>
 	<key>PROJECT_ID</key>
-	<string>project-zip</string>
+	<string>galmal-8f900</string>
 	<key>STORAGE_BUCKET</key>
-	<string>project-zip.appspot.com</string>
+	<string>galmal-8f900.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:76614601538:ios:fec53726c0ef9217</string>
+	<string>1:940206577010:ios:5be4f902c7ace44f</string>
 	<key>DATABASE_URL</key>
-	<string>https://project-zip.firebaseio.com</string>
+	<string>https://galmal-8f900.firebaseio.com</string>
 </dict>
 </plist>

@@ -26,7 +26,9 @@ class LoginViewModel{
     
     LoginKit.facebookLogin(manager: manager, Permissions: ["public_profile","email"], from: self.viewController) {(result) in
       if result{
-        AuthManager.provider
+        
+        AuthManager.instance
+          .provider
           .request(.facebook(access_token: FBSDKAccessToken.current().tokenString))
           .map(ResultModel<TokenModel>.self)
           .subscribe(onSuccess: { (result) in
@@ -46,7 +48,8 @@ class LoginViewModel{
     LoginKit.kakaoLogin {[weak self] (result) in
       guard let `self` = self else {return}
       if result{
-        AuthManager.provider
+        AuthManager.instance
+          .provider
           .request(.kakao(access_token: KOSession.shared().token.accessToken))
           .map(ResultModel<TokenModel>.self)
           .subscribe(onSuccess: {(result) in
@@ -59,7 +62,6 @@ class LoginViewModel{
             JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
           }).disposed(by: self.disposeBag)
       }else{
-        
         JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
       }
     }

@@ -50,6 +50,8 @@ pod 'BubbleTransition'
 pod 'IGListKit'
 pod 'Cosmos'
 pod 'HMSegmentedControl'
+pod 'Popover'
+pod 'SkeletonView'
 
 # RX
 pod 'RxSwift'

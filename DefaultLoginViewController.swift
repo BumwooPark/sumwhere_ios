@@ -142,7 +142,8 @@ final class DefaultLoginViewController: UIViewController{
   /// API Login
   private func login(){
 
-    AuthManager.provider
+    AuthManager.instance
+      .provider
       .request(.signIn(email: emailField.text ?? String(), password: passwordField.text ?? String()))
       .map(ResultModel<TokenModel>.self)
       .subscribe(onSuccess: {[weak self] (result) in

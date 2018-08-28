@@ -13,7 +13,8 @@ import RxCocoa
 class ConfigureViewController: FormViewController{
   let disposeBag = DisposeBag()
   
-  let network = AuthManager.provider
+  let network = AuthManager.instance
+    .provider
     .request(.user)
     .map(ResultModel<UserModel>.self)
     .asObservable()
@@ -41,14 +42,17 @@ class ConfigureViewController: FormViewController{
       }
       
       <<< LabelRow(){$0.title = "프로필"}.onCellSelection({[weak self] (cell, row) in
-        self?.present(SetProfileViewController(config: true), animated: true, completion: nil)
+        self?.navigationController?.pushViewController(SetProfileViewController(config: false), animated: true)
       })
       <<< LabelRow(){$0.title = "친구"}.onCellSelection({ [weak self] (cell, row) in
         self?.present(FriendsViewController(), animated: true, completion: nil)
       })
       <<< LabelRow(){$0.title = "알림"}
       <<< LabelRow(){$0.title = "스토어"}
-      <<< LabelRow(){$0.title = "계정설정"}
+      <<< LabelRow(){$0.title = "계정설정"}.onCellSelection({(cell, row) in
+//        self?.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+        tokenObserver.onNext(String())
+      })
       <<< LabelRow(){$0.title = "문의하기"}
       <<< LabelRow(){
         $0.title = "설정"
@@ -60,7 +64,8 @@ class ConfigureViewController: FormViewController{
   }
   
   func getUserInfo(){
-    AuthManager.provider.request(.user)
+    AuthManager.instance
+      .provider.request(.user)
       .map(ResultModel<UserModel>.self)
       .subscribe(onSuccess: { (model) in
         log.info(model.result)

@@ -20,8 +20,7 @@ class AuthManager{
   
   static let instance = AuthManager()
   
-
-  static var provider: Reactive<MoyaProvider<ZIP>> = {
+  var provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG
         return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
@@ -32,6 +31,18 @@ class AuthManager{
       return MoyaProvider<ZIP>(plugins:[NetworkLoggerPlugin(verbose: true)]).rx
     }
   }()
+  
+  func updateProvider() {
+    if Defaults.hasKey("token"){
+      #if DEBUG
+      self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
+      #else
+      self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
+      #endif
+    }else{
+      self.provider = MoyaProvider<ZIP>(plugins:[NetworkLoggerPlugin(verbose: true)]).rx
+    }
+  }
   
   fileprivate init(){}
 }

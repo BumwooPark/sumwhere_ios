@@ -102,7 +102,8 @@ class TripRegisterViewModel{
   
   
   func serverTripValidate(model: TripType) -> Observable<TripType> {
-    return AuthManager.provider.request(.TripDestinationValidate(id: model.id))
+    return AuthManager.instance
+      .provider.request(.TripDestinationValidate(id: model.id))
       .map(ResultModel<Int>.self)
       .asObservable()
       .flatMap { (resultModel) -> Observable<TripType> in
@@ -119,7 +120,8 @@ class TripRegisterViewModel{
     let startDate = start.toFormat("yyyy-MM-dd")
     let endDate = end.toFormat("yyyy-MM-dd")
     
-    return AuthManager.provider
+    return AuthManager.instance
+      .provider
       .request(.TripDateValidate(start: startDate, end: endDate))
       .map(ResultModel<Int>.self)
       .asObservable()
@@ -133,7 +135,8 @@ class TripRegisterViewModel{
   }
   
   func createTrip() -> PrimitiveSequence<SingleTrait, ResultModel<Trip>>{
-    return AuthManager.provider.request(.createTrip(model: input.ToModel()))
+    return AuthManager.instance
+      .provider.request(.createTrip(model: input.ToModel()))
       .map(ResultModel<Trip>.self)
   }
 }

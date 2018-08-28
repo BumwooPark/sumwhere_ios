@@ -13,6 +13,7 @@ struct UserModel: Codable{
   let email: String
   let password: String?
   var username: String?
+  var gender: String?
   var nickname: String?
   let hasProfile: Bool
   let kakao_token: String?
@@ -24,7 +25,6 @@ struct UserModel: Codable{
 }
 
 struct ProfileModel: Codable{
-  var gender: String
   var birthday: String
   var tripType: [TripStyleModel]?
   var interestType: [InterestModel]?

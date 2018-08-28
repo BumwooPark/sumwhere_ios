@@ -14,6 +14,7 @@ class PageViewController: UIPageViewController{
   var pages: [UIViewController]
   var currentIndexSubject = PublishSubject<Int>()
   let spin: Bool
+  var currentValue = 0
   
   init(pages: [UIViewController], spin: Bool) {
     self.pages = pages
@@ -50,11 +51,29 @@ class PageViewController: UIPageViewController{
     }
   }
   
+  func scrollToAutoForward(){
+    let nextValue = currentValue + 1
+    if nextValue >= pages.count{
+      currentValue = 0
+      scrollToViewController(pages[currentValue], direction: .forward)
+    }else{
+      currentValue += 1
+      scrollToViewController(pages[currentValue], direction: .forward)
+    }
+  }
+  
+  
   func scrollToViewController(index newIndex: Int) {
     if let firstViewController = viewControllers?.first,let currentIndex = pages.index(of: firstViewController) {
       let direction: UIPageViewControllerNavigationDirection = newIndex >= currentIndex ? .forward : .reverse
-      let nextViewController = pages[newIndex]
-        scrollToViewController(nextViewController, direction: direction)
+      
+      if newIndex > pages.count{
+        currentValue = 0
+        scrollToViewController(pages[currentValue], direction: direction)
+      }else{
+        currentValue = pages.count - 1
+        scrollToViewController(pages[currentValue], direction: direction)
+      }
     }
   }
 }
@@ -63,6 +82,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     guard let viewControllerIndex = pages.index(of: viewController) else {return nil}
     currentIndexSubject.onNext(Int(viewControllerIndex))
+    currentValue = Int(viewControllerIndex)
     let previousIndex = viewControllerIndex - 1
     if !spin{
       guard previousIndex >= 0 else {return nil}
@@ -77,6 +97,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
     guard let viewControllerIndex = pages.index(of: viewController) else {return nil}
     currentIndexSubject.onNext(Int(viewControllerIndex))
+    currentValue = Int(viewControllerIndex)
     let nextIndex = viewControllerIndex + 1
     if !spin{
       guard pages.count > nextIndex else {return nil}

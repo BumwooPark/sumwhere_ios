@@ -12,6 +12,7 @@ import SnapKit
 class DetailUserInfoViewController: UIViewController{
   
   let model: UserTripJoinModel
+  let disposeBag = DisposeBag()
   
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -117,8 +118,32 @@ extension DetailUserInfoViewController: UICollectionViewDataSource{
     cell.item = model
     return cell
   }
+  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: DetailCommitView.self), for: indexPath)
+    let commitView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: DetailCommitView.self), for: indexPath) as! DetailCommitView
+    
+    commitView
+      .commitAction
+      .bind(onNext: requestApi)
+      .disposed(by: disposeBag)
+    
+    return commitView
+  }
+  
+  
+  func requestApi(){
+    guard let currentUserModel = TripViewController.currentModel else {return}
+    let data = MatchRequestModel(fromMatchId: currentUserModel.trip.id, toMatchId: model.trip.id, createAt: nil)
+    
+    AuthManager.instance
+      .provider
+      .request(.MatchRequest(model: data))
+      .map(ResultModel<MatchRequestModel>.self)
+      .subscribe(onSuccess: { (model) in
+        log.info(model)
+      }) { (error) in
+        log.error(error)
+      }.disposed(by: disposeBag)
   }
   
 }

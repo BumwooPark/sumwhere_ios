@@ -58,8 +58,6 @@ final class MatchResultController: UIViewController{
         }
     }.disposed(by:disposeBag)
     
-    self.navigationController?.navigationBar.topItem?.title = String()
-    
     view.setNeedsUpdateConstraints()
   }
 

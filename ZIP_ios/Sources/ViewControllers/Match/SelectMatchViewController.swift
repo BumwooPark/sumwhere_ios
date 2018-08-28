@@ -31,28 +31,21 @@ enum MatchType: String{
       }
     }
   }
-  
 }
 
 final class SelectMatchViewController: ExpandingViewController{
   
   let disposeBag = DisposeBag()
+
   fileprivate var cellsIsOpen = [Bool](repeating: false, count: 4)
   private var datas:[MatchType] = [.relationship,.fit,.gps,.transfer]
-  
-  init(title: String) {
-    super.init(nibName: nil, bundle: nil)
-    self.title = title
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     collectionView?.emptyDataSetSource = self
+    self.title = "매칭 선택"
+    
     let nib = UINib(nibName: String(describing: MainViewCell.self), bundle: nil)
     collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: MainViewCell.self))
 

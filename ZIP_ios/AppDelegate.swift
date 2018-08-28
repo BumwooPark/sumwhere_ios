@@ -49,17 +49,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     tokenObserver
       .do(onNext: { (token) in
-        
         if token.count > 0 {
         Defaults[.token] = token
-        AuthManager.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true)]).rx
+          Defaults.synchronize()
+          AuthManager.instance.updateProvider()
         }else{
           Defaults.remove("token")
+          Defaults.synchronize()
         }
-        Defaults.synchronize()
       })
       .delay(1, scheduler: MainScheduler.instance)
       .subscribe(onNext: {[weak self] (token) in
+        log.info(Defaults[.token])
         self?.proxyController.makeRootViewController()
     }).disposed(by: disposeBag)
     

@@ -12,6 +12,7 @@ class TicketView: UIView{
   @IBOutlet weak var startLabel: UILabel!
   @IBOutlet weak var endLabel: UILabel!
   @IBOutlet weak var peopleCountLabel: UILabel!
+  @IBOutlet weak var moreButton: UIButton!
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)

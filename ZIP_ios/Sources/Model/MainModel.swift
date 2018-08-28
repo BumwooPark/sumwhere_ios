@@ -10,4 +10,6 @@ import Foundation
 
 struct MainModel{
   let title: String
+  let detail: String
+  let image: UIImage
 }

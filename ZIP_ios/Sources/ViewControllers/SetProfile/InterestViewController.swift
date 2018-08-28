@@ -125,7 +125,8 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
   
   //MARK: - NetWork
   func api(){
-    AuthManager.provider.request(.GetAllInterest)
+    AuthManager.instance
+      .provider.request(.GetAllInterest)
       .map(ResultModel<[InterestModel]>.self)
       .map{$0.result}
       .asObservable()

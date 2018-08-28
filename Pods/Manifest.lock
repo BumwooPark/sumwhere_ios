@@ -103,6 +103,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Popover (1.2.0)
   - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
   - Protobuf (3.6.0)
@@ -134,6 +135,7 @@ PODS:
     - RxSwiftExt/Core (= 3.3.0)
   - RxSwiftExt/Core (3.3.0):
     - RxSwift (~> 4.0)
+  - SkeletonView (1.2.1)
   - SkyFloatingLabelTextField (3.5.1)
   - SnapKit (4.0.0)
   - SQLite.swift (0.11.5):
@@ -177,6 +179,7 @@ DEPENDENCIES:
   - LTMorphingLabel
   - MessageKit
   - Moya/RxSwift
+  - Popover
   - PopupDialog
   - PySwiftyRegex
   - ReachabilitySwift
@@ -188,6 +191,7 @@ DEPENDENCIES:
   - RxOptional
   - RxSwift
   - RxSwiftExt
+  - SkeletonView
   - SkyFloatingLabelTextField
   - SnapKit
   - SQLite.swift
@@ -240,6 +244,7 @@ SPEC REPOS:
     - MessageKit
     - Moya
     - nanopb
+    - Popover
     - PopupDialog
     - Protobuf
     - PySwiftyRegex
@@ -253,6 +258,7 @@ SPEC REPOS:
     - RxOptional
     - RxSwift
     - RxSwiftExt
+    - SkeletonView
     - SkyFloatingLabelTextField
     - SnapKit
     - SQLite.swift
@@ -304,6 +310,7 @@ SPEC CHECKSUMS:
   MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Popover: 28c1ac8e937ab2b3965bd2da7dd18324357abc41
   PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
@@ -317,6 +324,7 @@ SPEC CHECKSUMS:
   RxOptional: bd32ff8ca9df4177683d56ffeb618a9d4d5d5cad
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
+  SkeletonView: 98a31213f9282076149e6eb23f46734604f02086
   SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
@@ -330,6 +338,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: 213f36434697c551fbb548a1da6c7c8544ab80f8
+PODFILE CHECKSUM: fc93af99702058f8b335fdf9c12e3440f6e87165
 
 COCOAPODS: 1.5.3

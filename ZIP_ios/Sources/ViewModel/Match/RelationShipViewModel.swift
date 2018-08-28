@@ -17,7 +17,8 @@ class RelationShipViewModel{
   }
   
   func api(tripId: Int, startDate: String, endDate: String) -> Observable<[UserTripJoinModel]> {
-    return AuthManager.provider.request(.RelationShipMatch(tripId: tripId, startDate: startDate, endDate: endDate))
+    return AuthManager.instance
+      .provider.request(.RelationShipMatch(tripId: tripId, startDate: startDate, endDate: endDate))
       .map(ResultModel<[UserTripJoinModel]>.self)
       .map{$0.result}
       .asObservable()

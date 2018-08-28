@@ -127,7 +127,8 @@ class CharacterViewController: UIViewController, TypedRowControllerType{
   
   //MARK: - Network Call
   private func api(){
-    AuthManager.provider.request(.GetAllCharacter)
+    AuthManager.instance
+      .provider.request(.GetAllCharacter)
       .map(ResultModel<[CharacterModel]>.self)
       .map{$0.result}
       .asObservable()

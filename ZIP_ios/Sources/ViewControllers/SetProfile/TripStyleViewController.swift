@@ -153,7 +153,8 @@ class TripStyleViewController: UIViewController, TypedRowControllerType{
   }
   
   func callApi(){
-    AuthManager.provider.request(.GetAllTripStyle)
+    AuthManager.instance
+      .provider.request(.GetAllTripStyle)
       .map(ResultModel<[TripStyleModel]>.self)
       .map{$0.result}
       .asObservable()

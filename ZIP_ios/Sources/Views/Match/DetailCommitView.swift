@@ -17,6 +17,9 @@ class DetailCommitView: UICollectionReusableView{
     return button
   }()
   
+  lazy var commitAction = commitButton.rx.tap
+    .map{return ()}
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(commitButton)

@@ -19,6 +19,7 @@ final class MainViewController: UIViewController{
   
   let disposeBag = DisposeBag()
   var didUpdateConstraint = false
+  var foreGround = false
   
   var pageContainerInitialHeight = CGFloat()
   var topConstraint: Constraint?
@@ -42,7 +43,7 @@ final class MainViewController: UIViewController{
   
   private let customRightButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "icons8-key"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "icons8-key-2-24"), for: .normal)
     button.setTitle("33", for: .normal)
     button.setTitleColor(.black, for: .normal)
     button.titleLabel?.font = UIFont.NotoSansKRBold(size: 17)
@@ -51,21 +52,24 @@ final class MainViewController: UIViewController{
   
   let alertButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "icons8-google_alerts"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "icons8-notification-24"), for: .normal)
     return button
   }()
   
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 150)
-    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
+    layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: 250)
+    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 80)
+    layout.minimumLineSpacing = 20
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.isScrollEnabled = false
     collectionView.register(MainCollectionCell.self, forCellWithReuseIdentifier: String(describing: MainCollectionCell.self))
     collectionView.register(MainCollectionHeaderView.self,
                             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                             withReuseIdentifier: String(describing: MainCollectionHeaderView.self))
+    collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+    collectionView.showsVerticalScrollIndicator = false
     collectionView.backgroundColor = .white
     return collectionView
   }()
@@ -116,10 +120,17 @@ final class MainViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    Observable<Int>.interval(2, scheduler: MainScheduler.instance)
-      .subscribe { (_) in
-        log.info("hi")
-      }.disposed(by: disposeBag)
+    Observable<Int>.interval(4, scheduler: MainScheduler.instance)
+      .filter({[unowned self] (_) -> Bool in
+        return self.foreGround
+      })
+      .subscribeNext(weak: self, { (retainSelf) -> (Int) -> Void in
+        return { _ in
+          retainSelf.advertiseViewController.pageView.scrollToAutoForward()
+        }
+      }).disposed(by: disposeBag)
+    
+    self.navigationController?.navigationBar.topItem?.title = String()
 
     view.backgroundColor = .white
     view.addSubview(scrollView)
@@ -137,14 +148,10 @@ final class MainViewController: UIViewController{
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    Observable.just([MainViewModel(header: "동행이 가장 많은 여행지 TOP4", items: [
-      MainModel(title: "NEW YORK"),
-      MainModel(title: "PRAHA"),
-      MainModel(title: "SHANG HAI"),
-      MainModel(title: "SAN FRANSISCO")]),
-                     MainViewModel(header: "회원이 가장 많은 여행지 TOP4", items: [
-                      MainModel(title: "OSAKA"),
-                      MainModel(title: "JEJU")])])
+    Observable.just([MainViewModel(header: "추천 여행지", items: [
+      MainModel(title: "인기 급상승 \n여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
+      MainModel(title: "최다 등록\n여행지!", detail:"핫한 10개 도시", image: #imageLiteral(resourceName: "tower")),
+      MainModel(title: "최다 매칭\n여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))])])
       .bind(to: datas)
       .disposed(by: disposeBag)
     
@@ -159,7 +166,36 @@ final class MainViewController: UIViewController{
           retainSelf.topConstraint?.update(inset: retainSelf.topAnchorValue)
         }
     }.disposed(by: disposeBag)
+    
+    collectionView.rx.itemSelected
+      .subscribeNext(weak: self) { (retainSelf) -> (IndexPath) -> Void in
+        return { idx in
+          switch idx.item{
+          case 0:
+            retainSelf.navigationController?.pushViewController(TopTripViewController(), animated: true)
+          case 1:
+            retainSelf.navigationController?.pushViewController(TopTripViewController(), animated: true)
+          case 2:
+            retainSelf.navigationController?.pushViewController(TopTripViewController(), animated: true)
+          default:
+            break
+          }
+        }
+    }.disposed(by: disposeBag)
+    
     collectionView.layoutIfNeeded()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    log.info("viewWillAppear")
+    foreGround = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    log.info("viewWillDisappear")
+    foreGround = false
   }
 
   override func viewDidLayoutSubviews() {

@@ -19,50 +19,50 @@ class MainTabBarController: UITabBarController{
   
   let mainViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MainViewController())
-    naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
-    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
-    naviVC.navigationBar.tintColor = .white
+    naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
+//    naviVC.navigationBar.tintColor = .white
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    let tabBar = UITabBarItem(title: "홈", image: #imageLiteral(resourceName: "on"), tag: 0)
+    let tabBar = UITabBarItem(title: "홈", image: #imageLiteral(resourceName: "icons8-home"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let historyViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: CurrentSendViewController())
+    let naviVC = UINavigationController(rootViewController: CurrentMatchViewController())
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    let tabBar = UITabBarItem(title: "현황", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
+    let tabBar = UITabBarItem(title: "동행", image: #imageLiteral(resourceName: "icons8-user-groups-32"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let writerViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: TripViewController())
-    naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
-    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-back-36").withRenderingMode(.alwaysTemplate)
+    naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled").withRenderingMode(.alwaysTemplate)
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.prefersLargeTitles = true
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRBold(size: 40)]
-    let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
+    let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "icons8-find-user-male"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
-  
   let chattingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: UIViewController())
       naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    let tabBar = UITabBarItem(title: "채팅", image: #imageLiteral(resourceName: "matchoff"), tag: 0)
+    let tabBar = UITabBarItem(title: "채팅", image: #imageLiteral(resourceName: "icons8-chat-bubble"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let settingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: ConfigureViewController())
-    let tabBar = UITabBarItem(title: "설정", image: #imageLiteral(resourceName: "configoff"), tag: 0)
+    let tabBar = UITabBarItem(title: "설정", image: #imageLiteral(resourceName: "icons8-gender-neutral-user"), tag: 0)
     naviVC.navigationBar.prefersLargeTitles = true
+    naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     naviVC.navigationItem.largeTitleDisplayMode = .always
     naviVC.tabBarItem = tabBar
     return naviVC
@@ -87,27 +87,4 @@ class MainTabBarController: UITabBarController{
      settingViewController
     ]
   }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
-//      self?.profileAlertView()
-//    }
-  }
-  
-//  private func profileAlertView(){
-//
-//    guard Defaults.hasKey(.isProfileSet) || !Defaults[.isProfileSet] else {return}
-//
-//    let popup = PopupDialog(title: "회원정보", message: "회원정보를 입력해 주세요")
-//    let goButton = DefaultButton(title: "입력하러 갈래", height: 60, dismissOnTap: true) {[weak self] in
-//      self?.present(SetProfileViewController(), animated: true, completion: nil)
-//    }
-//    let cancelButton = DefaultButton(title: "나중에 할래", height: 60, dismissOnTap: true){
-//      Defaults[.isProfileSet] = true
-//    }
-//    popup.addButtons([goButton,cancelButton])
-//    self.present(popup, animated: true, completion: nil)
-//  }
 }

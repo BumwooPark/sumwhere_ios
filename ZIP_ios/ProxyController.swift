@@ -17,26 +17,27 @@ class ProxyController{
   let disposeBag = DisposeBag()
   let window: UIWindow?
   
-  
-  let isProfile = AuthManager.provider.request(.isProfile)
-    .map(ResultModel<Bool>.self)
-    .map{$0.result}
-    .asObservable()
-    .filterNil()
-    .share()
-  
-  let tokenLogin = AuthManager.provider.request(.tokenLogin)
-    .map(ResultModel<Bool>.self)
-    .map{$0.result}
-    .asObservable()
-    .filterNil()
-    .share()
+
  
   init(window: UIWindow?) {
     self.window = window
   }
   
   func profileCheck(){
+    let isProfile = AuthManager.instance
+      .provider.request(.isProfile)
+      .map(ResultModel<Bool>.self)
+      .map{$0.result}
+      .asObservable()
+      .filterNil()
+    
+    let tokenLogin = AuthManager.instance
+      .provider.request(.tokenLogin)
+      .map(ResultModel<Bool>.self)
+      .map{$0.result}
+      .asObservable()
+      .filterNil()
+    
     Observable<UIViewController>.combineLatest(isProfile, tokenLogin) { (profile, login)in
       let loginVC = UINavigationController(rootViewController: LoginViewController())
       loginVC.navigationBar.prefersLargeTitles = true

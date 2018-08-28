@@ -14,7 +14,11 @@ import DZNEmptyDataSet
 import Moya
 import JDStatusBarNotification
 
+
+
 class TripViewController: UIViewController{
+  
+  static var currentModel: TripModel?
   
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
@@ -48,9 +52,17 @@ class TripViewController: UIViewController{
   
   private let datas = BehaviorRelay<[MyTripViewModel]>(value: [])
   
-  private let dataSources = RxCollectionViewSectionedReloadDataSource<MyTripViewModel>(configureCell: {ds,cv,idx,item in
+  lazy var dataSources = RxCollectionViewSectionedReloadDataSource<MyTripViewModel>(configureCell: {[weak self] ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: TripTicketCell.self), for: idx) as! TripTicketCell
     cell.item = item
+    guard let `self` = self else {return cell}
+    cell.ticketView.moreButton
+      .rx
+      .tap
+      .map{_ in return item}
+      .bind(onNext: self.menuPopUp)
+      .disposed(by: self.disposeBag)
+    
     return cell
   })
   
@@ -104,7 +116,7 @@ class TripViewController: UIViewController{
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
-    
+  
     addButton.rx.tap
       .subscribe {[unowned self] (_) in
         let destViewController = CreateTripViewController()
@@ -114,15 +126,17 @@ class TripViewController: UIViewController{
         self.present(destViewController, animated: true, completion: nil)
       }.disposed(by: disposeBag)
     
-    collectionView.rx.modelSelected(TripModel.self)
+    collectionView.rx
+      .modelSelected(TripModel.self)
       .subscribe(onNext: {[weak self] model in
-        self?.navigationController?.pushViewController(SelectMatchViewController(title: model.tripType.trip), animated: true)
+        TripViewController.currentModel = model
+        self?.navigationController?.pushViewController(SelectMatchViewController(), animated: true)
       }).disposed(by: disposeBag)
   }
   
   func api(){
     
-    viewModel.api
+    viewModel.getApi
       .catchError { (error) -> PrimitiveSequence<SingleTrait, ResultModel<[TripModel]>> in
         if case .statusCode = error as! MoyaError{
           JDStatusBarNotification.show(withStatus: "관리자에게 문의바랍니다.", dismissAfter: 2, styleName: JDType.Fail.rawValue)
@@ -138,6 +152,33 @@ class TripViewController: UIViewController{
       })
       .bind(to: datas)
       .disposed(by: disposeBag)
+  }
+  
+  
+  func menuPopUp(item: TripModel){
+
+    let alertController = UIAlertController(title: item.tripType.trip, message: nil, preferredStyle: .actionSheet)
+    alertController.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: {[weak self] (action) in
+      guard let `self` = self else {return}
+      self.viewModel.deleteApi(item.trip.id)
+        .subscribe(onSuccess: { (model) in
+          if model.success{
+            JDStatusBarNotification.show(withStatus: "삭제 되었습니다.", dismissAfter: 2, styleName: JDType.Success.rawValue)
+            self.api()
+            self.view.layoutIfNeeded()
+          }else{
+            JDStatusBarNotification.show(withStatus: model.error?.details ?? "관리자에게 문의 바랍니다.", dismissAfter: 2, styleName: JDType.Fail.rawValue)
+          }
+      }, onError: { (error) in
+        log.error(error)
+      }).disposed(by: self.disposeBag)
+    }))
+    alertController.addAction(UIAlertAction(title: "수정", style: .default, handler: { (action) in
+    }))
+    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action) in
+    }))
+    
+    self.navigationController?.present(alertController, animated: true, completion: nil)
   }
   
   override func viewDidLayoutSubviews() {

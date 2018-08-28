@@ -27,7 +27,6 @@ import TTTAttributedLabel
 class LoginViewController: UIViewController{
   
   let disposeBag = DisposeBag()
-  let provider = AuthManager.provider
   let joinVC = JoinViewController()
   lazy var viewModel = LoginViewModel(viewController: self)
   

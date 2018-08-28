@@ -60,7 +60,8 @@ class ProfileViewModel{
       log.info(input)
     }
   }
-  let profileAPI = AuthManager.provider.request(.user)
+  let profileAPI = AuthManager.instance
+    .provider.request(.user)
     .map(ResultModel<UserModel>.self)
     .retry(3)
     .asObservable()
@@ -165,7 +166,8 @@ class ProfileViewModel{
   }
   
   func overlapAPI(nickname: String){
-    AuthManager.provider.request(.nicknameConfirm(nickname: nickname))
+    AuthManager.instance
+      .provider.request(.nicknameConfirm(nickname: nickname))
       .map(ResultModel<Bool>.self)
       .map{$0.result}
       .asObservable()
@@ -222,7 +224,8 @@ class ProfileViewModel{
       log.error(error)
     }
     
-    AuthManager.provider.request(.createProfile(data: multiparts))
+    AuthManager.instance
+      .provider.request(.createProfile(data: multiparts))
       .map(ResultModel<UserModel>.self)
       .subscribe(onSuccess: {[weak self] (result) in
         guard let `self` = self else {return}

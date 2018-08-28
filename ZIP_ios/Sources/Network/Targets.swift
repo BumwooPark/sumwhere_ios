@@ -22,6 +22,7 @@ public enum ZIP{
   case user
   case createTrip(model: Encodable)
   case myTrip
+  case deleteMyTrip(id: Int)
   case searchDestination(data: String)
   case AllTripList(sortby: String, order: String, skipCount: Int, maxResultCount: Int)
   case GetAllTripStyle
@@ -30,6 +31,9 @@ public enum ZIP{
   case TripDateValidate(start: String, end: String)
   case TripDestinationValidate(id: Int)
   case RelationShipMatch(tripId: Int, startDate: String, endDate: String)
+  case MatchRequest(model: Encodable)
+  case MatchRequestReceive
+  case MatchRequestSend
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
@@ -68,7 +72,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/triptype"
     case .createTrip:
       return "/restrict/trip"
-    case .myTrip:
+    case .myTrip,.deleteMyTrip:
       return "/restrict/mytrip"
     case .user:
       return "/restrict/user"
@@ -86,13 +90,21 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/trip/date/validate"
     case .RelationShipMatch:
       return "/restrict/match/relationship"
+    case .MatchRequest:
+      return "/restrict/match/request"
+    case .MatchRequestReceive:
+      return "/restrict/match/receive"
+    case .MatchRequestSend:
+      return "/restrict/match/send"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .signUp,.createProfile,.kakao,.facebook,.createTrip:
+    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest:
       return .post
+    case .deleteMyTrip:
+      return .delete
     default:
       return .get
     }
@@ -126,14 +138,17 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["id": id],encoding: URLEncoding.queryString)
     case .RelationShipMatch(let tripId, let startDate, let endDate):
       return .requestParameters(parameters: ["tripid":tripId,"start":startDate,"end":endDate], encoding: URLEncoding.queryString)
+    case .deleteMyTrip(let id):
+      return .requestParameters(parameters: ["id": id], encoding: URLEncoding.queryString)
+    case .MatchRequest(let json):
+      return .requestJSONEncodable(json)
     default:
       return .requestPlain
     }
   }
   
   public var headers: [String : String]? {
-//    return ["content-type":"application/json","Accept-Language":"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]
-    return nil
+    return ["X-Request-ID": randomString(15)]
   }
   
   public var authorizationType: AuthorizationType {

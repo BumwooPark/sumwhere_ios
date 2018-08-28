@@ -10,7 +10,7 @@ class MainCollectionHeaderView: UICollectionReusableView{
   
   let titleLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.NotoSansKRBold(size: 15)
+    label.font = UIFont.NotoSansKRBold(size: 20)
     return label
   }()
   
@@ -18,7 +18,7 @@ class MainCollectionHeaderView: UICollectionReusableView{
     super.init(frame: frame)
     addSubview(titleLabel)
     titleLabel.snp.makeConstraints { (make) in
-      make.left.equalToSuperview().inset(20)
+      make.left.equalToSuperview().inset(25)
       make.centerY.equalToSuperview()
     }
   }

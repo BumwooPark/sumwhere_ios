@@ -32,7 +32,6 @@ class TripTicketCell: UICollectionViewCell{
       ticketView.snp.makeConstraints { (make) in
         make.edges.equalToSuperview()
       }
-      
       didUpdateConstraint = false
     }
     super.updateConstraints()

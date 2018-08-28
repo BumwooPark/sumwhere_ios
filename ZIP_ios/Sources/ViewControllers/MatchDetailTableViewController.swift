@@ -20,7 +20,6 @@ class MatchDetailTableViewController: UIViewController {
   let tripType: TripType
   var imageHeroID: String = ""
   var labelHeroID: String = ""
-  
  
   lazy var dataSources = RxCollectionViewSectionedReloadDataSource<MatchViewModel>(configureCell: {ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MatchCell.self), for: idx) as! MatchCell
@@ -85,7 +84,6 @@ class MatchDetailTableViewController: UIViewController {
         }
         self.scrollOffsetY = self.collectionView.contentOffset.y
       }).disposed(by: disposeBag)
-
 
     hero.isEnabled = true
     Observable.just(sampleData)

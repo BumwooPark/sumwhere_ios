@@ -121,7 +121,7 @@ class SetProfileViewController: FormViewController{
           cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
           cell.detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
         }).cellUpdate({[weak self] (cell, row) in
-          row.value = self?.viewModel.item?.profile?.gender
+          row.value = self?.viewModel.item?.gender
         }).onChange({[weak self] (row) in
           guard let `self` = self else {return}
           self.viewModel.modelSaver.onNext(.gender(value: row.value!))
@@ -190,18 +190,6 @@ class SetProfileViewController: FormViewController{
           button.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
           button.tintColor = .black
         })
-    
-    
-    if configure{
-      lastSection <<< ButtonRow(){
-        $0.title = "취소"
-        }.onCellSelection({[weak self] (cell, row) in
-          self?.dismiss(animated: true, completion: nil)
-        }).cellSetup({ (button, row) in
-          button.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
-          button.tintColor = .black
-        })
-    }
   }
   
   func tableView(_: UITableView, willDisplayHeaderView view: UIView, forSection: Int) {
