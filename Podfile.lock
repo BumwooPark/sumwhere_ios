@@ -1,53 +1,70 @@
 PODS:
-  - Alamofire (4.7.2)
+  - Alamofire (4.7.3)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - BubbleTransition (3.1.0)
+  - BubbleTransition (3.1.1)
   - Cosmos (16.0.0)
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
   - Differentiator (3.0.2)
   - DropDown (2.3.2)
   - DynamicBlurView (2.0.2)
   - DZNEmptyDataSet (1.8.1)
   - Eureka (4.2.0)
-  - expanding-collection (2.1.0)
-  - FBSDKCoreKit (4.34.0):
+  - expanding-collection (2.1.1)
+  - Fabric (1.7.11)
+  - FBSDKCoreKit (4.35.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.34.0):
+  - FBSDKLoginKit (4.35.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.34.0):
-    - FBSDKCoreKit (~> 4.34.0)
-  - Firebase/Auth (5.4.0):
+  - FBSDKShareKit (4.35.0):
+    - FBSDKCoreKit (~> 4.35.0)
+  - Firebase/Auth (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (= 5.0.2)
-  - Firebase/Core (5.4.0):
+    - FirebaseAuth (= 5.0.3)
+  - Firebase/Core (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.0.1)
-  - Firebase/CoreOnly (5.4.0):
-    - FirebaseCore (= 5.0.5)
-  - Firebase/Messaging (5.4.0):
+    - FirebaseAnalytics (= 5.1.1)
+  - Firebase/CoreOnly (5.7.0):
+    - FirebaseCore (= 5.1.2)
+  - Firebase/Messaging (5.7.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (= 3.0.3)
-  - FirebaseAnalytics (5.0.1):
-    - FirebaseCore (~> 5.0)
-    - FirebaseInstanceID (~> 3.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - FirebaseMessaging (= 3.1.1)
+  - FirebaseAnalytics (5.1.1):
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.2)
+    - GoogleAppMeasurement (~> 5.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseAuth (5.0.2):
+  - FirebaseAuth (5.0.3):
+    - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
+    - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (5.0.5):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (3.1.1):
-    - FirebaseCore (~> 5.0)
-  - FirebaseMessaging (3.0.3):
+  - FirebaseAuthInterop (1.0.0)
+  - FirebaseCore (5.1.2):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.2.1):
+    - FirebaseCore (~> 5.1)
+    - GoogleUtilities/Environment (~> 5.2)
+  - FirebaseMessaging (3.1.1):
     - FirebaseCore (~> 5.0)
     - FirebaseInstanceID (~> 3.0)
-    - GoogleToolboxForMac/Logger (~> 2.1)
+    - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
+  - GoogleAppMeasurement (5.1.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
+    - GoogleUtilities/MethodSwizzler (~> 5.2.0)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -55,13 +72,24 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - GoogleToolboxForMac/Logger (2.1.4):
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GTMSessionFetcher/Core (1.1.15)
-  - Hero (1.2.0)
+  - GoogleUtilities/AppDelegateSwizzler (5.2.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.2.2)
+  - GoogleUtilities/Logger (5.2.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.2.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.2.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.2.2)"
+  - GoogleUtilities/Reachability (5.2.2):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.2.0)
+  - Hero (1.3.0)
   - HGPlaceholders (0.3.0)
   - HMSegmentedControl (1.5.5)
   - IGListKit (3.4.0):
@@ -72,25 +100,25 @@ PODS:
   - JDStatusBarNotification (1.5.6)
   - JTAppleCalendar (7.1.5)
   - JVFloatLabeledTextField (1.2.1)
-  - KakaoOpenSDK (1.8.2):
-    - KakaoOpenSDK/KakaoCommon (= 1.8.2)
-    - KakaoOpenSDK/KakaoLink (= 1.8.2)
-    - KakaoOpenSDK/KakaoMessageTemplate (= 1.8.2)
-    - KakaoOpenSDK/KakaoNavi (= 1.8.2)
-    - KakaoOpenSDK/KakaoOpenSDK (= 1.8.2)
-    - KakaoOpenSDK/KakaoS2 (= 1.8.2)
-  - KakaoOpenSDK/KakaoCommon (1.8.2)
-  - KakaoOpenSDK/KakaoLink (1.8.2):
+  - KakaoOpenSDK (1.10.0):
+    - KakaoOpenSDK/KakaoCommon (= 1.10.0)
+    - KakaoOpenSDK/KakaoLink (= 1.10.0)
+    - KakaoOpenSDK/KakaoMessageTemplate (= 1.10.0)
+    - KakaoOpenSDK/KakaoNavi (= 1.10.0)
+    - KakaoOpenSDK/KakaoOpenSDK (= 1.10.0)
+    - KakaoOpenSDK/KakaoS2 (= 1.10.0)
+  - KakaoOpenSDK/KakaoCommon (1.10.0)
+  - KakaoOpenSDK/KakaoLink (1.10.0):
     - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoMessageTemplate (1.8.2)
-  - KakaoOpenSDK/KakaoNavi (1.8.2):
+  - KakaoOpenSDK/KakaoMessageTemplate (1.10.0)
+  - KakaoOpenSDK/KakaoNavi (1.10.0):
     - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoOpenSDK (1.8.2)
-  - KakaoOpenSDK/KakaoS2 (1.8.2):
+  - KakaoOpenSDK/KakaoOpenSDK (1.10.0)
+  - KakaoOpenSDK/KakaoS2 (1.10.0):
     - KakaoOpenSDK/KakaoCommon
-  - Kingfisher (4.8.0)
+  - Kingfisher (4.8.1)
   - LGButton (1.0.5)
-  - LTMorphingLabel (0.5.6)
+  - LTMorphingLabel (0.5.7)
   - MessageKit (1.0.0)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
@@ -104,11 +132,11 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Popover (1.2.0)
-  - PopupDialog (0.7.1):
+  - PopupDialog (0.8.1):
     - DynamicBlurView (~> 2.0)
-  - Protobuf (3.6.0)
+  - Protobuf (3.6.1)
   - PySwiftyRegex (2.0.1)
-  - ReachabilitySwift (4.1.0)
+  - ReachabilitySwift (4.2.0)
   - Result (3.2.4)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
@@ -135,29 +163,31 @@ PODS:
     - RxSwiftExt/Core (= 3.3.0)
   - RxSwiftExt/Core (3.3.0):
     - RxSwift (~> 4.0)
-  - SkeletonView (1.2.1)
-  - SkyFloatingLabelTextField (3.5.1)
+  - SkeletonView (1.4)
+  - SkyFloatingLabelTextField (3.5.2)
   - SnapKit (4.0.0)
   - SQLite.swift (0.11.5):
     - SQLite.swift/standard (= 0.11.5)
   - SQLite.swift/standard (0.11.5)
-  - SwiftDate (5.0.3)
+  - SwiftDate (5.0.7)
   - SwiftyBeaver (1.6.0)
   - SwiftyImage (1.2.0)
   - SwiftyJSON (4.1.0)
   - SwiftyUserDefaults (3.0.1)
   - TagListView (1.3.1)
-  - TLPhotoPicker (1.7.0)
+  - TLPhotoPicker (1.7.2)
   - TTTAttributedLabel (2.0.0)
   - Validator (3.0.2)
 
 DEPENDENCIES:
   - BubbleTransition
   - Cosmos
+  - Crashlytics
   - DropDown
   - DZNEmptyDataSet
   - Eureka
   - expanding-collection
+  - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -211,24 +241,28 @@ SPEC REPOS:
     - Bolts
     - BubbleTransition
     - Cosmos
+    - Crashlytics
     - Differentiator
     - DropDown
     - DynamicBlurView
     - DZNEmptyDataSet
     - Eureka
     - expanding-collection
+    - Fabric
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseInstanceID
     - FirebaseMessaging
+    - GoogleAppMeasurement
     - GoogleMaps
     - GooglePlaces
-    - GoogleToolboxForMac
+    - GoogleUtilities
     - GTMSessionFetcher
     - Hero
     - HGPlaceholders
@@ -273,48 +307,52 @@ SPEC REPOS:
     - Validator
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  BubbleTransition: 9c6e1be2dede21aca6ef5388dd9bea9771f7e7fe
+  BubbleTransition: 5676e5102b0e26c3193adc1da404fb5bb8144f0c
   Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
-  expanding-collection: 6dadfb6777d94c7487ca471604d6916e7a3ba81b
-  FBSDKCoreKit: 0ff57f093b85c8c9d5aba697d3edf68a8960ce78
-  FBSDKLoginKit: 8c78f57a145afb756e4755e69195ebe08a42466e
-  FBSDKShareKit: 511d1dfc71204c0a8d69e6c5e3c964dcf0d4f3d9
-  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
-  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
-  FirebaseAuth: 096e457cdd4274412a66c4a35874787e411f5a03
-  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
-  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
-  FirebaseMessaging: f43eb0c0e1da096e659de6f713038e74862a62cd
+  expanding-collection: 9fde61f3b4e3e014578ea2dff9438b1a925a7fdb
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  FBSDKCoreKit: 1a5b2e3ceb5ca827a53c54aa5f4a3480efff80d2
+  FBSDKLoginKit: 00a3d65d1226852f9d76dcddff01981e5e6d9c38
+  FBSDKShareKit: 2ddbd7e6432023fff957af62e23a3671b84319f7
+  Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
+  FirebaseAnalytics: 993577e91157feb40945abedd6ab346d8a4b6ac8
+  FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
+  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
+  FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
+  FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
+  FirebaseMessaging: 698c94dd1e3436346c29bb9c85dcdca4c4a0c30b
+  GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
-  Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
+  GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
+  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  Hero: 3eecd3fd62dd2425cbc7e35505c557b86d5a379e
   HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   JDStatusBarNotification: d5829a8f2f291b23b8a54b87fac8bf2549945a2f
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
-  KakaoOpenSDK: c09b1291ef293e2ef3faced8ca14b1d1c077bd96
-  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  KakaoOpenSDK: efae64765210068818e6de3f32126a877a532583
+  Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
-  LTMorphingLabel: bdb51d4682e9822da89da6f567bd8aa456fd6650
+  LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
   MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Popover: 28c1ac8e937ab2b3965bd2da7dd18324357abc41
-  PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
-  Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
+  PopupDialog: 3d4e8e0795c3a614f407d730986c9b9af9781123
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
-  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  ReachabilitySwift: 50cef5c3eee6857024bc5fac1c9e87d1d19c7b57
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxCoreLocation: f65296c805cf7782cb219f6947289d6eb3076d32
@@ -324,20 +362,20 @@ SPEC CHECKSUMS:
   RxOptional: bd32ff8ca9df4177683d56ffeb618a9d4d5d5cad
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
-  SkeletonView: 98a31213f9282076149e6eb23f46734604f02086
-  SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
+  SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
+  SkyFloatingLabelTextField: f0672b67cd0e86abda946c0dc3b2fe8580767dbb
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
-  SwiftDate: 5c02893dd1f658de4bc6d817a86246140eec9ae3
+  SwiftDate: f053fb89250c59af5eff777f3b832d2b9dd57403
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   SwiftyImage: ebaa7c7b6163cd4ad102f3bb05a8fb276d35b4f3
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   TagListView: 6dafd34a61021c6db72c0c8e3a044054c9854311
-  TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
+  TLPhotoPicker: 5008b848b6a136c124daff3858967a08a6d0c9b8
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: fc93af99702058f8b335fdf9c12e3440f6e87165
+PODFILE CHECKSUM: 57197508c77edb21fd9f224f9e775c21c76fc152
 
 COCOAPODS: 1.5.3

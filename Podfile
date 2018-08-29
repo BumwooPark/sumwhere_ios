@@ -30,6 +30,8 @@ pod 'SwiftyUserDefaults'
 pod 'SwiftDate'
 pod 'Validator'
 pod 'PySwiftyRegex'
+pod 'Fabric'
+pod 'Crashlytics'
 
 # UI
 pod 'GoogleMaps'

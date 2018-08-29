@@ -40,6 +40,8 @@ typedef NS_ENUM(NSInteger, KCMErrorCode) {
     KCMErrorCodeUnknown = 1,
     KCMErrorCodeCancelled = 2,
     KCMErrorCodeOperationInProgress = 3,
+    KCMErrorCodeBadResponse = 7,
+    KCMErrorCodeNetwork = 8,
     KCMErrorCodeNotSupported = 10,
     KCMErrorCodeBadParameter = 11,
     KCMErrorCodeMisconfigured = 12,
