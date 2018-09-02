@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DCB2B03C26F284864226302AFAEC546C"
+               BlueprintIdentifier = "2D4968B03357A2AE5CB27A92AC7D82B8"
                BlueprintName = "LGButton"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "LGButton.framework">

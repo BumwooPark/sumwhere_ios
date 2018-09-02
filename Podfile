@@ -32,6 +32,7 @@ pod 'Validator'
 pod 'PySwiftyRegex'
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'MQTTClient'
 
 # UI
 pod 'GoogleMaps'

@@ -126,6 +126,14 @@ PODS:
   - Moya/RxSwift (11.0.2):
     - Moya/Core
     - RxSwift (~> 4.0)
+  - MQTTClient (0.15.1):
+    - MQTTClient/Core (= 0.15.1)
+  - MQTTClient/Core (0.15.1):
+    - MQTTClient/Manager
+    - MQTTClient/Min
+  - MQTTClient/Manager (0.15.1):
+    - MQTTClient/Min
+  - MQTTClient/Min (0.15.1)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -209,6 +217,7 @@ DEPENDENCIES:
   - LTMorphingLabel
   - MessageKit
   - Moya/RxSwift
+  - MQTTClient
   - Popover
   - PopupDialog
   - PySwiftyRegex
@@ -277,6 +286,7 @@ SPEC REPOS:
     - LTMorphingLabel
     - MessageKit
     - Moya
+    - MQTTClient
     - nanopb
     - Popover
     - PopupDialog
@@ -347,6 +357,7 @@ SPEC CHECKSUMS:
   LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
   MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   Moya: a725035953bc1c0eb1be505ab903984501d82440
+  MQTTClient: 92ead4ac75687e7021bcf8d564ff37aaf950d631
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Popover: 28c1ac8e937ab2b3965bd2da7dd18324357abc41
   PopupDialog: 3d4e8e0795c3a614f407d730986c9b9af9781123
@@ -376,6 +387,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: 57197508c77edb21fd9f224f9e775c21c76fc152
+PODFILE CHECKSUM: 70a34552e70b5cad9e8e860aacff6dc78c781266
 
 COCOAPODS: 1.5.3

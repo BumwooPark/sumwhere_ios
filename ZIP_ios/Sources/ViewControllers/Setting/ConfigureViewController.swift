@@ -56,9 +56,8 @@ class ConfigureViewController: FormViewController{
       <<< LabelRow(){$0.title = "문의하기"}
       <<< LabelRow(){
         $0.title = "설정"
-        $0.onCellSelection({[weak self] (cell, row) in
-          guard let `self` = self else {return}
-          self.present(ConfigureViewController(), animated: true, completion: nil)
+        $0.onCellSelection({(cell, row) in
+          tokenObserver.onNext(String())
         })
     }
   }

@@ -194,7 +194,6 @@ final class MainViewController: UIViewController{
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    log.info("viewWillDisappear")
     foreGround = false
   }
 

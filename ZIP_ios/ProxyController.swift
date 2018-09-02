@@ -12,13 +12,10 @@ import RxSwift
 import SwiftyUserDefaults
 import Moya
 
-
 class ProxyController{
   let disposeBag = DisposeBag()
   let window: UIWindow?
-  
 
- 
   init(window: UIWindow?) {
     self.window = window
   }
@@ -40,7 +37,7 @@ class ProxyController{
     
     Observable<UIViewController>.combineLatest(isProfile, tokenLogin) { (profile, login)in
       let loginVC = UINavigationController(rootViewController: LoginViewController())
-      loginVC.navigationBar.prefersLargeTitles = true
+//      loginVC.navigationBar.prefersLargeTitles = true
       loginVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRMedium(size: 40),.foregroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
       loginVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
       
@@ -48,8 +45,9 @@ class ProxyController{
         return loginVC
       }else {
         if !profile{
-          loginVC.addChildViewController(SetProfileViewController(config: false))
-          loginVC.navigationBar.topItem?.title = "프로필등록"
+//          loginVC.addChildViewController(SetProfileViewController(config: false))
+          loginVC.addChildViewController(NewSetProfileViewController())
+//          loginVC.navigationBar.topItem?.title = "프로필등록"
           return loginVC
         }else{
           return MainTabBarController()

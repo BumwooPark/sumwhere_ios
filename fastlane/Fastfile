@@ -18,10 +18,28 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    build_app(workspace: "ZIP_ios.xcworkspace",
-     scheme: "ZIP_ios",
-     include_bitcode: false)
+
+    slack(message: "빌드시작",channel: "#ios",
+     slack_url: "https://hooks.slack.com/services/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")
+    increment_build_number(build_number: latest_testflight_build_number + 1,
+      xcodeproj: "ZIP_ios.xcodeproj")
+
+
+    get_certificates           # invokes cert
+    get_provisioning_profile   # invokes sigh
+    # build_app(workspace: "ZIP_ios.xcworkspace",
+    #  scheme: "ZIP_ios",
+    #  include_bitcode: false)
+
+     gym(scheme: "ZIP_ios",
+      output_directory: "fastlane/ipa/",
+      workspace: "ZIP_ios.xcworkspace",
+      include_bitcode: false,
+      silent: true,
+        clean: true) # Build your app - more options available
     upload_to_testflight
+    slack(message: "테스트 플라이트 배포 완료",channel: "#ios",
+     slack_url: "https://hooks.slack.com/services/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")
   end
 
 

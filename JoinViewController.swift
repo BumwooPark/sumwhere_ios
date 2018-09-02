@@ -14,8 +14,8 @@ import Moya
 import SwiftyJSON
 import TTTAttributedLabel
 import Firebase
-import PySwiftyRegex
 import JDStatusBarNotification
+import Validator
 
 #if !RX_NO_MODULE
   import RxSwift
@@ -23,11 +23,16 @@ import JDStatusBarNotification
 #endif
 
 class JoinViewController: UIViewController{
+
   
   let disposeBag = DisposeBag()
   let provider = AuthManager.instance.provider
   
   let joinView = JoinView()
+  
+  lazy var viewModel = JoinViewModel(email: joinView.emailField.rx.text.orEmpty,
+                                     password: joinView.passwordField.rx.text.orEmpty,
+                                     passwordConfirm: joinView.passwordConfField.rx.text.orEmpty)
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,51 +42,29 @@ class JoinViewController: UIViewController{
     
     view = joinView
     joinView.infoAgreeLabel.delegate = self
-    
-    let emailVaild = joinView.emailField.rx.text
-      .orEmpty
-      .map {!re.findall("^[a-z0-9_+.-]+@([a-z0-9-]+\\.)+[a-z0-9]{2,4}$", $0).isEmpty}
-      .skip(2)
-      .share(replay: 1)
-    
-    let passwordVaild = joinView.passwordField.rx.text
-      .orEmpty
-      .map{!re.findall("^[A-Za-z0-9]{6,20}$", $0).isEmpty}
-      .skip(1)
-      .share(replay: 1)
-
-    let passwordConfVaild = joinView.passwordConfField.rx.text
-      .map{[weak self] in
-        self?.joinView.passwordField.text == $0
-      }.share(replay: 2)
-    
-    emailVaild
-      .subscribe(onNext: {[weak self] (result) in
-        guard let `self` = self else {return}
-      if !result{
-        self.joinView.emailField.errorMessage = "이메일 형식이 아니에요!"
-      }else{
-        self.joinView.emailField.errorMessage = String()
+  
+    viewModel.emailValid
+      .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
+      return {result in
+        retainSelf.joinView.emailField.errorMessage = result ? nil : "이메일형식이 아닙니다!"
       }
-    }).disposed(by: disposeBag)
+    }.disposed(by: disposeBag)
     
-    passwordConfVaild
-      .subscribe(onNext: {[weak self] (result) in
-      guard let `self` = self else {return}
-        if !result{
-          self.joinView.passwordConfField.errorMessage = "비밀번호가 동일하지 않아요!"
-        }else {
-          self.joinView.passwordConfField.errorMessage = String()
+    viewModel.passwordValid
+      .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
+        return {result in
+          retainSelf.joinView.passwordField.errorMessage = result ? nil : "패스워드는 6자에서 20자 사이입니다."
         }
-    }).disposed(by: disposeBag)
+    }.disposed(by: disposeBag)
     
-
-    Observable<Bool>.combineLatest(passwordVaild, passwordConfVaild)
-    {return $0 && $1}
-      .subscribe(onNext: { (vaild) in
-        
-      })
-      .disposed(by: disposeBag)
+    
+    viewModel.passwordConfirmValid
+      .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
+        return {result in
+          retainSelf.joinView.passwordConfField.errorMessage = result ? nil : "비밀번호가 일치하지 않습니다."
+        }
+    }.disposed(by: disposeBag)
+    
     
     joinView.joinButton
       .rx

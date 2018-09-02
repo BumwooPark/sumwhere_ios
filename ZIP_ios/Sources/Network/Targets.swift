@@ -42,7 +42,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     #if DEBUG
     return URL(string: "http://192.168.0.3:8080/galmal")!
     #else
-    return URL(string: "http://52.197.13.138/galmal")!
+    return URL(string: "https://bumwoopark.iptime.org/galmal")!
     #endif
   }
   

@@ -27,7 +27,6 @@ import Fabric
 import Crashlytics
 
 
-
 let tokenObserver = PublishSubject<String>()
 let log = SwiftyBeaver.self
 @UIApplicationMain

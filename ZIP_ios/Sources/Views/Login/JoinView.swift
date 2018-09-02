@@ -18,11 +18,14 @@ class JoinView: UIView{
     field.placeholder = "이메일 주소"
     field.disabledColor = .green
     field.placeholderColor = .lightGray
-    field.lineColor = .black
-    field.selectedLineColor = .blue
-    field.selectedTitleColor = .green
+    field.titleFont = UIFont.NotoSansKRMedium(size: 16)
+    field.placeholderFont = UIFont.NotoSansKRMedium(size: 16)
+    field.font = UIFont.NotoSansKRMedium(size: 16)
+    field.lineColor = #colorLiteral(red: 0.6274509804, green: 0.631372549, blue: 0.8039215686, alpha: 1)
+    field.selectedLineColor = #colorLiteral(red: 0.2431372549, green: 0.6862745098, blue: 0.862745098, alpha: 1)
+    field.selectedTitleColor = #colorLiteral(red: 1, green: 0.7568627451, blue: 0.2862745098, alpha: 1)
     field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.textColor = .black
+    field.textColor = #colorLiteral(red: 0.1803921569, green: 0.168627451, blue: 0.262745098, alpha: 1)
     field.keyboardType = .emailAddress
     return field
   }()
@@ -31,13 +34,16 @@ class JoinView: UIView{
     let field = SkyFloatingLabelTextField()
     field.placeholder = "비밀번호"
     field.isSecureTextEntry = true
-    field.placeholderColor = .black
+    field.placeholderColor = .lightGray
     field.lineColor = .black
-    field.selectedLineColor = .black
-    field.selectedTitleColor = .blue
+    field.titleFont = UIFont.NotoSansKRMedium(size: 16)
+    field.placeholderFont = UIFont.NotoSansKRMedium(size: 16)
+    field.font = UIFont.NotoSansKRMedium(size: 16)
+    field.selectedLineColor = #colorLiteral(red: 0.2431372549, green: 0.6862745098, blue: 0.862745098, alpha: 1)
+    field.selectedTitleColor = #colorLiteral(red: 1, green: 0.7568627451, blue: 0.2862745098, alpha: 1)
     field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.textColor = .black
-    field.keyboardType = .asciiCapableNumberPad
+    field.textColor = #colorLiteral(red: 0.1803921569, green: 0.168627451, blue: 0.262745098, alpha: 1)
+    field.keyboardType = .asciiCapable
     return field
   }()
   
@@ -46,12 +52,15 @@ class JoinView: UIView{
     field.placeholder = "비밀번호 확인"
     field.isSecureTextEntry = true
     field.lineColor = .black
-    field.placeholderColor = .black
+    field.placeholderColor = .lightGray
+    field.titleFont = UIFont.NotoSansKRMedium(size: 16)
+    field.placeholderFont = UIFont.NotoSansKRMedium(size: 16)
+    field.font = UIFont.NotoSansKRMedium(size: 16)
     field.selectedLineColor = .black
     field.selectedTitleColor = .black
-    field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+    field.errorColor = #colorLiteral(red: 1, green: 0.4078431373, blue: 0.4078431373, alpha: 1)
     field.textColor = .black
-    field.keyboardType = .asciiCapableNumberPad
+    field.keyboardType = .asciiCapable
     return field
   }()
   
