@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B4E288AC6A606890FE01844A91BDE5FE"
+               BlueprintIdentifier = "E8D551AB3C5CA1FE7433E682CC9CA491"
                BuildableName = "SQLite.framework"
                BlueprintName = "SQLite.swift"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B4E288AC6A606890FE01844A91BDE5FE"
+            BlueprintIdentifier = "E8D551AB3C5CA1FE7433E682CC9CA491"
             BuildableName = "SQLite.framework"
             BlueprintName = "SQLite.swift"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -50,11 +50,11 @@ pod 'TagListView', '~> 1.0'
 pod 'DropDown'
 pod 'JVFloatLabeledTextField'
 pod 'BubbleTransition'
-pod 'IGListKit'
 pod 'Cosmos'
 pod 'HMSegmentedControl'
 pod 'Popover'
 pod 'SkeletonView'
+pod 'Texture'
 
 # RX
 pod 'RxSwift'

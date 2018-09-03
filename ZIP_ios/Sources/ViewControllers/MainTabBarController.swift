@@ -51,7 +51,7 @@ class MainTabBarController: UITabBarController{
   }()
   
   let chattingViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: ChatViewController())
+    let naviVC = UINavigationController(rootViewController: ChatRoomViewController())
       naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "채팅", image: #imageLiteral(resourceName: "icons8-chat-bubble"), tag: 0)
     naviVC.tabBarItem = tabBar
