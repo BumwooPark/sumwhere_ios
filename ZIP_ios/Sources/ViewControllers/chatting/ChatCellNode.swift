@@ -30,6 +30,8 @@ final class ChatCellNode: ASCellNode {
   let bubbleImage: ASImageNode = {
     let image = ASImageNode()
     image.image = #imageLiteral(resourceName: "bubble").resizableImage(withCapInsets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), resizingMode: .stretch)
+    image.style.height = .init(unit: .points, value: 50.0)
+    image.style.maxWidth = .init(unit: .points,value: UIScreen.main.bounds.width / 3)
 //    image.contentMode = .scaleAspectFill
     return image
   }()
@@ -50,12 +52,14 @@ final class ChatCellNode: ASCellNode {
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
     
-    bubbleImage.style.preferredSize = CGSize(width: 100, height: 200)
+    let overlay = ASOverlayLayoutSpec(child: bubbleImage, overlay: messageNode)
     
     let imageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), child: tempProfileImage)
-    let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), child: bubbleImage)
+    let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), child: overlay)
     
     let headerStackSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .baselineFirst, children: [imageLayout,messageLayout])
+    
+    
     
     return headerStackSpec
   }

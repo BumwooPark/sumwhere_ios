@@ -158,6 +158,8 @@
 		B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */; };
 		B1D1CB16213CF96A001A9801 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB15213CF96A001A9801 /* ChatRoomViewController.swift */; };
 		B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */; };
+		B1D1CB1A213E1101001A9801 /* ChatFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */; };
+		B1D1CB1C213E679C001A9801 /* LoadingCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB1B213E679C001A9801 /* LoadingCellNode.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController.swift */; };
@@ -348,6 +350,8 @@
 		B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyKeyViewController.swift; sourceTree = "<group>"; };
 		B1D1CB15213CF96A001A9801 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellNode.swift; sourceTree = "<group>"; };
+		B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFlowLayout.swift; sourceTree = "<group>"; };
+		B1D1CB1B213E679C001A9801 /* LoadingCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCellNode.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -725,6 +729,8 @@
 				0AB42131213BE4EB001353E9 /* ChatViewController.swift */,
 				B1D1CB15213CF96A001A9801 /* ChatRoomViewController.swift */,
 				B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */,
+				B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */,
+				B1D1CB1B213E679C001A9801 /* LoadingCellNode.swift */,
 			);
 			path = chatting;
 			sourceTree = "<group>";
@@ -1291,6 +1297,7 @@
 				B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */,
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
 				0AAD748C21170AA500C860ED /* TripStyleHeaderView.swift in Sources */,
+				B1D1CB1A213E1101001A9801 /* ChatFlowLayout.swift in Sources */,
 				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
 				0A33277D213BBD9700BC2906 /* GenderViewController.swift in Sources */,
 				B1D1CB10212E8D01001A9801 /* RightKeyView.swift in Sources */,
@@ -1344,6 +1351,7 @@
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
 				B1D1CAFD212D0961001A9801 /* DetailCharacterCell.swift in Sources */,
+				B1D1CB1C213E679C001A9801 /* LoadingCellNode.swift in Sources */,
 				B1D1CB0E212E43FE001A9801 /* GPSMatchResultViewController.swift in Sources */,
 				0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */,
 				0A375C16213274AE00E35ED9 /* TopTripViewController.swift in Sources */,
