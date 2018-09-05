@@ -114,7 +114,6 @@ PODS:
   - Kingfisher (4.8.1)
   - LGButton (1.0.5)
   - LTMorphingLabel (0.5.7)
-  - MessageKit (1.0.0)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
@@ -231,7 +230,6 @@ DEPENDENCIES:
   - Kingfisher
   - LGButton
   - LTMorphingLabel
-  - MessageKit
   - Moya/RxSwift
   - MQTTClient
   - Popover
@@ -300,7 +298,6 @@ SPEC REPOS:
     - Kingfisher
     - LGButton
     - LTMorphingLabel
-    - MessageKit
     - Moya
     - MQTTClient
     - nanopb
@@ -374,7 +371,6 @@ SPEC CHECKSUMS:
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
   LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
-  MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   MQTTClient: 92ead4ac75687e7021bcf8d564ff37aaf950d631
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
@@ -410,6 +406,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: a5d69170142c4676461e30fd564d4158130e1216
+PODFILE CHECKSUM: 33423119c97e0cacd5d05179ffacb001aec723a3
 
 COCOAPODS: 1.5.3

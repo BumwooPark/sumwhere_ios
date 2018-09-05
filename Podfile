@@ -21,7 +21,6 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'SQLite.swift'
-pod 'MessageKit'
 pod 'SwiftyImage'
 pod 'TLPhotoPicker'
 pod 'JTAppleCalendar'
@@ -55,6 +54,7 @@ pod 'HMSegmentedControl'
 pod 'Popover'
 pod 'SkeletonView'
 pod 'Texture'
+
 
 # RX
 pod 'RxSwift'

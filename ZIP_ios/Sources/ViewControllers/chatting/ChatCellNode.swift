@@ -14,7 +14,6 @@ final class ChatCellNode: ASCellNode {
   let profileImageNode: ASNetworkImageNode = {
     let image = ASNetworkImageNode()
     image.backgroundColor = .blue
-    
     return image
   }()
   
@@ -27,15 +26,17 @@ final class ChatCellNode: ASCellNode {
     return image
   }()
   
-  let bubbleImage: ASImageNode = {
-    let image = ASImageNode()
-    image.image = #imageLiteral(resourceName: "bubble").resizableImage(withCapInsets: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50), resizingMode: .stretch)
-    image.style.height = .init(unit: .points, value: 50.0)
-    image.style.maxWidth = .init(unit: .points,value: UIScreen.main.bounds.width / 3)
-//    image.contentMode = .scaleAspectFill
-    return image
+  let balloonNode: ASDisplayNode = {
+    let node = ASDisplayNode()
+    node.style.height = .init(unit: .points, value: 50.0)
+    node.cornerRadius = 10
+    node.style.maxWidth = .init(unit: .points,
+                                value: UIScreen.main.bounds.width / 2)
+    node.clipsToBounds = true
+    node.backgroundColor = .lightGray
+    return node
   }()
-  
+    
   let messageNode: ASTextNode = {
     let node = ASTextNode()
     node.attributedText = NSAttributedString(string: "안녕하세요 !!\n안녕", attributes: [.font : UIFont.NotoSansKRMedium(size: 16)])
@@ -44,23 +45,21 @@ final class ChatCellNode: ASCellNode {
   
   override init() {
     super.init()
+    addSubnode(balloonNode)
     addSubnode(tempProfileImage)
     addSubnode(messageNode)
-    addSubnode(bubbleImage)
   }
-  
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
     
-    let overlay = ASOverlayLayoutSpec(child: bubbleImage, overlay: messageNode)
+    let textCenterLayout = ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: [], child: messageNode)
+    let overlay = ASOverlayLayoutSpec(child: balloonNode, overlay: textCenterLayout)
     
     let imageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), child: tempProfileImage)
     let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), child: overlay)
     
-    let headerStackSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .baselineFirst, children: [imageLayout,messageLayout])
+    let headerStackSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 10, justifyContent: .start, alignItems: .center, children: [imageLayout,messageLayout])
     
-    
-    
-    return headerStackSpec
+    return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .infinity), child: headerStackSpec)
   }
 }

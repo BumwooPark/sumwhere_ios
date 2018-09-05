@@ -156,10 +156,13 @@
 		B1D1CB10212E8D01001A9801 /* RightKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */; };
 		B1D1CB12212EAA6A001A9801 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB11212EAA6A001A9801 /* AlertViewController.swift */; };
 		B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */; };
-		B1D1CB16213CF96A001A9801 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB15213CF96A001A9801 /* ChatRoomViewController.swift */; };
+		B1D1CB16213CF96A001A9801 /* ChatNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */; };
 		B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */; };
 		B1D1CB1A213E1101001A9801 /* ChatFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */; };
-		B1D1CB1C213E679C001A9801 /* LoadingCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB1B213E679C001A9801 /* LoadingCellNode.swift */; };
+		B1D1CB1C213E679C001A9801 /* ChatLoadingIndicatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB1B213E679C001A9801 /* ChatLoadingIndicatorNode.swift */; };
+		B1D1CB1E213F5D7B001A9801 /* TestFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB1D213F5D7B001A9801 /* TestFlowLayout.swift */; };
+		B1D1CB25213F9E8A001A9801 /* InputBoxNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB24213F9E8A001A9801 /* InputBoxNode.swift */; };
+		B1D1CB27213FA901001A9801 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB26213FA901001A9801 /* ChatRoomViewController.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController.swift */; };
@@ -348,10 +351,13 @@
 		B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightKeyView.swift; sourceTree = "<group>"; };
 		B1D1CB11212EAA6A001A9801 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyKeyViewController.swift; sourceTree = "<group>"; };
-		B1D1CB15213CF96A001A9801 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNodeViewController.swift; sourceTree = "<group>"; };
 		B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellNode.swift; sourceTree = "<group>"; };
 		B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFlowLayout.swift; sourceTree = "<group>"; };
-		B1D1CB1B213E679C001A9801 /* LoadingCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCellNode.swift; sourceTree = "<group>"; };
+		B1D1CB1B213E679C001A9801 /* ChatLoadingIndicatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLoadingIndicatorNode.swift; sourceTree = "<group>"; };
+		B1D1CB1D213F5D7B001A9801 /* TestFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowLayout.swift; sourceTree = "<group>"; };
+		B1D1CB24213F9E8A001A9801 /* InputBoxNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoxNode.swift; sourceTree = "<group>"; };
+		B1D1CB26213FA901001A9801 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -727,10 +733,13 @@
 			isa = PBXGroup;
 			children = (
 				0AB42131213BE4EB001353E9 /* ChatViewController.swift */,
-				B1D1CB15213CF96A001A9801 /* ChatRoomViewController.swift */,
+				B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */,
 				B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */,
 				B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */,
-				B1D1CB1B213E679C001A9801 /* LoadingCellNode.swift */,
+				B1D1CB1B213E679C001A9801 /* ChatLoadingIndicatorNode.swift */,
+				B1D1CB1D213F5D7B001A9801 /* TestFlowLayout.swift */,
+				B1D1CB24213F9E8A001A9801 /* InputBoxNode.swift */,
+				B1D1CB26213FA901001A9801 /* ChatRoomViewController.swift */,
 			);
 			path = chatting;
 			sourceTree = "<group>";
@@ -1125,7 +1134,6 @@
 				"${BUILT_PRODUCTS_DIR}/LGButton/LGButton.framework",
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
-				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
@@ -1187,7 +1195,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
@@ -1273,6 +1280,7 @@
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,
+				B1D1CB27213FA901001A9801 /* ChatRoomViewController.swift in Sources */,
 				B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */,
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
 				0A745685210E013900F8A0C9 /* SearchDestinationViewModel.swift in Sources */,
@@ -1314,6 +1322,7 @@
 				0AF2C01B20FB2D9600775EA8 /* ConfigureViewController.swift in Sources */,
 				B1A1D9A9212BCA010022D2A0 /* DetailUserInfoViewController.swift in Sources */,
 				B1D1CAEB212BF7E6001A9801 /* DetailUserProfileInfoCell.swift in Sources */,
+				B1D1CB1E213F5D7B001A9801 /* TestFlowLayout.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
 				0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */,
 				0AF2C02A2104C8E500775EA8 /* TagRow.swift in Sources */,
@@ -1351,7 +1360,7 @@
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
 				B1D1CAFD212D0961001A9801 /* DetailCharacterCell.swift in Sources */,
-				B1D1CB1C213E679C001A9801 /* LoadingCellNode.swift in Sources */,
+				B1D1CB1C213E679C001A9801 /* ChatLoadingIndicatorNode.swift in Sources */,
 				B1D1CB0E212E43FE001A9801 /* GPSMatchResultViewController.swift in Sources */,
 				0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */,
 				0A375C16213274AE00E35ED9 /* TopTripViewController.swift in Sources */,
@@ -1366,7 +1375,7 @@
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
 				B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */,
 				B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */,
-				B1D1CB16213CF96A001A9801 /* ChatRoomViewController.swift in Sources */,
+				B1D1CB16213CF96A001A9801 /* ChatNodeViewController.swift in Sources */,
 				0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */,
 				0AAD748A211708B900C860ED /* TripStyleCell.swift in Sources */,
 				0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */,
@@ -1382,6 +1391,7 @@
 				0A895BEF212EE59800FDF834 /* CurrentMatchViewController.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,
+				B1D1CB25213F9E8A001A9801 /* InputBoxNode.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
 				B16B3DF72117E6F0001D278A /* TripStyleViewController.swift in Sources */,
 				0A745669210CA37D00F8A0C9 /* PageViewController.swift in Sources */,
