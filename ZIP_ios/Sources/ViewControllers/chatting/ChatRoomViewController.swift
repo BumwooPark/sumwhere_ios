@@ -7,8 +7,14 @@
 //
 
 import AsyncDisplayKit
+import RxSwift
 
 class ChatRoomViewController: ChatNodeViewController{
+  private let disposeBag = DisposeBag()
+  let viewModel: MQViewModel = {
+    let viewModel = MQViewModel(host: "test.mosquitto.org", subscribeTopic: "golang/test")
+    return viewModel
+  }()
   
   lazy var messageInputNode: InputBoxNode = {
     let node = InputBoxNode()
@@ -30,16 +36,27 @@ class ChatRoomViewController: ChatNodeViewController{
     static let moreItemCount: Int = 10
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.tabBarController?.tabBar.isHidden = true
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.leadingScreensForBatching = 3.0
     
     collectionNode.delegate = self
     collectionNode.dataSource = self
+    
+    log.info(viewModel.makeNewSession())
+    viewModel.mqttState?
+      .subscribe(onNext: {event in
+      log.info(event)
+      }).disposed(by: disposeBag)
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange, chatNode: ASCollectionNode) -> ASLayoutSpec {
-    let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: .infinity, left: 0, bottom: 0, right: 0), child: self.messageInputNode)
+    let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: .infinity, left: 0, bottom: self.keyboardVisibleHeight + 0.0, right: 0), child: self.messageInputNode)
     let messageOverlayLayout = ASOverlayLayoutSpec(child: collectionNode, overlay: messageLayout)
     return ASInsetLayoutSpec(insets: .zero, child: messageOverlayLayout)
   }
@@ -62,7 +79,6 @@ extension ChatRoomViewController: ChatNodeDataSource{
       return 0
     }
   }
-  
   
   func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
     switch indexPath.section {
@@ -88,7 +104,7 @@ extension ChatRoomViewController: ChatNodeDelegate{
   
   func chatNode(_ chatNode: ASCollectionNode, willBeginAppendBatchFetchWith context: ASBatchContext) {
     log.debug("call append")
-    self.collectionNode.reloadSections(IndexSet(integer: Section.appendIndicator.rawValue))
+//    self.collectionNode.reloadSections(IndexSet(integer: Section.appendIndicator.rawValue))
     self.completeBatchFetching(true, endDirection: .none)
   }
   

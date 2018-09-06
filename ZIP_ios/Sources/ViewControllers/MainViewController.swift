@@ -131,7 +131,7 @@ final class MainViewController: UIViewController{
       }).disposed(by: disposeBag)
     
     self.navigationController?.navigationBar.topItem?.title = String()
-
+    
     view.backgroundColor = .white
     view.addSubview(scrollView)
     scrollView.addSubview(contentView)
@@ -188,7 +188,6 @@ final class MainViewController: UIViewController{
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    log.info("viewWillAppear")
     foreGround = true
   }
   
@@ -201,7 +200,6 @@ final class MainViewController: UIViewController{
     super.viewDidLayoutSubviews()
     containerViewHeight?.update(offset: collectionView.contentSize.height + 180)
     scrollView.contentSize = CGSize(width: collectionView.contentSize.width, height: collectionView.contentSize.height + 180)
-    log.info(advertiseViewController.view.frame.origin.y)
   }
   
   override func updateViewConstraints() {

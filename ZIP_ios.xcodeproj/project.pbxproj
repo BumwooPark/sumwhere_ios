@@ -100,7 +100,7 @@
 		0AAD749021170FF700C860ED /* TripStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD748F21170FF700C860ED /* TripStyleModel.swift */; };
 		0AAD74922117103000C860ED /* TripStyleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD74912117103000C860ED /* TripStyleViewModel.swift */; };
 		0AAD749B211ECEFB00C860ED /* SelectMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD749A211ECEFB00C860ED /* SelectMatchViewController.swift */; };
-		0AB42132213BE4EB001353E9 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB42131213BE4EB001353E9 /* ChatViewController.swift */; };
+		0AB42132213BE4EB001353E9 /* MQViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB42131213BE4EB001353E9 /* MQViewModel.swift */; };
 		0AD3BC1120491F2C0051D7E3 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BC1020491F2C0051D7E3 /* CountryCell.swift */; };
 		0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BC12204A7B690051D7E3 /* CountryModel.swift */; };
 		0AD3BC17204A85E00051D7E3 /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BC16204A85E00051D7E3 /* CountryViewModel.swift */; };
@@ -182,6 +182,8 @@
 		B1EF95652119481700F6418F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95642119481700F6418F /* ProfileViewModel.swift */; };
 		B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95662119685000F6418F /* CharacterFooterView.swift */; };
 		B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95682119902D00F6418F /* TripStyleFooterView.swift */; };
+		B1F6D8C42140B5C600E0E003 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */; };
+		B1F6D8C62140B6B600E0E003 /* ChatListCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */; };
 		BAB35871AF3A20A85A1D01CD /* Pods_ZIP_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -294,7 +296,7 @@
 		0AAD748F21170FF700C860ED /* TripStyleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleModel.swift; sourceTree = "<group>"; };
 		0AAD74912117103000C860ED /* TripStyleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewModel.swift; sourceTree = "<group>"; };
 		0AAD749A211ECEFB00C860ED /* SelectMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMatchViewController.swift; sourceTree = "<group>"; };
-		0AB42131213BE4EB001353E9 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		0AB42131213BE4EB001353E9 /* MQViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQViewModel.swift; sourceTree = "<group>"; };
 		0AD3BC1020491F2C0051D7E3 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		0AD3BC12204A7B690051D7E3 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		0AD3BC16204A85E00051D7E3 /* CountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewModel.swift; sourceTree = "<group>"; };
@@ -377,6 +379,8 @@
 		B1EF95642119481700F6418F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B1EF95662119685000F6418F /* CharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFooterView.swift; sourceTree = "<group>"; };
 		B1EF95682119902D00F6418F /* TripStyleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleFooterView.swift; sourceTree = "<group>"; };
+		B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCellNode.swift; sourceTree = "<group>"; };
 		BBBA05947428AB4BFEF7859A /* Pods-ZIP_iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_iosTests/Pods-ZIP_iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZIP_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D974C1FB255F6BC0FD4F84C5 /* Pods-ZIP_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -732,7 +736,7 @@
 		0AB42130213BE4C5001353E9 /* chatting */ = {
 			isa = PBXGroup;
 			children = (
-				0AB42131213BE4EB001353E9 /* ChatViewController.swift */,
+				0AB42131213BE4EB001353E9 /* MQViewModel.swift */,
 				B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */,
 				B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */,
 				B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */,
@@ -740,6 +744,8 @@
 				B1D1CB1D213F5D7B001A9801 /* TestFlowLayout.swift */,
 				B1D1CB24213F9E8A001A9801 /* InputBoxNode.swift */,
 				B1D1CB26213FA901001A9801 /* ChatRoomViewController.swift */,
+				B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */,
+				B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */,
 			);
 			path = chatting;
 			sourceTree = "<group>";
@@ -1298,7 +1304,7 @@
 				B1D1CB07212D35D9001A9801 /* MainCollectionCell.swift in Sources */,
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,
 				B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */,
-				0AB42132213BE4EB001353E9 /* ChatViewController.swift in Sources */,
+				0AB42132213BE4EB001353E9 /* MQViewModel.swift in Sources */,
 				B1D1CB05212D28F8001A9801 /* AdViewController.swift in Sources */,
 				0A7123921FACC1B600512EB7 /* LoginViewController.swift in Sources */,
 				0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */,
@@ -1346,6 +1352,7 @@
 				0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */,
 				0A375C282132B8CC00E35ED9 /* MatchRequestHistoryModel.swift in Sources */,
 				B1A1D99A211D16DC0022D2A0 /* TripViewController.swift in Sources */,
+				B1F6D8C42140B5C600E0E003 /* ChatListViewController.swift in Sources */,
 				B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */,
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
 				0AAD749B211ECEFB00C860ED /* SelectMatchViewController.swift in Sources */,
@@ -1411,6 +1418,7 @@
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,
 				0A375C2D2132BC0500E35ED9 /* MatchRequestHistoryViewModel.swift in Sources */,
 				0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */,
+				B1F6D8C62140B6B600E0E003 /* ChatListCellNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

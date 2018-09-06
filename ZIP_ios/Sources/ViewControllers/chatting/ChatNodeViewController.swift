@@ -7,6 +7,8 @@
 //
 import UIKit
 import AsyncDisplayKit
+import RxKeyboard
+import RxSwift
 
 
 public protocol ChatNodeDelegate: ASCollectionDelegate {
@@ -60,8 +62,10 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
       log.info(state)
     }
   }
-  open var isPagingStatusEnable: Bool = true
+  private let disposeBag = DisposeBag()
   private lazy var batchFetchingContext = ASBatchContext()
+  open var isPagingStatusEnable: Bool = true
+  open var keyboardVisibleHeight: CGFloat = 0.0
   open var hasNextPrependItem: Bool = true
   open var hasNextAppendItems: Bool = true
   open var pagingStatus: PaginationStatus = .initial
@@ -100,6 +104,11 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
                                             rangeType: .preload)
   }
   
+  deinit {
+    self.collectionNode.delegate = nil
+    self.collectionNode.dataSource = nil
+  }
+  
   open func layoutSpecThatFits(_ constrainedSize: ASSizeRange,
                                chatNode: ASCollectionNode) -> ASLayoutSpec {
     
@@ -115,6 +124,19 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
     collectionNode.delegate = self
     collectionNode.dataSource = self
     collectionNode.allowsSelection = false
+    collectionNode.view.keyboardDismissMode = .onDrag
+    
+    RxKeyboard.instance.visibleHeight
+      .drive(onNext: {[weak self] (height) in
+        
+        self?.keyboardVisibleHeight = height
+        
+        log.info(height)
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+          self?.node.setNeedsLayout()
+          self?.node.layoutIfNeeded()
+        }, completion: nil)
+      }).disposed(by: disposeBag)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -125,77 +147,6 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
     
     return true
   }
-  
-//  func collectionNode(_ collectionNode: ASCollectionNode, willBeginBatchFetchWith context: ASBatchContext) {
-//    DispatchQueue.main.async {
-//      let oldState = self.state
-//      self.state = ChatNodeViewController.handleAction(.beginBatchFetch, fromState: oldState)
-//      self.renderDiff(oldState)
-//    }
-//
-//    ChatNodeViewController.fetchDataWithCompletion { resultCount in
-//      let action = Action.endBatchFetch(resultCount: resultCount)
-//      let oldState = self.state
-//      self.state = ChatNodeViewController.handleAction(action, fromState: oldState)
-//      self.renderDiff(oldState)
-//      context.completeBatchFetching(true)
-//    }
-//  }
-//
-//  func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-//    var count = state.itemCount
-//    if state.fetchingMore {
-//      count += 1
-//    }
-//    return count
-//  }
-//
-//  func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
-//    return 1
-//  }
-//
-//  func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
-//    let rowCount = self.collectionNode(collectionNode, numberOfItemsInSection: 0)
-//    if state.fetchingMore && indexPath.row == rowCount - 1 {
-//      let node = TailLoadingCellNode()
-//      node.style.width = .init(unit: .points, value: collectionNode.frame.width)
-//      node.style.height = ASDimensionMake(44.0)
-//      return node;
-//    }
-//    let node = ChatCellNode()
-//    return node
-//  }
-//
-//  func renderDiff(_ oldState: State){
-//    self.collectionNode.performBatchUpdates({
-//
-//      // Add or remove items
-//      let rowCountChange = state.itemCount - oldState.itemCount
-//      if rowCountChange > 0 {
-//        let indexPaths = (oldState.itemCount..<state.itemCount).map { index in
-//          IndexPath(row: index, section: 0)
-//        }
-//
-//        collectionNode.insertItems(at: indexPaths)
-//      } else if rowCountChange < 0 {
-//        assertionFailure("Deleting rows is not implemented. YAGNI.")
-//      }
-//
-//      // Add or remove spinner.
-//      if state.fetchingMore != oldState.fetchingMore {
-//        if state.fetchingMore {
-//          // Add spinner.
-//          let spinnerIndexPath = IndexPath(row: state.itemCount, section: 0)
-//          collectionNode.insertItems(at: [ spinnerIndexPath ])
-//        } else {
-//          // Remove spinner.
-//          let spinnerIndexPath = IndexPath(row: oldState.itemCount, section: 0)
-//          collectionNode.deleteItems(at: [ spinnerIndexPath ])
-//
-//        }
-//      }
-//    }, completion:nil)
-//  }
   
   fileprivate static func fetchDataWithCompletion(_ completion: @escaping (Int) -> Void) {
     let time = DispatchTime.now() + Double(Int64(TimeInterval(NSEC_PER_SEC) * 1.0)) / Double(NSEC_PER_SEC)

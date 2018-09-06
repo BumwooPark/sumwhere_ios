@@ -13,7 +13,6 @@ class AdViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    log.info("videdidload")
     
     let one = UIViewController()
     one.view.backgroundColor = .red
@@ -42,11 +41,9 @@ class AdViewController: UIViewController{
   
   override func willMove(toParentViewController parent: UIViewController?) {
     super.willMove(toParentViewController: parent)
-    log.info("willmove")
   }
   
   override func didMove(toParentViewController parent: UIViewController?) {
     super.didMove(toParentViewController: parent)
-    log.info("didMove")
   }
 }
