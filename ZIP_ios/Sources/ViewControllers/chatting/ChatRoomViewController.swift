@@ -12,7 +12,7 @@ import RxSwift
 class ChatRoomViewController: ChatNodeViewController{
   private let disposeBag = DisposeBag()
   let viewModel: MQViewModel = {
-    let viewModel = MQViewModel(host: "test.mosquitto.org", subscribeTopic: "golang/test")
+    let viewModel = MQViewModel(host: "192.168.0.6", subscribeTopic: "go-mqtt/sample")
     return viewModel
   }()
   
@@ -49,10 +49,6 @@ class ChatRoomViewController: ChatNodeViewController{
     collectionNode.dataSource = self
     
     log.info(viewModel.makeNewSession())
-    viewModel.mqttState?
-      .subscribe(onNext: {event in
-      log.info(event)
-      }).disposed(by: disposeBag)
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange, chatNode: ASCollectionNode) -> ASLayoutSpec {

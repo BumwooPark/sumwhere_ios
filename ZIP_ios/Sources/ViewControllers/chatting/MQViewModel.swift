@@ -21,7 +21,9 @@ class MQViewModel: NSObject {
   
   private let session: MQTTSession? = {
     let session = MQTTSession()
-    session?.protocolLevel = .version311
+//    session?.protocolLevel = .version31
+    session?.userName = "qkrqjadn"
+    session?.password = "1q2w3e4r"
     return session
   }()
   
@@ -34,14 +36,20 @@ class MQViewModel: NSObject {
     self.subscribeTopic = subscribeTopic
     super.init()
     self.transport.host = host
-    self.recvMessage = session?.rx.mqttMessage
-    self.mqttState = session?.rx.mqttEvent.share().debug()
+    self.recvMessage = session?.rx.mqttMessage.share()
+    self.mqttState = session?.rx.mqttEvent.share()
+    self.session?.transport = transport
+    session?.rx.mqttEvent
+      .subscribe(onNext: { (event) in
+        log.info(event)
+      }).disposed(by: disposeBag)
     
     session?.rx.mqttEvent
       .filter{$0 == .connected}
       .map{_ in return ()}
       .bind(onNext: subscribe)
       .disposed(by: disposeBag)
+    session?.subscribe(toTopic: subscribeTopic, at: .exactlyOnce)
   }
   
   deinit {
@@ -82,10 +90,10 @@ extension Reactive where Base: MQTTSession {
 }
 
 fileprivate class RxMQTTDelegateProxy: DelegateProxy<MQTTSession, MQTTSessionDelegate>,
-            DelegateProxyType, MQTTSessionDelegate, MQTTTransportDelegate{
+            DelegateProxyType, MQTTSessionDelegate{
   
-  func mqttTransport(_ mqttTransport: MQTTTransportProtocol, didReceiveMessage message: Data) {
-    messageSubject.onNext(message)
+  func newMessage(_ session: MQTTSession!, data: Data!, onTopic topic: String!, qos: MQTTQosLevel, retained: Bool, mid: UInt32) {
+    messageSubject.onNext(data)
   }
   
   let eventSubject = PublishSubject<MQTTSessionEvent>()
@@ -108,6 +116,7 @@ fileprivate class RxMQTTDelegateProxy: DelegateProxy<MQTTSession, MQTTSessionDel
   }
   
   func handleEvent(_ session: MQTTSession!, event eventCode: MQTTSessionEvent, error: Error!) {
+    log.info(eventCode)
     eventSubject.onNext(eventCode)
   }
 }

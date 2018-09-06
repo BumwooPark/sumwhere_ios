@@ -1398,6 +1398,7 @@
 				0A895BEF212EE59800FDF834 /* CurrentMatchViewController.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,
+				0AB4213621401199001353E9 /* ChatListNodeCell.swift in Sources */,
 				B1D1CB25213F9E8A001A9801 /* InputBoxNode.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
 				B16B3DF72117E6F0001D278A /* TripStyleViewController.swift in Sources */,
