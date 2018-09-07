@@ -45,9 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Fabric.with([Crashlytics.self])
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
-    window?.rootViewController = UIViewController()
-    proxyController = ProxyController(window: window)
-    proxyController.makeRootViewController()
+    
+    
+    window?.rootViewController = UINavigationController(rootViewController: ChatListViewController())
+//    window?.rootViewController = UIViewController()
+//    proxyController = ProxyController(window: window)
+//    proxyController.makeRootViewController()
     
     tokenObserver
       .do(onNext: { (token) in

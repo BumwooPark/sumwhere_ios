@@ -11,8 +11,9 @@ import RxSwift
 
 class ChatRoomViewController: ChatNodeViewController{
   private let disposeBag = DisposeBag()
+  
   let viewModel: MQViewModel = {
-    let viewModel = MQViewModel(host: "192.168.0.6", subscribeTopic: "go-mqtt/sample")
+    let viewModel = MQViewModel(host: "192.168.1.19", subscribeTopic: "go-mqtt/sample")
     return viewModel
   }()
   
@@ -52,6 +53,7 @@ class ChatRoomViewController: ChatNodeViewController{
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange, chatNode: ASCollectionNode) -> ASLayoutSpec {
+    
     let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: .infinity, left: 0, bottom: self.keyboardVisibleHeight + 0.0, right: 0), child: self.messageInputNode)
     let messageOverlayLayout = ASOverlayLayoutSpec(child: collectionNode, overlay: messageLayout)
     return ASInsetLayoutSpec(insets: .zero, child: messageOverlayLayout)
