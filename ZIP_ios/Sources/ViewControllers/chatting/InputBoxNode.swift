@@ -11,18 +11,15 @@ import RxSwift
 
 class InputBoxNode: ASDisplayNode{
   
+  typealias Node = InputBoxNode
   let disposeBag = DisposeBag()
   
-  var textHeight: CGFloat = 50{
-    didSet{
-      log.info(textHeight)
-    }
-  }
+  fileprivate var minimumMessageBoxHeight: CGFloat = 50.0
+  fileprivate var maximumVisibleMessageNumberOfLines: Int = 6
+  
   
   lazy var textNode: ASEditableTextNode = {
     let node = ASEditableTextNode()
-    node.cornerRadius = 5
-    node.clipsToBounds = true
     node.borderColor = UIColor.lightGray.cgColor
     node.borderWidth = 0.5
     node.placeholderEnabled = true
@@ -37,6 +34,7 @@ class InputBoxNode: ASDisplayNode{
     let node = ASButtonNode()
     node.setAttributedTitle(NSAttributedString(string: "전송"), for: .normal)
     node.style.preferredSize = CGSize(width: 50, height: 50)
+    node.style.alignSelf = .end
     node.cornerRadius = 10
     node.clipsToBounds = true
     node.backgroundColor = .red
@@ -56,29 +54,44 @@ class InputBoxNode: ASDisplayNode{
       .didChange
       .map{ [weak self] _ -> CGFloat in
         guard let node = self?.textNode else {return 0}
-        let number = (node.textView.contentSize.height - node.textView.textContainerInset.top - node.textView.textContainerInset.bottom) / (node.textView.font?.lineHeight)!
-        return CGFloat(Int(number))
-    }.distinctUntilChanged()
+        var number: CGFloat = (node.textView.contentSize.height - node.textView.textContainerInset.top - node.textView.textContainerInset.bottom) / (node.textView.font?.lineHeight)!
+        number = CGFloat(min(self?.maximumVisibleMessageNumberOfLines ?? 0, Int(number)))
+        return CGFloat(Int(number)) - 1
+      }.distinctUntilChanged()
       .subscribeNext(weak: self) { (weakSelf) -> (CGFloat) -> Void in
         return { value in
-          log.info("called")
-          weakSelf.textHeight = 50 * value
+          
+          var calcultedHeight = value * (weakSelf.textNode.textView.font?.pointSize ?? 0.0)
+          calcultedHeight += weakSelf.minimumMessageBoxHeight
+          weakSelf.style.height = .init(unit: .points, value: calcultedHeight)
           weakSelf.setNeedsLayout()
           weakSelf.layoutIfNeeded()
         }
     }.disposed(by: disposeBag)
   }
   
-  func setMessageBoxHeight(){
-    self.style.height = .init(unit: .points, value: 50)
+  func setupDefaultMessageBox(){
+    setMessageBoxHeight(50.0, maxiumNumberOfLine: 6, isRounded: true)
+  }
+  
+  func setMessageBoxHeight(_ minimumHeight: CGFloat,
+                           maxiumNumberOfLine: Int,
+                           isRounded: Bool) {
+    self.style.height = .init(unit: .points, value: minimumHeight)
+    self.minimumMessageBoxHeight = minimumHeight
+    self.maximumVisibleMessageNumberOfLines = maxiumNumberOfLine
+    
+    guard isRounded else { return }
+    self.textNode.clipsToBounds = true
+    let textNodeSize = self.textNode.calculateSizeThatFits(UIScreen.main.bounds.size)
+    self.textNode.cornerRadius = textNodeSize.height / 2
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
     let inputLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10), child: textNode)
     let buttonLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10), child: sendNode)
     let lay = ASRelativeLayoutSpec(horizontalPosition: .end, verticalPosition: .end, sizingOption: [], child: buttonLayout)
-    lay.style.flexShrink = 1 
+    inputLayout.style.flexGrow = 1
     return ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: .spaceBetween, alignItems: .stretch, children: [inputLayout,lay])
-    
   }
 }

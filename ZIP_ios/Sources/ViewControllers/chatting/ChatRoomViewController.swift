@@ -19,7 +19,8 @@ class ChatRoomViewController: ChatNodeViewController{
   
   lazy var messageInputNode: InputBoxNode = {
     let node = InputBoxNode()
-    node.setMessageBoxHeight()
+    node.style.alignSelf = .end
+    node.setupDefaultMessageBox()
     return node
   }()
   
@@ -48,10 +49,36 @@ class ChatRoomViewController: ChatNodeViewController{
     
     collectionNode.delegate = self
     collectionNode.dataSource = self
-    
+    viewModel.publishBehavior(topic: "go-mqtt/sample")
     log.info(viewModel.makeNewSession())
+    rxBind()
   }
   
+  func rxBind(){
+    
+    messageInputNode.sendNode
+      .rx.controlEvent(.touchUpInside)
+      .asObservable()
+      .map{[unowned self] _ in
+        return self.messageInputNode.textNode.textView.text.data(using: .utf8)
+    }.filterNil().debug()
+      .bind(to: viewModel.publish)
+      .disposed(by: disposeBag)
+  
+    viewModel.mqttState?.subscribe(onNext: { (event) in
+      log.info(event)
+    }).disposed(by: disposeBag)
+    
+    viewModel.recvMessage?
+      .map{data in
+      return String(data: data, encoding: .utf8)
+    }.filterNil()
+      .subscribe(onNext: { (data) in
+        log.info(data)
+      }).disposed(by: disposeBag)
+  }
+  
+
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange, chatNode: ASCollectionNode) -> ASLayoutSpec {
     
     let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: .infinity, left: 0, bottom: self.keyboardVisibleHeight + 0.0, right: 0), child: self.messageInputNode)

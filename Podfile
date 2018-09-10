@@ -66,6 +66,7 @@ pod 'RxKeyboard'
 pod 'RxOptional'
 pod "RxSwiftExt"
 pod 'RxCoreLocation'
+pod 'RxASDataSources'
 
   target 'ZIP_iosTests' do
     inherit! :search_paths

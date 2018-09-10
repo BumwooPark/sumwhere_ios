@@ -184,6 +184,7 @@
 		B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95682119902D00F6418F /* TripStyleFooterView.swift */; };
 		B1F6D8C42140B5C600E0E003 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */; };
 		B1F6D8C62140B6B600E0E003 /* ChatListCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */; };
+		B1F6D8C82146123A00E0E003 /* AS + RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C72146123A00E0E003 /* AS + RxSwift.swift */; };
 		BAB35871AF3A20A85A1D01CD /* Pods_ZIP_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -381,6 +382,7 @@
 		B1EF95682119902D00F6418F /* TripStyleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleFooterView.swift; sourceTree = "<group>"; };
 		B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCellNode.swift; sourceTree = "<group>"; };
+		B1F6D8C72146123A00E0E003 /* AS + RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AS + RxSwift.swift"; sourceTree = "<group>"; };
 		BBBA05947428AB4BFEF7859A /* Pods-ZIP_iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_iosTests/Pods-ZIP_iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZIP_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D974C1FB255F6BC0FD4F84C5 /* Pods-ZIP_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 				0A745666210C98ED00F8A0C9 /* UITextField + Extension.swift */,
 				0A74568C210E132B00F8A0C9 /* String + Extension.swift */,
 				0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */,
+				B1F6D8C72146123A00E0E003 /* AS + RxSwift.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				"${BUILT_PRODUCTS_DIR}/PySwiftyRegex/PySwiftyRegex.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxASDataSources/RxASDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCoreLocation/RxCoreLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
@@ -1211,6 +1215,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PySwiftyRegex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxASDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCoreLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
@@ -1343,6 +1348,7 @@
 				B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */,
 				0A7E9CED204300F40014D549 /* InsertPlanViewController.swift in Sources */,
 				0A9174CE20220124000A055A /* MockMessage.swift in Sources */,
+				B1F6D8C82146123A00E0E003 /* AS + RxSwift.swift in Sources */,
 				0A375C18213275AA00E35ED9 /* TopTripCell.swift in Sources */,
 				0A9174D12024AB85000A055A /* DataBase.swift in Sources */,
 				0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */,
@@ -1398,7 +1404,6 @@
 				0A895BEF212EE59800FDF834 /* CurrentMatchViewController.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,
-				0AB4213621401199001353E9 /* ChatListNodeCell.swift in Sources */,
 				B1D1CB25213F9E8A001A9801 /* InputBoxNode.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
 				B16B3DF72117E6F0001D278A /* TripStyleViewController.swift in Sources */,

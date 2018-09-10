@@ -21,7 +21,7 @@ class MQViewModel: NSObject {
   
   private let session: MQTTSession? = {
     let session = MQTTSession()
-//    session?.protocolLevel = .version31
+    session?.protocolLevel = .version311
     session?.userName = "qkrqjadn"
     session?.password = "1q2w3e4r"
     return session
@@ -39,6 +39,7 @@ class MQViewModel: NSObject {
     self.recvMessage = session?.rx.mqttMessage.share()
     self.mqttState = session?.rx.mqttEvent.share()
     self.session?.transport = transport
+    
     session?.rx.mqttEvent
       .subscribe(onNext: { (event) in
         log.info(event)
@@ -50,6 +51,7 @@ class MQViewModel: NSObject {
       .bind(onNext: subscribe)
       .disposed(by: disposeBag)
     session?.subscribe(toTopic: subscribeTopic, at: .exactlyOnce)
+    
   }
   
   deinit {
@@ -65,7 +67,7 @@ class MQViewModel: NSObject {
     session?.subscribe(toTopic: subscribeTopic, at: .exactlyOnce)
   }
   
-  private func publishBehavior(topic: String){
+  func publishBehavior(topic: String){
     //TODO: 전송 실패에 대한 부분 생각
     publish.subscribeNext(weak: self) { (weakSelf) -> (Data) -> Void in
       return { message in
