@@ -32,10 +32,11 @@ class MQViewModel: NSObject {
     return transport
   }()
   
-  init(host: String, subscribeTopic: String) {
+  init(host: String, port: UInt32, subscribeTopic: String) {
     self.subscribeTopic = subscribeTopic
     super.init()
     self.transport.host = host
+    self.transport.port = port
     self.recvMessage = session?.rx.mqttMessage.share()
     self.mqttState = session?.rx.mqttEvent.share()
     self.session?.transport = transport

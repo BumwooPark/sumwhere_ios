@@ -13,7 +13,7 @@ class ChatRoomViewController: ChatNodeViewController{
   private let disposeBag = DisposeBag()
   
   let viewModel: MQViewModel = {
-    let viewModel = MQViewModel(host: "192.168.1.19", subscribeTopic: "go-mqtt/sample")
+    let viewModel = MQViewModel(host: "210.100.238.118", port: 18883, subscribeTopic: "go-mqtt/sample")
     return viewModel
   }()
   
@@ -24,11 +24,11 @@ class ChatRoomViewController: ChatNodeViewController{
     return node
   }()
   
-   var items: [Int] = [50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+  var items: [String] = ["hi","hi"]
   enum Section: Int {
     case prependIndicator
-    case appendIndicator
     case messages
+    case appendIndicator
   }
   
   struct Const {
@@ -50,7 +50,7 @@ class ChatRoomViewController: ChatNodeViewController{
     collectionNode.delegate = self
     collectionNode.dataSource = self
     viewModel.publishBehavior(topic: "go-mqtt/sample")
-    log.info(viewModel.makeNewSession())
+    viewModel.makeNewSession()
     rxBind()
   }
   
@@ -69,18 +69,26 @@ class ChatRoomViewController: ChatNodeViewController{
       log.info(event)
     }).disposed(by: disposeBag)
     
-    viewModel.recvMessage?
+    viewModel
+      .recvMessage?
       .map{data in
       return String(data: data, encoding: .utf8)
     }.filterNil()
-      .subscribe(onNext: { (data) in
-        log.info(data)
+      .map{[$0]}
+      .scan(self.items, accumulator: { (data, message)  in
+        return data + message
+      })
+      .subscribeNext(weak: self, { (weakSelf) -> ([String]) -> Void in
+        return { data in
+          weakSelf.items = data
+          weakSelf.collectionNode.reloadSections(IndexSet(integer: Section.messages.rawValue))
+        }
       }).disposed(by: disposeBag)
   }
   
 
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange, chatNode: ASCollectionNode) -> ASLayoutSpec {
-    
+    collectionNode.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: messageInputNode.style.height.value, right: 0)
     let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: .infinity, left: 0, bottom: self.keyboardVisibleHeight + 0.0, right: 0), child: self.messageInputNode)
     let messageOverlayLayout = ASOverlayLayoutSpec(child: collectionNode, overlay: messageLayout)
     return ASInsetLayoutSpec(insets: .zero, child: messageOverlayLayout)
@@ -110,7 +118,9 @@ extension ChatRoomViewController: ChatNodeDataSource{
     case Section.appendIndicator.rawValue:
       return ChatLoadingIndicatorNode()
     case Section.messages.rawValue:
-      return ChatCellNode()
+      let node = ChatCellNode()
+      node.messageNode.attributedText = NSAttributedString(string: items[indexPath.item])
+      return node
     case Section.prependIndicator.rawValue:
       return ChatLoadingIndicatorNode()
     default: return ASCellNode()
@@ -120,23 +130,23 @@ extension ChatRoomViewController: ChatNodeDataSource{
 
 extension ChatRoomViewController: ChatNodeDelegate{
   func shouldAppendBatchFetch(for chatNode: ASCollectionNode) -> Bool {
-    return true
+    return false
   }
   
   func shouldPrependBatchFetch(for chatNode: ASCollectionNode) -> Bool {
-    return true
+    return false
   }
   
   func chatNode(_ chatNode: ASCollectionNode, willBeginAppendBatchFetchWith context: ASBatchContext) {
     log.debug("call append")
 //    self.collectionNode.reloadSections(IndexSet(integer: Section.appendIndicator.rawValue))
-    self.completeBatchFetching(true, endDirection: .none)
+//    self.completeBatchFetching(true, endDirection: .none)
   }
   
   func chatNode(_ chatNode: ASCollectionNode, willBeginPrependBatchFetchWith context: ASBatchContext) {
     log.debug("call prepend")
-     self.collectionNode.reloadSections(IndexSet(integer: Section.prependIndicator.rawValue))
-    self.completeBatchFetching(true, endDirection: .none)
+//     self.collectionNode.reloadSections(IndexSet(integer: Section.prependIndicator.rawValue))
+//    self.completeBatchFetching(true, endDirection: .none)
   }
 }
 

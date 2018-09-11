@@ -22,18 +22,12 @@ public protocol ChatNodeDelegate: ASCollectionDelegate {
 
 public protocol ChatNodeDataSource: ASCollectionDataSource {}
 
-class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataSource, ASCollectionDelegate {
+class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataSource {
   
   public enum BatchFetchDirection: UInt{
     case append
     case prepend
     case none
-  }
-  
-  struct State{
-    var itemCount: Int
-    var fetchingMore: Bool
-    static let empty = State(itemCount: 10, fetchingMore: false)
   }
   
   enum Action {
@@ -56,12 +50,7 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
       }
     }
   }
-  
-  fileprivate(set) var state: State = .empty{
-    didSet{
-      log.info(state)
-    }
-  }
+
   private let disposeBag = DisposeBag()
   private lazy var batchFetchingContext = ASBatchContext()
   open var isPagingStatusEnable: Bool = true
@@ -111,9 +100,6 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
   
   open func layoutSpecThatFits(_ constrainedSize: ASSizeRange,
                                chatNode: ASCollectionNode) -> ASLayoutSpec {
-    
-    
-    
     return ASInsetLayoutSpec(insets: .zero, child: chatNode)
   }
   
@@ -155,20 +141,7 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
       completion(resultCount)
     }
   }
-  
-  fileprivate static func handleAction(_ action: Action, fromState state: State) -> State {
-    var state = state
-    switch action {
-    case .beginBatchFetch:
-      state.fetchingMore = true
-    case let .endBatchFetch(resultCount):
-      state.itemCount += resultCount
-      state.fetchingMore = false
-    }
-    return state
-  }
 }
-
 extension ChatNodeViewController{
   open func completeBatchFetching(_ complated: Bool, endDirection: BatchFetchDirection) {
     switch endDirection {
@@ -190,14 +163,16 @@ extension ChatNodeViewController{
   }
 }
 
+extension ChatNodeViewController: ASCollectionDelegate{}
+
 extension ChatNodeViewController: UIScrollViewDelegate{
+  
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    
-    
+  
+    log.info(collectionNode.visibleNodes)
 //    log.debug(ASInterfaceStateIncludesVisible(self.interfaceState))
 //    log.debug(ASInterfaceStateIncludesMeasureLayout(self.interfaceState))
 //    log.debug(ASInterfaceStateIncludesPreload(self.interfaceState))
-    
     
     guard let chatDelegate = self.collectionNode.delegate as? ChatNodeDelegate,
       ASInterfaceStateIncludesVisible(self.interfaceState) else {return}
@@ -272,10 +247,8 @@ extension ChatNodeViewController: UIScrollViewDelegate{
     if contentLength < viewLength{
       switch scrollDirection{
       case .down:
-        log.debug("down")
         return .prepend
       case .up:
-        log.debug("up")
         return .append
       default: return .none
       }
