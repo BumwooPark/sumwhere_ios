@@ -34,6 +34,8 @@ public enum ZIP{
   case MatchRequest(model: Encodable)
   case MatchRequestReceive
   case MatchRequestSend
+  
+  case GetChatRoom
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
@@ -96,6 +98,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/receive"
     case .MatchRequestSend:
       return "/restrict/match/send"
+    case .GetChatRoom:
+      return "/restrict/chat/room"
     }
   }
   

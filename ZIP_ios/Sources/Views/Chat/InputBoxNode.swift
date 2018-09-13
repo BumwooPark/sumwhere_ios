@@ -33,6 +33,7 @@ class InputBoxNode: ASDisplayNode{
   lazy var sendNode: ASButtonNode = {
     let node = ASButtonNode()
     node.setAttributedTitle(NSAttributedString(string: "전송"), for: .normal)
+    node.isEnabled = false
     node.style.preferredSize = CGSize(width: 50, height: 50)
     node.style.alignSelf = .end
     node.cornerRadius = 10

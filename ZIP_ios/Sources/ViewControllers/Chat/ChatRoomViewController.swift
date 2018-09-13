@@ -44,6 +44,17 @@ class ChatRoomViewController: ChatNodeViewController{
     self.tabBarController?.tabBar.isHidden = true
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.tabBarController?.tabBar.isHidden = false
+  }
+  
+  deinit {
+    DispatchQueue.global(qos: .background).async {[weak self] in
+      self?.viewModel.close()
+    }
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.leadingScreensForBatching = 3.0
@@ -53,16 +64,17 @@ class ChatRoomViewController: ChatNodeViewController{
     viewModel.publishBehavior(topic: "go-mqtt/sample")
     viewModel.makeNewSession()
     rxBind()
-    sqlliteTest()
+//    sqlliteTest()
   }
   
   
   func sqlliteTest() {
     
+    
     guard let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
     do {
       let db = try Connection(urls.absoluteString + "/chat.sqlite3")
-      
+      log.info(Thread.isMainThread)
       let users = Table("users")
       let id = Expression<Int64>("id")
       let name = Expression<String>("name")
@@ -80,9 +92,6 @@ class ChatRoomViewController: ChatNodeViewController{
         log.info("id: \(user[id]), name: \(user[name]), email: \(user[email])")
         // id: 1, name: Optional("Alice"), email: alice@mac.com
       }
-      
-      
-      
     }catch let error {
       log.error(error)
     }
@@ -90,41 +99,66 @@ class ChatRoomViewController: ChatNodeViewController{
   
   func rxBind(){
     
-    messageInputNode.sendNode
-      .rx.controlEvent(.touchUpInside)
+    messageInputNode
+      .textNode
+      .textView
+      .rx
+      .text
+      .filterNil()
+      .map{$0.count > 0}
+      .bind(to: messageInputNode.sendNode.rx.isEnabled)
+      .disposed(by: disposeBag)
+
+    let sendAction = messageInputNode
+      .sendNode
+      .rx
+      .controlEvent(.touchUpInside)
       .asObservable()
-      .map{[unowned self] _ in
+      .share()
+    
+    sendAction
+      .map{[weak self] _ in
+      return self?.messageInputNode.textNode.textView.text.count
+    }.filterNil()
+      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
+        return { count in
+          weakSelf.messageInputNode.sendNode.isEnabled = (count > 0) ? true : false
+        }
+    }.disposed(by: disposeBag)
+
+      sendAction
+        .map{[unowned self] _ in
         return self.messageInputNode.textNode.textView.text.data(using: .utf8)
-    }.filterNil().debug()
+      }.filterNil()
       .bind(to: viewModel.publish)
       .disposed(by: disposeBag)
   
-    viewModel.mqttState?.subscribe(onNext: { (event) in
+    viewModel.mqttState?
+      .subscribe(onNext: { (event) in
       log.info(event)
     }).disposed(by: disposeBag)
     
     viewModel
       .recvMessage?
-      .map{data in
-      return String(data: data, encoding: .utf8)
-    }.filterNil()
+      .map{String(data: $0, encoding: .utf8)}
+      .filterNil()
       .map{[$0]}
-      .scan(self.items, accumulator: { (data, message)  in
-        return data + message
-      })
+      .scan(self.items){ $0 + $1 }
       .subscribeNext(weak: self, { (weakSelf) -> ([String]) -> Void in
         return { data in
           weakSelf.items = data
           weakSelf.collectionNode.reloadSections(IndexSet(integer: Section.messages.rawValue))
+          weakSelf.collectionNode.scrollToItem(at: IndexPath(item: weakSelf.items.count - 1, section: 1), at: .bottom, animated: true)
         }
       }).disposed(by: disposeBag)
   }
   
 
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange, chatNode: ASCollectionNode) -> ASLayoutSpec {
+    let collectionLayout = super.layoutSpecThatFits(constrainedSize, chatNode: chatNode)
     collectionNode.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: messageInputNode.style.height.value, right: 0)
     let messageLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: .infinity, left: 0, bottom: self.keyboardVisibleHeight + 0.0, right: 0), child: self.messageInputNode)
-    let messageOverlayLayout = ASOverlayLayoutSpec(child: collectionNode, overlay: messageLayout)
+    let messageOverlayLayout = ASOverlayLayoutSpec(child: collectionLayout, overlay: messageLayout)
     return ASInsetLayoutSpec(insets: .zero, child: messageOverlayLayout)
   }
 }

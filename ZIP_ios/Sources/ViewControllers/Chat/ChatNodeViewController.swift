@@ -82,6 +82,7 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
     self.setupChatRangeTuningParameters()
   }
   
+  
   open func setupChatRangeTuningParameters() {
     self.collectionNode.setTuningParameters(ASRangeTuningParameters(leadingBufferScreenfuls: 1.5,
                                                                     trailingBufferScreenfuls: 1.5),
@@ -100,7 +101,8 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
   
   open func layoutSpecThatFits(_ constrainedSize: ASSizeRange,
                                chatNode: ASCollectionNode) -> ASLayoutSpec {
-    return ASInsetLayoutSpec(insets: .zero, child: chatNode)
+    let collectionNodeInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardVisibleHeight, right: 0)
+    return ASInsetLayoutSpec(insets: collectionNodeInset, child: chatNode)
   }
   
   override func viewDidLoad() {
@@ -114,11 +116,9 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
     
     RxKeyboard.instance.visibleHeight
       .drive(onNext: {[weak self] (height) in
-        
         self?.keyboardVisibleHeight = height
-        
-        log.info(height)
         UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+          self?.collectionNode.setNeedsLayout()
           self?.node.setNeedsLayout()
           self?.node.layoutIfNeeded()
         }, completion: nil)
@@ -130,7 +130,6 @@ class ChatNodeViewController: ASViewController<ASDisplayNode>, ASCollectionDataS
   }
   
   func shouldBatchFetch(for collectionNode: ASCollectionNode) -> Bool {
-    
     return true
   }
   
@@ -169,7 +168,7 @@ extension ChatNodeViewController: UIScrollViewDelegate{
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
   
-    log.info(collectionNode.visibleNodes)
+//    log.info(collectionNode.visibleNodes)
 //    log.debug(ASInterfaceStateIncludesVisible(self.interfaceState))
 //    log.debug(ASInterfaceStateIncludesMeasureLayout(self.interfaceState))
 //    log.debug(ASInterfaceStateIncludesPreload(self.interfaceState))
@@ -196,7 +195,7 @@ extension ChatNodeViewController: UIScrollViewDelegate{
                                  offset: scrollView.contentOffset.y,
                                  scrollDirection: scrollDirection(scrollVelocity),
                                  velocity: scrollVelocity)
-    
+
     switch scope{
     case .append:
       guard chatDelegate.shouldAppendBatchFetch(for: self.collectionNode),
@@ -206,6 +205,7 @@ extension ChatNodeViewController: UIScrollViewDelegate{
         self.pagingStatus = .appending
       }
       chatDelegate.chatNode(self.collectionNode, willBeginAppendBatchFetchWith: self.batchFetchingContext)
+      break
     case .prepend:
       guard chatDelegate.shouldPrependBatchFetch(for: self.collectionNode)
         , self.hasNextPrependItem else {return}
@@ -214,6 +214,7 @@ extension ChatNodeViewController: UIScrollViewDelegate{
         self.pagingStatus = .prepending
       }
       chatDelegate.chatNode(self.collectionNode, willBeginPrependBatchFetchWith: self.batchFetchingContext)
+      break
     case .none:
       break
     }

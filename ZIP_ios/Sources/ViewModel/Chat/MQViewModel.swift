@@ -19,9 +19,8 @@ class MQViewModel: NSObject {
   private let disposeBag = DisposeBag()
   private let subscribeTopic: String
   
-  private let session: MQTTSession? = {
+  let session: MQTTSession? = {
     let session = MQTTSession()
-    session?.protocolLevel = .version311
     session?.userName = "qkrqjadn"
     session?.password = "1q2w3e4r"
     return session
@@ -51,11 +50,10 @@ class MQViewModel: NSObject {
       .map{_ in return ()}
       .bind(onNext: subscribe)
       .disposed(by: disposeBag)
-    session?.subscribe(toTopic: subscribeTopic, at: .exactlyOnce)
-    
+    subscribe()
   }
   
-  deinit {
+  func close(){
     session?.closeAndWait(2)
   }
   
@@ -66,13 +64,16 @@ class MQViewModel: NSObject {
   
   private func subscribe(){
     session?.subscribe(toTopic: subscribeTopic, at: .exactlyOnce)
+
   }
   
   func publishBehavior(topic: String){
     //TODO: 전송 실패에 대한 부분 생각
-    publish.subscribeNext(weak: self) { (weakSelf) -> (Data) -> Void in
+    publish
+      .debug()
+      .subscribeNext(weak: self) { (weakSelf) -> (Data) -> Void in
       return { message in
-        weakSelf.session?.publishData(message, onTopic: topic, retain: true, qos: .exactlyOnce)
+        weakSelf.session?.publishData(message, onTopic: topic, retain: false, qos: .exactlyOnce)
       }
     }.disposed(by: disposeBag)
   }
@@ -96,8 +97,14 @@ fileprivate class RxMQTTDelegateProxy: DelegateProxy<MQTTSession, MQTTSessionDel
             DelegateProxyType, MQTTSessionDelegate{
   
   func newMessage(_ session: MQTTSession!, data: Data!, onTopic topic: String!, qos: MQTTQosLevel, retained: Bool, mid: UInt32) {
+    log.info(topic)
+    log.info(qos.rawValue)
+    log.info(retained)
+    log.info(mid)
     messageSubject.onNext(data)
   }
+  
+  
   
   let eventSubject = PublishSubject<MQTTSessionEvent>()
   let messageSubject = PublishSubject<Data>()
@@ -119,7 +126,6 @@ fileprivate class RxMQTTDelegateProxy: DelegateProxy<MQTTSession, MQTTSessionDel
   }
   
   func handleEvent(_ session: MQTTSession!, event eventCode: MQTTSessionEvent, error: Error!) {
-    log.info(eventCode)
     eventSubject.onNext(eventCode)
   }
 }

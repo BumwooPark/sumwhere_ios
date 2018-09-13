@@ -47,10 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     
     
-    window?.rootViewController = UINavigationController(rootViewController: ChatListViewController())
-//    window?.rootViewController = UIViewController()
-//    proxyController = ProxyController(window: window)
-//    proxyController.makeRootViewController()
+//    window?.rootViewController = UINavigationController(rootViewController: ChatListViewController())
+    window?.rootViewController = UIViewController()
+    proxyController = ProxyController(window: window)
+    proxyController.makeRootViewController()
     
     tokenObserver
       .do(onNext: { (token) in

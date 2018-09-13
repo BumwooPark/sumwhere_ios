@@ -12,6 +12,21 @@ import RxCocoa
 
 extension Reactive where Base: ASButtonNode{
   /// Reactive wrapper for `TouchUpInside` control event.
+  /// Bindable sink for `enabled` property.
+  public var isEnabled: Binder<Bool> {
+    return Binder(self.base) { control, value in
+      control.isEnabled = value
+    }
+  }
+  
+  /// Bindable sink for `selected` property.
+  public var isSelected: Binder<Bool> {
+    return Binder(self.base) { control, selected in
+      control.isSelected = selected
+    }
+  }
+  
+  
   public var tap: ASControlEvent<Void> {
     return controlEvent(.touchUpInside)
   }

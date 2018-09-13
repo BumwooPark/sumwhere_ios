@@ -120,14 +120,14 @@ PODS:
   - Moya/RxSwift (11.0.2):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - MQTTClient (0.15.1):
-    - MQTTClient/Core (= 0.15.1)
-  - MQTTClient/Core (0.15.1):
+  - MQTTClient (0.15.2):
+    - MQTTClient/Core (= 0.15.2)
+  - MQTTClient/Core (0.15.2):
     - MQTTClient/Manager
     - MQTTClient/Min
-  - MQTTClient/Manager (0.15.1):
+  - MQTTClient/Manager (0.15.2):
     - MQTTClient/Min
-  - MQTTClient/Min (0.15.1)
+  - MQTTClient/Min (0.15.2)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -379,7 +379,7 @@ SPEC CHECKSUMS:
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
   LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
   Moya: a725035953bc1c0eb1be505ab903984501d82440
-  MQTTClient: 92ead4ac75687e7021bcf8d564ff37aaf950d631
+  MQTTClient: 902c7bcac1501595f3d0b15178c7205b40331fb0
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac

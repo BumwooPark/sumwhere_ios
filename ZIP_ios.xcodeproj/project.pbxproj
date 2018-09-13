@@ -63,7 +63,6 @@
 		0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123951FACC1E900512EB7 /* MainTabBarController.swift */; };
 		0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123971FACC1FB00512EB7 /* JoinViewController.swift */; };
 		0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123A11FACC29A00512EB7 /* Targets.swift */; };
-		0A745661210C773900F8A0C9 /* AreaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745660210C773900F8A0C9 /* AreaViewModel.swift */; };
 		0A745665210C971C00F8A0C9 /* DestinationSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */; };
 		0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745666210C98ED00F8A0C9 /* UITextField + Extension.swift */; };
 		0A745669210CA37D00F8A0C9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745668210CA37D00F8A0C9 /* PageViewController.swift */; };
@@ -130,6 +129,9 @@
 		B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFF2117F445001D278A /* InterestViewModel.swift */; };
 		B16B3E032117F46B001D278A /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3E022117F46B001D278A /* InterestModel.swift */; };
 		B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD221211162AF0045FAA6 /* MyTripCell.swift */; };
+		B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */; };
+		B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C562149FF6500BC95C5 /* ChatListModel.swift */; };
+		B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */; };
 		B1A1D99A211D16DC0022D2A0 /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D999211D16DC0022D2A0 /* TripViewController.swift */; };
 		B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */; };
 		B1A1D9A0211D27660022D2A0 /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D99F211D27660022D2A0 /* TripViewModel.swift */; };
@@ -260,7 +262,6 @@
 		0A7123971FACC1FB00512EB7 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		0A71239A1FACC24400512EB7 /* ZIP_ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZIP_ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A7123A11FACC29A00512EB7 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
-		0A745660210C773900F8A0C9 /* AreaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewModel.swift; sourceTree = "<group>"; };
 		0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchCell.swift; sourceTree = "<group>"; };
 		0A745666210C98ED00F8A0C9 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		0A745668210CA37D00F8A0C9 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +329,9 @@
 		B16B3DFF2117F445001D278A /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
 		B16B3E022117F46B001D278A /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
+		B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListSectionModel.swift; sourceTree = "<group>"; };
+		B1996C562149FF6500BC95C5 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
+		B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		B1A1D999211D16DC0022D2A0 /* TripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTicketCell.swift; sourceTree = "<group>"; };
 		B1A1D99F211D27660022D2A0 /* TripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
@@ -414,6 +418,7 @@
 		0A09A8051FDD3F1900DC47A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1996C58214A008000BC95C5 /* Chat */,
 				0A375C212132ABA500E35ED9 /* Request */,
 				0A895BED2129A5FD00FDF834 /* Login */,
 				B1A1D99B211D23EA0022D2A0 /* Match */,
@@ -591,6 +596,7 @@
 		0A71238D1FACC16100512EB7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B1996C552149FF5B00BC95C5 /* Chat */,
 				0A375C262132B8B500E35ED9 /* Request */,
 				B1A1D9A1211D282F0022D2A0 /* Match */,
 				B16B3E012117F460001D278A /* SetProfile */,
@@ -611,6 +617,7 @@
 		0A71238E1FACC16B00512EB7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B1996C59214A009C00BC95C5 /* Chat */,
 				0A332774213BA64D00BC2906 /* Login */,
 				0A375C2B2132BBF100E35ED9 /* Request */,
 				B1A1D99E211D27260022D2A0 /* Match */,
@@ -622,7 +629,6 @@
 				0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */,
 				0AD3BC16204A85E00051D7E3 /* CountryViewModel.swift */,
 				B105597A210992EC00AC769C /* LoginVIewModel.swift */,
-				0A745660210C773900F8A0C9 /* AreaViewModel.swift */,
 				0A745679210D875F00F8A0C9 /* FriendsViewModel.swift */,
 				0A74567F210DE0FC00F8A0C9 /* TravelResigerViewModel.swift */,
 				0A375C1B2132796D00E35ED9 /* TopTripViewModel.swift */,
@@ -641,7 +647,7 @@
 		0A7123901FACC17700512EB7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0AB42130213BE4C5001353E9 /* chatting */,
+				0AB42130213BE4C5001353E9 /* Chat */,
 				0A895BF5212EF84900FDF834 /* Setting */,
 				0A895BEC2129A59900FDF834 /* Login */,
 				B1A1D998211D16B10022D2A0 /* Match */,
@@ -735,21 +741,16 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		0AB42130213BE4C5001353E9 /* chatting */ = {
+		0AB42130213BE4C5001353E9 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				0AB42131213BE4EB001353E9 /* MQViewModel.swift */,
 				B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */,
-				B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */,
 				B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */,
-				B1D1CB1B213E679C001A9801 /* ChatLoadingIndicatorNode.swift */,
 				B1D1CB1D213F5D7B001A9801 /* TestFlowLayout.swift */,
-				B1D1CB24213F9E8A001A9801 /* InputBoxNode.swift */,
 				B1D1CB26213FA901001A9801 /* ChatRoomViewController.swift */,
 				B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */,
-				B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */,
 			);
-			path = chatting;
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		0AE818D21FB1D2C90005F331 /* Extensions */ = {
@@ -873,6 +874,35 @@
 				B1EF956021193FC500F6418F /* CharacterModel.swift */,
 			);
 			path = SetProfile;
+			sourceTree = "<group>";
+		};
+		B1996C552149FF5B00BC95C5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B1996C562149FF6500BC95C5 /* ChatListModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		B1996C58214A008000BC95C5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B1D1CB24213F9E8A001A9801 /* InputBoxNode.swift */,
+				B1D1CB1B213E679C001A9801 /* ChatLoadingIndicatorNode.swift */,
+				B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */,
+				B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		B1996C59214A009C00BC95C5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */,
+				0AB42131213BE4EB001353E9 /* MQViewModel.swift */,
+				B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		B1A1D998211D16B10022D2A0 /* Match */ = {
@@ -1294,6 +1324,7 @@
 				B1D1CB27213FA901001A9801 /* ChatRoomViewController.swift in Sources */,
 				B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */,
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
+				B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */,
 				0A745685210E013900F8A0C9 /* SearchDestinationViewModel.swift in Sources */,
 				B1EF95632119450F00F6418F /* CharacterHeaderView.swift in Sources */,
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
@@ -1315,6 +1346,8 @@
 				0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */,
 				B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */,
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
+				B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */,
+				B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */,
 				0AAD748C21170AA500C860ED /* TripStyleHeaderView.swift in Sources */,
 				B1D1CB1A213E1101001A9801 /* ChatFlowLayout.swift in Sources */,
 				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
@@ -1408,7 +1441,6 @@
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
 				B16B3DF72117E6F0001D278A /* TripStyleViewController.swift in Sources */,
 				0A745669210CA37D00F8A0C9 /* PageViewController.swift in Sources */,
-				0A745661210C773900F8A0C9 /* AreaViewModel.swift in Sources */,
 				B1D1CAF9212D0165001A9801 /* DetailTripStyleCell.swift in Sources */,
 				B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */,
 				B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */,
