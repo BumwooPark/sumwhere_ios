@@ -32,6 +32,7 @@ pod 'PySwiftyRegex'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'MQTTClient'
+pod 'CocoaMQTT' 
 
 # UI
 pod 'GoogleMaps'

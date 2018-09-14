@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 
+
 class ChatListViewModel{
   private let disposeBag = DisposeBag()
   lazy var listData = AuthManager.instance.provider.request(.GetChatRoom)

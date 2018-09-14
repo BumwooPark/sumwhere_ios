@@ -55,7 +55,7 @@ class ChatListViewController: ASViewController<ASDisplayNode>{
       .modelSelected(ChatListModel.self)
       .subscribeNext(weak: self) { (weakSelf) -> (ChatListModel) -> Void in
         return { item in
-          weakSelf.navigationController?.pushViewController(ChatRoomViewController(), animated: true)
+          weakSelf.navigationController?.pushViewController(ChatRoomViewController(91, item.chatRoom.id), animated: true)
         }
     }.disposed(by: disposeBag)
   }

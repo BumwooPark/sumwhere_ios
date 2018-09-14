@@ -9,15 +9,28 @@
 import AsyncDisplayKit
 import RxSwift
 import SQLite
+import CocoaMQTT
+
+struct MessagePayLoad: Codable{
+  enum MessageType: Int, Codable{
+    case string = 0
+    case image
+    case map
+  }
+  
+  let id: Int64
+  let messageType: MessageType
+  let message: String
+}
 
 class ChatRoomViewController: ChatNodeViewController{
+  
   private let disposeBag = DisposeBag()
+  private let mqtt: CocoaMQTT
+  private let userId: Int
+  private let roomId: Int64
   
-  let viewModel: MQViewModel = {
-    let viewModel = MQViewModel(host: "210.100.238.118", port: 18883, subscribeTopic: "go-mqtt/sample")
-    return viewModel
-  }()
-  
+  var items: [String] = ["hi","hi"]
   lazy var messageInputNode: InputBoxNode = {
     let node = InputBoxNode()
     node.style.alignSelf = .end
@@ -25,7 +38,6 @@ class ChatRoomViewController: ChatNodeViewController{
     return node
   }()
   
-  var items: [String] = ["hi","hi"]
   enum Section: Int {
     case prependIndicator
     case messages
@@ -39,6 +51,21 @@ class ChatRoomViewController: ChatNodeViewController{
     static let moreItemCount: Int = 10
   }
   
+  init(_ UserID: Int,_ RoomID: Int64) {
+    self.mqtt = MQTTUtil.newBuild(with: "client")
+      .keepAlive(time: 60)
+      .newAccount(username: "qkrqjadn", password: "1q2w3e4r")
+      .newURL(host: "210.100.238.118", port: 18883)
+      .build()
+    self.userId = UserID
+    self.roomId = RoomID
+    super.init()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.tabBarController?.tabBar.isHidden = true
@@ -48,12 +75,6 @@ class ChatRoomViewController: ChatNodeViewController{
     super.viewWillDisappear(animated)
     self.tabBarController?.tabBar.isHidden = false
   }
-  
-  deinit {
-    DispatchQueue.global(qos: .background).async {[weak self] in
-      self?.viewModel.close()
-    }
-  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -61,15 +82,17 @@ class ChatRoomViewController: ChatNodeViewController{
     
     collectionNode.delegate = self
     collectionNode.dataSource = self
-    viewModel.publishBehavior(topic: "go-mqtt/sample")
-    viewModel.makeNewSession()
+    
     rxBind()
 //    sqlliteTest()
+  }
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    mqtt.connect()
   }
   
   
   func sqlliteTest() {
-    
     
     guard let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
     do {
@@ -125,25 +148,37 @@ class ChatRoomViewController: ChatNodeViewController{
           weakSelf.messageInputNode.sendNode.isEnabled = (count > 0) ? true : false
         }
     }.disposed(by: disposeBag)
-
-      sendAction
-        .map{[unowned self] _ in
-        return self.messageInputNode.textNode.textView.text.data(using: .utf8)
-      }.filterNil()
-      .bind(to: viewModel.publish)
-      .disposed(by: disposeBag)
-  
-    viewModel.mqttState?
-      .subscribe(onNext: { (event) in
-      log.info(event)
-    }).disposed(by: disposeBag)
     
-    viewModel
-      .recvMessage?
-      .map{String(data: $0, encoding: .utf8)}
+    sendAction
+      .map{[unowned self] _ in
+        return self.messageInputNode.textNode.textView.text
+      }.filterNil()
+      .subscribeNext(weak: self) { (weakSelf) -> (String) -> Void in
+        return { message in
+          let encoder = JSONEncoder()
+          let data = try? encoder.encode(MessagePayLoad(id: 0, messageType: .string, message: "hello"))
+            weakSelf.mqtt.publish(CocoaMQTTMessage(topic: "chat/\(weakSelf.roomId)/\(weakSelf.userId)", payload: [UInt8](data ?? Data())))
+        }
+      }.disposed(by: disposeBag)
+    
+    
+    mqtt.rx.didConnectAck
+      .subscribeNext(weak: self) { (weakSelf) -> (CocoaMQTTConnAck) -> Void in
+        return { ack in
+          switch ack{
+          case .accept:
+            weakSelf.mqtt.subscribe("chat/\(weakSelf.roomId)", qos: CocoaMQTTQOS.qos2)
+          default:
+            break
+          }
+        }
+    }.disposed(by: disposeBag)
+    
+    mqtt.rx.didReceiveMessage
+      .map{$0.0.string}
       .filterNil()
       .map{[$0]}
-      .scan(self.items){ $0 + $1 }
+      .scan(self.items) { $0 + $1}
       .subscribeNext(weak: self, { (weakSelf) -> ([String]) -> Void in
         return { data in
           weakSelf.items = data
@@ -152,7 +187,6 @@ class ChatRoomViewController: ChatNodeViewController{
         }
       }).disposed(by: disposeBag)
   }
-  
 
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange, chatNode: ASCollectionNode) -> ASLayoutSpec {
     let collectionLayout = super.layoutSpecThatFits(constrainedSize, chatNode: chatNode)
@@ -218,5 +252,91 @@ extension ChatRoomViewController: ChatNodeDelegate{
   }
 }
 
+extension ChatRoomViewController: CocoaMQTTDelegate {
+  // Optional ssl CocoaMQTTDelegate
+  func mqtt(_ mqtt: CocoaMQTT, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {
+    TRACE("trust: \(trust)")
+    /// Validate the server certificate
+    ///
+    /// Some custom validation...
+    ///
+    /// if validatePassed {
+    ///     completionHandler(true)
+    /// } else {
+    ///     completionHandler(false)
+    /// }
+    completionHandler(true)
+  }
+  
+  func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
+    TRACE("ack: \(ack)")
+    
+    if ack == .accept {
+      mqtt.subscribe("chat/#", qos: CocoaMQTTQOS.qos1)
+    }
+  }
+  
+  func mqtt(_ mqtt: CocoaMQTT, didStateChangeTo state: CocoaMQTTConnState) {
+    TRACE("new state: \(state)")
+  }
+  
+  func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
+    TRACE("message: \(message.string.description), id: \(id)")
+  }
+  
+  func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
+    TRACE("id: \(id)")
+  }
+  
+  func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
+    TRACE("message: \(message.string.description), id: \(id)")
+  }
+  
+  func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
+    TRACE("topic: \(topic)")
+  }
+  
+  func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
+    TRACE("topic: \(topic)")
+  }
+  
+  func mqttDidPing(_ mqtt: CocoaMQTT) {
+    TRACE()
+  }
+  
+  func mqttDidReceivePong(_ mqtt: CocoaMQTT) {
+    TRACE()
+  }
+  
+  func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
+    TRACE("\(err.description)")
+  }
+  
+  func TRACE(_ message: String = "", fun: String = #function) {
+    let names = fun.components(separatedBy: ":")
+    var prettyName: String
+    if names.count == 1 {
+      prettyName = names[0]
+    } else {
+      prettyName = names[1]
+    }
+    
+    if fun == "mqttDidDisconnect(_:withError:)" {
+      prettyName = "didDisconect"
+    }
+    
+    print("[TRACE] [\(prettyName)]: \(message)")
+  }
+}
+
+extension Optional {
+  // Unwarp optional value for printing log only
+  var description: String {
+    if let warped = self {
+      return "\(warped)"
+    }
+    return ""
+  }
+}
 
 
