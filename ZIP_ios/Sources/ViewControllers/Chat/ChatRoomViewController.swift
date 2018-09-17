@@ -11,18 +11,6 @@ import RxSwift
 import SQLite
 import CocoaMQTT
 
-struct MessagePayLoad: Codable{
-  enum MessageType: Int, Codable{
-    case string = 0
-    case image
-    case map
-  }
-  
-  let id: Int64
-  let messageType: MessageType
-  let message: String
-}
-
 class ChatRoomViewController: ChatNodeViewController{
   
   private let disposeBag = DisposeBag()
@@ -51,12 +39,8 @@ class ChatRoomViewController: ChatNodeViewController{
     static let moreItemCount: Int = 10
   }
   
-  init(_ UserID: Int,_ RoomID: Int64) {
-    self.mqtt = MQTTUtil.newBuild(with: "client")
-      .keepAlive(time: 60)
-      .newAccount(username: "qkrqjadn", password: "1q2w3e4r")
-      .newURL(host: "210.100.238.118", port: 18883)
-      .build()
+  init(_ mqtt: CocoaMQTT,_ UserID: Int,_ RoomID: Int64) {
+    self.mqtt = mqtt
     self.userId = UserID
     self.roomId = RoomID
     super.init()
@@ -86,11 +70,6 @@ class ChatRoomViewController: ChatNodeViewController{
     rxBind()
 //    sqlliteTest()
   }
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    mqtt.connect()
-  }
-  
   
   func sqlliteTest() {
     
@@ -156,7 +135,7 @@ class ChatRoomViewController: ChatNodeViewController{
       .subscribeNext(weak: self) { (weakSelf) -> (String) -> Void in
         return { message in
           let encoder = JSONEncoder()
-          let data = try? encoder.encode(MessagePayLoad(id: 0, messageType: .string, message: "hello"))
+          let data = try? encoder.encode(MessagePayLoad(id: nil, messageType: .string, data: message.data(using: .utf8) ?? Data()))
             weakSelf.mqtt.publish(CocoaMQTTMessage(topic: "chat/\(weakSelf.roomId)/\(weakSelf.userId)", payload: [UInt8](data ?? Data())))
         }
       }.disposed(by: disposeBag)
@@ -167,12 +146,29 @@ class ChatRoomViewController: ChatNodeViewController{
         return { ack in
           switch ack{
           case .accept:
+            log.info("accept")
             weakSelf.mqtt.subscribe("chat/\(weakSelf.roomId)", qos: CocoaMQTTQOS.qos2)
-          default:
-            break
+          case .badUsernameOrPassword:
+            log.info(#function)
+          case .identifierRejected:
+            log.info("reject")
+          case .notAuthorized:
+            log.info("not AUther")
+          case .reserved:
+            log.info("reserved")
+          case .serverUnavailable:
+            log.info("server Una")
+          case .unacceptableProtocolVersion:
+            log.info("version")
           }
         }
     }.disposed(by: disposeBag)
+    
+    mqtt.rx
+      .mqttDidDisconnect
+      .subscribe(onNext: { (_) in
+      log.info("disconnect")
+    }).disposed(by: disposeBag)
     
     mqtt.rx.didReceiveMessage
       .map{$0.0.string}
@@ -186,6 +182,10 @@ class ChatRoomViewController: ChatNodeViewController{
           weakSelf.collectionNode.scrollToItem(at: IndexPath(item: weakSelf.items.count - 1, section: 1), at: .bottom, animated: true)
         }
       }).disposed(by: disposeBag)
+    
+    mqtt.rx.didPublishMessage.subscribe(onNext: { (_) in
+      log.info("publish")
+    }).disposed(by: disposeBag)
   }
 
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange, chatNode: ASCollectionNode) -> ASLayoutSpec {
@@ -251,92 +251,4 @@ extension ChatRoomViewController: ChatNodeDelegate{
 //    self.completeBatchFetching(true, endDirection: .none)
   }
 }
-
-extension ChatRoomViewController: CocoaMQTTDelegate {
-  // Optional ssl CocoaMQTTDelegate
-  func mqtt(_ mqtt: CocoaMQTT, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {
-    TRACE("trust: \(trust)")
-    /// Validate the server certificate
-    ///
-    /// Some custom validation...
-    ///
-    /// if validatePassed {
-    ///     completionHandler(true)
-    /// } else {
-    ///     completionHandler(false)
-    /// }
-    completionHandler(true)
-  }
-  
-  func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
-    TRACE("ack: \(ack)")
-    
-    if ack == .accept {
-      mqtt.subscribe("chat/#", qos: CocoaMQTTQOS.qos1)
-    }
-  }
-  
-  func mqtt(_ mqtt: CocoaMQTT, didStateChangeTo state: CocoaMQTTConnState) {
-    TRACE("new state: \(state)")
-  }
-  
-  func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
-    TRACE("message: \(message.string.description), id: \(id)")
-  }
-  
-  func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
-    TRACE("id: \(id)")
-  }
-  
-  func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
-    TRACE("message: \(message.string.description), id: \(id)")
-  }
-  
-  func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
-    TRACE("topic: \(topic)")
-  }
-  
-  func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
-    TRACE("topic: \(topic)")
-  }
-  
-  func mqttDidPing(_ mqtt: CocoaMQTT) {
-    TRACE()
-  }
-  
-  func mqttDidReceivePong(_ mqtt: CocoaMQTT) {
-    TRACE()
-  }
-  
-  func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
-    TRACE("\(err.description)")
-  }
-  
-  func TRACE(_ message: String = "", fun: String = #function) {
-    let names = fun.components(separatedBy: ":")
-    var prettyName: String
-    if names.count == 1 {
-      prettyName = names[0]
-    } else {
-      prettyName = names[1]
-    }
-    
-    if fun == "mqttDidDisconnect(_:withError:)" {
-      prettyName = "didDisconect"
-    }
-    
-    print("[TRACE] [\(prettyName)]: \(message)")
-  }
-}
-
-extension Optional {
-  // Unwarp optional value for printing log only
-  var description: String {
-    if let warped = self {
-      return "\(warped)"
-    }
-    return ""
-  }
-}
-
 
