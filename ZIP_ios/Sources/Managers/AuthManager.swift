@@ -51,7 +51,7 @@ final class TokenVaildPlugin: PluginType{
   func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
     guard case Result.failure(_) = result else {return}
     if result.value?.statusCode == 401 {
-      AppDelegate.instance?.window?.rootViewController = LoginViewController()
+      AppDelegate.instance?.window?.rootViewController = WelcomeViewController()
     }
   }
 }

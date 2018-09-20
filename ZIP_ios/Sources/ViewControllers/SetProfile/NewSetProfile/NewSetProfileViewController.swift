@@ -5,22 +5,46 @@
 //  Created by park bumwoo on 2018. 9. 2..
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
+import RxSwift
+import RxCocoa
+
+protocol ProfileCompletor {
+  var completeSubject: PublishSubject<Void>? {get set}
+}
 
 class NewSetProfileViewController: UIViewController{
   
+  private let disposeBag = DisposeBag()
+  private let completeSubject = PublishSubject<Void>()
+  
+  var childs:[UIViewController & ProfileCompletor] = [FirstViewController(),
+                                                      NickNameViewController(),
+                                                      GenderViewController(),
+                                                      ProfileImageViewController()]
+  
   var didUpdateConstraint = false
-  let pageView = PageViewController(pages: [FirstViewController(),
-                                            GenderViewController(),
-                                            ProfileImageViewController(),
-                                            NickNameViewController()], spin: false)
+  lazy var pageView = PageViewController(pages: childs, spin: false)
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    pageView.isPagingEnabled = false
     view.backgroundColor = .white
     addChildViewController(pageView)
     view.addSubview(pageView.view)
     pageView.didMove(toParentViewController: self)
     view.setNeedsUpdateConstraints()
+    
+    for i in 0..<childs.count{
+      childs[i].completeSubject = self.completeSubject
+    }
+    
+    completeSubject
+      .observeOn(MainScheduler.instance)
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.pageView.scrollToAutoForward()
+        }
+    }.disposed(by: disposeBag)
   }
   
   override func viewWillAppear(_ animated: Bool) {

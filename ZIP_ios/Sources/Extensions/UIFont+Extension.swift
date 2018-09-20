@@ -38,6 +38,10 @@ extension UIFont{
   static func BMJUA(size: CGFloat) -> UIFont {
     return UIFont(name: "BMJUAOTF", size: size)!
   }
+  
+  static func AppleSDGothicNeoMedium(size: CGFloat) -> UIFont {
+    return UIFont(name: "AppleSDGothicNeo-Medium", size: size)!
+  }
 }
 
 

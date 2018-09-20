@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import RxSwift
 
-final class FirstViewController: UIViewController{
-  
+final class FirstViewController: UIViewController, ProfileCompletor{
+  weak var completeSubject: PublishSubject<Void>?
   var didUpdateConstraint = false
   let titleLabel: UILabel = {
     let attributeString = NSMutableAttributedString(
       string: "입국심사에 오신걸 환영합니다.\n\n",
-      attributes: [.foregroundColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1),.font: UIFont.NotoSansKRBold(size: 20)])
+      attributes: [.foregroundColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1),.font: UIFont.NotoSansKRBold(size: 25)])
     
     attributeString.append(NSAttributedString(
       string: "여행에 가치를 더하기 위해\n몇가지 질문을 드리겠습니다.",
@@ -24,6 +25,7 @@ final class FirstViewController: UIViewController{
     label.attributedText = attributeString
     label.textAlignment = .center
     label.numberOfLines = 0
+    label.alpha = 0
     return label
   }()
   
@@ -31,6 +33,17 @@ final class FirstViewController: UIViewController{
     super.viewDidLoad()
     view.addSubview(titleLabel)
     view.setNeedsUpdateConstraints()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    UIView.animate(withDuration: 4, delay: 0, options: .curveEaseOut, animations: {[weak self] in
+      self?.titleLabel.alpha = 1
+    }) {[weak self] (result) in
+      if result{
+        self?.completeSubject?.onNext(())
+      }
+    }
   }
   
   override func updateViewConstraints() {

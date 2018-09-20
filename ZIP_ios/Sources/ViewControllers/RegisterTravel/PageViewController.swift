@@ -62,6 +62,16 @@ class PageViewController: UIPageViewController{
     }
   }
   
+  func scrollToAutoBackward(){
+    let nextValue = currentValue - 1
+    guard nextValue >= 0 else {
+      currentValue = 0
+      return
+    }
+    currentValue -= 1
+    scrollToViewController(pages[currentValue], direction: .reverse)
+  }
+  
   
   func scrollToViewController(index newIndex: Int) {
     if let firstViewController = viewControllers?.first,let currentIndex = pages.index(of: firstViewController) {

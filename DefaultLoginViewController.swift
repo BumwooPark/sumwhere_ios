@@ -20,8 +20,8 @@ final class DefaultLoginViewController: UIViewController{
   var didUpdateConstraint = false
   let disposeBag = DisposeBag()
   
-  let logoImageView: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "logo"))
+  private let logoImageView: UIImageView = {
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "group23"))
     imageView.hero.id = "logoImageView"
     return imageView
   }()
@@ -172,8 +172,9 @@ final class DefaultLoginViewController: UIViewController{
     if !didUpdateConstraint{
       logoImageView.snp.makeConstraints { (make) in
         make.centerX.equalToSuperview()
-        make.top.equalToSuperview().inset(100)
-        make.height.width.equalTo(150)
+        make.centerY.equalToSuperview().inset(-100)
+        make.width.equalTo(184)
+        make.height.equalTo(58)
       }
       
       emailField.snp.makeConstraints { (make) in

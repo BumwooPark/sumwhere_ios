@@ -36,7 +36,7 @@ class ProxyController{
       .filterNil()
     
     Observable<UIViewController>.combineLatest(isProfile, tokenLogin) { (profile, login)in
-      let loginVC = UINavigationController(rootViewController: LoginViewController())
+      let loginVC = UINavigationController(rootViewController: WelcomeViewController())
 //      loginVC.navigationBar.prefersLargeTitles = true
       loginVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRMedium(size: 40),.foregroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
       loginVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -63,7 +63,7 @@ class ProxyController{
     if Defaults[.token].count != 0{
       profileCheck()
     }else {
-      window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+      window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
       AppDelegate.instance?.window?.makeKeyAndVisible()
     }
   }

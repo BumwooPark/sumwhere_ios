@@ -83,6 +83,7 @@ class ChatRoomViewController: ChatNodeViewController{
     collectionNode.delegate = self
     collectionNode.dataSource = self
     
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "메뉴", style: .plain, target: nil, action: nil)
     rxBind()
 //    sqlliteTest()
   }

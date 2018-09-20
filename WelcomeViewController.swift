@@ -24,7 +24,7 @@ import TTTAttributedLabel
   import RxKeyboard
 #endif
 
-class LoginViewController: UIViewController{
+class WelcomeViewController: UIViewController{
   
   let disposeBag = DisposeBag()
   let joinVC = JoinViewController()
@@ -76,7 +76,7 @@ class LoginViewController: UIViewController{
   
   
   
-extension LoginViewController: TTTAttributedLabelDelegate{
+extension WelcomeViewController: TTTAttributedLabelDelegate{
   func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
     present(JoinViewController(), animated: true, completion: nil)
   }

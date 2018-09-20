@@ -5,8 +5,11 @@
 //  Created by park bumwoo on 2018. 9. 2..
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
+import RxSwift
 
-final class ProfileImageViewController: UIViewController{
+final class ProfileImageViewController: UIViewController, ProfileCompletor{
+  var completeSubject: PublishSubject<Void>?
+  
   var didUpdateConstraint = false
   let titleLabel: UILabel = {
     let attributeString = NSMutableAttributedString(

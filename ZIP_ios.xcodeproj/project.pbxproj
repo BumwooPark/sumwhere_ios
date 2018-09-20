@@ -59,7 +59,7 @@
 		0A7123741FACC01200512EB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7123731FACC01200512EB7 /* Assets.xcassets */; };
 		0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7123751FACC01200512EB7 /* LaunchScreen.storyboard */; };
 		0A7123821FACC01200512EB7 /* ZIP_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123811FACC01200512EB7 /* ZIP_iosTests.swift */; };
-		0A7123921FACC1B600512EB7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123911FACC1B600512EB7 /* LoginViewController.swift */; };
+		0A7123921FACC1B600512EB7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123911FACC1B600512EB7 /* WelcomeViewController.swift */; };
 		0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123951FACC1E900512EB7 /* MainTabBarController.swift */; };
 		0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123971FACC1FB00512EB7 /* JoinViewController.swift */; };
 		0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7123A11FACC29A00512EB7 /* Targets.swift */; };
@@ -112,6 +112,7 @@
 		0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02420FE2AB600775EA8 /* MyTripViewModel.swift */; };
 		0AF2C02A2104C8E500775EA8 /* TagRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C0292104C8E500775EA8 /* TagRow.swift */; };
 		59397C0A34F660FD927A0699 /* Pods_ZIP_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4C508F8A9A5C1DE80D8E10 /* Pods_ZIP_iosTests.framework */; };
+		B100742C214F859F0052E4DF /* HamMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100742B214F859F0052E4DF /* HamMenu.swift */; };
 		B105597921096E9D00AC769C /* MoyaErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597821096E9D00AC769C /* MoyaErrorUtil.swift */; };
 		B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597A210992EC00AC769C /* LoginVIewModel.swift */; };
 		B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597C2109C0E800AC769C /* CreateTripViewController.swift */; };
@@ -129,6 +130,7 @@
 		B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFF2117F445001D278A /* InterestViewModel.swift */; };
 		B16B3E032117F46B001D278A /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3E022117F46B001D278A /* InterestModel.swift */; };
 		B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD221211162AF0045FAA6 /* MyTripCell.swift */; };
+		B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */; };
 		B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */; };
 		B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C562149FF6500BC95C5 /* ChatListModel.swift */; };
 		B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */; };
@@ -258,7 +260,7 @@
 		0A71237D1FACC01200512EB7 /* ZIP_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZIP_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7123811FACC01200512EB7 /* ZIP_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZIP_iosTests.swift; sourceTree = "<group>"; };
 		0A7123831FACC01200512EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A7123911FACC1B600512EB7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0A7123911FACC1B600512EB7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		0A7123951FACC1E900512EB7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0A7123971FACC1FB00512EB7 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		0A71239A1FACC24400512EB7 /* ZIP_ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZIP_ios-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 		0AF2C0292104C8E500775EA8 /* TagRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRow.swift; sourceTree = "<group>"; };
 		0AFC96D21FB7281F003C6F8E /* ZIP_ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZIP_ios.entitlements; sourceTree = "<group>"; };
 		7B9C4226FE4FE2EB23EB73C6 /* Pods-ZIP_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.debug.xcconfig"; sourceTree = "<group>"; };
+		B100742B214F859F0052E4DF /* HamMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamMenu.swift; sourceTree = "<group>"; };
 		B105597821096E9D00AC769C /* MoyaErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaErrorUtil.swift; sourceTree = "<group>"; };
 		B105597A210992EC00AC769C /* LoginVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVIewModel.swift; sourceTree = "<group>"; };
 		B105597C2109C0E800AC769C /* CreateTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +333,7 @@
 		B16B3DFF2117F445001D278A /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
 		B16B3E022117F46B001D278A /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
+		B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageViewController + Extension.swift"; sourceTree = "<group>"; };
 		B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListSectionModel.swift; sourceTree = "<group>"; };
 		B1996C562149FF6500BC95C5 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -482,9 +486,9 @@
 			children = (
 				0A33277A213BBCCF00BC2906 /* NewSetProfileViewController.swift */,
 				0A332778213BBB7A00BC2906 /* FirstViewController.swift */,
+				0A332780213BC1FD00BC2906 /* NickNameViewController.swift */,
 				0A33277C213BBD9700BC2906 /* GenderViewController.swift */,
 				0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */,
-				0A332780213BC1FD00BC2906 /* NickNameViewController.swift */,
 			);
 			path = NewSetProfile;
 			sourceTree = "<group>";
@@ -697,7 +701,7 @@
 			isa = PBXGroup;
 			children = (
 				B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */,
-				0A7123911FACC1B600512EB7 /* LoginViewController.swift */,
+				0A7123911FACC1B600512EB7 /* WelcomeViewController.swift */,
 				0A7123971FACC1FB00512EB7 /* JoinViewController.swift */,
 			);
 			name = Login;
@@ -752,6 +756,7 @@
 				B1D1CB1D213F5D7B001A9801 /* TestFlowLayout.swift */,
 				B1D1CB26213FA901001A9801 /* ChatRoomViewController.swift */,
 				B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */,
+				B100742B214F859F0052E4DF /* HamMenu.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -769,6 +774,7 @@
 				0A74568C210E132B00F8A0C9 /* String + Extension.swift */,
 				0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */,
 				B1F6D8C72146123A00E0E003 /* AS + RxSwift.swift */,
+				B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1339,6 +1345,7 @@
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
 				B10559992110223300AC769C /* MatchTypeModel.swift in Sources */,
+				B100742C214F859F0052E4DF /* HamMenu.swift in Sources */,
 				B1D6F9FE214B4418004C9E43 /* MQTTUtil.swift in Sources */,
 				0A33277B213BBCCF00BC2906 /* NewSetProfileViewController.swift in Sources */,
 				B1D1CAF5212CF1F5001A9801 /* DetailGradeCell.swift in Sources */,
@@ -1352,7 +1359,7 @@
 				B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */,
 				0AB42132213BE4EB001353E9 /* MQViewModel.swift in Sources */,
 				B1D1CB05212D28F8001A9801 /* AdViewController.swift in Sources */,
-				0A7123921FACC1B600512EB7 /* LoginViewController.swift in Sources */,
+				0A7123921FACC1B600512EB7 /* WelcomeViewController.swift in Sources */,
 				0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */,
 				B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */,
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
@@ -1457,6 +1464,7 @@
 				B1EF95652119481700F6418F /* ProfileViewModel.swift in Sources */,
 				0A671AC220342C4C00034CE0 /* SetProfileViewController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
+				B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */,
 				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,
 				B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */,
 				B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */,
