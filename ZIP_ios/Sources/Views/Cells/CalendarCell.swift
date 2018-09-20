@@ -12,6 +12,8 @@ class CalendarCell: JTAppleCell {
   
   let selectView = UIView()
   
+  let selectSqureView = UIView()
+  
   let todayLabel: UILabel = {
     let label = UILabel()
     label.text = "오늘"
@@ -37,8 +39,10 @@ class CalendarCell: JTAppleCell {
     super.init(frame: frame)
     
     contentView.addSubview(selectView)
+    contentView.addSubview(selectSqureView)
     contentView.addSubview(dayLabel)
     dayLabel.addSubview(todayLabel)
+    
     
     contentView.backgroundColor = .white
     
@@ -55,14 +59,18 @@ class CalendarCell: JTAppleCell {
     }
     
     selectView.snp.makeConstraints { (make) in
-      make.center.equalToSuperview()
-      make.height.width.equalTo(30)
+      make.edges.equalToSuperview()
+    }
+    
+    selectSqureView.snp.makeConstraints { (make) in
+      make.left.equalTo(self.snp.centerX)
+      make.top.bottom.right.equalToSuperview()
     }
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    selectView.layer.cornerRadius = 15
+    selectView.layer.cornerRadius = selectSqureView.frame.width/2
     selectView.layer.masksToBounds = true
   }
   

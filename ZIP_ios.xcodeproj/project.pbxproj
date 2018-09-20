@@ -35,6 +35,7 @@
 		0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A332780213BC1FD00BC2906 /* NickNameViewController.swift */; };
 		0A33F7E621342F04002228BF /* RandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33F7E521342F04002228BF /* RandomString.swift */; };
 		0A33F7E82134304C002228BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A33F7E72134304B002228BF /* GoogleService-Info.plist */; };
+		0A35ED8B214E20CB00B493D6 /* ChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35ED8A214E20CB00B493D6 /* ChatMessageModel.swift */; };
 		0A375C16213274AE00E35ED9 /* TopTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A375C15213274AE00E35ED9 /* TopTripViewController.swift */; };
 		0A375C18213275AA00E35ED9 /* TopTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A375C17213275AA00E35ED9 /* TopTripCell.swift */; };
 		0A375C1A213275D200E35ED9 /* TopTripCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A375C19213275D200E35ED9 /* TopTripCell.xib */; };
@@ -232,6 +233,7 @@
 		0A332780213BC1FD00BC2906 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		0A33F7E521342F04002228BF /* RandomString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomString.swift; sourceTree = "<group>"; };
 		0A33F7E72134304B002228BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0A35ED8A214E20CB00B493D6 /* ChatMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageModel.swift; sourceTree = "<group>"; };
 		0A375C15213274AE00E35ED9 /* TopTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTripViewController.swift; sourceTree = "<group>"; };
 		0A375C17213275AA00E35ED9 /* TopTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTripCell.swift; sourceTree = "<group>"; };
 		0A375C19213275D200E35ED9 /* TopTripCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopTripCell.xib; sourceTree = "<group>"; };
@@ -889,6 +891,7 @@
 			isa = PBXGroup;
 			children = (
 				B1996C562149FF6500BC95C5 /* ChatListModel.swift */,
+				0A35ED8A214E20CB00B493D6 /* ChatMessageModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1402,6 +1405,7 @@
 				0A375C18213275AA00E35ED9 /* TopTripCell.swift in Sources */,
 				0A9174D12024AB85000A055A /* DataBase.swift in Sources */,
 				0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */,
+				0A35ED8B214E20CB00B493D6 /* ChatMessageModel.swift in Sources */,
 				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
 				B1A1D9A5212A9EB50022D2A0 /* RelationShipViewModel.swift in Sources */,
 				0AD3BC1120491F2C0051D7E3 /* CountryCell.swift in Sources */,

@@ -89,10 +89,12 @@ class InputBoxNode: ASDisplayNode{
   }
   
   override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+    
     let inputLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10), child: textNode)
     let buttonLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10), child: sendNode)
     let lay = ASRelativeLayoutSpec(horizontalPosition: .end, verticalPosition: .end, sizingOption: [], child: buttonLayout)
     inputLayout.style.flexGrow = 1
+    inputLayout.style.flexShrink = 1
     return ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: .spaceBetween, alignItems: .stretch, children: [inputLayout,lay])
   }
 }

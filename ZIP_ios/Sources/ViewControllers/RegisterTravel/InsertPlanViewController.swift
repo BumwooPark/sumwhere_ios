@@ -29,7 +29,8 @@ final class InsertPlanViewController: UIViewController{
   
   private let totalLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.NotoSansKRMedium(size: 16)
+//    label.font = UIFont.NotoSansKRMedium(size: 16)
+    label.font = UIFont.init(name: "AppleSDGothicNeo-Bold", size: 16)
     label.textAlignment = .center
     return label
   }()
@@ -40,6 +41,8 @@ final class InsertPlanViewController: UIViewController{
     let calendar = JTAppleCalendarView()
     calendar.backgroundColor = .white
     calendar.calendarDelegate = self
+    calendar.minimumLineSpacing = 0
+    calendar.minimumInteritemSpacing = 0
     calendar.calendarDataSource = self
     calendar.scrollingMode = .stopAtEachCalendarFrame
     calendar.scrollDirection = .vertical
@@ -107,12 +110,15 @@ final class InsertPlanViewController: UIViewController{
     case .full, .left, .right:
       myCustomCell.selectView.isHidden = false
       myCustomCell.selectView.backgroundColor = #colorLiteral(red: 0.5212282456, green: 0.8123030511, blue: 1, alpha: 1) // Or you can put what ever you like for your rounded corners, and your stand-alone selected cell
+      myCustomCell.selectSqureView.backgroundColor = #colorLiteral(red: 0.5212282456, green: 0.8123030511, blue: 1, alpha: 0.4978268046)
     case .middle:
       myCustomCell.selectView.isHidden = false
       myCustomCell.selectView.backgroundColor = #colorLiteral(red: 0.5212282456, green: 0.8123030511, blue: 1, alpha: 0.4978268046) // Or what ever you want for your dates that land in the middle
+      myCustomCell.contentView.backgroundColor = #colorLiteral(red: 0.5212282456, green: 0.8123030511, blue: 1, alpha: 0.4978268046)
     default:
       break
     }
+    cell?.setNeedsLayout()
   }
   
   override func updateViewConstraints() {

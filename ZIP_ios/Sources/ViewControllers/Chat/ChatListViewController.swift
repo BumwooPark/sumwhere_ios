@@ -55,7 +55,13 @@ class ChatListViewController: ASViewController<ASDisplayNode>{
       .modelSelected(ChatListModel.self)
       .subscribeNext(weak: self) { (weakSelf) -> (ChatListModel) -> Void in
         return { item in
-          weakSelf.navigationController?.pushViewController(ChatRoomViewController(91, item.chatRoom.id), animated: true)
+          let mqtt = MQTTUtil.newBuild(with: "client")
+            .keepAlive(time: 60)
+            .newAccount(username: "qkrqjadn", password: "1q2w3e4r")
+            .newURL(host: "210.100.238.118", port: 18883)
+            .build()
+          mqtt.connect()
+          weakSelf.navigationController?.pushViewController(ChatRoomViewController(mqtt,91, item.chatRoom.id), animated: true)
         }
     }.disposed(by: disposeBag)
   }
