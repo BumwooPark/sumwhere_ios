@@ -20,7 +20,9 @@ class NewSetProfileViewController: UIViewController{
   var childs:[UIViewController & ProfileCompletor] = [FirstViewController(),
                                                       NickNameViewController(),
                                                       GenderViewController(),
-                                                      ProfileImageViewController()]
+                                                      AgeViewController(),
+                                                      ProfileImageViewController(),
+                                                      CharacterViewController()]
   
   var didUpdateConstraint = false
   lazy var pageView = PageViewController(pages: childs, spin: false)

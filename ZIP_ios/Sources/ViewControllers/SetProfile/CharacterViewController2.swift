@@ -13,7 +13,7 @@ import RxSwift
 import RxDataSources
 import DZNEmptyDataSet
 
-class CharacterViewController: UIViewController, TypedRowControllerType{
+class CharacterViewController2: UIViewController, TypedRowControllerType{
   var row: RowOf<String>!
   var onDismissCallback: ((UIViewController) -> Void)?
   var selectModel: [CharacterModel] = []
@@ -163,7 +163,7 @@ class CharacterViewController: UIViewController, TypedRowControllerType{
   }
 }
 
-extension CharacterViewController: DZNEmptyDataSetSource{
+extension CharacterViewController2: DZNEmptyDataSetSource{
   func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
     return Init(UIActivityIndicatorView(activityIndicatorStyle: .gray)){
       $0.startAnimating()

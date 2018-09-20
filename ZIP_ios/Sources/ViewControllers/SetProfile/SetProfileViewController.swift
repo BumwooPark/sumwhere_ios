@@ -159,9 +159,9 @@ class SetProfileViewController: FormViewController{
       <<< CharacterPresenterRow(){
         $0.title = "성격"
         $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {[unowned self] in
-          return CharacterViewController(viewModel: self.viewModel)
+          return CharacterViewController2(viewModel: self.viewModel)
         }), onDismiss: {[weak self]vc in
-          guard let `self` = self ,let charvc = vc as? CharacterViewController else {return}
+          guard let `self` = self ,let charvc = vc as? CharacterViewController2 else {return}
           self.viewModel.modelSaver.onNext(.character(value: charvc.selectedModel))
           _ = vc.navigationController?.popViewController(animated: true)
         })

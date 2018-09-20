@@ -37,7 +37,7 @@ final class TripStylePresenterRow: PresenterRow<PushSelectorCell<String>, TripSt
 final class InterestPresenterRow: PresenterRow<PushSelectorCell<String>, InterestSelectViewController>, RowType {
 }
 
-final class CharacterPresenterRow: PresenterRow<PushSelectorCell<String>, CharacterViewController>, RowType{
+final class CharacterPresenterRow: PresenterRow<PushSelectorCell<String>, CharacterViewController2>, RowType{
   
 }
 

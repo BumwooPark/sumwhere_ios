@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */; };
 		0A059CAB1FEFB3B50057E26E /* PlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059CAA1FEFB3B50057E26E /* PlanModel.swift */; };
+		0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075BFA2153CE80004A4DBF /* AgeViewController.swift */; };
+		0A075BFD2153EC2C004A4DBF /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */; };
 		0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */; };
 		0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */; };
 		0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7A6F203556D000F72C2B /* MainCell.swift */; };
@@ -142,7 +144,7 @@
 		B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */; };
 		B1A1D9A9212BCA010022D2A0 /* DetailUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A8212BCA010022D2A0 /* DetailUserInfoViewController.swift */; };
 		B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA42118204200535FB1 /* InterestAddView.swift */; };
-		B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA62118315100535FB1 /* CharacterViewController.swift */; };
+		B1C4FFA72118315100535FB1 /* CharacterViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C4FFA62118315100535FB1 /* CharacterViewController2.swift */; };
 		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
 		B1D1CAEB212BF7E6001A9801 /* DetailUserProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAEA212BF7E6001A9801 /* DetailUserProfileInfoCell.swift */; };
 		B1D1CAED212BF7FE001A9801 /* DetailUserProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAEC212BF7FE001A9801 /* DetailUserProfileInfoCell.xib */; };
@@ -207,6 +209,8 @@
 /* Begin PBXFileReference section */
 		0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewModel.swift; sourceTree = "<group>"; };
 		0A059CAA1FEFB3B50057E26E /* PlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanModel.swift; sourceTree = "<group>"; };
+		0A075BFA2153CE80004A4DBF /* AgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeViewController.swift; sourceTree = "<group>"; };
+		0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		0A0F7A6F203556D000F72C2B /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
@@ -346,7 +350,7 @@
 		B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTripJoinModel.swift; sourceTree = "<group>"; };
 		B1A1D9A8212BCA010022D2A0 /* DetailUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserInfoViewController.swift; sourceTree = "<group>"; };
 		B1C4FFA42118204200535FB1 /* InterestAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestAddView.swift; sourceTree = "<group>"; };
-		B1C4FFA62118315100535FB1 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
+		B1C4FFA62118315100535FB1 /* CharacterViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController2.swift; sourceTree = "<group>"; };
 		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
 		B1D1CAEA212BF7E6001A9801 /* DetailUserProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserProfileInfoCell.swift; sourceTree = "<group>"; };
 		B1D1CAEC212BF7FE001A9801 /* DetailUserProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserProfileInfoCell.xib; sourceTree = "<group>"; };
@@ -490,7 +494,9 @@
 				0A332778213BBB7A00BC2906 /* FirstViewController.swift */,
 				0A332780213BC1FD00BC2906 /* NickNameViewController.swift */,
 				0A33277C213BBD9700BC2906 /* GenderViewController.swift */,
+				0A075BFA2153CE80004A4DBF /* AgeViewController.swift */,
 				0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */,
+				0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */,
 			);
 			path = NewSetProfile;
 			sourceTree = "<group>";
@@ -861,7 +867,7 @@
 				0A671AC120342C4C00034CE0 /* SetProfileViewController.swift */,
 				B16B3DF62117E6F0001D278A /* TripStyleViewController.swift */,
 				B16B3DFA2117E7E2001D278A /* InterestViewController.swift */,
-				B1C4FFA62118315100535FB1 /* CharacterViewController.swift */,
+				B1C4FFA62118315100535FB1 /* CharacterViewController2.swift */,
 			);
 			path = SetProfile;
 			sourceTree = "<group>";
@@ -1323,6 +1329,7 @@
 			files = (
 				0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */,
 				0A375C1C2132796D00E35ED9 /* TopTripViewModel.swift in Sources */,
+				0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */,
 				B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */,
 				0A33277F213BC0F000BC2906 /* ProfileImageViewController.swift in Sources */,
 				B105597921096E9D00AC769C /* MoyaErrorUtil.swift in Sources */,
@@ -1333,7 +1340,7 @@
 				B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */,
 				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
-				B1C4FFA72118315100535FB1 /* CharacterViewController.swift in Sources */,
+				B1C4FFA72118315100535FB1 /* CharacterViewController2.swift in Sources */,
 				0A895BF7212EF86F00FDF834 /* AlertSettingViewController.swift in Sources */,
 				B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
@@ -1356,6 +1363,7 @@
 				0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */,
 				0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
+				0A075BFD2153EC2C004A4DBF /* CharacterViewController.swift in Sources */,
 				B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */,
 				B1D1CB07212D35D9001A9801 /* MainCollectionCell.swift in Sources */,
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,

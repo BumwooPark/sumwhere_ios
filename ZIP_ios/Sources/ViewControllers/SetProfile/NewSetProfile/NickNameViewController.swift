@@ -14,7 +14,7 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "당신을 대표할\n닉네임을 입력해 주세요"
-    label.font = UIFont.AppleSDGothicNeoMedium(size: 20)
+    label.font = .AppleSDGothicNeoMedium(size: 20)
     label.textColor = #colorLiteral(red: 0.2784313725, green: 0.2784313725, blue: 0.2784313725, alpha: 1)
     label.numberOfLines = 2
     return label
@@ -24,7 +24,7 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     let field = UITextField()
     field.returnKeyType = .done
     field.delegate = self
-    field.font = UIFont.AppleSDGothicNeoMedium(size: 20)
+    field.font = .AppleSDGothicNeoMedium(size: 20)
     field.attributedPlaceholder = NSAttributedString(string: "닉네임 입력", attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 20)])
     return field
   }()
@@ -38,7 +38,7 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
   private let nextButton: UIButton = {
     let button = UIButton()
     button.setTitle("다음", for: .normal)
-    button.titleLabel?.font = UIFont.AppleSDGothicNeoMedium(size: 21)
+    button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 21)
     button.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
     button.isEnabled = false
     return button

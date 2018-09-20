@@ -32,9 +32,7 @@ final class GenderViewController: UIViewController, ProfileCompletor{
     let stackView = UIStackView(arrangedSubviews: [girlButton,label])
     stackView.alignment = .center
     stackView.axis = .vertical
-    stackView.distribution = .equalSpacing
-    stackView.spacing = 5.0
-//    stackView.spacing = 10
+    stackView.distribution = .fillEqually
     return stackView
   }()
   
@@ -44,8 +42,7 @@ final class GenderViewController: UIViewController, ProfileCompletor{
     let stackView = UIStackView(arrangedSubviews: [boyButton,label])
     stackView.alignment = .center
     stackView.axis = .vertical
-    stackView.distribution = .equalSpacing
-//    stackView.spacing = 10
+    stackView.distribution = .fillEqually
     return stackView
   }()
   
@@ -55,6 +52,15 @@ final class GenderViewController: UIViewController, ProfileCompletor{
     stackView.alignment = .center
     stackView.distribution = .equalCentering
     return stackView
+  }()
+  
+  private let nextButton: UIButton = {
+    let button = UIButton()
+    button.setTitle("다음", for: .normal)
+    button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 21)
+    button.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+    button.isEnabled = false
+    return button
   }()
   
   private let scrollView: UIScrollView = {
@@ -69,7 +75,7 @@ final class GenderViewController: UIViewController, ProfileCompletor{
   let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "성별을 선택해주세요"
-    label.font = UIFont.AppleSDGothicNeoMedium(size: 20)
+    label.font = .AppleSDGothicNeoMedium(size: 20)
     label.textColor = #colorLiteral(red: 0.2784313725, green: 0.2784313725, blue: 0.2784313725, alpha: 1)
     return label
   }()
@@ -80,8 +86,17 @@ final class GenderViewController: UIViewController, ProfileCompletor{
     scrollView.addSubview(contentView)
     contentView.addSubview(titleLabel)
     contentView.addSubview(stackView)
+    contentView.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    DispatchQueue.global().asyncAfter(deadline: .now() + 2) {[weak self] in
+      self?.completeSubject?.onNext(())
+    }
+  }
+  
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{
@@ -101,9 +116,15 @@ final class GenderViewController: UIViewController, ProfileCompletor{
       }
       
       stackView.snp.makeConstraints { (make) in
-        make.centerY.equalToSuperview()
+        make.center.equalToSuperview()
         make.left.right.equalToSuperview().inset(91)
       }
+      
+      nextButton.snp.makeConstraints { (make) in
+        make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide)
+        make.height.equalTo(61)
+      }
+      
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
