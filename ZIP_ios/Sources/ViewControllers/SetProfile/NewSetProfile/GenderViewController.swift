@@ -8,8 +8,8 @@
 import RxSwift
 
 final class GenderViewController: UIViewController, ProfileCompletor{
-  var completeSubject: PublishSubject<Void>?
-  
+  weak var completeSubject: PublishSubject<Void>?
+  weak var viewModel: SetProfileViewModel?
   var didUpdateConstraint = false
   
   private let girlButton: UIButton = {
@@ -89,14 +89,6 @@ final class GenderViewController: UIViewController, ProfileCompletor{
     contentView.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
   }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    DispatchQueue.global().asyncAfter(deadline: .now() + 2) {[weak self] in
-      self?.completeSubject?.onNext(())
-    }
-  }
-  
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{

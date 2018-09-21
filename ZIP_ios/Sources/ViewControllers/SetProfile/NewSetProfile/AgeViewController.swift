@@ -12,7 +12,8 @@ import RxCocoa
 final class AgeViewController: UIViewController, ProfileCompletor{
   private let disposeBag = DisposeBag()
   
-  var completeSubject: PublishSubject<Void>?
+  weak var completeSubject: PublishSubject<Void>?
+  weak var viewModel: SetProfileViewModel?
   private var didUpdateContraint = false
   private let titleLabel: UILabel = {
     let label = UILabel()
@@ -52,10 +53,7 @@ final class AgeViewController: UIViewController, ProfileCompletor{
         print(models)
       })
       .disposed(by: disposeBag)
-    
-    
-    
-    
+
     pickerView.rx
       .itemSelected
       .subscribeNext(weak: self, { (weakSelf) -> ((Int,Int)) -> Void in
@@ -67,14 +65,6 @@ final class AgeViewController: UIViewController, ProfileCompletor{
           label.textColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
         }
       }).disposed(by: disposeBag)
-  }
-  
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    DispatchQueue.global().asyncAfter(deadline: .now() + 2) {[weak self] in
-      self?.completeSubject?.onNext(())
-    }
   }
   
   override func updateViewConstraints() {

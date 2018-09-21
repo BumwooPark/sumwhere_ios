@@ -247,6 +247,7 @@ DEPENDENCIES:
   - PopupDialog
   - PySwiftyRegex
   - ReachabilitySwift
+  - Result
   - RxASDataSources
   - RxCocoa
   - RxCoreLocation
@@ -426,6 +427,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: 6bc36f36f9f7d22eecf9726dde776be90d79d840
+PODFILE CHECKSUM: 13c67af3323da56d028b56ea93c4df5349832a3d
 
 COCOAPODS: 1.5.3

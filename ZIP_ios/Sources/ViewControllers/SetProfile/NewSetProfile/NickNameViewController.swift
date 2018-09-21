@@ -8,7 +8,33 @@
 import RxSwift
 
 final class NickNameViewController: UIViewController, ProfileCompletor{
-  var completeSubject: PublishSubject<Void>?
+  weak var viewModel: SetProfileViewModel?
+  private let disposeBag = DisposeBag()
+  
+  weak var completeSubject: PublishSubject<Void>?
+  
+  enum nicknameStatus{
+    case success
+    case fail
+    
+    var color: UIColor{
+      switch self{
+      case .success:
+        return #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+      case .fail:
+        return #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
+      }
+    }
+    
+    var description: String{
+      switch self{
+      case .fail:
+        return "이미 사용중인 닉네임이에요."
+      case .success:
+        return "짝짝짝! 사용가능한 닉네임이에요."
+      }
+    }
+  }
   
   var didUpdateConstraint = false
   private let titleLabel: UILabel = {
@@ -29,9 +55,15 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     return field
   }()
   
+  private lazy var descriptionLabel: UILabel = {
+    let label = UILabel()
+    label.font = .AppleSDGothicNeoLight(size: 14)
+    return label
+  }()
+  
   private let bottomView: UIView = {
     let view = UIView()
-    view.backgroundColor = .black
+    view.backgroundColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
     return view
   }()
   
@@ -56,13 +88,6 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     return contentView
   }()
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    DispatchQueue.global().asyncAfter(deadline: .now() + 1) {[weak self] in
-      self?.completeSubject?.onNext(())
-    }
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(scrollView)
@@ -71,8 +96,29 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     contentView.addSubview(textField)
     contentView.addSubview(bottomView)
     contentView.addSubview(nextButton)
+    contentView.addSubview(descriptionLabel)
     view.setNeedsUpdateConstraints()
+    rxbind()
   }
+  
+  private func rxbind(){
+    
+    
+    AuthManager.instance.provider.request(.nicknameConfirm(nickname: "hi"))
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<Bool>.self)
+      .asObservable()
+      .catchError { (err) -> Observable<ResultModel<Bool>> in
+        
+    }
+    
+    textField.rx.text.subscribe{
+      log.info($0)
+    }.disposed(by: disposeBag)
+    
+  }
+  
+  
   
   override func didMove(toParentViewController parent: UIViewController?) {
     super.didMove(toParentViewController: parent)
@@ -110,6 +156,11 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
         make.left.right.equalTo(textField)
         make.top.equalTo(textField.snp.bottom)
         make.height.equalTo(1)
+      }
+      
+      descriptionLabel.snp.makeConstraints { (make) in
+        make.left.equalTo(bottomView).inset(2)
+        make.top.equalTo(bottomView.snp.bottom).offset(8)
       }
       
       nextButton.snp.makeConstraints { (make) in

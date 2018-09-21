@@ -23,7 +23,7 @@ class SetProfileViewController: FormViewController{
   var images = [UIImage?](repeating: nil, count: 5)
   let configure: Bool
   
-  lazy var viewModel = ProfileViewModel(viewController: self)
+  lazy var viewModel = SetProfileViewModel(viewController: self)
   
   let lastSection = Section()
   
@@ -145,9 +145,9 @@ class SetProfileViewController: FormViewController{
       <<< InterestPresenterRow(){
         $0.title = "관심사"
         $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {[unowned self] in
-          return InterestSelectViewController(viewModel: self.viewModel)
+          return InterestSelectViewController2(viewModel: self.viewModel)
         }), onDismiss: {[weak self] vc in
-          guard let `self` = self ,let intervc = vc as? InterestSelectViewController else {return}
+          guard let `self` = self ,let intervc = vc as? InterestSelectViewController2 else {return}
           self.viewModel.modelSaver.onNext(.interest(value: intervc.selectedModel))
           _ = vc.navigationController?.popViewController(animated: true)
         })

@@ -33,6 +33,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 pod 'MQTTClient'
 pod 'CocoaMQTT' 
+pod 'Result'
 
 # UI
 pod 'GoogleMaps'

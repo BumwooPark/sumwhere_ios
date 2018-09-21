@@ -15,14 +15,14 @@ import DZNEmptyDataSet
 import RxSwiftExt
 
 
-class InterestSelectViewController: UIViewController, TypedRowControllerType{
+class InterestSelectViewController2: UIViewController, TypedRowControllerType{
   
   var didUpdateConstraint = false
   var row: RowOf<String>!
   var onDismissCallback: ((UIViewController) -> Void)?
   var selectModel: [InterestModel] = []
   var selectedModel: [InterestModel] = []
-  let viewModel: ProfileViewModel
+  let viewModel: SetProfileViewModel
   lazy var dataSources = RxCollectionViewSectionedReloadDataSource<InterestViewModel>(configureCell: {[weak self] ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: InterestCell.self), for: idx) as! InterestCell
     cell.titleLabel.text = item.typeName
@@ -70,7 +70,7 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
     return collectionView
   }()
   
-  init(viewModel: ProfileViewModel) {
+  init(viewModel: SetProfileViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
@@ -179,7 +179,7 @@ class InterestSelectViewController: UIViewController, TypedRowControllerType{
   }
 }
 
-extension InterestSelectViewController: DZNEmptyDataSetSource{
+extension InterestSelectViewController2: DZNEmptyDataSetSource{
   func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
     return Init(UIActivityIndicatorView(activityIndicatorStyle: .gray)){
       $0.startAnimating()

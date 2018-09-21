@@ -18,7 +18,7 @@ class CharacterViewController2: UIViewController, TypedRowControllerType{
   var onDismissCallback: ((UIViewController) -> Void)?
   var selectModel: [CharacterModel] = []
   var selectedModel: [CharacterModel] = []
-  let viewModel: ProfileViewModel
+  let viewModel: SetProfileViewModel
   private let datas = BehaviorRelay<[CharacterViewModel]>(value: [])
   private let disposeBag = DisposeBag()
     
@@ -72,7 +72,7 @@ class CharacterViewController2: UIViewController, TypedRowControllerType{
     return collectionView
   }()
   
-  init(viewModel: ProfileViewModel) {
+  init(viewModel: SetProfileViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }

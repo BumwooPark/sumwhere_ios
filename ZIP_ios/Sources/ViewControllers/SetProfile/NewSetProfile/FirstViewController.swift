@@ -10,7 +10,9 @@ import Foundation
 import RxSwift
 
 final class FirstViewController: UIViewController, ProfileCompletor{
+  weak var viewModel: SetProfileViewModel?
   weak var completeSubject: PublishSubject<Void>?
+  
   var didUpdateConstraint = false
   let titleLabel: UILabel = {
     let attributeString = NSMutableAttributedString(

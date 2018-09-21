@@ -10,7 +10,8 @@ import RxSwift
 final class ProfileImageViewController: UIViewController, ProfileCompletor{
   private let disposeBag = DisposeBag()
   
-  var completeSubject: PublishSubject<Void>?
+  weak var completeSubject: PublishSubject<Void>?
+  weak var viewModel: SetProfileViewModel?
   var didUpdateConstraint = false
   private let titleLabel: UILabel = {
     let label = UILabel()
@@ -64,14 +65,7 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     button.isEnabled = false
     return button
   }()
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    DispatchQueue.global().asyncAfter(deadline: .now() + 2) {[weak self] in
-      self?.completeSubject?.onNext(())
-    }
-  }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(titleLabel)

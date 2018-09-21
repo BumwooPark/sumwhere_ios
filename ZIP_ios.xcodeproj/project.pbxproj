@@ -128,12 +128,14 @@
 		B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DEE211444C3001D278A /* NicknameRow.swift */; };
 		B16B3DF72117E6F0001D278A /* TripStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DF62117E6F0001D278A /* TripStyleViewController.swift */; };
 		B16B3DF92117E782001D278A /* InitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DF82117E782001D278A /* InitUtil.swift */; };
-		B16B3DFB2117E7E2001D278A /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFA2117E7E2001D278A /* InterestViewController.swift */; };
+		B16B3DFB2117E7E2001D278A /* InterestViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFA2117E7E2001D278A /* InterestViewController2.swift */; };
 		B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFC2117F3B3001D278A /* InterestCell.swift */; };
 		B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFF2117F445001D278A /* InterestViewModel.swift */; };
 		B16B3E032117F46B001D278A /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3E022117F46B001D278A /* InterestModel.swift */; };
 		B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD221211162AF0045FAA6 /* MyTripCell.swift */; };
 		B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */; };
+		B18BC89821547ED700642BB0 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89721547ED700642BB0 /* InterestViewController.swift */; };
+		B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC8992154925100642BB0 /* ProfileViewModel.swift */; };
 		B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */; };
 		B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C562149FF6500BC95C5 /* ChatListModel.swift */; };
 		B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */; };
@@ -187,7 +189,7 @@
 		B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF955E21193FB900F6418F /* CharacterViewModel.swift */; };
 		B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF956021193FC500F6418F /* CharacterModel.swift */; };
 		B1EF95632119450F00F6418F /* CharacterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95622119450F00F6418F /* CharacterHeaderView.swift */; };
-		B1EF95652119481700F6418F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95642119481700F6418F /* ProfileViewModel.swift */; };
+		B1EF95652119481700F6418F /* SetProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95642119481700F6418F /* SetProfileViewModel.swift */; };
 		B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95662119685000F6418F /* CharacterFooterView.swift */; };
 		B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF95682119902D00F6418F /* TripStyleFooterView.swift */; };
 		B1F6D8C42140B5C600E0E003 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */; };
@@ -334,12 +336,14 @@
 		B16B3DEE211444C3001D278A /* NicknameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRow.swift; sourceTree = "<group>"; };
 		B16B3DF62117E6F0001D278A /* TripStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewController.swift; sourceTree = "<group>"; };
 		B16B3DF82117E782001D278A /* InitUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitUtil.swift; sourceTree = "<group>"; };
-		B16B3DFA2117E7E2001D278A /* InterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
+		B16B3DFA2117E7E2001D278A /* InterestViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController2.swift; sourceTree = "<group>"; };
 		B16B3DFC2117F3B3001D278A /* InterestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCell.swift; sourceTree = "<group>"; };
 		B16B3DFF2117F445001D278A /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
 		B16B3E022117F46B001D278A /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
 		B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageViewController + Extension.swift"; sourceTree = "<group>"; };
+		B18BC89721547ED700642BB0 /* InterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
+		B18BC8992154925100642BB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListSectionModel.swift; sourceTree = "<group>"; };
 		B1996C562149FF6500BC95C5 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -393,7 +397,7 @@
 		B1EF955E21193FB900F6418F /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		B1EF956021193FC500F6418F /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		B1EF95622119450F00F6418F /* CharacterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterHeaderView.swift; sourceTree = "<group>"; };
-		B1EF95642119481700F6418F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		B1EF95642119481700F6418F /* SetProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewModel.swift; sourceTree = "<group>"; };
 		B1EF95662119685000F6418F /* CharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFooterView.swift; sourceTree = "<group>"; };
 		B1EF95682119902D00F6418F /* TripStyleFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleFooterView.swift; sourceTree = "<group>"; };
 		B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 				0A075BFA2153CE80004A4DBF /* AgeViewController.swift */,
 				0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */,
 				0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */,
+				B18BC89721547ED700642BB0 /* InterestViewController.swift */,
 			);
 			path = NewSetProfile;
 			sourceTree = "<group>";
@@ -866,7 +871,7 @@
 				0A332777213BBB6100BC2906 /* NewSetProfile */,
 				0A671AC120342C4C00034CE0 /* SetProfileViewController.swift */,
 				B16B3DF62117E6F0001D278A /* TripStyleViewController.swift */,
-				B16B3DFA2117E7E2001D278A /* InterestViewController.swift */,
+				B16B3DFA2117E7E2001D278A /* InterestViewController2.swift */,
 				B1C4FFA62118315100535FB1 /* CharacterViewController2.swift */,
 			);
 			path = SetProfile;
@@ -875,10 +880,11 @@
 		B16B3DFE2117F428001D278A /* SetProfile */ = {
 			isa = PBXGroup;
 			children = (
+				B18BC8992154925100642BB0 /* ProfileViewModel.swift */,
 				0AAD74912117103000C860ED /* TripStyleViewModel.swift */,
 				B16B3DFF2117F445001D278A /* InterestViewModel.swift */,
 				B1EF955E21193FB900F6418F /* CharacterViewModel.swift */,
-				B1EF95642119481700F6418F /* ProfileViewModel.swift */,
+				B1EF95642119481700F6418F /* SetProfileViewModel.swift */,
 			);
 			path = SetProfile;
 			sourceTree = "<group>";
@@ -1335,7 +1341,7 @@
 				B105597921096E9D00AC769C /* MoyaErrorUtil.swift in Sources */,
 				0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */,
 				0A332776213BA65D00BC2906 /* JoinViewModel.swift in Sources */,
-				B16B3DFB2117E7E2001D278A /* InterestViewController.swift in Sources */,
+				B16B3DFB2117E7E2001D278A /* InterestViewController2.swift in Sources */,
 				B1D1CB12212EAA6A001A9801 /* AlertViewController.swift in Sources */,
 				B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */,
 				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
@@ -1411,6 +1417,7 @@
 				0A9174CE20220124000A055A /* MockMessage.swift in Sources */,
 				B1F6D8C82146123A00E0E003 /* AS + RxSwift.swift in Sources */,
 				0A375C18213275AA00E35ED9 /* TopTripCell.swift in Sources */,
+				B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */,
 				0A9174D12024AB85000A055A /* DataBase.swift in Sources */,
 				0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */,
 				0A35ED8B214E20CB00B493D6 /* ChatMessageModel.swift in Sources */,
@@ -1429,6 +1436,7 @@
 				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
 				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
 				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
+				B18BC89821547ED700642BB0 /* InterestViewController.swift in Sources */,
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,
 				0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
@@ -1473,7 +1481,7 @@
 				B1D1CAF9212D0165001A9801 /* DetailTripStyleCell.swift in Sources */,
 				B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */,
 				B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */,
-				B1EF95652119481700F6418F /* ProfileViewModel.swift in Sources */,
+				B1EF95652119481700F6418F /* SetProfileViewModel.swift in Sources */,
 				0A671AC220342C4C00034CE0 /* SetProfileViewController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */,

@@ -19,7 +19,7 @@ class TripStyleViewController: UIViewController, TypedRowControllerType{
   
   
   let datas = BehaviorRelay<[TripStyleViewModel]>(value: [])
-  var viewModel: ProfileViewModel
+  var viewModel: SetProfileViewModel
   var selectModel: [TripStyleModel] = []
   var selectedModel: [TripStyleModel] = []
   private let disposeBag = DisposeBag()
@@ -87,7 +87,7 @@ class TripStyleViewController: UIViewController, TypedRowControllerType{
     return collectionView
   }()
   
-  init(viewModel: ProfileViewModel) {
+  init(viewModel: SetProfileViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }

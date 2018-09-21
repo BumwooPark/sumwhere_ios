@@ -11,7 +11,8 @@ import RxSwift
 final class CharacterViewController: UIViewController, ProfileCompletor{
   
   let data = ["활발한","조용한","소심한","현명한","4차원","성숙한","단순한","조심스러운","쿨한","재밋는","츤데레","친절한","관대한","꼼꼼한","여린"]
-  var completeSubject: PublishSubject<Void>?
+  weak var completeSubject: PublishSubject<Void>?
+  weak var viewModel: SetProfileViewModel?
   
   private let disposeBag = DisposeBag()
   private var didUpdateContraint = false
@@ -63,7 +64,7 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
         cell.item = item
     }.disposed(by: disposeBag)
   }
-  
+
   override func updateViewConstraints() {
     if !didUpdateContraint{
       titleLabel.snp.makeConstraints { (make) in
