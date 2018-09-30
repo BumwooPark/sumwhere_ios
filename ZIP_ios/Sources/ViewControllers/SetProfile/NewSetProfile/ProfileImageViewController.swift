@@ -12,6 +12,7 @@ import TLPhotoPicker
 
 final class ProfileImageViewController: UIViewController, ProfileCompletor{
   
+  
   var profileImage = [UIImage?](repeating: nil, count: 4){
     didSet{
       viewModel?
@@ -28,6 +29,7 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
       nextButton.backgroundColor = (totalCount >= 2) ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
     }
   }
+  weak var backSubject: PublishSubject<Void>?
   weak var completeSubject: PublishSubject<Void>?
   weak var viewModel: ProfileViewModel?
   
@@ -77,6 +79,12 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     return label
   }()
   
+  private let backButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "backButton.png"), for: .normal)
+    return button
+  }()
+  
   private let tipButton: UIButton = {
     let button = UIButton()
     button.layer.cornerRadius = 12
@@ -124,6 +132,7 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(titleLabel)
+    view.addSubview(backButton)
     view.addSubview(collectionView)
     view.addSubview(tipButton)
     view.addSubview(detailLabel)
@@ -142,10 +151,16 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
       .bind(onNext: imageDelete)
       .disposed(by: disposeBag)
     
-    guard let subject = completeSubject else {return}
+    guard let subject = completeSubject ,let back = backSubject else {return}
+    
     nextButton.rx
       .tap
       .bind(to: subject)
+      .disposed(by: disposeBag)
+    
+    backButton.rx
+      .tap
+      .bind(to: back)
       .disposed(by: disposeBag)
   }
   
@@ -200,6 +215,12 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
       titleLabel.snp.makeConstraints { (make) in
         make.centerY.equalToSuperview().inset(-200)
         make.left.equalToSuperview().inset(41)
+      }
+      
+      backButton.snp.makeConstraints { (make) in
+        make.left.equalToSuperview().inset(10)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+        make.width.height.equalTo(50)
       }
       
       collectionView.snp.makeConstraints { (make) in

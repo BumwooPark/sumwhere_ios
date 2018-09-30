@@ -55,11 +55,10 @@ class PageViewController: UIPageViewController{
     let nextValue = currentValue + 1
     if nextValue >= pages.count{
       currentValue = 0
-      scrollToViewController(pages[currentValue], direction: .forward)
     }else{
       currentValue += 1
-      scrollToViewController(pages[currentValue], direction: .forward)
     }
+    scrollToViewController(pages[currentValue], direction: .forward)
   }
   
   func scrollToAutoBackward(){

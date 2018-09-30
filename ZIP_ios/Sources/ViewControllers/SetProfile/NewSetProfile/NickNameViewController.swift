@@ -8,10 +8,11 @@
 import RxSwift
 import Moya
 
-//TODO: 문자열 공백제거 방법 
 final class NickNameViewController: UIViewController, ProfileCompletor{
+  
   private let disposeBag = DisposeBag()
   
+  weak var backSubject: PublishSubject<Void>?
   weak var viewModel: ProfileViewModel?
   weak var completeSubject: PublishSubject<Void>?
   
@@ -99,25 +100,33 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     contentView.addSubview(bottomView)
     contentView.addSubview(nextButton)
     contentView.addSubview(descriptionLabel)
+    rxbind()
     view.setNeedsUpdateConstraints()
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    rxbind()
-  }
-  
+
   private func rxbind(){
     
     guard let viewModel = viewModel else {return}
     
     let textObserver = textField.rx.text
-      .orEmpty.share()
+      .orEmpty
+      .map{$0.replacingOccurrences(of: " ", with: "")}
+      .share()
     
+    textObserver
+      .bind(to: textField.rx.text)
+      .disposed(by: disposeBag)
+    
+    textObserver
+      .subscribeNext(weak: self) { (weakSelf) -> (String) -> Void in
+      return {name in
+        weakSelf.viewModel?.saver.onNext(.nickname(value: name))
+      }
+    }.disposed(by: disposeBag)
     
     textObserver
       .bind(to: viewModel.profileSubject)
@@ -153,7 +162,6 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
           }
         }
     }.disposed(by: disposeBag)
-    
     
     guard let subject = completeSubject else {return}
     nextButton.rx

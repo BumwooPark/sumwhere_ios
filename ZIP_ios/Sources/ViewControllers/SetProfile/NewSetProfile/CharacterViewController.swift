@@ -13,6 +13,8 @@ import DZNEmptyDataSet
 
 final class CharacterViewController: UIViewController, ProfileCompletor{
   
+  
+  weak var backSubject: PublishSubject<Void>?
   weak var completeSubject: PublishSubject<Void>?
   weak var viewModel: ProfileViewModel?
   
@@ -43,6 +45,12 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
     return collectionView
   }()
   
+  private let backButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "backButton.png"), for: .normal)
+    return button
+  }()
+  
   private let nextButton: UIButton = {
     let button = UIButton()
     button.setTitle("다음", for: .normal)
@@ -56,6 +64,7 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
     super.viewDidLoad()
     view.addSubview(titleLabel)
     view.addSubview(collectionView)
+    view.addSubview(backButton)
     view.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
     
@@ -68,10 +77,11 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
           weakSelf.nextButton.isEnabled = selectedItem.count >= 1
           weakSelf.nextButton.backgroundColor = (selectedItem.count >= 1) ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
           //TODO: selected 아이템 전송
+          log.info(weakSelf.collectionView.indexPathsForSelectedItems)
         }
     }.disposed(by: disposeBag)
     
-    guard let model = viewModel,let subject = completeSubject else {return}
+    guard let model = viewModel,let subject = completeSubject ,let back = backSubject else {return}
     
     model.getCharacters
       .catchError({ (error) -> Observable<[CharacterModel]?> in
@@ -85,10 +95,15 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
         cellType: CharacterCollectionViewCell.self)){ idx, item, cell in
           cell.item = item
       }.disposed(by: disposeBag)
-    
+        
     nextButton.rx
       .tap
       .bind(to: subject)
+      .disposed(by: disposeBag)
+    
+    backButton.rx
+      .tap
+      .bind(to: back)
       .disposed(by: disposeBag)
   }
 
@@ -97,6 +112,12 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
       titleLabel.snp.makeConstraints { (make) in
         make.top.equalTo(self.view.safeAreaLayoutGuide).inset(79)
         make.left.equalToSuperview().inset(36)
+      }
+      
+      backButton.snp.makeConstraints { (make) in
+        make.left.equalToSuperview().inset(10)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+        make.width.height.equalTo(50)
       }
       
       collectionView.snp.makeConstraints { (make) in

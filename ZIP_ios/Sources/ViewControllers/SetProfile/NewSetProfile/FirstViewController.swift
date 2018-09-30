@@ -11,6 +11,7 @@ import RxSwift
 
 final class FirstViewController: UIViewController, ProfileCompletor{
   weak var viewModel: ProfileViewModel?
+  weak var backSubject: PublishSubject<Void>?
   weak var completeSubject: PublishSubject<Void>?
   
   var didUpdateConstraint = false

@@ -9,10 +9,17 @@ import RxSwift
 
 final class GenderViewController: UIViewController, ProfileCompletor{
   
+  weak var backSubject: PublishSubject<Void>?
   weak var completeSubject: PublishSubject<Void>?
   weak var viewModel: ProfileViewModel?
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
+  
+  private let backButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "backButton.png"), for: .normal)
+    return button
+  }()
 
   private let girlButton: UIButton = {
     let button = UIButton()
@@ -99,6 +106,7 @@ final class GenderViewController: UIViewController, ProfileCompletor{
     super.viewDidLoad()
     view.addSubview(scrollView)
     scrollView.addSubview(contentView)
+    contentView.addSubview(backButton)
     contentView.addSubview(titleLabel)
     contentView.addSubview(stackView)
     contentView.addSubview(nextButton)
@@ -136,12 +144,18 @@ final class GenderViewController: UIViewController, ProfileCompletor{
         }
       }.disposed(by: disposeBag)
     
-    guard let subject = completeSubject else {return}
+    
+    guard let subject = completeSubject ,let back = backSubject else {return}
     
     nextButton.rx
       .tap
       .bind(to: subject)
-      .disposed(by: disposeBag)  
+      .disposed(by: disposeBag)
+    
+    backButton.rx
+      .tap
+      .bind(to: back)
+      .disposed(by: disposeBag)
   }
   
   override func updateViewConstraints() {
@@ -154,6 +168,12 @@ final class GenderViewController: UIViewController, ProfileCompletor{
       contentView.snp.makeConstraints { (make) in
         make.height.width.equalTo(self.view)
         make.left.right.bottom.top.equalToSuperview()
+      }
+      
+      backButton.snp.makeConstraints { (make) in
+        make.left.equalTo(self.view).inset(10)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+        make.height.width.equalTo(50)
       }
       
       titleLabel.snp.makeConstraints { (make) in

@@ -11,11 +11,12 @@ import SnapKit
 import RxCocoa
 import RxDataSources
 
-
 final class InterestViewController: UIViewController, ProfileCompletor{
+  
   
   private let disposeBag = DisposeBag()
   private var didUpdateContraint = false
+  weak var backSubject: PublishSubject<Void>?
   weak var viewModel: ProfileViewModel?
   weak var completeSubject: PublishSubject<Void>?
   private var constraint: Constraint?
@@ -68,17 +69,22 @@ final class InterestViewController: UIViewController, ProfileCompletor{
     return button
   }()
   
+  private let backButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "backButton.png"), for: .normal)
+    return button
+  }()
+  
   override func viewDidLoad(){
     super.viewDidLoad()
     view.backgroundColor = .white
     view.addSubview(scrollView)
     scrollView.addSubview(contentView)
+    contentView.addSubview(backButton)
     contentView.addSubview(titleLabel)
     contentView.addSubview(tableView)
     view.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
-    
-    
     
     AuthManager.instance.provider
       .request(.GetAllTripStyle)
@@ -96,7 +102,7 @@ final class InterestViewController: UIViewController, ProfileCompletor{
     
     
     
-    guard let model = viewModel else {return}
+    guard let model = viewModel, let back = backSubject else {return}
     
     model
       .tripStyleAPI
@@ -107,6 +113,10 @@ final class InterestViewController: UIViewController, ProfileCompletor{
       }
     }).disposed(by: disposeBag)
     
+    backButton.rx
+      .tap
+      .bind(to: back)
+      .disposed(by: disposeBag)
   }
   
   override func viewDidLayoutSubviews() {
@@ -126,6 +136,12 @@ final class InterestViewController: UIViewController, ProfileCompletor{
         make.edges.equalToSuperview()
         make.width.equalTo(self.view)
         constraint = make.height.equalTo(self.view).constraint
+      }
+      
+      backButton.snp.makeConstraints { (make) in
+        make.left.equalTo(self.view).inset(10)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+        make.width.height.equalTo(50)
       }
       
       titleLabel.snp.makeConstraints { (make) in
@@ -181,10 +197,6 @@ extension InterestViewController: UITableViewDelegate{
           weakSelf.tableView.reloadSections(IndexSet(integer: section), with: .fade)
         }
     }.disposed(by: view.disposeBag)
-    
-    
-    
-    
     
     return view
   }

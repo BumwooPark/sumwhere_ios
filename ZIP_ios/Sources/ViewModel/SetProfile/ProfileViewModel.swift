@@ -61,9 +61,5 @@ class ProfileViewModel{
     saver.subscribe(onNext: { (model) in
       log.info(model)
     }).disposed(by: disposeBag)
-    
-    
   }
-  
-  
 }

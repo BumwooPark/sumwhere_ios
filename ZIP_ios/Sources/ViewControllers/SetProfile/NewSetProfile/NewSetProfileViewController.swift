@@ -10,6 +10,7 @@ import RxCocoa
 
 protocol ProfileCompletor {
   var viewModel: ProfileViewModel?{get set}
+  var backSubject: PublishSubject<Void>? {get set}
   var completeSubject: PublishSubject<Void>? {get set}
 }
 
@@ -17,6 +18,7 @@ class NewSetProfileViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
   private let completeSubject = PublishSubject<Void>()
+  private let backSubject = PublishSubject<Void>()
   private let viewModel = ProfileViewModel()
   
   
@@ -62,14 +64,19 @@ class NewSetProfileViewController: UIViewController{
     
     for i in 0..<childs.count{
       childs[i].completeSubject = self.completeSubject
+      childs[i].backSubject = self.backSubject
       childs[i].viewModel = self.viewModel
     }
     
     completeSubject
-      .observeOn(MainScheduler.instance)
+      .debug("completeSubject")
+      .bind(onNext: pageView.scrollToAutoForward)
+      .disposed(by: disposeBag)
+    
+    backSubject
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return {_ in
-          weakSelf.pageView.scrollToAutoForward()
+          weakSelf.pageView.scrollToAutoBackward()
         }
     }.disposed(by: disposeBag)
   }
