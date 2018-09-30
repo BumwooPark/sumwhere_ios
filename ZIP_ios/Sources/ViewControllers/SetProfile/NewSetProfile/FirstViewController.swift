@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 final class FirstViewController: UIViewController, ProfileCompletor{
-  weak var viewModel: SetProfileViewModel?
+  weak var viewModel: ProfileViewModel?
   weak var completeSubject: PublishSubject<Void>?
   
   var didUpdateConstraint = false
@@ -35,6 +35,7 @@ final class FirstViewController: UIViewController, ProfileCompletor{
     super.viewDidLoad()
     view.addSubview(titleLabel)
     view.setNeedsUpdateConstraints()
+    
   }
   
   override func viewDidAppear(_ animated: Bool) {

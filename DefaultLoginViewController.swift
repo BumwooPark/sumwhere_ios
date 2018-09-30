@@ -6,19 +6,50 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-import SkyFloatingLabelTextField
 import Hero
-import LGButton
 import RxSwift
 import RxCocoa
+import Moya
+import SnapKit
+import LGButton
 import RxOptional
-import JDStatusBarNotification
+import RxKeyboard
+import Reachability
 import TTTAttributedLabel
+import JDStatusBarNotification
+import SkyFloatingLabelTextField
 
 final class DefaultLoginViewController: UIViewController{
   
+  
+  let reachability = Reachability()!
+  
   var didUpdateConstraint = false
   let disposeBag = DisposeBag()
+
+  var constraint: Constraint?
+  
+  var viewModel: DefaultLoginViewModel!
+  
+  private let secretButton: UIButton = {
+    let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 26, height: 22)))
+    button.setImage(#imageLiteral(resourceName: "textfieldsecret.png"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "textfieldsecret2.png"), for: .selected)
+    button.isSelected = true
+    return button
+  }()
+  
+  private let commaImageView: UIImageView = {
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "invalidName"))
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
+  
+  private let commaImageView2: UIImageView = {
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "invalidName2"))
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
   
   private let logoImageView: UIImageView = {
     let imageView = UIImageView(image: #imageLiteral(resourceName: "group23"))
@@ -28,94 +59,99 @@ final class DefaultLoginViewController: UIViewController{
   
   private let emailField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
-    field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.placeholderFont = UIFont.NotoSansKRMedium(size: 15)
-    field.titleFont = UIFont.NotoSansKRMedium(size: 15)
-    field.font = UIFont.NotoSansKRMedium(size: 15)
-    field.lineColor = .black
-    field.lineErrorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.selectedLineColor = .blue
-    field.selectedTitleColor = .blue
-    field.placeholder = "이메일"
-    field.placeholderColor = .black
+    field.errorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
+    field.placeholderFont = .AppleSDGothicNeoMedium(size: 16)
+    field.titleFont = .AppleSDGothicNeoMedium(size: 16)
+    field.font = .AppleSDGothicNeoMedium(size: 16)
+    field.lineColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+    field.lineErrorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
+    field.selectedLineColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+    field.selectedTitleColor = .black
+    field.placeholder = "이메일 주소"
+    field.placeholderColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
     field.keyboardType = .emailAddress
     field.returnKeyType = .done
     return field
   }()
   
-  private let passwordField: SkyFloatingLabelTextField = {
+  private lazy var passwordField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
-    field.errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.lineColor = .black
-    field.placeholderFont = UIFont.NotoSansKRMedium(size: 15)
-    field.titleFont = UIFont.NotoSansKRMedium(size: 15)
-    field.lineErrorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    field.selectedLineColor = .blue
-    field.selectedTitleColor = .blue
+    field.errorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
+    field.lineColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+    field.placeholderFont = .AppleSDGothicNeoMedium(size: 16)
+    field.titleFont = .AppleSDGothicNeoMedium(size: 16)
+    field.font = .AppleSDGothicNeoMedium(size: 16)
+    field.lineErrorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
+    field.selectedLineColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+    field.selectedTitleColor = .black
     field.placeholder = "비밀번호"
-    field.placeholderColor = .black
+    field.placeholderColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
     field.isSecureTextEntry = true
     field.returnKeyType = .done
     field.keyboardType = .asciiCapable
+    field.rightView = secretButton
+    field.rightViewMode = .whileEditing
     return field
-  }()
-  
-  lazy var forgetLabel: TTTAttributedLabel = {
-    
-    let label = TTTAttributedLabel(frame: .zero)
-    let attstring = NSAttributedString(string: "비밀번호 찾으러 갈래?",
-                                       attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 13)])
-    
-    label.attributedText = attstring
-    label.textColor = .black
-    let range = NSRange(location: 0, length: 4)
-    label.addLink(to: URL(fileURLWithPath: ""), with: range)
-    label.delegate = self
-    return label
   }()
   
   private let loginButton: LGButton = {
     let button = LGButton()
-    button.titleString = "로그인"
-    button.titleFontSize = 15
+    button.titleString = "회원가입"
     button.titleColor = .white
-    button.fullyRoundedCorners = true
-    button.gradientStartColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-    button.gradientEndColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-    button.gradientHorizontal = true
-    button.shadowColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+    button.titleFontName = "AppleSDGothicNeo-Medium"
+    button.titleFontSize = 17
+    button.bgColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+    button.loadingString = "가입중.."
     return button
   }()
-  
-  private let dismissButton: LGButton = {
-    let button = LGButton()
-    button.titleString = "취소"
-    button.titleFontSize = 15
-    button.titleColor = .white
-    button.fullyRoundedCorners = true
-    button.gradientStartColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-    button.gradientEndColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-    button.gradientHorizontal = true
-    button.shadowColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-    return button
-  }()
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .white
+    view.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
     view.hero.id = "loginToDefaultLogin"
     hero.isEnabled = true
     view.addSubview(logoImageView)
     view.addSubview(emailField)
     view.addSubview(passwordField)
     view.addSubview(loginButton)
-    view.addSubview(dismissButton)
-    view.addSubview(forgetLabel)
+    logoImageView.addSubview(commaImageView)
+    logoImageView.addSubview(commaImageView2)
+    self.navigationController?.navigationBar.topItem?.title = String()
     
+    viewModel = DefaultLoginViewModel(email: emailField.rx.text.orEmpty,
+                                      password: passwordField.rx.text.orEmpty,
+                                      tap: loginButton.rx.tapGesture().when(.ended).do(onNext: {[weak self] (_) in
+                                        self?.loginButton.isLoading = true
+                                      }))
     behavior()
     heroConfig()
+    reachText()
     view.setNeedsUpdateConstraints()
+    
+    NotificationCenter.default.rx
+      .notification(.reachabilityChanged, object: reachability)
+      .subscribe(onNext: { (noti) in
+        log.info(noti)
+      }).disposed(by: disposeBag)
+  }
+  
+  func reachText(){
+    reachability.whenReachable = { reachability in
+      if reachability.connection == .wifi {
+        print("Reachable via WiFi")
+      } else {
+        print("Reachable via Cellular")
+      }
+    }
+    reachability.whenUnreachable = { _ in
+      print("Not reachable")
+    }
+    
+    do {
+      try reachability.startNotifier()
+    } catch {
+      print("Unable to start notifier")
+    }
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -130,33 +166,63 @@ final class DefaultLoginViewController: UIViewController{
         guard let `self` = self else {return}
         self.login()
       }).disposed(by: disposeBag)
-
-    dismissButton.rx
-      .controlEvent(.touchUpInside)
-      .subscribe(onNext: {[weak self] (_) in
-        guard let `self` = self else {return}
-        self.dismiss(animated: true, completion: nil)
+    
+    RxKeyboard.instance
+      .visibleHeight
+      .drive(onNext: {[unowned self] (float) in
+        self.emailField.snp.remakeConstraints({ (make) in
+          make.top.equalTo(self.logoImageView.snp.bottom).offset((90 - float))
+          make.left.right.equalToSuperview().inset(42)
+        })
+        
+        if float == 0 {
+          self.logoHidden(false)
+        }else{
+          self.logoHidden(true)
+        }
+        
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+          self.view.setNeedsLayout()
+          self.view.layoutIfNeeded()
+        }, completion: nil)
       }).disposed(by: disposeBag)
+    
+    secretButton.rx.tap
+      .map{!self.secretButton.isSelected}
+      .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
+        return { result in
+          weakSelf.passwordField.isSecureTextEntry = result
+          weakSelf.secretButton.isSelected = result
+        }
+    }.disposed(by: disposeBag)
+    
+    viewModel.isEnable
+      .observeOn(MainScheduler.instance)
+      .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
+        return { result in
+          weakSelf.loginButton.bgColor = result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+          weakSelf.loginButton.isEnabled = result
+        }
+    }.disposed(by: disposeBag)
+  }
+  
+  private func logoHidden(_ hidden: Bool){
+    logoImageView.alpha = hidden ? 0 : 1
+    commaImageView.alpha = hidden ? 0 : 1
+    commaImageView2.alpha = hidden ? 0 : 1
   }
 
   /// API Login
   private func login(){
-
-    AuthManager.instance
-      .provider
-      .request(.signIn(email: emailField.text ?? String(), password: passwordField.text ?? String()))
-      .map(ResultModel<TokenModel>.self)
-      .subscribe(onSuccess: {[weak self] (result) in
-        guard let `self` = self else {return}
-        if result.success{
-           log.info(result)
-          self.dismiss(animated: true, completion: {tokenObserver.onNext(result.result?.token ?? String())})
-        }else{
-          JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
-        }
-      }) { (error) in
-         log.error(error)
-    }.disposed(by: disposeBag)
+    
+    viewModel.tempResult
+      .subscribe(onNext: { (model) in
+        log.info(model)
+        tokenObserver.onNext(model.result?.token ?? String())
+      }, onError: { (error) in
+        guard let err = error as? MoyaError else {return}
+        err.GalMalErrorHandler()
+      }).disposed(by: disposeBag)
   }
   
   /// Hero Settings
@@ -165,7 +231,6 @@ final class DefaultLoginViewController: UIViewController{
     emailField.hero.modifiers = [.translate(y:150)]
     passwordField.hero.modifiers = [.translate(y: 150)]
     loginButton.hero.modifiers = [.translate(y: 150)]
-    dismissButton.hero.modifiers = [.translate(y: 150)]
   }
   
   override func updateViewConstraints() {
@@ -177,9 +242,20 @@ final class DefaultLoginViewController: UIViewController{
         make.height.equalTo(58)
       }
       
-      emailField.snp.makeConstraints { (make) in
+      commaImageView.snp.makeConstraints { (make) in
         make.center.equalToSuperview()
-        make.width.equalToSuperview().dividedBy(1.5)
+        make.height.width.equalTo(10)
+      }
+      
+      commaImageView2.snp.makeConstraints { (make) in
+        make.right.equalToSuperview().inset(-15)
+        make.centerY.equalToSuperview()
+        make.height.width.equalTo(10)
+      }
+      
+      emailField.snp.makeConstraints { (make) in
+        constraint = make.top.equalTo(logoImageView.snp.bottom).offset(90).constraint
+        make.left.right.equalToSuperview().inset(42)
       }
       
       passwordField.snp.makeConstraints { (make) in
@@ -187,19 +263,10 @@ final class DefaultLoginViewController: UIViewController{
         make.top.equalTo(emailField.snp.bottom).offset(20)
       }
       
-      forgetLabel.snp.makeConstraints { (make) in
-        make.top.equalTo(passwordField.snp.bottom).offset(20)
-        make.centerX.equalToSuperview()
-      }
-      
       loginButton.snp.makeConstraints { (make) in
-        make.width.centerX.equalTo(passwordField)
-        make.top.equalTo(passwordField.snp.bottom).offset(100)
-      }
-      
-      dismissButton.snp.makeConstraints { (make) in
-        make.width.centerX.equalTo(loginButton)
-        make.top.equalTo(loginButton.snp.bottom).offset(40)
+        make.left.right.equalTo(passwordField)
+        make.top.equalTo(passwordField.snp.bottom).offset(37)
+        make.height.equalTo(51)
       }
       
       didUpdateConstraint = true

@@ -7,12 +7,14 @@
 //
 
 import RxSwift
+import RxCocoa
+import Moya
+import DZNEmptyDataSet
 
 final class CharacterViewController: UIViewController, ProfileCompletor{
   
-  let data = ["활발한","조용한","소심한","현명한","4차원","성숙한","단순한","조심스러운","쿨한","재밋는","츤데레","친절한","관대한","꼼꼼한","여린"]
   weak var completeSubject: PublishSubject<Void>?
-  weak var viewModel: SetProfileViewModel?
+  weak var viewModel: ProfileViewModel?
   
   private let disposeBag = DisposeBag()
   private var didUpdateContraint = false
@@ -37,6 +39,7 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: CharacterCollectionViewCell.self))
     collectionView.backgroundColor = .clear
+    collectionView.allowsMultipleSelection = true
     return collectionView
   }()
   
@@ -56,13 +59,37 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
     view.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
     
-    Observable.just(data)
+    Observable<IndexPath>
+      .merge([collectionView.rx.itemSelected.asObservable(),collectionView.rx.itemDeselected.asObservable()])
+      .observeOn(MainScheduler.instance)
+      .subscribeNext(weak: self) { (weakSelf) -> (IndexPath) -> Void in
+        return { idx in
+          guard let selectedItem = weakSelf.collectionView.indexPathsForSelectedItems else {return}
+          weakSelf.nextButton.isEnabled = selectedItem.count >= 1
+          weakSelf.nextButton.backgroundColor = (selectedItem.count >= 1) ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+          //TODO: selected 아이템 전송
+        }
+    }.disposed(by: disposeBag)
+    
+    guard let model = viewModel,let subject = completeSubject else {return}
+    
+    model.getCharacters
+      .catchError({ (error) -> Observable<[CharacterModel]?> in
+        guard let err = error as? MoyaError else {return Observable.just([])}
+        err.GalMalErrorHandler()
+        return Observable.just([])
+      })
+      .filterNil()
       .bind(to: collectionView.rx.items(
         cellIdentifier: String(describing: CharacterCollectionViewCell.self),
         cellType: CharacterCollectionViewCell.self)){ idx, item, cell in
-          
-        cell.item = item
-    }.disposed(by: disposeBag)
+          cell.item = item
+      }.disposed(by: disposeBag)
+    
+    nextButton.rx
+      .tap
+      .bind(to: subject)
+      .disposed(by: disposeBag)
   }
 
   override func updateViewConstraints() {
@@ -93,21 +120,41 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
 
 final class CharacterCollectionViewCell: UICollectionViewCell{
   
-  var item: String?{
+  override var isSelected: Bool{
     didSet{
-      titleLabel.text = item
+      if isSelected{
+        titleButton.layer.borderWidth = 2
+        titleButton.layer.borderColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1).cgColor
+        titleButton.layer.cornerRadius = titleButton.frame.height/2
+      }else {
+        titleButton.layer.borderWidth = 0
+      }
+      titleButton.isSelected = isSelected
     }
   }
-  let titleLabel: UILabel = {
-    let label = UILabel()
-    label.font = .AppleSDGothicNeoLight(size: 20)
-    label.textColor = #colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1)
-    return label
+  
+  var item: CharacterModel?{
+    didSet{
+      titleButton.setTitle(item?.typeName ?? String(), for: .normal)
+    }
+  }
+  
+  let titleButton: UIButton = {
+    let button = UIButton()
+    button.titleLabel?.font = .AppleSDGothicNeoLight(size: 20)
+    button.setTitleColor(#colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1), for: .normal)
+    button.setTitleColor(#colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1), for: .selected)
+    button.isUserInteractionEnabled = false
+    button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+    
+    return button
   }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
-    contentView.addSubview(titleLabel)
-    titleLabel.snp.makeConstraints { (make) in
+    contentView.addSubview(titleButton)
+    
+    titleButton.snp.makeConstraints { (make) in
       make.center.equalToSuperview()
     }
   }

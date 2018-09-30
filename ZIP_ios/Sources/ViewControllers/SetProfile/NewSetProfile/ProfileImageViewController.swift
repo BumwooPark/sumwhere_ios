@@ -6,12 +6,67 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 import RxSwift
+import RxCocoa
+import RxDataSources
+import TLPhotoPicker
 
 final class ProfileImageViewController: UIViewController, ProfileCompletor{
+  
+  var profileImage = [UIImage?](repeating: nil, count: 4){
+    didSet{
+      viewModel?
+        .saver
+        .onNext(.image(value: profileImage))
+      var totalCount = 0
+      for img in profileImage{
+        if img != nil {
+          totalCount += 1
+        }
+      }
+      
+      nextButton.isEnabled = (totalCount >= 2)
+      nextButton.backgroundColor = (totalCount >= 2) ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+    }
+  }
+  weak var completeSubject: PublishSubject<Void>?
+  weak var viewModel: ProfileViewModel?
+  
+  
+  private let imageSelected = PublishSubject<Int>()
+  private let imageDeleted = PublishSubject<Int>()
+  
+  private var currentIndex = 0
+  private let datas = BehaviorRelay<[SectionOfCustomData]>(value: [])
+  
+  private lazy var dataSources = RxCollectionViewSectionedReloadDataSource<SectionOfCustomData>(configureCell: {[unowned self] ds,cv,idx, item in
+    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileImageCell.self), for: idx) as! ProfileImageCell
+    
+    switch idx.item {
+    case 0:
+      cell.typeButton.setTitle("메인", for: .normal)
+      cell.typeButton.setTitle("메인", for: .selected)
+      cell.typeButton.isSelected = true
+    case 1:
+      cell.typeButton.setTitle("썸네일", for: .normal)
+      cell.typeButton.setTitle("썸네일", for: .selected)
+      cell.typeButton.isSelected = true
+    case 2,3:
+      cell.typeButton.setTitle("썸네일", for: .normal)
+      cell.typeButton.isSelected = false
+    default:
+      break
+    }
+    cell.imageCancelButton.isHidden = (item == nil)
+    
+    cell.item = item
+    cell.tag = idx.item
+    cell.imageSelectSubject = self.imageSelected
+    cell.imageDeletedSubject = self.imageDeleted
+    return cell
+  })
+  
   private let disposeBag = DisposeBag()
   
-  weak var completeSubject: PublishSubject<Void>?
-  weak var viewModel: SetProfileViewModel?
   var didUpdateConstraint = false
   private let titleLabel: UILabel = {
     let label = UILabel()
@@ -73,14 +128,71 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     view.addSubview(tipButton)
     view.addSubview(detailLabel)
     view.addSubview(nextButton)
-    
-    Observable.just([Int](0...3))
-      .bind(to: collectionView.rx.items(cellIdentifier: String(describing: ProfileImageCell.self), cellType: ProfileImageCell.self)){ idx, item, cell in
-        return cell
-    }.disposed(by: disposeBag)
-    
-    
     view.setNeedsUpdateConstraints()
+    reload()
+    datas.asDriver()
+      .drive(collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
+    
+    imageSelected
+      .bind(onNext: pushImageSelectView)
+      .disposed(by: disposeBag)
+    
+    imageDeleted
+      .bind(onNext: imageDelete)
+      .disposed(by: disposeBag)
+    
+    guard let subject = completeSubject else {return}
+    nextButton.rx
+      .tap
+      .bind(to: subject)
+      .disposed(by: disposeBag)
+  }
+  
+  func reload(){
+    imageSort()
+    Observable.just([SectionOfCustomData(items: profileImage)])
+      .bind(to: datas)
+      .disposed(by: disposeBag)
+  }
+  
+  private func pushImageSelectView(index: Int){
+    let controller = TLPhotosPickerViewController(withTLPHAssets: {[weak self] (assets) in
+      guard let `self` = self else {return}
+        self.profileImage[index] = assets.first?.fullResolutionImage
+    }, didCancel: nil)
+    var configure = TLPhotosPickerConfigure()
+    configure.allowedLivePhotos = true
+    configure.autoPlay = true
+    configure.maxSelectedAssets = 1
+    controller.configure = configure
+    controller.dismissCompletion = { [weak self] in
+      self?.reload()
+    }
+    self.present(controller, animated: true, completion: nil)
+  }
+  
+  private func imageDelete(index: Int){
+    self.profileImage[index] = nil
+    reload()
+  }
+  
+  private func imageSort(){
+    profileImage.sort { (one, two) -> Bool in
+      if one != nil {
+        if two == nil {
+          return true
+        }else{
+          return false
+        }
+      }else{
+        if two != nil {
+          return false
+        }else{
+          return true
+        }
+      }
+    }
   }
   
   override func updateViewConstraints() {
@@ -118,20 +230,103 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
   }
 }
 
-class ProfileImageCell: UICollectionViewCell{
+final class ProfileImageCell: UICollectionViewCell{
   
-  let profileImage: UIImageView = {
-    let imageView = UIImageView()
-    imageView.image = #imageLiteral(resourceName: "fill1.png")
-    return imageView
+  private var disposeBag = DisposeBag()
+  var imageSelectSubject: PublishSubject<Int>?{
+    didSet{
+      profileImage.rx.tap
+        .map{[unowned self] _ in return self.tag}
+        .bind(to: imageSelectSubject!)
+        .disposed(by: disposeBag)
+    }
+  }
+  
+  var imageDeletedSubject: PublishSubject<Int>?{
+    didSet{
+      imageCancelButton.rx.tap
+        .map{[unowned self] _ in return self.tag}
+        .bind(to: imageDeletedSubject!)
+        .disposed(by: disposeBag)
+    }
+  }
+  
+  var item: UIImage?{
+    didSet{
+      if item == nil {
+        profileImage.setImage(#imageLiteral(resourceName: "textfieldsecret2.png"), for: .normal)
+      }else{
+        profileImage.setImage(item, for: .normal)
+      }
+    }
+  }
+  
+  let typeButton: UIButton = {
+    let button = UIButton()
+    button.setTitleColor(.white, for: .normal)
+    button.setTitleColor(.white, for: .selected)
+    button.setBackgroundImage(#imageLiteral(resourceName: "combinedShape2.png"), for: .normal)
+    button.setBackgroundImage(#imageLiteral(resourceName: "combinedShape.png"), for: .selected)
+    button.titleLabel?.font = .AppleSDGothicNeoSemiBold(size: 11)
+    return button
   }()
+  
+  let imageCancelButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "imagecancel.png"), for: .normal)
+    button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
+    button.isHidden = true
+    return button
+  }()
+  
+  let profileImage: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "textfieldsecret2.png"), for: .normal)
+    button.contentMode = .scaleAspectFill
+    return button
+  }()
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    disposeBag = DisposeBag()
+  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    contentView.addSubview(profileImage)
+    profileImage.addSubview(typeButton)
+    profileImage.addSubview(imageCancelButton)
+ 
+    profileImage.snp.makeConstraints { (make) in
+      make.edges.equalToSuperview()
+    }
+    
+    typeButton.snp.makeConstraints { (make) in
+      make.top.left.equalToSuperview()
+      make.height.width.equalTo(45)
+    }
+    
+    imageCancelButton.snp.makeConstraints { (make) in
+      make.right.top.equalToSuperview()
+      make.height.width.equalTo(26)
+    }
+    
     contentView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9568627451, alpha: 1)
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+}
+
+struct SectionOfCustomData {
+  var items: [Item]
+}
+extension SectionOfCustomData: SectionModelType {
+  typealias Item = UIImage?
+  
+  init(original: SectionOfCustomData, items: [Item]) {
+    self = original
+    self.items = items
   }
 }

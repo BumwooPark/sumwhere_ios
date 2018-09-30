@@ -6,11 +6,13 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 import RxSwift
+import Moya
 
+//TODO: 문자열 공백제거 방법 
 final class NickNameViewController: UIViewController, ProfileCompletor{
-  weak var viewModel: SetProfileViewModel?
   private let disposeBag = DisposeBag()
   
+  weak var viewModel: ProfileViewModel?
   weak var completeSubject: PublishSubject<Void>?
   
   enum nicknameStatus{
@@ -98,28 +100,68 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     contentView.addSubview(nextButton)
     contentView.addSubview(descriptionLabel)
     view.setNeedsUpdateConstraints()
+  }
+  
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     rxbind()
   }
   
   private func rxbind(){
     
+    guard let viewModel = viewModel else {return}
     
-    AuthManager.instance.provider.request(.nicknameConfirm(nickname: "hi"))
-      .filterSuccessfulStatusCodes()
-      .map(ResultModel<Bool>.self)
-      .asObservable()
-      .catchError { (err) -> Observable<ResultModel<Bool>> in
-        
-    }
+    let textObserver = textField.rx.text
+      .orEmpty.share()
     
-    textField.rx.text.subscribe{
-      log.info($0)
+    
+    textObserver
+      .bind(to: viewModel.profileSubject)
+      .disposed(by: disposeBag)
+    
+    textObserver
+      .filter{$0.count <= 2}
+      .subscribeNext(weak: self) { (weakSelf) -> (String) -> Void in
+        return { _ in
+          weakSelf.descriptionLabel.text = String()
+          weakSelf.bottomView.backgroundColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+          weakSelf.nextButton.backgroundColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+          weakSelf.nextButton.isEnabled = false
+        }
+      }.disposed(by: disposeBag)
+
+    viewModel.profileResult
+      .subscribe(weak: self) { (weakSelf) -> (Event<ResultModel<Bool>>) -> Void in
+        return {event in
+          switch event{
+          case .next(let element):
+            guard let result = element.result else {return}
+            weakSelf.descriptionLabel.text = result ? nicknameStatus.success.description : nicknameStatus.fail.description
+            weakSelf.descriptionLabel.textColor = result ? nicknameStatus.success.color : nicknameStatus.fail.color
+            weakSelf.bottomView.backgroundColor = result ? nicknameStatus.success.color : nicknameStatus.fail.color
+            weakSelf.nextButton.backgroundColor = result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+            weakSelf.nextButton.isEnabled = result
+          case .error(let error):
+            guard let err = error as? MoyaError else {return}
+            err.GalMalErrorHandler()
+          case .completed:
+            log.info("completed")
+          }
+        }
     }.disposed(by: disposeBag)
     
+    
+    guard let subject = completeSubject else {return}
+    nextButton.rx
+      .tap
+      .bind(to: subject)
+      .disposed(by: disposeBag)
   }
-  
-  
-  
+ 
   override func didMove(toParentViewController parent: UIViewController?) {
     super.didMove(toParentViewController: parent)
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

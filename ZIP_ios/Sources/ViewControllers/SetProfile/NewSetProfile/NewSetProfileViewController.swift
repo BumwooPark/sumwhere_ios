@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 
 protocol ProfileCompletor {
-  var viewModel: SetProfileViewModel?
+  var viewModel: ProfileViewModel?{get set}
   var completeSubject: PublishSubject<Void>? {get set}
 }
 
@@ -17,6 +17,8 @@ class NewSetProfileViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
   private let completeSubject = PublishSubject<Void>()
+  private let viewModel = ProfileViewModel()
+  
   
   let progressView: UIProgressView = {
     let progress = UIProgressView()
@@ -60,6 +62,7 @@ class NewSetProfileViewController: UIViewController{
     
     for i in 0..<childs.count{
       childs[i].completeSubject = self.completeSubject
+      childs[i].viewModel = self.viewModel
     }
     
     completeSubject

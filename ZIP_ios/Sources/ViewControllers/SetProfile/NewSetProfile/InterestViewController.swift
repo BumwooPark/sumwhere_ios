@@ -7,12 +7,34 @@
 //
 
 import RxSwift
+import SnapKit
+import RxCocoa
+import RxDataSources
+
 
 final class InterestViewController: UIViewController, ProfileCompletor{
   
+  private let disposeBag = DisposeBag()
   private var didUpdateContraint = false
-  weak var viewModel: SetProfileViewModel?
+  weak var viewModel: ProfileViewModel?
   weak var completeSubject: PublishSubject<Void>?
+  private var constraint: Constraint?
+  
+  private var data = [TripStyleModel]()
+  
+  
+  lazy var scrollView: UIScrollView = {
+    let scrollView = UIScrollView()
+    scrollView.alwaysBounceVertical = true
+    return scrollView
+  }()
+  
+  let contentView: UIView = {
+    let view = UIView()
+    return view
+  }()
+
+
   private let titleLabel: UILabel = {
     let attributeString = NSMutableAttributedString(string: "당신의 여행스타일과\n그에 맞는 관심사를 선택해주세요\n",
                                                     attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 20),
@@ -27,6 +49,16 @@ final class InterestViewController: UIViewController, ProfileCompletor{
     return label
   }()
   
+  lazy var tableView: UITableView = {
+    let tableView = UITableView()
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.register(TripStyleHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: TripStyleHeaderView.self))
+    tableView.register(TripStyleCell.self, forCellReuseIdentifier: String(describing: TripStyleCell.self))
+    tableView.separatorStyle = .none
+    return tableView
+  }()
+  
   private let nextButton: UIButton = {
     let button = UIButton()
     button.setTitle("다음", for: .normal)
@@ -36,19 +68,74 @@ final class InterestViewController: UIViewController, ProfileCompletor{
     return button
   }()
   
-  
   override func viewDidLoad(){
     super.viewDidLoad()
-    view.addSubview(titleLabel)
+    view.backgroundColor = .white
+    view.addSubview(scrollView)
+    scrollView.addSubview(contentView)
+    contentView.addSubview(titleLabel)
+    contentView.addSubview(tableView)
     view.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
+    
+    
+    
+    AuthManager.instance.provider
+      .request(.GetAllTripStyle)
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<[TripStyleModel]>.self)
+      .map{$0.result}
+      .asObservable()
+      .filterNil()
+      .subscribeNext(weak: self, { (weakSelf) -> ([TripStyleModel]) -> Void in
+        return {item in
+          weakSelf.data = item
+          weakSelf.tableView.reloadData()
+        }
+      }).disposed(by: disposeBag)
+    
+    
+    
+    guard let model = viewModel else {return}
+    
+    model
+      .tripStyleAPI
+      .subscribeNext(weak: self, { (weakSelf) -> ([TripStyleModel]) -> Void in
+      return {item in
+        weakSelf.data = item
+        weakSelf.tableView.reloadData()
+      }
+    }).disposed(by: disposeBag)
+    
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    let titleLabelHight = titleLabel.frame.height + 79 + 10
+    constraint?.update(offset: tableView.contentSize.height + titleLabelHight)
   }
   
   override func updateViewConstraints() {
     if !didUpdateContraint{
+      
+      scrollView.snp.makeConstraints { (make) in
+        make.edges.equalToSuperview()
+      }
+      
+      contentView.snp.makeConstraints { (make) in
+        make.edges.equalToSuperview()
+        make.width.equalTo(self.view)
+        constraint = make.height.equalTo(self.view).constraint
+      }
+      
       titleLabel.snp.makeConstraints { (make) in
-        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(79)
+        make.top.equalToSuperview().inset(79)
         make.left.equalToSuperview().inset(36)
+      }
+      
+      tableView.snp.makeConstraints { (make) in
+        make.bottom.left.right.equalToSuperview()
+        make.top.equalTo(titleLabel.snp.bottom).offset(10)
       }
       
       nextButton.snp.makeConstraints { (make) in
@@ -58,9 +145,56 @@ final class InterestViewController: UIViewController, ProfileCompletor{
       
       didUpdateContraint = true
     }
-    
     super.updateViewConstraints()
+  }
+}
+
+
+extension InterestViewController: UITableViewDataSource{
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return data.count
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return data[section].isOpend ? 1 : 0
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TripStyleCell.self), for: indexPath) as! TripStyleCell
+    cell.item = data[indexPath.section].elements
+    return cell
+  }
+}
+
+extension InterestViewController: UITableViewDelegate{
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: TripStyleHeaderView.self)) as! TripStyleHeaderView
+    view.item = data[section]
+    
+    view.contentView.rx
+      .tapGesture()
+      .when(.ended)
+      .subscribeNext(weak: self) { (weakSelf) -> (UITapGestureRecognizer) -> Void in
+        return {_ in
+          weakSelf.data[section].isOpend = weakSelf.data[section].isOpend ? false : true
+          weakSelf.tableView.reloadSections(IndexSet(integer: section), with: .fade)
+        }
+    }.disposed(by: view.disposeBag)
+    
+    
+    
+    
+    
+    return view
   }
   
   
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 50
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 80
+  }
 }

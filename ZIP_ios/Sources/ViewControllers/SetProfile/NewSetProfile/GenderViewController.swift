@@ -8,28 +8,45 @@
 import RxSwift
 
 final class GenderViewController: UIViewController, ProfileCompletor{
-  weak var completeSubject: PublishSubject<Void>?
-  weak var viewModel: SetProfileViewModel?
-  var didUpdateConstraint = false
   
+  weak var completeSubject: PublishSubject<Void>?
+  weak var viewModel: ProfileViewModel?
+  private var didUpdateConstraint = false
+  private let disposeBag = DisposeBag()
+
   private let girlButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "group3").withRenderingMode(.alwaysTemplate), for: .normal)
-    button.tintColor = #colorLiteral(red: 0.8588235294, green: 0.8588235294, blue: 0.8588235294, alpha: 1)
+    button.setImage(#imageLiteral(resourceName: "group4.png"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "group3.png"), for: .selected)
     return button
   }()
   
   private let boyButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "group").withRenderingMode(.alwaysTemplate), for: .normal)
-    button.tintColor = #colorLiteral(red: 0.8588235294, green: 0.8588235294, blue: 0.8588235294, alpha: 1)
+    button.setImage(#imageLiteral(resourceName: "group.png"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "group2.png"), for: .selected)
     return button
   }()
   
-  private lazy var girlStackView: UIStackView = {
+  
+  private let girlLabel: UILabel = {
     let label = UILabel()
     label.text = "여자"
-    let stackView = UIStackView(arrangedSubviews: [girlButton,label])
+    label.font = .AppleSDGothicNeoMedium(size: 17)
+    label.textColor = #colorLiteral(red: 0.8588235294, green: 0.8588235294, blue: 0.8588235294, alpha: 1)
+    return label
+  }()
+  
+  private let boyLabel: UILabel = {
+    let label = UILabel()
+    label.text = "남자"
+    label.font = .AppleSDGothicNeoMedium(size: 17)
+    label.textColor = #colorLiteral(red: 0.8588235294, green: 0.8588235294, blue: 0.8588235294, alpha: 1)
+    return label
+  }()
+  
+  private lazy var girlStackView: UIStackView = {
+    let stackView = UIStackView(arrangedSubviews: [girlButton,girlLabel])
     stackView.alignment = .center
     stackView.axis = .vertical
     stackView.distribution = .fillEqually
@@ -37,9 +54,7 @@ final class GenderViewController: UIViewController, ProfileCompletor{
   }()
   
   private lazy var boyStackView: UIStackView = {
-    let label = UILabel()
-    label.text = "남자"
-    let stackView = UIStackView(arrangedSubviews: [boyButton,label])
+    let stackView = UIStackView(arrangedSubviews: [boyButton,boyLabel])
     stackView.alignment = .center
     stackView.axis = .vertical
     stackView.distribution = .fillEqually
@@ -88,6 +103,45 @@ final class GenderViewController: UIViewController, ProfileCompletor{
     contentView.addSubview(stackView)
     contentView.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
+    
+    rxBinder()
+  }
+  
+  private func rxBinder(){
+    girlButton.rx
+      .tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return { _ in
+          weakSelf.girlButton.isSelected = true
+          weakSelf.boyButton.isSelected = false
+          weakSelf.girlLabel.textColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+          weakSelf.boyLabel.textColor = #colorLiteral(red: 0.8588235294, green: 0.8588235294, blue: 0.8588235294, alpha: 1)
+          weakSelf.viewModel?.saver.onNext(.gender(value: "female"))
+          weakSelf.nextButton.isEnabled = true
+          weakSelf.nextButton.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+        }
+      }.disposed(by: disposeBag)
+    
+    boyButton.rx
+      .tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return { _ in
+          weakSelf.boyButton.isSelected = true
+          weakSelf.girlButton.isSelected = false
+          weakSelf.girlLabel.textColor = #colorLiteral(red: 0.8588235294, green: 0.8588235294, blue: 0.8588235294, alpha: 1)
+          weakSelf.boyLabel.textColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+          weakSelf.viewModel?.saver.onNext(.gender(value: "male"))
+          weakSelf.nextButton.isEnabled = true
+          weakSelf.nextButton.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+        }
+      }.disposed(by: disposeBag)
+    
+    guard let subject = completeSubject else {return}
+    
+    nextButton.rx
+      .tap
+      .bind(to: subject)
+      .disposed(by: disposeBag)  
   }
   
   override func updateViewConstraints() {

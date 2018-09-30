@@ -63,7 +63,6 @@ final class ProfileHeaderView: UIView {
     reload()
     
     datas.asDriver()
-      .debug()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
@@ -201,18 +200,6 @@ class ProfileViewCell: UICollectionViewCell{
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-}
-
-struct SectionOfCustomData {
-  var items: [Item]
-}
-extension SectionOfCustomData: SectionModelType {
-  typealias Item = UIImage?
-  
-  init(original: SectionOfCustomData, items: [Item]) {
-    self = original
-    self.items = items
   }
 }
 

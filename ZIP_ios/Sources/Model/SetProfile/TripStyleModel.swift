@@ -7,7 +7,27 @@
 //
 
 struct TripStyleModel: Codable{
-  let id: Int
-  let typeName: String
-  let imageURL: String
+  struct TripStyle: Codable{
+    let id: Int
+    let typeName: String
+  }
+  
+  struct Element: Codable{
+    let id: Int
+    let styleId: Int
+    let name: String
+    let iconURL: String
+  }
+  
+  let tripStyle: TripStyle
+  let elements: [Element]
+  var isOpend: Bool
+  
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    elements = try values.decode([Element].self, forKey: .elements)
+    tripStyle = try values.decode(TripStyle.self, forKey: .tripStyle)
+    isOpend = false
+  }
+
 }

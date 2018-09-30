@@ -16,14 +16,23 @@ import Result
 class AuthManager{
   
   var fireBaseId: String?
-  static let imageURL = "http://52.197.13.138/images"
+  static let imageURL = "http://192.168.0.3:8080/images"
   
   static let instance = AuthManager()
   
-  var provider: Reactive<MoyaProvider<ZIP>> = {
+  let activityClosure: NetworkActivityPlugin.NetworkActivityClosure = { activityType, targetType in
+    switch activityType {
+    case .began:
+      log.info("began")
+    case .ended:
+      log.info("ended")
+    }
+  }
+  
+  lazy var provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG
-        return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
+      return MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
       #else
         return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
       #endif
@@ -35,7 +44,7 @@ class AuthManager{
   func updateProvider() {
     if Defaults.hasKey("token"){
       #if DEBUG
-      self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
+      self.provider = MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
       #else
       self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
       #endif

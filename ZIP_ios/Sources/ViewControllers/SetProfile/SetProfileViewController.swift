@@ -129,18 +129,18 @@ class SetProfileViewController: FormViewController{
       
       +++ Section("스타일")
       
-      <<< TripStylePresenterRow(){
-        $0.title = "여행스타일"
-        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {[unowned self] in
-          return TripStyleViewController(viewModel: self.viewModel)
-        }), onDismiss: {[weak self] vc in
-          guard let `self` = self, let tripvc = vc as? TripStyleViewController else {return}
-          self.viewModel.modelSaver.onNext(.tripStyle(value: tripvc.selectedModel))
-          _ = vc.navigationController?.popViewController(animated: true)
-        })}.cellSetup({ (cell, row) in
-          cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
-          cell.detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
-        })
+//      <<< TripStylePresenterRow(){
+//        $0.title = "여행스타일"
+//        $0.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: {[unowned self] in
+//          return TripStyleViewController(viewModel: self.viewModel)
+//        }), onDismiss: {[weak self] vc in
+//          guard let `self` = self, let tripvc = vc as? TripStyleViewController else {return}
+//          self.viewModel.modelSaver.onNext(.tripStyle(value: tripvc.selectedModel))
+//          _ = vc.navigationController?.popViewController(animated: true)
+//        })}.cellSetup({ (cell, row) in
+//          cell.textLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+//          cell.detailTextLabel?.font = UIFont.NotoSansKRMedium(size: 15)
+//        })
 
       <<< InterestPresenterRow(){
         $0.title = "관심사"

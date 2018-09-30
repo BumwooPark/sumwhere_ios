@@ -63,8 +63,15 @@ class ProxyController{
     if Defaults[.token].count != 0{
       profileCheck()
     }else {
-      window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
-      AppDelegate.instance?.window?.makeKeyAndVisible()
+      let naviVC = UINavigationController(rootViewController: WelcomeViewController())
+      naviVC.hero.isEnabled = true
+      naviVC.hero.navigationAnimationType = .fade
+      naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "fill1.png")
+      naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "fill1.png")
+      naviVC.navigationBar.backItem?.title = String()
+      window?.rootViewController = naviVC
+
+//      AppDelegate.instance?.window?.makeKeyAndVisible()
     }
   }
 }

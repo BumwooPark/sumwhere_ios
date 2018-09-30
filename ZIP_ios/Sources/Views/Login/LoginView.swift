@@ -25,13 +25,13 @@ class LoginView: UIView{
   
   let faceBookButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "group4"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "facebookButton.png"), for: .normal)
     return button
   }()
   
   let kakaoButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "group4"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "facebookButton.png"), for: .normal)
     return button
   }()
   
@@ -111,8 +111,6 @@ class LoginView: UIView{
     label.sizeToFit()
     return label
   }()
-  
-  var constaint: Constraint!
   
   override init(frame: CGRect) {
     super.init(frame: frame)

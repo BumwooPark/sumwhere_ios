@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
 //    window?.rootViewController = UINavigationController(rootViewController: ChatListViewController())
-    window?.rootViewController = NewSetProfileViewController()
+    window?.rootViewController = InterestViewController()
 //    proxyController = ProxyController(window: window)
 //    proxyController.makeRootViewController()
     

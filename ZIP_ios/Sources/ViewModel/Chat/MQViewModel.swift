@@ -70,7 +70,6 @@ class MQViewModel: NSObject {
   func publishBehavior(topic: String){
     //TODO: 전송 실패에 대한 부분 생각
     publish
-      .debug()
       .subscribeNext(weak: self) { (weakSelf) -> (Data) -> Void in
       return { message in
         weakSelf.session?.publishData(message, onTopic: topic, retain: false, qos: .exactlyOnce)

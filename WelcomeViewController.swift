@@ -66,7 +66,7 @@ class WelcomeViewController: UIViewController{
   }
   
   private func signIn(){
-    present(DefaultLoginViewController(), animated: true, completion: nil)
+    self.navigationController?.pushViewController(DefaultLoginViewController(), animated: true)
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -78,6 +78,6 @@ class WelcomeViewController: UIViewController{
   
 extension WelcomeViewController: TTTAttributedLabelDelegate{
   func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
-    present(JoinViewController(), animated: true, completion: nil)
+    self.navigationController?.pushViewController(JoinViewController(), animated: true)
   }
 }

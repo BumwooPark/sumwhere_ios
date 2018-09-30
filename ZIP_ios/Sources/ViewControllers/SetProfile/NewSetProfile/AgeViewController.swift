@@ -12,8 +12,10 @@ import RxCocoa
 final class AgeViewController: UIViewController, ProfileCompletor{
   private let disposeBag = DisposeBag()
   
+  let ageDatas = [[Int](10...80)]
+  
   weak var completeSubject: PublishSubject<Void>?
-  weak var viewModel: SetProfileViewModel?
+  weak var viewModel: ProfileViewModel?
   private var didUpdateContraint = false
   private let titleLabel: UILabel = {
     let label = UILabel()
@@ -44,7 +46,7 @@ final class AgeViewController: UIViewController, ProfileCompletor{
     view.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
     
-    Observable.just([[Int](10...80)])
+    Observable.just(ageDatas)
       .bind(to: pickerView.rx.items(adapter: PickerViewViewAdapter()))
       .disposed(by: disposeBag)
     
@@ -59,12 +61,21 @@ final class AgeViewController: UIViewController, ProfileCompletor{
       .subscribeNext(weak: self, { (weakSelf) -> ((Int,Int)) -> Void in
         return { data in
           guard let label = weakSelf.pickerView.view(forRow: data.0, forComponent: data.1) as? UILabel else {return}
-          let attributeString = NSMutableAttributedString(string: label.text ?? String(), attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 30)])
+          let attributeString = NSMutableAttributedString(string: "\(weakSelf.ageDatas[0][data.0])", attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 30)])
           attributeString.append(NSAttributedString(string: " 세", attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 20)]))
           label.attributedText = attributeString
           label.textColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+          weakSelf.viewModel?.saver.onNext(ProfileViewModel.ProfileType.age(value: weakSelf.ageDatas[0][data.0]))
+          weakSelf.nextButton.isEnabled = true
+          weakSelf.nextButton.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
         }
       }).disposed(by: disposeBag)
+    
+    guard let subject = completeSubject else {return}
+    nextButton.rx
+      .tap
+      .bind(to: subject)
+      .disposed(by: disposeBag)
   }
   
   override func updateViewConstraints() {
