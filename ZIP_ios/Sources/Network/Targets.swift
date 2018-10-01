@@ -9,92 +9,156 @@
 import Moya
 
 public enum ZIP{
-  case signUp(email: String, password: String, username: String)
+  case signUp(model: Encodable)
   case signIn(email: String, password: String)
+  case tokenLogin
   case facebook(access_token: String)
   case kakao(access_token: String)
+  case nicknameConfirm(nickname: String)
   case isProfile
-//  case profile(profileImage: Data, image1: Data)
+  case country
+  case GetAllTrip(order: String, sortby: String, skipCount: Int)
+  case createProfile(data: [MultipartFormData])
+  case user
+  case createTrip(model: Encodable)
+  case myTrip
+  case deleteMyTrip(id: Int)
+  case searchDestination(data: String)
+  case AllTripList(sortby: String, order: String, skipCount: Int, maxResultCount: Int)
+  case GetAllTripStyle
+  case GetAllInterest
+  case GetAllCharacter
+  case TripDateValidate(start: String, end: String)
+  case TripDestinationValidate(id: Int)
+  case RelationShipMatch(tripId: Int, startDate: String, endDate: String)
+  case MatchRequest(model: Encodable)
+  case MatchRequestReceive
+  case MatchRequestSend
+  
+  case GetChatRoom
 }
 
-
 extension ZIP: TargetType, AccessTokenAuthorizable{
-  public var baseURL: URL {return URL(string: "http://210.100.238.118:8080")!}
+
+  public var baseURL: URL {
+    #if DEBUG
+    return URL(string: "http://192.168.1.33:8080/galmal")!
+    #else
+    return URL(string: "https://bumwoopark.iptime.org/galmal")!
+    #endif
+  }
   
   public var path: String{
     switch self {
     case .signUp:
       return "/signup"
     case .signIn:
-      return "/signin"
+      return "/signin/email"
+    case .tokenLogin:
+      return "/restrict/token/vaild"
     case .facebook:
-      return "/facebook"
+      return "/signin/facebook"
     case .kakao:
-      return "/kakao"
+      return "/signin/kakao"
     case .isProfile:
-      return "/profile"
-//    case .profile:
-//      return "/profile"
+      return "/restrict/existProfile"
+    case .country:
+      return "/country/"
+    case .nicknameConfirm(let nickname):
+      return "signup/nickname/\(nickname)"
+    case .GetAllTrip:
+      return "/restrict/trip"
+    case .createProfile:
+      return "/restrict/profile"
+    case .searchDestination:
+      return "/restrict/triptype"
+    case .createTrip:
+      return "/restrict/trip"
+    case .myTrip,.deleteMyTrip:
+      return "/restrict/mytrip"
+    case .user:
+      return "/restrict/user"
+    case .AllTripList:
+      return "/restrict/alltriplist"
+    case .GetAllTripStyle:
+      return "/restrict/tripstyle"
+    case .GetAllInterest:
+      return "/restrict/interests"
+    case .GetAllCharacter:
+      return "/restrict/characters"
+    case .TripDestinationValidate:
+      return "/restrict/trip/destination/validate"
+    case .TripDateValidate:
+      return "/restrict/trip/date/validate"
+    case .RelationShipMatch:
+      return "/restrict/match/relationship"
+    case .MatchRequest:
+      return "/restrict/match/request"
+    case .MatchRequestReceive:
+      return "/restrict/match/receive"
+    case .MatchRequestSend:
+      return "/restrict/match/send"
+    case .GetChatRoom:
+      return "/restrict/chat/room"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .signUp:
+    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest:
       return .post
-    case .signIn:
-      return .post
-    case .facebook:
-      return .post
-    case .kakao:
-      return .post
-    case .isProfile:
+    case .deleteMyTrip:
+      return .delete
+    default:
       return .get
-//    case .profile:
-//      return .post
     }
   }
   
-  
   public var sampleData: Data {
-    //    switch self {
-    //    case .zen:
-    //      return "Half measures are as bad as nothing at all.".data(using: String.Encoding.utf8)!
-    //    case .userProfile(let name):
-    //      return "{\"login\": \"\(name)\", \"id\": 100}".data(using: String.Encoding.utf8)!
-    //    case .userRepositories(let name):
-    //      return "[{\"name\": \"Repo Name\"}]".data(using: String.Encoding.utf8)!
-    //    case .branches:
-    //      return "[{\"name\": \"master\"}]".data(using: String.Encoding.utf8)!
-    //    }
     return Data()
   }
   
   public var task: Task {
     switch self {
-    case .signUp(let email, let password, let username):
-      return .requestParameters(parameters: ["email":email,"password":password,"username":username], encoding: URLEncoding.httpBody)
+    case .signUp(let json):
+      return .requestJSONEncodable(json)
     case .signIn(let email,let password):
-      return .requestParameters(parameters: ["username":email,"password":password], encoding: URLEncoding.httpBody)
-    case .facebook(let token):
+      return .requestParameters(parameters: ["email":email,"password":password], encoding: URLEncoding.queryString)
+    case .facebook(let token),.kakao(let token):
       return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
-    case .kakao(let token):
-      return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
-    case .isProfile:
+    case let .GetAllTrip(order, sortby, skipCount):
+      return .requestParameters(parameters: ["order":order,"password":sortby,"skipCount": skipCount], encoding: URLEncoding.queryString)
+    case .createProfile(let data):
+      return .uploadMultipart(data)
+    case .searchDestination(let data):
+      return .requestParameters(parameters: ["name":data], encoding: URLEncoding.queryString)
+    case .createTrip(let json):
+      return .requestJSONEncodable(json)
+    case .AllTripList(let sortby, let order, let skipCount, let maxResultCount):
+      return .requestParameters(parameters: ["sortby": sortby,"order":order,"skipCount":skipCount,"maxResultCount": maxResultCount], encoding: URLEncoding.queryString)
+    case .TripDateValidate(let start, let end):
+      return .requestParameters(parameters: ["start": start,"end":end],encoding: URLEncoding.queryString)
+    case .TripDestinationValidate(let id):
+      return .requestParameters(parameters: ["id": id],encoding: URLEncoding.queryString)
+    case .RelationShipMatch(let tripId, let startDate, let endDate):
+      return .requestParameters(parameters: ["tripid":tripId,"start":startDate,"end":endDate], encoding: URLEncoding.queryString)
+    case .deleteMyTrip(let id):
+      return .requestParameters(parameters: ["id": id], encoding: URLEncoding.queryString)
+    case .MatchRequest(let json):
+      return .requestJSONEncodable(json)
+    default:
       return .requestPlain
-//    case .profile(let profileImage, let image1):
-//      return .uploadMultipart([MultipartFormData(provider: .data(profileImage), name: "profileImage",fileName: "name",mimeType: "image/jpeg"),
-//                               MultipartFormData(provider: .data(image1), name: "image1"),
-//                               MultipartFormData(provider: .data(<#T##Data#>), name: <#T##String#>)])
     }
   }
   
   public var headers: [String : String]? {
-    return [:]
+    return ["X-Request-ID": randomString(15)]
   }
   
   public var authorizationType: AuthorizationType {
     switch self {
+    case .signUp,.nicknameConfirm,.signIn:
+      return .none
     default:
       return .bearer
     }

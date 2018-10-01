@@ -30,10 +30,13 @@ extension UIView{
     case .bottomToTop:
       gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
       gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
-    default:
-      break
     }
     
     self.layer.insertSublayer(gradient, at: 0)
   }
+  
+  class func loadXib(nibName: String) -> UIView{
+    return UINib(nibName: nibName, bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
+  }
+
 }

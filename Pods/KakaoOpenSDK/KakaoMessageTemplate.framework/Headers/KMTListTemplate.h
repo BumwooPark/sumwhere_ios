@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Kakao Corp.
+ * Copyright 2017-2018 Kakao Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,6 +12,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ */
+
+/*!
+ * @header KMTListTemplate.h
+ * @abstract 여러 개의 컨텐츠를 리스트 형태로 보여줄 수 있는 메시지 템플릿입니다.
  */
 
 #import <KakaoMessageTemplate/KMTTemplate.h>
@@ -42,6 +47,24 @@ NS_ASSUME_NONNULL_BEGIN
  * @abstract 헤더 타이틀 내용에 해당하는 링크 정보.
  */
 @property (copy, nonatomic) KMTLinkObject *headerLink;
+
+/*!
+ * @property headerImageURL
+ * @abstract 리스트 템플릿의 상단에 보이는 이미지 URL
+ */
+@property (copy, nonatomic, nullable) NSURL *headerImageURL;
+
+/*!
+ * @property headerImageWidth
+ * @abstract 리스트 템플릿의 상단에 보이는 이미지 widht, 권장 800 (단위: 픽셀)
+ */
+@property (copy, nonatomic, nullable) NSNumber *headerImageWidth;
+
+/*!
+ * @property headerImageHeight
+ * @abstract 리스트 템플릿의 상단에 보이는 이미지 height, 권장 190 (단위: 픽셀)
+ */
+@property (copy, nonatomic, nullable) NSNumber *headerImageHeight;
 
 /*!
  * @property contents
@@ -78,6 +101,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nonatomic) NSString *headerTitle;
 @property (copy, nonatomic) KMTLinkObject *headerLink;
+@property (copy, nonatomic, nullable) NSURL *headerImageURL;
+@property (copy, nonatomic, nullable) NSNumber *headerImageWidth;
+@property (copy, nonatomic, nullable) NSNumber *headerImageHeight;
 @property (copy, nonatomic) NSMutableArray<KMTContentObject *> *contents;
 @property (copy, nonatomic, nullable) NSString *buttonTitle;
 @property (copy, nonatomic, nullable) NSMutableArray<KMTButtonObject *> *buttons;

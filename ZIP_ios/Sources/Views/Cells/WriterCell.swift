@@ -18,7 +18,7 @@ class CustomView: UIView{
     super.init(frame:frame)
     addSubview(titleLabel)
     
-    self.backgroundColor = UIColor(hex: "9DCBF4")
+    self.backgroundColor = #colorLiteral(red: 0.6156862745, green: 0.7960784314, blue: 0.9568627451, alpha: 1)
     self.layer.cornerRadius = 10
     
     self.layer.shadowColor = UIColor.gray.cgColor

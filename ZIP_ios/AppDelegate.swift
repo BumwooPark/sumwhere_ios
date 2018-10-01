@@ -14,15 +14,20 @@ import SwiftyBeaver
 import RxSwift
 import RxCocoa
 import RxOptional
+import RxSwiftExt
 import Moya
 import SwiftyJSON
 import Firebase
 import FirebaseMessaging
 import UserNotifications
 import FBSDKCoreKit
+import SwiftyImage
+import SwiftyUserDefaults
+import Fabric
+import Crashlytics
 
 
-
+let tokenObserver = PublishSubject<String>()
 let log = SwiftyBeaver.self
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,18 +35,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   let disposeBag = DisposeBag()
   let gcmMessageIDKey = "gcm.message_id"
+  var proxyController: ProxyController!
   
   static var instance: AppDelegate? {
     return UIApplication.shared.delegate as? AppDelegate
   }
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    
+    Fabric.with([Crashlytics.self])
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
+    
+    
+//    window?.rootViewController = UINavigationController(rootViewController: ChatListViewController())
+//    window?.rootViewController = InterestViewController()
     window?.rootViewController = UIViewController()
-    let proxyController = ProxyController(window: window)
+    proxyController = ProxyController(window: window)
     proxyController.makeRootViewController()
+    
+    tokenObserver
+      .do(onNext: { (token) in
+        if token.count > 0 {
+        Defaults[.token] = token
+          Defaults.synchronize()
+          AuthManager.instance.updateProvider()
+        }else{
+          Defaults.remove("token")
+          Defaults.synchronize()
+        }
+      })
+      .delay(1, scheduler: MainScheduler.instance)
+      .subscribe(onNext: {[weak self] (token) in
+        log.info(Defaults[.token])
+        self?.proxyController.makeRootViewController()
+    }).disposed(by: disposeBag)
     
     faceBookSetting(application: application, didFinishLaunchingWithOptions: launchOptions)
     FirebaseApp.configure()
@@ -80,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
     UINavigationBar.appearance().shadowImage = UIImage()
-    UINavigationBar.appearance().tintColor = nil
+    UINavigationBar.appearance().tintColor = .black
   }
 
   func applicationDidEnterBackground(_ application: UIApplication) {
@@ -137,7 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    Auth.auth().setAPNSToken(deviceToken, type: .unknown)
+//    Auth.auth().setAPNSToken(deviceToken, type: .unknown)
     Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
     var token = ""
     for i in 0..<deviceToken.count {
@@ -159,6 +186,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // Print full message.
+    log.info(application.applicationState)
+    
     log.info(userInfo)
   }
   
@@ -179,6 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate : UNUserNotificationCenterDelegate {
   
   // Receive displayed notifications for iOS 10 devices.
+  // 앱이 실행중 노티처리
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               willPresent notification: UNNotification,
                               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -191,14 +221,21 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     if let messageID = userInfo[gcmMessageIDKey] {
       log.info("Message ID: \(messageID)")
     }
-    
-    // Print full message.
-    log.info(userInfo)
+  
+    if let apns = userInfo[AnyHashable("aps")] as? NSDictionary{
+      if let bedge = apns["badge"] as? Int {
+        log.info("성공")
+        UIApplication.shared.applicationIconBadgeNumber = bedge
+      }else{
+        log.info(apns["badge"])
+      }
+    }
     
     // Change this to your preferred presentation option
-    completionHandler([])
+    completionHandler([.alert,.badge,.sound])
   }
   
+  // 앱이 백그라운드나 종료시 처리
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {

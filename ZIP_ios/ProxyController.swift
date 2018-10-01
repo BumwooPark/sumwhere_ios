@@ -12,52 +12,73 @@ import RxSwift
 import SwiftyUserDefaults
 import Moya
 
-
 class ProxyController{
   let disposeBag = DisposeBag()
-  let mainVC = MainTabBarController()
-  let welcomeVC = WelcomeViewController()
-  let provider = AuthManager.sharedManager.provider
-  let defaultLogin = UserDefaults.standard.rx
-    .observe(Bool.self, UserDefaultType.isLogin.rawValue)
-    .filterNil()
-    .observeOn(MainScheduler.instance)
-    .share()
-
   let window: UIWindow?
- 
+
   init(window: UIWindow?) {
     self.window = window
-
-    defaultLogin
-      .filter{$0}
-      .map({ _ -> () in return ()})
-      .bind(onNext: makeRootViewController)
-      .disposed(by: disposeBag)
   }
   
-  private func serverHaveProfile(){
-      provider.request(.isProfile)
-        .filter(statusCode: 200)
-        .subscribe(onSuccess: { [weak self](response) in
-          guard let retainSelf = self else {return}
-          retainSelf.window?.rootViewController = MainTabBarController()
-        }) { [weak self](error) in
-          let moyaError = error as? MoyaError
-          if moyaError?.response?.statusCode == 406,
-            let retainSelf = self {
-          retainSelf.window?.rootViewController = SetProfileViewController()
-          }else{
-            log.error(error)
+  func profileCheck(){
+    let isProfile = AuthManager.instance
+      .provider.request(.isProfile)
+      .map(ResultModel<Bool>.self)
+      .map{$0.result}
+      .asObservable()
+      .filterNil()
+    
+    let tokenLogin = AuthManager.instance
+      .provider.request(.tokenLogin)
+      .map(ResultModel<Bool>.self)
+      .map{$0.result}
+      .asObservable()
+      .filterNil()
+    
+    Observable<UIViewController>
+      .combineLatest(isProfile, tokenLogin) { (profile, login)in
+      let loginVC = UINavigationController(rootViewController: WelcomeViewController())
+//      loginVC.navigationBar.prefersLargeTitles = true
+      loginVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRMedium(size: 40),.foregroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
+      loginVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+      
+      if !login {
+        return loginVC
+      }else {
+        if !profile{
+          loginVC.addChildViewController(NewSetProfileViewController())
+          return loginVC
+        }else{
+          return MainTabBarController()
+        }
+      }
+      }.subscribe(weak: self) { (weakSelf) -> (Event<UIViewController>) -> Void in
+        return {event in
+          switch event{
+          case .next(let element):
+            AppDelegate.instance?.window?.rootViewController = element
+          case .error(let error):
+            guard let err = error as? MoyaError else {return}
+            err.GalMalErrorHandler()
+          case .completed:
+            log.info("complete")
           }
+        }
     }.disposed(by: disposeBag)
   }
   
   func makeRootViewController(){
-    if Defaults[.isLogin]{
-      window?.rootViewController = MainTabBarController()
-    }else{
-      window?.rootViewController = WelcomeViewController()
+    
+    if Defaults[.token].count != 0{
+      profileCheck()
+    }else {
+      let naviVC = UINavigationController(rootViewController: WelcomeViewController())
+      naviVC.hero.isEnabled = true
+      naviVC.hero.navigationAnimationType = .fade
+      naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "fill1.png")
+      naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "fill1.png")
+      naviVC.navigationBar.backItem?.title = String()
+      window?.rootViewController = naviVC
     }
   }
 }

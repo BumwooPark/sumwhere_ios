@@ -50,26 +50,3 @@ class KeyChainManager{
     return status == noErr
   }
 }
-
-
-
-//class test{
-//  init() {
-//    let id = "sample"
-//    let password = "1234"
-
-//    if let idData = id.data(using: String.Encoding.utf8),let passwordData = password.data(using: String.Encoding.utf8){
-//      print(KeyChainManager.save(key: "id", data: idData))
-//      print(KeyChainManager.save(key: "password", data: passwordData)
-//    }
-//
-//    if let idData = KeyChainManager.load(key: "id"), let passwordData = KeyChainManager.load(key: "password"){
-//      if let id = String(data: idData, encoding: String.Encoding.utf8), let password = String(data: passwordData, encoding: String.Encoding.utf8){
-//
-//      }
-//    }
-//  }
-//}
-
-
-
