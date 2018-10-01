@@ -35,7 +35,7 @@ class NewSetProfileViewController: UIViewController{
                                                       AgeViewController(),
                                                       ProfileImageViewController(),
                                                       CharacterViewController(),
-                                                      InterestViewController()]
+                                                      TripStyleViewController()]
   
   var didUpdateConstraint = false
   lazy var pageView = PageViewController(pages: childs, spin: false)

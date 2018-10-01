@@ -135,7 +135,7 @@
 		B16B3E032117F46B001D278A /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3E022117F46B001D278A /* InterestModel.swift */; };
 		B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD221211162AF0045FAA6 /* MyTripCell.swift */; };
 		B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */; };
-		B18BC89821547ED700642BB0 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89721547ED700642BB0 /* InterestViewController.swift */; };
+		B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89721547ED700642BB0 /* TripStyleViewController.swift */; };
 		B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC8992154925100642BB0 /* ProfileViewModel.swift */; };
 		B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */; };
 		B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C562149FF6500BC95C5 /* ChatListModel.swift */; };
@@ -344,7 +344,7 @@
 		B16B3E022117F46B001D278A /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
 		B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageViewController + Extension.swift"; sourceTree = "<group>"; };
-		B18BC89721547ED700642BB0 /* InterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
+		B18BC89721547ED700642BB0 /* TripStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewController.swift; sourceTree = "<group>"; };
 		B18BC8992154925100642BB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListSectionModel.swift; sourceTree = "<group>"; };
 		B1996C562149FF6500BC95C5 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
@@ -504,7 +504,7 @@
 				0A075BFA2153CE80004A4DBF /* AgeViewController.swift */,
 				0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */,
 				0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */,
-				B18BC89721547ED700642BB0 /* InterestViewController.swift */,
+				B18BC89721547ED700642BB0 /* TripStyleViewController.swift */,
 			);
 			path = NewSetProfile;
 			sourceTree = "<group>";
@@ -1440,7 +1440,7 @@
 				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
 				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
 				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
-				B18BC89821547ED700642BB0 /* InterestViewController.swift in Sources */,
+				B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */,
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,
 				0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,

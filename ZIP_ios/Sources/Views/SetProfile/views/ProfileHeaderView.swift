@@ -20,12 +20,12 @@ final class ProfileHeaderView: UIView {
   private let disposeBag = DisposeBag()
   var profiles = [UIImage?](repeating: nil, count: 5){
     didSet{
-      viewController?.viewModel
-        .modelSaver
-        .onNext(.image(value: profiles))
+//      viewController?.viewModel
+//        .modelSaver
+//        .onNext(.image(value: profiles))
     }
   }
-  var viewController: SetProfileViewController?
+//  var viewController: SetProfileViewController?
   
   let datas = BehaviorRelay<[SectionOfCustomData]>(value: [])
   
@@ -85,7 +85,7 @@ final class ProfileHeaderView: UIView {
     configure.maxSelectedAssets = 1
     controller.configure = configure
     controller.delegate = self
-    self.viewController?.present(controller, animated: true, completion: nil)
+//    self.viewController?.present(controller, animated: true, completion: nil)
   }
   
   func imageSort(){

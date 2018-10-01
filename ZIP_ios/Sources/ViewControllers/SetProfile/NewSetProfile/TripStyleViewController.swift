@@ -11,8 +11,7 @@ import SnapKit
 import RxCocoa
 import RxDataSources
 
-final class InterestViewController: UIViewController, ProfileCompletor{
-  
+final class TripStyleViewController: UIViewController, ProfileCompletor{
   
   private let disposeBag = DisposeBag()
   private var didUpdateContraint = false
@@ -20,9 +19,14 @@ final class InterestViewController: UIViewController, ProfileCompletor{
   weak var viewModel: ProfileViewModel?
   weak var completeSubject: PublishSubject<Void>?
   private var constraint: Constraint?
-  
   private var data = [TripStyleModel]()
-  
+  private var selectedData = [TripStyleModel.Element](){
+    didSet{
+      nextButton.isEnabled = selectedData.count >= 3
+      nextButton.backgroundColor = (selectedData.count >= 3) ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+      viewModel?.saver.onNext(.tripStyle(value: selectedData))
+    }
+  }
   
   lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
@@ -34,7 +38,6 @@ final class InterestViewController: UIViewController, ProfileCompletor{
     let view = UIView()
     return view
   }()
-
 
   private let titleLabel: UILabel = {
     let attributeString = NSMutableAttributedString(string: "당신의 여행스타일과\n그에 맞는 관심사를 선택해주세요\n",
@@ -62,7 +65,7 @@ final class InterestViewController: UIViewController, ProfileCompletor{
   
   private let nextButton: UIButton = {
     let button = UIButton()
-    button.setTitle("다음", for: .normal)
+    button.setTitle("갈래말래 시작하기", for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 21)
     button.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
     button.isEnabled = false
@@ -86,23 +89,11 @@ final class InterestViewController: UIViewController, ProfileCompletor{
     view.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
     
-    AuthManager.instance.provider
-      .request(.GetAllTripStyle)
-      .filterSuccessfulStatusCodes()
-      .map(ResultModel<[TripStyleModel]>.self)
-      .map{$0.result}
-      .asObservable()
-      .filterNil()
-      .subscribeNext(weak: self, { (weakSelf) -> ([TripStyleModel]) -> Void in
-        return {item in
-          weakSelf.data = item
-          weakSelf.tableView.reloadData()
-        }
-      }).disposed(by: disposeBag)
-    
-    
-    
     guard let model = viewModel, let back = backSubject else {return}
+    
+    nextButton.rx.tap
+      .bind(onNext: model.putProfile)
+      .disposed(by: disposeBag)
     
     model
       .tripStyleAPI
@@ -165,8 +156,7 @@ final class InterestViewController: UIViewController, ProfileCompletor{
   }
 }
 
-
-extension InterestViewController: UITableViewDataSource{
+extension TripStyleViewController: UITableViewDataSource{
   
   func numberOfSections(in tableView: UITableView) -> Int {
     return data.count
@@ -179,11 +169,43 @@ extension InterestViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TripStyleCell.self), for: indexPath) as! TripStyleCell
     cell.item = data[indexPath.section].elements
+    
+    cell.collectionView
+      .rx
+      .modelSelected(TripStyleModel.Element.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (TripStyleModel.Element) -> Void in
+        return {model in
+          var isSelected = false
+          for m in weakSelf.selectedData{
+            if m.id == model.id{
+              isSelected = true
+              break
+            }
+          }
+          if !isSelected{
+            weakSelf.selectedData.append(model)
+          }
+        }
+    }.disposed(by: disposeBag)
+    
+    cell.collectionView
+      .rx
+      .modelDeselected(TripStyleModel.Element.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (TripStyleModel.Element) -> Void in
+        return { model in
+          for (i,m) in weakSelf.selectedData.enumerated(){
+            if m.id == model.id{
+              weakSelf.selectedData.remove(at: i)
+            }
+          }
+        }
+      }.disposed(by: disposeBag)
+    
     return cell
   }
 }
 
-extension InterestViewController: UITableViewDelegate{
+extension TripStyleViewController: UITableViewDelegate{
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: TripStyleHeaderView.self)) as! TripStyleHeaderView
     view.item = data[section]
@@ -194,6 +216,13 @@ extension InterestViewController: UITableViewDelegate{
       .subscribeNext(weak: self) { (weakSelf) -> (UITapGestureRecognizer) -> Void in
         return {_ in
           weakSelf.data[section].isOpend = weakSelf.data[section].isOpend ? false : true
+          for e in weakSelf.data[section].elements{
+            for (i,m) in weakSelf.selectedData.enumerated(){
+              if m.id == e.id{
+                weakSelf.selectedData.remove(at: i)
+              }
+            }
+          }
           weakSelf.tableView.reloadSections(IndexSet(integer: section), with: .fade)
         }
     }.disposed(by: view.disposeBag)

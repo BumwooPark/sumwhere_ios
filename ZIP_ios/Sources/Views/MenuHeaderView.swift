@@ -55,7 +55,7 @@ class MenuHeaderView: UIView {
       .map{$0.result}
       .filterNil()
       .do(onNext: {[weak self] (model) in
-        self?.profileImage.kf.setImageWithZIP(image: model.profile?.image1 ?? String())
+//        self?.profileImage.kf.setImageWithZIP(image: model.profile?.image1 ?? String())
       }).map{"\($0.point)"}
       .bind(to: keyLabel.rx.text)
       .disposed(by: disposeBag)

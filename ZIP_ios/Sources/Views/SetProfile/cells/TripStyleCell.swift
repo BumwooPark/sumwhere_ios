@@ -13,7 +13,7 @@ import Kingfisher
 
 class TripStyleCell: UITableViewCell{
   
-  private let disposeBag = DisposeBag()
+  var disposeBag = DisposeBag()
   
   var item: [TripStyleModel.Element]?{
     didSet{
@@ -49,7 +49,7 @@ class TripStyleCell: UITableViewCell{
     collectionView.allowsMultipleSelection = true
     return collectionView
   }()
-  
+
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     selectionStyle = .none

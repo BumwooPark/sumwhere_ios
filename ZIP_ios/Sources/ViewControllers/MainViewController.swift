@@ -38,8 +38,12 @@ final class MainViewController: UIViewController{
   
   let datas = BehaviorRelay<[MainViewModel]>(value: [])
   
-  
-  private let advertiseViewController = AdViewController()
+  private let advertiseViewController: AdViewController = {
+    let vc = AdViewController()
+    vc.view.layer.cornerRadius = 15
+    vc.view.layer.masksToBounds = true
+    return vc
+  }()
   
   private let customRightButton: UIButton = {
     let button = UIButton()
@@ -52,16 +56,16 @@ final class MainViewController: UIViewController{
   
   let alertButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "icons8-notification-24"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "galmalicon.png"), for: .normal)
     return button
   }()
   
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: 250)
-    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 80)
-    layout.minimumLineSpacing = 20
+    layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: 167)
+    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 103)
+    layout.minimumLineSpacing = 21
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.isScrollEnabled = false
     collectionView.register(MainCollectionCell.self, forCellWithReuseIdentifier: String(describing: MainCollectionCell.self))
@@ -69,7 +73,6 @@ final class MainViewController: UIViewController{
                             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                             withReuseIdentifier: String(describing: MainCollectionHeaderView.self))
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
-    collectionView.showsVerticalScrollIndicator = false
     collectionView.backgroundColor = .white
     return collectionView
   }()
@@ -80,7 +83,7 @@ final class MainViewController: UIViewController{
     attachment.image = #imageLiteral(resourceName: "logo")
     attachment.bounds = CGRect(x: 0, y: -2, width: 20, height: 20)
     let attributeString = NSAttributedString(attachment: attachment)
-    
+
     let myString = NSMutableAttributedString(string: String())
     myString.append(attributeString)
     myString.append(NSAttributedString(string: "갈래말래",
@@ -95,26 +98,15 @@ final class MainViewController: UIViewController{
   lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.alwaysBounceVertical = true
+    scrollView.showsVerticalScrollIndicator = false
     return scrollView
   }()
   
   override func loadView() {
     super.loadView()
-    let titleLabel = UILabel()
-    let attachment = NSTextAttachment()
-    attachment.image = #imageLiteral(resourceName: "logo")
-    attachment.bounds = CGRect(x: 0, y: -2, width: 20, height: 20)
-    
-    let attributeString = NSAttributedString(attachment: attachment)
-    let myString = NSMutableAttributedString(string: String())
-    myString.append(attributeString)
-    myString.append(NSAttributedString(string: "갈래말래",
-                                       attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 24),
-                                                    .foregroundColor: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)]))
+    view.backgroundColor = #colorLiteral(red: 0.9607003331, green: 0.9608381391, blue: 0.9606701732, alpha: 1)
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customRightButton)
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: alertButton)
-    titleLabel.attributedText = myString
-    self.navigationItem.titleView = titleLabel
   }
   
   override func viewDidLoad() {
@@ -148,7 +140,7 @@ final class MainViewController: UIViewController{
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    Observable.just([MainViewModel(header: "추천 여행지", items: [
+    Observable.just([MainViewModel(header: "박범우님을\n위한 갈래말래의 추천 여행지", items: [
       MainModel(title: "인기 급상승 \n여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
       MainModel(title: "최다 등록\n여행지!", detail:"핫한 10개 도시", image: #imageLiteral(resourceName: "tower")),
       MainModel(title: "최다 매칭\n여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))])])
@@ -217,7 +209,7 @@ final class MainViewController: UIViewController{
       
       advertiseViewController.view.snp.makeConstraints { (make) in
         topConstraint = make.top.equalTo(topAnchorValue).constraint
-        make.left.right.equalTo(scrollView)
+        make.left.right.equalTo(scrollView).inset(9)
         make.height.equalTo(180)
       }
       

@@ -14,6 +14,12 @@ import DZNEmptyDataSet
 final class CharacterViewController: UIViewController, ProfileCompletor{
   
   
+  private var selectedModel = [CharacterModel](){
+    didSet{
+      viewModel?.saver.onNext(.character(value: selectedModel))
+    }
+  }
+  
   weak var backSubject: PublishSubject<Void>?
   weak var completeSubject: PublishSubject<Void>?
   weak var viewModel: ProfileViewModel?
@@ -68,6 +74,28 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
     view.addSubview(nextButton)
     view.setNeedsUpdateConstraints()
     
+    collectionView.rx
+      .modelSelected(CharacterModel.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (CharacterModel) -> Void in
+        return { model in
+          weakSelf.selectedModel.append(model)
+        }
+    }.disposed(by: disposeBag)
+    
+    collectionView
+      .rx
+      .modelDeselected(CharacterModel.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (CharacterModel) -> Void in
+        return { model in
+          for (i,m) in weakSelf.selectedModel.enumerated(){
+            if m.id == model.id{
+              weakSelf.selectedModel.remove(at: i)
+              break
+            }
+          }
+        }
+    }.disposed(by: disposeBag)
+    
     Observable<IndexPath>
       .merge([collectionView.rx.itemSelected.asObservable(),collectionView.rx.itemDeselected.asObservable()])
       .observeOn(MainScheduler.instance)
@@ -77,11 +105,12 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
           weakSelf.nextButton.isEnabled = selectedItem.count >= 1
           weakSelf.nextButton.backgroundColor = (selectedItem.count >= 1) ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
           //TODO: selected 아이템 전송
-          log.info(weakSelf.collectionView.indexPathsForSelectedItems)
         }
     }.disposed(by: disposeBag)
     
-    guard let model = viewModel,let subject = completeSubject ,let back = backSubject else {return}
+    guard let model = viewModel,
+      let subject = completeSubject,
+      let back = backSubject else {return}
     
     model.getCharacters
       .catchError({ (error) -> Observable<[CharacterModel]?> in
@@ -106,7 +135,7 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
       .bind(to: back)
       .disposed(by: disposeBag)
   }
-
+  
   override func updateViewConstraints() {
     if !didUpdateContraint{
       titleLabel.snp.makeConstraints { (make) in

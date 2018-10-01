@@ -10,10 +10,10 @@ class MatchResultCell: UICollectionViewCell{
   
   var item: UserTripJoinModel?{
     didSet{
-      profileImageView.kf.setImageWithZIP(image: item?.user.profile?.image1 ?? String())
-      nickNameLabel.text = item?.user.nickname
-      guard let birthday = item!.user.profile?.birthday.toDate() else {return}
-      ageLabel.text = "만\(Date().year - birthday.year)살"
+//      profileImageView.kf.setImageWithZIP(image: item?.user.profile?.image1 ?? String())
+//      nickNameLabel.text = item?.user.nickname
+//      guard let birthday = item!.user.profile?.birthday.toDate() else {return}
+//      ageLabel.text = "만\(Date().year - birthday.year)살"
     }
   }
 

@@ -42,7 +42,7 @@ class ConfigureViewController: FormViewController{
       }
       
       <<< LabelRow(){$0.title = "프로필"}.onCellSelection({[weak self] (cell, row) in
-        self?.navigationController?.pushViewController(SetProfileViewController(config: false), animated: true)
+//        self?.navigationController?.pushViewController(SetProfileViewController(config: false), animated: true)
       })
       <<< LabelRow(){$0.title = "친구"}.onCellSelection({ [weak self] (cell, row) in
         self?.present(FriendsViewController(), animated: true, completion: nil)
@@ -50,7 +50,7 @@ class ConfigureViewController: FormViewController{
       <<< LabelRow(){$0.title = "알림"}
       <<< LabelRow(){$0.title = "스토어"}
       <<< LabelRow(){$0.title = "계정설정"}.onCellSelection({(cell, row) in
-//        self?.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+
         tokenObserver.onNext(String())
       })
       <<< LabelRow(){$0.title = "문의하기"}

@@ -21,18 +21,5 @@ struct UserModel: Codable{
   let kakao_id: Int?
   let facebook_id: String?
   let point: Int
-  var profile: ProfileModel?
 }
 
-struct ProfileModel: Codable{
-  var birthday: String
-  var tripType: [TripStyleModel]?
-  var interestType: [InterestModel]?
-  var characterType: [CharacterModel]?
-  var introText: String?
-  var image1: String
-  var image2: String
-  var image3: String
-  var image4: String
-  var image5: String
-}
