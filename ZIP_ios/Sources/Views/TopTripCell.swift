@@ -8,30 +8,20 @@
 
 final class TopTripCell: UICollectionViewCell{
   @IBOutlet weak var tripImageView: UIImageView!
-  @IBOutlet weak var tripNameLabel: UILabel!
-  @IBOutlet weak var countryLabel: TopTripLabel!
+  @IBOutlet weak var mainContentView: UIView!
+  @IBOutlet weak var countryLabel: UILabel!
+  @IBOutlet weak var cityLabel: UILabel!
   @IBOutlet weak var countLabel: UILabel!
-  @IBOutlet weak var commitButton: UIButton!
+  @IBOutlet weak var charcterLabel: UILabel!
+  @IBOutlet weak var tripTyleLabel: UILabel!
+  
+  @IBOutlet weak var addButton: UIButton!
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    countryLabel.layer.cornerRadius = 10
-    countryLabel.clipsToBounds = true
-    commitButton.layer.cornerRadius = 10
-    commitButton.clipsToBounds = true 
-  }
-}
-
-class TopTripLabel: UILabel {
-  
-  override func drawText(in rect: CGRect) {
-    super.drawText(in: UIEdgeInsetsInsetRect(rect, UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)))
-  }
-  
-  override var intrinsicContentSize: CGSize{
-    var size = super.intrinsicContentSize
-    size.width += 20
-    size.height += 10
-    return size
+    mainContentView.layer.cornerRadius = 18
+    mainContentView.layer.shadowColor = #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1)
+    mainContentView.layer.shadowOffset = CGSize(width: 0, height: 2)
+    mainContentView.layer.shadowOpacity = 4
   }
 }

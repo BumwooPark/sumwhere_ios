@@ -141,9 +141,9 @@ final class MainViewController: UIViewController{
       .disposed(by: disposeBag)
     
     Observable.just([MainViewModel(header: "박범우님을\n위한 갈래말래의 추천 여행지", items: [
-      MainModel(title: "인기 급상승 \n여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
-      MainModel(title: "최다 등록\n여행지!", detail:"핫한 10개 도시", image: #imageLiteral(resourceName: "tower")),
-      MainModel(title: "최다 매칭\n여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))])])
+      MainModel(title: "01\n인기 급상승 여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
+      MainModel(title: "02\n최다 등록 여행지!", detail:"핫한 10개 도시", image: #imageLiteral(resourceName: "tower")),
+      MainModel(title: "최다 매칭 여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))])])
       .bind(to: datas)
       .disposed(by: disposeBag)
     

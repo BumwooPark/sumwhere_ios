@@ -9,7 +9,6 @@
 class MainCollectionCell: UICollectionViewCell{
   
   var didUpdateConstraint = false
-  
   var item: MainModel?{
     didSet{
       backImageView.image = item?.image
@@ -20,7 +19,7 @@ class MainCollectionCell: UICollectionViewCell{
   
   let titleLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.NotoSansKRBold(size: 30)
+    label.font = UIFont.NotoSansKRBold(size: 17)
     label.textColor = .white
     label.numberOfLines = 0
     return label
@@ -29,7 +28,7 @@ class MainCollectionCell: UICollectionViewCell{
   let detailLabel: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.NotoSansKRMedium(size: 15)
+    label.font = UIFont.NotoSansKRMedium(size: 13.5)
     return label
   }()
   
@@ -85,7 +84,8 @@ class MainCollectionCell: UICollectionViewCell{
       }
       
       titleLabel.snp.makeConstraints { (make) in
-        make.left.top.equalToSuperview().inset(20)
+        make.top.equalToSuperview().inset(27)
+        make.left.equalToSuperview().inset(20)
       }
       
       detailLabel.snp.makeConstraints { (make) in

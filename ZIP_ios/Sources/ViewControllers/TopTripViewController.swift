@@ -24,19 +24,18 @@ class TopTripViewController: UIViewController{
   let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 500)
+    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 476)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(UINib(nibName: "TopTripCell", bundle: nil), forCellWithReuseIdentifier: String(describing: TopTripCell.self))
     collectionView.alwaysBounceVertical = true
-    collectionView.backgroundColor = .white
+    collectionView.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
     return collectionView
   }()
   
   let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "최다 등록 여행지"
-    label.font = UIFont.NotoSansKRMedium(size: 20)
-    label.textColor = #colorLiteral(red: 0.2705882353, green: 0.4549019608, blue: 0.8078431373, alpha: 1)
+    label.font = .AppleSDGothicNeoSemiBold(size: 19)
     return label
   }()
   
