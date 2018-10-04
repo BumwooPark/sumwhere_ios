@@ -175,10 +175,8 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     let controller = TLPhotosPickerViewController(withTLPHAssets: {[weak self] (assets) in
       guard let `self` = self else {return}
       
-      
-      
-      
-        self.profileImage[index] = assets.first?.fullResolutionImage
+        let resizedImage = assets.first?.fullResolutionImage?.resizeImageUsingVImage(size: CGSize(width: 500, height: 500))
+        self.profileImage[index] = resizedImage
     }, didCancel: nil)
     var configure = TLPhotosPickerConfigure()
     configure.allowedLivePhotos = true
