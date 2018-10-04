@@ -174,6 +174,10 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
   private func pushImageSelectView(index: Int){
     let controller = TLPhotosPickerViewController(withTLPHAssets: {[weak self] (assets) in
       guard let `self` = self else {return}
+      
+      
+      
+      
         self.profileImage[index] = assets.first?.fullResolutionImage
     }, didCancel: nil)
     var configure = TLPhotosPickerConfigure()

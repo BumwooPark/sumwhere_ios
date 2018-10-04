@@ -21,9 +21,6 @@ platform :ios do
 
     slack(message: "빌드시작",channel: "#ios",
      slack_url: "https://hooks.slack.com/services/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")
-    increment_build_number(build_number: latest_testflight_build_number + 1,
-      xcodeproj: "ZIP_ios.xcodeproj")
-
 
     get_certificates           # invokes cert
     get_provisioning_profile   # invokes sigh
@@ -35,11 +32,14 @@ platform :ios do
       output_directory: "fastlane/ipa/",
       workspace: "ZIP_ios.xcworkspace",
       include_bitcode: false,
+      xcargs: "-allowProvisioningUpdates",
       silent: true,
         clean: true) # Build your app - more options available
     upload_to_testflight
     slack(message: "테스트 플라이트 배포 완료",channel: "#ios",
      slack_url: "https://hooks.slack.com/services/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")
+    increment_build_number(build_number: latest_testflight_build_number + 1,
+      xcodeproj: "ZIP_ios.xcodeproj")
   end
 
 
