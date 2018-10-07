@@ -72,8 +72,8 @@ final class MainViewController: UIViewController{
     collectionView.register(MainCollectionHeaderView.self,
                             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                             withReuseIdentifier: String(describing: MainCollectionHeaderView.self))
-    collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
-    collectionView.backgroundColor = .white
+    collectionView.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 0, right: 0)
+    collectionView.backgroundColor = .clear
     return collectionView
   }()
   
@@ -94,9 +94,11 @@ final class MainViewController: UIViewController{
   }()
   
   private let contentView = UIView()
+  private let footerView = MainFooterView.loadXib(nibName: "MainFooterView") as! MainFooterView
   
   lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
+    scrollView.backgroundColor = .clear
     scrollView.alwaysBounceVertical = true
     scrollView.showsVerticalScrollIndicator = false
     return scrollView
@@ -104,7 +106,7 @@ final class MainViewController: UIViewController{
   
   override func loadView() {
     super.loadView()
-    view.backgroundColor = #colorLiteral(red: 0.9607003331, green: 0.9608381391, blue: 0.9606701732, alpha: 1)
+    view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customRightButton)
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: alertButton)
   }
@@ -124,17 +126,16 @@ final class MainViewController: UIViewController{
     
     self.navigationController?.navigationBar.topItem?.title = String()
     
-    view.backgroundColor = .white
     view.addSubview(scrollView)
     scrollView.addSubview(contentView)
     addChildViewController(advertiseViewController)
     advertiseViewController.didMove(toParentViewController: self)
     contentView.addSubview(collectionView)
     contentView.addSubview(advertiseViewController.view)
+    contentView.addSubview(footerView)
     pageContainerInitialHeight = advertiseViewController.view.frame.height
     
     view.setNeedsUpdateConstraints()
-    collectionView.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 50, right: 0)
     
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
@@ -190,8 +191,8 @@ final class MainViewController: UIViewController{
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    containerViewHeight?.update(offset: collectionView.contentSize.height + 180)
-    scrollView.contentSize = CGSize(width: collectionView.contentSize.width, height: collectionView.contentSize.height + 180)
+    containerViewHeight?.update(offset: collectionView.contentSize.height - 180)
+    log.info(contentView.frame.height)
   }
   
   override func updateViewConstraints() {
@@ -202,14 +203,19 @@ final class MainViewController: UIViewController{
       }
       
       contentView.snp.makeConstraints { (make) in
-        make.leading.trailing.top.bottom.equalToSuperview()
-        make.centerX.equalToSuperview()
-        containerViewHeight = make.height.equalToSuperview().priority(250).constraint
+        make.edges.equalToSuperview()
+        make.width.equalTo(self.view)
+        containerViewHeight = make.height.equalTo(self.view).constraint
+      }
+      
+      footerView.snp.makeConstraints { (make) in
+        make.bottom.left.right.equalToSuperview()
+        make.height.equalTo(144)
       }
       
       advertiseViewController.view.snp.makeConstraints { (make) in
         topConstraint = make.top.equalTo(topAnchorValue).constraint
-        make.left.right.equalTo(scrollView).inset(9)
+        make.left.right.equalToSuperview().inset(9)
         make.height.equalTo(180)
       }
       

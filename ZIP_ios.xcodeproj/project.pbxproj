@@ -58,6 +58,9 @@
 		0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */; };
 		0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */; };
 		0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C88AC1FEE3E66002019DE /* WriterCell.swift */; };
+		0A6EB9DB2169E12C00117526 /* MainFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EB9DA2169E12C00117526 /* MainFooterView.swift */; };
+		0A6EB9DD2169E1A000117526 /* MainFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6EB9DC2169E1A000117526 /* MainFooterView.xib */; };
+		0A6EB9DF216A2A9A00117526 /* MatchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EB9DE216A2A9A00117526 /* MatchEmptyView.swift */; };
 		0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FEE7E1FF622A100A2D347 /* JoinView.swift */; };
 		0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FEE801FF629C600A2D347 /* EnumManager.swift */; };
 		0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71236A1FACC01200512EB7 /* AppDelegate.swift */; };
@@ -258,6 +261,9 @@
 		0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		0A6C88AC1FEE3E66002019DE /* WriterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterCell.swift; sourceTree = "<group>"; };
+		0A6EB9DA2169E12C00117526 /* MainFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFooterView.swift; sourceTree = "<group>"; };
+		0A6EB9DC2169E1A000117526 /* MainFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainFooterView.xib; sourceTree = "<group>"; };
+		0A6EB9DE216A2A9A00117526 /* MatchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEmptyView.swift; sourceTree = "<group>"; };
 		0A6FEE7E1FF622A100A2D347 /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		0A6FEE801FF629C600A2D347 /* EnumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumManager.swift; sourceTree = "<group>"; };
 		0A7123671FACC01200512EB7 /* ZIP_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZIP_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -444,6 +450,8 @@
 				0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */,
 				B1D1CB06212D35D9001A9801 /* MainCollectionCell.swift */,
 				B1D1CB08212D3B9E001A9801 /* MainCollectionHeaderView.swift */,
+				0A6EB9DA2169E12C00117526 /* MainFooterView.swift */,
+				0A6EB9DC2169E1A000117526 /* MainFooterView.xib */,
 				B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */,
 				0A375C17213275AA00E35ED9 /* TopTripCell.swift */,
 				0A375C19213275D200E35ED9 /* TopTripCell.xib */,
@@ -486,21 +494,6 @@
 				0A075BFE21553611004A4DBF /* DefaultLoginViewModel.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		0A332777213BBB6100BC2906 /* NewSetProfile */ = {
-			isa = PBXGroup;
-			children = (
-				0A33277A213BBCCF00BC2906 /* NewSetProfileViewController.swift */,
-				0A332778213BBB7A00BC2906 /* FirstViewController.swift */,
-				0A332780213BC1FD00BC2906 /* NickNameViewController.swift */,
-				0A33277C213BBD9700BC2906 /* GenderViewController.swift */,
-				0A075BFA2153CE80004A4DBF /* AgeViewController.swift */,
-				0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */,
-				0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */,
-				B18BC89721547ED700642BB0 /* TripStyleViewController.swift */,
-			);
-			path = NewSetProfile;
 			sourceTree = "<group>";
 		};
 		0A375C212132ABA500E35ED9 /* Request */ = {
@@ -866,7 +859,14 @@
 		B16B3DF52117E6E3001D278A /* SetProfile */ = {
 			isa = PBXGroup;
 			children = (
-				0A332777213BBB6100BC2906 /* NewSetProfile */,
+				0A33277A213BBCCF00BC2906 /* NewSetProfileViewController.swift */,
+				0A332778213BBB7A00BC2906 /* FirstViewController.swift */,
+				0A332780213BC1FD00BC2906 /* NickNameViewController.swift */,
+				0A33277C213BBD9700BC2906 /* GenderViewController.swift */,
+				0A075BFA2153CE80004A4DBF /* AgeViewController.swift */,
+				0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */,
+				0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */,
+				B18BC89721547ED700642BB0 /* TripStyleViewController.swift */,
 			);
 			path = SetProfile;
 			sourceTree = "<group>";
@@ -951,6 +951,7 @@
 				B1D1CAFC212D0961001A9801 /* DetailCharacterCell.swift */,
 				B1D1CAFE212D0D55001A9801 /* DetailInterestCell.swift */,
 				B1D1CB02212D2086001A9801 /* DetailCommitView.swift */,
+				0A6EB9DE216A2A9A00117526 /* MatchEmptyView.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -1091,6 +1092,7 @@
 				0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */,
 				0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */,
 				B12001C2211300E800DFD676 /* launchlogo.png in Resources */,
+				0A6EB9DD2169E1A000117526 /* MainFooterView.xib in Resources */,
 				B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */,
 				0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */,
 				0A0FDE2820398E5A0046E76F /* NotoSans-Medium.otf in Resources */,
@@ -1170,6 +1172,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BubbleTransition/BubbleTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
@@ -1235,6 +1238,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BubbleTransition.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
@@ -1402,6 +1406,7 @@
 				0A745670210CD09600F8A0C9 /* InsertPeopleViewController.swift in Sources */,
 				0A745687210E04C600F8A0C9 /* SearchDestTVModel.swift in Sources */,
 				0AF2C01920F9CA7300775EA8 /* MatchDetailTableViewController.swift in Sources */,
+				0A6EB9DB2169E12C00117526 /* MainFooterView.swift in Sources */,
 				0A745665210C971C00F8A0C9 /* DestinationSearchCell.swift in Sources */,
 				0AAD749021170FF700C860ED /* TripStyleModel.swift in Sources */,
 				B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */,
@@ -1428,6 +1433,7 @@
 				0AA0361E1FDADBC6000D4451 /* ProxyController.swift in Sources */,
 				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
 				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
+				0A6EB9DF216A2A9A00117526 /* MatchEmptyView.swift in Sources */,
 				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
 				B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */,
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,

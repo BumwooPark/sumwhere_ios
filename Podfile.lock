@@ -7,6 +7,23 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
   - BubbleTransition (3.1.1)
+  - CHIPageControl (0.1.7):
+    - CHIPageControl/Aji (= 0.1.7)
+    - CHIPageControl/Aleppo (= 0.1.7)
+    - CHIPageControl/Chimayo (= 0.1.7)
+    - CHIPageControl/Fresno (= 0.1.7)
+    - CHIPageControl/Jalapeno (= 0.1.7)
+    - CHIPageControl/Jaloro (= 0.1.7)
+    - CHIPageControl/Paprika (= 0.1.7)
+    - CHIPageControl/Puya (= 0.1.7)
+  - CHIPageControl/Aji (0.1.7)
+  - CHIPageControl/Aleppo (0.1.7)
+  - CHIPageControl/Chimayo (0.1.7)
+  - CHIPageControl/Fresno (0.1.7)
+  - CHIPageControl/Jalapeno (0.1.7)
+  - CHIPageControl/Jaloro (0.1.7)
+  - CHIPageControl/Paprika (0.1.7)
+  - CHIPageControl/Puya (0.1.7)
   - CocoaAsyncSocket (7.6.3)
   - CocoaMQTT (1.1.2):
     - CocoaAsyncSocket (~> 7.6.1)
@@ -215,6 +232,8 @@ PODS:
 
 DEPENDENCIES:
   - BubbleTransition
+  - CHIPageControl
+  - CHIPageControl/Aleppo
   - CocoaMQTT
   - Cosmos
   - Crashlytics
@@ -277,6 +296,7 @@ SPEC REPOS:
     - Alamofire
     - Bolts
     - BubbleTransition
+    - CHIPageControl
     - CocoaAsyncSocket
     - CocoaMQTT
     - Cosmos
@@ -354,6 +374,7 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BubbleTransition: 5676e5102b0e26c3193adc1da404fb5bb8144f0c
+  CHIPageControl: bbe1ddd0c688c02ec65b7f7e7d34551a3d16f37c
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaMQTT: d33ab3cd4e329f9f1cfbb62e25306a318a606616
   Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
@@ -427,6 +448,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: 13c67af3323da56d028b56ea93c4df5349832a3d
+PODFILE CHECKSUM: 6bc1aa9d6b4d269b6778a09ca95ff184df7afb4b
 
 COCOAPODS: 1.5.3

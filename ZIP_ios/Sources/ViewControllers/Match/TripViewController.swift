@@ -14,8 +14,6 @@ import DZNEmptyDataSet
 import Moya
 import JDStatusBarNotification
 
-
-
 class TripViewController: UIViewController{
   
   static var currentModel: TripModel?
@@ -38,7 +36,6 @@ class TripViewController: UIViewController{
   
   private let scrollView: UIScrollView = {
     let scrollView = UIScrollView()
-    scrollView.alwaysBounceVertical = true
     return scrollView
   }()
   
@@ -238,7 +235,8 @@ extension TripViewController: UIViewControllerTransitioningDelegate{
 }
 
 extension TripViewController: DZNEmptyDataSetSource{
-  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "등록해 보세요!", attributes: [NSAttributedStringKey.font: UIFont.NotoSansKRMedium(size: 20)])
+  
+  func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+    return MatchEmptyView()
   }
 }

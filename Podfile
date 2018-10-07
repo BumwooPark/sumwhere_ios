@@ -56,6 +56,8 @@ pod 'HMSegmentedControl'
 pod 'Popover'
 pod 'SkeletonView'
 pod 'Texture'
+pod 'CHIPageControl'
+pod 'CHIPageControl/Aleppo'
 
 
 # RX
