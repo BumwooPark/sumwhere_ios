@@ -20,7 +20,6 @@ pod 'ReachabilitySwift'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
-pod 'SQLite.swift'
 pod 'SwiftyImage'
 pod 'TLPhotoPicker'
 pod 'JTAppleCalendar'
@@ -34,6 +33,7 @@ pod 'Crashlytics'
 pod 'MQTTClient'
 pod 'CocoaMQTT' 
 pod 'Result'
+pod 'RealmSwift'
 
 # UI
 pod 'GoogleMaps'
@@ -71,6 +71,7 @@ pod 'RxOptional'
 pod "RxSwiftExt"
 pod 'RxCoreLocation'
 pod 'RxASDataSources'
+pod "RxRealm"
 
   target 'ZIP_iosTests' do
     inherit! :search_paths

@@ -14,7 +14,6 @@ import JDStatusBarNotification
 
 class ProfileViewModel{
   private let disposeBag = DisposeBag()
-  
   var profile = ProfileModel()
   
   let getCharacters = AuthManager.instance.provider.request(.GetAllCharacter)

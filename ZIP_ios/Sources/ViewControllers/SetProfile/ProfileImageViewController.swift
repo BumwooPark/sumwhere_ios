@@ -128,7 +128,7 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     button.isEnabled = false
     return button
   }()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(titleLabel)
@@ -174,9 +174,9 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
   private func pushImageSelectView(index: Int){
     let controller = TLPhotosPickerViewController(withTLPHAssets: {[weak self] (assets) in
       guard let `self` = self else {return}
-//        let resizedImage = assets.first?.fullResolutionImage?.resizeImageUsingVImage(size: CGSize(width: 500, height: 500))
-        self.profileImage[index] = assets.first?.fullResolutionImage
-    }, didCancel: nil)
+      //        let resizedImage = assets.first?.fullResolutionImage?.resizeImageUsingVImage(size: CGSize(width: 500, height: 500))
+      self.profileImage[index] = assets.first?.fullResolutionImage
+      }, didCancel: nil)
     var configure = TLPhotosPickerConfigure()
     configure.allowedLivePhotos = true
     configure.autoPlay = true
@@ -318,7 +318,7 @@ final class ProfileImageCell: UICollectionViewCell{
     contentView.addSubview(profileImage)
     profileImage.addSubview(typeButton)
     profileImage.addSubview(imageCancelButton)
- 
+    
     profileImage.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()
     }

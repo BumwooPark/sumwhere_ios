@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DD756C696AE4837726B4CBFA1D299F2D"
+               BlueprintIdentifier = "CAF28F3F54A023F2D5774CF5A614CFE5"
                BlueprintName = "SwiftyTimer"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "SwiftyTimer.framework">

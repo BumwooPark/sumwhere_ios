@@ -38,7 +38,6 @@
 		0A332779213BBB7A00BC2906 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A332778213BBB7A00BC2906 /* FirstViewController.swift */; };
 		0A33277B213BBCCF00BC2906 /* NewSetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33277A213BBCCF00BC2906 /* NewSetProfileViewController.swift */; };
 		0A33277D213BBD9700BC2906 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33277C213BBD9700BC2906 /* GenderViewController.swift */; };
-		0A33277F213BC0F000BC2906 /* ProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */; };
 		0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A332780213BC1FD00BC2906 /* NickNameViewController.swift */; };
 		0A33F7E621342F04002228BF /* RandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33F7E521342F04002228BF /* RandomString.swift */; };
 		0A33F7E82134304C002228BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A33F7E72134304B002228BF /* GoogleService-Info.plist */; };
@@ -98,7 +97,6 @@
 		0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBD12109F76D0057F1A9 /* TicketView.swift */; };
 		0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A90EBD32109F7B10057F1A9 /* TicketView.xib */; };
 		0A9174CE20220124000A055A /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9174CD20220124000A055A /* MockMessage.swift */; };
-		0A9174D12024AB85000A055A /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9174D02024AB85000A055A /* DataBase.swift */; };
 		0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9174D220272CEC000A055A /* JDStatusBarManager.swift */; };
 		0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */; };
 		0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */; };
@@ -138,6 +136,8 @@
 		B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */; };
 		B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89721547ED700642BB0 /* TripStyleViewController.swift */; };
 		B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC8992154925100642BB0 /* ProfileViewModel.swift */; };
+		B1911FB5216B2C63005A4E85 /* ProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911FB4216B2C63005A4E85 /* ProfileImageViewController.swift */; };
+		B1911FB7216B3248005A4E85 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911FB6216B3248005A4E85 /* Database.swift */; };
 		B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */; };
 		B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C562149FF6500BC95C5 /* ChatListModel.swift */; };
 		B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */; };
@@ -241,7 +241,6 @@
 		0A332778213BBB7A00BC2906 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		0A33277A213BBCCF00BC2906 /* NewSetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetProfileViewController.swift; sourceTree = "<group>"; };
 		0A33277C213BBD9700BC2906 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
-		0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageViewController.swift; sourceTree = "<group>"; };
 		0A332780213BC1FD00BC2906 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		0A33F7E521342F04002228BF /* RandomString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomString.swift; sourceTree = "<group>"; };
 		0A33F7E72134304B002228BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -306,7 +305,6 @@
 		0A90EBD12109F76D0057F1A9 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		0A90EBD32109F7B10057F1A9 /* TicketView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketView.xib; sourceTree = "<group>"; };
 		0A9174CD20220124000A055A /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
-		0A9174D02024AB85000A055A /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		0A9174D220272CEC000A055A /* JDStatusBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDStatusBarManager.swift; sourceTree = "<group>"; };
 		0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanFlowLayout.swift; sourceTree = "<group>"; };
 		0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -347,6 +345,8 @@
 		B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageViewController + Extension.swift"; sourceTree = "<group>"; };
 		B18BC89721547ED700642BB0 /* TripStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewController.swift; sourceTree = "<group>"; };
 		B18BC8992154925100642BB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		B1911FB4216B2C63005A4E85 /* ProfileImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageViewController.swift; sourceTree = "<group>"; };
+		B1911FB6216B3248005A4E85 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListSectionModel.swift; sourceTree = "<group>"; };
 		B1996C562149FF6500BC95C5 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -741,12 +741,12 @@
 		0A9174CF2024AB6D000A055A /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				0A9174D02024AB85000A055A /* DataBase.swift */,
 				B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */,
 				B16B3DF82117E782001D278A /* InitUtil.swift */,
 				0A33F7E521342F04002228BF /* RandomString.swift */,
 				B1D6F9FD214B4418004C9E43 /* MQTTUtil.swift */,
 				0A075C0221562706004A4DBF /* AlertFactory.swift */,
+				B1911FB6216B3248005A4E85 /* Database.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -864,9 +864,9 @@
 				0A332780213BC1FD00BC2906 /* NickNameViewController.swift */,
 				0A33277C213BBD9700BC2906 /* GenderViewController.swift */,
 				0A075BFA2153CE80004A4DBF /* AgeViewController.swift */,
-				0A33277E213BC0F000BC2906 /* ProfileImageViewController.swift */,
 				0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */,
 				B18BC89721547ED700642BB0 /* TripStyleViewController.swift */,
+				B1911FB4216B2C63005A4E85 /* ProfileImageViewController.swift */,
 			);
 			path = SetProfile;
 			sourceTree = "<group>";
@@ -1205,6 +1205,8 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/PySwiftyRegex/PySwiftyRegex.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxASDataSources/RxASDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -1213,9 +1215,9 @@
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -1271,6 +1273,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PySwiftyRegex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxASDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -1279,9 +1283,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -1335,7 +1339,6 @@
 				0A375C1C2132796D00E35ED9 /* TopTripViewModel.swift in Sources */,
 				0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */,
 				B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */,
-				0A33277F213BC0F000BC2906 /* ProfileImageViewController.swift in Sources */,
 				0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */,
 				0A332776213BA65D00BC2906 /* JoinViewModel.swift in Sources */,
 				B1D1CB12212EAA6A001A9801 /* AlertViewController.swift in Sources */,
@@ -1368,6 +1371,7 @@
 				0A075BFD2153EC2C004A4DBF /* CharacterViewController.swift in Sources */,
 				B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */,
 				B1D1CB07212D35D9001A9801 /* MainCollectionCell.swift in Sources */,
+				B1911FB5216B2C63005A4E85 /* ProfileImageViewController.swift in Sources */,
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,
 				B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */,
 				0AB42132213BE4EB001353E9 /* MQViewModel.swift in Sources */,
@@ -1415,7 +1419,6 @@
 				B1F6D8C82146123A00E0E003 /* AS + RxSwift.swift in Sources */,
 				0A375C18213275AA00E35ED9 /* TopTripCell.swift in Sources */,
 				B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */,
-				0A9174D12024AB85000A055A /* DataBase.swift in Sources */,
 				0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */,
 				0A35ED8B214E20CB00B493D6 /* ChatMessageModel.swift in Sources */,
 				0A075C0121562406004A4DBF /* MoyaError + Extension.swift in Sources */,
@@ -1464,6 +1467,7 @@
 				B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */,
 				B1D4E51020F8968000524CE2 /* MainViewCell.swift in Sources */,
 				0A0FDDF320387D250046E76F /* ProfileHeaderView.swift in Sources */,
+				B1911FB7216B3248005A4E85 /* Database.swift in Sources */,
 				B1055990210FED2500AC769C /* MatchCell.swift in Sources */,
 				0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */,
 				0A375C2021329B8500E35ED9 /* MatchRequestModel.swift in Sources */,

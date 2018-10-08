@@ -8,7 +8,6 @@
 
 import AsyncDisplayKit
 import RxSwift
-import SQLite
 import CocoaMQTT
 
 class ChatRoomViewController: ChatNodeViewController{
@@ -69,35 +68,6 @@ class ChatRoomViewController: ChatNodeViewController{
     
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "메뉴", style: .plain, target: nil, action: nil)
     rxBind()
-//    sqlliteTest()
-  }
-  
-  func sqlliteTest() {
-    
-    guard let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-    do {
-      let db = try Connection(urls.absoluteString + "/chat.sqlite3")
-      log.info(Thread.isMainThread)
-      let users = Table("users")
-      let id = Expression<Int64>("id")
-      let name = Expression<String>("name")
-      let email = Expression<String>("email")
-      
-      try db.run(users.create(block: { (t) in
-        t.column(id, primaryKey: true)
-        t.column(name)
-        t.column(email, unique: true)
-      }))
-      
-      let insert = users.insert(name <- "benpark", email <- "bumwoopark@naver.com")
-      let rowid = try db.run(insert)
-      for user in try db.prepare(users) {
-        log.info("id: \(user[id]), name: \(user[name]), email: \(user[email])")
-        // id: 1, name: Optional("Alice"), email: alice@mac.com
-      }
-    }catch let error {
-      log.error(error)
-    }
   }
   
   func rxBind(){

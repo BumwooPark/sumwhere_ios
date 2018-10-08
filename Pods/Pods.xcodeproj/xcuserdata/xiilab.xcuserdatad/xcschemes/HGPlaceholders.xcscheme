@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C6B98975D32B0FB8DA03BE716BA1F77"
+               BlueprintIdentifier = "767CDBDEB34F7CC9D0FA25B8974079CA"
                BlueprintName = "HGPlaceholders"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "HGPlaceholders.framework">

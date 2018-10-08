@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "38830187D9E171E7B43047ED06A08ADC"
+               BlueprintIdentifier = "A0418F12D6671588EEF4D5399CEFB727"
                BlueprintName = "BubbleTransition"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "BubbleTransition.framework">
