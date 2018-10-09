@@ -39,7 +39,7 @@ final class MatchEmptyView: UIView {
     let button = UIButton()
     button.setTitle("여행 등록하기", for: .normal)
     button.setTitleColor(#colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1), for: .normal)
-    button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 12.8)
+    button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 12.8) 
     button.layer.borderColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
     button.layer.borderWidth = 1.3
     button.layer.cornerRadius = 1.3

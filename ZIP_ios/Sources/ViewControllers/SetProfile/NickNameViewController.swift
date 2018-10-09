@@ -102,6 +102,7 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     contentView.addSubview(descriptionLabel)
     rxbind()
     view.setNeedsUpdateConstraints()
+    hideKeyboardWhenTappedAround()
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

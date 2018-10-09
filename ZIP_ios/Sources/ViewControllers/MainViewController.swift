@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import RxGesture
 import RxDataSources
-import DZNEmptyDataSet
 import Hero
 import SnapKit
 

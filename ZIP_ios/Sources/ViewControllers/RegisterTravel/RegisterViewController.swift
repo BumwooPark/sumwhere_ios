@@ -65,12 +65,12 @@ class RegisterViewController: UIViewController{
     view.addSubview(cancelButton)
     view.addSubview(infoLabel)
     
-    registerButton.rx.tapGesture()
-      .when(.ended)
-      .debounce(1, scheduler: MainScheduler.instance)
-      .map {_ in return ()}
-      .bind(onNext: viewController.register)
-      .disposed(by: disposeBag)
+//    registerButton.rx.tapGesture()
+//      .when(.ended)
+//      .debounce(1, scheduler: MainScheduler.instance)
+//      .map {_ in return ()}
+//      .bind(onNext: viewController.register)
+//      .disposed(by: disposeBag)
     
     cancelButton.rx
       .tapGesture()

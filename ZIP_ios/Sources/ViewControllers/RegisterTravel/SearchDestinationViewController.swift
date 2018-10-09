@@ -9,16 +9,21 @@
 import RxDataSources
 import RxCocoa
 import RxSwift
-import RxGesture
+import DropDown
 
 
 class SearchDestinationViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
   var didUpdateConstraint = false
-  let viewController: UIViewController
+  private let viewModel: RegisterTripViewModel
   
-  var viewModel: SearchDestinationViewModel?
+  private let backButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "backButton.png").withRenderingMode(.alwaysTemplate), for: .normal)
+    button.tintColor = .black
+    return button
+  }()
   
   lazy var textField: UITextField = {
     let textField = UITextField()
@@ -48,8 +53,8 @@ class SearchDestinationViewController: UIViewController{
     return cell
   })
   
-  init(viewController: UIViewController) {
-    self.viewController = viewController
+  init(viewModel: RegisterTripViewModel) {
+    self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -60,33 +65,25 @@ class SearchDestinationViewController: UIViewController{
   override func viewDidLoad() {
     view.addSubview(textField)
     view.addSubview(tableView)
+    view.addSubview(backButton)
     view.backgroundColor = .white
     hideKeyboardWhenTappedAround()
     
-    viewModel = SearchDestinationViewModel(text: textField.rx
-      .text
-      .asObservable())
-    
-    viewModel!.datas
-      .asDriver()
-      .drive(tableView.rx.items(dataSource: dataSources))
-      .disposed(by: disposeBag)
-    
-    tableView.rx
-      .modelSelected(TripType.self)
-      .asDriver()
-      .flatMapLatest {[unowned self] (resultModel)  -> SharedSequence<DriverSharingStrategy, TripType> in
-      let vc = self.viewController as! CreateTripViewController
-        return vc.viewModel.serverTripValidate(model: resultModel)
-          .asDriver(onErrorRecover: { (error) -> SharedSequence<DriverSharingStrategy, TripType> in
-            vc.validationErrorPopUp(error: error)
-            return Driver.just(TripType(id: 0, trip: String(), country: String(), imageURL: String()))
-          })
-      }.drive(onNext: {[weak self] (model) in
-        if model.id != 0 {
-          (self?.viewController as? CreateTripViewController)?.viewModel.dataSubject.onNext(.destination(model: model))
-        }
-      }).disposed(by: disposeBag)
+//    tableView.rx
+//      .modelSelected(TripType.self)
+//      .asDriver()
+//      .flatMapLatest {[unowned self] (resultModel)  -> SharedSequence<DriverSharingStrategy, TripType> in
+//      let vc = self.viewController as! CreateTripViewController
+//        return vc.viewModel.serverTripValidate(model: resultModel)
+//          .asDriver(onErrorRecover: { (error) -> SharedSequence<DriverSharingStrategy, TripType> in
+//            vc.validationErrorPopUp(error: error)
+//            return Driver.just(TripType(id: 0, trip: String(), country: String(), imageURL: String()))
+//          })
+//      }.drive(onNext: {[weak self] (model) in
+//        if model.id != 0 {
+//          (self?.viewController as? CreateTripViewController)?.viewModel.dataSubject.onNext(.destination(model: model))
+//        }
+//      }).disposed(by: disposeBag)
 
     view.setNeedsUpdateConstraints()
   }
@@ -102,6 +99,11 @@ class SearchDestinationViewController: UIViewController{
       tableView.snp.makeConstraints { (make) in
         make.left.right.bottom.equalToSuperview()
         make.top.equalTo(textField.snp.bottom)
+      }
+      
+      backButton.snp.makeConstraints { (make) in
+        make.left.top.equalTo(self.view.safeAreaLayoutGuide).inset(25)
+        make.width.height.equalTo(40)
       }
       
       didUpdateConstraint = true

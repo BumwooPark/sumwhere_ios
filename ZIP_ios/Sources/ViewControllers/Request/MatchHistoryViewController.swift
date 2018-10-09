@@ -6,7 +6,6 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-import DZNEmptyDataSet
 import RxSwift
 import RxCocoa
 import RxDataSources
@@ -37,7 +36,6 @@ final class MatchHistoryViewController: UIViewController{
     layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.emptyDataSetSource = self
     collectionView.register(MatchHistoryCell.self, forCellWithReuseIdentifier: String(describing: MatchHistoryCell.self))
     collectionView.alwaysBounceVertical = true
     return collectionView
@@ -94,11 +92,5 @@ final class MatchHistoryViewController: UIViewController{
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
-  }
-}
-
-extension MatchHistoryViewController: DZNEmptyDataSetSource{
-  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "받은 요청이 없습니다.", attributes: [NSAttributedStringKey.font:UIFont.NotoSansKRBold(size: 30)])
   }
 }

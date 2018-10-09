@@ -10,9 +10,45 @@ import JTAppleCalendar
 
 class CalendarCell: JTAppleCell {
   
-  let selectView = UIView()
+  var cellState: SelectionRangePosition? {
+    didSet{
+      
+      layoutOfCellState(cellState: cellState!)
+      switch cellState!{
+      case .left,.right:
+        selectView.isHidden = false
+        selectSqureView.isHidden = false
+        dayLabel.textColor = .white
+      case .full:
+        selectView.isHidden = false
+        selectSqureView.isHidden = true
+        dayLabel.textColor = .white
+      case .middle:
+        selectView.isHidden = true
+        selectSqureView.isHidden = false
+        dayLabel.textColor = .white
+      case .none:
+        selectView.isHidden = true
+        selectSqureView.isHidden = true
+        dayLabel.textColor = #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1)
+      }
+    }
+  }
   
-  let selectSqureView = UIView()
+  let selectView: UIView = {
+    let view = UIView()
+    view.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+    view.isHidden = true
+    return view
+  }()
+  
+  let selectSqureView: UIView = {
+    let view = UIView()
+//    view.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
+    view.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+    view.isHidden = true
+    return view
+  }()
   
   let todayLabel: UILabel = {
     let label = UILabel()
@@ -22,24 +58,43 @@ class CalendarCell: JTAppleCell {
     return label
   }()
   
-  override var isSelected: Bool{
-    didSet{
-      selectView.backgroundColor = isSelected ? #colorLiteral(red: 0.5212282456, green: 0.8123030511, blue: 1, alpha: 1) : .clear
-    }
-  }
-  
   let dayLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.NotoSansKRMedium(size: 17)
+    label.font = .AppleSDGothicNeoSemiBold(size: 17.8)
     label.textAlignment = .center
     return label
   }()
   
+  
+  private func layoutOfCellState(cellState: SelectionRangePosition){
+    switch cellState{
+    case .left:
+      selectSqureView.snp.remakeConstraints { (make) in
+        make.right.equalToSuperview()
+        make.left.equalTo(selectView.snp.centerX)
+        make.top.equalTo(selectView)
+        make.bottom.equalTo(selectView)
+      }
+    case .right:
+      selectSqureView.snp.remakeConstraints { (make) in
+        make.right.equalTo(selectView.snp.centerX)
+        make.left.equalToSuperview()
+        make.top.equalTo(selectView)
+        make.bottom.equalTo(selectView)
+      }
+    default:
+      selectSqureView.snp.remakeConstraints { (make) in
+        make.center.equalToSuperview()
+        make.height.width.equalTo(self.contentView.snp.width)
+      }
+    }
+  }
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    contentView.addSubview(selectView)
     contentView.addSubview(selectSqureView)
+    contentView.addSubview(selectView)
     contentView.addSubview(dayLabel)
     dayLabel.addSubview(todayLabel)
     
@@ -59,18 +114,19 @@ class CalendarCell: JTAppleCell {
     }
     
     selectView.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview()
+      make.center.equalToSuperview()
+      make.height.width.equalTo(self.contentView.snp.width)
     }
     
     selectSqureView.snp.makeConstraints { (make) in
-      make.left.equalTo(self.snp.centerX)
-      make.top.bottom.right.equalToSuperview()
+      make.center.equalToSuperview()
+      make.height.width.equalTo(self.contentView.snp.width)
     }
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    selectView.layer.cornerRadius = selectSqureView.frame.width/2
+    selectView.layer.cornerRadius = selectView.frame.width/2
     selectView.layer.masksToBounds = true
   }
   

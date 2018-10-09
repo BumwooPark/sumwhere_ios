@@ -9,7 +9,7 @@
 import expanding_collection
 import RxSwift
 import RxCocoa
-import DZNEmptyDataSet
+
 
 enum MatchType: String{
   case relationship = "이성 매칭"
@@ -43,7 +43,6 @@ final class SelectMatchViewController: ExpandingViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    collectionView?.emptyDataSetSource = self
     self.title = "매칭 선택"
     
     let nib = UINib(nibName: String(describing: MainViewCell.self), bundle: nil)
@@ -81,14 +80,5 @@ final class SelectMatchViewController: ExpandingViewController{
     cell.imageView.image = datas[indexPath.item].images
     cell.titleLabel.text = datas[indexPath.item].rawValue
     return cell
-  }
-}
-
-
-
-extension SelectMatchViewController: DZNEmptyDataSetSource{
-  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "앗! 등록하신 여행이 없네요!!",
-                              attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 15)])
   }
 }

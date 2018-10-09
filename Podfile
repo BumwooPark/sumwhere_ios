@@ -44,9 +44,7 @@ pod 'LGButton'
 pod 'JDStatusBarNotification'
 pod 'LTMorphingLabel'
 pod 'Eureka'
-pod 'DZNEmptyDataSet'
 pod 'expanding-collection'
-pod 'HGPlaceholders'
 pod 'TagListView', '~> 1.0'
 pod 'DropDown'
 pod 'JVFloatLabeledTextField'
@@ -58,7 +56,7 @@ pod 'SkeletonView'
 pod 'Texture'
 pod 'CHIPageControl'
 pod 'CHIPageControl/Aleppo'
-
+pod 'EmptyDataSet-Swift'
 
 # RX
 pod 'RxSwift'

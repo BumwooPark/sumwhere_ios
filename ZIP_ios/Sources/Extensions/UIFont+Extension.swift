@@ -54,6 +54,10 @@ extension UIFont{
   static func AppleSDGothicNeoRegular(size: CGFloat) -> UIFont {
     return UIFont(name: "AppleSDGothicNeo-Regular", size: size)!
   }
+  
+  static func AppleSDGothicNeoBold(size: CGFloat) -> UIFont {
+    return UIFont(name: "AppleSDGothicNeo-Bold",size: size)!
+  }
 }
 
 

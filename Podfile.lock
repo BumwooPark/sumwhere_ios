@@ -34,7 +34,7 @@ PODS:
   - Differentiator (3.0.2)
   - DropDown (2.3.2)
   - DynamicBlurView (2.0.2)
-  - DZNEmptyDataSet (1.8.1)
+  - EmptyDataSet-Swift (4.2.0)
   - Eureka (4.2.0)
   - expanding-collection (2.1.1)
   - Fabric (1.7.11)
@@ -111,7 +111,6 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.0)
   - Hero (1.3.0)
-  - HGPlaceholders (0.3.0)
   - HMSegmentedControl (1.5.5)
   - JDStatusBarNotification (1.5.6)
   - JTAppleCalendar (7.1.5)
@@ -243,7 +242,7 @@ DEPENDENCIES:
   - Cosmos
   - Crashlytics
   - DropDown
-  - DZNEmptyDataSet
+  - EmptyDataSet-Swift
   - Eureka
   - expanding-collection
   - Fabric
@@ -256,7 +255,6 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - Hero
-  - HGPlaceholders
   - HMSegmentedControl
   - JDStatusBarNotification
   - JTAppleCalendar
@@ -310,7 +308,7 @@ SPEC REPOS:
     - Differentiator
     - DropDown
     - DynamicBlurView
-    - DZNEmptyDataSet
+    - EmptyDataSet-Swift
     - Eureka
     - expanding-collection
     - Fabric
@@ -330,7 +328,6 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - Hero
-    - HGPlaceholders
     - HMSegmentedControl
     - JDStatusBarNotification
     - JTAppleCalendar
@@ -390,7 +387,7 @@ SPEC CHECKSUMS:
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
-  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EmptyDataSet-Swift: 1fa0b35f530a35f852ecb2b53564728b0c300aaf
   Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
   expanding-collection: 9fde61f3b4e3e014578ea2dff9438b1a925a7fdb
   Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
@@ -410,7 +407,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   Hero: 3eecd3fd62dd2425cbc7e35505c557b86d5a379e
-  HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   JDStatusBarNotification: d5829a8f2f291b23b8a54b87fac8bf2549945a2f
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
@@ -458,6 +454,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
 
-PODFILE CHECKSUM: 691b5b2e0feb03e100ec33f13b2b5217fca35566
+PODFILE CHECKSUM: 5b898446409de08e95d01ae1193134f35f65c15e
 
 COCOAPODS: 1.5.3

@@ -60,6 +60,7 @@
 		0A6EB9DB2169E12C00117526 /* MainFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EB9DA2169E12C00117526 /* MainFooterView.swift */; };
 		0A6EB9DD2169E1A000117526 /* MainFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6EB9DC2169E1A000117526 /* MainFooterView.xib */; };
 		0A6EB9DF216A2A9A00117526 /* MatchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EB9DE216A2A9A00117526 /* MatchEmptyView.swift */; };
+		0A6EB9E1216CB8A000117526 /* RegisterTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */; };
 		0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FEE7E1FF622A100A2D347 /* JoinView.swift */; };
 		0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FEE801FF629C600A2D347 /* EnumManager.swift */; };
 		0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71236A1FACC01200512EB7 /* AppDelegate.swift */; };
@@ -263,6 +264,7 @@
 		0A6EB9DA2169E12C00117526 /* MainFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFooterView.swift; sourceTree = "<group>"; };
 		0A6EB9DC2169E1A000117526 /* MainFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainFooterView.xib; sourceTree = "<group>"; };
 		0A6EB9DE216A2A9A00117526 /* MatchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEmptyView.swift; sourceTree = "<group>"; };
+		0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTripViewModel.swift; sourceTree = "<group>"; };
 		0A6FEE7E1FF622A100A2D347 /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		0A6FEE801FF629C600A2D347 /* EnumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumManager.swift; sourceTree = "<group>"; };
 		0A7123671FACC01200512EB7 /* ZIP_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZIP_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -683,8 +685,8 @@
 			children = (
 				B105597C2109C0E800AC769C /* CreateTripViewController.swift */,
 				0A745668210CA37D00F8A0C9 /* PageViewController.swift */,
-				0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */,
 				0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */,
+				0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */,
 				0A74566F210CD09600F8A0C9 /* InsertPeopleViewController.swift */,
 				0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */,
 			);
@@ -696,6 +698,7 @@
 			children = (
 				0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */,
 				0A745686210E04C600F8A0C9 /* SearchDestTVModel.swift */,
+				0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */,
 			);
 			path = RegisterTravel;
 			sourceTree = "<group>";
@@ -1176,17 +1179,16 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/EmptyDataSet-Swift/EmptyDataSet_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/HGPlaceholders/HGPlaceholders.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/JDStatusBarNotification/JDStatusBarNotification.framework",
@@ -1244,17 +1246,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EmptyDataSet_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGPlaceholders.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JDStatusBarNotification.framework",
@@ -1466,6 +1467,7 @@
 				0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */,
 				B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */,
 				B1D4E51020F8968000524CE2 /* MainViewCell.swift in Sources */,
+				0A6EB9E1216CB8A000117526 /* RegisterTripViewModel.swift in Sources */,
 				0A0FDDF320387D250046E76F /* ProfileHeaderView.swift in Sources */,
 				B1911FB7216B3248005A4E85 /* Database.swift in Sources */,
 				B1055990210FED2500AC769C /* MatchCell.swift in Sources */,

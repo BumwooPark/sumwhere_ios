@@ -9,7 +9,6 @@
 import RxCocoa
 import RxSwift
 import RxDataSources
-import DZNEmptyDataSet
 
 final class InsertPeopleViewController: UIViewController{
   
@@ -32,7 +31,6 @@ final class InsertPeopleViewController: UIViewController{
     let tableView = UITableView()
     tableView.separatorStyle = .none
     tableView.register(FriendsCell.self, forCellReuseIdentifier: String(describing: FriendsCell.self))
-    tableView.emptyDataSetSource = self
     return tableView
   }()
   
@@ -70,11 +68,5 @@ final class InsertPeopleViewController: UIViewController{
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
-  }
-}
-
-extension InsertPeopleViewController: DZNEmptyDataSetSource{
-  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "등록된 친구가 없습니다.", attributes: [.font : UIFont.NotoSansKRMedium(size: 15)])
   }
 }

@@ -9,7 +9,6 @@
 import RxSwift
 import RxCocoa
 import Moya
-import DZNEmptyDataSet
 
 final class CharacterViewController: UIViewController, ProfileCompletor{
   
