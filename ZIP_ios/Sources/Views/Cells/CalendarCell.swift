@@ -10,11 +10,11 @@ import JTAppleCalendar
 
 class CalendarCell: JTAppleCell {
   
-  var cellState: SelectionRangePosition? {
+  var cellState: CellState? {
     didSet{
-      
-      layoutOfCellState(cellState: cellState!)
-      switch cellState!{
+      guard let cellState = cellState else {return}
+      layoutOfCellState(cellState: cellState.selectedPosition())
+      switch cellState.selectedPosition(){
       case .left,.right:
         selectView.isHidden = false
         selectSqureView.isHidden = false
@@ -30,7 +30,7 @@ class CalendarCell: JTAppleCell {
       case .none:
         selectView.isHidden = true
         selectSqureView.isHidden = true
-        dayLabel.textColor = #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1)
+        dayLabel.textColor = (cellState.dateBelongsTo == .thisMonth) ? #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
       }
     }
   }

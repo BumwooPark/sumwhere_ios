@@ -29,13 +29,22 @@ class SearchDestinationViewController: UIViewController{
     let textField = UITextField()
     textField.attributedPlaceholder = NSAttributedString(
       string: "여행지를 입력해 주세요",
-      attributes: [.font : UIFont.NotoSansKRMedium(size: 15)])
-    textField.font = UIFont.NotoSansKRMedium(size: 15)
+      attributes: [.font : UIFont.AppleSDGothicNeoMedium(size: 15)])
+    textField.leftView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 10)))
+    textField.leftViewMode = .always
+    textField.font = .AppleSDGothicNeoMedium(size: 15)
     textField.setZIPClearButton()
     textField.clearButtonMode = .never
-    textField.backgroundColor = .white
+    textField.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9764705882, alpha: 1)
     textField.delegate = self
     return textField
+  }()
+  
+  let collectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .vertical
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    return collectionView
   }()
   
   lazy var tableView: UITableView = {
@@ -92,8 +101,9 @@ class SearchDestinationViewController: UIViewController{
     if !didUpdateConstraint{
       
       textField.snp.makeConstraints { (make) in
-        make.left.right.top.equalToSuperview().inset(20)
-        make.height.equalTo(50)
+        make.left.right.equalToSuperview().inset(16)
+        make.top.equalTo(backButton.snp.bottom).offset(30)
+        make.height.equalTo(46)
       }
       
       tableView.snp.makeConstraints { (make) in
@@ -102,21 +112,14 @@ class SearchDestinationViewController: UIViewController{
       }
       
       backButton.snp.makeConstraints { (make) in
-        make.left.top.equalTo(self.view.safeAreaLayoutGuide).inset(25)
+        make.left.equalTo(textField)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(25)
         make.width.height.equalTo(40)
       }
       
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
-  }
-  
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-    let layer = CALayer()
-    layer.frame = CGRect(x: 0, y: textField.frame.height - 1, width: textField.frame.width, height: 2)
-    layer.backgroundColor = #colorLiteral(red: 0.5212282456, green: 0.8123030511, blue: 1, alpha: 1)
-    textField.layer.addSublayer(layer)
   }
 }
 

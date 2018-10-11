@@ -16,12 +16,67 @@ import LTMorphingLabel
 import SwiftDate
 import Validator
 
+class DateControl{
+  var startDate: Date = Date()
+  var endDate: Date = Date()
+  var selectCount = 0{
+    didSet{
+      if selectCount == 2{
+        selectSubject.onNext(true)
+      }else{
+        selectSubject.onNext(false)
+      }
+    }
+  }
+  var selectSubject = PublishSubject<Bool>()
+  private func deSelectAndSelect(calendar: JTAppleCalendarView ,date: Date){
+    calendar.deselectAllDates(triggerSelectionDelegate: false)
+    calendar.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+  }
+  
+  func selectHandler(calendar: JTAppleCalendarView, date: Date) {
+    switch selectCount{
+    case 0:
+      self.selectCount += 1
+      self.startDate = date
+    case 1:
+      self.selectCount += 1
+      self.endDate = date
+      
+      if date <= self.startDate {
+        self.deSelectAndSelect(calendar: calendar, date: date)
+        self.startDate = date
+        self.selectCount = 1
+      }else{
+        calendar.selectDates(from: startDate, to: self.endDate,  triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+      }
+    case 2:
+      if date > self.endDate {
+        self.deSelectAndSelect(calendar: calendar, date: date)
+        self.selectCount = 1
+        self.startDate = date
+      }else{
+        self.deSelectAndSelect(calendar: calendar, date: date)
+        self.selectCount = 1
+        self.startDate = date
+        self.endDate = Date()
+      }
+    default:
+      break
+    }
+  }
+  
+  func deSelectHandler(calendar: JTAppleCalendarView, date: Date) {
+  }
+}
+
 final class InsertPlanViewController: UIViewController{
 
   private let disposeBag = DisposeBag()
   private let viewModel: RegisterTripViewModel
   private var didUpdateConstraint = false
   private let headerView = CalendarHeaderView.loadXib(nibName: "CalendarHeaderView") as! CalendarHeaderView
+  private let dateControl = DateControl()
   
   private let dismissButton: UIButton = {
     let button = UIButton()
@@ -64,7 +119,6 @@ final class InsertPlanViewController: UIViewController{
     return label
   }()
   
-  var startDate: Date?
 
   lazy var calendarView: JTAppleCalendarView = {
     let calendar = JTAppleCalendarView()
@@ -106,8 +160,6 @@ final class InsertPlanViewController: UIViewController{
     headerViewLabelMapper(year: year, month: month)
     view.setNeedsUpdateConstraints()
     
-    
-    
     dismissButton.rx.tap
       .bind(to: viewModel.dismissAction)
       .disposed(by: disposeBag)
@@ -115,6 +167,15 @@ final class InsertPlanViewController: UIViewController{
     completeButton.rx.tap
       .bind(to: viewModel.completeAction)
       .disposed(by: disposeBag)
+    
+    dateControl
+      .selectSubject
+      .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
+        return { result in
+          weakSelf.completeButton.backgroundColor = result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
+          weakSelf.completeButton.isEnabled = result ? true : false
+        }
+      }.disposed(by: disposeBag)
   }
   
   
@@ -125,33 +186,14 @@ final class InsertPlanViewController: UIViewController{
   
   private func deSelectDate(){
     self.calendarView.deselectAllDates(triggerSelectionDelegate: false)
-    self.startDate = nil
     self.completeButton.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
     self.completeButton.setTitle(String(), for: .normal)
     self.completeButton.isEnabled = false
   }
   
-  func validate(endDate: Date, result: @escaping ()-> ()){
-    result()
-//    viewController.viewModel.serverDateValidate(start: startDate!, end: endDate)
-//      .subscribe(weak: self) { (self) -> (Event<Bool>) -> Void in
-//        return { event in
-//          switch event {
-//          case .next:
-//            result()
-//          case .error(let error):
-//            self.viewController.validationErrorPopUp(error: error)
-//            self.deSelectDate()
-//          case .completed:
-//            break
-//          }
-//        }
-//    }.disposed(by: disposeBag)
-  }
-  
   func handleSelection(cell: JTAppleCell?, cellState: CellState) {
     let myCustomCell = cell as! CalendarCell // You created the cell view if you followed the tutorial
-    myCustomCell.cellState = cellState.selectedPosition()
+    myCustomCell.cellState = cellState
     cell?.setNeedsLayout()
     cell?.layoutIfNeeded()
   }
@@ -201,12 +243,12 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
   
   func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
     handleSelection(cell: cell, cellState: cellState)
-    deSelectDate()
+    dateControl.deSelectHandler(calendar: calendar, date: date)
   }
   
   func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
     let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: String(describing: CalendarCell.self), for: indexPath) as! CalendarCell
-    cell.dayLabel.textColor = (cellState.dateBelongsTo == .thisMonth) ? #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1) : .gray
+    cell.dayLabel.textColor = (cellState.dateBelongsTo == .thisMonth) ? #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     cell.dayLabel.text = cellState.text
     cell.todayLabel.isHidden = !date.compare(.isToday)
     handleSelection(cell: cell, cellState: cellState)
@@ -214,24 +256,8 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
   }
   
   func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-    
     handleSelection(cell: cell, cellState: cellState)
-    if startDate != nil {
-      
-      validate(endDate: date) {[weak self]  in
-        guard let weakSelf = self else {return}
-        weakSelf.calendarView.selectDates(from: weakSelf.startDate!, to: date,  triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
-        
-//        self.viewController.viewModel.dataSubject.onNext(.startDate(date: self.startDate! + 1.days))
-//        self.viewController.viewModel.dataSubject.onNext(.endDate(date: date + 1.days))
-        let totalday = date.day  - weakSelf.startDate!.day
-        weakSelf.completeButton.setTitle("\(totalday)박 \(totalday + 1)일", for: .normal)
-        weakSelf.completeButton.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
-        weakSelf.completeButton.isEnabled = true
-      }
-    }else{
-      startDate = date
-    }
+    dateControl.selectHandler(calendar: calendar,date: date)
   }
   
   func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
