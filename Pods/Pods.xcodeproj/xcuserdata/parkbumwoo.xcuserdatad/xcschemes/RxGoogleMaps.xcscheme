@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6F86040F954182437B40C4C81303C78"
-               BlueprintName = "Popover"
+               BlueprintIdentifier = "8751323DED6287D156C1C04973105D57"
+               BlueprintName = "RxGoogleMaps"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Popover.framework">
+               BuildableName = "RxGoogleMaps.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

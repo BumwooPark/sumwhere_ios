@@ -178,7 +178,6 @@ final class InsertPlanViewController: UIViewController{
       }.disposed(by: disposeBag)
   }
   
-  
   private func headerViewLabelMapper(year: Int, month: Int) {
     headerView.monthLabel.text = "  \(month)월"
     headerView.yearLabel.text = "   \(year)"
@@ -234,7 +233,6 @@ final class InsertPlanViewController: UIViewController{
   }
 }
 
-
 //MARK: - JT Delegate
 extension InsertPlanViewController: JTAppleCalendarViewDelegate{
   func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
@@ -275,7 +273,6 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
     return date >= Date()
   }
 }
-
 
 //MARK: - JT DataSource
 extension InsertPlanViewController: JTAppleCalendarViewDataSource{

@@ -114,6 +114,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IGListKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JDStatusBarNotification.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -174,16 +179,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-ZIP_iosTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Popover.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>PopupDialog.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -219,11 +214,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RxASDataSources.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>RxCocoa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -240,6 +230,11 @@
 			<false/>
 		</dict>
 		<key>RxGesture.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxGoogleMaps.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -304,11 +299,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftyTimer.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftyUserDefaults.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -335,16 +325,6 @@
 			<false/>
 		</dict>
 		<key>Texture.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Validator.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>expanding-collection.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

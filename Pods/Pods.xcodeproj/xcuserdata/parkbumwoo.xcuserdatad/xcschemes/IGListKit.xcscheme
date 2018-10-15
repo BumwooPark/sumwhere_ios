@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "86C5D22412084E5C1E5D78DADA642E70"
-               BlueprintName = "Validator"
+               BlueprintIdentifier = "1FBC5A5FFFF000A98458DA0DAD8AB232"
+               BlueprintName = "IGListKit"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Validator.framework">
+               BuildableName = "IGListKit.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
