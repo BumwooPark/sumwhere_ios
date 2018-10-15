@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D9E6100D63B9677D8F2CC8EDACE6A6EE"
+               BlueprintIdentifier = "8DF7E2DBCC6A920E7A548E81B81C26E1"
                BlueprintName = "PySwiftyRegex"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "PySwiftyRegex.framework">

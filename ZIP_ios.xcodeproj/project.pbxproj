@@ -98,6 +98,7 @@
 		0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A90EBD32109F7B10057F1A9 /* TicketView.xib */; };
 		0A9174CE20220124000A055A /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9174CD20220124000A055A /* MockMessage.swift */; };
 		0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9174D220272CEC000A055A /* JDStatusBarManager.swift */; };
+		0A9755372174BC3D0098F2DB /* MatchSelectSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9755362174BC3C0098F2DB /* MatchSelectSectionController.swift */; };
 		0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */; };
 		0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */; };
 		0AA0361E1FDADBC6000D4451 /* ProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0361D1FDADBC6000D4451 /* ProxyController.swift */; };
@@ -293,6 +294,7 @@
 		0A90EBD32109F7B10057F1A9 /* TicketView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketView.xib; sourceTree = "<group>"; };
 		0A9174CD20220124000A055A /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		0A9174D220272CEC000A055A /* JDStatusBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDStatusBarManager.swift; sourceTree = "<group>"; };
+		0A9755362174BC3C0098F2DB /* MatchSelectSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSelectSectionController.swift; sourceTree = "<group>"; };
 		0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanFlowLayout.swift; sourceTree = "<group>"; };
 		0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AA0361D1FDADBC6000D4451 /* ProxyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyController.swift; sourceTree = "<group>"; };
@@ -905,6 +907,7 @@
 				0A15A6CD21280D0A0060290A /* MatchResultController.swift */,
 				B1A1D9A8212BCA010022D2A0 /* DetailUserInfoViewController.swift */,
 				B1D1CB0D212E43FE001A9801 /* GPSMatchResultViewController.swift */,
+				0A9755362174BC3C0098F2DB /* MatchSelectSectionController.swift */,
 				B1911FB821707EBB005A4E85 /* MatchSelectViewController.swift */,
 			);
 			path = Match;
@@ -1356,6 +1359,7 @@
 				0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
 				0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */,
+				0A9755372174BC3D0098F2DB /* MatchSelectSectionController.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
 				B1D1CAFD212D0961001A9801 /* DetailCharacterCell.swift in Sources */,
 				B1911FB921707EBB005A4E85 /* MatchSelectViewController.swift in Sources */,

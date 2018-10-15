@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1540C8EE5FA672C41972B3FCCEF17A1"
+               BlueprintIdentifier = "B683D6AC08CADDB3574C680F1A6DC944"
                BlueprintName = "CocoaMQTT"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "CocoaMQTT.framework">
