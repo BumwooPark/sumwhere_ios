@@ -93,7 +93,7 @@ class TripViewController: UIViewController{
       .modelSelected(TripModel.self)
       .subscribe(onNext: {[weak self] model in
         TripViewController.currentModel = model
-        self?.navigationController?.pushViewController(SelectMatchViewController(), animated: true)
+        self?.navigationController?.pushViewController(UIViewController(), animated: true)
       }).disposed(by: disposeBag)
   }
   

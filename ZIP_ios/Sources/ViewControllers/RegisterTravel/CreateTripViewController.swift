@@ -27,7 +27,7 @@ final class CreateTripViewController: UIViewController{
     
     view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
     pageView.isPagingEnabled = false
-    self.addChildViewController(pageView)
+    self.addChild(pageView)
     view.addSubview(pageView.view)
     view.setNeedsUpdateConstraints()
     

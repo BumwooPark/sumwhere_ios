@@ -14,7 +14,7 @@ import Moya
 import JTAppleCalendar
 import LTMorphingLabel
 import SwiftDate
-import Validator
+
 
 class DateControl{
   var startDate: Date = Date()

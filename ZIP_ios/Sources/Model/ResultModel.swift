@@ -20,7 +20,7 @@ struct ResultModel<T: Codable>: Codable{
       JDStatusBarNotification.show(withStatus: success, dismissAfter: 2, styleName: JDType.Success.rawValue)
       complete()
     }else{
-      JDStatusBarNotification.show(withStatus: self.error?.details, dismissAfter: 2, styleName: JDType.Fail.rawValue)
+      JDStatusBarNotification.show(withStatus: self.error?.details ?? "에러", dismissAfter: 2, styleName: JDType.Fail.rawValue)
     }
   }
 }

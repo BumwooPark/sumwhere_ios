@@ -29,7 +29,7 @@ class CurrentMatchViewController: UIViewController{
   let control: HMSegmentedControl = {
     let control = HMSegmentedControl()
     control.sectionTitles = ["보낸동행","받은동행"]
-    control.selectedTitleTextAttributes = [NSAttributedStringKey.font: UIFont.NotoSansKRBold(size: 20)]
+    control.selectedTitleTextAttributes = [NSAttributedString.Key.font: UIFont.NotoSansKRBold(size: 20)]
     control.selectionIndicatorLocation = .down
     return control
   }()
@@ -38,9 +38,9 @@ class CurrentMatchViewController: UIViewController{
     super.viewDidLoad()
     view.backgroundColor = .white
     view.addSubview(control)
-    addChildViewController(pageViewController)
+    addChild(pageViewController)
     view.addSubview(pageViewController.view)
-    pageViewController.didMove(toParentViewController: self)
+    pageViewController.didMove(toParent: self)
     
     pageViewController
       .currentIndexSubject

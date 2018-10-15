@@ -26,7 +26,6 @@ pod 'JTAppleCalendar'
 pod 'PopupDialog'
 pod 'SwiftyUserDefaults'
 pod 'SwiftDate'
-pod 'Validator'
 pod 'PySwiftyRegex'
 pod 'Fabric'
 pod 'Crashlytics'
@@ -44,19 +43,19 @@ pod 'LGButton'
 pod 'JDStatusBarNotification'
 pod 'LTMorphingLabel'
 pod 'Eureka'
-pod 'expanding-collection'
-pod 'TagListView', '~> 1.0'
+pod 'TagListView'
 pod 'DropDown'
 pod 'JVFloatLabeledTextField'
 pod 'BubbleTransition'
 pod 'Cosmos'
 pod 'HMSegmentedControl'
-pod 'Popover'
 pod 'SkeletonView'
 pod 'Texture'
 pod 'CHIPageControl'
 pod 'CHIPageControl/Aleppo'
 pod 'EmptyDataSet-Swift'
+pod 'IGListKit'
+
 
 # RX
 pod 'RxSwift'
@@ -68,12 +67,7 @@ pod 'RxKeyboard'
 pod 'RxOptional'
 pod "RxSwiftExt"
 pod 'RxCoreLocation'
-pod 'RxASDataSources'
 pod "RxRealm"
-
-  target 'ZIP_iosTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+pod 'RxGoogleMaps'
 
 end

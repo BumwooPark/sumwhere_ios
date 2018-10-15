@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import PopupDialog
 import Moya
-import Validator
+
 import JDStatusBarNotification
 
 enum ProfileType{

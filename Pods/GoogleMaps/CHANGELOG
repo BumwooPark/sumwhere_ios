@@ -1,16 +1,4 @@
-Version 2.7.0 - April 2018
-==========================
-Improvements:
-  - Improved documentation on thread safety of GMSServices.
-
-Resolved Issues:
-  - Fixed crash in GMSDASHStreamingBody.
-  - Fixed Google Logo positioning in GMSPanoramaView.
-
-Note:
-  - Support for Xcode 8.0 has been dropped. The new minimum is Xcode 9.0.
-
-Version 2.6.0 - February 2018
+Version 2.6.0 - February 2017
 =============================
 Features:
   - Added a mechanism for Developers to enable experimental features.

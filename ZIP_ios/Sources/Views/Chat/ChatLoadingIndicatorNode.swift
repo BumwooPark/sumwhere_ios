@@ -11,7 +11,7 @@ class ChatLoadingIndicatorNode: ASCellNode {
   
   lazy var indicatorNode: ASDisplayNode = {
     let node = ASDisplayNode(viewBlock: {
-      let view = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+      let view = UIActivityIndicatorView(style: .gray)
       view.hidesWhenStopped = true
       return view
     })

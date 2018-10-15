@@ -14,7 +14,7 @@ import Moya
 import SwiftyJSON
 import TTTAttributedLabel
 import Firebase
-import Validator
+
 
 
 #if !RX_NO_MODULE

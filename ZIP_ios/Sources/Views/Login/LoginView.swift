@@ -103,7 +103,7 @@ class LoginView: UIView{
   let joinLabel: TTTAttributedLabel = {
     let label = TTTAttributedLabel(frame: .zero)
     let attstring = NSAttributedString(string: "아직 회원이 아니신가요?  회원가입하기",
-                                       attributes: [NSAttributedStringKey.font : UIFont(name: "AppleSDGothicNeo-Regular", size: 14)])
+                                       attributes: [NSAttributedString.Key.font : UIFont(name: "AppleSDGothicNeo-Regular", size: 14)])
     label.attributedText = attstring
     label.textColor = .black
     let range = NSRange(location: 15, length: 6)

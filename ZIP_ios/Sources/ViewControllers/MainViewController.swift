@@ -30,7 +30,7 @@ final class MainViewController: UIViewController{
     cell.item = item
     return cell
   },configureSupplementaryView: {ds, cv, kind, idx in
-    let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: MainCollectionHeaderView.self), for: idx) as! MainCollectionHeaderView
+    let view = cv.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: MainCollectionHeaderView.self), for: idx) as! MainCollectionHeaderView
     view.titleLabel.text = ds.sectionModels[idx.section].header
     return view
   })
@@ -69,7 +69,7 @@ final class MainViewController: UIViewController{
     collectionView.isScrollEnabled = false
     collectionView.register(MainCollectionCell.self, forCellWithReuseIdentifier: String(describing: MainCollectionCell.self))
     collectionView.register(MainCollectionHeaderView.self,
-                            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: String(describing: MainCollectionHeaderView.self))
     collectionView.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 0, right: 0)
     collectionView.backgroundColor = .clear
@@ -86,7 +86,7 @@ final class MainViewController: UIViewController{
     let myString = NSMutableAttributedString(string: String())
     myString.append(attributeString)
     myString.append(NSAttributedString(string: "갈래말래",
-                                       attributes: [NSAttributedStringKey.font : UIFont.NotoSansKRMedium(size: 24),
+                                       attributes: [NSAttributedString.Key.font : UIFont.NotoSansKRMedium(size: 24),
                                                     .foregroundColor: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)]))
     titleLabel.attributedText = myString
     return titleLabel
@@ -127,8 +127,8 @@ final class MainViewController: UIViewController{
     
     view.addSubview(scrollView)
     scrollView.addSubview(contentView)
-    addChildViewController(advertiseViewController)
-    advertiseViewController.didMove(toParentViewController: self)
+    addChild(advertiseViewController)
+    advertiseViewController.didMove(toParent: self)
     contentView.addSubview(collectionView)
     contentView.addSubview(advertiseViewController.view)
     contentView.addSubview(footerView)

@@ -342,7 +342,7 @@ internal func combineHashes(_ hashes: [Int]) -> Int {
 private func combineHashValues(_ initial: Int, _ other: Int) -> Int {
 	#if arch(x86_64) || arch(arm64)
 	let magic: UInt = 0x9e3779b97f4a7c15
-	#elseif arch(i386) || arch(arm)
+	#elseif arch(i386) || arch(arm) || arch(arm64_32)
 	let magic: UInt = 0x9e3779b9
 	#endif
 	var lhs = UInt(bitPattern: initial)
@@ -350,3 +350,16 @@ private func combineHashValues(_ initial: Int, _ other: Int) -> Int {
 	lhs ^= rhs &+ magic &+ (lhs << 6) &+ (lhs >> 2)
 	return Int(bitPattern: lhs)
 }
+
+//MARK: - compactMap for Swift 4.0 (not necessary > 4.0)
+
+#if swift(>=4.1)
+#else
+	extension Collection {
+		func compactMap<ElementOfResult>(
+			_ transform: (Element) throws -> ElementOfResult?
+			) rethrows -> [ElementOfResult] {
+			return try flatMap(transform)
+		}
+	}
+#endif

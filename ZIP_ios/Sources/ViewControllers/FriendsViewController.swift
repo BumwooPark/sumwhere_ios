@@ -34,7 +34,7 @@ class FriendsViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    addChildViewController(childViewController)
+    addChild(childViewController)
     view.addSubview(scrollView)
     scrollView.addSubview(rootView)
     rootView.addSubview(tableView)
@@ -78,13 +78,13 @@ class RequestFriendsViewController: UIPageViewController{
     view.backgroundColor = .blue
   }
   
-  override func willMove(toParentViewController parent: UIViewController?) {
-    super.willMove(toParentViewController: parent)
+  override func willMove(toParent parent: UIViewController?) {
+    super.willMove(toParent: parent)
     log.info("WillMove")
   }
   
-  override func didMove(toParentViewController parent: UIViewController?) {
-    super.didMove(toParentViewController: parent)
+  override func didMove(toParent parent: UIViewController?) {
+    super.didMove(toParent: parent)
     log.info("didMove")
   }
 }

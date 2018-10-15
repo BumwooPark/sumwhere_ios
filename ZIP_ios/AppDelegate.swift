@@ -40,15 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   static var instance: AppDelegate? {
     return UIApplication.shared.delegate as? AppDelegate
   }
-  
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+ 
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     Fabric.with([Crashlytics.self])
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
     
-    
-//    window?.rootViewController = UINavigationController(rootViewController: ChatListViewController())
-//    window?.rootViewController = InterestViewController()
     window?.rootViewController = UIViewController()
     proxyController = ProxyController(window: window)
     proxyController.makeRootViewController()
@@ -105,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   private func appearanceSetting(){
     
-    UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+    UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     UINavigationBar.appearance().shadowImage = UIImage()
     UINavigationBar.appearance().tintColor = .black
   }
@@ -137,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return false
   }
   
-  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
     
 //    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
 //      openURL:url

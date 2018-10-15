@@ -8,8 +8,8 @@
 
 import RxSwift
 import RxCocoa
-import Validator
 import PySwiftyRegex
+
 
 class JoinViewModel{
 

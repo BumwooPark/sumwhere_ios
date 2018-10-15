@@ -171,8 +171,8 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
       .disposed(by: disposeBag)
   }
  
-  override func didMove(toParentViewController parent: UIViewController?) {
-    super.didMove(toParentViewController: parent)
+  override func didMove(toParent parent: UIViewController?) {
+    super.didMove(toParent: parent)
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
       self.textField.becomeFirstResponder()
     }

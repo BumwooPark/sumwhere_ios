@@ -11,7 +11,7 @@ class MyTripCell: UITableViewCell{
   var didUpdateConstraint = false
   let ticketView = TicketView.loadXib(nibName: "TicketView") as! TicketView
   
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     contentView.addSubview(ticketView)
     setNeedsUpdateConstraints()

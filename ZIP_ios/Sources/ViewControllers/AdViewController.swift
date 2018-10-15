@@ -35,9 +35,9 @@ final class AdViewController: UIViewController{
     three.view.backgroundColor = .yellow
     
     pageView = PageViewController(pages: [one,two,three], spin: true)
-    addChildViewController(pageView)
+    addChild(pageView)
     view.addSubview(pageView.view)
-    pageView.didMove(toParentViewController: self)
+    pageView.didMove(toParent: self)
     view.addSubview(pageControl)
     view.setNeedsUpdateConstraints()
     
@@ -63,11 +63,11 @@ final class AdViewController: UIViewController{
     super.updateViewConstraints()
   }
   
-  override func willMove(toParentViewController parent: UIViewController?) {
-    super.willMove(toParentViewController: parent)
+  override func willMove(toParent parent: UIViewController?) {
+    super.willMove(toParent: parent)
   }
   
-  override func didMove(toParentViewController parent: UIViewController?) {
-    super.didMove(toParentViewController: parent)
+  override func didMove(toParent parent: UIViewController?) {
+    super.didMove(toParent: parent)
   }
 }

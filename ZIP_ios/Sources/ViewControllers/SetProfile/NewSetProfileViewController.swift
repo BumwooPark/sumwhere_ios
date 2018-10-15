@@ -44,10 +44,10 @@ class NewSetProfileViewController: UIViewController{
     super.viewDidLoad()
     pageView.isPagingEnabled = false
     view.backgroundColor = .white
-    addChildViewController(pageView)
+    addChild(pageView)
     view.addSubview(pageView.view)
     view.addSubview(progressView)
-    pageView.didMove(toParentViewController: self)
+    pageView.didMove(toParent: self)
     view.setNeedsUpdateConstraints()
     
     pageView.currentIndexSubject

@@ -88,7 +88,7 @@ class ProfileViewModel{
     
     for (idx,image) in profile.images.enumerated(){
       if image != nil {
-        multiparts.append(MultipartFormData(provider: .data(UIImageJPEGRepresentation(image!, 1)!), name: "image\(idx+1)", fileName: "image\(idx+1)", mimeType: "image/jpeg"))
+        multiparts.append(MultipartFormData(provider: .data(UIImage.jpegData(image!)(compressionQuality: 1)!), name: "image\(idx+1)", fileName: "image\(idx+1)", mimeType: "image/jpeg"))
       }
     }
     

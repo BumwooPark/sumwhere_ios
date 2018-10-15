@@ -25,7 +25,7 @@ class DetailUserInfoViewController: UIViewController{
     collectionView.register(UINib(nibName: "DetailTripStyleCell", bundle: nil), forCellWithReuseIdentifier: String(describing: DetailTripStyleCell.self))
     collectionView.register(DetailCharacterCell.self, forCellWithReuseIdentifier: String(describing: DetailCharacterCell.self))
     collectionView.register(DetailInterestCell.self, forCellWithReuseIdentifier: String(describing: DetailInterestCell.self))
-    collectionView.register(DetailCommitView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: DetailCommitView.self))
+    collectionView.register(DetailCommitView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: String(describing: DetailCommitView.self))
     collectionView.dataSource = self
     collectionView.delegate = self
     collectionView.backgroundColor = .white
@@ -120,7 +120,7 @@ extension DetailUserInfoViewController: UICollectionViewDataSource{
   }
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    let commitView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: DetailCommitView.self), for: indexPath) as! DetailCommitView
+    let commitView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: String(describing: DetailCommitView.self), for: indexPath) as! DetailCommitView
     
     commitView
       .commitAction

@@ -46,7 +46,7 @@ class ProxyController{
         return loginVC
       }else {
         if !profile{
-          loginVC.addChildViewController(NewSetProfileViewController())
+          loginVC.addChild(NewSetProfileViewController())
           return loginVC
         }else{
           return MainTabBarController()
