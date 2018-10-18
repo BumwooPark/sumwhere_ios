@@ -6,14 +6,17 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-import RxCocoa
+#if !RX_NO_MODULE
 import RxSwift
+import RxCocoa
 import RxDataSources
+#endif
 
-final class InsertPeopleViewController: UIViewController{
+final class InviteFriendsViewController: UIViewController{
   
   var didUpdateConstraint = false
-  let viewController: UIViewController
+  
+  private let viewModel: RegisterTripViewModel
   private let disposeBag = DisposeBag()
   private let dataSources = RxTableViewSectionedReloadDataSource<FriendsViewModel>(configureCell: {ds,tv,idx,item in
     let cell = tv.dequeueReusableCell(withIdentifier: String(describing: FriendsCell.self), for: idx) as! FriendsCell
@@ -34,8 +37,8 @@ final class InsertPeopleViewController: UIViewController{
     return tableView
   }()
   
-  init(viewController: UIViewController) {
-    self.viewController = viewController
+  init(viewModel: RegisterTripViewModel) {
+    self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
   

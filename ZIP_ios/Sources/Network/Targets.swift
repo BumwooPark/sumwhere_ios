@@ -42,8 +42,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-//    return URL(string: "http://192.168.0.3:8080/galmal")!
-    return URL(string: "https://bumwoopark.iptime.org/galmal")!
+    return URL(string: "http://localhost:8080/galmal")!
+//    return URL(string: "https://bumwoopark.iptime.org/galmal")!
     #else
     return URL(string: "https://bumwoopark.iptime.org/galmal")!
     #endif
@@ -72,7 +72,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .createProfile:
       return "/restrict/profile"
     case .searchDestination:
-      return "/restrict/triptype"
+      return "/restrict/tripplaces"
     case .createTrip:
       return "/restrict/trip"
     case .myTrip,.deleteMyTrip:

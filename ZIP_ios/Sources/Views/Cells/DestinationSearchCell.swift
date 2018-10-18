@@ -19,30 +19,40 @@ class DestinationSearchCell: UITableViewCell{
       let length : Int = searchString.count
       attributeString.addAttributes([.foregroundColor : UIColor.black], range: NSRange(location: location, length: length))
       destinationLabel.attributedText = attributeString
+      countryLabel.text = item.0?.country
     }
   }
   
-  
-  
   let destinationLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.NotoSansKRMedium(size: 15)
+    label.font = .AppleSDGothicNeoMedium(size: 16)
     label.textColor = .lightGray
+    return label
+  }()
+  
+  let countryLabel: UILabel = {
+    let label = UILabel()
+    label.font = .AppleSDGothicNeoMedium(size: 16)
     return label
   }()
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     contentView.addSubview(destinationLabel)
+    contentView.addSubview(countryLabel)
     setNeedsUpdateConstraints()
   }
-  
   
   override func updateConstraints() {
     if !didUpdateConstraint{
       destinationLabel.snp.makeConstraints { (make) in
         make.bottom.top.equalToSuperview()
         make.left.equalTo(contentView.snp.leftMargin).inset(10)
+      }
+      
+      countryLabel.snp.makeConstraints { (make) in
+        make.centerY.equalTo(destinationLabel)
+        make.right.equalToSuperview().inset(20)
       }
       didUpdateConstraint = true
     }

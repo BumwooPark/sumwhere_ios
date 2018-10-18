@@ -12,6 +12,8 @@ import RxSwift
 import PopupDialog
 import Moya
 
+
+
 final class CreateTripViewController: UIViewController{
   
   let viewModel = RegisterTripViewModel()
@@ -46,6 +48,11 @@ final class CreateTripViewController: UIViewController{
     viewModel
       .completeAction
       .bind(onNext: pageView.scrollToAutoForward)
+      .disposed(by: disposeBag)
+    
+    viewModel
+      .backAction
+      .bind(onNext: pageView.scrollToAutoBackward)
       .disposed(by: disposeBag)
   }
   

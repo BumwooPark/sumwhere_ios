@@ -33,8 +33,8 @@ final class DefaultLoginViewController: UIViewController{
   
   private let secretButton: UIButton = {
     let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 26, height: 22)))
-    button.setImage(#imageLiteral(resourceName: "textfieldsecret.png"), for: .normal)
-    button.setImage(#imageLiteral(resourceName: "textfieldsecret2.png"), for: .selected)
+    button.setImage(#imageLiteral(resourceName: "textfieldsecret.png") , for: .normal)
+    button.setImage(#imageLiteral(resourceName: "textfieldusesecret.png"), for: .selected)
     button.isSelected = true
     return button
   }()

@@ -415,6 +415,7 @@
 		0A09A8051FDD3F1900DC47A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1E014632178356000348FB6 /* RegisterTrip */,
 				B1996C58214A008000BC95C5 /* Chat */,
 				0A375C212132ABA500E35ED9 /* Request */,
 				0A895BED2129A5FD00FDF834 /* Login */,
@@ -637,7 +638,7 @@
 				0A895BEC2129A59900FDF834 /* Login */,
 				B1A1D998211D16B10022D2A0 /* Match */,
 				B16B3DF52117E6E3001D278A /* SetProfile */,
-				0A74566A210CA9EE00F8A0C9 /* RegisterTravel */,
+				0A74566A210CA9EE00F8A0C9 /* RegisterTrip */,
 				0A895BF0212EEC1E00FDF834 /* Request */,
 				0A7123951FACC1E900512EB7 /* MainTabBarController.swift */,
 				B1D4E50D20F895EF00524CE2 /* MainViewController.swift */,
@@ -654,7 +655,7 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		0A74566A210CA9EE00F8A0C9 /* RegisterTravel */ = {
+		0A74566A210CA9EE00F8A0C9 /* RegisterTrip */ = {
 			isa = PBXGroup;
 			children = (
 				B105597C2109C0E800AC769C /* CreateTripViewController.swift */,
@@ -664,7 +665,7 @@
 				0A74566F210CD09600F8A0C9 /* InsertPeopleViewController.swift */,
 				0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */,
 			);
-			path = RegisterTravel;
+			path = RegisterTrip;
 			sourceTree = "<group>";
 		};
 		0A745681210DFB5C00F8A0C9 /* RegisterTravel */ = {
@@ -952,6 +953,13 @@
 				B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */,
 			);
 			path = Match;
+			sourceTree = "<group>";
+		};
+		B1E014632178356000348FB6 /* RegisterTrip */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RegisterTrip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

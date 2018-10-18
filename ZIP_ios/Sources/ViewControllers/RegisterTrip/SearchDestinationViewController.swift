@@ -40,25 +40,18 @@ class SearchDestinationViewController: UIViewController{
     return textField
   }()
   
-  let collectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .vertical
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    return collectionView
-  }()
-  
   lazy var tableView: UITableView = {
     let tableView = UITableView(frame: .zero, style: .plain)
     tableView.rowHeight = 50
-    tableView.separatorStyle = .none
+//    tableView.separatorStyle = .none
     tableView.register(DestinationSearchCell.self, forCellReuseIdentifier: String(describing: DestinationSearchCell.self))
     return tableView
   }()
   
-  lazy var dataSources = RxTableViewSectionedReloadDataSource<SearchDestTVModel>(configureCell: {[weak self]ds,tv,idx,item in
+  lazy var dataSources = RxTableViewSectionedReloadDataSource<SearchDestTVModel>(configureCell: {[weak self] ds,tv,idx,item in
     let cell = tv.dequeueReusableCell(withIdentifier: String(describing: DestinationSearchCell.self), for: idx) as! DestinationSearchCell
     cell.item = (item,self?.textField.text)
-    cell.selectionStyle = .none
+//    cell.selectionStyle = .none
     return cell
   })
   
@@ -78,22 +71,57 @@ class SearchDestinationViewController: UIViewController{
     view.backgroundColor = .white
     hideKeyboardWhenTappedAround()
     
-//    tableView.rx
-//      .modelSelected(TripType.self)
-//      .asDriver()
-//      .flatMapLatest {[unowned self] (resultModel)  -> SharedSequence<DriverSharingStrategy, TripType> in
-//      let vc = self.viewController as! CreateTripViewController
-//        return vc.viewModel.serverTripValidate(model: resultModel)
-//          .asDriver(onErrorRecover: { (error) -> SharedSequence<DriverSharingStrategy, TripType> in
-//            vc.validationErrorPopUp(error: error)
-//            return Driver.just(TripType(id: 0, trip: String(), country: String(), imageURL: String()))
-//          })
-//      }.drive(onNext: {[weak self] (model) in
-//        if model.id != 0 {
-//          (self?.viewController as? CreateTripViewController)?.viewModel.dataSubject.onNext(.destination(model: model))
-//        }
-//      }).disposed(by: disposeBag)
-
+    textField.rx
+      .text
+      .orEmpty
+      .filterEmpty()
+      .bind(to: viewModel.tripPlaceBinder)
+      .disposed(by: disposeBag)
+    
+    viewModel.tripPlaceMapper
+      .map{[SearchDestTVModel(items: $0)]}
+      .bind(to: tableView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
+    
+    
+    textField.rx.controlEvent(.editingDidBegin)
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return { _ in
+          weakSelf.textField.snp.remakeConstraints { (make) in
+            make.right.equalToSuperview().inset(16)
+            make.left.equalTo(weakSelf.backButton.snp.right).offset(16)
+            make.centerY.equalTo(weakSelf.backButton)
+            make.height.equalTo(46)
+          }
+          
+          UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {[weak self] in
+            self?.view.setNeedsLayout()
+            self?.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+      }.disposed(by: disposeBag)
+    
+    textField.rx.controlEvent(.editingDidEnd)
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return { _ in
+          weakSelf.textField.snp.remakeConstraints { (make) in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(weakSelf.backButton.snp.bottom).offset(30)
+            make.height.equalTo(46)
+          }
+          UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {[weak self] in
+            self?.view.setNeedsLayout()
+            self?.view.layoutIfNeeded()
+          }, completion: nil)
+        }
+      }.disposed(by: disposeBag)
+    
+    backButton
+      .rx
+      .tap
+      .bind(to: viewModel.backAction)
+      .disposed(by: disposeBag)
+    
     view.setNeedsUpdateConstraints()
   }
   
@@ -112,7 +140,7 @@ class SearchDestinationViewController: UIViewController{
       }
       
       backButton.snp.makeConstraints { (make) in
-        make.left.equalTo(textField)
+        make.left.equalToSuperview().inset(16)
         make.top.equalTo(self.view.safeAreaLayoutGuide).inset(25)
         make.width.height.equalTo(40)
       }
