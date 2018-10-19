@@ -117,7 +117,7 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
         err.GalMalErrorHandler()
         return Observable.just([])
       })
-      .filterNil()
+      .unwrap()
       .bind(to: collectionView.rx.items(
         cellIdentifier: String(describing: CharacterCollectionViewCell.self),
         cellType: CharacterCollectionViewCell.self)){ idx, item, cell in

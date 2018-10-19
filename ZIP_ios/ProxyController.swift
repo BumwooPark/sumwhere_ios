@@ -23,17 +23,21 @@ class ProxyController{
   func profileCheck(){
     let isProfile = AuthManager.instance
       .provider.request(.isProfile)
+      .filterSuccessfulStatusCodes()
+      .retry(3)
       .map(ResultModel<Bool>.self)
       .map{$0.result}
       .asObservable()
-      .filterNil()
+      .unwrap()
     
     let tokenLogin = AuthManager.instance
       .provider.request(.tokenLogin)
+      .filterSuccessfulStatusCodes()
+      .retry(3)
       .map(ResultModel<Bool>.self)
       .map{$0.result}
       .asObservable()
-      .filterNil()
+      .unwrap()
     
     Observable<UIViewController>
       .combineLatest(isProfile, tokenLogin) { (profile, login)in

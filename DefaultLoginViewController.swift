@@ -12,7 +12,6 @@ import RxCocoa
 import Moya
 import SnapKit
 import LGButton
-import RxOptional
 import RxKeyboard
 import Reachability
 import TTTAttributedLabel
@@ -20,7 +19,6 @@ import JDStatusBarNotification
 import SkyFloatingLabelTextField
 
 final class DefaultLoginViewController: UIViewController{
-  
   
   let reachability = Reachability()!
   
@@ -96,12 +94,11 @@ final class DefaultLoginViewController: UIViewController{
   
   private let loginButton: LGButton = {
     let button = LGButton()
-    button.titleString = "회원가입"
+    button.titleString = "로그인"
     button.titleColor = .white
     button.titleFontName = "AppleSDGothicNeo-Medium"
     button.titleFontSize = 17
     button.bgColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
-    button.loadingString = "가입중.."
     return button
   }()
   
@@ -118,11 +115,16 @@ final class DefaultLoginViewController: UIViewController{
     logoImageView.addSubview(commaImageView2)
     self.navigationController?.navigationBar.topItem?.title = String()
     
+    let loginAction = loginButton
+      .rx
+      .tapGesture()
+      .when(.ended).do(onNext: {[weak self] (_) in
+        self?.loginButton.isLoading = true
+      }).share()
+    
     viewModel = DefaultLoginViewModel(email: emailField.rx.text.orEmpty,
                                       password: passwordField.rx.text.orEmpty,
-                                      tap: loginButton.rx.tapGesture().when(.ended).do(onNext: {[weak self] (_) in
-                                        self?.loginButton.isLoading = true
-                                      }))
+                                      tap: loginAction)
     behavior()
     heroConfig()
     reachText()
@@ -160,13 +162,25 @@ final class DefaultLoginViewController: UIViewController{
   
   private func behavior(){
     
-    loginButton.rx
-      .controlEvent(.touchUpInside)
-      .subscribe(onNext: {[weak self] (_) in
-        guard let `self` = self else {return}
-        self.login()
-      }).disposed(by: disposeBag)
+    viewModel.tempResult
+      .errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return { error in
+          guard let err = error as? MoyaError else {return}
+          err.GalMalErrorHandler()
+          weakSelf.loginButton.isLoading = false
+        }
+    }.disposed(by: disposeBag)
     
+    viewModel.tempResult
+      .elements()
+      .subscribeNext(weak: self) { (weakSelf) -> (ResultModel<TokenModel>) -> Void in
+        return { model in
+          tokenObserver.onNext(model.result?.token ?? String())
+          weakSelf.loginButton.isLoading = false
+        }
+      }.disposed(by: disposeBag)
+
     RxKeyboard.instance
       .visibleHeight
       .drive(onNext: {[unowned self] (float) in
@@ -210,19 +224,6 @@ final class DefaultLoginViewController: UIViewController{
     logoImageView.alpha = hidden ? 0 : 1
     commaImageView.alpha = hidden ? 0 : 1
     commaImageView2.alpha = hidden ? 0 : 1
-  }
-
-  /// API Login
-  private func login(){
-    
-    viewModel.tempResult
-      .subscribe(onNext: { (model) in
-        log.info(model)
-        tokenObserver.onNext(model.result?.token ?? String())
-      }, onError: { (error) in
-        guard let err = error as? MoyaError else {return}
-        err.GalMalErrorHandler()
-      }).disposed(by: disposeBag)
   }
   
   /// Hero Settings

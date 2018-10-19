@@ -42,7 +42,7 @@ public class NicknameCell: Cell<String>, CellType{
     
     textField.rx.text
       .map{$0?.count}
-      .filterNil()
+      .unwrap()
       .subscribe(onNext:{[weak self] (value) in
         self?.checkButton.isSelected = (value > 2) ? true : false
         self?.checkButton.layer.borderColor = (value > 2) ? #colorLiteral(red: 0.04194890708, green: 0.5622439384, blue: 0.8219085336, alpha: 1).cgColor : UIColor.red.cgColor

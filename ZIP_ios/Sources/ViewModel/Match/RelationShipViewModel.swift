@@ -22,7 +22,7 @@ class RelationShipViewModel{
       .map(ResultModel<[UserTripJoinModel]>.self)
       .map{$0.result}
       .asObservable()
-      .filterNil()
+      .unwrap()
   }
   
 }

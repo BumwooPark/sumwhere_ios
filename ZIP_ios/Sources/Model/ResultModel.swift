@@ -8,6 +8,7 @@
 
 import Foundation
 import JDStatusBarNotification
+import Moya
 
 // error와 result가 정상적으로 받아도 파싱이 안됨
 struct ResultModel<T: Codable>: Codable{
@@ -46,4 +47,10 @@ struct NicknameModel: Codable{
   let error: [String: String]
   let result: Bool
   let success: Bool
+}
+
+
+struct GalMalResultModel<T: Codable>{
+  let error: MoyaError?
+  let result: ResultModel<T>?
 }

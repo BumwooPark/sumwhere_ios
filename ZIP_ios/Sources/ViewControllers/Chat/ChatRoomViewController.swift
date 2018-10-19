@@ -77,7 +77,7 @@ class ChatRoomViewController: ChatNodeViewController{
       .textView
       .rx
       .text
-      .filterNil()
+      .unwrap()
       .map{$0.count > 0}
       .bind(to: messageInputNode.sendNode.rx.isEnabled)
       .disposed(by: disposeBag)
@@ -92,7 +92,7 @@ class ChatRoomViewController: ChatNodeViewController{
     sendAction
       .map{[weak self] _ in
       return self?.messageInputNode.textNode.textView.text.count
-    }.filterNil()
+    }.unwrap()
       .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
         return { count in
           weakSelf.messageInputNode.sendNode.isEnabled = (count > 0) ? true : false
@@ -102,7 +102,7 @@ class ChatRoomViewController: ChatNodeViewController{
     sendAction
       .map{[unowned self] _ in
         return self.messageInputNode.textNode.textView.text
-      }.filterNil()
+      }.unwrap()
       .subscribeNext(weak: self) { (weakSelf) -> (String) -> Void in
         return { message in
           let encoder = JSONEncoder()
@@ -143,7 +143,7 @@ class ChatRoomViewController: ChatNodeViewController{
     
     mqtt.rx.didReceiveMessage
       .map{$0.0.string}
-      .filterNil()
+      .unwrap()
       .map{[$0]}
       .scan(self.items) { $0 + $1}
       .subscribeNext(weak: self, { (weakSelf) -> ([String]) -> Void in

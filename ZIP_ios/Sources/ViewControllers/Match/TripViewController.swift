@@ -107,7 +107,7 @@ class TripViewController: UIViewController{
         return Single.error(error)
       }.asObservable()
       .map{$0.result}
-      .filterNil()
+      .unwrap()
       .map{[MyTripViewModel(items: $0)]}
       .catchErrorJustReturn([])
       .do(onNext: {[weak self] (_) in

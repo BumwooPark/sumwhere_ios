@@ -16,7 +16,6 @@ import TTTAttributedLabel
 import Firebase
 
 
-
 #if !RX_NO_MODULE
   import RxSwift
   import RxCocoa
@@ -98,13 +97,6 @@ class JoinViewController: UIViewController{
     return field
   }()
   
-//  private let signUpButton: UIButton = {
-//    let button = UIButton()
-//    button.backgroundColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
-//    button.setTitle("회원가입", for: .normal)
-//    return button
-//  }()
-  
   private let signUpButton: LGButton = {
     let button = LGButton()
     button.titleString = "회원가입"
@@ -112,15 +104,14 @@ class JoinViewController: UIViewController{
     button.titleFontName = "AppleSDGothicNeo-Medium"
     button.titleFontSize = 17
     button.bgColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
-    button.loadingString = "가입중.."
     return button
   }()
 
   let joinView = JoinView()
   
-  lazy var viewModel = JoinViewModel(email: emailField.rx.text.orEmpty,
-                                     password: passwordField.rx.text.orEmpty,
-                                     passwordConfirm: passwordConfirmField.rx.text.orEmpty,
+  lazy var viewModel = JoinViewModel(email: emailField,
+                                     password: passwordField,
+                                     passwordConfirm: passwordConfirmField,
                                      tap: signUpButton.rx.tapGesture().when(.ended).do(onNext: {[weak self] (_) in
                                       self?.signUpButton.isLoading = true
                                      }))
@@ -141,24 +132,11 @@ class JoinViewController: UIViewController{
     self.navigationController?.navigationBar.topItem?.title = String()
     view.setNeedsUpdateConstraints()
     behavior()
-
-//    joinView.joinButton
-//      .rx
-//      .controlEvent(.touchUpInside)
-//      .bind(onNext: signUp)
-//      .disposed(by: disposeBag)
-//
-//    joinView.backButton.rx.controlEvent(.touchUpInside)
-//      .subscribe { [weak self](event) in
-//        self?.presentingViewController?.dismiss(animated: true, completion: nil)
-//      }.disposed(by: disposeBag)
-//
-//    view.hero.id = String(describing: JoinViewController.self)
-//    hero.isEnabled = true
     hero.modalAnimationType = .selectBy(presenting: .push(direction: .up), dismissing: .pull(direction: .down))
   }
   
   private func behavior(){
+    
     RxKeyboard.instance
       .visibleHeight
       .drive(onNext: {[unowned self] (float) in
@@ -185,7 +163,7 @@ class JoinViewController: UIViewController{
           retainSelf.emailField.errorMessage = result ? nil : "이메일형식이 아닙니다!"
         }
       }.disposed(by: disposeBag)
-    
+
     viewModel.passwordValid
       .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
         return {result in
@@ -193,14 +171,13 @@ class JoinViewController: UIViewController{
         }
       }.disposed(by: disposeBag)
     
-    
     viewModel.passwordConfirmValid
       .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
         return {result in
           retainSelf.passwordConfirmField.errorMessage = result ? nil : "비밀번호가 일치하지 않습니다."
         }
       }.disposed(by: disposeBag)
-    
+
     viewModel
       .isButtonEnable
       .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
@@ -212,23 +189,23 @@ class JoinViewController: UIViewController{
     
     viewModel
       .taped
-      .subscribe(weak: self) { (weakSelf) -> (Event<ResultModel<TokenModel>>) -> Void in
-        return { event in
-          switch event{
-          case .next(let element):
-            tokenObserver.onNext(element.result?.token ?? String())
-          case .error(let error):
-            guard let err = error as? MoyaError else {return}
-            err.GalMalErrorHandler()
-          case .completed:
-            log.info("completed")
-          }
+      .elements()
+      .subscribeNext(weak: self) { (weakSelf) -> (ResultModel<TokenModel>) -> Void in
+        return { model in
+          tokenObserver.onNext(model.result?.token ?? String())
           weakSelf.signUpButton.isLoading = false
         }
-    }.disposed(by: disposeBag)
+      }.disposed(by: disposeBag)
     
-    
-    
+    viewModel
+      .taped
+      .errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return { error in
+          (error as? MoyaError)?.GalMalErrorHandler()
+          weakSelf.signUpButton.isLoading = false
+        }
+      }.disposed(by: disposeBag)
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -287,29 +264,3 @@ class JoinViewController: UIViewController{
     super.updateViewConstraints()
   }
 }
-  
-//  private func signUp(){
-//
-//    let model = JoinModel(email: self.joinView.emailField.text ?? String(),
-//                          password: self.joinView.passwordField.text ?? String())
-//
-//    provider.request(.signUp(model: model))
-//      .map(ResultModel<TokenModel>.self)
-//      .subscribe(onSuccess: {[weak self] (result) in
-//        guard let `self` = self else {return}
-//
-//        if result.success{
-//          self.dismiss(animated: true, completion: {
-//            tokenObserver.onNext(result.result?.token ?? String())
-//          })
-//        }else{
-//          JDStatusBarNotification.show(withStatus: result.error?.details ?? "가입 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
-//        }
-//      }, onError: { (error) in
-//        JDStatusBarNotification.show(withStatus: "가입 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
-//      })
-//      .disposed(by: self.disposeBag)
-//  }
-
-
-

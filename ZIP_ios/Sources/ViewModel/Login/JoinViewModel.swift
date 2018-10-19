@@ -9,39 +9,47 @@
 import RxSwift
 import RxCocoa
 import PySwiftyRegex
-
+import Moya
 
 class JoinViewModel{
-
+  private let disposeBag = DisposeBag()
   let emailValid: Observable<Bool>
   let passwordValid: Observable<Bool>
-  let passwordConfirmValid: Observable<Bool>
+  var passwordConfirmValid: Observable<Bool>
   
   let isButtonEnable: Observable<Bool>
+  let taped: Observable<Event<ResultModel<TokenModel>>>
   
-  let taped: Observable<ResultModel<TokenModel>>
-  
-  init(email: ControlProperty<String>, password: ControlProperty<String>, passwordConfirm: ControlProperty<String>, tap: Observable<UITapGestureRecognizer>) {
-    self.emailValid = email
-      .map {!re.findall("^[a-z0-9_+.-]+@([a-z0-9-]+\\.)+[a-z0-9]{2,4}$", $0).isEmpty}
-      .skip(2)
-      .share(replay: 1)
+  init(email: UITextField, password: UITextField, passwordConfirm: UITextField, tap: Observable<UITapGestureRecognizer>) {
     
-    self.passwordValid = password
+    self.emailValid = email.rx
+      .controlEvent(.editingDidEnd)
+      .withLatestFrom(email.rx.text.orEmpty)
+      .map{!re.findall("^[a-z0-9_+.-]+@([a-z0-9-]+\\.)+[a-z0-9]{2,4}$", $0).isEmpty}
+      .share()
+    
+    self.passwordValid = password.rx
+      .text
+      .orEmpty
       .map{!re.findall("^[A-Za-z0-9]{6,20}$", $0).isEmpty}
-      .skip(1)
-      .share(replay: 1)
+      .skip(2)
+      .share()
     
-    self.passwordConfirmValid = Observable.combineLatest(password, passwordConfirm) { $0 == $1}
+    self.passwordConfirmValid = Observable
+      .combineLatest(password.rx.text.orEmpty,
+                     passwordConfirm.rx.text.orEmpty.filter{$0.count > 0}) { $0 == $1}
     self.isButtonEnable = Observable.combineLatest(emailValid, passwordConfirmValid) { $0 && $1 }
     
-    taped = Observable
-      .combineLatest(email, password, tap) {($0, $1, $2)}
-      .flatMapLatest { (data) -> PrimitiveSequence<SingleTrait, ResultModel<TokenModel>> in
-        let model = JoinModel(email: data.0, password: data.1)
-        return AuthManager.instance.provider.request(.signUp(model: model))
+    let combineData = Observable
+      .combineLatest(email.rx.text.orEmpty, password.rx.text.orEmpty){($0,$1)}
+    
+    taped = tap.withLatestFrom(combineData)
+      .flatMapLatest { (data) in
+        return AuthManager.instance.provider.request(.signUp(model: JoinModel(email: data.0, password: data.1)))
           .filterSuccessfulStatusCodes()
           .map(ResultModel<TokenModel>.self)
-    }
+          .asObservable()
+          .materialize()
+    }.share()
   }
 }

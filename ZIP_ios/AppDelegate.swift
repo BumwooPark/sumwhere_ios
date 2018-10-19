@@ -13,7 +13,6 @@ import GooglePlaces
 import SwiftyBeaver
 import RxSwift
 import RxCocoa
-import RxOptional
 import RxSwiftExt
 import Moya
 import SwiftyJSON
@@ -46,7 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
     
-    window?.rootViewController = UIViewController()
+    
+    let defaultVC: UIViewController = {
+      let vc = UIViewController()
+      vc.view.backgroundColor = .white
+      return vc
+    }()
+    window?.rootViewController = defaultVC
     proxyController = ProxyController(window: window)
     proxyController.makeRootViewController()
     

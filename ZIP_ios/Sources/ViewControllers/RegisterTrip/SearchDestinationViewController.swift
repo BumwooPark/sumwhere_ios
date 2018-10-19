@@ -74,7 +74,7 @@ class SearchDestinationViewController: UIViewController{
     textField.rx
       .text
       .orEmpty
-      .filterEmpty()
+      .ignore(String())
       .bind(to: viewModel.tripPlaceBinder)
       .disposed(by: disposeBag)
     

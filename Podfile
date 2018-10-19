@@ -55,6 +55,7 @@ pod 'CHIPageControl'
 pod 'CHIPageControl/Aleppo'
 pod 'EmptyDataSet-Swift'
 pod 'IGListKit'
+pod 'NVActivityIndicatorView'
 
 
 # RX
@@ -64,7 +65,6 @@ pod 'RxGesture'
 pod 'RxDataSources'
 pod 'Moya/RxSwift'
 pod 'RxKeyboard'
-pod 'RxOptional'
 pod "RxSwiftExt"
 pod 'RxCoreLocation'
 pod "RxRealm"

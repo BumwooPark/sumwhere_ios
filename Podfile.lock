@@ -160,6 +160,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - NVActivityIndicatorView (4.4.0):
+    - NVActivityIndicatorView/Presenter (= 4.4.0)
+  - NVActivityIndicatorView/Presenter (4.4.0)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
     - PINCache/Core (= 3.0.1-beta.6)
@@ -207,9 +210,6 @@ PODS:
   - RxKeyboard (0.9.0):
     - RxCocoa (>= 4.3.1)
     - RxSwift (>= 4.3.1)
-  - RxOptional (3.5.0):
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
   - RxRealm (0.7.5):
     - RealmSwift (~> 3.0)
     - RxSwift (~> 4.0)
@@ -268,6 +268,7 @@ DEPENDENCIES:
   - LTMorphingLabel
   - Moya/RxSwift
   - MQTTClient
+  - NVActivityIndicatorView
   - PopupDialog
   - PySwiftyRegex
   - ReachabilitySwift
@@ -279,7 +280,6 @@ DEPENDENCIES:
   - RxGesture
   - RxGoogleMaps
   - RxKeyboard
-  - RxOptional
   - RxRealm
   - RxSwift
   - RxSwiftExt
@@ -340,6 +340,7 @@ SPEC REPOS:
     - Moya
     - MQTTClient
     - nanopb
+    - NVActivityIndicatorView
     - PINCache
     - PINOperation
     - PINRemoteImage
@@ -356,7 +357,6 @@ SPEC REPOS:
     - RxGesture
     - RxGoogleMaps
     - RxKeyboard
-    - RxOptional
     - RxRealm
     - RxSwift
     - RxSwiftExt
@@ -416,6 +416,7 @@ SPEC CHECKSUMS:
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   MQTTClient: 902c7bcac1501595f3d0b15178c7205b40331fb0
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
@@ -432,7 +433,6 @@ SPEC CHECKSUMS:
   RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7
   RxGoogleMaps: 8e8501ee42f2f4095c02e7794ecb0e8758358934
   RxKeyboard: 4f782303f499f41577b41c96c6a9a5d7acd51a47
-  RxOptional: bd32ff8ca9df4177683d56ffeb618a9d4d5d5cad
   RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
@@ -449,6 +449,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: ced10aa9cdbce11bda2272f919cdace69e964239
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 1f492dcc92b946728422b71a4605bd23dd87c802
+PODFILE CHECKSUM: b3ac1cd2fd505ab5cb88439d230b480ef1fb93d2
 
 COCOAPODS: 1.5.3

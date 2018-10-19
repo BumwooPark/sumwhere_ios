@@ -17,7 +17,7 @@ class ReceiveViewModel{
       .map(ResultModel<[MatchRequestHistoryModel]>.self)
       .map{$0.result}
       .asObservable()
-      .filterNil()
+      .unwrap()
   }
   
   let sendHistoryApi = {
@@ -26,7 +26,7 @@ class ReceiveViewModel{
       .map(ResultModel<[MatchRequestHistoryModel]>.self)
       .map{$0.result}
       .asObservable()
-      .filterNil()
+      .unwrap()
   }
   
   

@@ -14,7 +14,7 @@
 		0A075BFF21553611004A4DBF /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075BFE21553611004A4DBF /* DefaultLoginViewModel.swift */; };
 		0A075C0121562406004A4DBF /* MoyaError + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075C0021562406004A4DBF /* MoyaError + Extension.swift */; };
 		0A075C0321562706004A4DBF /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075C0221562706004A4DBF /* AlertFactory.swift */; };
-		0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */; };
+		0A09A8021FDD3CEF00DC47A7 /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8011FDD3CEF00DC47A7 /* MainCellViewModel.swift */; };
 		0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */; };
 		0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7A6F203556D000F72C2B /* MainCell.swift */; };
 		0A0FDDF320387D250046E76F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FDDF220387D250046E76F /* ProfileHeaderView.swift */; };
@@ -184,6 +184,7 @@
 		B1D4E52120FDCBB200524CE2 /* BMHANNA.otf in Resources */ = {isa = PBXBuildFile; fileRef = B1D4E51A20FDCA2300524CE2 /* BMHANNA.otf */; };
 		B1D4E52220FDCBB200524CE2 /* BMJUA.otf in Resources */ = {isa = PBXBuildFile; fileRef = B1D4E51920FDCA1F00524CE2 /* BMJUA.otf */; };
 		B1D6F9FE214B4418004C9E43 /* MQTTUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6F9FD214B4418004C9E43 /* MQTTUtil.swift */; };
+		B1E014672179C9E100348FB6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E014662179C9E100348FB6 /* MainViewModel.swift */; };
 		B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF955C21193EAA00F6418F /* CharacterCell.swift */; };
 		B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF955E21193FB900F6418F /* CharacterViewModel.swift */; };
 		B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF956021193FC500F6418F /* CharacterModel.swift */; };
@@ -205,7 +206,7 @@
 		0A075BFE21553611004A4DBF /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
 		0A075C0021562406004A4DBF /* MoyaError + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaError + Extension.swift"; sourceTree = "<group>"; };
 		0A075C0221562706004A4DBF /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
-		0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		0A09A8011FDD3CEF00DC47A7 /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
 		0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		0A0F7A6F203556D000F72C2B /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		0A0FDDF220387D250046E76F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -382,6 +383,7 @@
 		B1D4E51C20FDCA3800524CE2 /* godoRounded L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "godoRounded L.ttf"; sourceTree = "<group>"; };
 		B1D4E51D20FDCA3800524CE2 /* godoRounded R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "godoRounded R.ttf"; sourceTree = "<group>"; };
 		B1D6F9FD214B4418004C9E43 /* MQTTUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTUtil.swift; sourceTree = "<group>"; };
+		B1E014662179C9E100348FB6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B1EF955C21193EAA00F6418F /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		B1EF955E21193FB900F6418F /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		B1EF956021193FC500F6418F /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
@@ -611,7 +613,6 @@
 				B1055995211021E500AC769C /* Main */,
 				0A745681210DFB5C00F8A0C9 /* RegisterTravel */,
 				0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */,
-				0A09A8011FDD3CEF00DC47A7 /* MainViewModel.swift */,
 				0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */,
 				0AD3BC16204A85E00051D7E3 /* CountryViewModel.swift */,
 				B105597A210992EC00AC769C /* LoginVIewModel.swift */,
@@ -796,7 +797,9 @@
 		B1055995211021E500AC769C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0A09A8011FDD3CEF00DC47A7 /* MainCellViewModel.swift */,
 				B1055996211021F300AC769C /* MatchViewModel.swift */,
+				B1E014662179C9E100348FB6 /* MainViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1132,6 +1135,7 @@
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
@@ -1147,7 +1151,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
@@ -1195,6 +1198,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
@@ -1210,7 +1214,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
@@ -1299,6 +1302,7 @@
 				B1911FB5216B2C63005A4E85 /* ProfileImageViewController.swift in Sources */,
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,
 				B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */,
+				B1E014672179C9E100348FB6 /* MainViewModel.swift in Sources */,
 				0AB42132213BE4EB001353E9 /* MQViewModel.swift in Sources */,
 				B1D1CB05212D28F8001A9801 /* AdViewController.swift in Sources */,
 				0A7123921FACC1B600512EB7 /* WelcomeViewController.swift in Sources */,
@@ -1416,7 +1420,7 @@
 				B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */,
 				B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */,
 				0A375C232132ABBA00E35ED9 /* MatchHistoryCell.swift in Sources */,
-				0A09A8021FDD3CEF00DC47A7 /* MainViewModel.swift in Sources */,
+				0A09A8021FDD3CEF00DC47A7 /* MainCellViewModel.swift in Sources */,
 				0A895BF4212EEC5A00FDF834 /* MatchHistoryViewController.swift in Sources */,
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,
 				0A375C2D2132BC0500E35ED9 /* MatchRequestHistoryViewModel.swift in Sources */,

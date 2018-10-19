@@ -42,7 +42,7 @@ class MapViewController: UIViewController {
     locationManager.rx
       .location
       .map{$0?.coordinate}
-      .filterNil()
+      .unwrap()
       .subscribeNext(weak: self) { (weakSelf) -> (CLLocationCoordinate2D) -> Void in
         return { coordinate in
           let marker = GMSMarker(position: coordinate)

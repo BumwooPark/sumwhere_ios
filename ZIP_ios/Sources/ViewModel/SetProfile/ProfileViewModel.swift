@@ -29,7 +29,7 @@ class ProfileViewModel{
     .map(ResultModel<[TripStyleModel]>.self)
     .map{$0.result}
     .asObservable()
-    .filterNil()
+    .unwrap()
     .share()
   
   enum ProfileType{

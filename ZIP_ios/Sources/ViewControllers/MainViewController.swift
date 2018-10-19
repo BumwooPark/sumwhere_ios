@@ -13,8 +13,10 @@ import RxGesture
 import RxDataSources
 import Hero
 import SnapKit
+import Moya
+import NVActivityIndicatorView
 
-final class MainViewController: UIViewController{
+final class MainViewController: UIViewController, NVActivityIndicatorViewable{
   
   let disposeBag = DisposeBag()
   var didUpdateConstraint = false
@@ -24,8 +26,10 @@ final class MainViewController: UIViewController{
   var topConstraint: Constraint?
   var containerViewHeight: Constraint?
   var topAnchorValue: CGFloat = 0
+
+  let viewModel = MainViewModel()
   
-  let dataSources = RxCollectionViewSectionedReloadDataSource<MainViewModel>(configureCell: {ds, cv, idx, item in
+  let dataSources = RxCollectionViewSectionedReloadDataSource<MainCellViewModel>(configureCell: {ds, cv, idx, item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MainCollectionCell.self), for: idx) as! MainCollectionCell
     cell.item = item
     return cell
@@ -35,7 +39,7 @@ final class MainViewController: UIViewController{
     return view
   })
   
-  let datas = BehaviorRelay<[MainViewModel]>(value: [])
+  let datas = BehaviorRelay<[MainCellViewModel]>(value: [])
   
   private let advertiseViewController: AdViewController = {
     let vc = AdViewController()
@@ -46,8 +50,8 @@ final class MainViewController: UIViewController{
   
   private let customRightButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "icons8-key-2-24"), for: .normal)
-    button.setTitle("33", for: .normal)
+    button.setImage(#imageLiteral(resourceName: "icons8-key-2-24") , for: .normal)
+//    button.setTitle("33", for: .normal)
     button.setTitleColor(.black, for: .normal)
     button.titleLabel?.font = UIFont.NotoSansKRBold(size: 17)
     return button
@@ -112,6 +116,7 @@ final class MainViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    startAnimating(CGSize(width: 50, height: 50), type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
     
     Observable<Int>.interval(4, scheduler: MainScheduler.instance)
       .filter({[unowned self] (_) -> Bool in
@@ -133,19 +138,43 @@ final class MainViewController: UIViewController{
     contentView.addSubview(advertiseViewController.view)
     contentView.addSubview(footerView)
     pageContainerInitialHeight = advertiseViewController.view.frame.height
-    
+
     view.setNeedsUpdateConstraints()
     
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    Observable.just([MainViewModel(header: "박범우님을\n위한 갈래말래의 추천 여행지", items: [
-      MainModel(title: "01\n인기 급상승 여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
-      MainModel(title: "02\n최다 등록 여행지!", detail:"핫한 10개 도시", image: #imageLiteral(resourceName: "tower")),
-      MainModel(title: "최다 매칭 여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))])])
-      .bind(to: datas)
+    viewModel
+      .userAPI
+      .elements()
+      .flatMapLatest { (model) -> Observable<[MainCellViewModel]> in
+        let name = model.result?.nickname ?? String()
+        return Observable.just([MainCellViewModel(header: "\(name)님을\n위한 갈래말래의 추천 여행지", items: [
+          MainModel(title: "01\n인기 급상승 여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
+          MainModel(title: "02\n최다 등록 여행지!", detail:"핫한 10개 도시", image: #imageLiteral(resourceName: "tower")),
+          MainModel(title: "최다 매칭 여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))])])
+      }.do(onNext: {[weak self] (_) in
+        self?.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
+      }).bind(to: datas)
       .disposed(by: disposeBag)
+    
+    viewModel
+      .userAPI
+      .elements()
+      .subscribeNext(weak: self, { (weakSelf) -> (ResultModel<UserModel>) -> Void in
+        return {model in
+          weakSelf.customRightButton.setTitle("\(model.result?.point ?? 0)", for: .normal)
+        }
+      })
+      .disposed(by: disposeBag)
+    
+    viewModel
+      .userAPI
+      .errors()
+      .subscribe(onNext: { (error) in
+        (error as? MoyaError)?.GalMalErrorHandler()
+      }).disposed(by: disposeBag)
     
     scrollView.rx.didScroll
       .subscribe(weak: self) { (retainSelf) -> (Event<()>) -> Void in

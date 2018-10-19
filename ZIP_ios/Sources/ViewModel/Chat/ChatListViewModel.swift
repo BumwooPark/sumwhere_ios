@@ -17,7 +17,7 @@ class ChatListViewModel{
     .map(ResultModel<[ChatListModel]>.self)
     .map{$0.result}
     .asObservable()
-    .filterNil()
+    .unwrap()
     .map{[ChatListSectionModel(items: $0)]}
     .share()
   

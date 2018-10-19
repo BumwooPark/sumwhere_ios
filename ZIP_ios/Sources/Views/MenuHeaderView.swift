@@ -53,7 +53,7 @@ class MenuHeaderView: UIView {
   func profileSetting(observer: Observable<ResultModel<UserModel>>){
     observer
       .map{$0.result}
-      .filterNil()
+      .unwrap()
       .do(onNext: {[weak self] (model) in
 //        self?.profileImage.kf.setImageWithZIP(image: model.profile?.image1 ?? String())
       }).map{"\($0.point)"}
@@ -63,7 +63,7 @@ class MenuHeaderView: UIView {
     observer
       .map {
       $0.result?.nickname
-    }.filterNil()
+    }.unwrap()
       .bind(to: nicknameLabel.rx.text)
       .disposed(by: disposeBag)
   }
