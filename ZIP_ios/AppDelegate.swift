@@ -34,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   let disposeBag = DisposeBag()
   let gcmMessageIDKey = "gcm.message_id"
-  var proxyController: ProxyController!
   
   static var instance: AppDelegate? {
     return UIApplication.shared.delegate as? AppDelegate
@@ -44,17 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Fabric.with([Crashlytics.self])
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
-    
-    
-    let defaultVC: UIViewController = {
-      let vc = UIViewController()
-      vc.view.backgroundColor = .white
-      return vc
-    }()
-    window?.rootViewController = defaultVC
-    proxyController = ProxyController(window: window)
-    proxyController.makeRootViewController()
-    
+
+    window?.rootViewController = ProxyViewController()
     tokenObserver
       .do(onNext: { (token) in
         if token.count > 0 {
@@ -67,16 +57,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
       })
       .delay(1, scheduler: MainScheduler.instance)
-      .subscribe(onNext: {[weak self] (token) in
-        log.info(Defaults[.token])
-        self?.proxyController.makeRootViewController()
-    }).disposed(by: disposeBag)
+      .subscribeNext(weak: self, { (weakSelf) -> (String) -> Void in
+        return {token in
+          weakSelf.window?.rootViewController = ProxyViewController()
+        }
+      }).disposed(by: disposeBag)
     
     faceBookSetting(application: application, didFinishLaunchingWithOptions: launchOptions)
     FirebaseApp.configure()
     loggingSetting()
     appearanceSetting()
     JDSetting()
+    
+    
+    KOSession.shared()?.isAutomaticPeriodicRefresh = true
     
     Messaging.messaging().delegate = self
     
@@ -140,13 +134,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-    
-//    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-//      openURL:url
-//      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-//      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-    
-    
     if FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options){
       return true
     }

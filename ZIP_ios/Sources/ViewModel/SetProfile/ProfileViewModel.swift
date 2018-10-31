@@ -107,7 +107,7 @@ class ProfileViewModel{
       .filterSuccessfulStatusCodes()
       .subscribe(onSuccess: { (_) in
         JDStatusBarNotification.show(withStatus: "환영 합니다", dismissAfter: 2, styleName: JDType.Success.rawValue)
-        AppDelegate.instance?.proxyController.makeRootViewController()
+        AppDelegate.instance?.window?.rootViewController = ProxyViewController()
       }) { (error) in
         guard let err = error as? MoyaError else {return}
         err.GalMalErrorHandler()

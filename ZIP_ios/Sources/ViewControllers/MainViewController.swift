@@ -116,6 +116,8 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    
     startAnimating(CGSize(width: 50, height: 50), type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
     
     Observable<Int>.interval(4, scheduler: MainScheduler.instance)
@@ -220,7 +222,6 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     containerViewHeight?.update(offset: collectionView.contentSize.height - 180)
-    log.info(contentView.frame.height)
   }
   
   override func updateViewConstraints() {

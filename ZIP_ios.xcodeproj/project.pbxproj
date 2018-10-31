@@ -101,7 +101,6 @@
 		0A9755372174BC3D0098F2DB /* MatchSelectSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9755362174BC3C0098F2DB /* MatchSelectSectionController.swift */; };
 		0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */; };
 		0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */; };
-		0AA0361E1FDADBC6000D4451 /* ProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0361D1FDADBC6000D4451 /* ProxyController.swift */; };
 		0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD74862114B06100C860ED /* PresenterRow.swift */; };
 		0AAD749021170FF700C860ED /* TripStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD748F21170FF700C860ED /* TripStyleModel.swift */; };
 		0AAD74922117103000C860ED /* TripStyleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD74912117103000C860ED /* TripStyleViewModel.swift */; };
@@ -124,6 +123,7 @@
 		B10559992110223300AC769C /* MatchTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10559982110223300AC769C /* MatchTypeModel.swift */; };
 		B12001C2211300E800DFD676 /* launchlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B12001C1211300E800DFD676 /* launchlogo.png */; };
 		B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */; };
+		B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155F02D21894DC100E4911A /* ProxyViewController.swift */; };
 		B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DEE211444C3001D278A /* NicknameRow.swift */; };
 		B16B3DF92117E782001D278A /* InitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DF82117E782001D278A /* InitUtil.swift */; };
 		B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFC2117F3B3001D278A /* InterestCell.swift */; };
@@ -298,7 +298,6 @@
 		0A9755362174BC3C0098F2DB /* MatchSelectSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSelectSectionController.swift; sourceTree = "<group>"; };
 		0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanFlowLayout.swift; sourceTree = "<group>"; };
 		0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		0AA0361D1FDADBC6000D4451 /* ProxyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyController.swift; sourceTree = "<group>"; };
 		0AAD74862114B06100C860ED /* PresenterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterRow.swift; sourceTree = "<group>"; };
 		0AAD748F21170FF700C860ED /* TripStyleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleModel.swift; sourceTree = "<group>"; };
 		0AAD74912117103000C860ED /* TripStyleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewModel.swift; sourceTree = "<group>"; };
@@ -323,6 +322,7 @@
 		B10559982110223300AC769C /* MatchTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeModel.swift; sourceTree = "<group>"; };
 		B12001C1211300E800DFD676 /* launchlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchlogo.png; sourceTree = "<group>"; };
 		B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JVFloatTextRow.swift; sourceTree = "<group>"; };
+		B155F02D21894DC100E4911A /* ProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyViewController.swift; sourceTree = "<group>"; };
 		B16B3DEE211444C3001D278A /* NicknameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRow.swift; sourceTree = "<group>"; };
 		B16B3DF82117E782001D278A /* InitUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitUtil.swift; sourceTree = "<group>"; };
 		B16B3DFC2117F3B3001D278A /* InterestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCell.swift; sourceTree = "<group>"; };
@@ -545,7 +545,7 @@
 				0AFC96D21FB7281F003C6F8E /* ZIP_ios.entitlements */,
 				0A71238C1FACC15600512EB7 /* Sources */,
 				0A71236A1FACC01200512EB7 /* AppDelegate.swift */,
-				0AA0361D1FDADBC6000D4451 /* ProxyController.swift */,
+				B155F02D21894DC100E4911A /* ProxyViewController.swift */,
 				0A71236C1FACC01200512EB7 /* art.scnassets */,
 				0A7123701FACC01200512EB7 /* Main.storyboard */,
 				0A7123731FACC01200512EB7 /* Assets.xcassets */,
@@ -1361,7 +1361,6 @@
 				B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */,
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
 				0A33F7E621342F04002228BF /* RandomString.swift in Sources */,
-				0AA0361E1FDADBC6000D4451 /* ProxyController.swift in Sources */,
 				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
 				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
 				0A6EB9DF216A2A9A00117526 /* MatchEmptyView.swift in Sources */,
@@ -1414,6 +1413,7 @@
 				B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */,
 				B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */,
 				B1EF95652119481700F6418F /* SetProfileViewModel.swift in Sources */,
+				B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */,
 				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,

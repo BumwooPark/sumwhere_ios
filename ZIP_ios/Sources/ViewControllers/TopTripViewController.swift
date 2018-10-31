@@ -45,11 +45,9 @@ class TopTripViewController: UIViewController{
     
     navigationItem.titleView = titleLabel
     
-    
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
-    
     
     Observable.just([TopTripViewModel(items: [TopTripModel(name: "hi")])])
       .bind(to: datas)
