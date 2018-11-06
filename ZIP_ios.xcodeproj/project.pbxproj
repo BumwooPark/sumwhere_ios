@@ -123,6 +123,13 @@
 		B10559992110223300AC769C /* MatchTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10559982110223300AC769C /* MatchTypeModel.swift */; };
 		B12001C2211300E800DFD676 /* launchlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B12001C1211300E800DFD676 /* launchlogo.png */; };
 		B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */; };
+		B14495B22191535F00B4D135 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495B12191535F00B4D135 /* PurchaseViewController.swift */; };
+		B14495B421915A9600B4D135 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14495B321915A9600B4D135 /* StoreKit.framework */; };
+		B14495B621915B1500B4D135 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495B521915B1500B4D135 /* IAPHelper.swift */; };
+		B14495B92191664A00B4D135 /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495B82191664A00B4D135 /* PurchaseCell.swift */; };
+		B14495BC219166C600B4D135 /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BB219166C600B4D135 /* PurchaseViewModel.swift */; };
+		B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */; };
+		B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */; };
 		B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155F02D21894DC100E4911A /* ProxyViewController.swift */; };
 		B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DEE211444C3001D278A /* NicknameRow.swift */; };
 		B16B3DF92117E782001D278A /* InitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DF82117E782001D278A /* InitUtil.swift */; };
@@ -322,6 +329,13 @@
 		B10559982110223300AC769C /* MatchTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeModel.swift; sourceTree = "<group>"; };
 		B12001C1211300E800DFD676 /* launchlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchlogo.png; sourceTree = "<group>"; };
 		B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JVFloatTextRow.swift; sourceTree = "<group>"; };
+		B14495B12191535F00B4D135 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
+		B14495B321915A9600B4D135 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B14495B521915B1500B4D135 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		B14495B82191664A00B4D135 /* PurchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
+		B14495BB219166C600B4D135 /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
+		B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHeaderView.swift; sourceTree = "<group>"; };
+		B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter + Extension.swift"; sourceTree = "<group>"; };
 		B155F02D21894DC100E4911A /* ProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyViewController.swift; sourceTree = "<group>"; };
 		B16B3DEE211444C3001D278A /* NicknameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRow.swift; sourceTree = "<group>"; };
 		B16B3DF82117E782001D278A /* InitUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitUtil.swift; sourceTree = "<group>"; };
@@ -406,6 +420,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B14495B421915A9600B4D135 /* StoreKit.framework in Frameworks */,
 				B1D1CB0C212E4303001A9801 /* CoreLocation.framework in Frameworks */,
 				BAB35871AF3A20A85A1D01CD /* Pods_ZIP_ios.framework in Frameworks */,
 			);
@@ -417,6 +432,7 @@
 		0A09A8051FDD3F1900DC47A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B14495B72191663A00B4D135 /* Purchase */,
 				B1E014632178356000348FB6 /* RegisterTrip */,
 				B1996C58214A008000BC95C5 /* Chat */,
 				0A375C212132ABA500E35ED9 /* Request */,
@@ -605,6 +621,7 @@
 		0A71238E1FACC16B00512EB7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B14495BA219166BA00B4D135 /* Purchase */,
 				B1996C59214A009C00BC95C5 /* Chat */,
 				0A332774213BA64D00BC2906 /* Login */,
 				0A375C2B2132BBF100E35ED9 /* Request */,
@@ -634,6 +651,7 @@
 		0A7123901FACC17700512EB7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B14495B02191534300B4D135 /* Purchase */,
 				0AB42130213BE4C5001353E9 /* Chat */,
 				0A895BF5212EF84900FDF834 /* Setting */,
 				0A895BEC2129A59900FDF834 /* Login */,
@@ -758,6 +776,7 @@
 				B1F6D8C72146123A00E0E003 /* AS + RxSwift.swift */,
 				B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */,
 				0A075C0021562406004A4DBF /* MoyaError + Extension.swift */,
+				B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -787,6 +806,7 @@
 		6204F1D1D8A1920CDD960A7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B14495B321915A9600B4D135 /* StoreKit.framework */,
 				B1D1CB0B212E4303001A9801 /* CoreLocation.framework */,
 				D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */,
 				FB4C508F8A9A5C1DE80D8E10 /* Pods_ZIP_iosTests.framework */,
@@ -802,6 +822,32 @@
 				B1E014662179C9E100348FB6 /* MainViewModel.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		B14495B02191534300B4D135 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				B14495B12191535F00B4D135 /* PurchaseViewController.swift */,
+				B14495B521915B1500B4D135 /* IAPHelper.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		B14495B72191663A00B4D135 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				B14495B82191664A00B4D135 /* PurchaseCell.swift */,
+				B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		B14495BA219166BA00B4D135 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				B14495BB219166C600B4D135 /* PurchaseViewModel.swift */,
+			);
+			path = Purchase;
 			sourceTree = "<group>";
 		};
 		B16B3DF12117E5BE001D278A /* SetProfile */ = {
@@ -1005,6 +1051,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 							com.apple.Keychain = {
@@ -1264,6 +1313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */,
+				B14495BC219166C600B4D135 /* PurchaseViewModel.swift in Sources */,
 				0A375C1C2132796D00E35ED9 /* TopTripViewModel.swift in Sources */,
 				0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */,
 				B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */,
@@ -1331,6 +1381,7 @@
 				B1D1CAEB212BF7E6001A9801 /* DetailUserProfileInfoCell.swift in Sources */,
 				B1D1CB1E213F5D7B001A9801 /* TestFlowLayout.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
+				B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */,
 				0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */,
 				0AF2C02A2104C8E500775EA8 /* TagRow.swift in Sources */,
 				0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */,
@@ -1358,6 +1409,7 @@
 				0A375C282132B8CC00E35ED9 /* MatchRequestHistoryModel.swift in Sources */,
 				B1A1D99A211D16DC0022D2A0 /* TripViewController.swift in Sources */,
 				B1F6D8C42140B5C600E0E003 /* ChatListViewController.swift in Sources */,
+				B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */,
 				B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */,
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
 				0A33F7E621342F04002228BF /* RandomString.swift in Sources */,
@@ -1373,6 +1425,7 @@
 				0A9755372174BC3D0098F2DB /* MatchSelectSectionController.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,
 				B1D1CAFD212D0961001A9801 /* DetailCharacterCell.swift in Sources */,
+				B14495B22191535F00B4D135 /* PurchaseViewController.swift in Sources */,
 				B1911FB921707EBB005A4E85 /* MatchSelectViewController.swift in Sources */,
 				B1D1CB1C213E679C001A9801 /* ChatLoadingIndicatorNode.swift in Sources */,
 				B1D1CB0E212E43FE001A9801 /* GPSMatchResultViewController.swift in Sources */,
@@ -1408,6 +1461,7 @@
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,
 				B1D1CB25213F9E8A001A9801 /* InputBoxNode.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
+				B14495B621915B1500B4D135 /* IAPHelper.swift in Sources */,
 				0A745669210CA37D00F8A0C9 /* PageViewController.swift in Sources */,
 				B1D1CAF9212D0165001A9801 /* DetailTripStyleCell.swift in Sources */,
 				B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */,
@@ -1422,6 +1476,7 @@
 				0A375C232132ABBA00E35ED9 /* MatchHistoryCell.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainCellViewModel.swift in Sources */,
 				0A895BF4212EEC5A00FDF834 /* MatchHistoryViewController.swift in Sources */,
+				B14495B92191664A00B4D135 /* PurchaseCell.swift in Sources */,
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,
 				0A375C2D2132BC0500E35ED9 /* MatchRequestHistoryViewModel.swift in Sources */,
 				0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */,

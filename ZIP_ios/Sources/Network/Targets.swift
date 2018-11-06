@@ -34,8 +34,9 @@ public enum ZIP{
   case MatchRequest(model: Encodable)
   case MatchRequestReceive
   case MatchRequestSend
-  
   case GetChatRoom
+  
+  case IAPSuccess(receipt: String)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
@@ -100,12 +101,14 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/send"
     case .GetChatRoom:
       return "/restrict/chat/room"
+    case .IAPSuccess:
+      return "/restrict/receipt"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest:
+    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest,.IAPSuccess:
       return .post
     case .deleteMyTrip:
       return .delete
@@ -146,6 +149,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["id": id], encoding: URLEncoding.queryString)
     case .MatchRequest(let json):
       return .requestJSONEncodable(json)
+    case .IAPSuccess(let receipt):
+      return .requestParameters(parameters: ["receiptdata": receipt], encoding: URLEncoding.httpBody)
     default:
       return .requestPlain
     }

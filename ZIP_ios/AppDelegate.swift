@@ -24,10 +24,11 @@ import SwiftyImage
 import SwiftyUserDefaults
 import Fabric
 import Crashlytics
-
+import StoreKit
 
 let tokenObserver = PublishSubject<String>()
 let log = SwiftyBeaver.self
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -62,13 +63,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           weakSelf.window?.rootViewController = ProxyViewController()
         }
       }).disposed(by: disposeBag)
-    
+
     faceBookSetting(application: application, didFinishLaunchingWithOptions: launchOptions)
     FirebaseApp.configure()
     loggingSetting()
     appearanceSetting()
     JDSetting()
     
+    // in App 결제
+    SKPaymentQueue.default().add(self)
     
     KOSession.shared()?.isAutomaticPeriodicRefresh = true
     
@@ -184,11 +187,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 
     if let messageID = userInfo[gcmMessageIDKey] {
-      print("Message ID: \(messageID)")
+      log.info("Message ID: \(messageID)")
     }
     
     // Print full message.
-    print(userInfo)
+    log.info(userInfo)
     
     completionHandler(UIBackgroundFetchResult.newData)
   }
@@ -204,8 +207,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     let userInfo = notification.request.content.userInfo
     
     // With swizzling disabled you must let Messaging know about the message, for Analytics
-//     Messaging.messaging().appDidReceiveMessage(userInfo)
+    Messaging.messaging().appDidReceiveMessage(userInfo)
     
+    log.info(userInfo)
     // Print message ID.
     if let messageID = userInfo[gcmMessageIDKey] {
       log.info("Message ID: \(messageID)")
@@ -256,3 +260,59 @@ extension AppDelegate : MessagingDelegate {
 }
 
 
+extension AppDelegate: SKPaymentTransactionObserver{
+  public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    for transaction in transactions{
+      switch transaction.transactionState{
+      case .purchased:
+        complete(transaction: transaction)
+      case .failed:
+        fail(transaction: transaction)
+      case .restored:
+        restore(transaction: transaction)
+      case .deferred:
+        break
+      case .purchasing:
+        break
+      }
+    }
+  }
+  
+  public func complete(transaction: SKPaymentTransaction){
+    
+    SKPaymentQueue.default().finishTransaction(transaction)
+    
+    let receiptURL = Bundle.main.appStoreReceiptURL
+    do {
+      let receipt = try Data(contentsOf: receiptURL!)
+      
+      AuthManager.instance
+        .provider
+        .request(.IAPSuccess(receipt: receipt.base64EncodedString()))
+        .subscribe(onSuccess: { (response) in
+          log.info(
+        }) { (error) in
+          log.error(error)
+        }.disposed(by: disposeBag)
+      
+    }catch let error {
+      log.error(error)
+    }
+  }
+  
+  private func restore(transaction: SKPaymentTransaction) {
+    guard let productIdentifier = transaction.original?.payment.productIdentifier else { return }
+    log.info("restore... \(productIdentifier)")
+    SKPaymentQueue.default().finishTransaction(transaction)
+  }
+  
+  private func fail(transaction: SKPaymentTransaction) {
+    log.info("fail...")
+    if let transactionError = transaction.error as NSError?,
+      let localizedDescription = transaction.error?.localizedDescription,
+      transactionError.code != SKError.paymentCancelled.rawValue {
+      log.info("Transaction Error: \(localizedDescription)")
+    }
+    SKPaymentQueue.default().finishTransaction(transaction)
+  }
+}

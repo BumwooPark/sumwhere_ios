@@ -16,7 +16,6 @@ import SwiftyUserDefaults
 class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
   private let disposeBag = DisposeBag()
   
-  
   //프로필 존재하는지
   private let isProfile = AuthManager.instance
     .provider.request(.isProfile)
