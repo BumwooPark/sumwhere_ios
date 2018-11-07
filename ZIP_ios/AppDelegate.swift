@@ -290,10 +290,10 @@ extension AppDelegate: SKPaymentTransactionObserver{
         .provider
         .request(.IAPSuccess(receipt: receipt.base64EncodedString()))
         .subscribe(onSuccess: { (response) in
-          log.info(
+          log.info(response)
         }) { (error) in
           log.error(error)
-        }.disposed(by: disposeBag)
+      }.disposed(by: disposeBag)
       
     }catch let error {
       log.error(error)

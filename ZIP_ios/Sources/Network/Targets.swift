@@ -43,7 +43,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.2:8080/galmal")!
+    return URL(string: "http://192.168.0.18:8080/galmal")!
     #else
     return URL(string: "https://bumwoopark.iptime.org/galmal")!
     #endif

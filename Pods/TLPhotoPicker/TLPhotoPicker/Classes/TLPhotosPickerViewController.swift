@@ -79,6 +79,7 @@ public struct TLPhotosPickerConfigure {
     public var placeholderIcon = TLBundle.podBundleImage(named: "insertPhotoMaterial")
     public var nibSet: (nibName: String, bundle:Bundle)? = nil
     public var cameraCellNibSet: (nibName: String, bundle:Bundle)? = nil
+    public var fetchCollectionTypes: [(PHAssetCollectionType,PHAssetCollectionSubtype)]? = nil
     public init() {
         
     }
@@ -430,15 +431,20 @@ extension TLPhotosPickerViewController {
         }
         return false
     }
+    fileprivate func focusFirstCollection() {
+        if self.focusedCollection == nil, let collection = self.collections.first {
+            self.focusedCollection = collection
+            self.updateTitle()
+            self.reloadCollectionView()
+        }
+    }
 }
 
 // MARK: - TLPhotoLibraryDelegate
 extension TLPhotosPickerViewController: TLPhotoLibraryDelegate {
     func loadCameraRollCollection(collection: TLAssetsCollection) {
-        if let focused = self.focusedCollection, focused == collection {
-            focusCollection(collection: collection)
-        }
         self.collections = [collection]
+        self.focusFirstCollection()
         self.indicator.stopAnimating()
         self.reloadCollectionView()
         self.reloadTableView()
@@ -446,6 +452,7 @@ extension TLPhotosPickerViewController: TLPhotoLibraryDelegate {
     
     func loadCompleteAllCollection(collections: [TLAssetsCollection]) {
         self.collections = collections
+        self.focusFirstCollection()
         let isEmpty = self.collections.count == 0
         self.subTitleStackView.isHidden = isEmpty
         self.emptyView.isHidden = !isEmpty
@@ -453,11 +460,6 @@ extension TLPhotosPickerViewController: TLPhotoLibraryDelegate {
         self.indicator.stopAnimating()
         self.reloadTableView()
         self.registerChangeObserver()
-    }
-    
-    func focusCollection(collection: TLAssetsCollection) {
-        self.focusedCollection = collection
-        self.updateTitle()
     }
 }
 
@@ -644,10 +646,10 @@ extension TLPhotosPickerViewController: PHLivePhotoViewDelegate {
 extension TLPhotosPickerViewController: PHPhotoLibraryChangeObserver {
     public func photoLibraryDidChange(_ changeInstance: PHChange) {
         guard getfocusedIndex() == 0 else { return }
-        guard let changeFetchResult = self.focusedCollection?.fetchResult else { return }
-        guard let changes = changeInstance.changeDetails(for: changeFetchResult) else { return }
         let addIndex = self.usedCameraButton ? 1 : 0
         DispatchQueue.main.sync {
+            guard let changeFetchResult = self.focusedCollection?.fetchResult else { return }
+            guard let changes = changeInstance.changeDetails(for: changeFetchResult) else { return }
             if changes.hasIncrementalChanges {
                 var deletedSelectedAssets = false
                 var order = 0
@@ -687,8 +689,16 @@ extension TLPhotosPickerViewController: PHPhotoLibraryChangeObserver {
                         if let inserted = changes.insertedIndexes, inserted.count > 0 {
                             self.collectionView.insertItems(at: inserted.map { IndexPath(item: $0+addIndex, section:0) })
                         }
-                        if let changed = changes.changedIndexes, changed.count > 0 {
-                            self.collectionView.reloadItems(at: changed.map { IndexPath(item: $0+addIndex, section:0) })
+                        changes.enumerateMoves { fromIndex, toIndex in
+                            self.collectionView.moveItem(at: IndexPath(item: fromIndex, section: 0),
+                                                         to: IndexPath(item: toIndex, section: 0))
+                        }
+                    }, completion: { [weak self] (completed) in
+                        guard let `self` = self else { return }
+                        if completed {
+                            if let changed = changes.changedIndexes, changed.count > 0 {
+                                self.collectionView.reloadItems(at: changed.map { IndexPath(item: $0+addIndex, section:0) })
+                            }
                         }
                     })
                 }

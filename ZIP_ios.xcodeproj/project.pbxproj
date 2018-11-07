@@ -16,6 +16,7 @@
 		0A075C0321562706004A4DBF /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075C0221562706004A4DBF /* AlertFactory.swift */; };
 		0A09A8021FDD3CEF00DC47A7 /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8011FDD3CEF00DC47A7 /* MainCellViewModel.swift */; };
 		0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */; };
+		0A0BFB2A219322F1001249C0 /* FastTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BFB29219322F1001249C0 /* FastTripViewController.swift */; };
 		0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7A6F203556D000F72C2B /* MainCell.swift */; };
 		0A0FDDF320387D250046E76F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FDDF220387D250046E76F /* ProfileHeaderView.swift */; };
 		0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FDE1B203988CC0046E76F /* UIFont+Extension.swift */; };
@@ -215,6 +216,7 @@
 		0A075C0221562706004A4DBF /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		0A09A8011FDD3CEF00DC47A7 /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
 		0A09A8031FDD3D3B00DC47A7 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		0A0BFB29219322F1001249C0 /* FastTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastTripViewController.swift; sourceTree = "<group>"; };
 		0A0F7A6F203556D000F72C2B /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		0A0FDDF220387D250046E76F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		0A0FDE1B203988CC0046E76F /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -959,6 +961,7 @@
 				B1D1CB0D212E43FE001A9801 /* GPSMatchResultViewController.swift */,
 				0A9755362174BC3C0098F2DB /* MatchSelectSectionController.swift */,
 				B1911FB821707EBB005A4E85 /* MatchSelectViewController.swift */,
+				0A0BFB29219322F1001249C0 /* FastTripViewController.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -1369,6 +1372,7 @@
 				0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */,
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
+				0A0BFB2A219322F1001249C0 /* FastTripViewController.swift in Sources */,
 				B1D1CAFF212D0D55001A9801 /* DetailInterestCell.swift in Sources */,
 				0A332779213BBB7A00BC2906 /* FirstViewController.swift in Sources */,
 				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,

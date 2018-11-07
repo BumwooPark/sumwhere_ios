@@ -155,7 +155,8 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
         return Observable.just([MainCellViewModel(header: "\(name)님을\n위한 갈래말래의 추천 여행지", items: [
           MainModel(title: "01\n인기 급상승 여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
           MainModel(title: "02\n최다 등록 여행지!", detail:"핫한 10개 도시", image: #imageLiteral(resourceName: "tower")),
-          MainModel(title: "최다 매칭 여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))])])
+          MainModel(title: "최다 매칭 여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2")),
+          MainModel(title: "즉흥 여행지!", detail: "즉흥으로 떠나자!", image: #imageLiteral(resourceName: "bridge2"))])])
       }.do(onNext: {[weak self] (_) in
         self?.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
       }).bind(to: datas)
@@ -200,6 +201,8 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
             retainSelf.navigationController?.pushViewController(TopTripViewController(), animated: true)
           case 2:
             retainSelf.navigationController?.pushViewController(TopTripViewController(), animated: true)
+          case 3:
+            retainSelf.navigationController?.pushViewController(FastTripViewController(), animated: true)
           default:
             break
           }

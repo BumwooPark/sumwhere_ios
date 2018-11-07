@@ -21,7 +21,6 @@ class MainTabBarController: UITabBarController{
     let naviVC = UINavigationController(rootViewController: MainViewController())
     naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
-//    naviVC.navigationBar.tintColor = .white
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "홈", image: #imageLiteral(resourceName: "icons8-home"), tag: 0)
@@ -30,10 +29,7 @@ class MainTabBarController: UITabBarController{
   }()
   
   let historyViewController: UINavigationController = {
-//    let naviVC = UINavigationController(rootViewController: CurrentMatchViewController())
-//    let naviVC = UINavigationController(rootViewController: MatchSelectViewController())
-    let naviVC = UINavigationController(rootViewController: PurchaseViewController())
-    
+    let naviVC = UINavigationController(rootViewController: CurrentMatchViewController())
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "동행", image: #imageLiteral(resourceName: "icons8-user-groups-32"), tag: 0)
     naviVC.tabBarItem = tabBar
