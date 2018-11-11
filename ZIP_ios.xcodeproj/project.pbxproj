@@ -87,6 +87,13 @@
 		0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568C210E132B00F8A0C9 /* String + Extension.swift */; };
 		0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */; };
 		0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */; };
+		0A7C5073219862F600558F62 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C5072219862F600558F62 /* MyPageViewController.swift */; };
+		0A7C50792198679D00558F62 /* MyPageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C50782198679D00558F62 /* MyPageSectionController.swift */; };
+		0A7C507B219867AC00558F62 /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C507A219867AC00558F62 /* MyPageHeaderView.swift */; };
+		0A7C507D2198680F00558F62 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C507C2198680F00558F62 /* MyPageCell.swift */; };
+		0A7C507F219871D700558F62 /* OtherMyPageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C507E219871D700558F62 /* OtherMyPageSectionController.swift */; };
+		0A7C50812198736900558F62 /* SupportHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C50802198736900558F62 /* SupportHeaderView.swift */; };
+		0A7C50832198739900558F62 /* SupportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C50822198739900558F62 /* SupportCell.swift */; };
 		0A7E9CED204300F40014D549 /* InsertPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */; };
 		0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */; };
 		0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */; };
@@ -292,6 +299,13 @@
 		0A74568C210E132B00F8A0C9 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0A7C5072219862F600558F62 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		0A7C50782198679D00558F62 /* MyPageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageSectionController.swift; sourceTree = "<group>"; };
+		0A7C507A219867AC00558F62 /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
+		0A7C507C2198680F00558F62 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
+		0A7C507E219871D700558F62 /* OtherMyPageSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMyPageSectionController.swift; sourceTree = "<group>"; };
+		0A7C50802198736900558F62 /* SupportHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportHeaderView.swift; sourceTree = "<group>"; };
+		0A7C50822198739900558F62 /* SupportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportCell.swift; sourceTree = "<group>"; };
 		0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanViewController.swift; sourceTree = "<group>"; };
 		0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarHeaderView.xib; sourceTree = "<group>"; };
@@ -435,12 +449,12 @@
 			isa = PBXGroup;
 			children = (
 				B14495B72191663A00B4D135 /* Purchase */,
-				B1E014632178356000348FB6 /* RegisterTrip */,
 				B1996C58214A008000BC95C5 /* Chat */,
 				0A375C212132ABA500E35ED9 /* Request */,
 				0A895BED2129A5FD00FDF834 /* Login */,
 				B1A1D99B211D23EA0022D2A0 /* Match */,
 				B16B3DF12117E5BE001D278A /* SetProfile */,
+				0A7C5075219863A300558F62 /* MyPage */,
 				0A6C88AB1FEE3E51002019DE /* Cells */,
 				0AF2C01E20FB38E300775EA8 /* MenuHeaderView.swift */,
 				0A90EBD12109F76D0057F1A9 /* TicketView.swift */,
@@ -661,6 +675,7 @@
 				B16B3DF52117E6E3001D278A /* SetProfile */,
 				0A74566A210CA9EE00F8A0C9 /* RegisterTrip */,
 				0A895BF0212EEC1E00FDF834 /* Request */,
+				0A7C50742198637F00558F62 /* MyPage */,
 				0A7123951FACC1E900512EB7 /* MainTabBarController.swift */,
 				B1D4E50D20F895EF00524CE2 /* MainViewController.swift */,
 				0A375C15213274AE00E35ED9 /* TopTripViewController.swift */,
@@ -697,6 +712,27 @@
 				0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */,
 			);
 			path = RegisterTravel;
+			sourceTree = "<group>";
+		};
+		0A7C50742198637F00558F62 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				0A7C5072219862F600558F62 /* MyPageViewController.swift */,
+				0A7C50782198679D00558F62 /* MyPageSectionController.swift */,
+				0A7C507E219871D700558F62 /* OtherMyPageSectionController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		0A7C5075219863A300558F62 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				0A7C507A219867AC00558F62 /* MyPageHeaderView.swift */,
+				0A7C507C2198680F00558F62 /* MyPageCell.swift */,
+				0A7C50802198736900558F62 /* SupportHeaderView.swift */,
+				0A7C50822198739900558F62 /* SupportCell.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		0A895BEC2129A59900FDF834 /* Login */ = {
@@ -1007,13 +1043,6 @@
 			path = Match;
 			sourceTree = "<group>";
 		};
-		B1E014632178356000348FB6 /* RegisterTrip */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RegisterTrip;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1315,12 +1344,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7C507B219867AC00558F62 /* MyPageHeaderView.swift in Sources */,
 				0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */,
 				B14495BC219166C600B4D135 /* PurchaseViewModel.swift in Sources */,
 				0A375C1C2132796D00E35ED9 /* TopTripViewModel.swift in Sources */,
 				0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */,
 				B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */,
 				0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */,
+				0A7C507F219871D700558F62 /* OtherMyPageSectionController.swift in Sources */,
 				0A332776213BA65D00BC2906 /* JoinViewModel.swift in Sources */,
 				B1D1CB12212EAA6A001A9801 /* AlertViewController.swift in Sources */,
 				B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */,
@@ -1328,6 +1359,7 @@
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
 				0A895BF7212EF86F00FDF834 /* AlertSettingViewController.swift in Sources */,
 				B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */,
+				0A7C50792198679D00558F62 /* MyPageSectionController.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,
@@ -1373,9 +1405,11 @@
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
 				0A0BFB2A219322F1001249C0 /* FastTripViewController.swift in Sources */,
+				0A7C50812198736900558F62 /* SupportHeaderView.swift in Sources */,
 				B1D1CAFF212D0D55001A9801 /* DetailInterestCell.swift in Sources */,
 				0A332779213BBB7A00BC2906 /* FirstViewController.swift in Sources */,
 				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,
+				0A7C507D2198680F00558F62 /* MyPageCell.swift in Sources */,
 				0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */,
 				0A375C1E21327C8500E35ED9 /* TopTripModel.swift in Sources */,
 				B1C4FFA52118204200535FB1 /* InterestAddView.swift in Sources */,
@@ -1438,8 +1472,10 @@
 				0A375C16213274AE00E35ED9 /* TopTripViewController.swift in Sources */,
 				0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */,
 				B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */,
+				0A7C5073219862F600558F62 /* MyPageViewController.swift in Sources */,
 				B1A1D9A0211D27660022D2A0 /* TripViewModel.swift in Sources */,
 				0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */,
+				0A7C50832198739900558F62 /* SupportCell.swift in Sources */,
 				0A059CAB1FEFB3B50057E26E /* PlanModel.swift in Sources */,
 				B1D1CB09212D3B9E001A9801 /* MainCollectionHeaderView.swift in Sources */,
 				B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */,

@@ -201,8 +201,6 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
             retainSelf.navigationController?.pushViewController(TopTripViewController(), animated: true)
           case 2:
             retainSelf.navigationController?.pushViewController(TopTripViewController(), animated: true)
-          case 3:
-            retainSelf.navigationController?.pushViewController(FastTripViewController(), animated: true)
           default:
             break
           }
