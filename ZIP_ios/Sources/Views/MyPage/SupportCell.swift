@@ -26,6 +26,7 @@ class SupportCell: UICollectionViewCell{
     super.init(frame: frame)
     contentView.addSubview(underLine)
     contentView.addSubview(titleLabel)
+    contentView.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
     setNeedsUpdateConstraints()
   }
   
@@ -38,7 +39,7 @@ class SupportCell: UICollectionViewCell{
       underLine.snp.makeConstraints { (make) in
         make.bottom.equalToSuperview()
         make.left.right.equalToSuperview().inset(17)
-        make.height.equalTo(2)
+        make.height.equalTo(1)
       }
       didUpdateConstraint = true
     }

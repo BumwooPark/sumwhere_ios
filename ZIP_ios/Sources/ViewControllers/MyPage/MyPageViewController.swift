@@ -8,11 +8,24 @@
 
 import UIKit
 import IGListKit
+import RxSwift
+import RxCocoa
 
 class MyPageViewController: UIViewController, ListAdapterDataSource {
-  
-  var items: [ListDiffable] = [SampleModel(header: "hello", title: ["알림 설정","계정 설정"]),
-                              SupportModel(header: "고객지원", cellItemTitle: ["공지사항","문의하기","버젼 정보"])]
+  let disposeBag = DisposeBag()
+
+  var items: [ListDiffable] = [
+    MyPageModel(header: "default",viewControllers: [
+      PageCellDataModel(name: "알림 설정", viewController: AlertSettingViewController()),
+      PageCellDataModel(name: "계정 설정", viewController: UIViewController())]),
+    SupportModel(header: "고객 지원", viewControllers: [
+      PageCellDataModel(name: "공지사항", viewController: UIViewController()),
+      PageCellDataModel(name: "문의하기", viewController: UIViewController()),
+      PageCellDataModel(name: "접근권한", viewController: UIViewController()),
+      PageCellDataModel(name: "문의하기", viewController: UIViewController()),
+      PageCellDataModel(name: "공지 & 이벤트", viewController: UIViewController()),
+      PageCellDataModel(name: "오픈라이센스", viewController: UIViewController()),
+      PageCellDataModel(name: "버전정보", viewController: UIViewController())])]
   
   lazy var adapter: ListAdapter = {
     let adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
@@ -22,8 +35,7 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
   }()
   
   let collectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     collectionView.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
     collectionView.register(MyPageHeaderView.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -34,6 +46,7 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
     collectionView.register(MyPageCell.self, forCellWithReuseIdentifier: String(describing: MyPageCell.self))
     collectionView.register(SupportCell.self, forCellWithReuseIdentifier: String(describing: SupportCell.self))
     collectionView.alwaysBounceVertical = true
+    collectionView.showsVerticalScrollIndicator = false
     return collectionView
   }()
   
@@ -42,68 +55,47 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
   }
   
   func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
+    
     switch object{
-    case is SampleModel:
-      print(object)
-      return MyPageSectionController()
+    case is MyPageModel:
+      return Init(MyPageSectionController()) { (vc) in
+        vc.pushSubject.subscribeNext(weak: self, { (weakSelf) -> (UIViewController) -> Void in
+          return {vc in
+            weakSelf.navigationController?.pushViewController(vc, animated: true)
+          }
+        }).disposed(by: disposeBag)
+      }
     case is SupportModel:
-      print(object)
-      return OtherMyPageSectionController()
+      return Init(OtherMyPageSectionController()) { (vc) in
+        vc.pushSubject.subscribeNext(weak: self, { (weakSelf) -> (UIViewController) -> Void in
+          return {vc in
+            weakSelf.navigationController?.pushViewController(vc, animated: true)
+          }
+        }).disposed(by: disposeBag)
+      }
     default:
       return MyPageSectionController()
     }
-    
   }
   
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
     return UIView()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.setNavigationBarHidden(true, animated: animated)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.navigationController?.setNavigationBarHidden(false, animated: animated)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.navigationController?.navigationBar.topItem?.title = String()
     view = collectionView
     _ = adapter
-  }
-}
-
-
-class SampleModel: ListDiffable{
-  
-  let header: String
-  let title: [String]
-
-  init(header: String, title: [String]) {
-    self.header = header
-    self.title = title
-  }
-  
-  func diffIdentifier() -> NSObjectProtocol {
-    return header as NSString
-  }
-  
-  func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-    guard let object = object as? SampleModel else {return false}
-    return self.header == object.header
-  }
-}
-
-
-class SupportModel: ListDiffable{
-  
-  let header: String
-  let cellItemTitle: [String]
-  
-  init(header: String, cellItemTitle: [String]) {
-    self.header = header
-    self.cellItemTitle = cellItemTitle
-  }
-  
-  func diffIdentifier() -> NSObjectProtocol {
-    return header as NSObjectProtocol 
-  }
-  
-  func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-    guard let object = object as? SampleModel else {return false}
-    return self.header == object.header
   }
 }

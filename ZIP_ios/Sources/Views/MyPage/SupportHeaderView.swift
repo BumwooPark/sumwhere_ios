@@ -20,6 +20,7 @@ class SupportHeaderView: UICollectionReusableView{
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(title)
+    backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
     setNeedsUpdateConstraints()
   }
   

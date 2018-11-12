@@ -45,8 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
 
-//    window?.rootViewController = ProxyViewController()
-    window?.rootViewController = MyPageViewController()
+    window?.rootViewController = ProxyViewController()
     tokenObserver
       .do(onNext: { (token) in
         if token.count > 0 {

@@ -7,9 +7,12 @@
 //
 
 import IGListKit
+import RxSwift
+import RxCocoa
 
 class OtherMyPageSectionController: ListSectionController, ListSupplementaryViewSource{
-
+  
+  let pushSubject = PublishRelay<UIViewController>()
   var item: SupportModel?
   
   override init() {
@@ -27,11 +30,18 @@ class OtherMyPageSectionController: ListSectionController, ListSupplementaryView
                                         for: self,
                                         class: SupportHeaderView.self,
                                         at: index) as! SupportHeaderView
+    view.title.text = item?.header
     return view
   }
   
   func sizeForSupplementaryView(ofKind elementKind: String, at index: Int) -> CGSize {
     return CGSize(width: collectionContext!.containerSize.width, height: 30)
+  }
+  
+  override func didSelectItem(at index: Int) {
+    guard let vc = item?.viewControllers[index].viewController else {return}
+    pushSubject.accept(vc)
+    
   }
   
   override func didUpdate(to object: Any) {
@@ -40,16 +50,15 @@ class OtherMyPageSectionController: ListSectionController, ListSupplementaryView
   }
   override func cellForItem(at index: Int) -> UICollectionViewCell {
     let cell = collectionContext!.dequeueReusableCell(of: SupportCell.self, for: self, at: index) as! SupportCell
-    cell.titleLabel.text = item?.cellItemTitle[index]
+    cell.titleLabel.text = item?.viewControllers[index].name
     return cell
   }
   
   override func sizeForItem(at index: Int) -> CGSize {
-    return CGSize(width: collectionContext!.containerSize.width, height: 64)
+    return CGSize(width: collectionContext!.containerSize.width, height: 54)
   }
   
   override func numberOfItems() -> Int {
-    return 3
+    return item?.viewControllers.count ?? 0
   }
-  
 }

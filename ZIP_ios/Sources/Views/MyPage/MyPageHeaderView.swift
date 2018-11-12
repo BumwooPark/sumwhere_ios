@@ -9,7 +9,13 @@
 import UIKit
 
 class MyPageHeaderView: UICollectionReusableView{
-  
+  var userModel: UserModel?{
+    didSet{
+      idLabel.text = "\(userModel?.nickname ?? String())님"
+      emailLabel.text = userModel?.email
+      storeButton.setAttributedTitle(self.storeAttributeString(key: userModel?.point ?? 0), for: .normal)
+    }
+  }
   var didUpdateConstraint = false
   
   let idLabel: UILabel = {
@@ -36,8 +42,20 @@ class MyPageHeaderView: UICollectionReusableView{
   
   let storeButton: UIButton = {
     let button = UIButton()
-    button.setTitle("스토어\n3개의 키가 남아있어요", for: .normal)
-    button.setTitleColor(.black, for: .normal)
+    let attributedString = NSMutableAttributedString(string: "스토어\n3 개의 키가 남아있어요")
+    
+    attributedString.addAttribute(NSAttributedString.Key.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:22.0)!, range:NSMakeRange(0,3))
+    attributedString.addAttribute(NSAttributedString.Key.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:12.0)!, range:NSMakeRange(4,13))
+    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor.black, range:NSMakeRange(0,4))
+    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor(red:0.387, green:0.566, blue:0.916, alpha:1.0), range:NSMakeRange(4,1))
+    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor.black, range:NSMakeRange(5,12))
+    button.setAttributedTitle(attributedString, for: .normal)
+    button.setImage(#imageLiteral(resourceName: "mypageButton.png"), for: .normal)
+    button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 150)
+    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+    button.titleLabel?.textAlignment = .left
+    button.contentHorizontalAlignment = .leading
+    button.semanticContentAttribute = .forceRightToLeft
     button.titleLabel?.numberOfLines = 0
     button.backgroundColor = .white
     button.layer.cornerRadius = 47
@@ -48,11 +66,23 @@ class MyPageHeaderView: UICollectionReusableView{
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
     addSubview(idLabel)
     addSubview(profileImage)
     addSubview(emailLabel)
     addSubview(storeButton)
     setNeedsUpdateConstraints()
+  }
+  
+  func storeAttributeString(key: Int) -> NSMutableAttributedString{
+    let attributedString = NSMutableAttributedString(string: "스토어\n\(key) 개의 키가 남아있어요")
+    
+    attributedString.addAttribute(NSAttributedString.Key.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:22.0)!, range:NSMakeRange(0,3))
+    attributedString.addAttribute(NSAttributedString.Key.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:12.0)!, range:NSMakeRange(4,13))
+    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor.black, range:NSMakeRange(0,4))
+    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor(red:0.387, green:0.566, blue:0.916, alpha:1.0), range:NSMakeRange(4,1))
+    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor.black, range:NSMakeRange(5,12))
+    return attributedString
   }
   
   override func updateConstraints() {

@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController{
   }()
   
   let historyViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: CurrentMatchViewController())
+    let naviVC = UINavigationController(rootViewController: MatchSelectViewController())
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "동행", image: #imageLiteral(resourceName: "icons8-user-groups-32"), tag: 0)
     naviVC.tabBarItem = tabBar
@@ -58,11 +58,12 @@ class MainTabBarController: UITabBarController{
   }()
   
   let settingViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: ConfigureViewController())
+    let naviVC = UINavigationController(rootViewController: MyPageViewController())
     let tabBar = UITabBarItem(title: "설정", image: #imageLiteral(resourceName: "icons8-gender-neutral-user"), tag: 0)
-    naviVC.navigationBar.prefersLargeTitles = true
+    naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
+    naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    naviVC.navigationItem.largeTitleDisplayMode = .always
     naviVC.tabBarItem = tabBar
     return naviVC
   }()

@@ -100,7 +100,6 @@
 		0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEA2129A10200FDF834 /* CalendarCell.swift */; };
 		0A895BEF212EE59800FDF834 /* CurrentMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEE212EE59800FDF834 /* CurrentMatchViewController.swift */; };
 		0A895BF4212EEC5A00FDF834 /* MatchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BF3212EEC5A00FDF834 /* MatchHistoryViewController.swift */; };
-		0A895BF7212EF86F00FDF834 /* AlertSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BF6212EF86F00FDF834 /* AlertSettingViewController.swift */; };
 		0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBCF2109E8420057F1A9 /* UserModel.swift */; };
 		0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBD12109F76D0057F1A9 /* TicketView.swift */; };
 		0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A90EBD32109F7B10057F1A9 /* TicketView.xib */; };
@@ -152,6 +151,9 @@
 		B1911FB7216B3248005A4E85 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911FB6216B3248005A4E85 /* Database.swift */; };
 		B1911FB921707EBB005A4E85 /* MatchSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911FB821707EBB005A4E85 /* MatchSelectViewController.swift */; };
 		B1911FBB21746A6E005A4E85 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911FBA21746A6E005A4E85 /* MapViewController.swift */; };
+		B1913BB121990FFD009F9191 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BB021990FFD009F9191 /* MyPageModel.swift */; };
+		B1913BB321991072009F9191 /* PageCellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BB221991072009F9191 /* PageCellDataModel.swift */; };
+		B1913BB521991151009F9191 /* SupportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BB421991151009F9191 /* SupportModel.swift */; };
 		B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */; };
 		B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C562149FF6500BC95C5 /* ChatListModel.swift */; };
 		B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */; };
@@ -178,7 +180,7 @@
 		B1D1CB0C212E4303001A9801 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D1CB0B212E4303001A9801 /* CoreLocation.framework */; };
 		B1D1CB0E212E43FE001A9801 /* GPSMatchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB0D212E43FE001A9801 /* GPSMatchResultViewController.swift */; };
 		B1D1CB10212E8D01001A9801 /* RightKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */; };
-		B1D1CB12212EAA6A001A9801 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB11212EAA6A001A9801 /* AlertViewController.swift */; };
+		B1D1CB12212EAA6A001A9801 /* AlertSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */; };
 		B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */; };
 		B1D1CB16213CF96A001A9801 /* ChatNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */; };
 		B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */; };
@@ -312,7 +314,6 @@
 		0A895BEA2129A10200FDF834 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		0A895BEE212EE59800FDF834 /* CurrentMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMatchViewController.swift; sourceTree = "<group>"; };
 		0A895BF3212EEC5A00FDF834 /* MatchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryViewController.swift; sourceTree = "<group>"; };
-		0A895BF6212EF86F00FDF834 /* AlertSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingViewController.swift; sourceTree = "<group>"; };
 		0A90EBCF2109E8420057F1A9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0A90EBD12109F76D0057F1A9 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		0A90EBD32109F7B10057F1A9 /* TicketView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketView.xib; sourceTree = "<group>"; };
@@ -366,6 +367,9 @@
 		B1911FB6216B3248005A4E85 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		B1911FB821707EBB005A4E85 /* MatchSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSelectViewController.swift; sourceTree = "<group>"; };
 		B1911FBA21746A6E005A4E85 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B1913BB021990FFD009F9191 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
+		B1913BB221991072009F9191 /* PageCellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCellDataModel.swift; sourceTree = "<group>"; };
+		B1913BB421991151009F9191 /* SupportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportModel.swift; sourceTree = "<group>"; };
 		B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListSectionModel.swift; sourceTree = "<group>"; };
 		B1996C562149FF6500BC95C5 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -392,7 +396,7 @@
 		B1D1CB0B212E4303001A9801 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B1D1CB0D212E43FE001A9801 /* GPSMatchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSMatchResultViewController.swift; sourceTree = "<group>"; };
 		B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightKeyView.swift; sourceTree = "<group>"; };
-		B1D1CB11212EAA6A001A9801 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingViewController.swift; sourceTree = "<group>"; };
 		B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyKeyViewController.swift; sourceTree = "<group>"; };
 		B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNodeViewController.swift; sourceTree = "<group>"; };
 		B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellNode.swift; sourceTree = "<group>"; };
@@ -616,6 +620,7 @@
 		0A71238D1FACC16100512EB7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B1913BAF21990FD8009F9191 /* MyPage */,
 				B1996C552149FF5B00BC95C5 /* Chat */,
 				0A375C262132B8B500E35ED9 /* Request */,
 				B1A1D9A1211D282F0022D2A0 /* Match */,
@@ -684,7 +689,6 @@
 				0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */,
 				0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */,
 				0A9174CD20220124000A055A /* MockMessage.swift */,
-				B1D1CB11212EAA6A001A9801 /* AlertViewController.swift */,
 				B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */,
 				B1911FBA21746A6E005A4E85 /* MapViewController.swift */,
 			);
@@ -720,6 +724,7 @@
 				0A7C5072219862F600558F62 /* MyPageViewController.swift */,
 				0A7C50782198679D00558F62 /* MyPageSectionController.swift */,
 				0A7C507E219871D700558F62 /* OtherMyPageSectionController.swift */,
+				B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -768,7 +773,6 @@
 			isa = PBXGroup;
 			children = (
 				0AF2C01A20FB2D9600775EA8 /* ConfigureViewController.swift */,
-				0A895BF6212EF86F00FDF834 /* AlertSettingViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -956,6 +960,16 @@
 				B1EF956021193FC500F6418F /* CharacterModel.swift */,
 			);
 			path = SetProfile;
+			sourceTree = "<group>";
+		};
+		B1913BAF21990FD8009F9191 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				B1913BB021990FFD009F9191 /* MyPageModel.swift */,
+				B1913BB421991151009F9191 /* SupportModel.swift */,
+				B1913BB221991072009F9191 /* PageCellDataModel.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		B1996C552149FF5B00BC95C5 /* Chat */ = {
@@ -1353,11 +1367,10 @@
 				0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */,
 				0A7C507F219871D700558F62 /* OtherMyPageSectionController.swift in Sources */,
 				0A332776213BA65D00BC2906 /* JoinViewModel.swift in Sources */,
-				B1D1CB12212EAA6A001A9801 /* AlertViewController.swift in Sources */,
+				B1D1CB12212EAA6A001A9801 /* AlertSettingViewController.swift in Sources */,
 				B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */,
 				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
-				0A895BF7212EF86F00FDF834 /* AlertSettingViewController.swift in Sources */,
 				B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */,
 				0A7C50792198679D00558F62 /* MyPageSectionController.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
@@ -1450,12 +1463,14 @@
 				B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */,
 				B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */,
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
+				B1913BB121990FFD009F9191 /* MyPageModel.swift in Sources */,
 				0A33F7E621342F04002228BF /* RandomString.swift in Sources */,
 				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
 				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
 				0A6EB9DF216A2A9A00117526 /* MatchEmptyView.swift in Sources */,
 				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
 				B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */,
+				B1913BB321991072009F9191 /* PageCellDataModel.swift in Sources */,
 				B1D4E51620FDC83B00524CE2 /* FriendsViewController.swift in Sources */,
 				0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */,
 				0A745680210DE0FC00F8A0C9 /* TravelResigerViewModel.swift in Sources */,
@@ -1515,6 +1530,7 @@
 				B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */,
 				0A375C232132ABBA00E35ED9 /* MatchHistoryCell.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainCellViewModel.swift in Sources */,
+				B1913BB521991151009F9191 /* SupportModel.swift in Sources */,
 				0A895BF4212EEC5A00FDF834 /* MatchHistoryViewController.swift in Sources */,
 				B14495B92191664A00B4D135 /* PurchaseCell.swift in Sources */,
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,

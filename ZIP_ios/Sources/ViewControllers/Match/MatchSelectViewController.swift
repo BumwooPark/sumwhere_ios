@@ -30,11 +30,10 @@ class DataSectionItem: ListDiffable{
 
 final class MatchSelectViewController: UIViewController, ListAdapterDataSource{
   let items = [
-    
-    DataSectionItem(name: "이성 매칭", image: #imageLiteral(resourceName: "bridge2.jpg") )
-    ,DataSectionItem(name: "지역 매칭", image: #imageLiteral(resourceName: "boat"))
-    ,DataSectionItem(name: "이동 매칭", image: #imageLiteral(resourceName: "bridge2.jpg"))
-    ,DataSectionItem(name: "랜덤 매칭", image: #imageLiteral(resourceName: "bridge"))]
+    DataSectionItem(name: "즉석 여행", image: #imageLiteral(resourceName: "bridge2.jpg") )
+    ,DataSectionItem(name: "계획 여행", image: #imageLiteral(resourceName: "boat"))
+    ,DataSectionItem(name: "주변 여행", image: #imageLiteral(resourceName: "bridge2.jpg"))
+    ,DataSectionItem(name: "랜덤 여행", image: #imageLiteral(resourceName: "bridge"))]
   
   lazy var adapter: ListAdapter = {
     let adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
@@ -61,7 +60,7 @@ final class MatchSelectViewController: UIViewController, ListAdapterDataSource{
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.alwaysBounceVertical = true
-    collectionView.allowsMultipleSelection = true 
+    collectionView.allowsMultipleSelection = true
     return collectionView
   }()
   
