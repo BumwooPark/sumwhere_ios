@@ -17,10 +17,10 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
   var item: MyPageModel?
   let disposeBag = DisposeBag()
   
-  let userData =  AuthManager.instance.provider.request(.user)
+  let userData =  AuthManager.instance.provider.request(.userWithProfile)
     .filterSuccessfulStatusCodes()
     .retry(3)
-    .map(ResultModel<UserModel>.self)
+    .map(ResultModel<UserWithProfile>.self)
     .asObservable()
     .materialize()
     .share()
@@ -53,7 +53,7 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
   }
   
   func sizeForSupplementaryView(ofKind elementKind: String, at index: Int) -> CGSize {
-    return CGSize(width: collectionContext!.containerSize.width, height: 300)
+    return CGSize(width: collectionContext!.containerSize.width, height: 260)
   }
   
   override func didUpdate(to object: Any) {

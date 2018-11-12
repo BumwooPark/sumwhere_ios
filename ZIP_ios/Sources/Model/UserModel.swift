@@ -6,7 +6,6 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-import Foundation
 
 struct UserModel: Codable{
   let id: Int
@@ -23,3 +22,20 @@ struct UserModel: Codable{
   let point: Int
 }
 
+
+struct UserProfileModel: Codable {
+  let id: Int
+  let age: Int
+  let characterType: [CharacterModel]
+  let image1: String
+  let image2: String
+  let image3: String?
+  let image4: String?
+  let createAt: String
+  let updateAt: String
+}
+
+struct UserWithProfile: Codable{
+  let user: UserModel
+  let profile: UserProfileModel
+}

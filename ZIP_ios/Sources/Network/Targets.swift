@@ -20,6 +20,7 @@ public enum ZIP{
   case GetAllTrip(order: String, sortby: String, skipCount: Int)
   case createProfile(data: [MultipartFormData])
   case user
+  case userWithProfile
   case createTrip(model: Encodable)
   case myTrip
   case deleteMyTrip(id: Int)
@@ -79,6 +80,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/mytrip"
     case .user:
       return "/restrict/user"
+    case .userWithProfile:
+      return "/restrict/user_with_profile"
     case .AllTripList:
       return "/restrict/alltriplist"
     case .GetAllTripStyle:

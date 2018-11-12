@@ -9,11 +9,12 @@
 import UIKit
 
 class MyPageHeaderView: UICollectionReusableView{
-  var userModel: UserModel?{
+  var userModel: UserWithProfile?{
     didSet{
-      idLabel.text = "\(userModel?.nickname ?? String())님"
-      emailLabel.text = userModel?.email
-      storeButton.setAttributedTitle(self.storeAttributeString(key: userModel?.point ?? 0), for: .normal)
+      idLabel.text = "\(userModel?.user.nickname ?? String())님"
+      emailLabel.text = userModel?.user.email
+      storeButton.setAttributedTitle(self.storeAttributeString(key: userModel?.user.point ?? 0), for: .normal)
+      profileImage.kf.setImageWithZIP(image: userModel?.profile.image1 ?? String())
     }
   }
   var didUpdateConstraint = false
@@ -25,6 +26,12 @@ class MyPageHeaderView: UICollectionReusableView{
     return label
   }()
   
+  let joinTypeImage: UIImageView = {
+    let view = UIImageView()
+    view.image = #imageLiteral(resourceName: "mypageKakao.png")
+    return view
+  }()
+  
   let emailLabel: UILabel = {
     let label = UILabel()
     label.text = "qjadn0914@naver.com"
@@ -34,7 +41,7 @@ class MyPageHeaderView: UICollectionReusableView{
   
   let profileImage: UIImageView = {
     let profile = UIImageView()
-    profile.backgroundColor = .blue
+    profile.contentMode = .scaleAspectFill
     profile.layer.cornerRadius = 50
     profile.layer.masksToBounds = true
     return profile
@@ -42,14 +49,6 @@ class MyPageHeaderView: UICollectionReusableView{
   
   let storeButton: UIButton = {
     let button = UIButton()
-    let attributedString = NSMutableAttributedString(string: "스토어\n3 개의 키가 남아있어요")
-    
-    attributedString.addAttribute(NSAttributedString.Key.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:22.0)!, range:NSMakeRange(0,3))
-    attributedString.addAttribute(NSAttributedString.Key.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:12.0)!, range:NSMakeRange(4,13))
-    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor.black, range:NSMakeRange(0,4))
-    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor(red:0.387, green:0.566, blue:0.916, alpha:1.0), range:NSMakeRange(4,1))
-    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor.black, range:NSMakeRange(5,12))
-    button.setAttributedTitle(attributedString, for: .normal)
     button.setImage(#imageLiteral(resourceName: "mypageButton.png"), for: .normal)
     button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 150)
     button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
@@ -71,6 +70,7 @@ class MyPageHeaderView: UICollectionReusableView{
     addSubview(profileImage)
     addSubview(emailLabel)
     addSubview(storeButton)
+    addSubview(joinTypeImage)
     setNeedsUpdateConstraints()
   }
   
@@ -93,9 +93,15 @@ class MyPageHeaderView: UICollectionReusableView{
         make.top.equalToSuperview().inset(60)
       }
       
-      emailLabel.snp.makeConstraints { (make) in
+      joinTypeImage.snp.makeConstraints { (make) in
+        make.left.equalTo(idLabel.snp.left)
         make.top.equalTo(idLabel.snp.bottom).offset(5)
-        make.left.equalTo(idLabel.snp.left).inset(10)
+        make.width.height.equalTo(20)
+      }
+      
+      emailLabel.snp.makeConstraints { (make) in
+        make.left.equalTo(joinTypeImage.snp.right).offset(5)
+        make.centerY.equalTo(joinTypeImage)
       }
       
       profileImage.snp.makeConstraints { (make) in
