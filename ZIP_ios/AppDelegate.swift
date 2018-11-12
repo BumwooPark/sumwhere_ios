@@ -26,6 +26,7 @@ import Fabric
 import Crashlytics
 import StoreKit
 
+
 let tokenObserver = PublishSubject<String>()
 let log = SwiftyBeaver.self
 
@@ -84,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       completionHandler: {_, _ in })
     application.registerForRemoteNotifications()
     
+    GADMobileAds.configure(withApplicationID: "ca-app-pub-4059652237278086~5901401126")
     GMSServices.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     GMSPlacesClient.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     return true

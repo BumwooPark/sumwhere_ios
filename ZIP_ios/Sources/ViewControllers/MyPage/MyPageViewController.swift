@@ -10,6 +10,7 @@ import UIKit
 import IGListKit
 import RxSwift
 import RxCocoa
+import Carte
 
 class MyPageViewController: UIViewController, ListAdapterDataSource {
   let disposeBag = DisposeBag()
@@ -23,8 +24,8 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
       PageCellDataModel(name: "문의하기", viewController: UIViewController()),
       PageCellDataModel(name: "접근권한", viewController: UIViewController()),
       PageCellDataModel(name: "문의하기", viewController: UIViewController()),
-      PageCellDataModel(name: "공지 & 이벤트", viewController: UIViewController()),
-      PageCellDataModel(name: "오픈라이센스", viewController: UIViewController()),
+      PageCellDataModel(name: "공지 & 이벤트", viewController: EventInfoViewController()),
+      PageCellDataModel(name: "오픈라이센스", viewController: CarteViewController()),
       PageCellDataModel(name: "버전정보", viewController: UIViewController())])]
   
   lazy var adapter: ListAdapter = {

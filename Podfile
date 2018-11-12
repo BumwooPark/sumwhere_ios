@@ -33,6 +33,8 @@ pod 'MQTTClient'
 pod 'CocoaMQTT' 
 pod 'Result'
 pod 'RealmSwift'
+pod 'Firebase/AdMob'
+pod 'Carte'
 
 # UI
 pod 'GoogleMaps'
@@ -71,3 +73,9 @@ pod "RxRealm"
 pod 'RxGoogleMaps'
 
 end
+
+post_install do |installer|
+  pods_dir = File.dirname(installer.pods_project.path)
+  at_exit { `ruby #{pods_dir}/Carte/Sources/Carte/carte.rb configure` }
+end
+

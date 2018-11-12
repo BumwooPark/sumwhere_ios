@@ -41,7 +41,6 @@
 		0A33277D213BBD9700BC2906 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33277C213BBD9700BC2906 /* GenderViewController.swift */; };
 		0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A332780213BC1FD00BC2906 /* NickNameViewController.swift */; };
 		0A33F7E621342F04002228BF /* RandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33F7E521342F04002228BF /* RandomString.swift */; };
-		0A33F7E82134304C002228BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A33F7E72134304B002228BF /* GoogleService-Info.plist */; };
 		0A35ED8B214E20CB00B493D6 /* ChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35ED8A214E20CB00B493D6 /* ChatMessageModel.swift */; };
 		0A375C16213274AE00E35ED9 /* TopTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A375C15213274AE00E35ED9 /* TopTripViewController.swift */; };
 		0A375C18213275AA00E35ED9 /* TopTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A375C17213275AA00E35ED9 /* TopTripCell.swift */; };
@@ -154,6 +153,8 @@
 		B1913BB121990FFD009F9191 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BB021990FFD009F9191 /* MyPageModel.swift */; };
 		B1913BB321991072009F9191 /* PageCellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BB221991072009F9191 /* PageCellDataModel.swift */; };
 		B1913BB521991151009F9191 /* SupportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BB421991151009F9191 /* SupportModel.swift */; };
+		B1913BBB21997040009F9191 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1913BBA2199703E009F9191 /* GoogleService-Info.plist */; };
+		B1913BBD21997464009F9191 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BBC21997464009F9191 /* EventInfoViewController.swift */; };
 		B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */; };
 		B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C562149FF6500BC95C5 /* ChatListModel.swift */; };
 		B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */; };
@@ -250,7 +251,6 @@
 		0A33277C213BBD9700BC2906 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
 		0A332780213BC1FD00BC2906 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		0A33F7E521342F04002228BF /* RandomString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomString.swift; sourceTree = "<group>"; };
-		0A33F7E72134304B002228BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A35ED8A214E20CB00B493D6 /* ChatMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageModel.swift; sourceTree = "<group>"; };
 		0A375C15213274AE00E35ED9 /* TopTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTripViewController.swift; sourceTree = "<group>"; };
 		0A375C17213275AA00E35ED9 /* TopTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTripCell.swift; sourceTree = "<group>"; };
@@ -370,6 +370,8 @@
 		B1913BB021990FFD009F9191 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		B1913BB221991072009F9191 /* PageCellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCellDataModel.swift; sourceTree = "<group>"; };
 		B1913BB421991151009F9191 /* SupportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportModel.swift; sourceTree = "<group>"; };
+		B1913BBA2199703E009F9191 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B1913BBC21997464009F9191 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListSectionModel.swift; sourceTree = "<group>"; };
 		B1996C562149FF6500BC95C5 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -587,7 +589,7 @@
 				0A7123731FACC01200512EB7 /* Assets.xcassets */,
 				0A7123751FACC01200512EB7 /* LaunchScreen.storyboard */,
 				0A7123781FACC01200512EB7 /* Info.plist */,
-				0A33F7E72134304B002228BF /* GoogleService-Info.plist */,
+				B1913BBA2199703E009F9191 /* GoogleService-Info.plist */,
 				0A71239A1FACC24400512EB7 /* ZIP_ios-Bridging-Header.h */,
 			);
 			path = ZIP_ios;
@@ -725,6 +727,7 @@
 				0A7C50782198679D00558F62 /* MyPageSectionController.swift */,
 				0A7C507E219871D700558F62 /* OtherMyPageSectionController.swift */,
 				B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */,
+				B1913BBC21997464009F9191 /* EventInfoViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1136,7 +1139,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1D4E51E20FDCBB200524CE2 /* godoRounded L.ttf in Resources */,
-				0A33F7E82134304C002228BF /* GoogleService-Info.plist in Resources */,
 				B1D4E51F20FDCBB200524CE2 /* godoRounded R.ttf in Resources */,
 				B1D4E52020FDCBB200524CE2 /* godoMaum.ttf in Resources */,
 				B1D4E52120FDCBB200524CE2 /* BMHANNA.otf in Resources */,
@@ -1150,6 +1152,7 @@
 				0A0FDE2620398E550046E76F /* NotoSans-Bold.otf in Resources */,
 				0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */,
 				0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */,
+				B1913BBB21997040009F9191 /* GoogleService-Info.plist in Resources */,
 				B12001C2211300E800DFD676 /* launchlogo.png in Resources */,
 				0A6EB9DD2169E1A000117526 /* MainFooterView.xib in Resources */,
 				B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */,
@@ -1206,6 +1209,7 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BubbleTransition/BubbleTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
+				"${BUILT_PRODUCTS_DIR}/Carte/Carte.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
@@ -1269,6 +1273,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BubbleTransition.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Carte.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
@@ -1373,6 +1378,7 @@
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
 				B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */,
 				0A7C50792198679D00558F62 /* MyPageSectionController.swift in Sources */,
+				B1913BBD21997464009F9191 /* EventInfoViewController.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,

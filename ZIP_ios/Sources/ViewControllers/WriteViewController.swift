@@ -18,8 +18,6 @@ final class WriteViewController: FormViewController{
   
   let disposeBag = DisposeBag()
   
-  
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.title = "작성"

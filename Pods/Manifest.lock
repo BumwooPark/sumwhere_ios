@@ -7,6 +7,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
   - BubbleTransition (3.1.1)
+  - Carte (2.1.6)
   - CHIPageControl (0.1.7):
     - CHIPageControl/Aji (= 0.1.7)
     - CHIPageControl/Aleppo (= 0.1.7)
@@ -42,6 +43,9 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.38.1):
     - FBSDKCoreKit
+  - Firebase/AdMob (5.11.0):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (~> 7.35)
   - Firebase/Auth (5.11.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
@@ -82,6 +86,7 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
+  - Google-Mobile-Ads-SDK (7.35.2)
   - GoogleAppMeasurement (5.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -241,6 +246,7 @@ PODS:
 
 DEPENDENCIES:
   - BubbleTransition
+  - Carte
   - CHIPageControl
   - CHIPageControl/Aleppo
   - CocoaMQTT
@@ -253,6 +259,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - Firebase/AdMob
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Messaging
@@ -303,6 +310,7 @@ SPEC REPOS:
     - Alamofire
     - Bolts
     - BubbleTransition
+    - Carte
     - CHIPageControl
     - CocoaAsyncSocket
     - CocoaMQTT
@@ -325,6 +333,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FirebaseMessaging
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleMaps
     - GooglePlaces
@@ -380,6 +389,7 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BubbleTransition: 5676e5102b0e26c3193adc1da404fb5bb8144f0c
+  Carte: c8200bfb59b77336aa2f02e84cc4ac0fa820034d
   CHIPageControl: bbe1ddd0c688c02ec65b7f7e7d34551a3d16f37c
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaMQTT: b506d38ad3bbe1c55a4f8ee8c9fd02c35da1a7d8
@@ -402,6 +412,7 @@ SPEC CHECKSUMS:
   FirebaseCore: d16552f06821489ce1affe2e5e3e5593402ddfe3
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
+  Google-Mobile-Ads-SDK: 8f07cc8eac6649fe648cabc97d67c8d20173624a
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
@@ -453,6 +464,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: b3ac1cd2fd505ab5cb88439d230b480ef1fb93d2
+PODFILE CHECKSUM: 9b46e740a277a7301c23b639cd392eb59604d321
 
 COCOAPODS: 1.5.3

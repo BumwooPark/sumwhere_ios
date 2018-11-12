@@ -44,9 +44,9 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://localhost:8080/galmal")!
+    return URL(string: "http://localhost:8080")!
     #else
-    return URL(string: "https://bumwoopark.iptime.org/galmal")!
+    return URL(string: "https://bumwoopark.iptime.org")!
     #endif
   }
   

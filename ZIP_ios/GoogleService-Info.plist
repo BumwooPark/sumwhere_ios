@@ -36,5 +36,7 @@
 	<string>1:940206577010:ios:5be4f902c7ace44f</string>
 	<key>DATABASE_URL</key>
 	<string>https://galmal-8f900.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-4059652237278086~5901401126</string>
 </dict>
 </plist>
