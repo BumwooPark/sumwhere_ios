@@ -17,7 +17,8 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
   var item: MyPageModel?
   let disposeBag = DisposeBag()
   
-  let userData =  AuthManager.instance.provider.request(.userWithProfile)
+  let userData =  AuthManager.instance.provider
+    .request(.userWithProfile)
     .filterSuccessfulStatusCodes()
     .retry(3)
     .map(ResultModel<UserWithProfile>.self)
@@ -45,6 +46,12 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
                                         for: self,
                                         class: MyPageHeaderView.self,
                                         at: index) as! MyPageHeaderView
+    
+    view.storeButton.rx.tap
+      .map{PurchaseViewController()}
+      .bind(to: pushSubject)
+      .disposed(by: disposeBag)
+    
     userData.elements()
       .subscribe(onNext: { (model) in
         view.userModel = model.result

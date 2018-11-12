@@ -71,7 +71,5 @@ class AlertSettingViewController: FormViewController{
         cell.height = {50}
         cell.switchControl.onTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
       })
-    
-    log.info(form.values())
   }
 }

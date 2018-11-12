@@ -102,7 +102,6 @@
 		0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBCF2109E8420057F1A9 /* UserModel.swift */; };
 		0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBD12109F76D0057F1A9 /* TicketView.swift */; };
 		0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A90EBD32109F7B10057F1A9 /* TicketView.xib */; };
-		0A9174CE20220124000A055A /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9174CD20220124000A055A /* MockMessage.swift */; };
 		0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9174D220272CEC000A055A /* JDStatusBarManager.swift */; };
 		0A9755372174BC3D0098F2DB /* MatchSelectSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9755362174BC3C0098F2DB /* MatchSelectSectionController.swift */; };
 		0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */; };
@@ -155,6 +154,8 @@
 		B1913BB521991151009F9191 /* SupportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BB421991151009F9191 /* SupportModel.swift */; };
 		B1913BBB21997040009F9191 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1913BBA2199703E009F9191 /* GoogleService-Info.plist */; };
 		B1913BBD21997464009F9191 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BBC21997464009F9191 /* EventInfoViewController.swift */; };
+		B1913BBF219977A7009F9191 /* EventPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BBE219977A7009F9191 /* EventPageViewController.swift */; };
+		B1913BC1219977C2009F9191 /* InfoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1913BC0219977C2009F9191 /* InfoPageViewController.swift */; };
 		B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */; };
 		B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C562149FF6500BC95C5 /* ChatListModel.swift */; };
 		B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */; };
@@ -182,7 +183,6 @@
 		B1D1CB0E212E43FE001A9801 /* GPSMatchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB0D212E43FE001A9801 /* GPSMatchResultViewController.swift */; };
 		B1D1CB10212E8D01001A9801 /* RightKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */; };
 		B1D1CB12212EAA6A001A9801 /* AlertSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */; };
-		B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */; };
 		B1D1CB16213CF96A001A9801 /* ChatNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */; };
 		B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */; };
 		B1D1CB1A213E1101001A9801 /* ChatFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */; };
@@ -317,7 +317,6 @@
 		0A90EBCF2109E8420057F1A9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0A90EBD12109F76D0057F1A9 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		0A90EBD32109F7B10057F1A9 /* TicketView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketView.xib; sourceTree = "<group>"; };
-		0A9174CD20220124000A055A /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		0A9174D220272CEC000A055A /* JDStatusBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDStatusBarManager.swift; sourceTree = "<group>"; };
 		0A9755362174BC3C0098F2DB /* MatchSelectSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSelectSectionController.swift; sourceTree = "<group>"; };
 		0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanFlowLayout.swift; sourceTree = "<group>"; };
@@ -372,6 +371,8 @@
 		B1913BB421991151009F9191 /* SupportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportModel.swift; sourceTree = "<group>"; };
 		B1913BBA2199703E009F9191 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B1913BBC21997464009F9191 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
+		B1913BBE219977A7009F9191 /* EventPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPageViewController.swift; sourceTree = "<group>"; };
+		B1913BC0219977C2009F9191 /* InfoPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageViewController.swift; sourceTree = "<group>"; };
 		B1996C532149FF2800BC95C5 /* ChatListSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListSectionModel.swift; sourceTree = "<group>"; };
 		B1996C562149FF6500BC95C5 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -399,7 +400,6 @@
 		B1D1CB0D212E43FE001A9801 /* GPSMatchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSMatchResultViewController.swift; sourceTree = "<group>"; };
 		B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightKeyView.swift; sourceTree = "<group>"; };
 		B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingViewController.swift; sourceTree = "<group>"; };
-		B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyKeyViewController.swift; sourceTree = "<group>"; };
 		B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNodeViewController.swift; sourceTree = "<group>"; };
 		B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellNode.swift; sourceTree = "<group>"; };
 		B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFlowLayout.swift; sourceTree = "<group>"; };
@@ -690,8 +690,6 @@
 				B1D4E51520FDC83B00524CE2 /* FriendsViewController.swift */,
 				0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */,
 				0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */,
-				0A9174CD20220124000A055A /* MockMessage.swift */,
-				B1D1CB13212EAB4D001A9801 /* BuyKeyViewController.swift */,
 				B1911FBA21746A6E005A4E85 /* MapViewController.swift */,
 			);
 			path = ViewControllers;
@@ -728,6 +726,8 @@
 				0A7C507E219871D700558F62 /* OtherMyPageSectionController.swift */,
 				B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */,
 				B1913BBC21997464009F9191 /* EventInfoViewController.swift */,
+				B1913BBE219977A7009F9191 /* EventPageViewController.swift */,
+				B1913BC0219977C2009F9191 /* InfoPageViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1378,6 +1378,7 @@
 				0A3D1D0A1FF0D33B009427B5 /* PlanCell.swift in Sources */,
 				B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */,
 				0A7C50792198679D00558F62 /* MyPageSectionController.swift in Sources */,
+				B1913BC1219977C2009F9191 /* InfoPageViewController.swift in Sources */,
 				B1913BBD21997464009F9191 /* EventInfoViewController.swift in Sources */,
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
@@ -1437,6 +1438,7 @@
 				B1A1D9A9212BCA010022D2A0 /* DetailUserInfoViewController.swift in Sources */,
 				B1D1CAEB212BF7E6001A9801 /* DetailUserProfileInfoCell.swift in Sources */,
 				B1D1CB1E213F5D7B001A9801 /* TestFlowLayout.swift in Sources */,
+				B1913BBF219977A7009F9191 /* EventPageViewController.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
 				B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */,
 				0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */,
@@ -1451,7 +1453,6 @@
 				0AAD749021170FF700C860ED /* TripStyleModel.swift in Sources */,
 				B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */,
 				0A7E9CED204300F40014D549 /* InsertPlanViewController.swift in Sources */,
-				0A9174CE20220124000A055A /* MockMessage.swift in Sources */,
 				B1F6D8C82146123A00E0E003 /* AS + RxSwift.swift in Sources */,
 				0A375C18213275AA00E35ED9 /* TopTripCell.swift in Sources */,
 				B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */,
@@ -1533,7 +1534,6 @@
 				B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */,
 				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,
 				B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */,
-				B1D1CB14212EAB4D001A9801 /* BuyKeyViewController.swift in Sources */,
 				0A375C232132ABBA00E35ED9 /* MatchHistoryCell.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainCellViewModel.swift in Sources */,
 				B1913BB521991151009F9191 /* SupportModel.swift in Sources */,

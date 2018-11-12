@@ -20,7 +20,6 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
       PageCellDataModel(name: "알림 설정", viewController: AlertSettingViewController()),
       PageCellDataModel(name: "계정 설정", viewController: UIViewController())]),
     SupportModel(header: "고객 지원", viewControllers: [
-      PageCellDataModel(name: "공지사항", viewController: UIViewController()),
       PageCellDataModel(name: "문의하기", viewController: UIViewController()),
       PageCellDataModel(name: "접근권한", viewController: UIViewController()),
       PageCellDataModel(name: "문의하기", viewController: UIViewController()),
