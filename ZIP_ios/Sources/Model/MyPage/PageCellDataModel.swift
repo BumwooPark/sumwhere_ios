@@ -9,5 +9,5 @@
 
 struct PageCellDataModel{
   let name: String
-  let viewController: UIViewController
+  let type: SettingType
 }

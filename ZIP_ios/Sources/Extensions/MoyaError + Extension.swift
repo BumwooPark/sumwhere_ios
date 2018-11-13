@@ -7,6 +7,8 @@
 //
 
 import Moya
+import RxSwift
+import RxCocoa
 
 extension MoyaError{
   func GalMalErrorHandler(){
@@ -30,5 +32,14 @@ extension MoyaError{
     default:
       log.error(self)
     }
+  }
+}
+
+
+extension ObservableType where E == MoyaError?{
+  func bindGalMalError() -> Disposable{
+    return self.bind(onNext: {err in
+      err?.GalMalErrorHandler()
+    })
   }
 }

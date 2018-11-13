@@ -188,6 +188,7 @@ PODS:
   - PopupDialog (0.9.1):
     - DynamicBlurView (~> 3.0.1)
   - Protobuf (3.6.1)
+  - PYSearch (0.9.1)
   - PySwiftyRegex (2.0.1)
   - ReachabilitySwift (4.3.0)
   - Realm (3.11.1):
@@ -279,6 +280,7 @@ DEPENDENCIES:
   - MQTTClient
   - NVActivityIndicatorView
   - PopupDialog
+  - PYSearch
   - PySwiftyRegex
   - ReachabilitySwift
   - RealmSwift
@@ -358,6 +360,7 @@ SPEC REPOS:
     - PINRemoteImage
     - PopupDialog
     - Protobuf
+    - PYSearch
     - PySwiftyRegex
     - ReachabilitySwift
     - Realm
@@ -437,6 +440,7 @@ SPEC CHECKSUMS:
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   PopupDialog: 03985b669c29802661c187513bf827340db1ae4d
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  PYSearch: 76dee18eea3309b60921a5d6a69390a63a5dda15
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
@@ -464,6 +468,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 9b46e740a277a7301c23b639cd392eb59604d321
+PODFILE CHECKSUM: b37d2886ec01082b8586e6287a2347a54dea7c31
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2

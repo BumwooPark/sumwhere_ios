@@ -75,13 +75,15 @@ class MyPageHeaderView: UICollectionReusableView{
   }
   
   func storeAttributeString(key: Int) -> NSMutableAttributedString{
+    let keyCount = "\(key)".count
+    log.info(keyCount)
+    let totalLength = "스토어\n\(key) 개의 키가 남아있어요".count
     let attributedString = NSMutableAttributedString(string: "스토어\n\(key) 개의 키가 남아있어요")
-    
-    attributedString.addAttribute(NSAttributedString.Key.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:22.0)!, range:NSMakeRange(0,3))
-    attributedString.addAttribute(NSAttributedString.Key.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:12.0)!, range:NSMakeRange(4,13))
-    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor.black, range:NSMakeRange(0,4))
-    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor(red:0.387, green:0.566, blue:0.916, alpha:1.0), range:NSMakeRange(4,1))
-    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value:UIColor.black, range:NSMakeRange(5,12))
+    attributedString.addAttribute(.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:22.0)!, range:NSMakeRange(0,3))
+    attributedString.addAttribute(.font, value:UIFont(name:"AppleSDGothicNeo-SemiBold", size:12.0)!, range:NSMakeRange(4,totalLength-4))
+    attributedString.addAttribute(.foregroundColor, value:UIColor.black, range:NSMakeRange(0,4))
+    attributedString.addAttribute(.foregroundColor, value:UIColor(red:0.387, green:0.566, blue:0.916, alpha:1.0), range:NSMakeRange(4,keyCount))
+//    attributedString.addAttribute(.foregroundColor, value:UIColor.black, range:NSMakeRange(5,12))
     return attributedString
   }
   

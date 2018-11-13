@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController{
   }()
   
   let historyViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: MatchSelectViewController())
+    let naviVC = UINavigationController(rootViewController: TripViewController())
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "동행", image: #imageLiteral(resourceName: "icons8-user-groups-32"), tag: 0)
     naviVC.tabBarItem = tabBar

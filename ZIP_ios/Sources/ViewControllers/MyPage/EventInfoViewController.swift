@@ -42,6 +42,7 @@ class EventInfoViewController: UIViewController{
       .map{[unowned self] _ in return self.segmentControl.selectedSegmentIndex}
       .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
         return {idx in
+          log.info(idx)
           weakSelf.container.scrollToViewController(index: idx)
         }
     }.disposed(by: disposeBag)

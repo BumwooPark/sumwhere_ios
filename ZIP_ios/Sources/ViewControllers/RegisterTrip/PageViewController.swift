@@ -71,24 +71,27 @@ class PageViewController: UIPageViewController{
     scrollToViewController(pages[currentValue], direction: .reverse)
   }
   
-  
   func scrollToViewController(index newIndex: Int) {
     if let firstViewController = viewControllers?.first,let currentIndex = pages.index(of: firstViewController) {
       let direction: UIPageViewController.NavigationDirection = newIndex >= currentIndex ? .forward : .reverse
       
-      if newIndex > pages.count{
-        currentValue = 0
-        scrollToViewController(pages[currentValue], direction: direction)
-      }else{
-        currentValue = pages.count - 1
-        scrollToViewController(pages[currentValue], direction: direction)
+      if newIndex <= pages.count {
+        scrollToViewController(pages[newIndex], direction: direction)
       }
+//      if newIndex > pages.count{
+//        currentValue = 0
+//        scrollToViewController(pages[currentValue], direction: direction)
+//      }else{
+//        currentValue = pages.count - 1
+//        scrollToViewController(pages[currentValue], direction: direction)
+//      }
     }
   }
 }
 
 extension PageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate{
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    
     guard let viewControllerIndex = pages.index(of: viewController) else {return nil}
     currentIndexSubject.onNext(Int(viewControllerIndex))
     currentValue = Int(viewControllerIndex)
@@ -104,6 +107,7 @@ extension PageViewController: UIPageViewControllerDataSource,UIPageViewControlle
   }
   
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    
     guard let viewControllerIndex = pages.index(of: viewController) else {return nil}
     currentIndexSubject.onNext(Int(viewControllerIndex))
     currentValue = Int(viewControllerIndex)

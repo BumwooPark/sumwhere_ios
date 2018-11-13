@@ -12,20 +12,26 @@ import RxSwift
 import RxCocoa
 import Carte
 
+enum SettingType {
+  case ViewController(viewController: UIViewController)
+  case openURL(string: String)
+}
+
 class MyPageViewController: UIViewController, ListAdapterDataSource {
-  let disposeBag = DisposeBag()
+
+  private let disposeBag = DisposeBag()
 
   var items: [ListDiffable] = [
     MyPageModel(header: "default",viewControllers: [
-      PageCellDataModel(name: "알림 설정", viewController: AlertSettingViewController()),
-      PageCellDataModel(name: "계정 설정", viewController: UIViewController())]),
+      PageCellDataModel(name: "알림 설정", type: .ViewController(viewController: AlertSettingViewController())),
+      PageCellDataModel(name: "계정 설정", type: .ViewController(viewController: UIViewController()))]),
     SupportModel(header: "고객 지원", viewControllers: [
-      PageCellDataModel(name: "문의하기", viewController: UIViewController()),
-      PageCellDataModel(name: "접근권한", viewController: UIViewController()),
-      PageCellDataModel(name: "문의하기", viewController: UIViewController()),
-      PageCellDataModel(name: "공지 & 이벤트", viewController: EventInfoViewController()),
-      PageCellDataModel(name: "오픈라이센스", viewController: CarteViewController()),
-      PageCellDataModel(name: "버전정보", viewController: UIViewController())])]
+      PageCellDataModel(name: "문의하기", type: .ViewController(viewController: UIViewController())),
+      PageCellDataModel(name: "접근권한", type: .openURL(string: "App-prefs:com.bum.galmal")),
+      PageCellDataModel(name: "문의하기", type: .ViewController(viewController: UIViewController())),
+      PageCellDataModel(name: "공지 & 이벤트", type: .ViewController(viewController: EventInfoViewController())),
+      PageCellDataModel(name: "오픈라이센스", type: .ViewController(viewController: CarteViewController())),
+      PageCellDataModel(name: "버전정보", type: .ViewController(viewController: VersionViewController()))])]
   
   lazy var adapter: ListAdapter = {
     let adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
@@ -34,7 +40,7 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
     return adapter
   }()
   
-  let collectionView: UICollectionView = {
+  private let collectionView: UICollectionView = {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     collectionView.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
     collectionView.register(MyPageHeaderView.self,
@@ -59,17 +65,31 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
     switch object{
     case is MyPageModel:
       return Init(MyPageSectionController()) { (vc) in
-        vc.pushSubject.subscribeNext(weak: self, { (weakSelf) -> (UIViewController) -> Void in
-          return {vc in
-            weakSelf.navigationController?.pushViewController(vc, animated: true)
+        vc.settingSubject.subscribeNext(weak: self, { (weakSelf) -> (SettingType) -> Void in
+          return {type in
+            switch type{
+            case .ViewController(let vc):
+               weakSelf.navigationController?.pushViewController(vc, animated: true)
+            case .openURL(let url):
+              if UIApplication.shared.canOpenURL(URL(string: url)!){
+                UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+              }
+            }
           }
         }).disposed(by: disposeBag)
       }
     case is SupportModel:
       return Init(OtherMyPageSectionController()) { (vc) in
-        vc.pushSubject.subscribeNext(weak: self, { (weakSelf) -> (UIViewController) -> Void in
-          return {vc in
-            weakSelf.navigationController?.pushViewController(vc, animated: true)
+        vc.settingSubject.subscribeNext(weak: self, { (weakSelf) -> (SettingType) -> Void in
+          return {type in
+            switch type{
+            case .ViewController(let vc):
+              weakSelf.navigationController?.pushViewController(vc, animated: true)
+            case .openURL(let url):
+              if UIApplication.shared.canOpenURL(URL(string: url)!){
+                UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+              }
+            }
           }
         }).disposed(by: disposeBag)
       }
@@ -85,6 +105,8 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    log.info("will")
+    self.collectionView.reloadData()
   }
   
   override func viewWillDisappear(_ animated: Bool) {

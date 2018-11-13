@@ -13,7 +13,7 @@ import Moya
 
 class MyPageSectionController: ListSectionController, ListSupplementaryViewSource{
  
-  let pushSubject = PublishRelay<UIViewController>()
+  let settingSubject = PublishRelay<SettingType>()
   var item: MyPageModel?
   let disposeBag = DisposeBag()
   
@@ -29,9 +29,9 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
   override init() {
     super.init()
     userData.errors()
-      .subscribe(onNext: { (err) in
-        (err as? MoyaError)?.GalMalErrorHandler()
-      }).disposed(by: disposeBag)
+      .map{($0 as? MoyaError)}
+      .bindGalMalError()
+      .disposed(by: disposeBag)
     
     supplementaryViewSource = self
     self.inset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
@@ -48,8 +48,8 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
                                         at: index) as! MyPageHeaderView
     
     view.storeButton.rx.tap
-      .map{PurchaseViewController()}
-      .bind(to: pushSubject)
+      .map{SettingType.ViewController(viewController: PurchaseViewController())}
+      .bind(to: settingSubject)
       .disposed(by: disposeBag)
     
     userData.elements()
@@ -74,8 +74,8 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
   }
   
   override func didSelectItem(at index: Int) {
-    guard let vc = item?.viewControllers[index].viewController else {return}
-    pushSubject.accept(vc)
+    guard let type = item?.viewControllers[index].type else {return}
+    settingSubject.accept(type)
   }
   
   override func sizeForItem(at index: Int) -> CGSize {

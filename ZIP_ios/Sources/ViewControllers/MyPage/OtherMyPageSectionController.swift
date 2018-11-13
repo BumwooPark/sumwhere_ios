@@ -12,7 +12,7 @@ import RxCocoa
 
 class OtherMyPageSectionController: ListSectionController, ListSupplementaryViewSource{
   
-  let pushSubject = PublishRelay<UIViewController>()
+  let settingSubject = PublishRelay<SettingType>()
   var item: SupportModel?
   
   override init() {
@@ -39,9 +39,8 @@ class OtherMyPageSectionController: ListSectionController, ListSupplementaryView
   }
   
   override func didSelectItem(at index: Int) {
-    guard let vc = item?.viewControllers[index].viewController else {return}
-    pushSubject.accept(vc)
-    
+    guard let type = item?.viewControllers[index].type else {return}
+    settingSubject.accept(type)
   }
   
   override func didUpdate(to object: Any) {

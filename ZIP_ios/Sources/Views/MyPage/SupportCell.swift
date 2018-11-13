@@ -39,7 +39,7 @@ class SupportCell: UICollectionViewCell{
       underLine.snp.makeConstraints { (make) in
         make.bottom.equalToSuperview()
         make.left.right.equalToSuperview().inset(17)
-        make.height.equalTo(1)
+        make.height.equalTo(0.5)
       }
       didUpdateConstraint = true
     }

@@ -11,7 +11,7 @@ import RxDataSources
 import RxSwift
 import PopupDialog
 import Moya
-
+import PYSearch
 
 
 final class CreateTripViewController: UIViewController{
@@ -20,13 +20,14 @@ final class CreateTripViewController: UIViewController{
   
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
-  private lazy var pageView = PageViewController(pages: [InsertPlanViewController(viewModel: viewModel),
-                                                 SearchDestinationViewController(viewModel: viewModel),
-                                                 RegisterViewController(viewController: self)], spin: false)
+  
+  private lazy var pageView =
+    PageViewController(pages: [InsertPlanViewController(viewModel: viewModel),
+                               SearchDestinationViewController(viewModel: viewModel),
+                               RegisterViewController(viewController: self)], spin: false)
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
     pageView.isPagingEnabled = false
     self.addChild(pageView)
