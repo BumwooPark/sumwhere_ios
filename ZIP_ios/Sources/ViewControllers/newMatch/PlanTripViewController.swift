@@ -20,3 +20,4 @@ class PlanTripViewController: UIViewController {
     view.backgroundColor = .white
   }
 }
+
