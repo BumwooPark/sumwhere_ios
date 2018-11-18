@@ -9,35 +9,33 @@
 import RxSwift
 import RxCocoa
 import RxDataSources
+import IGListKit
 import SkeletonView
 
-final class MatchHistoryViewController: UIViewController{
+enum RequestType{
+  case Receive
+  case Send
+}
+
+final class MatchHistoryViewController: UIViewController, ListAdapterDataSource{
+  private let disposeBag = DisposeBag()
   
-  enum RequestType{
-    case Receive
-    case Send
-  }
+  lazy var adapter: ListAdapter = {
+    let adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
+    adapter.collectionView = collectionView
+    adapter.dataSource = self
+    return adapter
+  }()
   
   let VCType: RequestType
   var didUpdateConstraint = false
   let viewModel = ReceiveViewModel()
-  let disposeBag = DisposeBag()
-  
-  lazy var dataSources = RxCollectionViewSectionedReloadDataSource<MatchRequestHistoryViewModel>(
-    configureCell: {ds,cv,idx,item in
-      let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MatchHistoryCell.self), for: idx) as! MatchHistoryCell
-      cell.item = item
-      return cell
-  })
+
   
   lazy var collectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .vertical
-    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView.backgroundColor = .white
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     collectionView.register(MatchHistoryCell.self, forCellWithReuseIdentifier: String(describing: MatchHistoryCell.self))
-    collectionView.alwaysBounceVertical = true
+    collectionView.backgroundColor = .clear
     return collectionView
   }()
   
@@ -48,17 +46,26 @@ final class MatchHistoryViewController: UIViewController{
     super.init(nibName: nil, bundle: nil)
   }
   
+  func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
+    return [1,2] as [ListDiffable]
+  }
+  
+  func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
+    return ReceiveHistorySectionController()
+  }
+  
+  func emptyView(for listAdapter: ListAdapter) -> UIView? {
+    return nil
+  }
+  
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.addSubview(collectionView)
-    
-    datas.asDriver()
-      .drive(collectionView.rx.items(dataSource: dataSources))
-      .disposed(by: disposeBag)
+    view = collectionView
+    _ = adapter
   }
   
   override func willMove(toParent parent: UIViewController?) {
@@ -82,15 +89,5 @@ final class MatchHistoryViewController: UIViewController{
         .bind(to: datas)
         .disposed(by: disposeBag)
     }
-  }
-  
-  override func updateViewConstraints() {
-    if !didUpdateConstraint{
-      collectionView.snp.makeConstraints { (make) in
-        make.edges.equalToSuperview()
-      }
-      didUpdateConstraint = true
-    }
-    super.updateViewConstraints()
   }
 }

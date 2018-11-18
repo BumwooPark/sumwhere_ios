@@ -9,6 +9,7 @@
 import Moya
 
 public enum ZIP{
+  
   case signUp(model: Encodable)
   case signIn(email: String, password: String)
   case tokenLogin
@@ -44,7 +45,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.7:8080")!
+    return URL(string: "http://192.168.0.24:8080")!
     #else
     return URL(string: "https://bumwoopark.iptime.org")!
     #endif

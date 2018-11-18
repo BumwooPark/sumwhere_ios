@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
+  - BetterSegmentedControl (1.0.1)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -32,7 +33,6 @@ PODS:
   - Crashlytics (3.11.1):
     - Fabric (~> 1.8.1)
   - Differentiator (3.1.0)
-  - DropDown (2.3.12)
   - DynamicBlurView (3.0.1)
   - EmptyDataSet-Swift (4.2.0)
   - Eureka (4.3.0)
@@ -162,6 +162,7 @@ PODS:
   - MQTTClient/Manager (0.15.2):
     - MQTTClient/Min
   - MQTTClient/Min (0.15.2)
+  - MXParallaxHeader (0.6.1)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -188,7 +189,6 @@ PODS:
   - PopupDialog (0.9.1):
     - DynamicBlurView (~> 3.0.1)
   - Protobuf (3.6.1)
-  - PYSearch (0.9.1)
   - PySwiftyRegex (2.0.1)
   - ReachabilitySwift (4.3.0)
   - Realm (3.11.1):
@@ -246,6 +246,7 @@ PODS:
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
+  - BetterSegmentedControl
   - BubbleTransition
   - Carte
   - CHIPageControl
@@ -253,7 +254,6 @@ DEPENDENCIES:
   - CocoaMQTT
   - Cosmos
   - Crashlytics
-  - DropDown
   - EmptyDataSet-Swift
   - Eureka
   - Fabric
@@ -278,9 +278,9 @@ DEPENDENCIES:
   - LTMorphingLabel
   - Moya/RxSwift
   - MQTTClient
+  - MXParallaxHeader
   - NVActivityIndicatorView
   - PopupDialog
-  - PYSearch
   - PySwiftyRegex
   - ReachabilitySwift
   - RealmSwift
@@ -310,6 +310,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BetterSegmentedControl
     - Bolts
     - BubbleTransition
     - Carte
@@ -319,7 +320,6 @@ SPEC REPOS:
     - Cosmos
     - Crashlytics
     - Differentiator
-    - DropDown
     - DynamicBlurView
     - EmptyDataSet-Swift
     - Eureka
@@ -353,6 +353,7 @@ SPEC REPOS:
     - LTMorphingLabel
     - Moya
     - MQTTClient
+    - MXParallaxHeader
     - nanopb
     - NVActivityIndicatorView
     - PINCache
@@ -360,7 +361,6 @@ SPEC REPOS:
     - PINRemoteImage
     - PopupDialog
     - Protobuf
-    - PYSearch
     - PySwiftyRegex
     - ReachabilitySwift
     - Realm
@@ -390,6 +390,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  BetterSegmentedControl: 8cac1f243b5cc747f44c9da655c975d5322243fa
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BubbleTransition: 5676e5102b0e26c3193adc1da404fb5bb8144f0c
   Carte: c8200bfb59b77336aa2f02e84cc4ac0fa820034d
@@ -399,7 +400,6 @@ SPEC CHECKSUMS:
   Cosmos: 309e489f21ffc91a1eeecfebef7f817cd2fcfba6
   Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
   DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
   EmptyDataSet-Swift: 1fa0b35f530a35f852ecb2b53564728b0c300aaf
   Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
@@ -433,6 +433,7 @@ SPEC CHECKSUMS:
   LTMorphingLabel: 8adaba524476098ed307626d0bc42b7f8fadb7e0
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   MQTTClient: 902c7bcac1501595f3d0b15178c7205b40331fb0
+  MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
@@ -440,7 +441,6 @@ SPEC CHECKSUMS:
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   PopupDialog: 03985b669c29802661c187513bf827340db1ae4d
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
-  PYSearch: 76dee18eea3309b60921a5d6a69390a63a5dda15
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
@@ -468,6 +468,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: b37d2886ec01082b8586e6287a2347a54dea7c31
+PODFILE CHECKSUM: 338a7692556cad0630fe5673aed02014ef58ac84
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.5.3

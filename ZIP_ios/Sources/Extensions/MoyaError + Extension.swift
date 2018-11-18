@@ -14,6 +14,7 @@ extension MoyaError{
   func GalMalErrorHandler(){
     switch self {
     case let .underlying(err, response):
+      log.info(response)
       let error = err as NSError
       switch error.code{
       case -1004:

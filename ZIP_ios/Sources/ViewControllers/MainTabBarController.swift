@@ -29,22 +29,22 @@ class MainTabBarController: UITabBarController{
   }()
   
   let historyViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: TripViewController())
+    let naviVC = UINavigationController(rootViewController: MatchRequestViewController())
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    let tabBar = UITabBarItem(title: "동행", image: #imageLiteral(resourceName: "icons8-user-groups-32"), tag: 0)
+    let tabBar = UITabBarItem(title: "현황", image: #imageLiteral(resourceName: "icons8-user-groups-32"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let writerViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: TripViewController())
+    let naviVC = UINavigationController(rootViewController: TripSelectViewController())
     naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.prefersLargeTitles = true
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRBold(size: 40)]
-    let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "icons8-find-user-male"), tag: 0)
+    let tabBar = UITabBarItem(title: "갈래말래", image: #imageLiteral(resourceName: "icons8-find-user-male"), tag: 0)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
@@ -59,7 +59,7 @@ class MainTabBarController: UITabBarController{
   
   let settingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MyPageViewController())
-    let tabBar = UITabBarItem(title: "설정", image: #imageLiteral(resourceName: "icons8-gender-neutral-user"), tag: 0)
+    let tabBar = UITabBarItem(title: "프로필", image: #imageLiteral(resourceName: "icons8-gender-neutral-user"), tag: 0)
     naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
     naviVC.navigationBar.backItem?.title = String()

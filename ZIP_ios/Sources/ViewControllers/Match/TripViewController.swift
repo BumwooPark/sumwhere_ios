@@ -13,6 +13,7 @@ import RxDataSources
 import Moya
 import JDStatusBarNotification
 import EmptyDataSet_Swift
+import MXParallaxHeader
 
 
 class TripViewController: UIViewController{
@@ -26,6 +27,12 @@ class TripViewController: UIViewController{
   let transition = BubbleTransition()
   let interactiveTransition = BubbleInteractiveTransition()
   let refreshControl = UIRefreshControl()
+  
+  let sampleView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .blue
+    return view
+  }()
   
   private let datas = BehaviorRelay<[MyTripViewModel]>(value: [])
   

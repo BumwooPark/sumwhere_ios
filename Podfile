@@ -47,7 +47,6 @@ pod 'LTMorphingLabel'
 pod 'Eureka'
 pod 'TagListView'
 pod 'JVFloatLabeledTextField'
-pod 'BubbleTransition'
 pod 'Cosmos'
 pod 'HMSegmentedControl'
 pod 'SkeletonView'
@@ -57,7 +56,8 @@ pod 'CHIPageControl/Aleppo'
 pod 'EmptyDataSet-Swift'
 pod 'IGListKit'
 pod 'NVActivityIndicatorView'
-
+pod 'MXParallaxHeader'
+pod 'BetterSegmentedControl'
 
 # RX
 pod 'RxSwift'
