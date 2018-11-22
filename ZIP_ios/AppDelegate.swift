@@ -105,7 +105,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   private func appearanceSetting(){
-    
+    UITabBar.appearance().layer.borderWidth = 0
+    UITabBar.appearance().clipsToBounds = true
     UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     UINavigationBar.appearance().shadowImage = UIImage()
     UINavigationBar.appearance().tintColor = .black

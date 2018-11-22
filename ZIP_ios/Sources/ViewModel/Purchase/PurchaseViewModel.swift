@@ -2,7 +2,7 @@
 //  PurchaseViewModel.swift
 //  ZIP_ios
 //
-//  Created by xiilab on 06/11/2018.
+//  Created by xiilab on 22/11/2018.
 //  Copyright © 2018 park bumwoo. All rights reserved.
 //
 
@@ -12,12 +12,10 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 #endif
-
 struct PurchaseViewModel{
   var title: String
   var items: [SKProduct]
 }
-
 extension PurchaseViewModel: SectionModelType{
   typealias Item = SKProduct
   init(original: PurchaseViewModel, items: [Item]) {
@@ -25,4 +23,3 @@ extension PurchaseViewModel: SectionModelType{
     self.items = items
   }
 }
-

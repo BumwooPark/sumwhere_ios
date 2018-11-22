@@ -59,6 +59,7 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
     return view
   }
   
+  
   func sizeForSupplementaryView(ofKind elementKind: String, at index: Int) -> CGSize {
     return CGSize(width: collectionContext!.containerSize.width, height: 260)
   }

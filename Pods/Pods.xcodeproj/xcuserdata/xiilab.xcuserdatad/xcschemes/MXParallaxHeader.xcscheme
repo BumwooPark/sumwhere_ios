@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D207616D7ABC5B8FA71612217D1FE57A"
-               BlueprintName = "PYSearch"
+               BlueprintIdentifier = "3AAB70DFB8D2F77174C1737A0BC27768"
+               BlueprintName = "MXParallaxHeader"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "PYSearch.framework">
+               BuildableName = "MXParallaxHeader.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

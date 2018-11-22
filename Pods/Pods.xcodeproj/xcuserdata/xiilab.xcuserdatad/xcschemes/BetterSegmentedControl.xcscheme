@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A0418F12D6671588EEF4D5399CEFB727"
-               BlueprintName = "BubbleTransition"
+               BlueprintIdentifier = "5EFD6506021DC82E2D5D609D3406A440"
+               BlueprintName = "BetterSegmentedControl"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "BubbleTransition.framework">
+               BuildableName = "BetterSegmentedControl.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

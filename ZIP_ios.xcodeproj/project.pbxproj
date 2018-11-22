@@ -139,7 +139,6 @@
 		B14495B421915A9600B4D135 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14495B321915A9600B4D135 /* StoreKit.framework */; };
 		B14495B621915B1500B4D135 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495B521915B1500B4D135 /* IAPHelper.swift */; };
 		B14495B92191664A00B4D135 /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495B82191664A00B4D135 /* PurchaseCell.swift */; };
-		B14495BC219166C600B4D135 /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BB219166C600B4D135 /* PurchaseViewModel.swift */; };
 		B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */; };
 		B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */; };
 		B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155F02D21894DC100E4911A /* ProxyViewController.swift */; };
@@ -221,6 +220,12 @@
 		B1F6D8C42140B5C600E0E003 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */; };
 		B1F6D8C62140B6B600E0E003 /* ChatListCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */; };
 		B1F6D8C82146123A00E0E003 /* AS + RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D8C72146123A00E0E003 /* AS + RxSwift.swift */; };
+		B1FE036E21A64E3E00DE242A /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FE036D21A64E3E00DE242A /* PurchaseViewModel.swift */; };
+		B1FE037021A6770F00DE242A /* PurchaseProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FE036F21A6770F00DE242A /* PurchaseProduct.swift */; };
+		B1FE037121A6940200DE242A /* NanumSquareRoundB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1FE036821A63A5C00DE242A /* NanumSquareRoundB.ttf */; };
+		B1FE037221A6940400DE242A /* NanumSquareRoundEB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1FE036721A63A5500DE242A /* NanumSquareRoundEB.ttf */; };
+		B1FE037321A6940600DE242A /* NanumSquareRoundR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1FE036521A63A4A00DE242A /* NanumSquareRoundR.ttf */; };
+		B1FE037421A6940800DE242A /* NanumSquareRoundL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1FE036621A63A4F00DE242A /* NanumSquareRoundL.ttf */; };
 		BAB35871AF3A20A85A1D01CD /* Pods_ZIP_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -364,7 +369,6 @@
 		B14495B321915A9600B4D135 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B14495B521915B1500B4D135 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		B14495B82191664A00B4D135 /* PurchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
-		B14495BB219166C600B4D135 /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
 		B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHeaderView.swift; sourceTree = "<group>"; };
 		B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter + Extension.swift"; sourceTree = "<group>"; };
 		B155F02D21894DC100E4911A /* ProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyViewController.swift; sourceTree = "<group>"; };
@@ -446,6 +450,12 @@
 		B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCellNode.swift; sourceTree = "<group>"; };
 		B1F6D8C72146123A00E0E003 /* AS + RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AS + RxSwift.swift"; sourceTree = "<group>"; };
+		B1FE036521A63A4A00DE242A /* NanumSquareRoundR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundR.ttf; sourceTree = "<group>"; };
+		B1FE036621A63A4F00DE242A /* NanumSquareRoundL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundL.ttf; sourceTree = "<group>"; };
+		B1FE036721A63A5500DE242A /* NanumSquareRoundEB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundEB.ttf; sourceTree = "<group>"; };
+		B1FE036821A63A5C00DE242A /* NanumSquareRoundB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundB.ttf; sourceTree = "<group>"; };
+		B1FE036D21A64E3E00DE242A /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
+		B1FE036F21A6770F00DE242A /* PurchaseProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProduct.swift; sourceTree = "<group>"; };
 		BBBA05947428AB4BFEF7859A /* Pods-ZIP_iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_iosTests/Pods-ZIP_iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D390024D23B8B0D863AC780D /* Pods_ZIP_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZIP_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D974C1FB255F6BC0FD4F84C5 /* Pods-ZIP_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -498,6 +508,10 @@
 		0A0FDE2120398DA70046E76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B1FE036821A63A5C00DE242A /* NanumSquareRoundB.ttf */,
+				B1FE036721A63A5500DE242A /* NanumSquareRoundEB.ttf */,
+				B1FE036521A63A4A00DE242A /* NanumSquareRoundR.ttf */,
+				B1FE036621A63A4F00DE242A /* NanumSquareRoundL.ttf */,
 				B12001C1211300E800DFD676 /* launchlogo.png */,
 				B1D4E51C20FDCA3800524CE2 /* godoRounded L.ttf */,
 				B1D4E51D20FDCA3800524CE2 /* godoRounded R.ttf */,
@@ -692,7 +706,6 @@
 			isa = PBXGroup;
 			children = (
 				0A781391219FFF1D006AA31F /* newMatch */,
-				B14495B02191534300B4D135 /* Purchase */,
 				0AB42130213BE4C5001353E9 /* Chat */,
 				0A895BF5212EF84900FDF834 /* Setting */,
 				0A895BEC2129A59900FDF834 /* Login */,
@@ -750,6 +763,7 @@
 		0A7C50742198637F00558F62 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B14495B02191534300B4D135 /* Purchase */,
 				0A7C5072219862F600558F62 /* MyPageViewController.swift */,
 				0A7C50782198679D00558F62 /* MyPageSectionController.swift */,
 				0A7C507E219871D700558F62 /* OtherMyPageSectionController.swift */,
@@ -922,7 +936,8 @@
 		B14495BA219166BA00B4D135 /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
-				B14495BB219166C600B4D135 /* PurchaseViewModel.swift */,
+				B1FE036D21A64E3E00DE242A /* PurchaseViewModel.swift */,
+				B1FE036F21A6770F00DE242A /* PurchaseProduct.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -1175,12 +1190,16 @@
 				B1D4E52020FDCBB200524CE2 /* godoMaum.ttf in Resources */,
 				B1D4E52120FDCBB200524CE2 /* BMHANNA.otf in Resources */,
 				0A375C1A213275D200E35ED9 /* TopTripCell.xib in Resources */,
+				B1FE037221A6940400DE242A /* NanumSquareRoundEB.ttf in Resources */,
 				B1D4E52220FDCBB200524CE2 /* BMJUA.otf in Resources */,
 				B1D1CAFB212D024C001A9801 /* DetailTripStyleCell.xib in Resources */,
 				0A71236D1FACC01200512EB7 /* art.scnassets in Resources */,
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
 				0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */,
+				B1FE037321A6940600DE242A /* NanumSquareRoundR.ttf in Resources */,
 				B1D1CAED212BF7FE001A9801 /* DetailUserProfileInfoCell.xib in Resources */,
+				B1FE037121A6940200DE242A /* NanumSquareRoundB.ttf in Resources */,
+				B1FE037421A6940800DE242A /* NanumSquareRoundL.ttf in Resources */,
 				0A0FDE2620398E550046E76F /* NotoSans-Bold.otf in Resources */,
 				0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */,
 				0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */,
@@ -1236,11 +1255,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BetterSegmentedControl/BetterSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BubbleTransition/BubbleTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Carte/Carte.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
@@ -1305,7 +1323,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BetterSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BubbleTransition.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Carte.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
@@ -1367,7 +1384,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6AA2895D0F562C38BD71649 /* [CP] Copy Pods Resources */ = {
@@ -1376,7 +1393,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
@@ -1387,7 +1404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1398,8 +1415,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A7C507B219867AC00558F62 /* MyPageHeaderView.swift in Sources */,
+				B1FE036E21A64E3E00DE242A /* PurchaseViewModel.swift in Sources */,
 				0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */,
-				B14495BC219166C600B4D135 /* PurchaseViewModel.swift in Sources */,
 				0A375C1C2132796D00E35ED9 /* TopTripViewModel.swift in Sources */,
 				0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */,
 				B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */,
@@ -1561,6 +1578,7 @@
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,
 				B1D1CB25213F9E8A001A9801 /* InputBoxNode.swift in Sources */,
+				B1FE037021A6770F00DE242A /* PurchaseProduct.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
 				0A78139921A13FE3006AA31F /* PageCollectionLayout.swift in Sources */,
 				B14495B621915B1500B4D135 /* IAPHelper.swift in Sources */,

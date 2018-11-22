@@ -51,7 +51,6 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
   private let customRightButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "icons8-key-2-24") , for: .normal)
-//    button.setTitle("33", for: .normal)
     button.setTitleColor(.black, for: .normal)
     button.titleLabel?.font = UIFont.NotoSansKRBold(size: 17)
     return button

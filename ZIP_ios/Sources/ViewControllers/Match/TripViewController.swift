@@ -6,7 +6,6 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-import BubbleTransition
 import RxSwift
 import RxCocoa
 import RxDataSources
@@ -24,8 +23,7 @@ class TripViewController: UIViewController{
   private let disposeBag = DisposeBag()
   private let viewModel = TripViewModel()
   
-  let transition = BubbleTransition()
-  let interactiveTransition = BubbleInteractiveTransition()
+
   let refreshControl = UIRefreshControl()
   
   let sampleView: UIView = {

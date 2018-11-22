@@ -109,6 +109,10 @@
 		<string>NotoSans-Light.otf</string>
 		<string>NotoSans-Medium.otf</string>
 		<string>NotoSans-Regular.otf</string>
+		<string>NanumSquareRoundB.ttf</string>
+		<string>NanumSquareRoundEB.ttf</string>
+		<string>NanumSquareRoundR.ttf</string>
+		<string>NanumSquareRoundL.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

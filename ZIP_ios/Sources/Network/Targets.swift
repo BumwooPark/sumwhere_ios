@@ -37,7 +37,8 @@ public enum ZIP{
   case MatchRequestReceive
   case MatchRequestSend
   case GetChatRoom
-  
+  case IAPList
+  case IAPInfo(productName: String)
   case IAPSuccess(receipt: String)
 }
 
@@ -45,7 +46,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.24:8080")!
+    return URL(string: "http://192.168.1.2:8080")!
     #else
     return URL(string: "https://bumwoopark.iptime.org")!
     #endif
@@ -106,7 +107,11 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .GetChatRoom:
       return "/restrict/chat/room"
     case .IAPSuccess:
-      return "/restrict/receipt"
+      return "/restrict/purchase/receipt"
+    case .IAPList:
+      return "/restrict/purchase/list"
+    case .IAPInfo:
+      return "/restrict/purchase/info"
     }
   }
   
@@ -155,6 +160,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestJSONEncodable(json)
     case .IAPSuccess(let receipt):
       return .requestParameters(parameters: ["receiptdata": receipt], encoding: URLEncoding.httpBody)
+    case .IAPInfo(let productName):
+      return .requestParameters(parameters: ["productName": productName], encoding: URLEncoding.queryString)
     default:
       return .requestPlain
     }

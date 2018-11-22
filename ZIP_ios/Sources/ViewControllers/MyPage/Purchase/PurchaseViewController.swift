@@ -53,7 +53,7 @@ class PurchaseViewController: UIViewController,NVActivityIndicatorViewable{
     helper.fetchProducts()
     
     let products = helper.products
-      .map{[PurchaseViewModel(title: "구입", items: $0)]}
+      .map{[PurchaseViewModel(title: "KEY구매", items: $0)]}
       .share()
     
     products

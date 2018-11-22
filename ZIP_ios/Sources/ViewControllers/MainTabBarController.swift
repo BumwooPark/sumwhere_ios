@@ -71,7 +71,6 @@ class MainTabBarController: UITabBarController{
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    tabBar.backgroundImage = UIImage.resizable().color(.clear).image
     tabBar.shadowImage = UIImage()
     
     let titleLabel = UILabel()

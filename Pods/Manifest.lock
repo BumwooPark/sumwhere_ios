@@ -7,7 +7,6 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - BubbleTransition (3.1.1)
   - Carte (2.1.6)
   - CHIPageControl (0.1.7):
     - CHIPageControl/Aji (= 0.1.7)
@@ -247,7 +246,6 @@ PODS:
 
 DEPENDENCIES:
   - BetterSegmentedControl
-  - BubbleTransition
   - Carte
   - CHIPageControl
   - CHIPageControl/Aleppo
@@ -312,7 +310,6 @@ SPEC REPOS:
     - Alamofire
     - BetterSegmentedControl
     - Bolts
-    - BubbleTransition
     - Carte
     - CHIPageControl
     - CocoaAsyncSocket
@@ -392,7 +389,6 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BetterSegmentedControl: 8cac1f243b5cc747f44c9da655c975d5322243fa
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  BubbleTransition: 5676e5102b0e26c3193adc1da404fb5bb8144f0c
   Carte: c8200bfb59b77336aa2f02e84cc4ac0fa820034d
   CHIPageControl: bbe1ddd0c688c02ec65b7f7e7d34551a3d16f37c
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
@@ -468,6 +464,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 338a7692556cad0630fe5673aed02014ef58ac84
+PODFILE CHECKSUM: aed3abcf7ff4d6fc2fbaae96a71c78a388e43491
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2

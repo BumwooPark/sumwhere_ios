@@ -99,14 +99,13 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
   }
   
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
-    return UIView()
+    return nil
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    log.info("will")
-    self.collectionView.reloadData()
+    adapter.performUpdates(animated: true, completion: nil)
   }
   
   override func viewWillDisappear(_ animated: Bool) {

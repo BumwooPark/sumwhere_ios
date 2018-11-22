@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B1816D8023ED3D5C1BC3C053A81206A5"
+               BlueprintIdentifier = "4D6AAC0363A90DA1B2DFA46631B7B4DD"
                BlueprintName = "RxGoogleMaps"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "RxGoogleMaps.framework">

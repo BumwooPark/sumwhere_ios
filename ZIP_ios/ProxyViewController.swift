@@ -12,7 +12,6 @@ import Moya
 import NVActivityIndicatorView
 import SwiftyUserDefaults
 
-
 class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
   private let disposeBag = DisposeBag()
   

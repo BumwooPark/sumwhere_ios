@@ -58,6 +58,23 @@ extension UIFont{
   static func AppleSDGothicNeoBold(size: CGFloat) -> UIFont {
     return UIFont(name: "AppleSDGothicNeo-Bold",size: size)!
   }
+  
+  static func NanumSquareRoundB(size: CGFloat) -> UIFont {
+    return UIFont(name: "NanumSquareRoundB", size: size)!
+    
+  }
+  
+  static func NanumSquareRoundEB(size: CGFloat) -> UIFont {
+    return UIFont(name: "NanumSquareRoundEB", size: size)!
+  }
+  
+  static func NanumSquareRoundR(size: CGFloat) -> UIFont {
+    return UIFont(name: "NanumSquareRoundR", size: size)!
+  }
+  
+  static func NanumSquareRoundL(size: CGFloat) -> UIFont {
+    return UIFont(name: "NanumSquareRoundL", size: size)!
+  }
 }
 
 

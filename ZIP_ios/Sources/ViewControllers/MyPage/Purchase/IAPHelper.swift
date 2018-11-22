@@ -8,32 +8,48 @@
 import StoreKit
 import RxSwift
 import RxCocoa
+import Moya
 
 class IAPHelper: NSObject{
+  
   private let disposeBag = DisposeBag()
   let products = BehaviorRelay<[SKProduct]>(value: [])
   
-  let key50 = "key50"
-  let key100 = "key100"
-  let key200 = "key200"
-  let key400 = "key400"
-  let key800 = "key800"
+  let productsList = AuthManager.instance.provider.request(.IAPList)
+  .filterSuccessfulStatusCodes()
+  .map(ResultModel<[PurchaseProduct]>.self)
+  .map{$0.result}
+  .asObservable()
+  .unwrap()
+  .materialize()
+  .share()
   
-
+  
   override init() {
     super.init()
   }
   
   func fetchProducts() {
-    let productIDs = Set([key50,key100,key200,key400,key800])
-    let request = SKProductsRequest(productIdentifiers: productIDs)
-    request.delegate = self
-    request.start()
+    productsList.elements()
+      .subscribeNext(weak: self) { (weakSelf) -> ([PurchaseProduct]) -> Void in
+        return { products in
+          let productIDs = Set(products.compactMap({ $0.productName}))
+          let request = SKProductsRequest(productIdentifiers: productIDs)
+          request.delegate = weakSelf
+          request.start()
+        }
+      }.disposed(by: disposeBag)
+    
+    productsList.errors()
+      .subscribe(onNext: { (error) in
+        (error as? MoyaError)?.GalMalErrorHandler()
+      }).disposed(by: disposeBag)
   }
   
   func purchase(product: SKProduct) {
     let payment = SKPayment(product: product)
     SKPaymentQueue.default().add(payment)
+    
   }
   
   func restorePurchases() {
