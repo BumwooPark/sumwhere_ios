@@ -19,9 +19,9 @@ import FBSDKLoginKit
 import SwiftyUserDefaults
 import TTTAttributedLabel
 #if !RX_NO_MODULE
-  import RxSwift
-  import RxCocoa
-  import RxKeyboard
+import RxSwift
+import RxCocoa
+import RxKeyboard
 #endif
 
 class WelcomeViewController: UIViewController{
@@ -41,7 +41,7 @@ class WelcomeViewController: UIViewController{
     navigationController?.navigationBar.shadowImage = UIImage()
     navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
   }
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view = loginView
@@ -51,7 +51,7 @@ class WelcomeViewController: UIViewController{
       .tap
       .bind(onNext: signIn)
       .disposed(by: disposeBag)
-
+    
     loginView.kakaoButton.rx
       .controlEvent(.touchUpInside)
       .throttle(0.3, scheduler: MainScheduler.instance)
@@ -73,11 +73,12 @@ class WelcomeViewController: UIViewController{
     self.view.endEditing(true)
   }
 }
-  
-  
-  
+
+
+
 extension WelcomeViewController: TTTAttributedLabelDelegate{
   func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
     self.navigationController?.pushViewController(JoinViewController(), animated: true)
   }
 }
+

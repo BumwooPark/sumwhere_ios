@@ -21,7 +21,8 @@ final class RequestProfileCell: UICollectionViewCell{
   
   let nicknameLabel: UILabel = {
     let label = UILabel()
-    label.text = "테스트"
+    label.text = "박범우\n28. 남"
+    label.numberOfLines = 0
     label.textAlignment = .center
     return label
   }()

@@ -18,7 +18,7 @@ class PurchaseViewController: UIViewController,NVActivityIndicatorViewable{
   
   private let dataSources = RxCollectionViewSectionedReloadDataSource<PurchaseViewModel>(configureCell: {ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: PurchaseCell.self), for: idx) as! PurchaseCell
-    cell.item = item
+    cell.item = item as? SKProduct
     return cell
   },configureSupplementaryView: {ds,cv,kind,idx in
     let view = cv.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: PurchaseHeaderView.self), for: idx) as! PurchaseHeaderView

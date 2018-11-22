@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A0418F12D6671588EEF4D5399CEFB727"
-               BlueprintName = "BubbleTransition"
+               BlueprintIdentifier = "40196C2B02347EF8FB8F7FAB24447DE9"
+               BlueprintName = "FirebaseInstanceID"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "BubbleTransition.framework">
+               BuildableName = "FirebaseInstanceID">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

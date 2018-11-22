@@ -52,22 +52,12 @@ class MatchRequestViewController: UIViewController{
     pageViewController.didMove(toParent: self)
     pageViewController.isPagingEnabled = false
     
-    
-    //    pageViewController
-    //      .currentIndexSubject
-    //      .subscribeNext(weak: self) { (retainSelf) -> (Int) -> Void in
-    //        return { idx in
-    //          retainSelf.control.selectedSegmentIndex = idx
-    //        }
-    //    }.disposed(by: disposeBag)
-    //
-    //    control.rx
-    //      .controlEvent(.valueChanged)
-    //      .subscribeNext(weak: self) { (retainSelf) -> (()) -> Void in
-    //        return {_ in
-    //          retainSelf.pageViewController.scrollToViewController(index: retainSelf.control.selectedSegmentIndex)
-    //        }
-    //    }.disposed(by: disposeBag)
+    segment.rx
+      .controlEvent(.valueChanged)
+      .map{[unowned self] in return Int(self.segment.index)}
+      .bind(onNext: pageViewController.scrollToViewController)
+      .disposed(by: disposeBag)
+
     view.setNeedsUpdateConstraints()
   }
   

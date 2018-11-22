@@ -35,6 +35,7 @@ pod 'Result'
 pod 'RealmSwift'
 pod 'Firebase/AdMob'
 pod 'Carte'
+pod 'CollectionKit'
 
 # UI
 pod 'GoogleMaps'

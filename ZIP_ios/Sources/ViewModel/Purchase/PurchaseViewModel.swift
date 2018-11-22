@@ -14,10 +14,10 @@ import RxDataSources
 #endif
 struct PurchaseViewModel{
   var title: String
-  var items: [SKProduct]
+  var items: [NSObject]
 }
 extension PurchaseViewModel: SectionModelType{
-  typealias Item = SKProduct
+  typealias Item = NSObject
   init(original: PurchaseViewModel, items: [Item]) {
     self = original
     self.items = items
