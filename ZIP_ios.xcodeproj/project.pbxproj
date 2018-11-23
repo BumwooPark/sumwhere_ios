@@ -150,6 +150,15 @@
 		B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFF2117F445001D278A /* InterestViewModel.swift */; };
 		B16B3E032117F46B001D278A /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3E022117F46B001D278A /* InterestModel.swift */; };
 		B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD221211162AF0045FAA6 /* MyTripCell.swift */; };
+		B16BD89F21A78D480010EEE0 /* RewardPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD89E21A78D480010EEE0 /* RewardPurchase.swift */; };
+		B16BD8A121A790970010EEE0 /* PurchaseRewardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8A021A790970010EEE0 /* PurchaseRewardCell.swift */; };
+		B16BD8A321A79F460010EEE0 /* AdMobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8A221A79F460010EEE0 /* AdMobViewController.swift */; };
+		B16BD8A521A7BFE50010EEE0 /* PurchaseKeyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8A421A7BFE50010EEE0 /* PurchaseKeyViewModel.swift */; };
+		B16BD8A721A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8A621A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift */; };
+		B16BD8A921A7D0D30010EEE0 /* PurchaseHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8A821A7D0D30010EEE0 /* PurchaseHistoryCell.swift */; };
+		B16BD8AB21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8AA21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift */; };
+		B16BD8AD21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8AC21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift */; };
+		B16BD8AF21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8AE21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift */; };
 		B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */; };
 		B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89721547ED700642BB0 /* TripStyleViewController.swift */; };
 		B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC8992154925100642BB0 /* ProfileViewModel.swift */; };
@@ -385,6 +394,16 @@
 		B16B3DFF2117F445001D278A /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
 		B16B3E022117F46B001D278A /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
+		B16BD89C21A6A5A90010EEE0 /* AdKeyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdKeyModel.swift; sourceTree = "<group>"; };
+		B16BD89E21A78D480010EEE0 /* RewardPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardPurchase.swift; sourceTree = "<group>"; };
+		B16BD8A021A790970010EEE0 /* PurchaseRewardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseRewardCell.swift; sourceTree = "<group>"; };
+		B16BD8A221A79F460010EEE0 /* AdMobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobViewController.swift; sourceTree = "<group>"; };
+		B16BD8A421A7BFE50010EEE0 /* PurchaseKeyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseKeyViewModel.swift; sourceTree = "<group>"; };
+		B16BD8A621A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryViewController.swift; sourceTree = "<group>"; };
+		B16BD8A821A7D0D30010EEE0 /* PurchaseHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryCell.swift; sourceTree = "<group>"; };
+		B16BD8AA21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryModel.swift; sourceTree = "<group>"; };
+		B16BD8AC21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistorySectionController.swift; sourceTree = "<group>"; };
+		B16BD8AE21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryViewModel.swift; sourceTree = "<group>"; };
 		B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageViewController + Extension.swift"; sourceTree = "<group>"; };
 		B18BC89721547ED700642BB0 /* TripStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewController.swift; sourceTree = "<group>"; };
 		B18BC8992154925100642BB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -538,6 +557,7 @@
 			children = (
 				0A7813A221A2FA3C006AA31F /* PHeaderView.swift */,
 				0A78139E21A2F4EC006AA31F /* ProfileViewController.swift */,
+				B16BD89C21A6A5A90010EEE0 /* AdKeyModel.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -555,6 +575,8 @@
 			isa = PBXGroup;
 			children = (
 				B1FE036F21A6770F00DE242A /* PurchaseProduct.swift */,
+				B16BD89E21A78D480010EEE0 /* RewardPurchase.swift */,
+				B16BD8AA21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -965,6 +987,9 @@
 			children = (
 				B14495B12191535F00B4D135 /* PurchaseViewController.swift */,
 				B14495B521915B1500B4D135 /* IAPHelper.swift */,
+				B16BD8A221A79F460010EEE0 /* AdMobViewController.swift */,
+				B16BD8A621A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift */,
+				B16BD8AC21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -974,6 +999,8 @@
 			children = (
 				B14495B82191664A00B4D135 /* PurchaseCell.swift */,
 				B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */,
+				B16BD8A021A790970010EEE0 /* PurchaseRewardCell.swift */,
+				B16BD8A821A7D0D30010EEE0 /* PurchaseHistoryCell.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -982,6 +1009,8 @@
 			isa = PBXGroup;
 			children = (
 				B1FE036D21A64E3E00DE242A /* PurchaseViewModel.swift */,
+				B16BD8A421A7BFE50010EEE0 /* PurchaseKeyViewModel.swift */,
+				B16BD8AE21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -1486,6 +1515,7 @@
 				B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */,
 				0A745685210E013900F8A0C9 /* SearchDestinationViewModel.swift in Sources */,
 				0A13CA4A21A6F0030081C55F /* PHeaderView.swift in Sources */,
+				B16BD8A321A79F460010EEE0 /* AdMobViewController.swift in Sources */,
 				B1EF95632119450F00F6418F /* CharacterHeaderView.swift in Sources */,
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
@@ -1498,6 +1528,7 @@
 				B1055997211021F300AC769C /* MatchViewModel.swift in Sources */,
 				0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */,
 				0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */,
+				B16BD8AD21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
 				0A075BFD2153EC2C004A4DBF /* CharacterViewController.swift in Sources */,
 				B105599421100A1C00AC769C /* MatchHeaderView.swift in Sources */,
@@ -1523,6 +1554,7 @@
 				0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */,
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
+				B16BD8AB21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift in Sources */,
 				0A0BFB2A219322F1001249C0 /* FastTripViewController.swift in Sources */,
 				0A7C50812198736900558F62 /* SupportHeaderView.swift in Sources */,
 				B1D1CAFF212D0D55001A9801 /* DetailInterestCell.swift in Sources */,
@@ -1558,6 +1590,7 @@
 				B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */,
 				0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */,
 				0A35ED8B214E20CB00B493D6 /* ChatMessageModel.swift in Sources */,
+				B16BD8A721A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift in Sources */,
 				0A075C0121562406004A4DBF /* MoyaError + Extension.swift in Sources */,
 				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
 				B1911FBB21746A6E005A4E85 /* MapViewController.swift in Sources */,
@@ -1572,6 +1605,7 @@
 				B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */,
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
 				B1913BB121990FFD009F9191 /* MyPageModel.swift in Sources */,
+				B16BD8AF21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift in Sources */,
 				0A33F7E621342F04002228BF /* RandomString.swift in Sources */,
 				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
 				0A15A6CE21280D0A0060290A /* MatchResultController.swift in Sources */,
@@ -1608,6 +1642,7 @@
 				0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
 				B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */,
+				B16BD8A521A7BFE50010EEE0 /* PurchaseKeyViewModel.swift in Sources */,
 				B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */,
 				B1D1CB16213CF96A001A9801 /* ChatNodeViewController.swift in Sources */,
 				0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */,
@@ -1627,6 +1662,7 @@
 				B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */,
 				B1D1CB25213F9E8A001A9801 /* InputBoxNode.swift in Sources */,
 				B1FE037021A6770F00DE242A /* PurchaseProduct.swift in Sources */,
+				B16BD8A121A790970010EEE0 /* PurchaseRewardCell.swift in Sources */,
 				0AD7E1481FC9DD7C008AE45C /* WriteViewController.swift in Sources */,
 				0A78139921A13FE3006AA31F /* PageCollectionLayout.swift in Sources */,
 				B14495B621915B1500B4D135 /* IAPHelper.swift in Sources */,
@@ -1639,6 +1675,7 @@
 				0A78139321A000A0006AA31F /* TripSectionController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */,
+				B16BD8A921A7D0D30010EEE0 /* PurchaseHistoryCell.swift in Sources */,
 				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,
 				B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */,
 				0A375C232132ABBA00E35ED9 /* MatchHistoryCell.swift in Sources */,
@@ -1648,6 +1685,7 @@
 				0A895BF4212EEC5A00FDF834 /* MatchHistoryViewController.swift in Sources */,
 				B14495B92191664A00B4D135 /* PurchaseCell.swift in Sources */,
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,
+				B16BD89F21A78D480010EEE0 /* RewardPurchase.swift in Sources */,
 				0A375C2D2132BC0500E35ED9 /* MatchRequestHistoryViewModel.swift in Sources */,
 				0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */,
 				B1F6D8C62140B6B600E0E003 /* ChatListCellNode.swift in Sources */,

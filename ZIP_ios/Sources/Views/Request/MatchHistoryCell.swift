@@ -79,18 +79,7 @@ final class MatchHistoryCell: UICollectionViewCell{
     Observable.just([1,2,3,4,5,6,7,8,9]).bind(to: collectionView.rx.items(cellIdentifier: String(describing: RequestProfileCell.self), cellType: RequestProfileCell.self)){ index, model, cell in
       
       }.disposed(by: disposeBag)
-    
-    
-    collectionView.rx
-      .itemSelected
-      .subscribeNext(weak: self) { (weakSelf) -> (IndexPath) -> Void in
-        return {idx in
-          AppDelegate.instance?.window?.rootViewController?.present(ProfileViewController(), animated: true, completion: nil)
-        }
-      }.disposed(by: disposeBag)
-    
-    
-    
+  
     setNeedsUpdateConstraints()
   }
   

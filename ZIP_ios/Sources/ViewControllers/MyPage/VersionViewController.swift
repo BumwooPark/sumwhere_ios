@@ -2,7 +2,7 @@
 //  VersionViewController.swift
 //  ZIP_ios
 //
-//  Created by xiilab on 13/11/2018.
+//  Created by BumwooPark on 13/11/2018.
 //  Copyright © 2018 park bumwoo. All rights reserved.
 //
 

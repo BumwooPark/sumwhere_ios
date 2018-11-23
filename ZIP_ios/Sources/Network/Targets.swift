@@ -40,13 +40,14 @@ public enum ZIP{
   case IAPList
   case IAPInfo(productName: String)
   case IAPSuccess(receipt: String)
+  case purchaseHistory
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.18:8080")!
+    return URL(string: "http://192.168.1.2:8080")!
     #else
     return URL(string: "https://bumwoopark.iptime.org")!
     #endif
@@ -112,6 +113,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/purchase/list"
     case .IAPInfo:
       return "/restrict/purchase/info"
+    case .purchaseHistory:
+      return "/restrict/purchase/history"
     }
   }
   

@@ -86,6 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     application.registerForRemoteNotifications()
     
     GADMobileAds.configure(withApplicationID: "ca-app-pub-4059652237278086~5901401126")
+    GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
+                                                withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
     GMSServices.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     GMSPlacesClient.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     return true
