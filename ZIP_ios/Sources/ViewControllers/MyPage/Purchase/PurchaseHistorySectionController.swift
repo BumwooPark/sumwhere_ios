@@ -21,7 +21,7 @@ class PurchaseHistorySectionController: ListSectionController{
   }
   
   override func cellForItem(at index: Int) -> UICollectionViewCell {
-    let cell = collectionContext?.dequeueReusableCell(of: PurchaseHistoryCell.self, withReuseIdentifier: String(describing: PurchaseHistoryCell.self), for: self, at: index) as! PurchaseHistoryCell
+    let cell = collectionContext?.dequeueReusableCell(of: PurchaseHistoryCell.self, for: self, at: index) as! PurchaseHistoryCell
     cell.item = item?.items[index]
     return cell
   }

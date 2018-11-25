@@ -12,7 +12,7 @@ import SwiftDate
 class PurchaseHistoryCell: UICollectionViewCell {
   
   let dateConvert: (String) -> (String?) = { date in
-    return date.toISODate()?.toFormat("YYYY.dd.MM")
+    return date.toISODate()?.toFormat("yyyy.MM.dd")
   }
   
   var item: PurchaseHistoryModel?{
@@ -30,8 +30,8 @@ class PurchaseHistoryCell: UICollectionViewCell {
   private let keyButton: UIButton = {
     let button = UIButton()
     button.isUserInteractionEnabled = false
-    button.setImage(#imageLiteral(resourceName: "keyenable.png"), for: .selected)
-    button.setImage(#imageLiteral(resourceName: "keyminus.png"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "keyenable.png"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "keyminus.png"), for: .selected)
     return button
   }()
   

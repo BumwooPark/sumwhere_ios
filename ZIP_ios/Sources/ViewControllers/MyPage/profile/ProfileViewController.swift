@@ -6,4 +6,21 @@
 //  Copyright © 2018 park bumwoo. All rights reserved.
 //
 
-import Foundation
+import Eureka
+
+class ProfileViewController: FormViewController{
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    form +++ Section() { section in
+      var header = HeaderFooterView<PHeaderView>(.class)
+      header.height = {220}
+      section.header = header
+      }
+      
+      <<< TextRow()
+      <<< TextRow()
+    
+  }
+}
+

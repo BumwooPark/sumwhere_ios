@@ -24,7 +24,7 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
     .map(ResultModel<UserWithProfile>.self)
     .asObservable()
     .materialize()
-    .share()
+    
   
   override init() {
     super.init()

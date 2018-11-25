@@ -14,7 +14,7 @@ import NVActivityIndicatorView
 import Firebase
 
 class PurchaseViewController: UIViewController,NVActivityIndicatorViewable{
-  private let helper = IAPHelper()
+  private lazy var helper = IAPHelper(self)
   private let disposeBag = DisposeBag()
   private let data = BehaviorRelay<[PurchaseViewModel]>(value: [])
   private let viewModel = PurchaseKeyViewModel()
@@ -90,14 +90,13 @@ class PurchaseViewController: UIViewController,NVActivityIndicatorViewable{
     products
       .subscribe(weak: self, { (weakSelf) -> (Event<[PurchaseViewModel]>) -> Void in
         return {_ in
-          log.info("first")
           weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
         }
       }).disposed(by: disposeBag)
     
-    
-    
-    collectionView.rx.itemSelected
+    collectionView.rx
+      .itemSelected
+      .debug()
       .subscribeNext(weak: self){(weakSelf) ->(IndexPath) -> Void in
         return { idx in
           let item = weakSelf.data.value[idx.section].items[idx.item]
@@ -126,7 +125,6 @@ class PurchaseViewController: UIViewController,NVActivityIndicatorViewable{
 
 extension PurchaseViewController: SKPaymentTransactionObserver{
   func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-    
   }
 }
 

@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     JDSetting()
     
     // in App 결제
-    SKPaymentQueue.default().add(self)
+//    SKPaymentQueue.default().add(self)
     
     KOSession.shared()?.isAutomaticPeriodicRefresh = true
     
@@ -265,59 +265,59 @@ extension AppDelegate : MessagingDelegate {
 }
 
 
-extension AppDelegate: SKPaymentTransactionObserver{
-  public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-    for transaction in transactions{
-      switch transaction.transactionState{
-      case .purchased:
-        complete(transaction: transaction)
-      case .failed:
-        fail(transaction: transaction)
-      case .restored:
-        restore(transaction: transaction)
-      case .deferred:
-        break
-      case .purchasing:
-        break
-      }
-    }
-  }
-  
-  public func complete(transaction: SKPaymentTransaction){
-    
-    SKPaymentQueue.default().finishTransaction(transaction)
-    
-    let receiptURL = Bundle.main.appStoreReceiptURL
-    do {
-      let receipt = try Data(contentsOf: receiptURL!)
-      
-      AuthManager.instance
-        .provider
-        .request(.IAPSuccess(receipt: receipt.base64EncodedString()))
-        .subscribe(onSuccess: { (response) in
-          log.info(response)
-        }) { (error) in
-          log.error(error)
-      }.disposed(by: disposeBag)
-      
-    }catch let error {
-      log.error(error)
-    }
-  }
-  
-  private func restore(transaction: SKPaymentTransaction) {
-    guard let productIdentifier = transaction.original?.payment.productIdentifier else { return }
-    log.info("restore... \(productIdentifier)")
-    SKPaymentQueue.default().finishTransaction(transaction)
-  }
-  
-  private func fail(transaction: SKPaymentTransaction) {
-    log.info("fail...")
-    if let transactionError = transaction.error as NSError?,
-      let localizedDescription = transaction.error?.localizedDescription,
-      transactionError.code != SKError.paymentCancelled.rawValue {
-      log.info("Transaction Error: \(localizedDescription)")
-    }
-    SKPaymentQueue.default().finishTransaction(transaction)
-  }
-}
+//extension AppDelegate: SKPaymentTransactionObserver{
+//  public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+//    for transaction in transactions{
+//      switch transaction.transactionState{
+//      case .purchased:
+//        complete(transaction: transaction)
+//      case .failed:
+//        fail(transaction: transaction)
+//      case .restored:
+//        restore(transaction: transaction)
+//      case .deferred:
+//        break
+//      case .purchasing:
+//        break
+//      }
+//    }
+//  }
+//
+//  public func complete(transaction: SKPaymentTransaction){
+//
+//    SKPaymentQueue.default().finishTransaction(transaction)
+//
+//    let receiptURL = Bundle.main.appStoreReceiptURL
+//    do {
+//      let receipt = try Data(contentsOf: receiptURL!)
+//
+//      AuthManager.instance
+//        .provider
+//        .request(.IAPSuccess(receipt: receipt.base64EncodedString()))
+//        .subscribe(onSuccess: { (response) in
+//          log.info(response)
+//        }) { (error) in
+//          log.error(error)
+//      }.disposed(by: disposeBag)
+//
+//    }catch let error {
+//      log.error(error)
+//    }
+//  }
+//
+//  private func restore(transaction: SKPaymentTransaction) {
+//    guard let productIdentifier = transaction.original?.payment.productIdentifier else { return }
+//    log.info("restore... \(productIdentifier)")
+//    SKPaymentQueue.default().finishTransaction(transaction)
+//  }
+//
+//  private func fail(transaction: SKPaymentTransaction) {
+//    log.info("fail...")
+//    if let transactionError = transaction.error as NSError?,
+//      let localizedDescription = transaction.error?.localizedDescription,
+//      transactionError.code != SKError.paymentCancelled.rawValue {
+//      log.info("Transaction Error: \(localizedDescription)")
+//    }
+//    SKPaymentQueue.default().finishTransaction(transaction)
+//  }
+//}
