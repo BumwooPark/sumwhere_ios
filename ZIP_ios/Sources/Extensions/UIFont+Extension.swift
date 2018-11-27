@@ -75,6 +75,22 @@ extension UIFont{
   static func NanumSquareRoundL(size: CGFloat) -> UIFont {
     return UIFont(name: "NanumSquareRoundL", size: size)!
   }
+  
+  static func a10091(size:CGFloat) -> UIFont{
+    return UIFont(name: "a10091", size: size)!
+  }
+  
+  static func a10092(size:CGFloat) -> UIFont{
+    return UIFont(name: "a10092", size: size)!
+  }
+  
+  static func a10093(size:CGFloat) -> UIFont{
+    return UIFont(name: "a10093", size: size)!
+  }
+  
+  static func a10094(size:CGFloat) -> UIFont{
+    return UIFont(name: "a10094", size: size)!
+  }
 }
 
 

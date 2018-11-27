@@ -100,6 +100,10 @@
 	<string>사진 데이터 허용에 동의 하시겠습니까?</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>a10091.otf</string>
+		<string>a10092.otf</string>
+		<string>a10093.otf</string>
+		<string>a10094.otf</string>
 		<string>godoRounded L.ttf</string>
 		<string>godoRounded R.ttf</string>
 		<string>godoMaum.ttf</string>
