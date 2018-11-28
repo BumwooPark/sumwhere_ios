@@ -76,20 +76,20 @@ extension UIFont{
     return UIFont(name: "NanumSquareRoundL", size: size)!
   }
   
-  static func a10091(size:CGFloat) -> UIFont{
-    return UIFont(name: "a10091", size: size)!
+  static func KoreanSWGI1R(size:CGFloat) -> UIFont{
+    return UIFont(name: "KoreanSWGI1R", size: size)!
   }
   
-  static func a10092(size:CGFloat) -> UIFont{
-    return UIFont(name: "a10092", size: size)!
+  static func KoreanSWGI2R(size:CGFloat) -> UIFont{
+    return UIFont(name: "KoreanSWGI2R", size: size)!
   }
   
-  static func a10093(size:CGFloat) -> UIFont{
-    return UIFont(name: "a10093", size: size)!
+  static func KoreanSWGI3R(size:CGFloat) -> UIFont{
+    return UIFont(name: "KoreanSWGI3R", size: size)!
   }
   
-  static func a10094(size:CGFloat) -> UIFont{
-    return UIFont(name: "a10094", size: size)!
+  static func KoreanSWGI4R(size:CGFloat) -> UIFont{
+    return UIFont(name: "KoreanSWGI4R", size: size)!
   }
 }
 

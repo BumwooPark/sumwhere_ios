@@ -22,7 +22,7 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
   }()
   
   func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-    return [1,2,3,4] as [ListDiffable]
+    return [] as [ListDiffable]
   }
   
   func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
@@ -30,7 +30,8 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
   }
   
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
-    let emptyView = MatchEmptyView(frame: UIScreen.main.bounds)
+    
+    let emptyView = MatchEmptyView()
     emptyView.addButton.rx.tap
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return {_ in
@@ -46,15 +47,15 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
     collectionView.backgroundColor = .white
     collectionView.register(TripTicketCell.self, forCellWithReuseIdentifier: String(describing: TripTicketCell.self))
     
-    let emptyView = UIImageView()
-    emptyView.image = #imageLiteral(resourceName: "bridge")
-    emptyView.contentMode = .scaleAspectFill
-    collectionView.parallaxHeader.view = emptyView
-    collectionView.parallaxHeader.height = UIScreen.main.bounds.height
-    collectionView.parallaxHeader.minimumHeight = 0
-    collectionView.parallaxHeader.mode = .fill
-    collectionView.alwaysBounceVertical = true
-    parallaxHeader?.delegate = self
+//    let emptyView = UIImageView()
+//    emptyView.image = #imageLiteral(resourceName: "bridge")
+//    emptyView.contentMode = .scaleAspectFill
+//    collectionView.parallaxHeader.view = emptyView
+//    collectionView.parallaxHeader.height = UIScreen.main.bounds.height
+//    collectionView.parallaxHeader.minimumHeight = 0
+//    collectionView.parallaxHeader.mode = .fill
+//    collectionView.alwaysBounceVertical = true
+//    parallaxHeader?.delegate = self
     return collectionView
   }()
   
@@ -63,24 +64,25 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
     view = collectionView
     _ = adapter
     
-    Observable.of(collectionView.rx.didEndDecelerating.map{_ in return ()},collectionView.rx.didEndDragging.map{_ in return ()})
-      .merge()
-      .observeOn(MainScheduler.asyncInstance)
-      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
-        return { _ in
-          if weakSelf.collectionView.contentOffset.y < -(weakSelf.collectionView.frame.height - 200){
-            weakSelf.collectionView.setContentOffset(CGPoint(x: 0, y: -(weakSelf.collectionView.frame.height)), animated: true)
-          }else{
-            weakSelf.collectionView.setContentOffset(CGPoint.zero, animated: true)
-          }
-        }
-    }.disposed(by: disposeBag)
+//    Observable.of(collectionView.rx.didEndDecelerating
+//      .map{_ in return ()},collectionView.rx.didEndDragging.map{_ in return ()})
+//      .merge()
+//      .observeOn(MainScheduler.asyncInstance)
+//      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+//        return { _ in
+//          if weakSelf.collectionView.contentOffset.y < -(weakSelf.collectionView.frame.height - 200){
+//            weakSelf.collectionView.setContentOffset(CGPoint(x: 0, y: -(weakSelf.collectionView.frame.height)), animated: true)
+//          }else{
+//            weakSelf.collectionView.setContentOffset(CGPoint.zero, animated: true)
+//          }
+//        }
+//    }.disposed(by: disposeBag)
   }
 }
 
 
 extension OneTimeMatchViewController: MXParallaxHeaderDelegate{
   func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
-    log.info(parallaxHeader.progress)
+
   }
 }

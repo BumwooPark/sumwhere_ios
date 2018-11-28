@@ -23,7 +23,7 @@ class TripSectionController: ListSectionController {
   }
   
   override func numberOfItems() -> Int {
-    return 10
+    return 0
   }
   
   override init() {

@@ -12,6 +12,7 @@ class TripSelectViewController: UIViewController {
   lazy var pageView: PageViewController = {
     let pageView = PageViewController(pages: [OneTimeMatchViewController(),
                                               PlanTripViewController()], spin: false)
+    pageView.view.backgroundColor = .white
     return pageView
   }()
   

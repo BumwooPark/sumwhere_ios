@@ -12,8 +12,6 @@ import RxSwift
 import PopupDialog
 import Moya
 
-
-
 final class CreateTripViewController: UIViewController{
   
   let viewModel = RegisterTripViewModel()
@@ -22,8 +20,8 @@ final class CreateTripViewController: UIViewController{
   private let disposeBag = DisposeBag()
   
   private lazy var pageView =
-    PageViewController(pages: [InsertPlanViewController(viewModel: viewModel),
-                               SearchDestinationViewController(viewModel: viewModel),
+    PageViewController(pages: [SearchDestinationViewController(viewModel: viewModel),
+                               InsertPlanViewController(viewModel: viewModel),
                                RegisterViewController(viewController: self)], spin: false)
   
   override func viewDidLoad() {
@@ -33,7 +31,7 @@ final class CreateTripViewController: UIViewController{
     self.addChild(pageView)
     view.addSubview(pageView.view)
     view.setNeedsUpdateConstraints()
-    
+    self.navigationController?.navigationBar.topItem?.title = String()
     rxBinder()
   }
   

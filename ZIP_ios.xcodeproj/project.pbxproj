@@ -161,10 +161,10 @@
 		B16BD8AB21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8AA21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift */; };
 		B16BD8AD21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8AC21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift */; };
 		B16BD8AF21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8AE21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift */; };
-		B16BD8B621AD13510010EEE0 /* a1091.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B121AD13450010EEE0 /* a1091.otf */; };
-		B16BD8B721AD13510010EEE0 /* a10092.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B421AD134A0010EEE0 /* a10092.otf */; };
-		B16BD8B821AD13510010EEE0 /* a10093.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B321AD13480010EEE0 /* a10093.otf */; };
-		B16BD8B921AD13510010EEE0 /* a10094.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B521AD134C0010EEE0 /* a10094.otf */; };
+		B16BD8B621AD13510010EEE0 /* KoreanSWGI1.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B121AD13450010EEE0 /* KoreanSWGI1.otf */; };
+		B16BD8B721AD13510010EEE0 /* KoreanSWGI2.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B421AD134A0010EEE0 /* KoreanSWGI2.otf */; };
+		B16BD8B821AD13510010EEE0 /* KoreanSWGI3.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B321AD13480010EEE0 /* KoreanSWGI3.otf */; };
+		B16BD8B921AD13510010EEE0 /* KoreanSWGI4.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B521AD134C0010EEE0 /* KoreanSWGI4.otf */; };
 		B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */; };
 		B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89721547ED700642BB0 /* TripStyleViewController.swift */; };
 		B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC8992154925100642BB0 /* ProfileViewModel.swift */; };
@@ -412,10 +412,10 @@
 		B16BD8AA21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryModel.swift; sourceTree = "<group>"; };
 		B16BD8AC21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistorySectionController.swift; sourceTree = "<group>"; };
 		B16BD8AE21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryViewModel.swift; sourceTree = "<group>"; };
-		B16BD8B121AD13450010EEE0 /* a1091.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a1091.otf; sourceTree = "<group>"; };
-		B16BD8B321AD13480010EEE0 /* a10093.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a10093.otf; sourceTree = "<group>"; };
-		B16BD8B421AD134A0010EEE0 /* a10092.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a10092.otf; sourceTree = "<group>"; };
-		B16BD8B521AD134C0010EEE0 /* a10094.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a10094.otf; sourceTree = "<group>"; };
+		B16BD8B121AD13450010EEE0 /* KoreanSWGI1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI1.otf; sourceTree = "<group>"; };
+		B16BD8B321AD13480010EEE0 /* KoreanSWGI3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI3.otf; sourceTree = "<group>"; };
+		B16BD8B421AD134A0010EEE0 /* KoreanSWGI2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI2.otf; sourceTree = "<group>"; };
+		B16BD8B521AD134C0010EEE0 /* KoreanSWGI4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI4.otf; sourceTree = "<group>"; };
 		B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageViewController + Extension.swift"; sourceTree = "<group>"; };
 		B18BC89721547ED700642BB0 /* TripStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewController.swift; sourceTree = "<group>"; };
 		B18BC8992154925100642BB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -546,10 +546,10 @@
 		0A0FDE2120398DA70046E76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B16BD8B121AD13450010EEE0 /* a1091.otf */,
-				B16BD8B421AD134A0010EEE0 /* a10092.otf */,
-				B16BD8B321AD13480010EEE0 /* a10093.otf */,
-				B16BD8B521AD134C0010EEE0 /* a10094.otf */,
+				B16BD8B121AD13450010EEE0 /* KoreanSWGI1.otf */,
+				B16BD8B421AD134A0010EEE0 /* KoreanSWGI2.otf */,
+				B16BD8B321AD13480010EEE0 /* KoreanSWGI3.otf */,
+				B16BD8B521AD134C0010EEE0 /* KoreanSWGI4.otf */,
 				B1FE036821A63A5C00DE242A /* NanumSquareRoundB.ttf */,
 				B1FE036721A63A5500DE242A /* NanumSquareRoundEB.ttf */,
 				B1FE036521A63A4A00DE242A /* NanumSquareRoundR.ttf */,
@@ -1277,8 +1277,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1D4E51E20FDCBB200524CE2 /* godoRounded L.ttf in Resources */,
-				B16BD8B721AD13510010EEE0 /* a10092.otf in Resources */,
-				B16BD8B621AD13510010EEE0 /* a1091.otf in Resources */,
+				B16BD8B721AD13510010EEE0 /* KoreanSWGI2.otf in Resources */,
+				B16BD8B621AD13510010EEE0 /* KoreanSWGI1.otf in Resources */,
 				B1D4E51F20FDCBB200524CE2 /* godoRounded R.ttf in Resources */,
 				B1D4E52020FDCBB200524CE2 /* godoMaum.ttf in Resources */,
 				B1D4E52120FDCBB200524CE2 /* BMHANNA.otf in Resources */,
@@ -1299,10 +1299,10 @@
 				B1913BBB21997040009F9191 /* GoogleService-Info.plist in Resources */,
 				B12001C2211300E800DFD676 /* launchlogo.png in Resources */,
 				0A6EB9DD2169E1A000117526 /* MainFooterView.xib in Resources */,
-				B16BD8B921AD13510010EEE0 /* a10094.otf in Resources */,
+				B16BD8B921AD13510010EEE0 /* KoreanSWGI4.otf in Resources */,
 				B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */,
 				0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */,
-				B16BD8B821AD13510010EEE0 /* a10093.otf in Resources */,
+				B16BD8B821AD13510010EEE0 /* KoreanSWGI3.otf in Resources */,
 				0A0FDE2820398E5A0046E76F /* NotoSans-Medium.otf in Resources */,
 				0A7123741FACC01200512EB7 /* Assets.xcassets in Resources */,
 				0A7123721FACC01200512EB7 /* Main.storyboard in Resources */,
