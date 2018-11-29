@@ -17,17 +17,25 @@ class SearchDestinationViewController: UIViewController{
   
   private let viewModel: RegisterTripViewModel
   
+  private let contentView = UIView()
+  private let gradientView = UIView()
+  
+  lazy var dataSources = RxTableViewSectionedReloadDataSource<SearchDestTVModel>(configureCell: {[weak self] (ds, tv, idx, item) -> UITableViewCell in
+    let cell = tv.dequeueReusableCell(withIdentifier: String(describing: DestinationSearchCell.self), for: idx) as! DestinationSearchCell
+    cell.item = (item,self?.textField.text)
+    return cell
+  })
+  
   lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.backgroundColor = .clear
     scrollView.alwaysBounceVertical = true
     scrollView.showsVerticalScrollIndicator = false
+    scrollView.keyboardDismissMode = .interactive
     scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
     return scrollView
   }()
-  
-  private let contentView = UIView()
-  
+
   let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "어디로 떠날까요?"
@@ -35,11 +43,6 @@ class SearchDestinationViewController: UIViewController{
     return label
   }()
   
-  let gradientView: UIView = {
-    let view = UIView()
-    return view
-  }()
-    
   private let backButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "popupDismiss.png").withRenderingMode(.alwaysTemplate), for: .normal)
@@ -60,9 +63,18 @@ class SearchDestinationViewController: UIViewController{
     textField.font = .AppleSDGothicNeoMedium(size: 15)
     textField.setZIPClearButton()
     textField.clearButtonMode = .never
-    textField.backgroundColor = .clear
+    textField.backgroundColor = .white
     textField.delegate = self
     return textField
+  }()
+  
+  private let tableView: UITableView = {
+    let tableView = UITableView()
+    tableView.backgroundColor = .clear
+    tableView.isScrollEnabled = false
+    tableView.separatorStyle = .none
+    tableView.register(DestinationSearchCell.self, forCellReuseIdentifier: String(describing: DestinationSearchCell.self))
+    return tableView
   }()
   
   
@@ -75,20 +87,11 @@ class SearchDestinationViewController: UIViewController{
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(true, animated: animated)
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    self.navigationController?.setNavigationBarHidden(false, animated: animated)
-  }
-
   override func viewDidLoad() {
     
     view.addSubview(scrollView)
     scrollView.addSubview(contentView)
+    contentView.addSubview(tableView)
     contentView.addSubview(textField)
     contentView.addSubview(backButton)
     contentView.addSubview(titleLabel)
@@ -108,43 +111,42 @@ class SearchDestinationViewController: UIViewController{
       .observeOn(MainScheduler.instance)
       .subscribeNext(weak: self) { (weakSelf) -> (CGPoint) -> Void in
         return { point in
-          let data = 55 - point.y
-          let result = data/55
-          weakSelf.titleLabel.alpha = result
+          weakSelf.titleLabel.alpha = (55 - point.y)/55
         }
-    }.disposed(by: disposeBag)
+      }.disposed(by: disposeBag)
     
-//    viewModel.tripPlaceMapper
-//      .map{[SearchDestTVModel(items: $0)]}
-//      .bind(to: tableView.rx.items(dataSource: dataSources))
-//      .disposed(by: disposeBag)
+    scrollView.rx.contentOffset
+      .observeOn(MainScheduler.instance)
+      .subscribeNext(weak: self) { (weakSelf) -> (CGPoint) -> Void in
+        return { point in
+          if point.y >= 60 {
+            weakSelf.textField.snp.remakeConstraints({ (make) in
+              make.left.right.equalToSuperview().inset(16)
+              make.top.equalTo(weakSelf.backButton.snp.bottom)
+              make.height.equalTo(46)
+            })
+          }else{
+            weakSelf.textField.snp.remakeConstraints { (make) in
+              make.left.right.equalToSuperview().inset(16)
+              make.top.equalTo(weakSelf.titleLabel.snp.bottom).offset(20)
+              make.height.equalTo(46)
+            }
+          }
+          weakSelf.view.setNeedsLayout()
+        }
+      }.disposed(by: disposeBag)
     
+    viewModel.tripPlaceMapper
+      .map{[SearchDestTVModel(items: $0)]}
+      .bind(to: tableView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
     
-//    textField.rx.controlEvent(.editingDidBegin)
-//      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
-//        return { _ in
-//          weakSelf.textField.snp.remakeConstraints { (make) in
-//            make.right.equalToSuperview().inset(16)
-//            make.left.equalTo(weakSelf.backButton.snp.right).offset(16)
-//            make.centerY.equalTo(weakSelf.backButton)
-//            make.height.equalTo(46)
-//          }
-//          self.present(Init(UINavigationController(rootViewController:SampleViewController()), block: { (vc) in
-//            vc.modalPresentationStyle = .overCurrentContext
-//          }), animated: true, completion: nil)
-//          UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {[weak self] in
-//            self?.view.setNeedsLayout()
-//            self?.view.layoutIfNeeded()
-//            }, completion: nil)
-//        }
-//      }.disposed(by: disposeBag)
-//
-
-//    backButton
-//      .rx
-//      .tap
-//      .bind(to: viewModel.backAction)
-//      .disposed(by: disposeBag)
+    backButton.rx.tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.dismiss(animated: true, completion: nil)
+        }
+      }.disposed(by:disposeBag)
     
     view.setNeedsUpdateConstraints()
   }
@@ -187,6 +189,11 @@ class SearchDestinationViewController: UIViewController{
         make.left.equalToSuperview().inset(16)
         make.top.equalTo(self.view.safeAreaLayoutGuide).inset(25)
         make.width.height.equalTo(40)
+      }
+      
+      tableView.snp.makeConstraints { (make) in
+        make.top.equalTo(titleLabel.snp.bottom).offset(65)
+        make.left.right.bottom.equalToSuperview()
       }
       
       didUpdateConstraint = true

@@ -518,6 +518,7 @@
 		0A09A8051FDD3F1900DC47A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B16BD8BA21AF838B0010EEE0 /* RegisterTrip */,
 				B14495B72191663A00B4D135 /* Purchase */,
 				B1996C58214A008000BC95C5 /* Chat */,
 				0A375C212132ABA500E35ED9 /* Request */,
@@ -650,7 +651,6 @@
 				0A3D1D091FF0D33B009427B5 /* PlanCell.swift */,
 				0A0F7A6F203556D000F72C2B /* MainCell.swift */,
 				0AD3BC1020491F2C0051D7E3 /* CountryCell.swift */,
-				0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */,
 				0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */,
 				B105598F210FED2500AC769C /* MatchCell.swift */,
 				B16BD221211162AF0045FAA6 /* MyTripCell.swift */,
@@ -1101,6 +1101,15 @@
 				B1EF956021193FC500F6418F /* CharacterModel.swift */,
 			);
 			path = SetProfile;
+			sourceTree = "<group>";
+		};
+		B16BD8BA21AF838B0010EEE0 /* RegisterTrip */ = {
+			isa = PBXGroup;
+			children = (
+				0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */,
+			);
+			name = RegisterTrip;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		B1913BAF21990FD8009F9191 /* MyPage */ = {

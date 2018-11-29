@@ -23,6 +23,12 @@ class DestinationSearchCell: UITableViewCell{
     }
   }
   
+  private let pin: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = #imageLiteral(resourceName: "locationPin.png")
+    return imageView
+  }()
+  
   let destinationLabel: UILabel = {
     let label = UILabel()
     label.font = .AppleSDGothicNeoMedium(size: 16)
@@ -38,22 +44,26 @@ class DestinationSearchCell: UITableViewCell{
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    contentView.addSubview(pin)
     contentView.addSubview(destinationLabel)
-    contentView.addSubview(countryLabel)
     setNeedsUpdateConstraints()
   }
   
   override func updateConstraints() {
     if !didUpdateConstraint{
-      destinationLabel.snp.makeConstraints { (make) in
-        make.bottom.top.equalToSuperview()
-        make.left.equalTo(contentView.snp.leftMargin).inset(10)
+      
+      pin.snp.makeConstraints { (make) in
+        make.left.equalToSuperview().inset(35)
+        make.centerY.equalToSuperview()
+        make.height.equalTo(15)
+        make.width.equalTo(12)
       }
       
-      countryLabel.snp.makeConstraints { (make) in
-        make.centerY.equalTo(destinationLabel)
-        make.right.equalToSuperview().inset(20)
+      destinationLabel.snp.makeConstraints { (make) in
+        make.centerY.equalToSuperview()
+        make.left.equalTo(pin.snp.right).offset(10)
       }
+      
       didUpdateConstraint = true
     }
     super.updateConstraints()
