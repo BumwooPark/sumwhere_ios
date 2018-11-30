@@ -136,6 +136,14 @@ class SearchDestinationViewController: UIViewController{
         }
       }.disposed(by: disposeBag)
     
+    tableView.rx.modelSelected(TripType.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (TripType) -> Void in
+        return {type in
+          weakSelf.viewModel.saver.accept(RegisterTripViewModel.SaveType.place(model: type))
+          weakSelf.viewModel.completeAction.onNext(())
+        }
+      }.disposed(by: disposeBag)
+    
     viewModel.tripPlaceMapper
       .map{[SearchDestTVModel(items: $0)]}
       .bind(to: tableView.rx.items(dataSource: dataSources))

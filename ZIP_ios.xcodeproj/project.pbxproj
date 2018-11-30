@@ -165,6 +165,7 @@
 		B16BD8B721AD13510010EEE0 /* KoreanSWGI2.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B421AD134A0010EEE0 /* KoreanSWGI2.otf */; };
 		B16BD8B821AD13510010EEE0 /* KoreanSWGI3.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B321AD13480010EEE0 /* KoreanSWGI3.otf */; };
 		B16BD8B921AD13510010EEE0 /* KoreanSWGI4.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B521AD134C0010EEE0 /* KoreanSWGI4.otf */; };
+		B16BD8BE21B10C4C0010EEE0 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8BD21B10C4C0010EEE0 /* CalendarHeader.swift */; };
 		B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */; };
 		B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89721547ED700642BB0 /* TripStyleViewController.swift */; };
 		B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC8992154925100642BB0 /* ProfileViewModel.swift */; };
@@ -416,6 +417,7 @@
 		B16BD8B321AD13480010EEE0 /* KoreanSWGI3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI3.otf; sourceTree = "<group>"; };
 		B16BD8B421AD134A0010EEE0 /* KoreanSWGI2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI2.otf; sourceTree = "<group>"; };
 		B16BD8B521AD134C0010EEE0 /* KoreanSWGI4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI4.otf; sourceTree = "<group>"; };
+		B16BD8BD21B10C4C0010EEE0 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageViewController + Extension.swift"; sourceTree = "<group>"; };
 		B18BC89721547ED700642BB0 /* TripStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewController.swift; sourceTree = "<group>"; };
 		B18BC8992154925100642BB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -654,7 +656,6 @@
 				0A74567D210D87FF00F8A0C9 /* FriendsCell.swift */,
 				B105598F210FED2500AC769C /* MatchCell.swift */,
 				B16BD221211162AF0045FAA6 /* MyTripCell.swift */,
-				0A895BEA2129A10200FDF834 /* CalendarCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1107,6 +1108,8 @@
 			isa = PBXGroup;
 			children = (
 				0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */,
+				0A895BEA2129A10200FDF834 /* CalendarCell.swift */,
+				B16BD8BD21B10C4C0010EEE0 /* CalendarHeader.swift */,
 			);
 			name = RegisterTrip;
 			path = "New Group";
@@ -1558,6 +1561,7 @@
 				B1D1CAF5212CF1F5001A9801 /* DetailGradeCell.swift in Sources */,
 				B1055997211021F300AC769C /* MatchViewModel.swift in Sources */,
 				0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */,
+				B16BD8BE21B10C4C0010EEE0 /* CalendarHeader.swift in Sources */,
 				0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */,
 				B16BD8AD21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,

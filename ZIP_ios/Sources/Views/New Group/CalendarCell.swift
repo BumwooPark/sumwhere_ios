@@ -30,7 +30,9 @@ class CalendarCell: JTAppleCell {
       case .none:
         selectView.isHidden = true
         selectSqureView.isHidden = true
-        dayLabel.textColor = (cellState.dateBelongsTo == .thisMonth) ? #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        dayLabel.textColor
+          = (cellState.dateBelongsTo == .thisMonth)
+          ? (cellState.date.dateByAdding(1,.day).date.weekday == 1 ? #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1) : #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1)): #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
       }
     }
   }
@@ -44,7 +46,6 @@ class CalendarCell: JTAppleCell {
   
   let selectSqureView: UIView = {
     let view = UIView()
-//    view.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
     view.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
     view.isHidden = true
     return view
@@ -97,11 +98,6 @@ class CalendarCell: JTAppleCell {
     contentView.addSubview(selectView)
     contentView.addSubview(dayLabel)
     dayLabel.addSubview(todayLabel)
-    
-    
-    contentView.backgroundColor = .white
-    
-    dayLabel.font = UIFont.NotoSansKRMedium(size: 15)
     
     dayLabel.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()

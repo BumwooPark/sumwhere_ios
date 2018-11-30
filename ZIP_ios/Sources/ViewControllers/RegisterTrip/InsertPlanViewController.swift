@@ -14,9 +14,10 @@ import Moya
 import JTAppleCalendar
 import LTMorphingLabel
 import SwiftDate
-
+import EventKit
 
 class DateControl{
+  
   var startDate: Date = Date()
   var endDate: Date = Date()
   var selectCount = 0{
@@ -71,26 +72,23 @@ class DateControl{
 }
 
 final class InsertPlanViewController: UIViewController{
-
+  let store = EKEventStore()
   private let disposeBag = DisposeBag()
-  private let viewModel: RegisterTripViewModel
+  private var viewModel: RegisterTripViewModel
   private var didUpdateConstraint = false
   private let headerView = CalendarHeaderView.loadXib(nibName: "CalendarHeaderView") as! CalendarHeaderView
   private let dateControl = DateControl()
   
-  private let dismissButton: UIButton = {
+  private let backButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "imagecancel.png").withRenderingMode(.alwaysTemplate), for: .normal)
-    button.tintColor = .black
+    button.setImage(#imageLiteral(resourceName: "backArrow.png"), for: .normal)
     return button
   }()
   
   private let titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "여행일정을\n등록해주세요."
     label.numberOfLines = 0
-    label.font = .AppleSDGothicNeoBold(size: 27)
-    label.textColor = #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1)
+    label.font = .KoreanSWGI1R(size: 30)
     return label
   }()
   
@@ -113,7 +111,6 @@ final class InsertPlanViewController: UIViewController{
   }()
   private let totalLabel: UILabel = {
     let label = UILabel()
-//    label.font = UIFont.NotoSansKRMedium(size: 16)
     label.font = UIFont.init(name: "AppleSDGothicNeo-Bold", size: 16)
     label.textAlignment = .center
     return label
@@ -122,7 +119,7 @@ final class InsertPlanViewController: UIViewController{
 
   lazy var calendarView: JTAppleCalendarView = {
     let calendar = JTAppleCalendarView()
-    calendar.backgroundColor = .white
+    calendar.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9882352941, blue: 0.9882352941, alpha: 1)
     calendar.calendarDelegate = self
     calendar.minimumLineSpacing = 0
     calendar.minimumInteritemSpacing = 0
@@ -132,6 +129,7 @@ final class InsertPlanViewController: UIViewController{
     calendar.showsVerticalScrollIndicator = false
     calendar.allowsMultipleSelection = true
     calendar.isRangeSelectionUsed = true
+    calendar.register(CalendarHeader.self, forSupplementaryViewOfKind: JTAppleCalendarView.elementKindSectionHeader, withReuseIdentifier: String(describing: CalendarHeader.self))
     calendar.register(CalendarCell.self, forCellWithReuseIdentifier: String(describing: CalendarCell.self))
     return calendar
   }()
@@ -147,21 +145,18 @@ final class InsertPlanViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    _ = calendarView
     view.backgroundColor = .white
     view.addSubview(titleLabel)
     view.addSubview(headerView)
     view.addSubview(calendarView)
     view.addSubview(completeButton)
-    view.addSubview(dismissButton)
-  
-    let month = Calendar.current.dateComponents([.month], from: Date()).month!
-    let year = Calendar.current.component(.year, from: Date())
-    headerViewLabelMapper(year: year, month: month)
+    view.addSubview(backButton)
     view.setNeedsUpdateConstraints()
     
-    dismissButton.rx.tap
-      .bind(to: viewModel.dismissAction)
+    
+    backButton.rx.tap
+      .bind(to: viewModel.backAction)
       .disposed(by: disposeBag)
     
     completeButton.rx.tap
@@ -176,11 +171,16 @@ final class InsertPlanViewController: UIViewController{
           weakSelf.completeButton.isEnabled = result ? true : false
         }
       }.disposed(by: disposeBag)
-  }
-  
-  private func headerViewLabelMapper(year: Int, month: Int) {
-    headerView.monthLabel.text = "  \(month)월"
-    headerView.yearLabel.text = "   \(year)"
+    
+    viewModel.saver
+      .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
+        return { types in
+          switch types{
+          case .place(let model):
+            weakSelf.titleLabel.text = model.trip + "\n언제떠날까요?"
+          }
+        }
+    }.disposed(by: disposeBag)
   }
   
   private func deSelectDate(){
@@ -201,14 +201,14 @@ final class InsertPlanViewController: UIViewController{
     if !didUpdateConstraint{
       
       titleLabel.snp.makeConstraints { (make) in
-        make.left.equalToSuperview().inset(32)
-        make.top.equalToSuperview().inset(93)
+        make.left.equalToSuperview().inset(35)
+        make.top.equalTo(backButton.snp.bottom).offset(7)
       }
       
       headerView.snp.makeConstraints { (make) in
         make.left.right.equalToSuperview().inset(30)
         make.top.equalTo(titleLabel.snp.bottom).offset(29)
-        make.height.equalTo(100)
+        make.height.equalTo(50)
       }
       
       calendarView.snp.makeConstraints { (make) in
@@ -222,9 +222,10 @@ final class InsertPlanViewController: UIViewController{
         make.height.equalTo(50)
       }
       
-      dismissButton.snp.makeConstraints { (make) in
-        make.left.top.equalTo(self.view.safeAreaLayoutGuide).inset(27)
-        make.width.height.equalTo(18)
+      backButton.snp.makeConstraints { (make) in
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(27)
+        make.left.equalToSuperview().inset(12)
+        make.width.height.equalTo(50)
       }
       
       didUpdateConstraint = true
@@ -244,11 +245,19 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
     dateControl.deSelectHandler(calendar: calendar, date: date)
   }
   
+  func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
+    let view = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: String(describing: CalendarHeader.self), for: indexPath) as! CalendarHeader
+    
+    view.startDate = range.start.dateByAdding(1,.day).date
+    return view
+  }
+  
   func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
     let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: String(describing: CalendarCell.self), for: indexPath) as! CalendarCell
-    cell.dayLabel.textColor = (cellState.dateBelongsTo == .thisMonth) ? #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+   
     cell.dayLabel.text = cellState.text
     cell.todayLabel.isHidden = !date.compare(.isToday)
+    log.info(Ostore.predicateForEvents(withStart: date, end: date, calendars: nil))
     handleSelection(cell: cell, cellState: cellState)
     return cell
   }
@@ -258,20 +267,26 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
     dateControl.selectHandler(calendar: calendar,date: date)
   }
   
-  func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-    guard let startDate = visibleDates.monthDates.first?.date else {
-      return
-    }
-    
-    let month = Calendar.current.dateComponents([.month], from: startDate).month!
-    let year = Calendar.current.component(.year, from: startDate)
-    headerViewLabelMapper(year: year, month: month)
-  }
+  
+  
+//  func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+//    guard let startDate = visibleDates.monthDates.first?.date else {
+//      return
+//    }
+//
+//    let month = Calendar.current.dateComponents([.month], from: startDate).month!
+//    let year = Calendar.current.component(.year, from: startDate)
+//  }
   
   // 현제 날짜보다 이전선택 불가하도록
   func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
     return date >= Date()
   }
+
+  func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
+    return MonthSize(defaultSize: 40)
+  }
+  
 }
 
 //MARK: - JT DataSource
@@ -282,4 +297,6 @@ extension InsertPlanViewController: JTAppleCalendarViewDataSource{
     
     return parameters
   }
+  
+  
 }
