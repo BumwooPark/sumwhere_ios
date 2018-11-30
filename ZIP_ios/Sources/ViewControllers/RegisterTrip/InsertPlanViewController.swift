@@ -257,7 +257,6 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
    
     cell.dayLabel.text = cellState.text
     cell.todayLabel.isHidden = !date.compare(.isToday)
-    log.info(Ostore.predicateForEvents(withStart: date, end: date, calendars: nil))
     handleSelection(cell: cell, cellState: cellState)
     return cell
   }
@@ -286,7 +285,6 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
   func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
     return MonthSize(defaultSize: 40)
   }
-  
 }
 
 //MARK: - JT DataSource

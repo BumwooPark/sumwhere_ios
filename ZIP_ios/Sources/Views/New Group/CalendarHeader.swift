@@ -38,10 +38,10 @@ class CalendarHeader: JTAppleCollectionReusableView{
   
   func weekHeaderLayout(startWeek: Int){
     let cellSize = (UIScreen.main.bounds.width - 60)/7
-    if startWeek < 5{
+    if startWeek < 6{
       constraint?.update(inset: (cellSize * CGFloat(startWeek-1)))
     }else {
-      constraint?.update(inset: (cellSize * CGFloat(5)))
+      constraint?.update(inset: (cellSize * CGFloat(6)))
     }
     setNeedsLayout()
     layoutIfNeeded()
