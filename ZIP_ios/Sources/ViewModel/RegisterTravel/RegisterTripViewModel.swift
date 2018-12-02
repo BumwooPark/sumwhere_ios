@@ -8,10 +8,12 @@
 
 import RxSwift
 import RxCocoa
+import Moya
 
 final class RegisterTripViewModel{
   enum SaveType{
     case place(model: TripType)
+    case date(start: Date, end: Date)
   }
   
   public let saver = PublishRelay<SaveType>()
@@ -25,23 +27,34 @@ final class RegisterTripViewModel{
   
   
   init() {
-    tripPlaceBinder.flatMapLatest {
+    let binder = tripPlaceBinder.flatMapLatest {
       return AuthManager.instance
         .provider
         .request(.searchDestination(data: $0))
         .filterSuccessfulStatusCodes()
         .map(ResultModel<[TripType]>.self)
+        .map{$0.result}
         .asObservable()
-        .map{$0.result ?? []}
-    }.bind(to: tripPlaceMapper)
+        .unwrap()
+    }.materialize()
+      .share()
+    
+    binder.elements()
+      .bind(to: tripPlaceMapper)
       .disposed(by: disposeBag)
-    
-    
+    binder.errors()
+    .subscribe(onNext: { (err) in
+        (err as? MoyaError)?.GalMalErrorHandler()
+      }).disposed(by: disposeBag)
+  
     saver.subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
       return {model in
         switch model{
         case .place(let type):
           log.info(type)
+        case .date(let start, let end):
+          log.info(start)
+          log.info(end)
         }
       }
     }.disposed(by: disposeBag)

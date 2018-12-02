@@ -27,7 +27,7 @@ class CalendarHeader: JTAppleCollectionReusableView{
     return label
   }()
   
-  var constraint: Constraint?
+  var constraint: Constraint? = nil
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -38,11 +38,24 @@ class CalendarHeader: JTAppleCollectionReusableView{
   
   func weekHeaderLayout(startWeek: Int){
     let cellSize = (UIScreen.main.bounds.width - 60)/7
-    if startWeek < 6{
-      constraint?.update(inset: (cellSize * CGFloat(startWeek-1)))
+
+//    if startWeek < 5{
+//      constraint?.update(inset: (cellSize * CGFloat(startWeek-1)))
+//    }else {
+//      constraint?.update(inset: (cellSize * CGFloat(5)))
+//    }
+    if startWeek < 5{
+      yearMonthLabel.snp.remakeConstraints { (make) in
+        make.left.equalToSuperview().inset(cellSize * CGFloat(startWeek-1))
+        make.centerY.equalToSuperview()
+      }
     }else {
-      constraint?.update(inset: (cellSize * CGFloat(6)))
+      yearMonthLabel.snp.remakeConstraints { (make) in
+        make.left.equalToSuperview().inset(cellSize * CGFloat(5))
+        make.centerY.equalToSuperview()
+      }
     }
+    setNeedsUpdateConstraints()
     setNeedsLayout()
     layoutIfNeeded()
   }
@@ -50,10 +63,10 @@ class CalendarHeader: JTAppleCollectionReusableView{
   override func updateConstraints() {
     if !didUpdateConstraint{
       
-      yearMonthLabel.snp.makeConstraints { (make) in
-        constraint = make.left.equalToSuperview().inset(20).constraint
-        make.centerY.equalToSuperview()
-      }
+//      yearMonthLabel.snp.makeConstraints { (make) in
+//        constraint = make.left.equalToSuperview().inset(20).constraint
+//        make.centerY.equalToSuperview()
+//      }
       
       didUpdateConstraint = true
     }

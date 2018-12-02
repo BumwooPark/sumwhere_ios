@@ -9,19 +9,43 @@
 import LGButton
 import RxSwift
 import RxCocoa
+import TTTAttributedLabel
 
 class RegisterViewController: UIViewController{
-  
   var didUpdateConstraint = false
   let disposeBag = DisposeBag()
+  let viewModel: RegisterTripViewModel
   
-  let viewController: CreateTripViewController
+  private let backImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = #imageLiteral(resourceName: "bgMactingfin.png")
+    return imageView
+  }()
   
-  let infoLabel: UILabel = {
+  private let titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "위와 같은 내용으로 등록하시겠습니까?"
-    label.font = UIFont.NotoSansKRMedium(size: 18)
+    label.text = "등록이\n완료되었어요!"
+    label.numberOfLines = 0
+    label.textAlignment = .center
+    label.font = .KoreanSWGI1R(size: 25)
+    label.textColor = .white
     return label
+  }()
+  
+  private let typeLabel: UILabel = {
+    let label = UILabel()
+    label.text = "\t계획매칭"
+    label.font = .AppleSDGothicNeoSemiBold(size: 22)
+    label.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
+    return label
+  }()
+  
+  private let centerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    view.layer.cornerRadius = 10
+    view.clipsToBounds = true
+    return view
   }()
   
   let registerButton: LGButton = {
@@ -37,21 +61,74 @@ class RegisterViewController: UIViewController{
     return button
   }()
   
-  let cancelButton: LGButton = {
-    let button = LGButton()
-    button.titleString = "취소"
-    button.titleFontName = "NotoSansKR-Medium"
-    button.gradientStartColor = #colorLiteral(red: 0.7803921569, green: 0.3949215683, blue: 0.3463978405, alpha: 1)
-    button.gradientEndColor = #colorLiteral(red: 0.7803921569, green: 0.4357580746, blue: 0.4270587234, alpha: 0.5)
-    button.cornerRadius = 10
-    button.shadowOffset = CGSize(width: 0, height: 2)
-    button.shadowOpacity = 1
-    button.shadowColor = .lightGray
+  private let placeLabel: UILabel = {
+    let label = UILabel()
+    label.text = "장소"
+    label.font = .AppleSDGothicNeoRegular(size: 20.4)
+    label.textColor = #colorLiteral(red: 0.5333333333, green: 0.5333333333, blue: 0.5333333333, alpha: 1)
+    return label
+  }()
+  
+  private let resultPlace: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.AppleSDGothicNeoSemiBold(size: 20.4)
+    return label
+  }()
+  
+  private let dividLine: UIView = {
+    let view = UIView()
+    view.backgroundColor = #colorLiteral(red: 0.9137254902, green: 0.9137254902, blue: 0.9137254902, alpha: 1)
+    return view
+  }()
+  
+  private let dateLabel: UILabel = {
+    let label = UILabel()
+    label.text = "날짜"
+    label.font = .AppleSDGothicNeoRegular(size: 20.4)
+    label.textColor = #colorLiteral(red: 0.5333333333, green: 0.5333333333, blue: 0.5333333333, alpha: 1)
+    return label
+  }()
+  
+  private let circle0: UIView = {
+    let view = UIView()
+    view.backgroundColor = #colorLiteral(red: 0.3019607843, green: 0.3568627451, blue: 0.9254901961, alpha: 1)
+    view.layer.cornerRadius = 20
+    view.clipsToBounds = true
+    return view
+  }()
+  
+  private let circle1: UIView = {
+    let view = UIView()
+    view.backgroundColor = #colorLiteral(red: 0.3019607843, green: 0.3568627451, blue: 0.9254901961, alpha: 1)
+    view.layer.cornerRadius = 20
+    view.clipsToBounds = true
+    return view
+  }()
+  
+  private let completeButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "buttonMatchingfin.png"), for: .normal)
     return button
   }()
   
-  init(viewController: UIViewController) {
-    self.viewController = viewController as! CreateTripViewController
+  private let lastChanceLabel: TTTAttributedLabel = {
+    let label = TTTAttributedLabel(frame: .zero)
+    let attstring = NSMutableAttributedString(string: "잘못 입력한 부분이 있나요?  ",
+                                       attributes: [.font : UIFont.AppleSDGothicNeoRegular(size: 15)])
+    attstring.append(NSAttributedString(string: "다시 입력하기", attributes: [.font: UIFont.AppleSDGothicNeoBold(size: 15),.foregroundColor: #colorLiteral(red: 0.3294117647, green: 0.4274509804, blue: 0.8823529412, alpha: 1)]))
+    
+    label.attributedText = attstring
+    label.textColor = .black
+    let range = NSRange(location: 17, length: 7)
+    label.addLink(to: URL(fileURLWithPath: ""), with: range)
+    
+    label.linkAttributes = [kCTUnderlineStyleAttributeName:NSNumber(value: 0)]
+    return label
+  }()
+
+  
+  init(viewModel: RegisterTripViewModel) {
+    self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -61,48 +138,111 @@ class RegisterViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.addSubview(registerButton)
-    view.addSubview(cancelButton)
-    view.addSubview(infoLabel)
+    view = backImageView
     
-//    registerButton.rx.tapGesture()
-//      .when(.ended)
-//      .debounce(1, scheduler: MainScheduler.instance)
-//      .map {_ in return ()}
-//      .bind(onNext: viewController.register)
-//      .disposed(by: disposeBag)
+    backImageView.addSubview(titleLabel)
+    backImageView.addSubview(centerView)
+    centerView.addSubview(typeLabel)
+    centerView.addSubview(placeLabel)
+    centerView.addSubview(resultPlace)
+    centerView.addSubview(dividLine)
+    centerView.addSubview(dateLabel)
+    centerView.addSubview(circle0)
+    centerView.addSubview(circle1)
+    centerView.addSubview(completeButton)
+    centerView.addSubview(lastChanceLabel)
     
-    cancelButton.rx
-      .tapGesture()
-      .when(.ended)
-      .subscribe(onNext: {[weak self] (_) in
-        self?.viewController.dismiss(animated: true, completion: nil)
-      }).disposed(by: disposeBag)
+    viewModel.saver
+      .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
+      return {type in
+        switch type{
+        case .place(let model):
+          weakSelf.resultPlace.text = model.trip
+        case .date(let start, let end):
+          log.info(start)
+          log.info(end)
+        }
+      }
+    }.disposed(by: disposeBag)
+    
     
     view.setNeedsUpdateConstraints()
   }
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{
+      
+      titleLabel.snp.makeConstraints { (make) in
+        make.centerX.equalToSuperview()
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(80)
+      }
+      
+      centerView.snp.makeConstraints { (make) in
+        make.left.right.equalToSuperview().inset(26)
+        make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(34)
+        make.top.equalTo(titleLabel.snp.bottom).offset(50)
+      }
+      
+      typeLabel.snp.makeConstraints { (make) in
+        make.left.top.right.equalToSuperview()
+        make.height.equalTo(76)
+      }
+      
+      placeLabel.snp.makeConstraints { (make) in
+        make.top.equalTo(typeLabel.snp.bottom).offset(33)
+        make.left.equalToSuperview().inset(30)
+      }
+      
+      resultPlace.snp.makeConstraints { (make) in
+        make.centerY.equalTo(placeLabel)
+        make.right.equalToSuperview().inset(20)
+      }
+      
+      dividLine.snp.makeConstraints { (make) in
+        make.left.right.equalToSuperview().inset(8)
+        make.height.equalTo(2)
+        make.top.equalTo(placeLabel.snp.bottom).offset(33)
+      }
+      
+      dateLabel.snp.makeConstraints { (make) in
+        make.left.equalTo(placeLabel)
+        make.top.equalTo(dividLine.snp.bottom).offset(43)
+      }
+
+      circle0.snp.makeConstraints { (make) in
+        make.centerY.equalTo(dateLabel.snp.bottom).offset(45)
+        make.centerX.equalTo(self.centerView.snp.left)
+        make.height.width.equalTo(40)
+      }
+      
+      circle1.snp.makeConstraints { (make) in
+        make.centerY.equalTo(circle0)
+        make.centerX.equalTo(self.centerView.snp.right)
+        make.height.width.equalTo(circle0)
+      }
+      
+      completeButton.snp.makeConstraints { (make) in
+        make.centerX.equalToSuperview()
+        make.top.equalTo(circle0.snp.centerY).offset(41)
+      }
+      
+      lastChanceLabel.snp.makeConstraints { (make) in
+        make.centerX.equalToSuperview()
+        make.top.equalTo(completeButton.snp.bottom).offset(10)
+      }
+      
       didUpdateConstraint = true
-      
-      infoLabel.snp.makeConstraints { (make) in
-        make.centerX.equalToSuperview()
-        make.bottom.equalTo(registerButton.snp.top).offset(-40)
-      }
-      
-      registerButton.snp.makeConstraints { (make) in
-        make.center.equalToSuperview()
-        make.height.equalTo(50)
-        make.width.equalTo(200)
-      }
-      
-      cancelButton.snp.makeConstraints { (make) in
-        make.top.equalTo(registerButton.snp.bottom).offset(30)
-        make.centerX.equalToSuperview()
-        make.height.width.equalTo(registerButton)
-      }
+
     }
     super.updateViewConstraints()
+  }
+}
+
+
+
+extension RegisterViewController: TTTAttributedLabelDelegate{
+  func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+    log.info("hello")
+//    self.navigationController?.pushViewController(JoinViewController(), animated: true)
   }
 }

@@ -26,8 +26,10 @@ final class CreateTripViewController: UIViewController{
   init() {
     let searchVC = SearchDestinationViewController(viewModel: viewModel)
     let planVC = InsertPlanViewController(viewModel: viewModel)
+    let completeVC = RegisterViewController(viewModel: viewModel)
     _ = planVC.view
-    self.pageView = PageViewController(pages: [searchVC,planVC], spin: false)
+    _ = completeVC.view
+    self.pageView = PageViewController(pages: [searchVC,planVC,completeVC], spin: false)
     super.init(nibName: nil, bundle: nil)
   }
   

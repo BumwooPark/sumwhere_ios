@@ -20,16 +20,8 @@ class DateControl{
   
   var startDate: Date = Date()
   var endDate: Date = Date()
-  var selectCount = 0{
-    didSet{
-      if selectCount == 2{
-        selectSubject.onNext(true)
-      }else{
-        selectSubject.onNext(false)
-      }
-    }
-  }
-  var selectSubject = PublishSubject<Bool>()
+  var selectCount = 0
+  var selectSubject = PublishSubject<(result:Bool,start:Date?,end: Date?)>()
   private func deSelectAndSelect(calendar: JTAppleCalendarView ,date: Date){
     calendar.deselectAllDates(triggerSelectionDelegate: false)
     calendar.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
@@ -40,6 +32,7 @@ class DateControl{
     case 0:
       self.selectCount += 1
       self.startDate = date
+      selectSubject.onNext((false,nil,nil))
     case 1:
       self.selectCount += 1
       self.endDate = date
@@ -49,6 +42,7 @@ class DateControl{
         self.startDate = date
         self.selectCount = 1
       }else{
+        selectSubject.onNext((true,start: startDate,end: self.endDate))
         calendar.selectDates(from: startDate, to: self.endDate,  triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
       }
     case 2:
@@ -62,7 +56,9 @@ class DateControl{
         self.startDate = date
         self.endDate = Date()
       }
+      selectSubject.onNext((false,nil,nil))
     default:
+      selectSubject.onNext((false,nil,nil))
       break
     }
   }
@@ -100,7 +96,6 @@ final class InsertPlanViewController: UIViewController{
   
   private let completeButton: UIButton = {
     let button = UIButton()
-    button.setTitle("여행등록", for: .normal)
     button.setTitleColor(.white, for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoSemiBold(size: 22.8)
     button.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
@@ -129,6 +124,7 @@ final class InsertPlanViewController: UIViewController{
     calendar.showsVerticalScrollIndicator = false
     calendar.allowsMultipleSelection = true
     calendar.isRangeSelectionUsed = true
+    calendar.isPagingEnabled = false
     calendar.register(CalendarHeader.self, forSupplementaryViewOfKind: JTAppleCalendarView.elementKindSectionHeader, withReuseIdentifier: String(describing: CalendarHeader.self))
     calendar.register(CalendarCell.self, forCellWithReuseIdentifier: String(describing: CalendarCell.self))
     return calendar
@@ -165,12 +161,35 @@ final class InsertPlanViewController: UIViewController{
     
     dateControl
       .selectSubject
-      .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
-        return { result in
-          weakSelf.completeButton.backgroundColor = result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
-          weakSelf.completeButton.isEnabled = result ? true : false
+      .subscribeNext(weak: self, { (weakSelf) -> ((result: Bool, start: Date?, end: Date?)) -> Void in
+        return {result in
+          if result.result {
+            let diffDate = (result.end ?? Date()) - (result.start ?? Date())
+            
+            var day = diffDate.day ?? 0
+            if (diffDate.weekOfYear) ?? 0 != 0 {
+              day += diffDate.weekOfYear! * 7
+            }
+            
+            weakSelf.viewModel.saver.accept(
+              RegisterTripViewModel.SaveType.date(start: result.start?.dateByAdding(1, .day).date ?? Date(),
+                                                  end: result.end?.dateByAdding(1, .day).date ?? Date()))
+            
+            weakSelf.completeButton.setTitle("\(day)박 \(day + 1)일의 여행등록", for: .normal)
+          }else{
+            weakSelf.completeButton.setTitle("여행 등록", for: .normal)
+          }
+          weakSelf.completeButton.backgroundColor = result.result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
+          weakSelf.completeButton.isEnabled = result.result ? true : false
         }
-      }.disposed(by: disposeBag)
+      }).disposed(by: disposeBag)
+    
+    calendarView.rx.swipeGesture(.up)
+      .subscribeNext(weak: self) { (weakSelf) -> (UISwipeGestureRecognizer) -> Void in
+        return {_ in
+          log.info("upupup")
+        }
+    }.disposed(by: disposeBag)
     
     viewModel.saver
       .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
@@ -178,6 +197,8 @@ final class InsertPlanViewController: UIViewController{
           switch types{
           case .place(let model):
             weakSelf.titleLabel.text = model.trip + "\n언제떠날까요?"
+          default:
+            break
           }
         }
     }.disposed(by: disposeBag)
@@ -256,7 +277,7 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
     let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: String(describing: CalendarCell.self), for: indexPath) as! CalendarCell
    
     cell.dayLabel.text = cellState.text
-    cell.todayLabel.isHidden = !date.compare(.isToday)
+    cell.todayLabel.isHidden = !date.dateByAdding(1, .day).compare(.isToday)
     handleSelection(cell: cell, cellState: cellState)
     return cell
   }
@@ -265,17 +286,6 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
     handleSelection(cell: cell, cellState: cellState)
     dateControl.selectHandler(calendar: calendar,date: date)
   }
-  
-  
-  
-//  func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-//    guard let startDate = visibleDates.monthDates.first?.date else {
-//      return
-//    }
-//
-//    let month = Calendar.current.dateComponents([.month], from: startDate).month!
-//    let year = Calendar.current.component(.year, from: startDate)
-//  }
   
   // 현제 날짜보다 이전선택 불가하도록
   func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
