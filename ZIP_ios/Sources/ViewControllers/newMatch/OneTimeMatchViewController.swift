@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
+  let viewModel: TripViewModel
   private let disposeBag = DisposeBag()
   
   lazy var adapter: ListAdapter = {
@@ -30,12 +31,11 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
   }
   
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
-    
     let emptyView = MatchEmptyView()
     emptyView.addButton.rx.tap
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return {_ in
-          let tripView = CreateTripViewController()
+          let tripView = CreateOneTimeViewController()
           weakSelf.present(tripView, animated: true, completion: nil)
         }
       }.disposed(by: disposeBag)
@@ -44,9 +44,9 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
   
   lazy var collectionView: UICollectionView = {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    collectionView.backgroundColor = .white
+    collectionView.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
     collectionView.register(TripTicketCell.self, forCellWithReuseIdentifier: String(describing: TripTicketCell.self))
-    
+    collectionView.alwaysBounceVertical = true
 //    let emptyView = UIImageView()
 //    emptyView.image = #imageLiteral(resourceName: "bridge")
 //    emptyView.contentMode = .scaleAspectFill
@@ -58,6 +58,20 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
 //    parallaxHeader?.delegate = self
     return collectionView
   }()
+  
+  init(_ viewModel: TripViewModel){
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    log.info("willappear")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()

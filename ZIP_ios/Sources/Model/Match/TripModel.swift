@@ -19,6 +19,7 @@ struct Trip: Codable{
   let tripTypeId: Int
   let startDate: String
   let endDate: String
+  let expired: Bool
 }
 
 struct TripType: Codable{

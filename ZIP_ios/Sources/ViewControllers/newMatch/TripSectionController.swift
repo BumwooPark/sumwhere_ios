@@ -9,26 +9,30 @@
 import IGListKit
 
 class TripSectionController: ListSectionController {
+  var item: TripSectionModel?
+  
   override func sizeForItem(at index: Int) -> CGSize {
-    return CGSize(width: 339, height: 175)
+    return CGSize(width: 327, height: 123)
   }
   
   override func cellForItem(at index: Int) -> UICollectionViewCell {
     let cell = collectionContext?.dequeueReusableCell(of: TripTicketCell.self, withReuseIdentifier: String(describing: TripTicketCell.self), for: self, at: index) as! TripTicketCell
+    cell.item = item?.datas[index]
     return cell
   }
   
   override func didUpdate(to object: Any) {
-    guard let item = object as? DataSectionItem else {return}
+    guard let item = object as? TripSectionModel else {return}
+    self.item = item
   }
   
   override func numberOfItems() -> Int {
-    return 0
+    return self.item?.datas.count ?? 0
   }
   
   override init() {
     super.init()
-    self.inset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 10)
+    minimumLineSpacing = 20
   }
   
 }

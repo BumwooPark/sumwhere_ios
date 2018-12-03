@@ -67,6 +67,14 @@ final class CreateTripViewController: UIViewController{
       .backAction
       .bind(onNext: pageView.scrollToAutoBackward)
       .disposed(by: disposeBag)
+    
+    viewModel
+      .scrollToFirst
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.pageView.scrollToViewController(index: 0)
+        }
+      }.disposed(by: disposeBag)
   }
   
   

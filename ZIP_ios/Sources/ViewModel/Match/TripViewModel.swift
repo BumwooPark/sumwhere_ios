@@ -12,12 +12,17 @@ import Moya
 
 class TripViewModel{
   
-  let getApi = AuthManager.instance
+  let planTripGetApi = AuthManager.instance
     .provider.request(.myTrip)
     .filterSuccessfulStatusCodes()
     .map(ResultModel<[TripModel]>.self)
+    .map{$0.result}
+    .asObservable()
+    .unwrap()
+    .materialize()
+    .share()
   
-  let deleteApi = { (id: Int) in
+  let planTripDeleteApi = { (id: Int) in
     return AuthManager.instance
       .provider.request(.deleteMyTrip(id: id))
       .map(ResultModel<Trip>.self)

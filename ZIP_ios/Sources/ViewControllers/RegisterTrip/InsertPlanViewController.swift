@@ -150,7 +150,6 @@ final class InsertPlanViewController: UIViewController{
     view.addSubview(backButton)
     view.setNeedsUpdateConstraints()
     
-    
     backButton.rx.tap
       .bind(to: viewModel.backAction)
       .disposed(by: disposeBag)
@@ -164,18 +163,18 @@ final class InsertPlanViewController: UIViewController{
       .subscribeNext(weak: self, { (weakSelf) -> ((result: Bool, start: Date?, end: Date?)) -> Void in
         return {result in
           if result.result {
-            let diffDate = (result.end ?? Date()) - (result.start ?? Date())
             
-            var day = diffDate.day ?? 0
-            if (diffDate.weekOfYear) ?? 0 != 0 {
-              day += diffDate.weekOfYear! * 7
-            }
+            let calendar = Calendar.current
+            let date1 = calendar.startOfDay(for: result.start ?? Date())
+            let date2 = calendar.startOfDay(for: result.end ?? Date())
+            let components = calendar.dateComponents([.day], from: date1, to: date2)
+            let diffday = components.day ?? 0
             
             weakSelf.viewModel.saver.accept(
               RegisterTripViewModel.SaveType.date(start: result.start?.dateByAdding(1, .day).date ?? Date(),
                                                   end: result.end?.dateByAdding(1, .day).date ?? Date()))
             
-            weakSelf.completeButton.setTitle("\(day)박 \(day + 1)일의 여행등록", for: .normal)
+            weakSelf.completeButton.setTitle("\(diffday)박 \(diffday + 1)일의 여행등록", for: .normal)
           }else{
             weakSelf.completeButton.setTitle("여행 등록", for: .normal)
           }

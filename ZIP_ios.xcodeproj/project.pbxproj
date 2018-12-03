@@ -166,6 +166,12 @@
 		B16BD8B821AD13510010EEE0 /* KoreanSWGI3.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B321AD13480010EEE0 /* KoreanSWGI3.otf */; };
 		B16BD8B921AD13510010EEE0 /* KoreanSWGI4.otf in Resources */ = {isa = PBXBuildFile; fileRef = B16BD8B521AD134C0010EEE0 /* KoreanSWGI4.otf */; };
 		B16BD8BE21B10C4C0010EEE0 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8BD21B10C4C0010EEE0 /* CalendarHeader.swift */; };
+		B16BD8C121B4F1470010EEE0 /* InputTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8C021B4F1470010EEE0 /* InputTrip.swift */; };
+		B16BD8C321B50E580010EEE0 /* TripSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8C221B50E580010EEE0 /* TripSectionModel.swift */; };
+		B16BD8C521B51B3E0010EEE0 /* CreateOnetimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8C421B51B3E0010EEE0 /* CreateOnetimeViewController.swift */; };
+		B16BD8C721B51F560010EEE0 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8C621B51F560010EEE0 /* MapCell.swift */; };
+		B16BD8CB21B523910010EEE0 /* GALabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8CA21B523910010EEE0 /* GALabelCell.swift */; };
+		B16BD8CD21B529CE0010EEE0 /* GADateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16BD8CC21B529CE0010EEE0 /* GADateCell.swift */; };
 		B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */; };
 		B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC89721547ED700642BB0 /* TripStyleViewController.swift */; };
 		B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BC8992154925100642BB0 /* ProfileViewModel.swift */; };
@@ -418,6 +424,12 @@
 		B16BD8B421AD134A0010EEE0 /* KoreanSWGI2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI2.otf; sourceTree = "<group>"; };
 		B16BD8B521AD134C0010EEE0 /* KoreanSWGI4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoreanSWGI4.otf; sourceTree = "<group>"; };
 		B16BD8BD21B10C4C0010EEE0 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
+		B16BD8C021B4F1470010EEE0 /* InputTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTrip.swift; sourceTree = "<group>"; };
+		B16BD8C221B50E580010EEE0 /* TripSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSectionModel.swift; sourceTree = "<group>"; };
+		B16BD8C421B51B3E0010EEE0 /* CreateOnetimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOnetimeViewController.swift; sourceTree = "<group>"; };
+		B16BD8C621B51F560010EEE0 /* MapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
+		B16BD8CA21B523910010EEE0 /* GALabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GALabelCell.swift; sourceTree = "<group>"; };
+		B16BD8CC21B529CE0010EEE0 /* GADateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADateCell.swift; sourceTree = "<group>"; };
 		B18BC89521536EB000642BB0 /* PageViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageViewController + Extension.swift"; sourceTree = "<group>"; };
 		B18BC89721547ED700642BB0 /* TripStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleViewController.swift; sourceTree = "<group>"; };
 		B18BC8992154925100642BB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -726,6 +738,7 @@
 		0A71238D1FACC16100512EB7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B16BD8BF21B4F12B0010EEE0 /* RegisterTrip */,
 				0A13CA4F21A6F3E60081C55F /* Purchase */,
 				B1913BAF21990FD8009F9191 /* MyPage */,
 				B1996C552149FF5B00BC95C5 /* Chat */,
@@ -802,6 +815,7 @@
 				0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */,
 				0A74566F210CD09600F8A0C9 /* InsertPeopleViewController.swift */,
 				0A745690210EECDB00F8A0C9 /* RegisterViewController.swift */,
+				B16BD8C421B51B3E0010EEE0 /* CreateOnetimeViewController.swift */,
 			);
 			path = RegisterTrip;
 			sourceTree = "<group>";
@@ -1113,6 +1127,18 @@
 			);
 			name = RegisterTrip;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		B16BD8BF21B4F12B0010EEE0 /* RegisterTrip */ = {
+			isa = PBXGroup;
+			children = (
+				B16BD8C021B4F1470010EEE0 /* InputTrip.swift */,
+				B16BD8C221B50E580010EEE0 /* TripSectionModel.swift */,
+				B16BD8C621B51F560010EEE0 /* MapCell.swift */,
+				B16BD8CA21B523910010EEE0 /* GALabelCell.swift */,
+				B16BD8CC21B529CE0010EEE0 /* GADateCell.swift */,
+			);
+			path = RegisterTrip;
 			sourceTree = "<group>";
 		};
 		B1913BAF21990FD8009F9191 /* MyPage */ = {
@@ -1545,6 +1571,7 @@
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,
 				B1D1CB27213FA901001A9801 /* ChatRoomViewController.swift in Sources */,
 				B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */,
+				B16BD8C721B51F560010EEE0 /* MapCell.swift in Sources */,
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
 				B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */,
 				0A745685210E013900F8A0C9 /* SearchDestinationViewModel.swift in Sources */,
@@ -1608,6 +1635,7 @@
 				B1D1CB1E213F5D7B001A9801 /* TestFlowLayout.swift in Sources */,
 				B1913BBF219977A7009F9191 /* EventPageViewController.swift in Sources */,
 				0AF2C01F20FB38E300775EA8 /* MenuHeaderView.swift in Sources */,
+				B16BD8C121B4F1470010EEE0 /* InputTrip.swift in Sources */,
 				B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */,
 				0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */,
 				0AF2C02A2104C8E500775EA8 /* TagRow.swift in Sources */,
@@ -1638,8 +1666,10 @@
 				0A13CA4C21A6F0180081C55F /* ProfileViewController.swift in Sources */,
 				B1F6D8C42140B5C600E0E003 /* ChatListViewController.swift in Sources */,
 				B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */,
+				B16BD8C321B50E580010EEE0 /* TripSectionModel.swift in Sources */,
 				B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */,
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
+				B16BD8C521B51B3E0010EEE0 /* CreateOnetimeViewController.swift in Sources */,
 				B1913BB121990FFD009F9191 /* MyPageModel.swift in Sources */,
 				B16BD8AF21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift in Sources */,
 				0A33F7E621342F04002228BF /* RandomString.swift in Sources */,
@@ -1665,6 +1695,7 @@
 				B1D1CB0E212E43FE001A9801 /* GPSMatchResultViewController.swift in Sources */,
 				0A075C0321562706004A4DBF /* AlertFactory.swift in Sources */,
 				0A6FEE7F1FF622A100A2D347 /* JoinView.swift in Sources */,
+				B16BD8CB21B523910010EEE0 /* GALabelCell.swift in Sources */,
 				0A375C16213274AE00E35ED9 /* TopTripViewController.swift in Sources */,
 				0A6C88AD1FEE3E66002019DE /* WriterCell.swift in Sources */,
 				B16B3E002117F445001D278A /* InterestViewModel.swift in Sources */,
@@ -1677,6 +1708,7 @@
 				B16BD222211162AF0045FAA6 /* MyTripCell.swift in Sources */,
 				0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
+				B16BD8CD21B529CE0010EEE0 /* GADateCell.swift in Sources */,
 				B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */,
 				B16BD8A521A7BFE50010EEE0 /* PurchaseKeyViewModel.swift in Sources */,
 				B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */,

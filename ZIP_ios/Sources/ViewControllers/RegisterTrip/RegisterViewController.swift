@@ -9,9 +9,11 @@
 import LGButton
 import RxSwift
 import RxCocoa
+import Moya
 import TTTAttributedLabel
+import NVActivityIndicatorView
 
-class RegisterViewController: UIViewController{
+class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
   var didUpdateConstraint = false
   let disposeBag = DisposeBag()
   let viewModel: RegisterTripViewModel
@@ -19,6 +21,7 @@ class RegisterViewController: UIViewController{
   private let backImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.image = #imageLiteral(resourceName: "bgMactingfin.png")
+    imageView.isUserInteractionEnabled = true
     return imageView
   }()
   
@@ -89,6 +92,14 @@ class RegisterViewController: UIViewController{
     return label
   }()
   
+  private let resultDataLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.AppleSDGothicNeoSemiBold(size: 20.4)
+    label.textAlignment = .right
+    label.numberOfLines = 0
+    return label
+  }()
+  
   private let circle0: UIView = {
     let view = UIView()
     view.backgroundColor = #colorLiteral(red: 0.3019607843, green: 0.3568627451, blue: 0.9254901961, alpha: 1)
@@ -111,18 +122,19 @@ class RegisterViewController: UIViewController{
     return button
   }()
   
-  private let lastChanceLabel: TTTAttributedLabel = {
+  private lazy var lastChanceLabel: TTTAttributedLabel = {
     let label = TTTAttributedLabel(frame: .zero)
     let attstring = NSMutableAttributedString(string: "잘못 입력한 부분이 있나요?  ",
                                        attributes: [.font : UIFont.AppleSDGothicNeoRegular(size: 15)])
-    attstring.append(NSAttributedString(string: "다시 입력하기", attributes: [.font: UIFont.AppleSDGothicNeoBold(size: 15),.foregroundColor: #colorLiteral(red: 0.3294117647, green: 0.4274509804, blue: 0.8823529412, alpha: 1)]))
-    
+    attstring.append(NSAttributedString(string: "다시 입력하기", attributes: [.font: UIFont.AppleSDGothicNeoBold(size: 15)]))
     label.attributedText = attstring
     label.textColor = .black
+    label.linkAttributes = [kCTForegroundColorAttributeName:#colorLiteral(red: 0.3294117647, green: 0.4274509804, blue: 0.8823529412, alpha: 1)]
+    label.activeLinkAttributes = [kCTForegroundColorAttributeName:#colorLiteral(red: 0.3294117647, green: 0.4274509804, blue: 0.8823529412, alpha: 1)]
+    label.inactiveLinkAttributes = [kCTForegroundColorAttributeName:#colorLiteral(red: 0.3294117647, green: 0.4274509804, blue: 0.8823529412, alpha: 1)]
+    label.delegate = self
     let range = NSRange(location: 17, length: 7)
     label.addLink(to: URL(fileURLWithPath: ""), with: range)
-    
-    label.linkAttributes = [kCTUnderlineStyleAttributeName:NSNumber(value: 0)]
     return label
   }()
 
@@ -147,10 +159,36 @@ class RegisterViewController: UIViewController{
     centerView.addSubview(resultPlace)
     centerView.addSubview(dividLine)
     centerView.addSubview(dateLabel)
+    centerView.addSubview(resultDataLabel)
     centerView.addSubview(circle0)
     centerView.addSubview(circle1)
     centerView.addSubview(completeButton)
     centerView.addSubview(lastChanceLabel)
+    
+    completeButton.rx.tap
+      .do(onNext: {[weak self] (_) in
+            self?.startAnimating(CGSize(width: 50, height: 50),type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),backgroundColor: .clear, fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
+      })
+      .bind(to: viewModel.submitAction)
+      .disposed(by: disposeBag)
+    
+    viewModel.submitResult
+      .elements()
+      .subscribeNext(weak: self) { (weakSelf) -> (Trip) -> Void in
+        return { model in
+          weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            weakSelf.dismiss(animated: true, completion: nil)
+          })
+        }
+      }.disposed(by: disposeBag)
+    
+    viewModel.submitResult
+      .errors()
+      .subscribe(onNext: { (err) in
+        (err as? MoyaError)?.GalMalErrorHandler()
+      }).disposed(by: disposeBag)
+       
     
     viewModel.saver
       .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
@@ -159,12 +197,19 @@ class RegisterViewController: UIViewController{
         case .place(let model):
           weakSelf.resultPlace.text = model.trip
         case .date(let start, let end):
-          log.info(start)
-          log.info(end)
+          let startString = start.toFormat("MM월 dd일")
+          let endString = end.toFormat("MM월 dd일")
+          
+          
+          let calendar = Calendar.current
+          let date1 = calendar.startOfDay(for: start)
+          let date2 = calendar.startOfDay(for: end)
+          let components = calendar.dateComponents([.day], from: date1, to: date2)
+          let diffday = components.day ?? 0
+          weakSelf.resultDataLabel.text = "\(startString) - \(endString)\n(\(diffday)박 \(diffday+1)일)"
         }
       }
     }.disposed(by: disposeBag)
-    
     
     view.setNeedsUpdateConstraints()
   }
@@ -208,6 +253,11 @@ class RegisterViewController: UIViewController{
         make.left.equalTo(placeLabel)
         make.top.equalTo(dividLine.snp.bottom).offset(43)
       }
+      
+      resultDataLabel.snp.makeConstraints { (make) in
+        make.right.equalToSuperview().inset(20)
+        make.centerY.equalTo(dateLabel)
+      }
 
       circle0.snp.makeConstraints { (make) in
         make.centerY.equalTo(dateLabel.snp.bottom).offset(45)
@@ -240,9 +290,9 @@ class RegisterViewController: UIViewController{
 
 
 
+
 extension RegisterViewController: TTTAttributedLabelDelegate{
   func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
-    log.info("hello")
-//    self.navigationController?.pushViewController(JoinViewController(), animated: true)
+    self.viewModel.scrollToFirst.accept(())
   }
 }

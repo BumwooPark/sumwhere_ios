@@ -9,10 +9,10 @@
 class TicketView: UIView{
   @IBOutlet weak var destinationLabel: UILabel!
   @IBOutlet weak var countryLabel: UILabel!
-  @IBOutlet weak var startLabel: UILabel!
-  @IBOutlet weak var endLabel: UILabel!
-  @IBOutlet weak var peopleCountLabel: UILabel!
-  @IBOutlet weak var moreButton: UIButton!
+  
+  @IBOutlet weak var startButton: UIButton!
+  @IBOutlet weak var endButton: UIButton!
+  @IBOutlet weak var peopleButton: UIButton!
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -20,8 +20,5 @@ class TicketView: UIView{
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    self.layer.borderWidth = 0.5
-    self.layer.cornerRadius = 10
-    self.layer.masksToBounds = true
   }
 }
