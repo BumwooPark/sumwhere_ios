@@ -17,7 +17,7 @@ public class GALabelCell: Cell<String>, CellType{
     return imageView
   }()
   
-  private let currentLabel: UILabel = {
+  let currentLabel: UILabel = {
     let label = UILabel()
     return label
   }()
@@ -30,6 +30,8 @@ public class GALabelCell: Cell<String>, CellType{
   
   public override func setup() {
     super.setup()
+    detailTextLabel?.isHidden = true
+    textLabel?.isHidden = true
     contentView.addSubview(iconImage)
     contentView.addSubview(currentLabel)
     contentView.addSubview(reloadButton)
@@ -38,6 +40,7 @@ public class GALabelCell: Cell<String>, CellType{
   }
   public override func update() {
     super.update()
+    currentLabel.text = row.value
   }
   
   public override func updateConstraints() {

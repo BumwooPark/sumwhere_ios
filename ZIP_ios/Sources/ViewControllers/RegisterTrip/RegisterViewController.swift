@@ -100,6 +100,12 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
     return label
   }()
   
+  let strokeView: StrokeView = {
+    let view = StrokeView()
+    view.backgroundColor = .clear
+    return view
+  }()
+  
   private let circle0: UIView = {
     let view = UIView()
     view.backgroundColor = #colorLiteral(red: 0.3019607843, green: 0.3568627451, blue: 0.9254901961, alpha: 1)
@@ -162,6 +168,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
     centerView.addSubview(resultDataLabel)
     centerView.addSubview(circle0)
     centerView.addSubview(circle1)
+    centerView.addSubview(strokeView)
     centerView.addSubview(completeButton)
     centerView.addSubview(lastChanceLabel)
     
@@ -269,6 +276,13 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
         make.centerY.equalTo(circle0)
         make.centerX.equalTo(self.centerView.snp.right)
         make.height.width.equalTo(circle0)
+      }
+      
+      strokeView.snp.makeConstraints { (make) in
+        make.left.equalTo(circle0.snp.right).offset(10)
+        make.right.equalTo(circle1.snp.left).offset(-10)
+        make.centerY.equalTo(circle0)
+        make.height.equalTo(4)
       }
       
       completeButton.snp.makeConstraints { (make) in

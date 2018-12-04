@@ -27,27 +27,40 @@ class CreateOneTimeViewController: FormViewController {
     return manager
   }()
   
+  lazy var locationObserver = locationManager.rx
+    .location
+    .map{$0?.coordinate}
+    .unwrap()
+    .share()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
     form +++ Section()
       <<< MapRow()
-      <<< GALabelRow()
-      <<< GADateTimeInlineRow<Date>()
+      <<< GALabelRow("location", {[weak self] (row) in
+        guard let weakSelf = self else {return}
+        weakSelf.locationObserver.take(1)
+          .subscribeNext(weak: weakSelf, { (weakSelf) -> (CLLocationCoordinate2D) -> Void in
+            return { coor in
+              GMSGeocoder().reverseGeocodeCoordinate(coor, completionHandler: { (response, err) in
+                row.value = response?.results()?.first?.lines?.first
+                log.info(response?.firstResult())
+                row.updateCell()
+              })
+            }
+          }).disposed(by: weakSelf.disposeBag)
+      })
+      
+      <<< GADateTimeInlineRow<Date>().cellSetup({ (cell, row) in
+        cell.currentLabel.text = row.dateFormatter?.string(from: Date())
+      }).onCellSelection({ (cell, row) in
+        cell.currentLabel.text = row.dateFormatter?.string(from: row.value ?? Date())
+      })
     
-    locationManager.rx
-      .location
-      .map{$0?.coordinate}
-      .unwrap()
-      .subscribeNext(weak: self) { (weakSelf) -> (CLLocationCoordinate2D) -> Void in
-        return { coordinate in
-          let marker = GMSMarker(position: coordinate)
-          log.info(coordinate)
-//          marker.title = "hi"
-//          marker.map = weakSelf.mapView
-        }
-      }.disposed(by: disposeBag)
+      +++ Section("활동")
+      <<< TextAreaRow()
     
+
   }
 }

@@ -146,6 +146,10 @@
 		B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */; };
 		B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */; };
 		B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155F02D21894DC100E4911A /* ProxyViewController.swift */; };
+		B166603121B6174700063AFA /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603021B6174700063AFA /* StrokeView.swift */; };
+		B166603321B6557600063AFA /* OneTimeMatchSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603221B6557600063AFA /* OneTimeMatchSelectViewController.swift */; };
+		B166603521B6558400063AFA /* OneTimeMatchFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603421B6558400063AFA /* OneTimeMatchFlowLayout.swift */; };
+		B166603721B6560100063AFA /* OneTimeMatchSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603621B6560100063AFA /* OneTimeMatchSelectCell.swift */; };
 		B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DEE211444C3001D278A /* NicknameRow.swift */; };
 		B16B3DF92117E782001D278A /* InitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DF82117E782001D278A /* InitUtil.swift */; };
 		B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFC2117F3B3001D278A /* InterestCell.swift */; };
@@ -403,6 +407,10 @@
 		B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHeaderView.swift; sourceTree = "<group>"; };
 		B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter + Extension.swift"; sourceTree = "<group>"; };
 		B155F02D21894DC100E4911A /* ProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyViewController.swift; sourceTree = "<group>"; };
+		B166603021B6174700063AFA /* StrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeView.swift; sourceTree = "<group>"; };
+		B166603221B6557600063AFA /* OneTimeMatchSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeMatchSelectViewController.swift; sourceTree = "<group>"; };
+		B166603421B6558400063AFA /* OneTimeMatchFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeMatchFlowLayout.swift; sourceTree = "<group>"; };
+		B166603621B6560100063AFA /* OneTimeMatchSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeMatchSelectCell.swift; sourceTree = "<group>"; };
 		B16B3DEE211444C3001D278A /* NicknameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRow.swift; sourceTree = "<group>"; };
 		B16B3DF82117E782001D278A /* InitUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitUtil.swift; sourceTree = "<group>"; };
 		B16B3DFC2117F3B3001D278A /* InterestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCell.swift; sourceTree = "<group>"; };
@@ -837,6 +845,8 @@
 				0A78138D219F0D5F006AA31F /* OneTimeMatchViewController.swift */,
 				0A78138F219FEB8B006AA31F /* PlanTripViewController.swift */,
 				0A78139221A000A0006AA31F /* TripSectionController.swift */,
+				B166603221B6557600063AFA /* OneTimeMatchSelectViewController.swift */,
+				B166603421B6558400063AFA /* OneTimeMatchFlowLayout.swift */,
 			);
 			path = newMatch;
 			sourceTree = "<group>";
@@ -1124,6 +1134,7 @@
 				0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */,
 				0A895BEA2129A10200FDF834 /* CalendarCell.swift */,
 				B16BD8BD21B10C4C0010EEE0 /* CalendarHeader.swift */,
+				B166603021B6174700063AFA /* StrokeView.swift */,
 			);
 			name = RegisterTrip;
 			path = "New Group";
@@ -1212,6 +1223,7 @@
 				B1D1CAFE212D0D55001A9801 /* DetailInterestCell.swift */,
 				B1D1CB02212D2086001A9801 /* DetailCommitView.swift */,
 				0A6EB9DE216A2A9A00117526 /* MatchEmptyView.swift */,
+				B166603621B6560100063AFA /* OneTimeMatchSelectCell.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -1450,6 +1462,7 @@
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
+				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1515,6 +1528,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1551,6 +1565,7 @@
 			files = (
 				0A7C507B219867AC00558F62 /* MyPageHeaderView.swift in Sources */,
 				B1FE036E21A64E3E00DE242A /* PurchaseViewModel.swift in Sources */,
+				B166603521B6558400063AFA /* OneTimeMatchFlowLayout.swift in Sources */,
 				0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */,
 				0A375C1C2132796D00E35ED9 /* TopTripViewModel.swift in Sources */,
 				0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */,
@@ -1631,6 +1646,7 @@
 				0A375C2F2132BCBC00E35ED9 /* ReceiveViewModel.swift in Sources */,
 				0AF2C01B20FB2D9600775EA8 /* ConfigureViewController.swift in Sources */,
 				B1A1D9A9212BCA010022D2A0 /* DetailUserInfoViewController.swift in Sources */,
+				B166603721B6560100063AFA /* OneTimeMatchSelectCell.swift in Sources */,
 				B1D1CAEB212BF7E6001A9801 /* DetailUserProfileInfoCell.swift in Sources */,
 				B1D1CB1E213F5D7B001A9801 /* TestFlowLayout.swift in Sources */,
 				B1913BBF219977A7009F9191 /* EventPageViewController.swift in Sources */,
@@ -1723,6 +1739,7 @@
 				0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */,
 				0A375C2021329B8500E35ED9 /* MatchRequestModel.swift in Sources */,
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
+				B166603121B6174700063AFA /* StrokeView.swift in Sources */,
 				0AAD74922117103000C860ED /* TripStyleViewModel.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
 				0A895BEF212EE59800FDF834 /* MatchRequestViewController.swift in Sources */,
@@ -1738,6 +1755,7 @@
 				B1D1CAF9212D0165001A9801 /* DetailTripStyleCell.swift in Sources */,
 				0A13CA5121A963710081C55F /* spinnerSectionController.temp_caseinsensitive_rename.swift in Sources */,
 				B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */,
+				B166603321B6557600063AFA /* OneTimeMatchSelectViewController.swift in Sources */,
 				B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */,
 				B1EF95652119481700F6418F /* SetProfileViewModel.swift in Sources */,
 				B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */,

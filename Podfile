@@ -59,6 +59,7 @@ pod 'IGListKit'
 pod 'NVActivityIndicatorView'
 pod 'MXParallaxHeader'
 pod 'BetterSegmentedControl'
+pod 'iCarousel'
 
 # RX
 pod 'RxSwift'

@@ -9,28 +9,33 @@
 import Eureka
 
 public class GADateCell: Cell<Date>, CellType {
+  
   var didUpdateConstraint = false
+  
   let iconImage: UIImageView = {
     let imageView = UIImageView()
     imageView.image = #imageLiteral(resourceName: "currentTimeIcon.png")
     return imageView
   }()
   
-  open let currentLabel: UILabel = {
+  public let currentLabel: UILabel = {
     let label = UILabel()
     return label
   }()
   
   public override func setup() {
     super.setup()
+    detailTextLabel?.isHidden = true 
     contentView.addSubview(iconImage)
     contentView.addSubview(currentLabel)
     height = {67}
+    
     setNeedsUpdateConstraints()
   }
   
   public override func update() {
     super.update()
+    
     selectionStyle = row.isDisabled ? .none : .default
   }
   open override func didSelect() {
@@ -59,6 +64,7 @@ public class GADateCell: Cell<Date>, CellType {
 public final class GADateTimeInlineRow<T>: GADateTimeInlineRow_, RowType, InlineRowType {
   required public init(tag: String?) {
     super.init(tag: tag)
+    
     onExpandInlineRow { cell, row, _ in
       let color = cell.currentLabel.textColor
       row.onCollapseInlineRow { cell, _, _ in
@@ -116,8 +122,6 @@ open class GADateInlineFieldRow: Row<GADateCell>, DatePickerRowProtocol, NoValue
 
   required public init(tag: String?) {
     super.init(tag: tag)
-    minimumDate = Date()
-    maximumDate = Date()
     dateFormatter = DateFormatter()
     dateFormatter?.locale = Locale.current
     displayValueFor = { [unowned self] value in

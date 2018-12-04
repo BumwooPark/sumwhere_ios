@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FFC7B735784ED2F32C199EF039609C49"
-               BlueprintName = "Realm"
+               BlueprintIdentifier = "AF838A0B37B24EEAE208B36E664527B2"
+               BlueprintName = "iCarousel"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Realm.framework">
+               BuildableName = "iCarousel.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
