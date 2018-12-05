@@ -23,11 +23,11 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
   }()
   
   func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-    return [] as [ListDiffable]
+    return [1] as [ListDiffable]
   }
   
   func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-    return TripSectionController()
+    return OneTimeSectionController()
   }
   
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -43,10 +43,13 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
   }
   
   lazy var collectionView: UICollectionView = {
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    let layout = CardCollectionViewLayout()
+    layout.itemSize = CGSize(width: 306, height: 380)
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
-    collectionView.register(TripTicketCell.self, forCellWithReuseIdentifier: String(describing: TripTicketCell.self))
     collectionView.alwaysBounceVertical = true
+    collectionView.isPagingEnabled = true
 //    let emptyView = UIImageView()
 //    emptyView.image = #imageLiteral(resourceName: "bridge")
 //    emptyView.contentMode = .scaleAspectFill

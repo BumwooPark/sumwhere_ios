@@ -41,24 +41,24 @@ extension CardCollectionViewLayout{
     
     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
     let cardIndex = indexPath.row - minVisibleIndex
+    log.info(itemSize)
     attributes.size = itemSize
     attributes.center = CGPoint(x: collectionView!.bounds.midX , y: contentCenterY + spacing * CGFloat(cardIndex))
-//    + spacing * CGFloat(cardIndex)
     attributes.zIndex = maximumVisibleItems - cardIndex
-    
     switch cardIndex{
     case 0:
       attributes.center.y -= deltaOffset
-      log.info(attributes.center.y)
+      attributes.alpha = 1 - (deltaOffset / collectionView!.bounds.height)
+      
     case 1..<maximumVisibleItems:
-//      attributes.center.x -= spacing * percentageDeltaOffset
       attributes.center.y -= spacing * percentageDeltaOffset
       if cardIndex == maximumVisibleItems - 1{
         attributes.alpha = percentageDeltaOffset
-        attributes.transform = CGAffineTransform(scaleX: percentageDeltaOffset, y: percentageDeltaOffset)
       }
-      log.info(percentageDeltaOffset)
-      
+      let indexOffset = (1.0 - CGFloat(cardIndex) * 0.1)
+      let scaleOffset = indexOffset + (percentageDeltaOffset * 0.1)
+      attributes.transform = CGAffineTransform(scaleX: scaleOffset, y: scaleOffset)
+      attributes.alpha = scaleOffset
     default:
       break
     }
@@ -76,12 +76,9 @@ extension CardCollectionViewLayout {
   
   override var collectionViewContentSize: CGSize{
     if collectionView == nil {return CGSize.zero}
-    
     let itemsCount = CGFloat(collectionView!.numberOfItems(inSection: 0))
     return CGSize(width: collectionView!.bounds.width , height: collectionView!.bounds.height * itemsCount)
-//    * itemsCount
   }
-  
   
   override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
     if collectionView == nil { return nil }
@@ -94,6 +91,7 @@ extension CardCollectionViewLayout {
     let percentageDeltaOffset = CGFloat(deltaOffset) / collectionView!.bounds.height
     
     var attributes = [UICollectionViewLayoutAttributes]()
+
     for i in minVisibleIndex ..< maxVisibleIndex {
       let attribute = computeLayoutAttributesForItem(indexPath: IndexPath(item: i, section: 0),
                                                      minVisibleIndex: minVisibleIndex,
@@ -108,9 +106,4 @@ extension CardCollectionViewLayout {
   override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
     return true
   }
-}
-
-
-extension CardCollectionViewLayout{
- 
 }

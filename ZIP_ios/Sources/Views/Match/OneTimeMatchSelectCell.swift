@@ -12,6 +12,8 @@ final class OneTimeMatchSelectCell: UICollectionViewCell {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    contentView.layer.cornerRadius = 10
+    contentView.backgroundColor = .blue
   }
   
   required init?(coder aDecoder: NSCoder) {

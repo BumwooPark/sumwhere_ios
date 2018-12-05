@@ -147,9 +147,9 @@
 		B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */; };
 		B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155F02D21894DC100E4911A /* ProxyViewController.swift */; };
 		B166603121B6174700063AFA /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603021B6174700063AFA /* StrokeView.swift */; };
-		B166603321B6557600063AFA /* OneTimeMatchSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603221B6557600063AFA /* OneTimeMatchSelectViewController.swift */; };
 		B166603521B6558400063AFA /* OneTimeMatchFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603421B6558400063AFA /* OneTimeMatchFlowLayout.swift */; };
 		B166603721B6560100063AFA /* OneTimeMatchSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603621B6560100063AFA /* OneTimeMatchSelectCell.swift */; };
+		B166603921B7666500063AFA /* OneTimeSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603821B7666500063AFA /* OneTimeSectionController.swift */; };
 		B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DEE211444C3001D278A /* NicknameRow.swift */; };
 		B16B3DF92117E782001D278A /* InitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DF82117E782001D278A /* InitUtil.swift */; };
 		B16B3DFD2117F3B3001D278A /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B3DFC2117F3B3001D278A /* InterestCell.swift */; };
@@ -408,9 +408,9 @@
 		B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter + Extension.swift"; sourceTree = "<group>"; };
 		B155F02D21894DC100E4911A /* ProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyViewController.swift; sourceTree = "<group>"; };
 		B166603021B6174700063AFA /* StrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeView.swift; sourceTree = "<group>"; };
-		B166603221B6557600063AFA /* OneTimeMatchSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeMatchSelectViewController.swift; sourceTree = "<group>"; };
 		B166603421B6558400063AFA /* OneTimeMatchFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeMatchFlowLayout.swift; sourceTree = "<group>"; };
 		B166603621B6560100063AFA /* OneTimeMatchSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeMatchSelectCell.swift; sourceTree = "<group>"; };
+		B166603821B7666500063AFA /* OneTimeSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeSectionController.swift; sourceTree = "<group>"; };
 		B16B3DEE211444C3001D278A /* NicknameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRow.swift; sourceTree = "<group>"; };
 		B16B3DF82117E782001D278A /* InitUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitUtil.swift; sourceTree = "<group>"; };
 		B16B3DFC2117F3B3001D278A /* InterestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCell.swift; sourceTree = "<group>"; };
@@ -845,7 +845,7 @@
 				0A78138D219F0D5F006AA31F /* OneTimeMatchViewController.swift */,
 				0A78138F219FEB8B006AA31F /* PlanTripViewController.swift */,
 				0A78139221A000A0006AA31F /* TripSectionController.swift */,
-				B166603221B6557600063AFA /* OneTimeMatchSelectViewController.swift */,
+				B166603821B7666500063AFA /* OneTimeSectionController.swift */,
 				B166603421B6558400063AFA /* OneTimeMatchFlowLayout.swift */,
 			);
 			path = newMatch;
@@ -1687,6 +1687,7 @@
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
 				B16BD8C521B51B3E0010EEE0 /* CreateOnetimeViewController.swift in Sources */,
 				B1913BB121990FFD009F9191 /* MyPageModel.swift in Sources */,
+				B166603921B7666500063AFA /* OneTimeSectionController.swift in Sources */,
 				B16BD8AF21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift in Sources */,
 				0A33F7E621342F04002228BF /* RandomString.swift in Sources */,
 				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
@@ -1755,7 +1756,6 @@
 				B1D1CAF9212D0165001A9801 /* DetailTripStyleCell.swift in Sources */,
 				0A13CA5121A963710081C55F /* spinnerSectionController.temp_caseinsensitive_rename.swift in Sources */,
 				B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */,
-				B166603321B6557600063AFA /* OneTimeMatchSelectViewController.swift in Sources */,
 				B1D1CB18213D0D8E001A9801 /* ChatCellNode.swift in Sources */,
 				B1EF95652119481700F6418F /* SetProfileViewModel.swift in Sources */,
 				B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */,

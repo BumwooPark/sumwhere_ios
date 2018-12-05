@@ -1,24 +1,22 @@
 //
-//  TripSectionController.swift
+//  OneTimeSectionController.swift
 //  ZIP_ios
 //
-//  Created by park bumwoo on 17/11/2018.
+//  Created by xiilab on 05/12/2018.
 //  Copyright © 2018 park bumwoo. All rights reserved.
 //
 
 import IGListKit
 
-class TripSectionController: ListSectionController {
+class OneTimeSectionController: ListSectionController {
   var item: TripSectionModel?
   
   override func sizeForItem(at index: Int) -> CGSize {
-    return CGSize(width: 327, height: 123)
+    return CGSize(width: 306, height: 380)
   }
   
   override func cellForItem(at index: Int) -> UICollectionViewCell {
-    
-    let cell = collectionContext?.dequeueReusableCell(of: TripTicketCell.self, withReuseIdentifier: String(describing: TripTicketCell.self), for: self, at: index) as! TripTicketCell
-    cell.item = item?.datas[index]
+    let cell = collectionContext?.dequeueReusableCell(of: OneTimeMatchSelectCell.self, for: self, at: index) as! OneTimeMatchSelectCell
     return cell
   }
   
@@ -28,14 +26,13 @@ class TripSectionController: ListSectionController {
   }
   
   override func numberOfItems() -> Int {
-    return self.item?.datas.count ?? 0
+    return 4
   }
   
   override init() {
     super.init()
     minimumLineSpacing = 20
   }
-  
 }
 
 
