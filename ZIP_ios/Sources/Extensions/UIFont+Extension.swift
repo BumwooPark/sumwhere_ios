@@ -91,6 +91,22 @@ extension UIFont{
   static func KoreanSWGI4R(size:CGFloat) -> UIFont{
     return UIFont(name: "KoreanSWGI4R", size: size)!
   }
+  
+  static func OTGulimL(size:CGFloat) -> UIFont{
+    return UIFont(name: "OTGulimL", size: size)!
+  }
+  
+  static func OTGulimM(size:CGFloat) -> UIFont{
+    return UIFont(name: "OTGulimM", size: size)!
+  }
+  
+  static func OTGulimB(size:CGFloat) -> UIFont{
+    return UIFont(name: "OTGulimB", size: size)!
+  }
+  
+  static func OTGulimH(size:CGFloat) -> UIFont{
+    return UIFont(name: "OTGulimH", size: size)!
+  }
 }
 
 

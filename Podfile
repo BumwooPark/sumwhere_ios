@@ -36,6 +36,7 @@ pod 'RealmSwift'
 pod 'Firebase/AdMob'
 pod 'Carte'
 pod 'CollectionKit'
+pod 'Hue'
 
 # UI
 pod 'GoogleMaps'
@@ -60,6 +61,7 @@ pod 'NVActivityIndicatorView'
 pod 'MXParallaxHeader'
 pod 'BetterSegmentedControl'
 pod 'iCarousel'
+pod 'PopupDialog'
 
 # RX
 pod 'RxSwift'

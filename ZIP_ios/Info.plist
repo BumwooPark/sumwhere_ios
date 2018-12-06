@@ -117,6 +117,10 @@
 		<string>NanumSquareRoundEB.ttf</string>
 		<string>NanumSquareRoundR.ttf</string>
 		<string>NanumSquareRoundL.ttf</string>
+		<string>OTGulimL.otf</string>
+		<string>OTGulimM.otf</string>
+		<string>OTGulimB.otf</string>
+		<string>OTGulimH.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

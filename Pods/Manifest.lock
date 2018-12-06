@@ -123,6 +123,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.0)
   - Hero (1.4.0)
   - HMSegmentedControl (1.5.5)
+  - Hue (3.0.1)
   - iCarousel (1.8.3)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -271,6 +272,7 @@ DEPENDENCIES:
   - GooglePlaces
   - Hero
   - HMSegmentedControl
+  - Hue
   - iCarousel
   - IGListKit
   - JDStatusBarNotification
@@ -347,6 +349,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Hero
     - HMSegmentedControl
+    - Hue
     - iCarousel
     - IGListKit
     - JDStatusBarNotification
@@ -428,6 +431,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   JDStatusBarNotification: 21b616e7432284fea6eb0ce9eadc37c8038a5544
@@ -474,6 +478,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 4afbf8c3e08da02e30150fd533beac5423fcdd9a
+PODFILE CHECKSUM: 1cf668b8e3d8e7dde7e070bdeef6d6e8c2bb816a
 
 COCOAPODS: 1.6.0.beta.2

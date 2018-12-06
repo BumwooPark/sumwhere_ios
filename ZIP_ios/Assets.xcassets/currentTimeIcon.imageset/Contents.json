@@ -1,18 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "currentTimeIcon.png",
       "scale" : "1x",
+      "filename" : "currentTimeIcon.png",
       "idiom" : "universal"
     },
     {
-      "filename" : "currentTimeIcon@2x.png",
       "scale" : "2x",
+      "filename" : "currentTimeIcon@2x.png",
       "idiom" : "universal"
     },
     {
-      "filename" : "currentTimeIcon@3x.png",
       "scale" : "3x",
+      "filename" : "currentTimeIcon@3x.png",
       "idiom" : "universal"
     }
   ],

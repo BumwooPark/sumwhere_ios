@@ -41,9 +41,8 @@ extension CardCollectionViewLayout{
     
     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
     let cardIndex = indexPath.row - minVisibleIndex
-    log.info(itemSize)
     attributes.size = itemSize
-    attributes.center = CGPoint(x: collectionView!.bounds.midX , y: contentCenterY + spacing * CGFloat(cardIndex))
+    attributes.center = CGPoint(x: collectionView!.bounds.midX , y: (contentCenterY - 60) + spacing * CGFloat(cardIndex))
     attributes.zIndex = maximumVisibleItems - cardIndex
     switch cardIndex{
     case 0:
@@ -58,7 +57,6 @@ extension CardCollectionViewLayout{
       let indexOffset = (1.0 - CGFloat(cardIndex) * 0.1)
       let scaleOffset = indexOffset + (percentageDeltaOffset * 0.1)
       attributes.transform = CGAffineTransform(scaleX: scaleOffset, y: scaleOffset)
-      attributes.alpha = scaleOffset
     default:
       break
     }
