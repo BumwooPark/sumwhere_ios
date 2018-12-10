@@ -140,6 +140,7 @@
 		B132A58221B7B9300050D6DE /* OTGulimL.otf in Resources */ = {isa = PBXBuildFile; fileRef = B132A58021B7B9300050D6DE /* OTGulimL.otf */; };
 		B132A58321B7B9940050D6DE /* OTGulimB.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AA21B7B8F000DCCD2B /* OTGulimB.otf */; };
 		B132A58521B7BFC80050D6DE /* OTGulimH.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AB21B7B90400DCCD2B /* OTGulimH.otf */; };
+		B132A58721BE59E30050D6DE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B132A58621BE59E30050D6DE /* ChatListCell.swift */; };
 		B14495B22191535F00B4D135 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495B12191535F00B4D135 /* PurchaseViewController.swift */; };
 		B14495B421915A9600B4D135 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14495B321915A9600B4D135 /* StoreKit.framework */; };
 		B14495B621915B1500B4D135 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495B521915B1500B4D135 /* IAPHelper.swift */; };
@@ -396,6 +397,7 @@
 		B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JVFloatTextRow.swift; sourceTree = "<group>"; };
 		B132A57F21B7B92D0050D6DE /* OTGulimM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = OTGulimM.otf; path = "../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/EB5F0611-E9F7-4C97-8D14-7E3495E5511E/210 굴림/OTGulimM.otf"; sourceTree = "<group>"; };
 		B132A58021B7B9300050D6DE /* OTGulimL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTGulimL.otf; sourceTree = "<group>"; };
+		B132A58621BE59E30050D6DE /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		B14495B12191535F00B4D135 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		B14495B321915A9600B4D135 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B14495B521915B1500B4D135 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
@@ -1183,6 +1185,7 @@
 				B1D1CB1B213E679C001A9801 /* ChatLoadingIndicatorNode.swift */,
 				B1D1CB17213D0D8E001A9801 /* ChatCellNode.swift */,
 				B1F6D8C52140B6B600E0E003 /* ChatListCellNode.swift */,
+				B132A58621BE59E30050D6DE /* ChatListCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1681,6 +1684,7 @@
 				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
 				B16BD8C521B51B3E0010EEE0 /* CreateOnetimeViewController.swift in Sources */,
 				B1913BB121990FFD009F9191 /* MyPageModel.swift in Sources */,
+				B132A58721BE59E30050D6DE /* ChatListCell.swift in Sources */,
 				B166603921B7666500063AFA /* OneTimeSectionController.swift in Sources */,
 				B16BD8AF21A7DF230010EEE0 /* PurchaseHistoryViewModel.swift in Sources */,
 				0A33F7E621342F04002228BF /* RandomString.swift in Sources */,

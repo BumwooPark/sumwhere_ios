@@ -6,58 +6,47 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-import AsyncDisplayKit
+
 import RxSwift
 import RxCocoa
+import RxDataSources
+import CocoaMQTT
 
-
-class ChatListViewController: ASViewController<ASDisplayNode>{
+class ChatListViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
   private let viewModel = ChatListViewModel()
   
-  let datas = BehaviorRelay<[ChatListSectionModel]>(value: [])
+//  let datas = BehaviorRelay<[ChatListSectionModel]>(value: [])
   
-  lazy var tableNode: ASTableNode = {
-    let node = ASTableNode()
-    node.backgroundColor = .white
-    return node
+  private let collectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 95)
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.register(ChatListCell.self, forCellWithReuseIdentifier: String(describing: ChatListCell.self))
+    collectionView.backgroundColor = .white
+    collectionView.alwaysBounceVertical = true
+    return collectionView
   }()
-  
-  init() {
-    super.init(node: ASDisplayNode())
-    self.node.automaticallyManagesSubnodes = true
-    self.node.layoutSpecBlock = {(_, constrainedSize) -> ASLayoutSpec in
-      return ASInsetLayoutSpec(insets: .zero, child: self.tableNode)
-    }
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    view = collectionView
     
-    viewModel.listData
-      .bind(to: datas)
-      .disposed(by: disposeBag)
+    Observable.just([1,2,3,4,5]).bind(to: collectionView.rx.items(cellIdentifier: String(describing: ChatListCell.self), cellType: ChatListCell.self)){ ds,idx,cell in
+    }.disposed(by: disposeBag)
     
-    
-    
-//    tableNode.rx
-//      .modelSelected(ChatListModel.self)
-//      .subscribeNext(weak: self) { (weakSelf) -> (ChatListModel) -> Void in
-//        return { item in
-//          let mqtt = MQTTUtil.newBuild(with: "client")
-//            .keepAlive(time: 60)
-//            .newAccount(username: "qkrqjadn", password: "1q2w3e4r")
-//            .newURL(host: "210.100.238.118", port: 18883)
-//            .build()
-//          mqtt.connect()
-//          weakSelf.navigationController?.pushViewController(ChatRoomViewController(mqtt,91, item.chatRoom.id), animated: true)
-//        }
-//    }.disposed(by: disposeBag)
+    collectionView.rx.itemSelected
+      .subscribeNext(weak: self) { (weakSelf) -> (IndexPath) -> Void in
+        return {idx in
+          let mqtt = MQTTUtil
+            .newBuild(with: "data")
+            .keepAlive(time: 20)
+            .newAccount(username: "qkrqjadn", password: "1q2w3e4r")
+            .newURL(host: "http://sample.com", port: 8080)
+            .build()
+          weakSelf.navigationController?.pushViewController(ChatRoomViewController(mqtt, 86, 1), animated: true)
+        }
+      }.disposed(by: disposeBag)
   }
 }
