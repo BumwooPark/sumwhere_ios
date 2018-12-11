@@ -131,6 +131,7 @@ PODS:
     - IGListKit/Diffing
   - IGListKit/Diffing (3.4.0)
   - JDStatusBarNotification (1.6.0)
+  - JKVValue (1.3.3)
   - JTAppleCalendar (7.1.6)
   - JVFloatLabeledTextField (1.2.1)
   - KakaoOpenSDK (1.10.0):
@@ -152,6 +153,9 @@ PODS:
   - Kingfisher (4.10.1)
   - LGButton (1.0.5)
   - LTMorphingLabel (0.5.8)
+  - MessageInputBar/Core (0.4.1)
+  - MessageKit (2.0.0):
+    - MessageInputBar/Core
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
@@ -201,6 +205,9 @@ PODS:
   - RealmSwift (3.11.1):
     - Realm (= 3.11.1)
   - Result (3.2.4)
+  - RMQClient (0.9.0):
+    - CocoaAsyncSocket (~> 7.4)
+    - JKVValue
   - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
   - RxCoreLocation (1.3.1):
@@ -282,6 +289,7 @@ DEPENDENCIES:
   - Kingfisher
   - LGButton
   - LTMorphingLabel
+  - MessageKit
   - Moya/RxSwift
   - MQTTClient
   - MXParallaxHeader
@@ -291,6 +299,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - RealmSwift
   - Result
+  - RMQClient
   - RxCocoa
   - RxCoreLocation
   - RxDataSources
@@ -353,12 +362,15 @@ SPEC REPOS:
     - iCarousel
     - IGListKit
     - JDStatusBarNotification
+    - JKVValue
     - JTAppleCalendar
     - JVFloatLabeledTextField
     - KakaoOpenSDK
     - Kingfisher
     - LGButton
     - LTMorphingLabel
+    - MessageInputBar
+    - MessageKit
     - Moya
     - MQTTClient
     - MXParallaxHeader
@@ -374,6 +386,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - Result
+    - RMQClient
     - RxCocoa
     - RxCoreLocation
     - RxDataSources
@@ -435,12 +448,15 @@ SPEC CHECKSUMS:
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   JDStatusBarNotification: 21b616e7432284fea6eb0ce9eadc37c8038a5544
+  JKVValue: d7941071b1cf9ba35c194fd40bcf4c4d9b5462e9
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   KakaoOpenSDK: efae64765210068818e6de3f32126a877a532583
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
   LTMorphingLabel: 8adaba524476098ed307626d0bc42b7f8fadb7e0
+  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
+  MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   MQTTClient: 902c7bcac1501595f3d0b15178c7205b40331fb0
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
@@ -456,6 +472,7 @@ SPEC CHECKSUMS:
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
   RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RMQClient: 9bbda86703fd475761101ee5fda037eb2a12ec4e
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxCoreLocation: e8d0b77260e3c82186f897fe2dee6547af9fbc5d
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
@@ -478,6 +495,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 1cf668b8e3d8e7dde7e070bdeef6d6e8c2bb816a
+PODFILE CHECKSUM: f34f0981d8536eac661518b8e2933c051542a30d
 
 COCOAPODS: 1.6.0.beta.2

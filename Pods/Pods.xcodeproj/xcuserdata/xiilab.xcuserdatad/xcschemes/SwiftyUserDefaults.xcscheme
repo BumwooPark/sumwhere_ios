@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F54C4DBA30EB09E812C8CB00DCF90F08"
+               BlueprintIdentifier = "4DB0B253E40310ACD6ADAEDA3FF440C9"
                BlueprintName = "SwiftyUserDefaults"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "SwiftyUserDefaults.framework">

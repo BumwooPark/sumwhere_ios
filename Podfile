@@ -37,7 +37,6 @@ pod 'Firebase/AdMob'
 pod 'Carte'
 pod 'CollectionKit'
 pod 'Hue'
-
 # UI
 pod 'GoogleMaps'
 pod 'GooglePlaces'
@@ -62,6 +61,8 @@ pod 'MXParallaxHeader'
 pod 'BetterSegmentedControl'
 pod 'iCarousel'
 pod 'PopupDialog'
+pod 'MessageKit'
+pod 'RMQClient'
 
 # RX
 pod 'RxSwift'

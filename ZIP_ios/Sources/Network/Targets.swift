@@ -47,7 +47,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.2:8080")!
+    return URL(string: "http://192.168.1.4:8080")!
     #else
     return URL(string: "https://galmal.asuscomm.com")!
     #endif

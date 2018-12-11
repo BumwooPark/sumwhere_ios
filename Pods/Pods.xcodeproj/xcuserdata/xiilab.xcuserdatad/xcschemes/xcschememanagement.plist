@@ -189,6 +189,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JKVValue.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JTAppleCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -225,6 +230,21 @@
 			<false/>
 		</dict>
 		<key>MXParallaxHeader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MessageInputBar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MessageKit-MessageKitAssets.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MessageKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -270,6 +290,11 @@
 			<false/>
 		</dict>
 		<key>PySwiftyRegex.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RMQClient.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

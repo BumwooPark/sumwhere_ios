@@ -234,6 +234,7 @@
 		B1D4E52020FDCBB200524CE2 /* godoMaum.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1D4E51B20FDCA2C00524CE2 /* godoMaum.ttf */; };
 		B1D4E52120FDCBB200524CE2 /* BMHANNA.otf in Resources */ = {isa = PBXBuildFile; fileRef = B1D4E51A20FDCA2300524CE2 /* BMHANNA.otf */; };
 		B1D4E52220FDCBB200524CE2 /* BMJUA.otf in Resources */ = {isa = PBXBuildFile; fileRef = B1D4E51920FDCA1F00524CE2 /* BMJUA.otf */; };
+		B1D5313A21BF9E6E00CEF7C9 /* ChatRoomViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5313921BF9E6E00CEF7C9 /* ChatRoomViewController2.swift */; };
 		B1D6F9FE214B4418004C9E43 /* MQTTUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D6F9FD214B4418004C9E43 /* MQTTUtil.swift */; };
 		B1E014672179C9E100348FB6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E014662179C9E100348FB6 /* MainViewModel.swift */; };
 		B1EF955D21193EAA00F6418F /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF955C21193EAA00F6418F /* CharacterCell.swift */; };
@@ -494,6 +495,7 @@
 		B1D4E51B20FDCA2C00524CE2 /* godoMaum.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoMaum.ttf; sourceTree = "<group>"; };
 		B1D4E51C20FDCA3800524CE2 /* godoRounded L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "godoRounded L.ttf"; sourceTree = "<group>"; };
 		B1D4E51D20FDCA3800524CE2 /* godoRounded R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "godoRounded R.ttf"; sourceTree = "<group>"; };
+		B1D5313921BF9E6E00CEF7C9 /* ChatRoomViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController2.swift; sourceTree = "<group>"; };
 		B1D6F9FD214B4418004C9E43 /* MQTTUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTUtil.swift; sourceTree = "<group>"; };
 		B1E014662179C9E100348FB6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B1EF955C21193EAA00F6418F /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
@@ -943,6 +945,7 @@
 				B1D1CB26213FA901001A9801 /* ChatRoomViewController.swift */,
 				B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */,
 				B100742B214F859F0052E4DF /* HamMenu.swift */,
+				B1D5313921BF9E6E00CEF7C9 /* ChatRoomViewController2.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1422,6 +1425,7 @@
 				"${BUILT_PRODUCTS_DIR}/Hue/Hue.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JDStatusBarNotification/JDStatusBarNotification.framework",
+				"${BUILT_PRODUCTS_DIR}/JKVValue/JKVValue.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -1429,6 +1433,8 @@
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
 				"${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
@@ -1437,6 +1443,7 @@
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/PySwiftyRegex/PySwiftyRegex.framework",
+				"${BUILT_PRODUCTS_DIR}/RMQClient/RMQClient.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -1489,6 +1496,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hue.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JDStatusBarNotification.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKVValue.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -1496,6 +1504,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MXParallaxHeader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
@@ -1504,6 +1514,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PySwiftyRegex.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMQClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -1676,6 +1687,7 @@
 				0AD3BC1120491F2C0051D7E3 /* CountryCell.swift in Sources */,
 				0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */,
 				0A375C282132B8CC00E35ED9 /* MatchRequestHistoryModel.swift in Sources */,
+				B1D5313A21BF9E6E00CEF7C9 /* ChatRoomViewController2.swift in Sources */,
 				0A13CA4C21A6F0180081C55F /* ProfileViewController.swift in Sources */,
 				B1F6D8C42140B5C600E0E003 /* ChatListViewController.swift in Sources */,
 				B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */,
