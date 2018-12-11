@@ -88,6 +88,7 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
+  - FLAnimatedImage (1.0.12)
   - Google-Mobile-Ads-SDK (7.35.2)
   - GoogleAppMeasurement (5.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
@@ -275,6 +276,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Messaging
+  - FLAnimatedImage
   - GoogleMaps
   - GooglePlaces
   - Hero
@@ -350,6 +352,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FLAnimatedImage
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleMaps
@@ -436,6 +439,7 @@ SPEC CHECKSUMS:
   FirebaseCore: d16552f06821489ce1affe2e5e3e5593402ddfe3
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Google-Mobile-Ads-SDK: 8f07cc8eac6649fe648cabc97d67c8d20173624a
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
@@ -495,6 +499,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: f34f0981d8536eac661518b8e2933c051542a30d
+PODFILE CHECKSUM: 5d5b67a1712e098249778d2571cc8ee00c18ae29
 
 COCOAPODS: 1.6.0.beta.2

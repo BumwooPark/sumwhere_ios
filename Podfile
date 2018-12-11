@@ -63,6 +63,7 @@ pod 'iCarousel'
 pod 'PopupDialog'
 pod 'MessageKit'
 pod 'RMQClient'
+pod 'FLAnimatedImage'
 
 # RX
 pod 'RxSwift'
