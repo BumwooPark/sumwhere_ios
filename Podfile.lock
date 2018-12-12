@@ -28,10 +28,6 @@ PODS:
   - CocoaAsyncSocket (7.6.3)
   - CocoaMQTT (1.1.3):
     - CocoaAsyncSocket (~> 7.6.3)
-  - CollectionKit (2.2.0):
-    - CollectionKit/Core (= 2.2.0)
-  - CollectionKit/Core (2.2.0)
-  - Cosmos (17.0.0)
   - Crashlytics (3.11.1):
     - Fabric (~> 1.8.1)
   - Differentiator (3.1.0)
@@ -124,7 +120,6 @@ PODS:
   - GTMSessionFetcher/Core (1.2.0)
   - Hero (1.4.0)
   - HMSegmentedControl (1.5.5)
-  - Hue (3.0.1)
   - iCarousel (1.8.3)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -163,14 +158,6 @@ PODS:
   - Moya/RxSwift (11.0.2):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - MQTTClient (0.15.2):
-    - MQTTClient/Core (= 0.15.2)
-  - MQTTClient/Core (0.15.2):
-    - MQTTClient/Manager
-    - MQTTClient/Min
-  - MQTTClient/Manager (0.15.2):
-    - MQTTClient/Min
-  - MQTTClient/Min (0.15.2)
   - MXParallaxHeader (0.6.1)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -180,21 +167,6 @@ PODS:
   - NVActivityIndicatorView (4.4.0):
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
-  - PINCache (3.0.1-beta.6):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
-    - PINCache/Core (= 3.0.1-beta.6)
-  - PINCache/Arc-exception-safe (3.0.1-beta.6):
-    - PINCache/Core
-  - PINCache/Core (3.0.1-beta.6):
-    - PINOperation (~> 1.1.0)
-  - PINOperation (1.1.1)
-  - PINRemoteImage/Core (3.0.0-beta.13):
-    - PINOperation
-  - PINRemoteImage/iOS (3.0.0-beta.13):
-    - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.13):
-    - PINCache (= 3.0.1-beta.6)
-    - PINRemoteImage/Core
   - PopupDialog (0.9.1):
     - DynamicBlurView (~> 3.0.1)
   - Protobuf (3.6.1)
@@ -238,7 +210,6 @@ PODS:
     - RxSwiftExt/Core (= 3.3.0)
   - RxSwiftExt/Core (3.3.0):
     - RxSwift (~> 4.0)
-  - SkeletonView (1.4.1)
   - SkyFloatingLabelTextField (3.6.0)
   - SnapKit (4.2.0)
   - SwiftDate (5.0.13)
@@ -247,13 +218,6 @@ PODS:
   - SwiftyJSON (4.2.0)
   - SwiftyUserDefaults (3.0.1)
   - TagListView (1.3.2)
-  - Texture (2.7):
-    - Texture/PINRemoteImage (= 2.7)
-  - Texture/Core (2.7)
-  - Texture/PINRemoteImage (2.7):
-    - PINRemoteImage/iOS (= 3.0.0-beta.13)
-    - PINRemoteImage/PINCache
-    - Texture/Core
   - TLPhotoPicker (1.7.7)
   - TTTAttributedLabel (2.0.0)
 
@@ -263,8 +227,6 @@ DEPENDENCIES:
   - CHIPageControl
   - CHIPageControl/Aleppo
   - CocoaMQTT
-  - CollectionKit
-  - Cosmos
   - Crashlytics
   - EmptyDataSet-Swift
   - Eureka
@@ -281,7 +243,6 @@ DEPENDENCIES:
   - GooglePlaces
   - Hero
   - HMSegmentedControl
-  - Hue
   - iCarousel
   - IGListKit
   - JDStatusBarNotification
@@ -293,14 +254,12 @@ DEPENDENCIES:
   - LTMorphingLabel
   - MessageKit
   - Moya/RxSwift
-  - MQTTClient
   - MXParallaxHeader
   - NVActivityIndicatorView
   - PopupDialog
   - PySwiftyRegex
   - ReachabilitySwift
   - RealmSwift
-  - Result
   - RMQClient
   - RxCocoa
   - RxCoreLocation
@@ -311,7 +270,6 @@ DEPENDENCIES:
   - RxRealm
   - RxSwift
   - RxSwiftExt
-  - SkeletonView
   - SkyFloatingLabelTextField
   - SnapKit
   - SwiftDate
@@ -320,7 +278,6 @@ DEPENDENCIES:
   - SwiftyJSON
   - SwiftyUserDefaults
   - TagListView
-  - Texture
   - TLPhotoPicker
   - TTTAttributedLabel
 
@@ -333,8 +290,6 @@ SPEC REPOS:
     - CHIPageControl
     - CocoaAsyncSocket
     - CocoaMQTT
-    - CollectionKit
-    - Cosmos
     - Crashlytics
     - Differentiator
     - DynamicBlurView
@@ -361,7 +316,6 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Hero
     - HMSegmentedControl
-    - Hue
     - iCarousel
     - IGListKit
     - JDStatusBarNotification
@@ -375,13 +329,9 @@ SPEC REPOS:
     - MessageInputBar
     - MessageKit
     - Moya
-    - MQTTClient
     - MXParallaxHeader
     - nanopb
     - NVActivityIndicatorView
-    - PINCache
-    - PINOperation
-    - PINRemoteImage
     - PopupDialog
     - Protobuf
     - PySwiftyRegex
@@ -399,7 +349,6 @@ SPEC REPOS:
     - RxRealm
     - RxSwift
     - RxSwiftExt
-    - SkeletonView
     - SkyFloatingLabelTextField
     - SnapKit
     - SwiftDate
@@ -408,7 +357,6 @@ SPEC REPOS:
     - SwiftyJSON
     - SwiftyUserDefaults
     - TagListView
-    - Texture
     - TLPhotoPicker
     - TTTAttributedLabel
 
@@ -420,8 +368,6 @@ SPEC CHECKSUMS:
   CHIPageControl: bbe1ddd0c688c02ec65b7f7e7d34551a3d16f37c
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaMQTT: b506d38ad3bbe1c55a4f8ee8c9fd02c35da1a7d8
-  CollectionKit: 5caa5341860d4c9b748ebfeaab97530b2d02c7c0
-  Cosmos: 309e489f21ffc91a1eeecfebef7f817cd2fcfba6
   Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
@@ -448,7 +394,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
-  Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   JDStatusBarNotification: 21b616e7432284fea6eb0ce9eadc37c8038a5544
@@ -462,13 +407,9 @@ SPEC CHECKSUMS:
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   Moya: a725035953bc1c0eb1be505ab903984501d82440
-  MQTTClient: 902c7bcac1501595f3d0b15178c7205b40331fb0
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
-  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
-  PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
-  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   PopupDialog: 03985b669c29802661c187513bf827340db1ae4d
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
@@ -486,7 +427,6 @@ SPEC CHECKSUMS:
   RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
-  SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
@@ -495,10 +435,9 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   TagListView: 0c7e9c26b9aff858224ee6b155f5fcacd9e27c83
-  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 5d5b67a1712e098249778d2571cc8ee00c18ae29
+PODFILE CHECKSUM: 576fab5beec0a45e295e2ea8515202048d30e8f8
 
 COCOAPODS: 1.6.0.beta.2

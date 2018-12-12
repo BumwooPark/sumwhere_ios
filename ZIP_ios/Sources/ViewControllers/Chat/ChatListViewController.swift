@@ -10,7 +10,7 @@
 import RxSwift
 import RxCocoa
 import RxDataSources
-import CocoaMQTT
+
 
 class ChatListViewController: UIViewController{
   
@@ -39,8 +39,7 @@ class ChatListViewController: UIViewController{
     collectionView.rx.itemSelected
       .subscribeNext(weak: self) { (weakSelf) -> (IndexPath) -> Void in
         return {idx in
-        
-          weakSelf.navigationController?.pushViewController(ChatRoomViewController2(), animated: true)
+          weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: 1, userID: 2), animated: true)
         }
       }.disposed(by: disposeBag)
   }

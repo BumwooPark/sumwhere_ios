@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import IGListKit
-import SkeletonView
 
 enum RequestType{
   case Receive
