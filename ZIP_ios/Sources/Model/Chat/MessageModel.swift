@@ -8,6 +8,7 @@
 
 import Foundation
 import MessageKit
+import RealmSwift
 
 struct MessageModel: Codable{
   let id: String
@@ -35,7 +36,7 @@ struct MessageModel: Codable{
     self.value = value
   }
   
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     id = try container.decode(String.self, forKey: .id)
     displayName = try container.decode(String.self, forKey: .displayName)
@@ -59,6 +60,17 @@ struct MessageModel: Codable{
     }
     return MessageItem(sender: Sender(id: id, displayName: displayName), messageId: messageId, sentDate: sentDate, kind: kindValue)
   }
+  
+  func ToRealmModel() -> MessageRealm {
+    let model = MessageRealm()
+    model.displayName = self.displayName
+    model.id = self.id
+    model.messageId = self.messageId
+    model.kind = self.kind
+    model.sentDate = self.sentDate
+    model.value = self.value
+    return model
+  }
 }
 
 struct MessageItem: MessageType{
@@ -66,4 +78,28 @@ struct MessageItem: MessageType{
   var messageId: String
   var sentDate: Date
   var kind: MessageKind
+}
+
+class MessageRealm: Object{
+  @objc dynamic var id: String = ""
+  @objc dynamic var displayName: String = ""
+  @objc dynamic var messageId: String = ""
+  @objc dynamic var sentDate: Date = Date()
+  @objc dynamic var kind: String = ""
+  @objc dynamic var value: Data = Data()
+  
+  func ToMessageItem() -> MessageType{
+    var kindValue: MessageKind!
+    switch kind{
+    case "text":
+      kindValue = MessageKind.text(String(decoding: value, as: UTF8.self))
+    case "attributedText":
+      kindValue = MessageKind.attributedText(NSAttributedString(string: String(decoding: value, as: UTF8.self)))
+    case "emoji":
+      kindValue = MessageKind.emoji(String(decoding: value, as: UTF8.self))
+    default:
+      kindValue = MessageKind.text(String(decoding: value, as: UTF8.self))
+    }
+    return MessageItem(sender: Sender(id: id, displayName: displayName), messageId: messageId, sentDate: sentDate, kind: kindValue)
+  }
 }
