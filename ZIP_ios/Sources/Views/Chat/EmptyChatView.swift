@@ -46,7 +46,8 @@ class EmptyChatView: UIView {
     if !didUpdateConstraint{
       
       imageView.snp.makeConstraints { (make) in
-        make.center.equalToSuperview().inset(-50)
+        make.centerX.equalToSuperview()
+        make.centerY.equalToSuperview().inset(-60)
       }
       
       stateLabel.snp.makeConstraints { (make) in

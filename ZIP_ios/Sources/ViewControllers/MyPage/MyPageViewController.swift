@@ -10,7 +10,6 @@ import UIKit
 import IGListKit
 import RxSwift
 import RxCocoa
-import Carte
 
 enum SettingType {
   case ViewController(viewController: UIViewController)
@@ -29,9 +28,7 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
       PageCellDataModel(name: "문의하기", type: .ViewController(viewController: UIViewController())),
       PageCellDataModel(name: "접근권한", type: .openURL(string: "App-prefs:com.bum.galmal")),
       PageCellDataModel(name: "문의하기", type: .ViewController(viewController: UIViewController())),
-      PageCellDataModel(name: "공지 & 이벤트", type: .ViewController(viewController: EventInfoViewController())),
-      PageCellDataModel(name: "오픈라이센스", type: .ViewController(viewController: CarteViewController())),
-      PageCellDataModel(name: "버전정보", type: .ViewController(viewController: VersionViewController()))])]
+      PageCellDataModel(name: "공지 & 이벤트", type: .ViewController(viewController: EventInfoViewController()))])]
   
   lazy var adapter: ListAdapter = {
     let adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)

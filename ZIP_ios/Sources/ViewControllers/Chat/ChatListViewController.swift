@@ -32,9 +32,9 @@ class ChatListViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     view = collectionView
-  
-    Observable.just([1,2,3,4,5]).bind(to: collectionView.rx.items(cellIdentifier: String(describing: ChatListCell.self), cellType: ChatListCell.self)){ ds,idx,cell in
-    }.disposed(by: disposeBag)
+    
+//    Observable.just([1,2,3,4,5]).bind(to: collectionView.rx.items(cellIdentifier: String(describing: ChatListCell.self), cellType: ChatListCell.self)){ ds,idx,cell in
+//    }.disposed(by: disposeBag)
     
     collectionView.rx.itemSelected
       .subscribeNext(weak: self) { (weakSelf) -> (IndexPath) -> Void in
@@ -42,5 +42,10 @@ class ChatListViewController: UIViewController{
           weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: 1, userID: 1), animated: true)
         }
       }.disposed(by: disposeBag)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    collectionView.backgroundView = EmptyChatView(frame: CGRect(origin: .zero, size: collectionView.bounds.size))
   }
 }

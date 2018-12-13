@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>FooterText</key>
+			<string>This package, the RabbitMQ Objective-C client library, is
+dual-licensed under the Mozilla Public License 1.1 ("MPL") and the
+Apache License version 2 ("ASL"). For the MPL, please see
+LICENSE-MPL-RabbitMQ.  For the ASL, please see LICENSE-APACHE2.
+
+The RabbitMQ Objective-C client library includes third-party software under the
+ASL. For this license, please see LICENSE-APACHE2. For attribution of copyright
+and other details of provenance, please refer to the source code.
+
+If you have any questions regarding licensing, please contact us at
+info@rabbitmq.com.
+</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+	</array>
+</dict>
+</plist>

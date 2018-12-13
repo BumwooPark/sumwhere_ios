@@ -35,6 +35,8 @@
 		0A19A9D42159249000977AF6 /* TripStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19A9D32159249000977AF6 /* TripStyleCell.swift */; };
 		0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11DA1FF1181D004B42B6 /* LoginView.swift */; };
 		0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */; };
+		0A1D1D4421C298C60028EB48 /* OTGulimM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4321C298C60028EB48 /* OTGulimM.otf */; };
+		0A1D1D4721C2A0BB0028EB48 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4621C2A0BB0028EB48 /* Settings.bundle */; };
 		0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */; };
 		0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1F91FC057A8005DCE32 /* AuthManager.swift */; };
 		0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1FB1FC05ACA005DCE32 /* ObservableType+Extension.swift */; };
@@ -136,7 +138,6 @@
 		B10559992110223300AC769C /* MatchTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10559982110223300AC769C /* MatchTypeModel.swift */; };
 		B12001C2211300E800DFD676 /* launchlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B12001C1211300E800DFD676 /* launchlogo.png */; };
 		B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */; };
-		B132A58121B7B9300050D6DE /* OTGulimM.otf in Resources */ = {isa = PBXBuildFile; fileRef = B132A57F21B7B92D0050D6DE /* OTGulimM.otf */; };
 		B132A58221B7B9300050D6DE /* OTGulimL.otf in Resources */ = {isa = PBXBuildFile; fileRef = B132A58021B7B9300050D6DE /* OTGulimL.otf */; };
 		B132A58321B7B9940050D6DE /* OTGulimB.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AA21B7B8F000DCCD2B /* OTGulimB.otf */; };
 		B132A58521B7BFC80050D6DE /* OTGulimH.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AB21B7B90400DCCD2B /* OTGulimH.otf */; };
@@ -278,6 +279,8 @@
 		0A19A9D32159249000977AF6 /* TripStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleCell.swift; sourceTree = "<group>"; };
 		0A1B11DA1FF1181D004B42B6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		0A1D1D4321C298C60028EB48 /* OTGulimM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTGulimM.otf; sourceTree = "<group>"; };
+		0A1D1D4621C2A0BB0028EB48 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		0A23C1F91FC057A8005DCE32 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		0A23C1FB1FC05ACA005DCE32 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
@@ -344,8 +347,6 @@
 		0A78139621A13B97006AA31F /* ReceiveHistorySectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveHistorySectionController.swift; sourceTree = "<group>"; };
 		0A78139821A13FE3006AA31F /* PageCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCollectionLayout.swift; sourceTree = "<group>"; };
 		0A78139C21A14D0C006AA31F /* RequestProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProfileCell.swift; sourceTree = "<group>"; };
-		0A78139E21A2F4EC006AA31F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		0A7813A221A2FA3C006AA31F /* PHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHeaderView.swift; sourceTree = "<group>"; };
 		0A7C5072219862F600558F62 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		0A7C50782198679D00558F62 /* MyPageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageSectionController.swift; sourceTree = "<group>"; };
 		0A7C507A219867AC00558F62 /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
@@ -389,7 +390,6 @@
 		B10559982110223300AC769C /* MatchTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeModel.swift; sourceTree = "<group>"; };
 		B12001C1211300E800DFD676 /* launchlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchlogo.png; sourceTree = "<group>"; };
 		B12001C32113E40C00DFD676 /* JVFloatTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JVFloatTextRow.swift; sourceTree = "<group>"; };
-		B132A57F21B7B92D0050D6DE /* OTGulimM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = OTGulimM.otf; path = "../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/EB5F0611-E9F7-4C97-8D14-7E3495E5511E/210 굴림/OTGulimM.otf"; sourceTree = "<group>"; };
 		B132A58021B7B9300050D6DE /* OTGulimL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTGulimL.otf; sourceTree = "<group>"; };
 		B132A58621BE59E30050D6DE /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		B14495B12191535F00B4D135 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
@@ -409,7 +409,6 @@
 		B16B3DFF2117F445001D278A /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
 		B16B3E022117F46B001D278A /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 		B16BD221211162AF0045FAA6 /* MyTripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripCell.swift; sourceTree = "<group>"; };
-		B16BD89C21A6A5A90010EEE0 /* AdKeyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdKeyModel.swift; sourceTree = "<group>"; };
 		B16BD89E21A78D480010EEE0 /* RewardPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardPurchase.swift; sourceTree = "<group>"; };
 		B16BD8A021A790970010EEE0 /* PurchaseRewardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseRewardCell.swift; sourceTree = "<group>"; };
 		B16BD8A221A79F460010EEE0 /* AdMobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobViewController.swift; sourceTree = "<group>"; };
@@ -542,7 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				B132A58021B7B9300050D6DE /* OTGulimL.otf */,
-				B132A57F21B7B92D0050D6DE /* OTGulimM.otf */,
+				0A1D1D4321C298C60028EB48 /* OTGulimM.otf */,
 				B179B8AA21B7B8F000DCCD2B /* OTGulimB.otf */,
 				B179B8AB21B7B90400DCCD2B /* OTGulimH.otf */,
 				B16BD8B121AD13450010EEE0 /* KoreanSWGI1.otf */,
@@ -565,16 +564,6 @@
 				0A0FDE2420398DCF0046E76F /* NotoSans-Regular.otf */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		0A13CA4421A6EF270081C55F /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				0A7813A221A2FA3C006AA31F /* PHeaderView.swift */,
-				0A78139E21A2F4EC006AA31F /* ProfileViewController.swift */,
-				B16BD89C21A6A5A90010EEE0 /* AdKeyModel.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		0A13CA4821A6EFD80081C55F /* profile */ = {
@@ -664,7 +653,6 @@
 				0A7123681FACC01200512EB7 /* Products */,
 				4C0AC53CC661F82D4132D91A /* Pods */,
 				6204F1D1D8A1920CDD960A7B /* Frameworks */,
-				0A13CA4421A6EF270081C55F /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -679,6 +667,7 @@
 		0A7123691FACC01200512EB7 /* ZIP_ios */ = {
 			isa = PBXGroup;
 			children = (
+				0A1D1D4621C2A0BB0028EB48 /* Settings.bundle */,
 				0A0FDE2120398DA70046E76F /* Resources */,
 				0AFC96D21FB7281F003C6F8E /* ZIP_ios.entitlements */,
 				0A71238C1FACC15600512EB7 /* Sources */,
@@ -1315,7 +1304,6 @@
 				B1D4E52220FDCBB200524CE2 /* BMJUA.otf in Resources */,
 				B1D1CAFB212D024C001A9801 /* DetailTripStyleCell.xib in Resources */,
 				0A71236D1FACC01200512EB7 /* art.scnassets in Resources */,
-				B132A58121B7B9300050D6DE /* OTGulimM.otf in Resources */,
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
 				0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */,
 				B1FE037321A6940600DE242A /* NanumSquareRoundR.ttf in Resources */,
@@ -1330,6 +1318,8 @@
 				0A6EB9DD2169E1A000117526 /* MainFooterView.xib in Resources */,
 				B16BD8B921AD13510010EEE0 /* KoreanSWGI4.otf in Resources */,
 				B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */,
+				0A1D1D4721C2A0BB0028EB48 /* Settings.bundle in Resources */,
+				0A1D1D4421C298C60028EB48 /* OTGulimM.otf in Resources */,
 				0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */,
 				B16BD8B821AD13510010EEE0 /* KoreanSWGI3.otf in Resources */,
 				0A0FDE2820398E5A0046E76F /* NotoSans-Medium.otf in Resources */,
@@ -1353,7 +1343,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 37cb50ad48becdce2bebe2a66c6f89db3d59f61a 0ccb35dc306dd1b025feef35beb029054c8c8abc79b6bb22495bc2da6636ee59";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 37cb50ad48becdce2bebe2a66c6f89db3d59f61a 0ccb35dc306dd1b025feef35beb029054c8c8abc79b6bb22495bc2da6636ee59\n";
 		};
 		308F9878E1386914F0965357 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1384,7 +1374,6 @@
 				"${BUILT_PRODUCTS_DIR}/BetterSegmentedControl/BetterSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
-				"${BUILT_PRODUCTS_DIR}/Carte/Carte.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
@@ -1447,7 +1436,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BetterSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Carte.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
