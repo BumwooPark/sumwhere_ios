@@ -14,11 +14,13 @@
 - MVVM
 
 2. Server
-- Python
-- Django
-- Django-Rest-FrameWork
-- Respberrypi
-- Push & Chat Server : go websocket , golang Server
+- Echo 
+- Redis
+- Rabbitmq
+- Kubernetes
+- Mysql
+- Nginx
+- MetalLB (LoadBalancer)
 
 3. Android 
 - 추후 
