@@ -35,6 +35,7 @@ class ChatListViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     view = collectionView
+
     
     viewModel.datas
       .asDriver()

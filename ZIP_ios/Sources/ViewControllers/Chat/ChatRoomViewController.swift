@@ -43,26 +43,37 @@ final class ChatRoomViewController: MessagesViewController{
     initSetting()
     configureMessageCollectionView()
     
-    viewModel.messagesSubject
-      .observeOn(MainScheduler.instance)
+    viewModel
+      .messagesSubject
+      .observeOn(MainScheduler.asyncInstance)
       .skip(1)
       .subscribeNext(weak: self) { (weakSelf) -> ([MessageType]) -> Void in
         return {models in
-          weakSelf.messagesCollectionView.performBatchUpdates({
-            weakSelf.messagesCollectionView.insertSections([models.count - 1])
-            if models.count >= 2 {
-              weakSelf.messagesCollectionView.reloadSections([models.count - 2])
-            }
-          }, completion: { [weak self] _ in
-            if self?.isLastSectionVisible() == true {
-              self?.messagesCollectionView.scrollToBottom(animated: true)
-            }
-          })
+          
+          log.info("model count:\(models.count)")
+          log.info("collectionView sectionCount:\(weakSelf.messagesCollectionView.numberOfSections)")
+          log.info(weakSelf.refreshControl.isRefreshing)
+          if !weakSelf.refreshControl.isRefreshing {
+            weakSelf.messagesCollectionView.performBatchUpdates({
+              weakSelf.messagesCollectionView.insertSections([models.count - 1])
+              if models.count >= 2 {
+                weakSelf.messagesCollectionView.reloadSections([models.count - 2])
+              }
+            }, completion: { [weak self] _ in
+              if self?.isLastSectionVisible() == true {
+                self?.messagesCollectionView.scrollToBottom(animated: true)
+              }
+            })
+          }else {
+            weakSelf.messagesCollectionView.reloadDataAndKeepOffset()
+            weakSelf.refreshControl.endRefreshing()
+          }
         }
-    }.disposed(by: disposeBag)
+      }.disposed(by: disposeBag)
     
-    refreshControl.rx.controlEvent(UIControlEvents.valueChanged)
-      .map{[weak self] in self?.refreshControl }
+    refreshControl
+      .rx
+      .controlEvent(UIControlEvents.valueChanged)
       .bind(to: viewModel.loadMoreAction)
       .disposed(by: disposeBag)
   }

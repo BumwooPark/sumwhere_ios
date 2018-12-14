@@ -30,7 +30,7 @@ class ChatViewModel: NSObject{
     }
   }
   private lazy var conn: RMQConnection = {
-    let connection = RMQConnection(uri: "amqp://qkrqjadn:1q2w3e4r@192.168.1.11:5672", delegate: self)
+    let connection = RMQConnection(uri: "amqp://qkrqjadn:1q2w3e4r@sumwhere.ddns.net:5672", delegate: self)
     return connection
   }()
   
@@ -49,7 +49,7 @@ class ChatViewModel: NSObject{
   public let subscribeMessage = PublishRelay<RMQMessage>()
   public let publishMessage = PublishRelay<(text:String, displayName: String)>()
   public let messagesSubject = BehaviorRelay<[MessageType]>(value: [])
-  public let loadMoreAction = PublishRelay<UIRefreshControl?>()
+  public let loadMoreAction = PublishRelay<Void>()
 
 
   init(roomID: Int64, userID: Int64, parentViewController: UIViewController){
@@ -64,6 +64,7 @@ class ChatViewModel: NSObject{
     let manualAck = RMQBasicConsumeOptions()
     queue.subscribe(manualAck){[weak self] m in
       guard let weakSelf = self else {return}
+      log.info(m.deliveryTag)
       weakSelf.subscribeMessage.accept(m)
     }
  
@@ -81,14 +82,13 @@ class ChatViewModel: NSObject{
     let subscribeMessageShare = subscribeMessage
       .observeOn(SerialDispatchQueueScheduler(qos: .default))
       .do(onNext: {[weak self] (m) in
+        log.info(m.deliveryTag)
         self?.channel.ack(m.deliveryTag)
-      })
-      .share()
-    
+      }).share()
+  
     subscribeMessageShare
-      .debug()
       .map{try JSONDecoder().decode(MessageModel.self, from: $0.body).ToMessageItem()}
-      .scan(messagesSubject.value) { $0 + $1 }
+      .map{[unowned self] model in return self.messagesSubject.value + model}
       .bind(to: messagesSubject)
       .disposed(by: disposeBag)
     
@@ -105,6 +105,7 @@ class ChatViewModel: NSObject{
         }
       })
       .disposed(by: disposeBag)
+    
     
     
     popUp
@@ -134,33 +135,29 @@ class ChatViewModel: NSObject{
       }
       }.disposed(by: disposeBag)
     
-    let realm = try! Realm()
 
     loadMoreAction
-      .unwrap()
-      .subscribeNext(weak: self) { (weakSelf) -> (UIRefreshControl) -> Void in
-        return { control in
-          if weakSelf.firstIndex == 0 {
-            control.endRefreshing()
-            return
-          }
-          let realm = try! Realm()
-          let rooms = realm.objects(MessageRoom.self).filter("roomID = \(roomID)").first
-          guard let messages = rooms?.messages else {return}
-          
-          if weakSelf.firstIndex - 10 > 0 {
-            log.info(Array(messages)[weakSelf.firstIndex - 10...weakSelf.firstIndex])
-          }else {
-            log.info(Array(messages)[messages.startIndex...weakSelf.firstIndex-1])
-          }
-          control.endRefreshing()
-          //TODO: 메시지 가져오기
-          // 필요한 부분 메시지 카운트 0 에 닿았을 경우 refreshcontrol stop
-          // 로드 끝났을 경우 refreshcontrol stop
-          // db에 메시지 갯수 및 배열의 첫번째 메시지 카운트 인덱스 비교
+      .flatMapLatest {[unowned self] () -> Observable<[MessageType]> in
+        
+        if self.firstIndex == 0 {
+          return Observable.just([])
         }
-      }.disposed(by: disposeBag)
-
+        let realm = try! Realm()
+        let rooms = realm.objects(MessageRoom.self).filter("roomID = \(roomID)").first
+        guard let messages = rooms?.messages else {return Observable.just([])}
+        let copyValue = self.firstIndex
+        if self.firstIndex - 20 > 0 {
+          self.firstIndex -= 20
+          return Observable.just(Array(messages)[copyValue - 20..<copyValue].map{$0.ToMessageItem()})
+        }else {
+          self.firstIndex = 0
+          return Observable.just(Array(messages)[messages.startIndex..<copyValue].map{$0.ToMessageItem()})
+        }
+      }.map{[unowned self] models in
+         return models + self.messagesSubject.value
+      }.bind(to: messagesSubject)
+      .disposed(by: disposeBag)
+    
   }
 
   private func realmInit(){
@@ -191,9 +188,10 @@ class ChatViewModel: NSObject{
         }
       }
       if let messages = rooms.first?.messages {
-        if messages.count > 10 {
-          messagesSubject.accept(Array(messages)[(messages.endIndex-11)...messages.endIndex-1].map{$0.ToMessageItem()})
-          firstIndex = messages.endIndex-11
+        if messages.count > 20 {
+          log.info("messageCount:\(messages.count)")
+          messagesSubject.accept(Array(messages)[(messages.endIndex-21)..<messages.endIndex].map{$0.ToMessageItem()})
+          firstIndex = messages.endIndex-21
         }else{
           messagesSubject.accept(Array(messages).map{$0.ToMessageItem()})
           firstIndex = messages.startIndex
@@ -247,6 +245,7 @@ extension ChatViewModel: RMQConnectionDelegate{
   }
   
   func channel(_ channel: RMQChannel!, error: Error!) {
+    log.error(error)
     log.info("channel")
   }
 }
