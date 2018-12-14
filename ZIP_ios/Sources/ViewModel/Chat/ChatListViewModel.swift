@@ -9,18 +9,27 @@
 import RxSwift
 import RxCocoa
 
-
-
 class ChatListViewModel{
   private let disposeBag = DisposeBag()
-  lazy var listData = AuthManager.instance.provider.request(.GetChatRoom)
+  
+  let datas = BehaviorRelay<[ChatListSectionModel]>(value: [])
+  lazy var API = AuthManager
+    .instance
+    .provider
+    .request(.GetChatRoom)
+    .filterSuccessfulStatusCodes()
     .map(ResultModel<[ChatListModel]>.self)
     .map{$0.result}
     .asObservable()
     .unwrap()
-    .map{[ChatListSectionModel(items: $0)]}
+    .materialize()
     .share()
   
+  
   init() {
+    API.elements()
+      .map{[ChatListSectionModel(items: $0)]}
+      .bind(to: datas)
+      .disposed(by: disposeBag)
   }
 }

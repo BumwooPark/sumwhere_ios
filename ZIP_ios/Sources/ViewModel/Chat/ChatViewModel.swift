@@ -17,51 +17,43 @@ import PopupDialog
 
 class ChatViewModel: NSObject{
   
-  let realm = try! Realm()
   private var isPopUp = false
   private let disposeBag = DisposeBag()
-  private let roomID: Int
-  private let userID: Int
+  private let roomID: Int64
+  private let userID: Int64
   private let parentViewController: UIViewController
   private let popUp = PublishRelay<(title:String,message:String)>()
-  
-  lazy var conn: RMQConnection = {
+  private lazy var conn: RMQConnection = {
     let connection = RMQConnection(uri: "amqp://qkrqjadn:1q2w3e4r@192.168.1.11:5672", delegate: self)
     return connection
   }()
   
-  lazy var channel: RMQChannel = {
+  private lazy var channel: RMQChannel = {
     return conn.createChannel()
   }()
   
-  lazy var exchange: RMQExchange = {
+  private lazy var exchange: RMQExchange = {
     return channel.fanout("Room_\(roomID)", options: .durable)
   }()
   
-  lazy var queue: RMQQueue = {
+  private lazy var queue: RMQQueue = {
     return channel.queue("Room_\(roomID)_User_\(userID)", options: .durable)
   }()
-  let subscribeMessage = PublishRelay<RMQMessage>()
-  let publishMessage = PublishRelay<(text:String, displayName: String)>()
-  let messagesSubject = BehaviorRelay<[MessageType]>(value: [])
-  lazy var messages = realm.objects(MessageRealm.self)
+  
+  public let subscribeMessage = PublishRelay<RMQMessage>()
+  public let publishMessage = PublishRelay<(text:String, displayName: String)>()
+  public let messagesSubject = BehaviorRelay<[MessageType]>(value: [])
+  public let loadMoreAction = PublishRelay<Void>()
 
-  init(roomID: Int, userID: Int, parentViewController: UIViewController){
+
+  init(roomID: Int64, userID: Int64, parentViewController: UIViewController){
     self.roomID = roomID
     self.userID = userID
     self.parentViewController = parentViewController
     super.init()
     queue.bind(exchange)
     
-    messagesSubject.accept(Array(messages)[(messages.endIndex-11)...messages.endIndex-1].map{$0.ToMessageItem()})
-    
-//    Observable.array(from: messages)
-//      .subscribeNext(weak: self) { (weakSelf) -> (Array<MessageRealm>) -> Void in
-//        return {array in
-//          log.info(array.prefix(3))
-//        }
-//      }.disposed(by: disposeBag)
-    
+    realmInit()
   
     let manualAck = RMQBasicConsumeOptions()
     queue.subscribe(manualAck){[weak self] m in
@@ -88,6 +80,7 @@ class ChatViewModel: NSObject{
       .share()
     
     subscribeMessageShare
+      .debug()
       .map{try JSONDecoder().decode(MessageModel.self, from: $0.body).ToMessageItem()}
       .scan(messagesSubject.value) { $0 + $1 }
       .bind(to: messagesSubject)
@@ -95,8 +88,18 @@ class ChatViewModel: NSObject{
     
     subscribeMessageShare
       .map{ try JSONDecoder().decode(MessageModel.self, from: $0.body).ToRealmModel()}
-      .subscribe(Realm.rx.add())
+      .subscribeNext(weak: self, { (weakSelf) -> (MessageRealm) -> Void in
+        return {message in
+          let realm = try! Realm()
+          let room = realm.objects(MessageRoom.self)
+          let messages = room.filter("roomID = \(roomID)").first?.messages
+          try! realm.write {
+            messages?.append(message)
+          }
+        }
+      })
       .disposed(by: disposeBag)
+    
     
     popUp
       .filter{_ in return !self.isPopUp}
@@ -124,7 +127,62 @@ class ChatViewModel: NSObject{
         weakSelf.isPopUp = true
       }
       }.disposed(by: disposeBag)
+    
+    
+    loadMoreAction.subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+      return {_ in
+        //TODO: 메시지 가져오기
+        // 필요한 부분 메시지 카운트 0 에 닿았을 경우 refreshcontrol stop
+        // 로드 끝났을 경우 refreshcontrol stop
+        // db에 메시지 갯수 및 배열의 첫번째 메시지 카운트 인덱스 비교
+        log.info("loadMore")
+      }
+      }.disposed(by: disposeBag)
+    
+    
   }
+
+  
+  
+  private func realmInit(){
+    do {
+      let config = Realm.Configuration(
+        // Set the new schema version. This must be greater than the previously used
+        // version (if you've never set a schema version before, the version is 0).
+        schemaVersion: 1,
+        // Set the block which will be called automatically when opening a Realm with
+        // a schema version lower than the one set above
+        migrationBlock: { migration, oldSchemaVersion in
+          // We haven’t migrated anything yet, so oldSchemaVersion == 0
+          if (oldSchemaVersion < 1) {
+            // Nothing to do!
+            // Realm will automatically detect new properties and removed properties
+            // And will update the schema on disk automatically
+          }
+      })
+      // Tell Realm to use this new configuration object for the default Realm
+      Realm.Configuration.defaultConfiguration = config
+      let realm = try Realm()
+      let rooms = realm.objects(MessageRoom.self).filter("roomID = \(roomID)")
+      if rooms.count == 0 {
+        let messageRoom = MessageRoom()
+        messageRoom.roomID = Int(roomID)
+        try realm.write {
+          realm.add(messageRoom)
+        }
+      }
+      if let messages = rooms.first?.messages {
+        if messages.count > 10 {
+          messagesSubject.accept(Array(messages)[(messages.endIndex-11)...messages.endIndex-1].map{$0.ToMessageItem()})
+        }else{
+          messagesSubject.accept(Array(messages).map{$0.ToMessageItem()})
+        }
+      }
+    } catch let error {
+      log.error(error)
+    }
+  }
+    
   
   func start(){
     conn.start()

@@ -51,11 +51,8 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
       .map{SettingType.ViewController(viewController: PurchaseViewController())}
       .bind(to: settingSubject)
       .disposed(by: disposeBag)
+    view.userModel = globalUserInfo
     
-    userData.elements()
-      .subscribe(onNext: { (model) in
-        view.userModel = model.result
-      }).disposed(by: disposeBag)
     return view
   }
   

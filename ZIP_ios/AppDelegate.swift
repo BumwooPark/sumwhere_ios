@@ -28,6 +28,7 @@ import StoreKit
 
 
 let tokenObserver = PublishSubject<String>()
+var globalUserInfo: UserWithProfile?
 let log = SwiftyBeaver.self
 
 @UIApplicationMain

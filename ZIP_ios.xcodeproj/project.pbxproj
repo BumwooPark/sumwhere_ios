@@ -216,9 +216,6 @@
 		B1D1CB0C212E4303001A9801 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D1CB0B212E4303001A9801 /* CoreLocation.framework */; };
 		B1D1CB10212E8D01001A9801 /* RightKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */; };
 		B1D1CB12212EAA6A001A9801 /* AlertSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */; };
-		B1D1CB16213CF96A001A9801 /* ChatNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */; };
-		B1D1CB1A213E1101001A9801 /* ChatFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */; };
-		B1D1CB27213FA901001A9801 /* ChatRoomViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB26213FA901001A9801 /* ChatRoomViewController3.swift */; };
 		B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50920F8446400524CE2 /* ResultModel.swift */; };
 		B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */; };
 		B1D4E50E20F895EF00524CE2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D4E50D20F895EF00524CE2 /* MainViewController.swift */; };
@@ -468,9 +465,6 @@
 		B1D1CB0B212E4303001A9801 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B1D1CB0F212E8D01001A9801 /* RightKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightKeyView.swift; sourceTree = "<group>"; };
 		B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingViewController.swift; sourceTree = "<group>"; };
-		B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNodeViewController.swift; sourceTree = "<group>"; };
-		B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFlowLayout.swift; sourceTree = "<group>"; };
-		B1D1CB26213FA901001A9801 /* ChatRoomViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController3.swift; sourceTree = "<group>"; };
 		B1D4E50920F8446400524CE2 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		B1D4E50B20F84B2E00524CE2 /* LoginUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUtil.swift; sourceTree = "<group>"; };
 		B1D4E50D20F895EF00524CE2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -913,9 +907,6 @@
 		0AB42130213BE4C5001353E9 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				B1D1CB15213CF96A001A9801 /* ChatNodeViewController.swift */,
-				B1D1CB19213E1101001A9801 /* ChatFlowLayout.swift */,
-				B1D1CB26213FA901001A9801 /* ChatRoomViewController3.swift */,
 				B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */,
 				B100742B214F859F0052E4DF /* HamMenu.swift */,
 				B1D5313921BF9E6E00CEF7C9 /* ChatRoomViewController.swift */,
@@ -1546,7 +1537,6 @@
 				0A0F7A70203556D000F72C2B /* MainCell.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,
-				B1D1CB27213FA901001A9801 /* ChatRoomViewController3.swift in Sources */,
 				B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */,
 				B16BD8C721B51F560010EEE0 /* MapCell.swift in Sources */,
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
@@ -1584,7 +1574,6 @@
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
 				B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */,
 				B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */,
-				B1D1CB1A213E1101001A9801 /* ChatFlowLayout.swift in Sources */,
 				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
 				0A33277D213BBD9700BC2906 /* GenderViewController.swift in Sources */,
 				0A075BFF21553611004A4DBF /* DefaultLoginViewModel.swift in Sources */,
@@ -1682,7 +1671,6 @@
 				B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */,
 				B16BD8A521A7BFE50010EEE0 /* PurchaseKeyViewModel.swift in Sources */,
 				B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */,
-				B1D1CB16213CF96A001A9801 /* ChatNodeViewController.swift in Sources */,
 				0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */,
 				0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */,
 				B1D4E50C20F84B2E00524CE2 /* LoginUtil.swift in Sources */,

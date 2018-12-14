@@ -80,6 +80,11 @@ struct MessageItem: MessageType{
   var kind: MessageKind
 }
 
+class MessageRoom: Object{
+  @objc dynamic var roomID = 0
+  let messages = List<MessageRealm>()
+}
+
 class MessageRealm: Object{
   @objc dynamic var id: String = ""
   @objc dynamic var displayName: String = ""

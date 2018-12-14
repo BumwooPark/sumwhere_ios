@@ -9,6 +9,12 @@
 import UIKit
 
 final class ChatListCell: UICollectionViewCell {
+  
+  var item: ChatListModel? {
+    didSet{
+    }
+  }
+  
   var didUpdateConstraint = false
   private let profileImage: UIImageView = {
     let view = UIImageView()

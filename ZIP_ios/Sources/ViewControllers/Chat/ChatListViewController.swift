@@ -11,13 +11,16 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class ChatListViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
   private let viewModel = ChatListViewModel()
   
-//  let datas = BehaviorRelay<[ChatListSectionModel]>(value: [])
+  private let dataSources = RxCollectionViewSectionedReloadDataSource<ChatListSectionModel>(configureCell: {ds,cv,idx,item in
+    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: ChatListCell.self), for: idx) as! ChatListCell
+    cell.item = item
+    return cell
+  })
   
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -33,19 +36,32 @@ class ChatListViewController: UIViewController{
     super.viewDidLoad()
     view = collectionView
     
-//    Observable.just([1,2,3,4,5]).bind(to: collectionView.rx.items(cellIdentifier: String(describing: ChatListCell.self), cellType: ChatListCell.self)){ ds,idx,cell in
-//    }.disposed(by: disposeBag)
+    viewModel.datas
+      .asDriver()
+      .drive(collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
     
-    collectionView.rx.itemSelected
-      .subscribeNext(weak: self) { (weakSelf) -> (IndexPath) -> Void in
-        return {idx in
-          weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: 1, userID: 1), animated: true)
+    viewModel.datas
+      .map{$0.count}
+      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
+        return { value in
+          if value == 0 {
+            weakSelf.collectionViewEmptyView()
+          }else {
+            weakSelf.collectionView.backgroundView = nil
+          }
+        }
+      }.disposed(by: disposeBag)
+    
+    collectionView.rx.modelSelected(ChatListModel.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (ChatListModel) -> Void in
+        return {model in
+          weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: model.chatRoom.id, userID: model.chatMember.id), animated: true)
         }
       }.disposed(by: disposeBag)
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
+  private func collectionViewEmptyView(){
     collectionView.backgroundView = EmptyChatView(frame: CGRect(origin: .zero, size: collectionView.bounds.size))
   }
 }

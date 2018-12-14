@@ -50,6 +50,21 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
     startAnimating(CGSize(width: 50, height: 50), type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),backgroundColor: .clear,fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
     viewSetting()
     kakaoTokenCheck()
+    
+    
+    // 유저 정보 저장
+    AuthManager.instance.provider
+      .request(.userWithProfile)
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<UserWithProfile>.self)
+      .map{$0.result}
+      .asObservable()
+      .unwrap()
+      .materialize()
+      .elements()
+      .subscribe(onNext: { (model) in
+        globalUserInfo = model
+      }).disposed(by: disposeBag)
   }
   
   private func kakaoTokenCheck(){
