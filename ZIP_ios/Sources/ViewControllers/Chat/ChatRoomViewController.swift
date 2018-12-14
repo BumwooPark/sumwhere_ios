@@ -62,6 +62,7 @@ final class ChatRoomViewController: MessagesViewController{
     }.disposed(by: disposeBag)
     
     refreshControl.rx.controlEvent(UIControlEvents.valueChanged)
+      .map{[weak self] in self?.refreshControl }
       .bind(to: viewModel.loadMoreAction)
       .disposed(by: disposeBag)
   }

@@ -23,6 +23,12 @@ class ChatViewModel: NSObject{
   private let userID: Int64
   private let parentViewController: UIViewController
   private let popUp = PublishRelay<(title:String,message:String)>()
+  private var firstIndex = 0{
+    didSet{
+      log.info("firstIndex")
+      log.info(firstIndex)
+    }
+  }
   private lazy var conn: RMQConnection = {
     let connection = RMQConnection(uri: "amqp://qkrqjadn:1q2w3e4r@192.168.1.11:5672", delegate: self)
     return connection
@@ -43,7 +49,7 @@ class ChatViewModel: NSObject{
   public let subscribeMessage = PublishRelay<RMQMessage>()
   public let publishMessage = PublishRelay<(text:String, displayName: String)>()
   public let messagesSubject = BehaviorRelay<[MessageType]>(value: [])
-  public let loadMoreAction = PublishRelay<Void>()
+  public let loadMoreAction = PublishRelay<UIRefreshControl?>()
 
 
   init(roomID: Int64, userID: Int64, parentViewController: UIViewController){
@@ -128,22 +134,35 @@ class ChatViewModel: NSObject{
       }
       }.disposed(by: disposeBag)
     
-    
-    loadMoreAction.subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
-      return {_ in
-        //TODO: 메시지 가져오기
-        // 필요한 부분 메시지 카운트 0 에 닿았을 경우 refreshcontrol stop
-        // 로드 끝났을 경우 refreshcontrol stop
-        // db에 메시지 갯수 및 배열의 첫번째 메시지 카운트 인덱스 비교
-        log.info("loadMore")
-      }
+    let realm = try! Realm()
+
+    loadMoreAction
+      .unwrap()
+      .subscribeNext(weak: self) { (weakSelf) -> (UIRefreshControl) -> Void in
+        return { control in
+          if weakSelf.firstIndex == 0 {
+            control.endRefreshing()
+            return
+          }
+          let realm = try! Realm()
+          let rooms = realm.objects(MessageRoom.self).filter("roomID = \(roomID)").first
+          guard let messages = rooms?.messages else {return}
+          
+          if weakSelf.firstIndex - 10 > 0 {
+            log.info(Array(messages)[weakSelf.firstIndex - 10...weakSelf.firstIndex])
+          }else {
+            log.info(Array(messages)[messages.startIndex...weakSelf.firstIndex-1])
+          }
+          control.endRefreshing()
+          //TODO: 메시지 가져오기
+          // 필요한 부분 메시지 카운트 0 에 닿았을 경우 refreshcontrol stop
+          // 로드 끝났을 경우 refreshcontrol stop
+          // db에 메시지 갯수 및 배열의 첫번째 메시지 카운트 인덱스 비교
+        }
       }.disposed(by: disposeBag)
-    
-    
+
   }
 
-  
-  
   private func realmInit(){
     do {
       let config = Realm.Configuration(
@@ -174,8 +193,10 @@ class ChatViewModel: NSObject{
       if let messages = rooms.first?.messages {
         if messages.count > 10 {
           messagesSubject.accept(Array(messages)[(messages.endIndex-11)...messages.endIndex-1].map{$0.ToMessageItem()})
+          firstIndex = messages.endIndex-11
         }else{
           messagesSubject.accept(Array(messages).map{$0.ToMessageItem()})
+          firstIndex = messages.startIndex
         }
       }
     } catch let error {
