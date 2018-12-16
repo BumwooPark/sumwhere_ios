@@ -42,8 +42,8 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
   var didUpdateConstraint = false
   private let titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "당신을 대표할\n닉네임을 입력해 주세요"
-    label.font = .AppleSDGothicNeoMedium(size: 20)
+    label.text = "당신을 대표할\n닉네임을 입력해 주세요."
+    label.font = .KoreanSWGI1R(size: 20)
     label.textColor = #colorLiteral(red: 0.2784313725, green: 0.2784313725, blue: 0.2784313725, alpha: 1)
     label.numberOfLines = 2
     return label
@@ -75,6 +75,7 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     button.setTitle("다음", for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 21)
     button.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+    button.layer.cornerRadius = 10
     button.isEnabled = false
     return button
   }()
@@ -191,8 +192,8 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
       }
       
       titleLabel.snp.makeConstraints { (make) in
-        make.left.equalToSuperview().inset(41)
-        make.centerY.equalToSuperview().inset(-100)
+        make.left.equalToSuperview().inset(37)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(81)
       }
       
       textField.snp.makeConstraints { (make) in
@@ -215,8 +216,8 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
       }
       
       nextButton.snp.makeConstraints { (make) in
-        make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide)
-        make.height.equalTo(61)
+        make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(11)
+        make.height.equalTo(56)
       }
       
       didUpdateConstraint = true

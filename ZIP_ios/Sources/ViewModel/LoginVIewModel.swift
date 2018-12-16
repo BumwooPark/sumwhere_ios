@@ -13,7 +13,6 @@ import JDStatusBarNotification
 import FBSDKLoginKit
 
 
-
 class LoginViewModel{
   let disposeBag = DisposeBag()
   let viewController: UIViewController
@@ -25,15 +24,20 @@ class LoginViewModel{
   func facebookLogin(manager: FBSDKLoginManager){
     
     LoginKit.facebookLogin(manager: manager, Permissions: ["public_profile","email"], from: self.viewController) {(result) in
+      log.info(result)
       if result{
+        
+        
+        
+        guard let token = FBSDKAccessToken.current().tokenString else {return}
         
         AuthManager.instance
           .provider
-          .request(.facebook(access_token: FBSDKAccessToken.current().tokenString))
+          .request(.facebook(access_token: token))
           .map(ResultModel<TokenModel>.self)
           .subscribe(onSuccess: { (result) in
             if result.success{
-              tokenObserver.onNext(result.result?.token ?? String())
+              tokenObserver.accept(result.result?.token ?? String())
             }else {
               JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
             }
@@ -54,7 +58,7 @@ class LoginViewModel{
           .map(ResultModel<TokenModel>.self)
           .subscribe(onSuccess: {(result) in
             if result.success{
-              tokenObserver.onNext(result.result?.token ?? "")
+              tokenObserver.accept(result.result?.token ?? "")
             }else {
               JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
             }

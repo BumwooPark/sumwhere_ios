@@ -57,7 +57,8 @@ class ChatListViewController: UIViewController{
     collectionView.rx.modelSelected(ChatListModel.self)
       .subscribeNext(weak: self) { (weakSelf) -> (ChatListModel) -> Void in
         return {model in
-          weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: model.chatRoom.id, userID: model.chatMember.id), animated: true)
+          log.info(model)
+          weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: model.chatRoom.id, userID: model.chatMember.userId), animated: true)
         }
       }.disposed(by: disposeBag)
   }

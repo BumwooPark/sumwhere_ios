@@ -15,12 +15,16 @@ class LoginKit{
   static func facebookLogin(manager: FBSDKLoginManager, Permissions:[String], from: UIViewController, result: @escaping (Bool) -> ()){
     
     manager.logIn(withReadPermissions: Permissions, from: from) { (fbresult, error) in
-      if !(fbresult?.isCancelled)!{
+      guard let isCancelled = fbresult?.isCancelled else {return}
+      if isCancelled{
         result(false)
       }
-      if (error != nil){
+      
+      if error != nil {
         result(false)
-      }else{
+      }
+      
+      if error == nil && !isCancelled{
         result(true)
       }
     }

@@ -51,13 +51,13 @@ class ConfigureViewController: FormViewController{
       <<< LabelRow(){$0.title = "스토어"}
       <<< LabelRow(){$0.title = "계정설정"}.onCellSelection({(cell, row) in
 
-        tokenObserver.onNext(String())
+        tokenObserver.accept(String())
       })
       <<< LabelRow(){$0.title = "문의하기"}
       <<< LabelRow(){
         $0.title = "설정"
         $0.onCellSelection({(cell, row) in
-          tokenObserver.onNext(String())
+          tokenObserver.accept(String())
         })
     }
   }

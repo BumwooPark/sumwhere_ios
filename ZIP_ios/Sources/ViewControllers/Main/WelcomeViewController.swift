@@ -8,16 +8,13 @@
 
 import UIKit
 
-import SkyFloatingLabelTextField
 import SnapKit
 import Moya
 import SwiftyJSON
-import JDStatusBarNotification
 import Firebase
 import Security
 import FBSDKLoginKit
 import SwiftyUserDefaults
-import TTTAttributedLabel
 #if !RX_NO_MODULE
 import RxSwift
 import RxCocoa
@@ -31,8 +28,7 @@ class WelcomeViewController: UIViewController{
   lazy var viewModel = LoginViewModel(viewController: self)
   
   lazy var loginView: LoginView = {
-    let view = LoginView(frame: self.view.bounds)
-    view.joinLabel.delegate = self
+    let view = LoginView.loadXib(nibName: "LoginView") as! LoginView
     return view
   }()
   
@@ -47,17 +43,17 @@ class WelcomeViewController: UIViewController{
     self.view = loginView
     self.view.hero.id = "loginToDefaultLogin"
     
-    loginView.loginButton.rx
+    loginView.emailButton.rx
       .tap
       .bind(onNext: signIn)
       .disposed(by: disposeBag)
-    
+
     loginView.kakaoButton.rx
       .controlEvent(.touchUpInside)
       .throttle(0.3, scheduler: MainScheduler.instance)
       .bind(onNext: viewModel.kakaoLogin)
       .disposed(by: disposeBag)
-    
+
     loginView.faceBookButton.rx
       .tap
       .map {return FBSDKLoginManager()}
@@ -73,12 +69,3 @@ class WelcomeViewController: UIViewController{
     self.view.endEditing(true)
   }
 }
-
-
-
-extension WelcomeViewController: TTTAttributedLabelDelegate{
-  func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
-    self.navigationController?.pushViewController(JoinViewController(), animated: true)
-  }
-}
-

@@ -14,21 +14,22 @@ import Moya
 class DefaultLoginViewModel{
   
   let isEnable: Observable<Bool>
-  
-  let tempResult: Observable<Event<ResultModel<TokenModel>>>
+  let API: Observable<Event<ResultModel<TokenModel>>>
   
   init(email:  ControlProperty<String>, password: ControlProperty<String>,tap: Observable<UITapGestureRecognizer>) {
+    
     isEnable = Observable.combineLatest(email.map{$0.count > 2}, password.map{$0.count > 2}){$0 && $1}
-    tempResult = Observable<(String, String, UITapGestureRecognizer)>
-      .combineLatest(email, password, tap) { ($0, $1, $2)}
-      .flatMapLatest { (data) in
+    
+    
+    API = tap.withLatestFrom(Observable.combineLatest(email, password) {($0,$1)})
+      .flatMapLatest({ (email: String, password: String)  in
         return AuthManager.instance
           .provider
-          .request(.signIn(email: data.0, password: data.1))
+          .request(.signIn(email: email, password: password))
           .filterSuccessfulStatusCodes()
           .map(ResultModel<TokenModel>.self)
           .asObservable()
           .materialize()
-    }
+      }).share()
   }
 }

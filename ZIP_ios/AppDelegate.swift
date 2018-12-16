@@ -27,7 +27,7 @@ import Crashlytics
 import StoreKit
 
 
-let tokenObserver = PublishSubject<String>()
+let tokenObserver = PublishRelay<String>()
 var globalUserInfo: UserWithProfile?
 let log = SwiftyBeaver.self
 

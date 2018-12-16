@@ -26,16 +26,16 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
   private let disposeBag = DisposeBag()
   private var didUpdateContraint = false
   private let titleLabel: UILabel = {
-    let attributeString = NSMutableAttributedString(string: "당신은 어떤 성격의\n사람인가요?\n",
-                                                    attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 20),
+    let attributeString = NSMutableAttributedString(string: "당신은 어떤 성격의\n사람인가요?\n\n",
+                                                    attributes: [.font: UIFont.KoreanSWGI1R(size: 20),
                                                                  .foregroundColor: #colorLiteral(red: 0.2784313725, green: 0.2784313725, blue: 0.2784313725, alpha: 1) ])
-    attributeString.append(NSAttributedString(string: "최소 하나 이상 선택해 주세요",
+    attributeString.append(NSAttributedString(string: "선택에 따라 더 알맞은 친구를 소개받을 수 있어요!",
                                               attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 14),
                                                            .foregroundColor: #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 1)]))
     
     let label = UILabel()
     label.attributedText = attributeString
-    label.numberOfLines = 3
+    label.numberOfLines = 0
     return label
   }()
   
@@ -61,6 +61,7 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
     button.setTitle("다음", for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 21)
     button.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+    button.layer.cornerRadius = 10
     button.isEnabled = false
     return button
   }()
@@ -155,8 +156,8 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
       }
       
       nextButton.snp.makeConstraints { (make) in
-        make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide)
-        make.height.equalTo(61)
+        make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(11)
+        make.height.equalTo(56)
       }
       
       didUpdateContraint = true

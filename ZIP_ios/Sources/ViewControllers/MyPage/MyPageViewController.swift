@@ -103,6 +103,7 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(true, animated: animated)
     adapter.performUpdates(animated: true, completion: nil)
+    tokenObserver.accept(String())
   }
   
   override func viewWillDisappear(_ animated: Bool) {

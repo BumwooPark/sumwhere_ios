@@ -49,10 +49,6 @@ final class ChatRoomViewController: MessagesViewController{
       .skip(1)
       .subscribeNext(weak: self) { (weakSelf) -> ([MessageType]) -> Void in
         return {models in
-          
-          log.info("model count:\(models.count)")
-          log.info("collectionView sectionCount:\(weakSelf.messagesCollectionView.numberOfSections)")
-          log.info(weakSelf.refreshControl.isRefreshing)
           if !weakSelf.refreshControl.isRefreshing {
             weakSelf.messagesCollectionView.performBatchUpdates({
               weakSelf.messagesCollectionView.insertSections([models.count - 1])
@@ -109,6 +105,25 @@ final class ChatRoomViewController: MessagesViewController{
     
     messagesCollectionView.messagesLayoutDelegate = self
     messagesCollectionView.messagesDisplayDelegate = self
+    
+    configureInputBarItems()
+  }
+  
+  
+  private func configureInputBarItems() {
+    messageInputBar.isTranslucent = true
+    messageInputBar.separatorLine.isHidden = true
+    messageInputBar.inputTextView.tintColor = .black
+    messageInputBar.inputTextView.backgroundColor = .clear
+    messageInputBar.inputTextView.placeholderTextColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+    messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 36)
+    messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 36)
+    messageInputBar.inputTextView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1).cgColor
+    messageInputBar.inputTextView.layer.borderWidth = 1.0
+    messageInputBar.inputTextView.layer.cornerRadius = 16.0
+    messageInputBar.inputTextView.layer.masksToBounds = true
+    messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+    messageInputBar.backgroundView.backgroundColor = .white
   }
   
   func isTimeLabelVisible(at indexPath: IndexPath) -> Bool {

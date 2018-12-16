@@ -39,6 +39,7 @@ class ProfileViewModel{
     case tripStyle(value: [TripStyleModel.Element])
     case character(value:[CharacterModel])
     case image(value: [UIImage?])
+    case job(value: String)
   }
   
   let saver = PublishSubject<ProfileType>()
@@ -73,6 +74,8 @@ class ProfileViewModel{
           weakSelf.profile.character = values
         case .image(let values):
           weakSelf.profile.images = values
+        case .job(let value):
+          weakSelf.profile.job = value
         }
       }
     }.disposed(by: disposeBag)
@@ -122,11 +125,13 @@ struct ProfileModel {
   var images: [UIImage?]
   var character: [CharacterModel]
   var tripStyles: [TripStyleModel.Element]
+  var job: String
   
   init() {
     self.age = String()
     self.nickName = String()
     self.gender = String()
+    self.job = String()
     self.images = []
     self.character = []
     self.tripStyles = []

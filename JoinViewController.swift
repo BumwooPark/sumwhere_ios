@@ -38,10 +38,13 @@ class JoinViewController: UIViewController{
     return imageView
   }()
   
-  private let logoImageView: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "group23"))
-    imageView.hero.id = "logoImageView"
-    return imageView
+  private let titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = "회원가입"
+    label.font = .KoreanSWGI1R(size: 23)
+    label.textColor = #colorLiteral(red: 0.2784313725, green: 0.2784313725, blue: 0.2784313725, alpha: 1)
+    label.hero.id = "logoImageView"
+    return label
   }()
   
   private let emailField: SkyFloatingLabelTextField = {
@@ -58,6 +61,7 @@ class JoinViewController: UIViewController{
     field.placeholderColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
     field.keyboardType = .emailAddress
     field.returnKeyType = .done
+    field.hero.id = "email"
     return field
   }()
   
@@ -76,6 +80,7 @@ class JoinViewController: UIViewController{
     field.isSecureTextEntry = true
     field.returnKeyType = .done
     field.keyboardType = .asciiCapable
+    field.hero.id = "password"
     return field
   }()
   
@@ -104,6 +109,7 @@ class JoinViewController: UIViewController{
     button.titleFontName = "AppleSDGothicNeo-Medium"
     button.titleFontSize = 17
     button.bgColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+    button.hero.id = "button"
     return button
   }()
 
@@ -122,13 +128,12 @@ class JoinViewController: UIViewController{
     view.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
     view.hero.id = "loginToDefaultLogin"
     hero.isEnabled = true
-    view.addSubview(logoImageView)
+    view.addSubview(titleLabel)
     view.addSubview(emailField)
     view.addSubview(passwordField)
     view.addSubview(passwordConfirmField)
     view.addSubview(signUpButton)
-    logoImageView.addSubview(commaImageView)
-    logoImageView.addSubview(commaImageView2)
+    
     self.navigationController?.navigationBar.topItem?.title = String()
     view.setNeedsUpdateConstraints()
     behavior()
@@ -136,26 +141,6 @@ class JoinViewController: UIViewController{
   }
   
   private func behavior(){
-    
-    RxKeyboard.instance
-      .visibleHeight
-      .drive(onNext: {[unowned self] (float) in
-        self.emailField.snp.remakeConstraints({ (make) in
-          make.top.equalTo(self.logoImageView.snp.bottom).offset((90 - float))
-          make.left.right.equalToSuperview().inset(42)
-        })
-        
-        if float == 0 {
-          self.logoHidden(false)
-        }else{
-          self.logoHidden(true)
-        }
-        
-        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
-          self.view.setNeedsLayout()
-          self.view.layoutIfNeeded()
-        }, completion: nil)
-      }).disposed(by: disposeBag)
     
     viewModel.emailValid
       .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
@@ -190,16 +175,16 @@ class JoinViewController: UIViewController{
     viewModel
       .taped
       .elements()
-      .subscribeNext(weak: self) { (weakSelf) -> (ResultModel<TokenModel>) -> Void in
-        return { model in
-          tokenObserver.onNext(model.result?.token ?? String())
-          weakSelf.signUpButton.isLoading = false
-        }
-      }.disposed(by: disposeBag)
+      .do(onNext: {[weak self] (_) in self?.signUpButton.isLoading = false})
+      .map{$0.result?.token}
+      .unwrap()
+      .bind(to: tokenObserver)
+      .disposed(by: disposeBag)
     
     viewModel
       .taped
       .errors()
+      .do(onNext: {[weak self] (_) in self?.signUpButton.isLoading = false})
       .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
         return { error in
           (error as? MoyaError)?.GalMalErrorHandler()
@@ -213,34 +198,18 @@ class JoinViewController: UIViewController{
   }
   
   private func logoHidden(_ hidden: Bool){
-    logoImageView.alpha = hidden ? 0 : 1
-    commaImageView.alpha = hidden ? 0 : 1
-    commaImageView2.alpha = hidden ? 0 : 1
   }
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{
-      logoImageView.snp.makeConstraints { (make) in
-        make.centerX.equalToSuperview()
-        make.centerY.equalToSuperview().inset(-100)
-        make.width.equalTo(184)
-        make.height.equalTo(58)
-      }
-      
-      commaImageView.snp.makeConstraints { (make) in
-        make.center.equalToSuperview()
-        make.height.width.equalTo(10)
-      }
-      
-      commaImageView2.snp.makeConstraints { (make) in
-        make.right.equalToSuperview().inset(-15)
-        make.centerY.equalToSuperview()
-        make.height.width.equalTo(10)
+      titleLabel.snp.makeConstraints { (make) in
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+        make.left.equalToSuperview().inset(37)
       }
       
       emailField.snp.makeConstraints { (make) in
-        make.top.equalTo(logoImageView.snp.bottom).offset(90)
-        make.left.right.equalToSuperview().inset(42)
+        make.top.equalTo(titleLabel.snp.bottom).offset(53)
+        make.left.right.equalToSuperview().inset(30)
       }
       
       passwordField.snp.makeConstraints { (make) in

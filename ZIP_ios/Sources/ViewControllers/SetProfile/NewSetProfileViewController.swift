@@ -31,8 +31,7 @@ class NewSetProfileViewController: UIViewController{
   
   var childs:[UIViewController & ProfileCompletor] = [FirstViewController(),
                                                       NickNameViewController(),
-                                                      GenderViewController(),
-                                                      AgeViewController(),
+                                                      GenderAgeJobViewController(),
                                                       ProfileImageViewController(),
                                                       CharacterViewController(),
                                                       TripStyleViewController()]
@@ -94,7 +93,7 @@ class NewSetProfileViewController: UIViewController{
       
       progressView.snp.makeConstraints { (make) in
         make.left.right.top.equalTo(self.view.safeAreaLayoutGuide)
-        make.height.equalTo(2)
+        make.height.equalTo(3)
       }
       didUpdateConstraint = true
     }

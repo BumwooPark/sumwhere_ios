@@ -42,26 +42,8 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
   
   private lazy var dataSources = RxCollectionViewSectionedReloadDataSource<SectionOfCustomData>(configureCell: {[unowned self] ds,cv,idx, item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: ProfileImageCell.self), for: idx) as! ProfileImageCell
-    
-    switch idx.item {
-    case 0:
-      cell.typeButton.setTitle("메인", for: .normal)
-      cell.typeButton.setTitle("메인", for: .selected)
-      cell.typeButton.isSelected = true
-    case 1:
-      cell.typeButton.setTitle("썸네일", for: .normal)
-      cell.typeButton.setTitle("썸네일", for: .selected)
-      cell.typeButton.isSelected = true
-    case 2,3:
-      cell.typeButton.setTitle("썸네일", for: .normal)
-      cell.typeButton.isSelected = false
-    default:
-      break
-    }
-    cell.imageCancelButton.isHidden = (item == nil)
-    
-    cell.item = item
     cell.tag = idx.item
+    cell.item = item
     cell.imageSelectSubject = self.imageSelected
     cell.imageDeletedSubject = self.imageDeleted
     return cell
@@ -73,9 +55,37 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "당신의 모습이 잘 담긴\n사진을 등록해주세요"
-    label.font = .AppleSDGothicNeoMedium(size: 20)
+    label.font = .KoreanSWGI1R(size: 20)
     label.textColor = #colorLiteral(red: 0.2784313725, green: 0.2784313725, blue: 0.2784313725, alpha: 1)
     label.numberOfLines = 2
+    return label
+  }()
+  
+  private let goodImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = #imageLiteral(resourceName: "exampleGood.png")
+    return imageView
+  }()
+  
+  private let goodLabel: UILabel = {
+    let label = UILabel()
+    label.font = .AppleSDGothicNeoBold(size: 15)
+    label.textColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+    label.text = "좋은 예시"
+    return label
+  }()
+  
+  private let badImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = #imageLiteral(resourceName: "exampleBad.png")
+    return imageView
+  }()
+  
+  private let badLabel: UILabel = {
+    let label = UILabel()
+    label.text = "잘못된 예시"
+    label.font = .AppleSDGothicNeoBold(size: 15)
+    label.textColor = #colorLiteral(red: 0.6784313725, green: 0, blue: 0.1490196078, alpha: 1)
     return label
   }()
   
@@ -112,8 +122,8 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
   
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize(width: 137, height: 137)
-    layout.minimumLineSpacing = 16
+    layout.itemSize = CGSize(width: 71, height: 100)
+    layout.minimumInteritemSpacing = 5
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(ProfileImageCell.self, forCellWithReuseIdentifier: String(describing: ProfileImageCell.self))
     collectionView.backgroundColor = .clear
@@ -125,6 +135,7 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     button.setTitle("다음", for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 21)
     button.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+    button.layer.cornerRadius = 10
     button.isEnabled = false
     return button
   }()
@@ -133,6 +144,10 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     super.viewDidLoad()
     view.addSubview(titleLabel)
     view.addSubview(backButton)
+    view.addSubview(goodLabel)
+    view.addSubview(goodImageView)
+    view.addSubview(badLabel)
+    view.addSubview(badImageView)
     view.addSubview(collectionView)
     view.addSubview(tipButton)
     view.addSubview(detailLabel)
@@ -214,7 +229,7 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
   override func updateViewConstraints() {
     if !didUpdateConstraint{
       titleLabel.snp.makeConstraints { (make) in
-        make.centerY.equalToSuperview().inset(-200)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(69)
         make.left.equalToSuperview().inset(41)
       }
       
@@ -224,14 +239,29 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
         make.width.height.equalTo(50)
       }
       
-      collectionView.snp.makeConstraints { (make) in
-        make.height.width.equalTo(290)
-        make.center.equalToSuperview()
+      goodImageView.snp.makeConstraints { (make) in
+        make.top.equalTo(titleLabel.snp.bottom).offset(38)
+        make.right.equalTo(self.view.snp.centerX).inset(-30)
+      }
+      
+      badImageView.snp.makeConstraints { (make) in
+        make.top.equalTo(goodImageView)
+        make.left.equalTo(self.view.snp.centerX).inset(30)
+      }
+      
+      goodLabel.snp.makeConstraints { (make) in
+        make.centerX.equalTo(goodImageView)
+        make.top.equalTo(goodImageView.snp.bottom).offset(10)
+      }
+      
+      badLabel.snp.makeConstraints { (make) in
+        make.centerX.equalTo(badImageView)
+        make.top.equalTo(badImageView.snp.bottom).offset(10)
       }
       
       tipButton.snp.makeConstraints { (make) in
-        make.top.equalTo(collectionView.snp.bottom).offset(10)
-        make.left.equalTo(collectionView)
+        make.top.equalTo(goodLabel.snp.bottom).offset(22)
+        make.left.equalTo(goodImageView)
         make.width.equalTo(39)
         make.height.equalTo(24)
       }
@@ -241,9 +271,16 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
         make.top.equalTo(tipButton)
       }
       
+      
+      collectionView.snp.makeConstraints { (make) in
+        make.right.left.equalToSuperview().inset(34)
+        make.top.equalTo(detailLabel.snp.bottom).offset(50)
+        make.height.equalTo(100)
+      }
+      
       nextButton.snp.makeConstraints { (make) in
-        make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide)
-        make.height.equalTo(61)
+        make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(11)
+        make.height.equalTo(56)
       }
       
       didUpdateConstraint = true
@@ -266,47 +303,46 @@ final class ProfileImageCell: UICollectionViewCell{
   
   var imageDeletedSubject: PublishSubject<Int>?{
     didSet{
-      imageCancelButton.rx.tap
-        .map{[unowned self] _ in return self.tag}
-        .bind(to: imageDeletedSubject!)
-        .disposed(by: disposeBag)
     }
   }
   
   var item: UIImage?{
     didSet{
       if item == nil {
-        profileImage.setImage(#imageLiteral(resourceName: "textfieldsecret2.png"), for: .normal)
+        profileImage.setImage(getDefaultImage(index: tag).image, for: .normal)
+        commentLabel.text = getDefaultImage(index: tag).text
       }else{
         profileImage.setImage(item, for: .normal)
+        commentLabel.text = getDefaultImage(index: tag).text
       }
     }
   }
   
-  let typeButton: UIButton = {
+  private let profileImage: UIButton = {
     let button = UIButton()
-    button.setTitleColor(.white, for: .normal)
-    button.setTitleColor(.white, for: .selected)
-    button.setBackgroundImage(#imageLiteral(resourceName: "combinedShape2.png"), for: .normal)
-    button.setBackgroundImage(#imageLiteral(resourceName: "combinedShape.png"), for: .selected)
-    button.titleLabel?.font = .AppleSDGothicNeoSemiBold(size: 11)
+    button.setImage(#imageLiteral(resourceName: "photoSelect.png"), for: .normal)
+    button.imageView?.contentMode = .scaleAspectFill
+    button.layer.cornerRadius = 71/2
+    button.layer.masksToBounds = true
     return button
   }()
   
-  let imageCancelButton: UIButton = {
-    let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "imagecancel.png"), for: .normal)
-    button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
-    button.isHidden = true
-    return button
+  private let commentLabel: UILabel = {
+    let label = UILabel()
+    label.font = .AppleSDGothicNeoBold(size: 10)
+    return label
   }()
   
-  let profileImage: UIButton = {
-    let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "textfieldsecret2.png"), for: .normal)
-    button.contentMode = .scaleAspectFill
-    return button
-  }()
+  private func getDefaultImage(index: Int) -> (image: UIImage,text: String) {
+    switch index{
+    case 0:
+      return (#imageLiteral(resourceName: "photoMust1.png") , "대표사진")
+    case 1:
+      return (#imageLiteral(resourceName: "photoMust2.png") , "필수항목")
+    default:
+      return (#imageLiteral(resourceName: "photoSelect.png") , "")
+    }
+  }
   
   override func prepareForReuse() {
     super.prepareForReuse()
@@ -316,24 +352,19 @@ final class ProfileImageCell: UICollectionViewCell{
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentView.addSubview(profileImage)
-    profileImage.addSubview(typeButton)
-    profileImage.addSubview(imageCancelButton)
+    contentView.addSubview(commentLabel)
     
     profileImage.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview()
+      make.left.right.top.equalToSuperview()
+      make.height.equalTo(71)
     }
     
-    typeButton.snp.makeConstraints { (make) in
-      make.top.left.equalToSuperview()
-      make.height.width.equalTo(45)
+    commentLabel.snp.makeConstraints { (make) in
+      make.top.equalTo(profileImage.snp.bottom).offset(10)
+      make.centerX.equalToSuperview()
     }
-    
-    imageCancelButton.snp.makeConstraints { (make) in
-      make.right.top.equalToSuperview()
-      make.height.width.equalTo(26)
-    }
-    
-    contentView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9568627451, alpha: 1)
+  
+    contentView.backgroundColor = .clear
   }
   
   required init?(coder aDecoder: NSCoder) {

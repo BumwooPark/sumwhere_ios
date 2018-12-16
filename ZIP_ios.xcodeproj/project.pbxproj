@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A059CA91FEFB38F0057E26E /* PlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */; };
 		0A059CAB1FEFB3B50057E26E /* PlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059CAA1FEFB3B50057E26E /* PlanModel.swift */; };
-		0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075BFA2153CE80004A4DBF /* AgeViewController.swift */; };
 		0A075BFD2153EC2C004A4DBF /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */; };
 		0A075BFF21553611004A4DBF /* DefaultLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075BFE21553611004A4DBF /* DefaultLoginViewModel.swift */; };
 		0A075C0121562406004A4DBF /* MoyaError + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A075C0021562406004A4DBF /* MoyaError + Extension.swift */; };
@@ -37,13 +36,15 @@
 		0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */; };
 		0A1D1D4421C298C60028EB48 /* OTGulimM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4321C298C60028EB48 /* OTGulimM.otf */; };
 		0A1D1D4721C2A0BB0028EB48 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4621C2A0BB0028EB48 /* Settings.bundle */; };
+		0A1D1D4921C513700028EB48 /* ex.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4821C513700028EB48 /* ex.gif */; };
+		0A1D1D4B21C518990028EB48 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4A21C518990028EB48 /* LoginView.xib */; };
 		0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */; };
 		0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1F91FC057A8005DCE32 /* AuthManager.swift */; };
 		0A23C1FC1FC05ACA005DCE32 /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23C1FB1FC05ACA005DCE32 /* ObservableType+Extension.swift */; };
 		0A332776213BA65D00BC2906 /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A332775213BA65D00BC2906 /* JoinViewModel.swift */; };
 		0A332779213BBB7A00BC2906 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A332778213BBB7A00BC2906 /* FirstViewController.swift */; };
 		0A33277B213BBCCF00BC2906 /* NewSetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33277A213BBCCF00BC2906 /* NewSetProfileViewController.swift */; };
-		0A33277D213BBD9700BC2906 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33277C213BBD9700BC2906 /* GenderViewController.swift */; };
+		0A33277D213BBD9700BC2906 /* GenderAgeJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33277C213BBD9700BC2906 /* GenderAgeJobViewController.swift */; };
 		0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A332780213BC1FD00BC2906 /* NickNameViewController.swift */; };
 		0A33F7E621342F04002228BF /* RandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33F7E521342F04002228BF /* RandomString.swift */; };
 		0A35ED8B214E20CB00B493D6 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35ED8A214E20CB00B493D6 /* MessageModel.swift */; };
@@ -250,7 +251,6 @@
 /* Begin PBXFileReference section */
 		0A059CA81FEFB38F0057E26E /* PlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewModel.swift; sourceTree = "<group>"; };
 		0A059CAA1FEFB3B50057E26E /* PlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanModel.swift; sourceTree = "<group>"; };
-		0A075BFA2153CE80004A4DBF /* AgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeViewController.swift; sourceTree = "<group>"; };
 		0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		0A075BFE21553611004A4DBF /* DefaultLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginViewModel.swift; sourceTree = "<group>"; };
 		0A075C0021562406004A4DBF /* MoyaError + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaError + Extension.swift"; sourceTree = "<group>"; };
@@ -278,13 +278,15 @@
 		0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		0A1D1D4321C298C60028EB48 /* OTGulimM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTGulimM.otf; sourceTree = "<group>"; };
 		0A1D1D4621C2A0BB0028EB48 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
+		0A1D1D4821C513700028EB48 /* ex.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ex.gif; sourceTree = "<group>"; };
+		0A1D1D4A21C518990028EB48 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		0A23C1F61FC04FE4005DCE32 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		0A23C1F91FC057A8005DCE32 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		0A23C1FB1FC05ACA005DCE32 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		0A332775213BA65D00BC2906 /* JoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
 		0A332778213BBB7A00BC2906 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		0A33277A213BBCCF00BC2906 /* NewSetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSetProfileViewController.swift; sourceTree = "<group>"; };
-		0A33277C213BBD9700BC2906 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
+		0A33277C213BBD9700BC2906 /* GenderAgeJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAgeJobViewController.swift; sourceTree = "<group>"; };
 		0A332780213BC1FD00BC2906 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		0A33F7E521342F04002228BF /* RandomString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomString.swift; sourceTree = "<group>"; };
 		0A35ED8A214E20CB00B493D6 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -318,7 +320,6 @@
 		0A7123781FACC01200512EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A7123811FACC01200512EB7 /* ZIP_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZIP_iosTests.swift; sourceTree = "<group>"; };
 		0A7123831FACC01200512EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A7123911FACC1B600512EB7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		0A7123951FACC1E900512EB7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0A7123971FACC1FB00512EB7 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		0A71239A1FACC24400512EB7 /* ZIP_ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZIP_ios-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -534,6 +535,7 @@
 		0A0FDE2120398DA70046E76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A1D1D4821C513700028EB48 /* ex.gif */,
 				B132A58021B7B9300050D6DE /* OTGulimL.otf */,
 				0A1D1D4321C298C60028EB48 /* OTGulimM.otf */,
 				B179B8AA21B7B8F000DCCD2B /* OTGulimB.otf */,
@@ -857,7 +859,6 @@
 			isa = PBXGroup;
 			children = (
 				B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */,
-				0A7123911FACC1B600512EB7 /* WelcomeViewController.swift */,
 				0A7123971FACC1FB00512EB7 /* JoinViewController.swift */,
 			);
 			name = Login;
@@ -868,6 +869,7 @@
 			isa = PBXGroup;
 			children = (
 				0A1B11DA1FF1181D004B42B6 /* LoginView.swift */,
+				0A1D1D4A21C518990028EB48 /* LoginView.xib */,
 				0A6FEE7E1FF622A100A2D347 /* JoinView.swift */,
 			);
 			path = Login;
@@ -1051,11 +1053,10 @@
 				0A33277A213BBCCF00BC2906 /* NewSetProfileViewController.swift */,
 				0A332778213BBB7A00BC2906 /* FirstViewController.swift */,
 				0A332780213BC1FD00BC2906 /* NickNameViewController.swift */,
-				0A33277C213BBD9700BC2906 /* GenderViewController.swift */,
-				0A075BFA2153CE80004A4DBF /* AgeViewController.swift */,
+				0A33277C213BBD9700BC2906 /* GenderAgeJobViewController.swift */,
+				B1911FB4216B2C63005A4E85 /* ProfileImageViewController.swift */,
 				0A075BFC2153EC2C004A4DBF /* CharacterViewController.swift */,
 				B18BC89721547ED700642BB0 /* TripStyleViewController.swift */,
-				B1911FB4216B2C63005A4E85 /* ProfileImageViewController.swift */,
 			);
 			path = SetProfile;
 			sourceTree = "<group>";
@@ -1314,9 +1315,11 @@
 				0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */,
 				B16BD8B821AD13510010EEE0 /* KoreanSWGI3.otf in Resources */,
 				0A0FDE2820398E5A0046E76F /* NotoSans-Medium.otf in Resources */,
+				0A1D1D4B21C518990028EB48 /* LoginView.xib in Resources */,
 				0A7123741FACC01200512EB7 /* Assets.xcassets in Resources */,
 				0A7123721FACC01200512EB7 /* Main.storyboard in Resources */,
 				0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */,
+				0A1D1D4921C513700028EB48 /* ex.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1520,7 +1523,6 @@
 				B166603521B6558400063AFA /* OneTimeMatchFlowLayout.swift in Sources */,
 				0A745691210EECDB00F8A0C9 /* RegisterViewController.swift in Sources */,
 				0A375C1C2132796D00E35ED9 /* TopTripViewModel.swift in Sources */,
-				0A075BFB2153CE80004A4DBF /* AgeViewController.swift in Sources */,
 				B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */,
 				0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */,
 				0A7C507F219871D700558F62 /* OtherMyPageSectionController.swift in Sources */,
@@ -1575,7 +1577,7 @@
 				B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */,
 				B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */,
 				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
-				0A33277D213BBD9700BC2906 /* GenderViewController.swift in Sources */,
+				0A33277D213BBD9700BC2906 /* GenderAgeJobViewController.swift in Sources */,
 				0A075BFF21553611004A4DBF /* DefaultLoginViewModel.swift in Sources */,
 				B1D1CB10212E8D01001A9801 /* RightKeyView.swift in Sources */,
 				0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */,

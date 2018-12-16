@@ -40,16 +40,16 @@ final class TripStyleViewController: UIViewController, ProfileCompletor{
   }()
 
   private let titleLabel: UILabel = {
-    let attributeString = NSMutableAttributedString(string: "당신의 여행스타일과\n그에 맞는 관심사를 선택해주세요\n",
-                                                    attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 20),
+    let attributeString = NSMutableAttributedString(string: "질문에 해당하는 항목을\n선택해주세요 \n\n",
+                                                    attributes: [.font: UIFont.KoreanSWGI1R(size: 20),
                                                                  .foregroundColor: #colorLiteral(red: 0.2784313725, green: 0.2784313725, blue: 0.2784313725, alpha: 1) ])
-    attributeString.append(NSAttributedString(string: "최소 세개까지 선택이 가능합니다.",
-                                              attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 14),
+    attributeString.append(NSAttributedString(string: "당신의 여행스타일을 알기 위해 최대한 많이 선택해주세요.",
+                                              attributes: [.font: UIFont.AppleSDGothicNeoLight(size: 14),
                                                            .foregroundColor: #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 1)]))
     
     let label = UILabel()
     label.attributedText = attributeString
-    label.numberOfLines = 3
+    label.numberOfLines = 0
     return label
   }()
   
@@ -210,7 +210,8 @@ extension TripStyleViewController: UITableViewDelegate{
     let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: TripStyleHeaderView.self)) as! TripStyleHeaderView
     view.item = data[section]
     
-    view.contentView.rx
+    view.contentView
+      .rx
       .tapGesture()
       .when(.ended)
       .subscribeNext(weak: self) { (weakSelf) -> (UITapGestureRecognizer) -> Void in

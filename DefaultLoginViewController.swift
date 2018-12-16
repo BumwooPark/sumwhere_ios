@@ -15,15 +15,13 @@ import LGButton
 import RxKeyboard
 import Reachability
 import TTTAttributedLabel
-import JDStatusBarNotification
 import SkyFloatingLabelTextField
 
 final class DefaultLoginViewController: UIViewController{
   
-  let reachability = Reachability()!
-  
-  var didUpdateConstraint = false
-  let disposeBag = DisposeBag()
+  private var didUpdateConstraint = false
+  private let disposeBag = DisposeBag()
+  private var keyboardDisposeBag = DisposeBag()
 
   var constraint: Constraint?
   
@@ -37,20 +35,8 @@ final class DefaultLoginViewController: UIViewController{
     return button
   }()
   
-  private let commaImageView: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "invalidName"))
-    imageView.contentMode = .scaleAspectFit
-    return imageView
-  }()
-  
-  private let commaImageView2: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "invalidName2"))
-    imageView.contentMode = .scaleAspectFit
-    return imageView
-  }()
-  
   private let logoImageView: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "group23"))
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "logoTypoBlack.png"))
     imageView.hero.id = "logoImageView"
     return imageView
   }()
@@ -69,6 +55,7 @@ final class DefaultLoginViewController: UIViewController{
     field.placeholderColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
     field.keyboardType = .emailAddress
     field.returnKeyType = .done
+    field.hero.id = "email"
     return field
   }()
   
@@ -89,6 +76,7 @@ final class DefaultLoginViewController: UIViewController{
     field.keyboardType = .asciiCapable
     field.rightView = secretButton
     field.rightViewMode = .whileEditing
+    field.hero.id = "password"
     return field
   }()
   
@@ -99,6 +87,30 @@ final class DefaultLoginViewController: UIViewController{
     button.titleFontName = "AppleSDGothicNeo-Medium"
     button.titleFontSize = 17
     button.bgColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+    button.layer.cornerRadius = 10
+    button.hero.id = "button"
+    return button
+  }()
+  
+  private let dividLine: UIView = {
+    let view = UIView()
+    view.backgroundColor = .lightGray
+    return view
+  }()
+  
+  private let findSecretButton: UIButton = {
+    let button = UIButton()
+    button.setTitle("비밀번호 찾기", for: .normal)
+    button.setTitleColor(#colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1), for: .normal)
+    button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 13)
+    return button
+  }()
+  
+  private let signUpButton: UIButton = {
+    let button = UIButton()
+    button.setTitle("회원가입", for: .normal)
+    button.setTitleColor(#colorLiteral(red: 0.2862745098, green: 0.2862745098, blue: 0.2862745098, alpha: 1), for: .normal)
+    button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 13)
     return button
   }()
   
@@ -111,14 +123,17 @@ final class DefaultLoginViewController: UIViewController{
     view.addSubview(emailField)
     view.addSubview(passwordField)
     view.addSubview(loginButton)
-    logoImageView.addSubview(commaImageView)
-    logoImageView.addSubview(commaImageView2)
+    view.addSubview(dividLine)
+    view.addSubview(findSecretButton)
+    view.addSubview(signUpButton)
+    
     self.navigationController?.navigationBar.topItem?.title = String()
     
     let loginAction = loginButton
       .rx
       .tapGesture()
-      .when(.ended).do(onNext: {[weak self] (_) in
+      .when(.ended)
+      .do(onNext: {[weak self] (_) in
         self?.loginButton.isLoading = true
       }).share()
     
@@ -127,81 +142,55 @@ final class DefaultLoginViewController: UIViewController{
                                       tap: loginAction)
     behavior()
     heroConfig()
-    reachText()
+    
     view.setNeedsUpdateConstraints()
-    
-    NotificationCenter.default.rx
-      .notification(.reachabilityChanged, object: reachability)
-      .subscribe(onNext: { (noti) in
-        log.info(noti)
-      }).disposed(by: disposeBag)
-  }
-  
-  func reachText(){
-    reachability.whenReachable = { reachability in
-      if reachability.connection == .wifi {
-        print("Reachable via WiFi")
-      } else {
-        print("Reachable via Cellular")
-      }
-    }
-    reachability.whenUnreachable = { _ in
-      print("Not reachable")
-    }
-    
-    do {
-      try reachability.startNotifier()
-    } catch {
-      print("Unable to start notifier")
-    }
-  }
-  
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.view.endEditing(true)
+    hideKeyboardWhenTappedAround()
   }
   
   private func behavior(){
     
-    viewModel.tempResult
+    viewModel
+      .API
+      .do(onNext: {[weak self] _ in self?.loginButton.isLoading = false})
       .errors()
-      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
-        return { error in
-          guard let err = error as? MoyaError else {return}
-          err.GalMalErrorHandler()
-          weakSelf.loginButton.isLoading = false
+      .map{($0 as? MoyaError)?.response}
+      .unwrap()
+      .map(ResultModel<Bool>.self)
+      .map{$0.error?.code}
+      .unwrap()
+      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
+        return {code in
+          if code == 20001{
+            weakSelf.emailField.errorMessage = "가입이 되어있지 않습니다."
+            weakSelf.passwordField.errorMessage = String()
+          }else if code == 20002{
+            weakSelf.emailField.errorMessage = String()
+            weakSelf.passwordField.errorMessage = "비밀번호가 틀립니다."
+          }
         }
     }.disposed(by: disposeBag)
     
-    viewModel.tempResult
-      .elements()
-      .subscribeNext(weak: self) { (weakSelf) -> (ResultModel<TokenModel>) -> Void in
-        return { model in
-          tokenObserver.onNext(model.result?.token ?? String())
-          weakSelf.loginButton.isLoading = false
+    Observable
+      .merge([emailField.rx.text.orEmpty.asObservable(),passwordField.rx.text.orEmpty.asObservable()])
+      .subscribeNext(weak: self) {(weakSelf) -> (String) -> Void in
+        return { _ in
+          weakSelf.emailField.errorMessage = String()
+          weakSelf.passwordField.errorMessage = String()
         }
       }.disposed(by: disposeBag)
-
-    RxKeyboard.instance
-      .visibleHeight
-      .drive(onNext: {[unowned self] (float) in
-        self.emailField.snp.remakeConstraints({ (make) in
-          make.top.equalTo(self.logoImageView.snp.bottom).offset((90 - float))
-          make.left.right.equalToSuperview().inset(42)
-        })
-        
-        if float == 0 {
-          self.logoHidden(false)
-        }else{
-          self.logoHidden(true)
-        }
-        
-        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
-          self.view.setNeedsLayout()
-          self.view.layoutIfNeeded()
-        }, completion: nil)
-      }).disposed(by: disposeBag)
     
-    secretButton.rx.tap
+    viewModel
+      .API
+      .do(onNext: {[weak self] _ in self?.loginButton.isLoading = false})
+      .elements()
+      .map{$0.result?.token}
+      .unwrap()
+      .bind(to: tokenObserver)
+      .disposed(by: disposeBag)
+    
+    secretButton
+      .rx
+      .tap
       .map{!self.secretButton.isSelected}
       .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
         return { result in
@@ -210,7 +199,8 @@ final class DefaultLoginViewController: UIViewController{
         }
     }.disposed(by: disposeBag)
     
-    viewModel.isEnable
+    viewModel
+      .isEnable
       .observeOn(MainScheduler.instance)
       .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
         return { result in
@@ -218,12 +208,22 @@ final class DefaultLoginViewController: UIViewController{
           weakSelf.loginButton.isEnabled = result
         }
     }.disposed(by: disposeBag)
+    
+    signUpButton
+      .rx
+      .tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+      return { _ in
+        weakSelf.navigationController?.pushViewController(JoinViewController(), animated: true)
+      }
+    }.disposed(by: disposeBag)
   }
   
   private func logoHidden(_ hidden: Bool){
     logoImageView.alpha = hidden ? 0 : 1
-    commaImageView.alpha = hidden ? 0 : 1
-    commaImageView2.alpha = hidden ? 0 : 1
+    dividLine.isHidden = hidden
+    signUpButton.isHidden = hidden
+    findSecretButton.isHidden = hidden
   }
   
   /// Hero Settings
@@ -239,19 +239,6 @@ final class DefaultLoginViewController: UIViewController{
       logoImageView.snp.makeConstraints { (make) in
         make.centerX.equalToSuperview()
         make.centerY.equalToSuperview().inset(-100)
-        make.width.equalTo(184)
-        make.height.equalTo(58)
-      }
-      
-      commaImageView.snp.makeConstraints { (make) in
-        make.center.equalToSuperview()
-        make.height.width.equalTo(10)
-      }
-      
-      commaImageView2.snp.makeConstraints { (make) in
-        make.right.equalToSuperview().inset(-15)
-        make.centerY.equalToSuperview()
-        make.height.width.equalTo(10)
       }
       
       emailField.snp.makeConstraints { (make) in
@@ -270,9 +257,58 @@ final class DefaultLoginViewController: UIViewController{
         make.height.equalTo(51)
       }
       
+      dividLine.snp.makeConstraints { (make) in
+        make.top.equalTo(loginButton.snp.bottom).offset(31)
+        make.centerX.equalToSuperview()
+        make.height.equalTo(signUpButton)
+        make.width.equalTo(1)
+      }
+      
+      signUpButton.snp.makeConstraints { (make) in
+        make.left.equalTo(dividLine.snp.right).offset(10)
+        make.centerY.equalTo(dividLine)
+      }
+      
+      findSecretButton.snp.makeConstraints { (make) in
+        make.right.equalTo(dividLine.snp.left).offset(-10)
+        make.centerY.equalTo(dividLine)
+      }
+      
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
+  }
+  
+  func rxKeyBoardSetting(){
+    RxKeyboard.instance
+      .visibleHeight
+      .drive(onNext: {[unowned self] (float) in
+        self.emailField.snp.remakeConstraints({ (make) in
+          make.top.equalTo(self.logoImageView.snp.bottom).offset((90 - float))
+          make.left.right.equalToSuperview().inset(42)
+        })
+        if float == 0 {
+          self.logoHidden(false)
+        }else{
+          self.logoHidden(true)
+        }
+        
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+          self.view.setNeedsLayout()
+          self.view.layoutIfNeeded()
+        }, completion: nil)
+      }).disposed(by: keyboardDisposeBag)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    rxKeyBoardSetting()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    keyboardDisposeBag = DisposeBag()
+    
   }
 }
 
