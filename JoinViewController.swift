@@ -26,18 +26,7 @@ class JoinViewController: UIViewController{
 
   private let disposeBag = DisposeBag()
   private var didUpdateConstraint = false
-  private let commaImageView: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "invalidName"))
-    imageView.contentMode = .scaleAspectFit
-    return imageView
-  }()
-  
-  private let commaImageView2: UIImageView = {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "invalidName2"))
-    imageView.contentMode = .scaleAspectFit
-    return imageView
-  }()
-  
+
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "회원가입"

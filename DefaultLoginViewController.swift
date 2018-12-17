@@ -140,6 +140,18 @@ final class DefaultLoginViewController: UIViewController{
     viewModel = DefaultLoginViewModel(email: emailField.rx.text.orEmpty,
                                       password: passwordField.rx.text.orEmpty,
                                       tap: loginAction)
+    
+    
+    findSecretButton
+      .rx
+      .tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.navigationController?.pushViewController(SearchPasswordViewController(), animated: true)
+        }
+      }.disposed(by: disposeBag)
+    
+    
     behavior()
     heroConfig()
     
