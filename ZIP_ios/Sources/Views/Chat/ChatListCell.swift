@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-final class ChatListCell: UICollectionViewCell {
+final class ChatListCell: MGSwipeTableCell {
   
   var item: ChatListModel? {
     didSet{
@@ -62,8 +63,9 @@ final class ChatListCell: UICollectionViewCell {
     return button
   }()
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+  
     contentView.addSubview(profileImage)
     contentView.addSubview(nickNameLabel)
     contentView.addSubview(commentLabel)
@@ -71,6 +73,7 @@ final class ChatListCell: UICollectionViewCell {
     contentView.addSubview(timeLabel)
     contentView.addSubview(countButton)
     setNeedsUpdateConstraints()
+    selectionStyle = .none
   }
   
   override func layoutSubviews() {

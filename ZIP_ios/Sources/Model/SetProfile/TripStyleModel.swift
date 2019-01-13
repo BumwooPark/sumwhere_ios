@@ -6,28 +6,42 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
-struct TripStyleModel: Codable{
-  struct TripStyle: Codable{
-    let id: Int
-    let typeName: String
-  }
-  
-  struct Element: Codable{
-    let id: Int
-    let styleId: Int
-    let name: String
-    let iconURL: String
-  }
-  
-  let tripStyle: TripStyle
-  let elements: [Element]
-  var isOpend: Bool
-  
-  init(from decoder: Decoder) throws {
-    let values = try decoder.container(keyedBy: CodingKeys.self)
-    elements = try values.decode([Element].self, forKey: .elements)
-    tripStyle = try values.decode(TripStyle.self, forKey: .tripStyle)
-    isOpend = false
-  }
-
+struct TripStyle: Codable{
+  let id: Int
+  let type: String
+  let name: String
 }
+
+public class SelectTripStyleModel {
+  public enum TripType{
+    case type(name: String,select: UIImage,selected: UIImage)
+  }
+  
+  let title: String
+  let subTitle: String
+  let datas: [TripType]
+  var selectedData: [TripType]
+  var isSelected = false
+  init(title: String, subTitle: String, datas: [TripType]) {
+    self.title = title
+    self.subTitle = subTitle
+    self.datas = datas
+    self.selectedData = []
+  }
+}
+
+public func ==(lhs: SelectTripStyleModel.TripType, rhs: SelectTripStyleModel.TripType) -> Bool {
+  switch (lhs, rhs) {
+  case let (.type(name,_,_), .type(name2,_,_)):
+    return name == name2
+  }
+}
+
+public func ==(lhs: String, rhs: SelectTripStyleModel.TripType) -> Bool {
+  if case let .type(name,_,_) = rhs {
+    return name == lhs
+  }
+  return false
+}
+
+

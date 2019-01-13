@@ -17,7 +17,7 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     didSet{
       viewModel?
         .saver
-        .onNext(.image(value: profileImage))
+        .accept(.image(value: profileImage))
       var totalCount = 0
       for img in profileImage{
         if img != nil {
@@ -170,6 +170,7 @@ final class ProfileImageViewController: UIViewController, ProfileCompletor{
     
     nextButton.rx
       .tap
+      .debounce(0.2, scheduler: MainScheduler.instance)
       .bind(to: subject)
       .disposed(by: disposeBag)
     

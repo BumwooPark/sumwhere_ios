@@ -84,6 +84,7 @@ PODS:
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
   - FLAnimatedImage (1.0.12)
+  - FloatingPanel (1.2.0)
   - Google-Mobile-Ads-SDK (7.35.2)
   - GoogleAppMeasurement (5.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
@@ -151,6 +152,7 @@ PODS:
   - MessageInputBar/Core (0.4.1)
   - MessageKit (2.0.0):
     - MessageInputBar/Core
+  - MGSwipeTableCell (1.6.7)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
@@ -237,6 +239,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - FLAnimatedImage
+  - FloatingPanel
   - GoogleMaps
   - GooglePlaces
   - Hero
@@ -251,6 +254,7 @@ DEPENDENCIES:
   - LGButton
   - LTMorphingLabel
   - MessageKit
+  - MGSwipeTableCell
   - Moya/RxSwift
   - MXParallaxHeader
   - NVActivityIndicatorView
@@ -305,6 +309,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FLAnimatedImage
+    - FloatingPanel
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleMaps
@@ -325,6 +330,7 @@ SPEC REPOS:
     - LTMorphingLabel
     - MessageInputBar
     - MessageKit
+    - MGSwipeTableCell
     - Moya
     - MXParallaxHeader
     - nanopb
@@ -382,6 +388,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FloatingPanel: b6c56634780f25a4b5146025714f3ad5eeb5afb9
   Google-Mobile-Ads-SDK: 8f07cc8eac6649fe648cabc97d67c8d20173624a
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
@@ -402,6 +409,7 @@ SPEC CHECKSUMS:
   LTMorphingLabel: 8adaba524476098ed307626d0bc42b7f8fadb7e0
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
+  MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -434,6 +442,6 @@ SPEC CHECKSUMS:
   TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 3030df4205649aec5508a31be3286489645e6a31
+PODFILE CHECKSUM: a1074de76bee75fe99d2b9e7ca1550109a599d02
 
 COCOAPODS: 1.6.0.beta.2

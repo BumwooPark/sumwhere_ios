@@ -8,6 +8,8 @@
 import RxSwift
 import RxCocoa
 import BetterSegmentedControl
+import RxKeyboard
+import SnapKit
 
 final class GenderAgeJobViewController: UIViewController, ProfileCompletor{
   
@@ -17,12 +19,10 @@ final class GenderAgeJobViewController: UIViewController, ProfileCompletor{
   weak var viewModel: ProfileViewModel?
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
-  private var isComplete = false{
-    didSet{
-      nextButton.isEnabled = isComplete
-      nextButton.backgroundColor = isComplete ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
-    }
-  }
+  private var constraint: Constraint?
+  
+  private let ageSelected = PublishRelay<Bool>()
+  private var jobSelected = PublishRelay<Bool>()
   
   private let titleLabel: UILabel = {
     let label = UILabel()
@@ -81,6 +81,7 @@ final class GenderAgeJobViewController: UIViewController, ProfileCompletor{
     return pickerView
   }()
   
+  
   private let jobTextField: UITextField = {
     let field = UITextField()
     field.attributedPlaceholder = NSAttributedString(string: "ex) 디자이너, 승무원, 운동선수, 초등학교 교사", attributes: [.font: UIFont.AppleSDGothicNeoMedium(size: 13)])
@@ -119,7 +120,7 @@ final class GenderAgeJobViewController: UIViewController, ProfileCompletor{
     view.addSubview(jobTextField)
     view.addSubview(backButton)
     view.addSubview(nextButton)
-    viewModel?.saver.onNext(ProfileViewModel.ProfileType.gender(value: "male"))
+    viewModel?.saver.accept(.gender(value: "male"))
     
     hideKeyboardWhenTappedAround()
     view.setNeedsUpdateConstraints()
@@ -129,15 +130,24 @@ final class GenderAgeJobViewController: UIViewController, ProfileCompletor{
   
   private func rxBinder(){
     
+    Observable
+      .combineLatest(ageSelected, jobSelected) {$0 && $1}
+      .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
+        return {result in
+          weakSelf.nextButton.isEnabled = result
+          weakSelf.nextButton.backgroundColor = result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8862745098, alpha: 1)
+        }
+      }.disposed(by: disposeBag)
+    
     genderSegment.rx
       .controlEvent(UIControlEvents.valueChanged)
       .map{[unowned self] _ in return self.genderSegment.index}
       .subscribeNext(weak: self) { (weakSelf) -> ((UInt)) -> Void in
         return { idx in
           if idx == 0 {
-            weakSelf.viewModel?.saver.onNext(ProfileViewModel.ProfileType.gender(value: "male"))
+            weakSelf.viewModel?.saver.accept(ProfileViewModel.ProfileType.gender(value: "male"))
           }else {
-            weakSelf.viewModel?.saver.onNext(ProfileViewModel.ProfileType.gender(value: "female"))
+            weakSelf.viewModel?.saver.accept(ProfileViewModel.ProfileType.gender(value: "female"))
           }
         }
       }.disposed(by: disposeBag)
@@ -152,25 +162,27 @@ final class GenderAgeJobViewController: UIViewController, ProfileCompletor{
           attributeString.append(NSAttributedString(string: " 세", attributes: [.font: UIFont.AppleSDGothicNeoBold(size: 15)]))
           label.attributedText = attributeString
           label.textColor = .black
-          weakSelf.viewModel?.saver.onNext(.age(value: weakSelf.ageDatas[0][data.0]))
+          weakSelf.viewModel?.saver.accept(.age(value: weakSelf.ageDatas[0][data.0]))
+          weakSelf.ageSelected.accept(true)
         }
       }).disposed(by: disposeBag)
-    
     
     jobTextField.rx
       .text
       .orEmpty
       .subscribeNext(weak: self) { (weakSelf) -> (String) -> Void in
         return {jobs in
-          weakSelf.viewModel?.saver.onNext(.job(value: jobs))
+          weakSelf.viewModel?.saver.accept(.job(value: jobs))
         }
       }.disposed(by: disposeBag)
     
-    
-    jobTextField.rx.text.orEmpty.map{$0.count}
+    jobTextField.rx
+      .text
+      .orEmpty
+      .map{$0.count}
       .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
         return {count in
-          weakSelf.isComplete = count > 0 ? true : false
+          weakSelf.jobSelected.accept(count > 0)
         }
     }.disposed(by: disposeBag)
     
@@ -182,6 +194,7 @@ final class GenderAgeJobViewController: UIViewController, ProfileCompletor{
     
     nextButton.rx
       .tap
+      .debounce(0.2, scheduler: MainScheduler.instance)
       .bind(to: subject)
       .disposed(by: disposeBag)
     
@@ -189,13 +202,28 @@ final class GenderAgeJobViewController: UIViewController, ProfileCompletor{
       .tap
       .bind(to: back)
       .disposed(by: disposeBag)
+    
+    RxKeyboard
+      .instance
+      .visibleHeight
+      .drive(onNext: { [weak self] (height) in
+        guard let weakSelf = self else {return}
+        weakSelf.constraint?.update(inset: 69 - height)
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+          weakSelf.view.setNeedsLayout()
+          weakSelf.view.layoutIfNeeded()
+        }, completion: nil)
+      }).disposed(by: disposeBag)
+    
   }
+  
+  
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{
       
       titleLabel.snp.makeConstraints { (make) in
-        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(69)
+        constraint = make.top.equalTo(self.view.safeAreaLayoutGuide).inset(69).constraint
         make.left.equalToSuperview().inset(36)
       }
       

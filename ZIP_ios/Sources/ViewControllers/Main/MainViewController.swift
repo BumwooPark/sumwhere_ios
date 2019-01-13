@@ -58,7 +58,7 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
   
   let alertButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "galmalicon.png"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "icons8-notification-24.png"), for: .normal)
     return button
   }()
   
@@ -82,7 +82,7 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
   private let titleLabel: UILabel = {
     let titleLabel = UILabel()
     let attachment = NSTextAttachment()
-    attachment.image = #imageLiteral(resourceName: "logo")
+//    attachment.image = #imageLiteral(resourceName: "logo")
     attachment.bounds = CGRect(x: 0, y: -2, width: 20, height: 20)
     let attributeString = NSAttributedString(attachment: attachment)
 

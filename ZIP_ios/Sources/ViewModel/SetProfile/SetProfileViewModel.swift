@@ -17,7 +17,7 @@ enum ProfileType{
   case nickname(value: String)
   case birthDay(value: String)
   case gender(value: String)
-  case tripStyle(value: [TripStyleModel])
+  case tripStyle(value: [TripStyle])
   case interest(value:[InterestModel])
   case character(value:[CharacterModel])
   case introText(value: String)

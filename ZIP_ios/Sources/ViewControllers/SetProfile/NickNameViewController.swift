@@ -126,7 +126,7 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     textObserver
       .subscribeNext(weak: self) { (weakSelf) -> (String) -> Void in
       return {name in
-        weakSelf.viewModel?.saver.onNext(.nickname(value: name))
+        weakSelf.viewModel?.saver.accept(.nickname(value: name))
       }
     }.disposed(by: disposeBag)
     
@@ -168,6 +168,7 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
     guard let subject = completeSubject else {return}
     nextButton.rx
       .tap
+      .debounce(0.2, scheduler: MainScheduler.instance)
       .bind(to: subject)
       .disposed(by: disposeBag)
   }

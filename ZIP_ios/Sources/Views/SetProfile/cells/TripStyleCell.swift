@@ -15,13 +15,10 @@ class TripStyleCell: UITableViewCell{
   
   var disposeBag = DisposeBag()
   
-  var item: [TripStyleModel.Element]?{
+  var item: SelectTripStyleModel?{
     didSet{
       guard let item = item else {return}
-      Observable.just(item)
-        .map{[TripStyleDetailViewModel(items: $0)]}
-        .bind(to: datas)
-        .disposed(by: disposeBag)
+      datas.accept([TripStyleDetailViewModel(items: item.selectedData)])
     }
   }
   
@@ -38,7 +35,7 @@ class TripStyleCell: UITableViewCell{
   let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
-    layout.itemSize = CGSize(width: 76, height: 67)
+    layout.itemSize = CGSize(width: 37, height: 50)
     layout.minimumLineSpacing = 10
     layout.minimumInteritemSpacing = 10
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -65,7 +62,7 @@ class TripStyleCell: UITableViewCell{
     if !didUpdateConstraint{
       
       collectionView.snp.makeConstraints { (make) in
-        make.edges.equalToSuperview()
+        make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 42, bottom: 0, right: 42))
       }
       
       didUpdateConstraint = true
@@ -84,7 +81,7 @@ struct TripStyleDetailViewModel {
 }
 
 extension TripStyleDetailViewModel: SectionModelType{
-  typealias Item = TripStyleModel.Element
+  typealias Item = SelectTripStyleModel.TripType
   
   init(original: TripStyleDetailViewModel, items: [Item]) {
     self = original
@@ -93,23 +90,12 @@ extension TripStyleDetailViewModel: SectionModelType{
 }
 
 class TripStyleDetailCell: UICollectionViewCell{
-  
-  override var isSelected: Bool{
+
+  var item: SelectTripStyleModel.TripType?{
     didSet{
-      contentView.layer.borderColor = isSelected ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.7803921569, alpha: 1)
-      titleLabel.textColor = isSelected ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.7803921569, alpha: 1)
-      iconImageView.tintColor = isSelected ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.7803921569, alpha: 1)
-    }
-  }
-  
-  var item: TripStyleModel.Element?{
-    didSet{
-      titleLabel.text = item?.name
-//      iconImageView.kf.setImageWithZIP(image: item?.iconURL ?? String())
-      
-      KingfisherManager.shared.retrieveImage(with: URL(string: AuthManager.imageURL + (item?.iconURL ?? String()))!, options: nil, progressBlock: nil) {[weak self] (image, error, type, url) in
-        self?.iconImageView.image = image?.withRenderingMode(.alwaysTemplate)
-      }
+      guard case let .type(name,select,_)? = item else {return}
+      iconImageView.image = select
+      titleLabel.text = "<" + name + ">"
     }
   }
   
@@ -122,30 +108,25 @@ class TripStyleDetailCell: UICollectionViewCell{
   
   private let titleLabel: UILabel = {
     let label = UILabel()
-    label.font = .AppleSDGothicNeoMedium(size: 12)
-    label.textColor = #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.7803921569, alpha: 1)
+    label.font = .AppleSDGothicNeoMedium(size: 9)
+    label.textColor = #colorLiteral(red: 0.2901960784, green: 0.2901960784, blue: 0.2901960784, alpha: 1)
     return label
   }()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    contentView.layer.borderWidth = 1.5
-    contentView.layer.cornerRadius = 6
-    contentView.layer.borderColor = #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.7803921569, alpha: 1).cgColor
-    
     contentView.addSubview(iconImageView)
     contentView.addSubview(titleLabel)
     
     iconImageView.snp.makeConstraints { (make) in
-      make.centerX.equalToSuperview()
-      make.top.equalToSuperview().inset(15)
-      make.height.width.equalTo(25)
+      make.left.right.top.equalToSuperview()
+      make.height.equalTo(self.snp.width)
     }
   
     titleLabel.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.bottom.equalToSuperview().inset(5)
+      make.top.equalTo(iconImageView.snp.bottom).offset(5)
     }
   }
   

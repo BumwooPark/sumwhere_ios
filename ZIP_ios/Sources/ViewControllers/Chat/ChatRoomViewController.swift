@@ -40,32 +40,23 @@ final class ChatRoomViewController: MessagesViewController{
     viewModel.start()
     messagesCollectionView.addSubview(refreshControl)
     
+    let barButton = UIBarButtonItem()
+    barButton.image = #imageLiteral(resourceName: "icons8-menu-vertical-30.png")
+    barButton.style = .plain
+    
+    self.navigationItem.rightBarButtonItem = barButton
+    
+    
     initSetting()
     configureMessageCollectionView()
     
     viewModel
       .messagesSubject
+      .debug()
       .observeOn(MainScheduler.asyncInstance)
-      .skip(1)
-      .subscribeNext(weak: self) { (weakSelf) -> ([MessageType]) -> Void in
-        return {models in
-          if !weakSelf.refreshControl.isRefreshing {
-            weakSelf.messagesCollectionView.performBatchUpdates({
-              weakSelf.messagesCollectionView.insertSections([models.count - 1])
-              if models.count >= 2 {
-                weakSelf.messagesCollectionView.reloadSections([models.count - 2])
-              }
-            }, completion: { [weak self] _ in
-              if self?.isLastSectionVisible() == true {
-                self?.messagesCollectionView.scrollToBottom(animated: true)
-              }
-            })
-          }else {
-            weakSelf.messagesCollectionView.reloadDataAndKeepOffset()
-            weakSelf.refreshControl.endRefreshing()
-          }
-        }
-      }.disposed(by: disposeBag)
+      .bind(onNext: sectionUpdate)
+      .disposed(by: disposeBag)
+        
     
     refreshControl
       .rx
@@ -73,6 +64,33 @@ final class ChatRoomViewController: MessagesViewController{
       .bind(to: viewModel.loadMoreAction)
       .disposed(by: disposeBag)
   }
+  
+  private func sectionUpdate(models: [MessageType]){
+    messagesCollectionView.reloadDataAndKeepOffset()
+    messagesCollectionView.reloadData()
+    refreshControl.endRefreshing()
+    messagesCollectionView.scrollToBottom(animated: true)
+//    log.info(messagesCollectionView.visibleCells.count)
+//
+//    log.info(viewModel.messagesSubject.value.count)
+//    log.info(models.count)
+//    if !refreshControl.isRefreshing {
+//      messagesCollectionView.performBatchUpdates({
+////        messagesCollectionView.insertSections([models.count - 1])
+////        if models.count >= 2 {
+////          messagesCollectionView.reloadSections([models.count - 2])
+////        }
+//      }) { [weak self](_) in
+//        if self?.isLastSectionVisible() == true {
+//          self?.messagesCollectionView.scrollToBottom(animated: true)
+//        }
+//      }
+//    }else{
+//      messagesCollectionView.reloadDataAndKeepOffset()
+//      refreshControl.endRefreshing()
+//    }
+  }
+
   
   private func initSetting(){
     scrollsToBottomOnKeyboardBeginsEditing = true
@@ -124,6 +142,8 @@ final class ChatRoomViewController: MessagesViewController{
     messageInputBar.inputTextView.layer.masksToBounds = true
     messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     messageInputBar.backgroundView.backgroundColor = .white
+    messageInputBar.inputTextView.placeholder = "메시지를 입력해 주세요."
+    messageInputBar.sendButton.setTitle("hello", for: .normal)
   }
   
   func isTimeLabelVisible(at indexPath: IndexPath) -> Bool {

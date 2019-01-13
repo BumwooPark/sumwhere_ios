@@ -7,9 +7,11 @@
 //
 
 import RxSwift
+import RxCocoa
 import Moya
 import SwiftyJSON
 import JDStatusBarNotification
+import NVActivityIndicatorView
 
 
 class ProfileViewModel{
@@ -26,23 +28,24 @@ class ProfileViewModel{
   let tripStyleAPI =  AuthManager.instance.provider
     .request(.GetAllTripStyle)
     .filterSuccessfulStatusCodes()
-    .map(ResultModel<[TripStyleModel]>.self)
+    .map(ResultModel<[TripStyle]>.self)
     .map{$0.result}
     .asObservable()
     .unwrap()
+    .materialize()
     .share()
   
   enum ProfileType{
     case nickname(value: String)
     case age(value: Int)
     case gender(value: String)
-    case tripStyle(value: [TripStyleModel.Element])
+    case tripStyle(model: [TripStyle] ,targetModel: [SelectTripStyleModel])
     case character(value:[CharacterModel])
     case image(value: [UIImage?])
     case job(value: String)
   }
   
-  let saver = PublishSubject<ProfileType>()
+  let saver = PublishRelay<ProfileType>()
   let profileSubject = PublishSubject<String>()
   let profileResult: Observable<ResultModel<Bool>>
   
@@ -68,8 +71,8 @@ class ProfileViewModel{
           weakSelf.profile.gender = value
         case .nickname(let value):
           weakSelf.profile.nickName = value
-        case .tripStyle(let values):
-          weakSelf.profile.tripStyles = values
+        case let .tripStyle(model,targetModel):
+          weakSelf.profile.tripStyles = weakSelf.tripStyleMapper(model: model, targetModels: targetModel)
         case .character(let values):
           weakSelf.profile.character = values
         case .image(let values):
@@ -81,13 +84,31 @@ class ProfileViewModel{
     }.disposed(by: disposeBag)
   }
   
-  func putProfile(){
+  func tripStyleMapper(model: [TripStyle],targetModels: [SelectTripStyleModel]) -> String{
+    var modelArray = [Int]()
+    
+    for targetModel in targetModels{
+      for selected in targetModel.selectedData{
+        for m in model {
+          if m.name == selected{
+            modelArray.append(m.id)
+          }
+        }
+      }
+    }
+    
+    return modelArray.map { String($0)}.joined(separator: ",")
+  }
+  
+  func putProfile() -> Observable<Event<Response>>{
     
     var multiparts:[MultipartFormData] = []
     
     multiparts.append(MultipartFormData(provider: .data((profile.gender.data(using: .utf8))!), name: "gender"))
     multiparts.append(MultipartFormData(provider: .data((profile.age.data(using: .utf8))!), name: "age"))
+    multiparts.append(MultipartFormData(provider: .data((profile.job.data(using: .utf8))!), name: "job"))
     multiparts.append(MultipartFormData(provider: .data((profile.nickName.data(using: .utf8))!), name: "nickname"))
+    multiparts.append(MultipartFormData(provider: .data((profile.tripStyles.data(using: .utf8))!), name: "tripStyleType"))
     
     for (idx,image) in profile.images.enumerated(){
       if image != nil {
@@ -96,25 +117,27 @@ class ProfileViewModel{
     }
     
     do {
-      let tripJSON = try JSONEncoder().encode(profile.tripStyles)
       let characterJSON = try JSONEncoder().encode(profile.character)
-      multiparts.append(MultipartFormData(provider: .data(tripJSON), name: "tripStyleType", fileName: "tripStyle.json", mimeType: nil))
       multiparts.append(MultipartFormData(provider: .data(characterJSON), name: "characterType", fileName: "characterType.json"))
       
     }catch let error {
       log.error(error)
     }
     
-    AuthManager.instance
+    return AuthManager.instance
       .provider.request(.createProfile(data: multiparts))
       .filterSuccessfulStatusCodes()
-      .subscribe(onSuccess: { (_) in
-        JDStatusBarNotification.show(withStatus: "환영 합니다", dismissAfter: 2, styleName: JDType.Success.rawValue)
-        AppDelegate.instance?.window?.rootViewController = ProxyViewController()
-      }) { (error) in
-        guard let err = error as? MoyaError else {return}
-        err.GalMalErrorHandler()
-    }.disposed(by: disposeBag)
+      .asObservable()
+      .materialize()
+      .share()
+      
+//      .subscribe(onSuccess: { (_) in
+//        JDStatusBarNotification.show(withStatus: "환영 합니다", dismissAfter: 2, styleName: JDType.Success.rawValue)
+//        AppDelegate.instance?.window?.rootViewController = ProxyViewController()
+//      }) { (error) in
+//        guard let err = error as? MoyaError else {return}
+//        err.GalMalErrorHandler()
+//    }.disposed(by: disposeBag)
   }
 }
 
@@ -124,7 +147,7 @@ struct ProfileModel {
   var gender: String
   var images: [UIImage?]
   var character: [CharacterModel]
-  var tripStyles: [TripStyleModel.Element]
+  var tripStyles: String
   var job: String
   
   init() {
@@ -134,6 +157,6 @@ struct ProfileModel {
     self.job = String()
     self.images = []
     self.character = []
-    self.tripStyles = []
+    self.tripStyles = String()
   }
 }

@@ -15,7 +15,7 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
   
   private var selectedModel = [CharacterModel](){
     didSet{
-      viewModel?.saver.onNext(.character(value: selectedModel))
+      viewModel?.saver.accept(.character(value: selectedModel))
     }
   }
   
@@ -127,6 +127,7 @@ final class CharacterViewController: UIViewController, ProfileCompletor{
         
     nextButton.rx
       .tap
+      .debounce(0.2, scheduler: MainScheduler.instance)
       .bind(to: subject)
       .disposed(by: disposeBag)
     
@@ -191,7 +192,7 @@ final class CharacterCollectionViewCell: UICollectionViewCell{
   
   let titleButton: UIButton = {
     let button = UIButton()
-    button.titleLabel?.font = .AppleSDGothicNeoLight(size: 20)
+    button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 20)
     button.setTitleColor(#colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1), for: .normal)
     button.setTitleColor(#colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1), for: .selected)
     button.isUserInteractionEnabled = false

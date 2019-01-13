@@ -85,7 +85,6 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
           let loginVC = UINavigationController(rootViewController: WelcomeViewController())
           loginVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRMedium(size: 40),.foregroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
           loginVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-          
           if !result.0{
             AppDelegate.instance?.window?.rootViewController = loginVC
           }else {
@@ -96,6 +95,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
               AppDelegate.instance?.window?.rootViewController = MainTabBarController()
             }
           }
+          weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
         }
       }.disposed(by: disposeBag)
     

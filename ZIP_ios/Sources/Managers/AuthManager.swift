@@ -16,9 +16,19 @@ import Result
 class AuthManager{
   
   var fireBaseId: String?
-  static let imageURL = "http://192.168.1.7:8080/images"
+  static let imageURL = "https://www.sumwhere.kr/images"
   
   static let instance = AuthManager()
+  
+  let prettyPrint: (Data)-> Data = {(data) in
+    do {
+      let dataAsJSON = try JSONSerialization.jsonObject(with: data)
+      let prettyData =  try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
+      return prettyData
+    } catch {
+      return data // fallback to original data if it can't be serialized.
+    }
+  }
   
   let activityClosure: NetworkActivityPlugin.NetworkActivityClosure = { activityType, targetType in
     switch activityType {
@@ -32,7 +42,7 @@ class AuthManager{
   lazy var provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG
-      return MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
+      return MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
       #else
         return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
       #endif
@@ -44,7 +54,7 @@ class AuthManager{
   func updateProvider() {
     if Defaults.hasKey("token"){
       #if DEBUG
-      self.provider = MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true),TokenVaildPlugin()]).rx
+      self.provider = MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
       #else
       self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
       #endif

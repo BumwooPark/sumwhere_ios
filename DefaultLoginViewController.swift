@@ -147,7 +147,7 @@ final class DefaultLoginViewController: UIViewController{
       .tap
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return {_ in
-          weakSelf.navigationController?.pushViewController(SearchPasswordViewController(), animated: true)
+          weakSelf.navigationController?.pushViewController( SearchPasswordViewController(), animated: true)
         }
       }.disposed(by: disposeBag)
     

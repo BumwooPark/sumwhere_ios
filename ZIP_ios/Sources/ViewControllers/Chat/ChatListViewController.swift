@@ -10,36 +10,35 @@
 import RxSwift
 import RxCocoa
 import RxDataSources
+import MGSwipeTableCell
 
 class ChatListViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
   private let viewModel = ChatListViewModel()
   
-  private let dataSources = RxCollectionViewSectionedReloadDataSource<ChatListSectionModel>(configureCell: {ds,cv,idx,item in
-    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: ChatListCell.self), for: idx) as! ChatListCell
-    cell.item = item
+  private let dataSources = RxTableViewSectionedReloadDataSource<ChatListSectionModel>(configureCell: {ds,tv,idx,item in
+    let cell = tv.dequeueReusableCell(withIdentifier: String(describing: ChatListCell.self), for: idx) as! ChatListCell
+    cell.rightButtons = [MGSwipeButton(title: "나가기", backgroundColor: .red)]
     return cell
   })
   
-  private let collectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 95)
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView.register(ChatListCell.self, forCellWithReuseIdentifier: String(describing: ChatListCell.self))
-    collectionView.backgroundColor = .white
-    collectionView.alwaysBounceVertical = true
-    return collectionView
+  private let tableView: UITableView = {
+    let tableView = UITableView()
+    tableView.rowHeight = 95
+    tableView.backgroundColor = .white
+    tableView.register(ChatListCell.self, forCellReuseIdentifier: String(describing: ChatListCell.self))
+    tableView.separatorStyle = .none
+    return tableView
   }()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    view = collectionView
+    view = tableView
 
-    
     viewModel.datas
       .asDriver()
-      .drive(collectionView.rx.items(dataSource: dataSources))
+      .drive(tableView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
     viewModel.datas
@@ -49,12 +48,12 @@ class ChatListViewController: UIViewController{
           if value == 0 {
             weakSelf.collectionViewEmptyView()
           }else {
-            weakSelf.collectionView.backgroundView = nil
+            weakSelf.tableView.backgroundView = nil
           }
         }
       }.disposed(by: disposeBag)
     
-    collectionView.rx.modelSelected(ChatListModel.self)
+    tableView.rx.modelSelected(ChatListModel.self)
       .subscribeNext(weak: self) { (weakSelf) -> (ChatListModel) -> Void in
         return {model in
           log.info(model)
@@ -64,6 +63,6 @@ class ChatListViewController: UIViewController{
   }
   
   private func collectionViewEmptyView(){
-    collectionView.backgroundView = EmptyChatView(frame: CGRect(origin: .zero, size: collectionView.bounds.size))
+    tableView.backgroundView = EmptyChatView(frame: CGRect(origin: .zero, size: tableView.bounds.size))
   }
 }

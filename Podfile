@@ -54,11 +54,13 @@ pod 'IGListKit'
 pod 'NVActivityIndicatorView'
 pod 'MXParallaxHeader'
 pod 'BetterSegmentedControl'
-pod 'iCarousel'
 pod 'PopupDialog'
 pod 'MessageKit'
 pod 'RMQClient'
 pod 'FLAnimatedImage'
+pod 'MGSwipeTableCell'
+pod 'FloatingPanel'
+
 
 # RX
 pod 'RxSwift'

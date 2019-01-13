@@ -14,7 +14,6 @@ import RxSwift
 import RxCocoa
 import PopupDialog
 
-
 class ChatViewModel: NSObject{
   
   private var isPopUp = false
@@ -23,14 +22,9 @@ class ChatViewModel: NSObject{
   private let userID: Int64
   private let parentViewController: UIViewController
   private let popUp = PublishRelay<(title:String,message:String)>()
-  private var firstIndex = 0{
-    didSet{
-      log.info("firstIndex")
-      log.info(firstIndex)
-    }
-  }
+  private var firstIndex = 0
   private lazy var conn: RMQConnection = {
-    let connection = RMQConnection(uri: "amqp://qkrqjadn:1q2w3e4r@sumwhere.ddns.net:5672", delegate: self)
+    let connection = RMQConnection(uri: "amqp://qkrqjadn:1q2w3e4r@www.sumwhere.kr:5672", delegate: self)
     return connection
   }()
   
@@ -51,7 +45,6 @@ class ChatViewModel: NSObject{
   public let messagesSubject = BehaviorRelay<[MessageType]>(value: [])
   public let loadMoreAction = PublishRelay<Void>()
 
-
   init(roomID: Int64, userID: Int64, parentViewController: UIViewController){
     self.roomID = roomID
     self.userID = userID
@@ -60,32 +53,29 @@ class ChatViewModel: NSObject{
     queue.bind(exchange)
     
     realmInit()
-  
+    
     let manualAck = RMQBasicConsumeOptions()
     queue.subscribe(manualAck){[weak self] m in
       guard let weakSelf = self else {return}
-      log.info(m.deliveryTag)
       weakSelf.subscribeMessage.accept(m)
     }
- 
+    
     publishMessage
       .map{ data in
-      return try? JSONEncoder().encode(MessageModel(id: "\(userID)", displayName: data.displayName, messageId: "", sentDate: Date(), kind: "text", value: data.text.data(using: .utf8) ?? Data()))
+        return try? JSONEncoder().encode(MessageModel(id: "\(userID)", displayName: data.displayName, messageId: "", sentDate: Date(), kind: "text", value: data.text.data(using: .utf8) ?? Data()))
       }.unwrap()
       .subscribeNext(weak: self) { (weakSelf) -> (Data) -> Void in
         return {data in
           weakSelf.exchange.publish(data)
         }
       }.disposed(by: disposeBag)
-
     
     let subscribeMessageShare = subscribeMessage
       .observeOn(SerialDispatchQueueScheduler(qos: .default))
       .do(onNext: {[weak self] (m) in
-        log.info(m.deliveryTag)
         self?.channel.ack(m.deliveryTag)
       }).share()
-  
+    
     subscribeMessageShare
       .map{try JSONDecoder().decode(MessageModel.self, from: $0.body).ToMessageItem()}
       .map{[unowned self] model in return self.messagesSubject.value + model}
@@ -105,8 +95,6 @@ class ChatViewModel: NSObject{
         }
       })
       .disposed(by: disposeBag)
-    
-    
     
     popUp
       .filter{_ in return !self.isPopUp}
@@ -134,7 +122,6 @@ class ChatViewModel: NSObject{
         weakSelf.isPopUp = true
       }
       }.disposed(by: disposeBag)
-    
 
     loadMoreAction
       .flatMapLatest {[unowned self] () -> Observable<[MessageType]> in
@@ -157,8 +144,8 @@ class ChatViewModel: NSObject{
          return models + self.messagesSubject.value
       }.bind(to: messagesSubject)
       .disposed(by: disposeBag)
-    
   }
+
 
   private func realmInit(){
     do {
