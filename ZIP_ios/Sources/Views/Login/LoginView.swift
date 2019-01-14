@@ -21,6 +21,6 @@ final class LoginView: UIView{
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    backImageView.animatedImage = FLAnimatedImage(animatedGIFData: try! Data(contentsOf: Bundle.main.url(forResource: "ex", withExtension: "gif")!))
+    backImageView.animatedImage = FLAnimatedImage(animatedGIFData: try! Data(contentsOf: Bundle.main.url(forResource: "logo", withExtension: "gif")!))
   }
 }

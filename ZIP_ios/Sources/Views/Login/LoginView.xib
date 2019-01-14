@@ -19,9 +19,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0IV-6v-ow7" customClass="FLAnimatedImageView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoTypo" translatesAutoresizingMaskIntoConstraints="NO" id="bhr-cu-Erf">
-                    <rect key="frame" x="80" y="77" width="215" height="21"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DX0-JN-Q5C" userLabel="dividLine">
                     <rect key="frame" x="47" y="557" width="281" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,13 +92,11 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0IV-6v-ow7" secondAttribute="trailing" id="1eI-AQ-Wio"/>
                 <constraint firstItem="0IV-6v-ow7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2sV-go-Ym5"/>
                 <constraint firstItem="0IV-6v-ow7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7v4-Ht-6tl"/>
-                <constraint firstItem="bhr-cu-Erf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MwV-Ff-fVO"/>
-                <constraint firstItem="bhr-cu-Erf" firstAttribute="top" secondItem="0IV-6v-ow7" secondAttribute="top" constant="77" id="NY3-5g-3Za"/>
                 <constraint firstItem="DX0-JN-Q5C" firstAttribute="top" secondItem="Om5-pG-f26" secondAttribute="bottom" constant="25" id="TR9-am-NYL"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Ul2-1f-CkQ" secondAttribute="bottom" constant="70" id="bC7-jR-tho"/>
                 <constraint firstItem="ztG-VQ-VCA" firstAttribute="top" secondItem="iwm-Da-WFv" secondAttribute="bottom" constant="25" id="eFD-lN-MaL"/>
                 <constraint firstItem="Ul2-1f-CkQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="47" id="iin-93-Nuh"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0IV-6v-ow7" secondAttribute="bottom" id="oWP-Fc-eSv"/>
+                <constraint firstAttribute="bottom" secondItem="0IV-6v-ow7" secondAttribute="bottom" id="oWP-Fc-eSv"/>
                 <constraint firstItem="ztG-VQ-VCA" firstAttribute="trailing" secondItem="Ul2-1f-CkQ" secondAttribute="trailing" id="ohf-e7-HS5"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ul2-1f-CkQ" secondAttribute="trailing" constant="47" id="p9g-VK-JWi"/>
                 <constraint firstItem="ztG-VQ-VCA" firstAttribute="leading" secondItem="aJE-GF-1U1" secondAttribute="leading" id="qxD-dw-O3Y"/>
@@ -123,6 +118,5 @@
         <image name="email" width="15" height="16"/>
         <image name="facebook" width="9" height="18"/>
         <image name="kakao" width="17" height="15"/>
-        <image name="logoTypo" width="215" height="21"/>
     </resources>
 </document>

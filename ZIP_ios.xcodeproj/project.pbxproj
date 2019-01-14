@@ -32,11 +32,21 @@
 		0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6D52128143E0060290A /* MatchResultViewModel.swift */; };
 		0A19A9D22159246B00977AF6 /* TripStyleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19A9D12159246B00977AF6 /* TripStyleHeaderView.swift */; };
 		0A19A9D42159249000977AF6 /* TripStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19A9D32159249000977AF6 /* TripStyleCell.swift */; };
+		0A1B0EEE21EB52A00035E657 /* logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A1B0EED21EB529F0035E657 /* logo.gif */; };
+		0A1B0EF121EB61030035E657 /* EventInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0EF021EB61030035E657 /* EventInfoViewModel.swift */; };
+		0A1B0EF321EB61960035E657 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0EF221EB61960035E657 /* EventModel.swift */; };
+		0A1B0EF521EB64A80035E657 /* EventSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0EF421EB64A80035E657 /* EventSectionController.swift */; };
+		0A1B0EF721EB68100035E657 /* EventHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0EF621EB68100035E657 /* EventHeaderView.swift */; };
+		0A1B0EF921EB72740035E657 /* EventContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0EF821EB72740035E657 /* EventContentCell.swift */; };
+		0A1B0EFB21EB74370035E657 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0EFA21EB74370035E657 /* NoticeModel.swift */; };
+		0A1B0EFD21EB744A0035E657 /* NoticeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0EFC21EB744A0035E657 /* NoticeHeaderView.swift */; };
+		0A1B0EFF21EB745A0035E657 /* NoticeContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0EFE21EB745A0035E657 /* NoticeContentCell.swift */; };
+		0A1B0F0121ECBFC90035E657 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0F0021ECBFC90035E657 /* BannerViewController.swift */; };
+		0A1B0F0321ECC0880035E657 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B0F0221ECC0880035E657 /* BannerModel.swift */; };
 		0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11DA1FF1181D004B42B6 /* LoginView.swift */; };
 		0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */; };
 		0A1D1D4421C298C60028EB48 /* OTGulimM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4321C298C60028EB48 /* OTGulimM.otf */; };
 		0A1D1D4721C2A0BB0028EB48 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4621C2A0BB0028EB48 /* Settings.bundle */; };
-		0A1D1D4921C513700028EB48 /* ex.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4821C513700028EB48 /* ex.gif */; };
 		0A1D1D4B21C518990028EB48 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D1D4A21C518990028EB48 /* LoginView.xib */; };
 		0A1F47AD21C7C9E00003AF7A /* SearchPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F47AC21C7C9DF0003AF7A /* SearchPasswordViewController.swift */; };
 		0A1F47AF21CA6F4E0003AF7A /* TripStyleSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F47AE21CA6F4E0003AF7A /* TripStyleSelectViewController.swift */; };
@@ -277,11 +287,21 @@
 		0A15A6D52128143E0060290A /* MatchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultViewModel.swift; sourceTree = "<group>"; };
 		0A19A9D12159246B00977AF6 /* TripStyleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleHeaderView.swift; sourceTree = "<group>"; };
 		0A19A9D32159249000977AF6 /* TripStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleCell.swift; sourceTree = "<group>"; };
+		0A1B0EED21EB529F0035E657 /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
+		0A1B0EF021EB61030035E657 /* EventInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewModel.swift; sourceTree = "<group>"; };
+		0A1B0EF221EB61960035E657 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		0A1B0EF421EB64A80035E657 /* EventSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSectionController.swift; sourceTree = "<group>"; };
+		0A1B0EF621EB68100035E657 /* EventHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHeaderView.swift; sourceTree = "<group>"; };
+		0A1B0EF821EB72740035E657 /* EventContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventContentCell.swift; sourceTree = "<group>"; };
+		0A1B0EFA21EB74370035E657 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
+		0A1B0EFC21EB744A0035E657 /* NoticeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeHeaderView.swift; sourceTree = "<group>"; };
+		0A1B0EFE21EB745A0035E657 /* NoticeContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeContentCell.swift; sourceTree = "<group>"; };
+		0A1B0F0021ECBFC90035E657 /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
+		0A1B0F0221ECC0880035E657 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		0A1B11DA1FF1181D004B42B6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A1B11DC1FF12D02004B42B6 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		0A1D1D4321C298C60028EB48 /* OTGulimM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTGulimM.otf; sourceTree = "<group>"; };
 		0A1D1D4621C2A0BB0028EB48 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
-		0A1D1D4821C513700028EB48 /* ex.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ex.gif; sourceTree = "<group>"; };
 		0A1D1D4A21C518990028EB48 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		0A1F47AC21C7C9DF0003AF7A /* SearchPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPasswordViewController.swift; sourceTree = "<group>"; };
 		0A1F47AE21CA6F4E0003AF7A /* TripStyleSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleSelectViewController.swift; sourceTree = "<group>"; };
@@ -541,7 +561,7 @@
 		0A0FDE2120398DA70046E76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0A1D1D4821C513700028EB48 /* ex.gif */,
+				0A1B0EED21EB529F0035E657 /* logo.gif */,
 				B132A58021B7B9300050D6DE /* OTGulimL.otf */,
 				0A1D1D4321C298C60028EB48 /* OTGulimM.otf */,
 				B179B8AA21B7B8F000DCCD2B /* OTGulimB.otf */,
@@ -585,6 +605,14 @@
 				B16BD8AA21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift */,
 			);
 			path = Purchase;
+			sourceTree = "<group>";
+		};
+		0A1B0EEF21EB60EB0035E657 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B0EF021EB61030035E657 /* EventInfoViewModel.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		0A23C1F81FC05798005DCE32 /* Managers */ = {
@@ -730,6 +758,7 @@
 				B10559982110223300AC769C /* MatchTypeModel.swift */,
 				0A375C1D21327C8500E35ED9 /* TopTripModel.swift */,
 				0A375C1F21329B8500E35ED9 /* MatchRequestModel.swift */,
+				0A1B0F0221ECC0880035E657 /* BannerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -737,6 +766,7 @@
 		0A71238E1FACC16B00512EB7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0A1B0EEF21EB60EB0035E657 /* MyPage */,
 				B14495BA219166BA00B4D135 /* Purchase */,
 				B1996C59214A009C00BC95C5 /* Chat */,
 				0A332774213BA64D00BC2906 /* Login */,
@@ -824,6 +854,7 @@
 				B1D4E50D20F895EF00524CE2 /* MainViewController.swift */,
 				0A375C15213274AE00E35ED9 /* TopTripViewController.swift */,
 				B1D1CB04212D28F8001A9801 /* AdViewController.swift */,
+				0A1B0F0021ECBFC90035E657 /* BannerViewController.swift */,
 				B1D4E51520FDC83B00524CE2 /* FriendsViewController.swift */,
 				0AD7E1471FC9DD7C008AE45C /* WriteViewController.swift */,
 				0A9A0AFF1FF0E7FC004EA239 /* PlanFlowLayout.swift */,
@@ -844,6 +875,7 @@
 				B1D1CB11212EAA6A001A9801 /* AlertSettingViewController.swift */,
 				B1913BBC21997464009F9191 /* EventInfoViewController.swift */,
 				B1913BBE219977A7009F9191 /* EventPageViewController.swift */,
+				0A1B0EF421EB64A80035E657 /* EventSectionController.swift */,
 				B1913BC0219977C2009F9191 /* InfoPageViewController.swift */,
 				B1913BC2219A5D7D009F9191 /* VersionViewController.swift */,
 			);
@@ -857,6 +889,10 @@
 				0A7C507C2198680F00558F62 /* MyPageCell.swift */,
 				0A7C50802198736900558F62 /* SupportHeaderView.swift */,
 				0A7C50822198739900558F62 /* SupportCell.swift */,
+				0A1B0EF621EB68100035E657 /* EventHeaderView.swift */,
+				0A1B0EF821EB72740035E657 /* EventContentCell.swift */,
+				0A1B0EFC21EB744A0035E657 /* NoticeHeaderView.swift */,
+				0A1B0EFE21EB745A0035E657 /* NoticeContentCell.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1142,6 +1178,8 @@
 				B1913BB021990FFD009F9191 /* MyPageModel.swift */,
 				B1913BB421991151009F9191 /* SupportModel.swift */,
 				B1913BB221991072009F9191 /* PageCellDataModel.swift */,
+				0A1B0EF221EB61960035E657 /* EventModel.swift */,
+				0A1B0EFA21EB74370035E657 /* NoticeModel.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1304,6 +1342,7 @@
 				B1FE037221A6940400DE242A /* NanumSquareRoundEB.ttf in Resources */,
 				B1D4E52220FDCBB200524CE2 /* BMJUA.otf in Resources */,
 				B1D1CAFB212D024C001A9801 /* DetailTripStyleCell.xib in Resources */,
+				0A1B0EEE21EB52A00035E657 /* logo.gif in Resources */,
 				0A71236D1FACC01200512EB7 /* art.scnassets in Resources */,
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
 				0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */,
@@ -1328,7 +1367,6 @@
 				0A7123741FACC01200512EB7 /* Assets.xcassets in Resources */,
 				0A7123721FACC01200512EB7 /* Main.storyboard in Resources */,
 				0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */,
-				0A1D1D4921C513700028EB48 /* ex.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1539,6 +1577,7 @@
 				B1EF95672119685000F6418F /* CharacterFooterView.swift in Sources */,
 				0AD3BC13204A7B690051D7E3 /* CountryModel.swift in Sources */,
 				0A7C507F219871D700558F62 /* OtherMyPageSectionController.swift in Sources */,
+				0A1B0EF921EB72740035E657 /* EventContentCell.swift in Sources */,
 				0A332776213BA65D00BC2906 /* JoinViewModel.swift in Sources */,
 				B1D1CB12212EAA6A001A9801 /* AlertSettingViewController.swift in Sources */,
 				B16B3DEF211444C3001D278A /* NicknameRow.swift in Sources */,
@@ -1553,6 +1592,7 @@
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,
 				B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */,
+				0A1B0EF321EB61960035E657 /* EventModel.swift in Sources */,
 				B16BD8C721B51F560010EEE0 /* MapCell.swift in Sources */,
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
 				B1996C542149FF2800BC95C5 /* ChatListSectionModel.swift in Sources */,
@@ -1560,12 +1600,14 @@
 				0A13CA4A21A6F0030081C55F /* PHeaderView.swift in Sources */,
 				B16BD8A321A79F460010EEE0 /* AdMobViewController.swift in Sources */,
 				B1EF95632119450F00F6418F /* CharacterHeaderView.swift in Sources */,
+				0A1B0EFB21EB74370035E657 /* NoticeModel.swift in Sources */,
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
 				B10559992110223300AC769C /* MatchTypeModel.swift in Sources */,
 				B100742C214F859F0052E4DF /* HamMenu.swift in Sources */,
 				0A33277B213BBCCF00BC2906 /* NewSetProfileViewController.swift in Sources */,
 				0A19A9D42159249000977AF6 /* TripStyleCell.swift in Sources */,
+				0A1B0EF721EB68100035E657 /* EventHeaderView.swift in Sources */,
 				B1055997211021F300AC769C /* MatchViewModel.swift in Sources */,
 				0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */,
 				B16BD8BE21B10C4C0010EEE0 /* CalendarHeader.swift in Sources */,
@@ -1594,6 +1636,7 @@
 				0A33277D213BBD9700BC2906 /* GenderAgeJobViewController.swift in Sources */,
 				0A075BFF21553611004A4DBF /* DefaultLoginViewModel.swift in Sources */,
 				B1D1CB10212E8D01001A9801 /* RightKeyView.swift in Sources */,
+				0A1B0F0321ECC0880035E657 /* BannerModel.swift in Sources */,
 				0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */,
 				0A23C1F71FC04FE4005DCE32 /* WelcomeViewModel.swift in Sources */,
 				0A13CA5321A96C9E0081C55F /* Operator + Extension.swift in Sources */,
@@ -1623,6 +1666,7 @@
 				0A74567A210D875F00F8A0C9 /* FriendsViewModel.swift in Sources */,
 				0A745670210CD09600F8A0C9 /* InsertPeopleViewController.swift in Sources */,
 				0A745687210E04C600F8A0C9 /* SearchDestTVModel.swift in Sources */,
+				0A1B0EF121EB61030035E657 /* EventInfoViewModel.swift in Sources */,
 				0A6EB9DB2169E12C00117526 /* MainFooterView.swift in Sources */,
 				0A745665210C971C00F8A0C9 /* DestinationSearchCell.swift in Sources */,
 				0AAD749021170FF700C860ED /* TripStyleModel.swift in Sources */,
@@ -1633,6 +1677,7 @@
 				B18BC89A2154925100642BB0 /* ProfileViewModel.swift in Sources */,
 				0A74567E210D87FF00F8A0C9 /* FriendsCell.swift in Sources */,
 				0A35ED8B214E20CB00B493D6 /* MessageModel.swift in Sources */,
+				0A1B0F0121ECBFC90035E657 /* BannerViewController.swift in Sources */,
 				B16BD8A721A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift in Sources */,
 				0A075C0121562406004A4DBF /* MoyaError + Extension.swift in Sources */,
 				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
@@ -1657,6 +1702,7 @@
 				0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */,
 				0A6EB9DF216A2A9A00117526 /* MatchEmptyView.swift in Sources */,
 				0AAD74872114B06100C860ED /* PresenterRow.swift in Sources */,
+				0A1B0EFD21EB744A0035E657 /* NoticeHeaderView.swift in Sources */,
 				B18BC89821547ED700642BB0 /* TripStyleViewController.swift in Sources */,
 				B1913BB321991072009F9191 /* PageCellDataModel.swift in Sources */,
 				0A1F47B121CA702D0003AF7A /* TripSelectHeaderFooterView.swift in Sources */,
@@ -1688,6 +1734,7 @@
 				B16BD8CD21B529CE0010EEE0 /* GADateCell.swift in Sources */,
 				B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */,
 				B16BD8A521A7BFE50010EEE0 /* PurchaseKeyViewModel.swift in Sources */,
+				0A1B0EF521EB64A80035E657 /* EventSectionController.swift in Sources */,
 				B12001C42113E40C00DFD676 /* JVFloatTextRow.swift in Sources */,
 				0A7123A21FACC29A00512EB7 /* Targets.swift in Sources */,
 				0A9A0B001FF0E7FC004EA239 /* PlanFlowLayout.swift in Sources */,
@@ -1721,6 +1768,7 @@
 				B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */,
 				B16BD8A921A7D0D30010EEE0 /* PurchaseHistoryCell.swift in Sources */,
 				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,
+				0A1B0EFF21EB745A0035E657 /* NoticeContentCell.swift in Sources */,
 				B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */,
 				0A375C232132ABBA00E35ED9 /* MatchHistoryCell.swift in Sources */,
 				0A09A8021FDD3CEF00DC47A7 /* MainCellViewModel.swift in Sources */,

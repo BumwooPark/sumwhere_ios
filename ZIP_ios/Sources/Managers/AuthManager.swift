@@ -42,7 +42,7 @@ class AuthManager{
   lazy var provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG
-      return MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
+      return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
       #else
         return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
       #endif
@@ -54,7 +54,7 @@ class AuthManager{
   func updateProvider() {
     if Defaults.hasKey("token"){
       #if DEBUG
-      self.provider = MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
+      self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
       #else
       self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
       #endif
@@ -70,6 +70,7 @@ final class TokenVaildPlugin: PluginType{
   func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
     guard case Result.failure(_) = result else {return}
     if result.value?.statusCode == 401 {
+      tokenObserver.accept(String())
       AppDelegate.instance?.window?.rootViewController = WelcomeViewController()
     }
   }

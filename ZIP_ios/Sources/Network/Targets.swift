@@ -41,13 +41,15 @@ public enum ZIP{
   case IAPInfo(productName: String)
   case IAPSuccess(receipt: String, identifier: String)
   case purchaseHistory(pageNum: Int)
+  case event
+  case banner
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "https://www.sumwhere.kr")!
+    return URL(string: "http://192.168.0.18:8080")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif
@@ -115,6 +117,10 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/purchase/info"
     case .purchaseHistory(let pageNum):
       return "/restrict/purchase/history/\(pageNum)"
+    case .event:
+      return "/restrict/event"
+    case .banner:
+      return "/restrict/banner"
     }
   }
   
