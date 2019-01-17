@@ -16,7 +16,8 @@ final class BannerViewController: UIViewController{
   
   init(banner: BannerModel) {
     super.init(nibName: nil, bundle: nil)
-    imageView.kf.setImageWithZIP(image: banner.imageURL)
+    
+//    imageView.kf.setImageWithZIP(image: banner.imageURL)
   }
   
   required init?(coder aDecoder: NSCoder) {

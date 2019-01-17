@@ -49,7 +49,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.18:8080")!
+//    return URL(string: "http://192.168.0.18:8080")!
+    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif

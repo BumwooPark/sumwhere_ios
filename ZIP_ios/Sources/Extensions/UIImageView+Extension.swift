@@ -20,17 +20,17 @@ extension UIImageView{
     self.addSubview(blurEffectView)
   }
 }
-
-extension Kingfisher where Base: UIImageView{
-  public func setImageWithZIP(image: String){
-    self.setImage(with: URL(string: AuthManager.imageURL+image))
-  }
-  
-  
-  public func setImageWithZIP(image: String, placeholder: Placeholder?, options: KingfisherOptionsInfo?, progressBlock: DownloadProgressBlock?, completionHandler: CompletionHandler?){
-    self.setImage(with: URL(string: AuthManager.imageURL+image), placeholder: placeholder, options: options, progressBlock: progressBlock, completionHandler: completionHandler)
-  }
-}
+//
+//extension Kingfisher where Base: UIImageView{
+//  public func setImageWithZIP(image: String){
+//    self.setImage(with: URL(string: AuthManager.imageURL+image))
+//  }
+//  
+//  
+//  public func setImageWithZIP(image: String, placeholder: Placeholder?, options: KingfisherOptionsInfo?, progressBlock: DownloadProgressBlock?, completionHandler: CompletionHandler?){
+//    self.setImage(with: URL(string: AuthManager.imageURL+image), placeholder: placeholder, options: options, progressBlock: progressBlock, completionHandler: completionHandler)
+//  }
+//}
 
 
 

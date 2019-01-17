@@ -12,6 +12,7 @@ import RxSwift
 final class AdViewController: UIViewController{
   var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
+  var completed = false
   var pageView: PageViewController!
   
   let pageControl: CHIPageControlAleppo = {
@@ -72,6 +73,7 @@ final class AdViewController: UIViewController{
     pageControl.snp.makeConstraints { (make) in
       make.top.right.equalToSuperview().inset(10)
     }
+    completed = true
   }
   
   

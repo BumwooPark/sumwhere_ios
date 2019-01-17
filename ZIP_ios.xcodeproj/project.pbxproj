@@ -163,6 +163,8 @@
 		B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */; };
 		B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */; };
 		B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B155F02D21894DC100E4911A /* ProxyViewController.swift */; };
+		B163845521EED52900665060 /* XMPPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B163845421EED52900665060 /* XMPPViewModel.swift */; };
+		B163845721EEDAD900665060 /* NewChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B163845621EEDAD900665060 /* NewChatRoomViewController.swift */; };
 		B166603121B6174700063AFA /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603021B6174700063AFA /* StrokeView.swift */; };
 		B166603521B6558400063AFA /* OneTimeMatchFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603421B6558400063AFA /* OneTimeMatchFlowLayout.swift */; };
 		B166603721B6560100063AFA /* OneTimeMatchSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166603621B6560100063AFA /* OneTimeMatchSelectCell.swift */; };
@@ -406,6 +408,7 @@
 		0AFC96D21FB7281F003C6F8E /* ZIP_ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZIP_ios.entitlements; sourceTree = "<group>"; };
 		7B9C4226FE4FE2EB23EB73C6 /* Pods-ZIP_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		B100742B214F859F0052E4DF /* HamMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamMenu.swift; sourceTree = "<group>"; };
+		B1016CDF21C739D8008A8C59 /* SearchPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPasswordViewController.swift; sourceTree = "<group>"; };
 		B105597A210992EC00AC769C /* LoginVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVIewModel.swift; sourceTree = "<group>"; };
 		B105597C2109C0E800AC769C /* CreateTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripViewController.swift; sourceTree = "<group>"; };
 		B105598F210FED2500AC769C /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
@@ -423,6 +426,8 @@
 		B14495BD21916CE800B4D135 /* PurchaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHeaderView.swift; sourceTree = "<group>"; };
 		B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter + Extension.swift"; sourceTree = "<group>"; };
 		B155F02D21894DC100E4911A /* ProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyViewController.swift; sourceTree = "<group>"; };
+		B163845421EED52900665060 /* XMPPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMPPViewModel.swift; sourceTree = "<group>"; };
+		B163845621EEDAD900665060 /* NewChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatRoomViewController.swift; sourceTree = "<group>"; };
 		B166603021B6174700063AFA /* StrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeView.swift; sourceTree = "<group>"; };
 		B166603421B6558400063AFA /* OneTimeMatchFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeMatchFlowLayout.swift; sourceTree = "<group>"; };
 		B166603621B6560100063AFA /* OneTimeMatchSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeMatchSelectCell.swift; sourceTree = "<group>"; };
@@ -903,6 +908,7 @@
 				0A1F47AC21C7C9DF0003AF7A /* SearchPasswordViewController.swift */,
 				B1D4E51320FC6C3600524CE2 /* DefaultLoginViewController.swift */,
 				0A7123971FACC1FB00512EB7 /* JoinViewController.swift */,
+				B1016CDF21C739D8008A8C59 /* SearchPasswordViewController.swift */,
 			);
 			name = Login;
 			path = ../../..;
@@ -955,6 +961,7 @@
 				B1F6D8C32140B5C600E0E003 /* ChatListViewController.swift */,
 				B100742B214F859F0052E4DF /* HamMenu.swift */,
 				B1D5313921BF9E6E00CEF7C9 /* ChatRoomViewController.swift */,
+				B163845621EEDAD900665060 /* NewChatRoomViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1209,6 +1216,7 @@
 				0AB42131213BE4EB001353E9 /* MQViewModel.swift */,
 				B1996C5A214A00CD00BC95C5 /* ChatListViewModel.swift */,
 				B1A3933B21C0F54000E7A71F /* ChatViewModel.swift */,
+				B163845421EED52900665060 /* XMPPViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1416,7 +1424,7 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/EmptyDataSet-Swift/EmptyDataSet_Swift.framework",
@@ -1432,10 +1440,10 @@
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JDStatusBarNotification/JDStatusBarNotification.framework",
-				"${BUILT_PRODUCTS_DIR}/JKVValue/JKVValue.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
 				"${BUILT_PRODUCTS_DIR}/LGButton/LGButton.framework",
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
@@ -1447,7 +1455,6 @@
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/PySwiftyRegex/PySwiftyRegex.framework",
-				"${BUILT_PRODUCTS_DIR}/RMQClient/RMQClient.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -1470,7 +1477,8 @@
 				"${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
-				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
+				"${BUILT_PRODUCTS_DIR}/XMPPFramework/XMPPFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/libidn/libidn.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1480,7 +1488,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EmptyDataSet_Swift.framework",
@@ -1496,10 +1504,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JDStatusBarNotification.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JKVValue.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
@@ -1511,7 +1519,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PySwiftyRegex.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMQClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -1534,7 +1541,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TLPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMPPFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libidn.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1632,6 +1640,7 @@
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
 				B1996C5B214A00CD00BC95C5 /* ChatListViewModel.swift in Sources */,
 				B1996C572149FF6500BC95C5 /* ChatListModel.swift in Sources */,
+				B163845521EED52900665060 /* XMPPViewModel.swift in Sources */,
 				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
 				0A33277D213BBD9700BC2906 /* GenderAgeJobViewController.swift in Sources */,
 				0A075BFF21553611004A4DBF /* DefaultLoginViewModel.swift in Sources */,
@@ -1744,6 +1753,7 @@
 				B1911FB7216B3248005A4E85 /* Database.swift in Sources */,
 				B1055990210FED2500AC769C /* MatchCell.swift in Sources */,
 				0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */,
+				B163845721EEDAD900665060 /* NewChatRoomViewController.swift in Sources */,
 				0A375C2021329B8500E35ED9 /* MatchRequestModel.swift in Sources */,
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
 				B166603121B6174700063AFA /* StrokeView.swift in Sources */,

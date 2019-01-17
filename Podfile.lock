@@ -1,6 +1,6 @@
 PODS:
-  - Alamofire (4.7.3)
-  - BetterSegmentedControl (1.0.1)
+  - Alamofire (4.8.0)
+  - BetterSegmentedControl (1.0.3)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -25,58 +25,62 @@ PODS:
   - CHIPageControl/Paprika (0.1.7)
   - CHIPageControl/Puya (0.1.7)
   - CocoaAsyncSocket (7.6.3)
-  - CocoaMQTT (1.1.3):
-    - CocoaAsyncSocket (~> 7.6.3)
-  - Crashlytics (3.11.1):
-    - Fabric (~> 1.8.1)
+  - CocoaLumberjack (3.4.2):
+    - CocoaLumberjack/Default (= 3.4.2)
+    - CocoaLumberjack/Extensions (= 3.4.2)
+  - CocoaLumberjack/Default (3.4.2)
+  - CocoaLumberjack/Extensions (3.4.2):
+    - CocoaLumberjack/Default
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
   - Differentiator (3.1.0)
   - DynamicBlurView (3.0.1)
   - EmptyDataSet-Swift (4.2.0)
-  - Eureka (4.3.0)
-  - Fabric (1.8.2)
-  - FBSDKCoreKit (4.38.1):
+  - Eureka (4.3.1)
+  - Fabric (1.9.0)
+  - FBSDKCoreKit (4.39.1):
     - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.38.1):
+  - FBSDKLoginKit (4.39.1):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.38.1):
+  - FBSDKShareKit (4.39.1):
     - FBSDKCoreKit
-  - Firebase/AdMob (5.11.0):
+  - Firebase/AdMob (5.15.0):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (~> 7.35)
-  - Firebase/Auth (5.11.0):
+    - Google-Mobile-Ads-SDK (~> 7.37)
+  - Firebase/Auth (5.15.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (= 5.0.4)
-  - Firebase/Core (5.11.0):
+    - FirebaseAuth (= 5.2.0)
+  - Firebase/Core (5.15.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.3.0)
-  - Firebase/CoreOnly (5.11.0):
-    - FirebaseCore (= 5.1.6)
-  - Firebase/Messaging (5.11.0):
+    - FirebaseAnalytics (= 5.4.0)
+  - Firebase/CoreOnly (5.15.0):
+    - FirebaseCore (= 5.1.10)
+  - Firebase/Messaging (5.15.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (= 3.2.1)
-  - FirebaseAnalytics (5.3.0):
+    - FirebaseMessaging (= 3.2.2)
+  - FirebaseAnalytics (5.4.0):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.3)
-    - GoogleAppMeasurement (~> 5.3)
+    - GoogleAppMeasurement (= 5.4.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
   - FirebaseAnalyticsInterop (1.1.0)
-  - FirebaseAuth (5.0.4):
+  - FirebaseAuth (5.2.0):
     - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 5.0)
+    - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.6):
+  - FirebaseCore (5.1.10):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseInstanceID (3.3.0):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMessaging (3.2.1):
+  - FirebaseMessaging (3.2.2):
     - FirebaseAnalyticsInterop (~> 1.1)
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.0)
@@ -84,9 +88,9 @@ PODS:
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
   - FLAnimatedImage (1.0.12)
-  - FloatingPanel (1.2.0)
-  - Google-Mobile-Ads-SDK (7.35.2)
-  - GoogleAppMeasurement (5.3.0):
+  - FloatingPanel (1.3.1)
+  - Google-Mobile-Ads-SDK (7.37.0)
+  - GoogleAppMeasurement (5.4.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
@@ -99,64 +103,64 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.4):
+  - GoogleUtilities/AppDelegateSwizzler (5.3.6):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.4)
-  - GoogleUtilities/Logger (5.3.4):
+  - GoogleUtilities/Environment (5.3.6)
+  - GoogleUtilities/Logger (5.3.6):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.4):
+  - GoogleUtilities/MethodSwizzler (5.3.6):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.4):
+  - GoogleUtilities/Network (5.3.6):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.4)"
-  - GoogleUtilities/Reachability (5.3.4):
+  - "GoogleUtilities/NSData+zlib (5.3.6)"
+  - GoogleUtilities/Reachability (5.3.6):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.4):
+  - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.2.0)
+  - GTMSessionFetcher/Core (1.2.1)
   - Hero (1.4.0)
   - HMSegmentedControl (1.5.5)
-  - iCarousel (1.8.3)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
   - IGListKit/Default (3.4.0):
     - IGListKit/Diffing
   - IGListKit/Diffing (3.4.0)
   - JDStatusBarNotification (1.6.0)
-  - JKVValue (1.3.3)
   - JTAppleCalendar (7.1.6)
   - JVFloatLabeledTextField (1.2.1)
-  - KakaoOpenSDK (1.10.0):
-    - KakaoOpenSDK/KakaoCommon (= 1.10.0)
-    - KakaoOpenSDK/KakaoLink (= 1.10.0)
-    - KakaoOpenSDK/KakaoMessageTemplate (= 1.10.0)
-    - KakaoOpenSDK/KakaoNavi (= 1.10.0)
-    - KakaoOpenSDK/KakaoOpenSDK (= 1.10.0)
-    - KakaoOpenSDK/KakaoS2 (= 1.10.0)
-  - KakaoOpenSDK/KakaoCommon (1.10.0)
-  - KakaoOpenSDK/KakaoLink (1.10.0):
+  - KakaoOpenSDK (1.11.0):
+    - KakaoOpenSDK/KakaoCommon (= 1.11.0)
+    - KakaoOpenSDK/KakaoLink (= 1.11.0)
+    - KakaoOpenSDK/KakaoMessageTemplate (= 1.11.0)
+    - KakaoOpenSDK/KakaoNavi (= 1.11.0)
+    - KakaoOpenSDK/KakaoOpenSDK (= 1.11.0)
+    - KakaoOpenSDK/KakaoS2 (= 1.11.0)
+  - KakaoOpenSDK/KakaoCommon (1.11.0)
+  - KakaoOpenSDK/KakaoLink (1.11.0):
     - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoMessageTemplate (1.10.0)
-  - KakaoOpenSDK/KakaoNavi (1.10.0):
+  - KakaoOpenSDK/KakaoMessageTemplate (1.11.0)
+  - KakaoOpenSDK/KakaoNavi (1.11.0):
     - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoOpenSDK (1.10.0)
-  - KakaoOpenSDK/KakaoS2 (1.10.0):
+  - KakaoOpenSDK/KakaoOpenSDK (1.11.0)
+  - KakaoOpenSDK/KakaoS2 (1.11.0):
     - KakaoOpenSDK/KakaoCommon
-  - Kingfisher (4.10.1)
-  - LGButton (1.0.5)
-  - LTMorphingLabel (0.5.8)
+  - Kingfisher (5.1.0)
+  - KissXML (5.2.3)
+  - LGButton (1.1.2)
+  - libidn (1.35)
+  - LTMorphingLabel (0.5.9)
   - MessageInputBar/Core (0.4.1)
   - MessageKit (2.0.0):
     - MessageInputBar/Core
-  - MGSwipeTableCell (1.6.7)
-  - Moya/Core (11.0.2):
+  - MGSwipeTableCell (1.6.8)
+  - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
-    - Result (~> 3.0)
-  - Moya/RxSwift (11.0.2):
+    - Result (~> 4.0)
+  - Moya/RxSwift (12.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
   - MXParallaxHeader (0.6.1)
@@ -165,23 +169,20 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - NVActivityIndicatorView (4.4.0):
-    - NVActivityIndicatorView/Presenter (= 4.4.0)
-  - NVActivityIndicatorView/Presenter (4.4.0)
-  - PopupDialog (0.9.1):
+  - NVActivityIndicatorView (4.5.1):
+    - NVActivityIndicatorView/Presenter (= 4.5.1)
+  - NVActivityIndicatorView/Presenter (4.5.1)
+  - PopupDialog (0.9.2):
     - DynamicBlurView (~> 3.0.1)
   - Protobuf (3.6.1)
   - PySwiftyRegex (2.0.1)
   - ReachabilitySwift (4.3.0)
-  - Realm (3.11.1):
-    - Realm/Headers (= 3.11.1)
-  - Realm/Headers (3.11.1)
-  - RealmSwift (3.11.1):
-    - Realm (= 3.11.1)
-  - Result (3.2.4)
-  - RMQClient (0.9.0):
-    - CocoaAsyncSocket (~> 7.4)
-    - JKVValue
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
+  - Result (4.1.0)
   - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
   - RxCoreLocation (1.3.1):
@@ -207,10 +208,14 @@ PODS:
     - RealmSwift (~> 3.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.3.1)
-  - RxSwiftExt (3.3.0):
-    - RxSwiftExt/Core (= 3.3.0)
-  - RxSwiftExt/Core (3.3.0):
+  - RxSwiftExt (3.4.0):
+    - RxSwiftExt/Core (= 3.4.0)
+    - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxSwiftExt/Core (3.4.0):
     - RxSwift (~> 4.0)
+  - RxSwiftExt/RxCocoa (3.4.0):
+    - RxCocoa (~> 4.0)
+    - RxSwiftExt/Core
   - SkyFloatingLabelTextField (3.6.0)
   - SnapKit (4.2.0)
   - SwiftDate (5.0.13)
@@ -219,14 +224,20 @@ PODS:
   - SwiftyJSON (4.2.0)
   - SwiftyUserDefaults (3.0.1)
   - TagListView (1.3.2)
-  - TLPhotoPicker (1.7.7)
+  - TLPhotoPicker (1.8.0)
   - TTTAttributedLabel (2.0.0)
+  - XMPPFramework (4.0.0):
+    - XMPPFramework/default (= 4.0.0)
+  - XMPPFramework/default (4.0.0):
+    - CocoaAsyncSocket (~> 7.6)
+    - CocoaLumberjack
+    - KissXML (~> 5.2)
+    - libidn (~> 1.35)
 
 DEPENDENCIES:
   - BetterSegmentedControl
   - CHIPageControl
   - CHIPageControl/Aleppo
-  - CocoaMQTT
   - Crashlytics
   - EmptyDataSet-Swift
   - Eureka
@@ -244,7 +255,6 @@ DEPENDENCIES:
   - GooglePlaces
   - Hero
   - HMSegmentedControl
-  - iCarousel
   - IGListKit
   - JDStatusBarNotification
   - JTAppleCalendar
@@ -262,7 +272,6 @@ DEPENDENCIES:
   - PySwiftyRegex
   - ReachabilitySwift
   - RealmSwift
-  - RMQClient
   - RxCocoa
   - RxCoreLocation
   - RxDataSources
@@ -282,6 +291,7 @@ DEPENDENCIES:
   - TagListView
   - TLPhotoPicker
   - TTTAttributedLabel
+  - XMPPFramework (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -290,7 +300,7 @@ SPEC REPOS:
     - Bolts
     - CHIPageControl
     - CocoaAsyncSocket
-    - CocoaMQTT
+    - CocoaLumberjack
     - Crashlytics
     - Differentiator
     - DynamicBlurView
@@ -318,15 +328,15 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Hero
     - HMSegmentedControl
-    - iCarousel
     - IGListKit
     - JDStatusBarNotification
-    - JKVValue
     - JTAppleCalendar
     - JVFloatLabeledTextField
     - KakaoOpenSDK
     - Kingfisher
+    - KissXML
     - LGButton
+    - libidn
     - LTMorphingLabel
     - MessageInputBar
     - MessageKit
@@ -342,7 +352,6 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - Result
-    - RMQClient
     - RxCocoa
     - RxCoreLocation
     - RxDataSources
@@ -362,66 +371,66 @@ SPEC REPOS:
     - TagListView
     - TLPhotoPicker
     - TTTAttributedLabel
+    - XMPPFramework
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  BetterSegmentedControl: 8cac1f243b5cc747f44c9da655c975d5322243fa
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  BetterSegmentedControl: 4e3bd0bd517b0f6077c9e17f5663a01cff48e2c5
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CHIPageControl: bbe1ddd0c688c02ec65b7f7e7d34551a3d16f37c
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
-  CocoaMQTT: b506d38ad3bbe1c55a4f8ee8c9fd02c35da1a7d8
-  Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
+  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
   EmptyDataSet-Swift: 1fa0b35f530a35f852ecb2b53564728b0c300aaf
-  Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
-  Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
-  FBSDKCoreKit: 8d47857400e2f5bdea697a80daff882e91c84ef6
-  FBSDKLoginKit: 4621c690d9dd8628031a4791497062183ea34b0d
-  FBSDKShareKit: 6ffe22f0a0618eb7424d4104ab0ef3ce9643d42a
-  Firebase: b48f9e653da971ecce5b8c749684bc8bb2d26bd3
-  FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
+  FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
+  FBSDKShareKit: 27d7b982e7b1f4638da2f2b1ab6eba5afc6b5888
+  Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
+  FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
-  FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
+  FirebaseAuth: 02e969ff430e156d99d4cb842d77b806b71ad7bb
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: d16552f06821489ce1affe2e5e3e5593402ddfe3
+  FirebaseCore: 35747502d9e8c6ee217385ad04446c7c2aaf9c5c
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
-  FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
+  FirebaseMessaging: b412996f6a09337d232bb3a6676ce4d1f353d024
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FloatingPanel: b6c56634780f25a4b5146025714f3ad5eeb5afb9
-  Google-Mobile-Ads-SDK: 8f07cc8eac6649fe648cabc97d67c8d20173624a
-  GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
+  FloatingPanel: e114bf8381b77ba8f6c353ea46155133cbce9c7b
+  Google-Mobile-Ads-SDK: d028682d7450749a1955679da050eaf70d997b3e
+  GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
-  GoogleUtilities: abb092d2c12e817fa3e0e7b274987dd72fb86ec3
-  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
+  GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
-  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   JDStatusBarNotification: 21b616e7432284fea6eb0ce9eadc37c8038a5544
-  JKVValue: d7941071b1cf9ba35c194fd40bcf4c4d9b5462e9
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
-  KakaoOpenSDK: efae64765210068818e6de3f32126a877a532583
-  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
-  LTMorphingLabel: 8adaba524476098ed307626d0bc42b7f8fadb7e0
+  KakaoOpenSDK: d93f0a192ae2ba1491ae82748acbff1261607f12
+  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
+  KissXML: 09f88ff8161fd058d67b70740b8b516687b52823
+  LGButton: 0e07c243d1655b507502c3b9271d3c3a7c22dcaa
+  libidn: e4576a956b797c584c77aaedfc6e3dd639b61bdc
+  LTMorphingLabel: e6047354486aa4ba52d36ccc40be8874b50e1ef1
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
-  MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
-  Moya: a725035953bc1c0eb1be505ab903984501d82440
+  MGSwipeTableCell: dc4eca3212ed38a563b27d6aa7b3c01ce656c1e2
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
-  PopupDialog: 03985b669c29802661c187513bf827340db1ae4d
+  NVActivityIndicatorView: ec34a7b88c51fab270004a1a1f32116e711010cd
+  PopupDialog: f4bb461bf70ff422be0b56656566424ee9273080
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
-  RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RMQClient: 9bbda86703fd475761101ee5fda037eb2a12ec4e
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxCoreLocation: e8d0b77260e3c82186f897fe2dee6547af9fbc5d
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
@@ -430,7 +439,7 @@ SPEC CHECKSUMS:
   RxKeyboard: 4f782303f499f41577b41c96c6a9a5d7acd51a47
   RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
-  RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
+  RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
@@ -439,9 +448,10 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   TagListView: 0c7e9c26b9aff858224ee6b155f5fcacd9e27c83
-  TLPhotoPicker: 9067be3b2233284233cf78fe53eaa6974575e54e
+  TLPhotoPicker: e68572b74b5c36ccf146493b7d71568984c239d1
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  XMPPFramework: 5d31ff9f73dce031b24bc49bcf88093627a3a86e
 
-PODFILE CHECKSUM: a1074de76bee75fe99d2b9e7ca1550109a599d02
+PODFILE CHECKSUM: efb270ebb8e92260f2781231b93afb6b35e435f4
 
 COCOAPODS: 1.6.0.beta.2

@@ -11,12 +11,13 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import MGSwipeTableCell
+import XMPPFramework
 
 class ChatListViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
   private let viewModel = ChatListViewModel()
-  
+  var xmppController: XMPPController!
   private let dataSources = RxTableViewSectionedReloadDataSource<ChatListSectionModel>(configureCell: {ds,tv,idx,item in
     let cell = tv.dequeueReusableCell(withIdentifier: String(describing: ChatListCell.self), for: idx) as! ChatListCell
     cell.rightButtons = [MGSwipeButton(title: "나가기", backgroundColor: .red)]
@@ -35,6 +36,15 @@ class ChatListViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     view = tableView
+    
+    do {
+      xmppController = try XMPPController(hostName: "example.com", userJIDString: "test2@example.com", password: "1q2w3e4r")
+      xmppController.connect()
+      xmppController.joinRoom()
+      
+    }catch let error {
+      log.error(error)
+    }
 
     viewModel.datas
       .asDriver()
@@ -57,7 +67,7 @@ class ChatListViewController: UIViewController{
       .subscribeNext(weak: self) { (weakSelf) -> (ChatListModel) -> Void in
         return {model in
           log.info(model)
-          weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: model.chatRoom.id, userID: model.chatMember.userId), animated: true)
+//          weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: model.chatRoom.id, userID: model.chatMember.userId), animated: true)
         }
       }.disposed(by: disposeBag)
   }
@@ -66,3 +76,6 @@ class ChatListViewController: UIViewController{
     tableView.backgroundView = EmptyChatView(frame: CGRect(origin: .zero, size: tableView.bounds.size))
   }
 }
+
+
+

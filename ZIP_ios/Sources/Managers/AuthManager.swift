@@ -42,9 +42,18 @@ class AuthManager{
   lazy var provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG
-      return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
+      let token = DefaultsKey<String>("token")
+      return MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin{Defaults[token]},NetworkLoggerPlugin(verbose: true ,responseDataFormatter: { (data: Data) -> Data in
+        do {
+          let dataAsJSON = try JSONSerialization.jsonObject(with: data)
+          let prettyData =  try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
+          return prettyData
+        } catch {
+          return data // fallback to original data if it can't be serialized.
+        }
+      }),TokenVaildPlugin()]).rx
       #else
-        return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
+      return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin{Defaults[.token]}]).rx
       #endif
     }else{
       return MoyaProvider<ZIP>(plugins:[NetworkLoggerPlugin(verbose: true)]).rx
@@ -52,11 +61,15 @@ class AuthManager{
   }()
   
   func updateProvider() {
-    if Defaults.hasKey("token"){
+     let token = DefaultsKey<String>("token")
+
+    if Defaults.hasKey(token){
       #if DEBUG
-      self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token]),NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
+   
+      self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin{Defaults[token]}
+        ,NetworkLoggerPlugin(verbose: true,responseDataFormatter: prettyPrint),TokenVaildPlugin()]).rx
       #else
-      self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin(tokenClosure: Defaults[.token])]).rx
+      self.provider = MoyaProvider<ZIP>(plugins: [AccessTokenPlugin{Defaults[token]}]).rx
       #endif
     }else{
       self.provider = MoyaProvider<ZIP>(plugins:[NetworkLoggerPlugin(verbose: true)]).rx

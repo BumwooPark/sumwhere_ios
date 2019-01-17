@@ -123,9 +123,11 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
       .filter({[unowned self] (_) -> Bool in
         return self.foreGround
       })
-      .subscribeNext(weak: self, { (retainSelf) -> (Int) -> Void in
+      .subscribeNext(weak: self, { (weakSelf) -> (Int) -> Void in
         return { _ in
-          retainSelf.advertiseViewController.pageView.scrollToAutoForward()
+          if weakSelf.advertiseViewController.completed{
+            weakSelf.advertiseViewController.pageView.scrollToAutoForward()
+          }
         }
       }).disposed(by: disposeBag)
     

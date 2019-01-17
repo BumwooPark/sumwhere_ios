@@ -29,11 +29,9 @@ pod 'SwiftDate'
 pod 'PySwiftyRegex'
 pod 'Fabric'
 pod 'Crashlytics'
-pod 'CocoaMQTT' 
 pod 'RealmSwift'
 pod 'Firebase/AdMob'
-
-
+pod 'XMPPFramework', '~> 4.0.0'
 
 # UI
 pod 'GoogleMaps'
@@ -56,11 +54,9 @@ pod 'MXParallaxHeader'
 pod 'BetterSegmentedControl'
 pod 'PopupDialog'
 pod 'MessageKit'
-pod 'RMQClient'
 pod 'FLAnimatedImage'
 pod 'MGSwipeTableCell'
 pod 'FloatingPanel'
-
 
 # RX
 pod 'RxSwift'

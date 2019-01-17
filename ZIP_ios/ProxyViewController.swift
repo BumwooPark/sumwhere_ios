@@ -12,7 +12,10 @@ import Moya
 import NVActivityIndicatorView
 import SwiftyUserDefaults
 
+
+
 class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
+  
   private let disposeBag = DisposeBag()
   
   override func loadView() {
@@ -22,7 +25,6 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     startAnimating(CGSize(width: 50, height: 50), type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),backgroundColor: .clear,fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
     
     let isProfile = AuthManager.instance
@@ -124,3 +126,4 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
     }
   }
 }
+

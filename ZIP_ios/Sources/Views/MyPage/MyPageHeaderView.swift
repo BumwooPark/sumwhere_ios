@@ -14,7 +14,7 @@ class MyPageHeaderView: UICollectionReusableView{
       idLabel.text = "\(userModel?.user.nickname ?? String())님"
       emailLabel.text = userModel?.user.email
       storeButton.setAttributedTitle(self.storeAttributeString(key: userModel?.user.point ?? 0), for: .normal)
-      profileImage.kf.setImageWithZIP(image: userModel?.profile.image1 ?? String())
+//      profileImage.kf.setImageWithZIP(image: userModel?.profile.image1 ?? String())
     }
   }
   var didUpdateConstraint = false
