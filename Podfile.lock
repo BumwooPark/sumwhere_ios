@@ -24,13 +24,6 @@ PODS:
   - CHIPageControl/Jaloro (0.1.7)
   - CHIPageControl/Paprika (0.1.7)
   - CHIPageControl/Puya (0.1.7)
-  - CocoaAsyncSocket (7.6.3)
-  - CocoaLumberjack (3.4.2):
-    - CocoaLumberjack/Default (= 3.4.2)
-    - CocoaLumberjack/Extensions (= 3.4.2)
-  - CocoaLumberjack/Default (3.4.2)
-  - CocoaLumberjack/Extensions (3.4.2):
-    - CocoaLumberjack/Default
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - Differentiator (3.1.0)
@@ -55,6 +48,9 @@ PODS:
     - FirebaseAnalytics (= 5.4.0)
   - Firebase/CoreOnly (5.15.0):
     - FirebaseCore (= 5.1.10)
+  - Firebase/Database (5.15.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (= 5.0.4)
   - Firebase/Messaging (5.15.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (= 3.2.2)
@@ -76,6 +72,10 @@ PODS:
   - FirebaseAuthInterop (1.0.0)
   - FirebaseCore (5.1.10):
     - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseDatabase (5.0.4):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.1)
+    - leveldb-library (~> 1.18)
   - FirebaseInstanceID (3.3.0):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.3)
@@ -149,9 +149,8 @@ PODS:
   - KakaoOpenSDK/KakaoS2 (1.11.0):
     - KakaoOpenSDK/KakaoCommon
   - Kingfisher (5.1.0)
-  - KissXML (5.2.3)
+  - leveldb-library (1.20)
   - LGButton (1.1.2)
-  - libidn (1.35)
   - LTMorphingLabel (0.5.9)
   - MessageInputBar/Core (0.4.1)
   - MessageKit (2.0.0):
@@ -226,13 +225,6 @@ PODS:
   - TagListView (1.3.2)
   - TLPhotoPicker (1.8.0)
   - TTTAttributedLabel (2.0.0)
-  - XMPPFramework (4.0.0):
-    - XMPPFramework/default (= 4.0.0)
-  - XMPPFramework/default (4.0.0):
-    - CocoaAsyncSocket (~> 7.6)
-    - CocoaLumberjack
-    - KissXML (~> 5.2)
-    - libidn (~> 1.35)
 
 DEPENDENCIES:
   - BetterSegmentedControl
@@ -248,6 +240,7 @@ DEPENDENCIES:
   - Firebase/AdMob
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Database
   - Firebase/Messaging
   - FLAnimatedImage
   - FloatingPanel
@@ -291,7 +284,6 @@ DEPENDENCIES:
   - TagListView
   - TLPhotoPicker
   - TTTAttributedLabel
-  - XMPPFramework (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -299,8 +291,6 @@ SPEC REPOS:
     - BetterSegmentedControl
     - Bolts
     - CHIPageControl
-    - CocoaAsyncSocket
-    - CocoaLumberjack
     - Crashlytics
     - Differentiator
     - DynamicBlurView
@@ -316,6 +306,7 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseDatabase
     - FirebaseInstanceID
     - FirebaseMessaging
     - FLAnimatedImage
@@ -334,9 +325,8 @@ SPEC REPOS:
     - JVFloatLabeledTextField
     - KakaoOpenSDK
     - Kingfisher
-    - KissXML
+    - leveldb-library
     - LGButton
-    - libidn
     - LTMorphingLabel
     - MessageInputBar
     - MessageKit
@@ -371,15 +361,12 @@ SPEC REPOS:
     - TagListView
     - TLPhotoPicker
     - TTTAttributedLabel
-    - XMPPFramework
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   BetterSegmentedControl: 4e3bd0bd517b0f6077c9e17f5663a01cff48e2c5
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CHIPageControl: bbe1ddd0c688c02ec65b7f7e7d34551a3d16f37c
-  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
-  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
@@ -395,6 +382,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: 02e969ff430e156d99d4cb842d77b806b71ad7bb
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: 35747502d9e8c6ee217385ad04446c7c2aaf9c5c
+  FirebaseDatabase: 0621689f77528d62b47e1c06ca737c4c19275d1a
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseMessaging: b412996f6a09337d232bb3a6676ce4d1f353d024
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
@@ -413,9 +401,8 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   KakaoOpenSDK: d93f0a192ae2ba1491ae82748acbff1261607f12
   Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
-  KissXML: 09f88ff8161fd058d67b70740b8b516687b52823
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   LGButton: 0e07c243d1655b507502c3b9271d3c3a7c22dcaa
-  libidn: e4576a956b797c584c77aaedfc6e3dd639b61bdc
   LTMorphingLabel: e6047354486aa4ba52d36ccc40be8874b50e1ef1
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
@@ -450,8 +437,7 @@ SPEC CHECKSUMS:
   TagListView: 0c7e9c26b9aff858224ee6b155f5fcacd9e27c83
   TLPhotoPicker: e68572b74b5c36ccf146493b7d71568984c239d1
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
-  XMPPFramework: 5d31ff9f73dce031b24bc49bcf88093627a3a86e
 
-PODFILE CHECKSUM: efb270ebb8e92260f2781231b93afb6b35e435f4
+PODFILE CHECKSUM: 92499e21396bc8853f1e8160368bd31e2b03b058
 
 COCOAPODS: 1.6.0.beta.2

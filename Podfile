@@ -16,6 +16,7 @@ pod 'SwiftyJSON'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
+pod 'Firebase/Database'
 pod 'ReachabilitySwift'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
@@ -31,7 +32,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 pod 'RealmSwift'
 pod 'Firebase/AdMob'
-pod 'XMPPFramework', '~> 4.0.0'
+
 
 # UI
 pod 'GoogleMaps'

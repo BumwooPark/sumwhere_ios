@@ -18,6 +18,7 @@ import Moya
 import SwiftyJSON
 import Firebase
 import FirebaseMessaging
+import FirebaseDatabase
 import UserNotifications
 import FBSDKCoreKit
 import SwiftyImage

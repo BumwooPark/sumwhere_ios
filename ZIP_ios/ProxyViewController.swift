@@ -60,8 +60,8 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
         }
     }.disposed(by: disposeBag)
     
-    
-    if Defaults[.token].count != 0{
+    let token = DefaultsKey<String>("token")
+    if Defaults[token].count != 0{
       Observable.combineLatest(tokenLogin.elements(), isProfile.elements()) {($0, $1)}
         .subscribeNext(weak: self) { (weakSelf) -> ((Bool, Bool)) -> Void in
           return { result in

@@ -21,6 +21,7 @@ public enum ZIP{
   case GetAllTrip(order: String, sortby: String, skipCount: Int)
   case createProfile(data: [MultipartFormData])
   case user
+  case anotherUser(id: String)
   case userWithProfile
   case createTrip(model: Encodable)
   case myTrip
@@ -49,8 +50,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-//    return URL(string: "http://192.168.0.18:8080")!
-    return URL(string: "https://www.sumwhere.kr")!
+    return URL(string: "http://192.168.1.7:8080")!
+//    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif
@@ -86,6 +87,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/mytrip"
     case .user:
       return "/restrict/user"
+    case .anotherUser:
+      return "/restrict/another_user"
     case .userWithProfile:
       return "/restrict/user_with_profile"
     case .AllTripList:
@@ -146,6 +149,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestJSONEncodable(json)
     case .signIn(let email,let password):
       return .requestParameters(parameters: ["email":email,"password":password], encoding: URLEncoding.queryString)
+    case .anotherUser(let id):
+      return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
     case .facebook(let token),.kakao(let token):
       return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
     case let .GetAllTrip(order, sortby, skipCount):

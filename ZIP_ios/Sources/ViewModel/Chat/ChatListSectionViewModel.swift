@@ -12,14 +12,13 @@ import RxCocoa
 import RxDataSources
 #endif
 
-struct ChatListViewModel {
-  var header: String
+struct ChatListSectionViewModel {
   var items: [Item]
 }
-extension ChatListViewModel: SectionModelType {
+extension ChatListSectionViewModel: SectionModelType {
   typealias Item = Conversation
   
-  init(original: ChatListViewModel, items: [Item]) {
+  init(original: ChatListSectionViewModel, items: [Item]) {
     self = original
     self.items = items
   }

@@ -10,11 +10,7 @@ import UIKit
 import MGSwipeTableCell
 
 final class ChatListCell: MGSwipeTableCell {
-  
-  var item: ChatListModel? {
-    didSet{
-    }
-  }
+
   
   var didUpdateConstraint = false
   private let profileImage: UIImageView = {

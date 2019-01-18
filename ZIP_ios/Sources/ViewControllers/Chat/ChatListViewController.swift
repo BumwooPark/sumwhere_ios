@@ -11,14 +11,14 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import MGSwipeTableCell
-import XMPPFramework
 
 class ChatListViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
-  private let viewModel = ChatListViewModel()
-  var xmppController: XMPPController!
-  private let dataSources = RxTableViewSectionedReloadDataSource<ChatListSectionModel>(configureCell: {ds,tv,idx,item in
+  private let chatController = FirebaseChatController()
+  
+  private let datas = BehaviorRelay<[ChatListSectionViewModel]>(value: [])
+  private let dataSources = RxTableViewSectionedReloadDataSource<ChatListSectionViewModel>(configureCell: {ds,tv,idx,item in
     let cell = tv.dequeueReusableCell(withIdentifier: String(describing: ChatListCell.self), for: idx) as! ChatListCell
     cell.rightButtons = [MGSwipeButton(title: "나가기", backgroundColor: .red)]
     return cell
@@ -37,39 +37,22 @@ class ChatListViewController: UIViewController{
     super.viewDidLoad()
     view = tableView
     
-    do {
-      xmppController = try XMPPController(hostName: "example.com", userJIDString: "test2@example.com", password: "1q2w3e4r")
-      xmppController.connect()
-      xmppController.joinRoom()
-      
-    }catch let error {
-      log.error(error)
+    Conversation.showConversations {[weak self] (models) in
+      self?.datas.accept([ChatListSectionViewModel(items: models)])
     }
-
-    viewModel.datas
-      .asDriver()
+    
+    datas.asDriver()
       .drive(tableView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    viewModel.datas
-      .map{$0.count}
-      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
-        return { value in
-          if value == 0 {
-            weakSelf.collectionViewEmptyView()
-          }else {
-            weakSelf.tableView.backgroundView = nil
-          }
-        }
-      }.disposed(by: disposeBag)
     
-    tableView.rx.modelSelected(ChatListModel.self)
-      .subscribeNext(weak: self) { (weakSelf) -> (ChatListModel) -> Void in
-        return {model in
-          log.info(model)
-//          weakSelf.navigationController?.pushViewController(ChatRoomViewController(roomID: model.chatRoom.id, userID: model.chatMember.userId), animated: true)
+    tableView.rx.modelSelected(Conversation.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (Conversation) -> Void in
+        return { model in
+          weakSelf.navigationController?.pushViewController(ChatRoomViewController(conversation: model), animated: true)
         }
       }.disposed(by: disposeBag)
+
   }
   
   private func collectionViewEmptyView(){
