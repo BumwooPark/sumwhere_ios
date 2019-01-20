@@ -11,24 +11,24 @@ import UIKit
 class MyPageHeaderView: UICollectionReusableView{
   var userModel: UserWithProfile?{
     didSet{
-      idLabel.text = "\(userModel?.user.nickname ?? String())님"
-      emailLabel.text = userModel?.user.email
-      storeButton.setAttributedTitle(self.storeAttributeString(key: userModel?.user.point ?? 0), for: .normal)
-//      profileImage.kf.setImageWithZIP(image: userModel?.profile.image1 ?? String())
+      guard let user = userModel else {return}
+      idLabel.text = "\(user.user.nickname ?? String())님"
+      emailLabel.text = user.user.email
+      storeButton.setAttributedTitle(self.storeAttributeString(key: user.user.point), for: .normal)
+      profileImage.kf.setImage(with: URL(string: user.profile.image1.addSumwhereImageURL())!)
+      joinTypeImage.image = joinTypeMapper(joinType: user.user.joinType)
     }
   }
   var didUpdateConstraint = false
   
   let idLabel: UILabel = {
     let label = UILabel()
-    label.text = "슈퍼스타 tat님"
     label.font = .AppleSDGothicNeoBold(size: 22)
     return label
   }()
   
   let joinTypeImage: UIImageView = {
     let view = UIImageView()
-    view.image = #imageLiteral(resourceName: "mypageKakao.png")
     return view
   }()
   
@@ -85,6 +85,19 @@ class MyPageHeaderView: UICollectionReusableView{
     attributedString.addAttribute(.foregroundColor, value:UIColor(red:0.387, green:0.566, blue:0.916, alpha:1.0), range:NSMakeRange(4,keyCount))
 //    attributedString.addAttribute(.foregroundColor, value:UIColor.black, range:NSMakeRange(5,12))
     return attributedString
+  }
+  
+  func joinTypeMapper(joinType: String) -> UIImage{
+    switch joinType{
+    case "FACEBOOK":
+      return #imageLiteral(resourceName: "profileiconFacebook.png")
+    case "EMAIL":
+      return UIImage()
+    case "KAKAO":
+      return #imageLiteral(resourceName: "mypageKakao.png")
+    default:
+      return UIImage()
+    }
   }
   
   override func updateConstraints() {

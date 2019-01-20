@@ -22,7 +22,7 @@ public enum ZIP{
   case createProfile(data: [MultipartFormData])
   case user
   case anotherUser(id: String)
-  case userWithProfile
+  case userWithProfile(id: String?)
   case createTrip(model: Encodable)
   case myTrip
   case deleteMyTrip(id: Int)
@@ -43,6 +43,7 @@ public enum ZIP{
   case IAPSuccess(receipt: String, identifier: String)
   case purchaseHistory(pageNum: Int)
   case event
+  case Notice
   case banner
 }
 
@@ -50,8 +51,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.7:8080")!
-//    return URL(string: "https://www.sumwhere.kr")!
+//    return URL(string: "http://192.168.0.18:8080")!
+    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif
@@ -123,6 +124,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/purchase/history/\(pageNum)"
     case .event:
       return "/restrict/event"
+    case .Notice:
+      return "/restrict/notice"
     case .banner:
       return "/restrict/banner"
     }
@@ -149,6 +152,12 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestJSONEncodable(json)
     case .signIn(let email,let password):
       return .requestParameters(parameters: ["email":email,"password":password], encoding: URLEncoding.queryString)
+      
+    case .userWithProfile(let id):
+      if let id = id {
+        return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
+      }
+      return .requestPlain
     case .anotherUser(let id):
       return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
     case .facebook(let token),.kakao(let token):

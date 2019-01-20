@@ -11,13 +11,31 @@ import MGSwipeTableCell
 
 final class ChatListCell: MGSwipeTableCell {
 
+  var item: Conversation? {
+    didSet{
+      guard let item = item else {return}
+      nickNameLabel.text = item.targetUser.user.nickname
+      profileImage.kf.setImage(with: URL(string: item.targetUser.profile.image1.addSumwhereImageURL()))
+      timeLabel.text = timeConvert(date: item.lastMessage.sentDate)
+      
+      switch item.lastMessage.kind{
+      case .text(let content):
+        commentLabel.text = content
+        
+      default:
+        break
+      }
+      
+    }
+  }
+  
   
   var didUpdateConstraint = false
   private let profileImage: UIImageView = {
     let view = UIImageView()
-    view.backgroundColor = .blue
     view.layer.cornerRadius = 37/2
     view.layer.masksToBounds = true
+    view.contentMode = .scaleAspectFill
     return view
   }()
   
@@ -38,7 +56,6 @@ final class ChatListCell: MGSwipeTableCell {
   
   private let timeLabel: UILabel = {
     let label = UILabel()
-    label.text = "5분전"
     label.font = .AppleSDGothicNeoMedium(size: 11)
     label.textColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
     return label
@@ -52,7 +69,7 @@ final class ChatListCell: MGSwipeTableCell {
   
   private let countButton: UIButton = {
     let button = UIButton()
-    button.setTitle("3", for: .normal)
+//    button.setTitle("3", for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 11.6)
     button.backgroundColor = #colorLiteral(red: 0.8745098039, green: 0.3764705882, blue: 0.4039215686, alpha: 1)
     button.layer.cornerRadius = 10
@@ -75,6 +92,15 @@ final class ChatListCell: MGSwipeTableCell {
   override func layoutSubviews() {
     super.layoutSubviews()
     log.info(countButton.intrinsicContentSize)
+  }
+  
+  
+  func timeConvert(date: Date) -> String{
+    
+    if date.compare(toDate: Date(), granularity: .minute) == .orderedSame{
+      return "지금"
+    }
+    return date.toFormat("MM-dd")
   }
   
   override func updateConstraints() {

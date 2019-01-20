@@ -12,7 +12,7 @@ import RxCocoa
 import MXParallaxHeader
 
 class PlanTripViewController: UIViewController, ListAdapterDataSource {
-  let viewModel: TripViewModel
+  
   private let disposeBag = DisposeBag()
   
   var items: [TripSectionModel] = []
@@ -61,20 +61,11 @@ class PlanTripViewController: UIViewController, ListAdapterDataSource {
     return collectionView
   }()
   
-  init(_ viewModel: TripViewModel){
-    self.viewModel = viewModel
-    super.init(nibName: nil, bundle: nil)
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-    
   override func viewDidLoad() {
     super.viewDidLoad()
     view = collectionView
     _ = adapter
-    API()
+    
     
     //    Observable.of(collectionView.rx.didEndDecelerating
     //      .map{_ in return ()},collectionView.rx.didEndDragging.map{_ in return ()})
@@ -91,19 +82,17 @@ class PlanTripViewController: UIViewController, ListAdapterDataSource {
     //    }.disposed(by: disposeBag)
   }
   
-  func API(){
-    viewModel.planTripGetApi
-      .elements()
-      .map{[TripSectionModel(paging: 0, datas: $0)]}
-      .subscribeNext(weak: self) { (weakSelf) -> ([TripSectionModel]) -> Void in
-        return {models in
-          weakSelf.items = models
-          weakSelf.adapter.performUpdates(animated: true, completion: nil)
-        }
-      }.disposed(by: disposeBag)
-    
-    
-  }
+//  func API(){
+//    viewModel.planTripGetApi
+//      .elements()
+//      .map{[TripSectionModel(paging: 0, datas: $0)]}
+//      .subscribeNext(weak: self) { (weakSelf) -> ([TripSectionModel]) -> Void in
+//        return {models in
+//          weakSelf.items = models
+//          weakSelf.adapter.performUpdates(animated: true, completion: nil)
+//        }
+//      }.disposed(by: disposeBag)
+//  }
 }
 
 

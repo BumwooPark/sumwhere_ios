@@ -6,12 +6,18 @@
 //  Copyright © 2019 park bumwoo. All rights reserved.
 //
 
-import Foundation
-
-
 class NoticeHeaderView: UICollectionReusableView{
-
   private var didupdateConstraint = false
+  
+  var item: NoticeSectionModel?{
+    didSet{
+      titleLabel.text = item?.data.text
+      dateLabel.text = item?.data.createAt.toFormat("yyyy-MM-dd")
+      if let isOpen = item?.isOpen {
+        foldButton.isSelected = isOpen
+      }
+    }
+  }
   
   private let topLine: UIView = {
     let view = UIView()
@@ -40,6 +46,11 @@ class NoticeHeaderView: UICollectionReusableView{
     return button
   }()
   
+  private let underLine: UIView = {
+    let view = UIView()
+    view.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
+    return view
+  }()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -47,8 +58,10 @@ class NoticeHeaderView: UICollectionReusableView{
     addSubview(dateLabel)
     addSubview(foldButton)
     addSubview(topLine)
+    addSubview(underLine)
     setNeedsUpdateConstraints()
   }
+  
   
   override func updateConstraints() {
     if !didupdateConstraint {
@@ -74,6 +87,10 @@ class NoticeHeaderView: UICollectionReusableView{
         make.top.equalTo(titleLabel.snp.bottom).offset(5)
       }
       
+      underLine.snp.makeConstraints { (make) in
+        make.left.right.bottom.equalToSuperview()
+        make.height.equalTo(1)
+      }
       
       didupdateConstraint = true
     }

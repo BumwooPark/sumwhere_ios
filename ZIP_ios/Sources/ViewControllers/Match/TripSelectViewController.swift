@@ -10,8 +10,8 @@ import IGListKit
 class TripSelectViewController: UIViewController {
   let viewModel = TripViewModel()
   lazy var pageView: PageViewController = {
-    let pageView = PageViewController(pages: [OneTimeMatchViewController(viewModel),
-                                              PlanTripViewController(viewModel)], spin: false)
+    let pageView = PageViewController(pages: [OneTimeMatchViewController(viewModel)
+                                             ], spin: false)
     pageView.view.backgroundColor = .white
     return pageView
   }()

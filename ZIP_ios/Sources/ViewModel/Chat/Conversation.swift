@@ -14,13 +14,12 @@ import RxSwift
 class Conversation {
 
   //MARK: Properties
-  let targetUser: UserModel
+  let targetUser: UserWithProfile
   var lastMessage: ChatMessage
-  
   
   //MARK: Methods
   class func showConversations(completion: @escaping ([Conversation]) -> Swift.Void) {
-    var disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     guard let user = globalUserInfo?.user else {return}
       var conversations = [Conversation]()
       Database.database()
@@ -31,13 +30,12 @@ class Conversation {
         .observe(.childAdded, with: { (snapshot) in
         if snapshot.exists() {
           let fromID = snapshot.key // 키로 타겟 유저 조회후 삽입
-//          let values = snapshot.value as! [String: String]
+          let values = snapshot.value as! [String: String]
+          let location = values["location"]!
           
-          
-          
-          AuthManager.instance.provider.request(.anotherUser(id: fromID))
+          AuthManager.instance.provider.request(.userWithProfile(id: fromID))
             .filterSuccessfulStatusCodes()
-            .map(ResultModel<UserModel>.self)
+            .map(ResultModel<UserWithProfile>.self)
             .map{$0.result}
             .asObservable()
             .unwrap()
@@ -45,13 +43,12 @@ class Conversation {
             .subscribe({ (event) in
               switch event {
               case .next(let element):
-                conversations.append(Conversation(targetUser: element, lastMessage: ChatMessage(isRead: true)))
-                //            let emptyMessage = Message.init(type: .text, content: "loading", owner: .sender, timestamp: 0, isRead: true)
-                //            let conversation = Conversation.init(user: user, lastMessage: emptyMessage)
-                //            conversation.lastMessage.downloadLastMessage(forLocation: location, completion: {
-              //              completion(conversations)
-                log.info("append")
-                completion(conversations)
+                let emptyMessage = ChatMessage.EmptyMessage()
+                let conversation = Conversation(targetUser: element, lastMessage: emptyMessage)
+                conversations.append(conversation)
+                conversation.lastMessage.downloadLastMessage(forLocation: location, completion: {
+                  completion(conversations)
+                })
               case .error(let error):
                 log.error(error)
               default:
@@ -60,11 +57,10 @@ class Conversation {
             }).disposed(by: disposeBag)
         }
       })
-    
   }
   
   //MARK: Inits
-  init(targetUser: UserModel, lastMessage: ChatMessage) {
+  init(targetUser: UserWithProfile, lastMessage: ChatMessage) {
     self.targetUser = targetUser
     self.lastMessage = lastMessage
   }

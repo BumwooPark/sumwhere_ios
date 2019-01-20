@@ -18,12 +18,15 @@ class MainTabBarController: UITabBarController{
   private let disposeBag = DisposeBag()
   
   let mainViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: MainViewController())
-    naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
-    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
+//    let naviVC = UINavigationController(rootViewController: MainViewController())
+    let naviVC = UINavigationController(rootViewController: MapViewController())
+    naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "arrowicon.png")
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "arrowicon.png").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    let tabBar = UITabBarItem(title: "홈", image: #imageLiteral(resourceName: "icons8-home"), tag: 0)
+    let tabBar = UITabBarItem(title: "홈", image: #imageLiteral(resourceName: "taskbarHomeNot.png").withRenderingMode(.alwaysOriginal), tag: 0)
+    tabBar.setTitleTextAttributes([.foregroundColor: #colorLiteral(red: 0.1019607843, green: 0.1960784314, blue: 0.3333333333, alpha: 1)], for: .selected)
+    tabBar.selectedImage = #imageLiteral(resourceName: "taskbarHome.png").withRenderingMode(.alwaysOriginal)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
@@ -31,37 +34,47 @@ class MainTabBarController: UITabBarController{
   let historyViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MatchRequestViewController())
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    let tabBar = UITabBarItem(title: "현황", image: #imageLiteral(resourceName: "icons8-user-groups-32"), tag: 0)
+    let tabBar = UITabBarItem(title: "매칭리스트", image: #imageLiteral(resourceName: "taskbarListNot.png").withRenderingMode(.alwaysOriginal), tag: 0)
+    tabBar.selectedImage = #imageLiteral(resourceName: "taskbarList.png").withRenderingMode(.alwaysOriginal)
+    tabBar.setTitleTextAttributes([.foregroundColor: #colorLiteral(red: 0.1019607843, green: 0.1960784314, blue: 0.3333333333, alpha: 1)], for: .selected)
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let writerViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: TripSelectViewController())
-    naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled").withRenderingMode(.alwaysTemplate)
-    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled").withRenderingMode(.alwaysTemplate)
+    let naviVC = UINavigationController(rootViewController: MainMatchViewController())
+    naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
-    naviVC.navigationBar.prefersLargeTitles = true
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRBold(size: 40)]
-    let tabBar = UITabBarItem(title: "갈래말래", image: #imageLiteral(resourceName: "icons8-find-user-male"), tag: 0)
+    let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "taskbarMacthingNot.png").withRenderingMode(.alwaysOriginal), tag: 0)
+    tabBar.selectedImage = #imageLiteral(resourceName: "taskbarMacthing.png").withRenderingMode(.alwaysOriginal)
+    tabBar.setTitleTextAttributes([.foregroundColor: #colorLiteral(red: 0.1019607843, green: 0.1960784314, blue: 0.3333333333, alpha: 1)], for: .selected)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let chattingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: ChatListViewController())
-      naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    let tabBar = UITabBarItem(title: "채팅", image: #imageLiteral(resourceName: "icons8-chat-bubble"), tag: 0)
+    naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
+    let tabBar = UITabBarItem(title: "채팅", image: #imageLiteral(resourceName: "taskbarChattingNot.png").withRenderingMode(.alwaysOriginal), tag: 0)
+    tabBar.selectedImage = #imageLiteral(resourceName: "taskbarChatting.png").withRenderingMode(.alwaysOriginal)
+    tabBar.setTitleTextAttributes([.foregroundColor: #colorLiteral(red: 0.1019607843, green: 0.1960784314, blue: 0.3333333333, alpha: 1)], for: .selected)
     naviVC.tabBarItem = tabBar
     return naviVC
   }()
   
   let settingViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: MyPageViewController())
-    let tabBar = UITabBarItem(title: "프로필", image: #imageLiteral(resourceName: "icons8-gender-neutral-user"), tag: 0)
-    naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
-    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "icons8-long_arrow_left_filled")
+    let tabBar = UITabBarItem(title: "마이페이지", image: #imageLiteral(resourceName: "taskbarMypageNot.png").withRenderingMode(.alwaysOriginal), tag: 0)
+    tabBar.selectedImage = #imageLiteral(resourceName: "taskbarMypage.png").withRenderingMode(.alwaysOriginal)
+    tabBar.setTitleTextAttributes([.foregroundColor: #colorLiteral(red: 0.1019607843, green: 0.1960784314, blue: 0.3333333333, alpha: 1)], for: .selected)
+    naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "arrowicon.png")
+    naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "arrowicon.png").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     naviVC.tabBarItem = tabBar

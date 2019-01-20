@@ -12,6 +12,7 @@ struct UserModel: Codable{
   let email: String
   let password: String?
   var username: String?
+  var joinType: String
   var gender: String?
   var nickname: String?
   let hasProfile: Bool

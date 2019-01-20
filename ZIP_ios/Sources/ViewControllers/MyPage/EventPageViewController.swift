@@ -55,8 +55,6 @@ class EventPageViewController: UIViewController, ListAdapterDataSource {
     _ = adapter
     
     
-    
-    
     viewModel.eventAPI.elements()
       .map({ (model) -> [EventSectionModel] in
         return model.map({ (model) -> EventSectionModel in

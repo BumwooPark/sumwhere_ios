@@ -38,5 +38,15 @@ extension UIView{
   class func loadXib(nibName: String) -> UIView{
     return UINib(nibName: nibName, bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
   }
+}
 
+
+//top right corner
+extension UIView {
+  func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+    let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+    let mask = CAShapeLayer()
+    mask.path = path.cgPath
+    layer.mask = mask
+  }
 }

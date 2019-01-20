@@ -11,16 +11,17 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import MGSwipeTableCell
+import MessageKit
 
 class ChatListViewController: UIViewController{
   
   private let disposeBag = DisposeBag()
-  private let chatController = FirebaseChatController()
-  
   private let datas = BehaviorRelay<[ChatListSectionViewModel]>(value: [])
   private let dataSources = RxTableViewSectionedReloadDataSource<ChatListSectionViewModel>(configureCell: {ds,tv,idx,item in
     let cell = tv.dequeueReusableCell(withIdentifier: String(describing: ChatListCell.self), for: idx) as! ChatListCell
-    cell.rightButtons = [MGSwipeButton(title: "나가기", backgroundColor: .red)]
+    let swipeButton = MGSwipeButton(title: "나가기", backgroundColor: .red)
+    cell.rightButtons = [swipeButton]
+    cell.item = item
     return cell
   })
   
@@ -32,13 +33,17 @@ class ChatListViewController: UIViewController{
     tableView.separatorStyle = .none
     return tableView
   }()
+  
 
   override func viewDidLoad() {
     super.viewDidLoad()
     view = tableView
+    title = "채팅"
     
+    collectionViewEmptyView()
     Conversation.showConversations {[weak self] (models) in
       self?.datas.accept([ChatListSectionViewModel(items: models)])
+      self?.tableView.backgroundView = nil
     }
     
     datas.asDriver()

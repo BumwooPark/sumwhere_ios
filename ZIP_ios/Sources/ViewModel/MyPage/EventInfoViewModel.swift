@@ -19,7 +19,15 @@ class EventInfoViewModel{
     .materialize()
     .share()
   
+  let InfoAPI = AuthManager.instance.provider.request(.Notice)
+    .filterSuccessfulStatusCodes()
+    .map(ResultModel<[NoticeModel]>.self)
+    .map{$0.result}
+    .asObservable()
+    .unwrap()
+    .materialize()
+    .share()
+  
   init() {
-    
   }
 }

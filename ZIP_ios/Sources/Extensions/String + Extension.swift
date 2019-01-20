@@ -17,7 +17,6 @@ extension String {
     }
     return result
   }
-  
 }
 
 /*
@@ -33,5 +32,12 @@ extension String {
   
   subscript (i: Int) -> String {
     return String(self[i] as Character)
+  }
+}
+
+
+extension String {
+  func addSumwhereImageURL() -> String {
+    return AuthManager.imageURL + self
   }
 }

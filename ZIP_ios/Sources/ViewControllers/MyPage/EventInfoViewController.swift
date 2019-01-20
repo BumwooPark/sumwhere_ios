@@ -13,12 +13,18 @@ import RxCocoa
 
 class EventInfoViewController: UIViewController{
   private let disposeBag = DisposeBag()
-  private let container = PageViewController(pages: [EventPageViewController(),
-                                             InfoPageViewController()], spin: false)
+  private let container = PageViewController(pages: [InfoPageViewController(),EventPageViewController()], spin: false)
   
   private var didUpdateConstraint = false
   private let segmentControl: HMSegmentedControl = {
-    let control = HMSegmentedControl(sectionTitles: ["이벤트","공지사항"])!
+    let control = HMSegmentedControl(sectionTitles: ["공지사항","이벤트"])!
+    control.selectionStyle = .fullWidthStripe
+    control.selectionIndicatorLocation = .down
+    control.selectionIndicatorColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+    control.selectionIndicatorHeight = 2
+    control.selectedTitleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)]
+    control.titleTextAttributes = [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.7803921569, alpha: 1),
+                                   NSAttributedString.Key.font: UIFont.AppleSDGothicNeoMedium(size: 17)]
     return control
   }()
   

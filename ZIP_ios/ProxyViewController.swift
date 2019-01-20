@@ -103,7 +103,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
     
     // 유저 정보 저장
     AuthManager.instance.provider
-      .request(.userWithProfile)
+      .request(.userWithProfile(id: nil))
       .filterSuccessfulStatusCodes()
       .map(ResultModel<UserWithProfile>.self)
       .map{$0.result}

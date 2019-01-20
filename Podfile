@@ -57,7 +57,6 @@ pod 'PopupDialog'
 pod 'MessageKit'
 pod 'FLAnimatedImage'
 pod 'MGSwipeTableCell'
-pod 'FloatingPanel'
 
 # RX
 pod 'RxSwift'

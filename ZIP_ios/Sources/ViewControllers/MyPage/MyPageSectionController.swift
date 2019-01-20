@@ -18,7 +18,7 @@ class MyPageSectionController: ListSectionController, ListSupplementaryViewSourc
   let disposeBag = DisposeBag()
   
   let userData =  AuthManager.instance.provider
-    .request(.userWithProfile)
+    .request(.userWithProfile(id: nil))
     .filterSuccessfulStatusCodes()
     .retry(3)
     .map(ResultModel<UserWithProfile>.self)

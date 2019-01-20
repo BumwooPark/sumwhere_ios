@@ -13,7 +13,6 @@ class EventHeaderView: UICollectionReusableView{
   var item: EventSectionModel? {
     didSet{
       titleLabel.text = item?.data.text
-      log.info(item?.data.createAt)
     }
   }
   

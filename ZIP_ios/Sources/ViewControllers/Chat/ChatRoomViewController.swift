@@ -12,6 +12,7 @@ import MessageKit
 import MessageInputBar
 import MapKit
 import SwiftDate
+import Kingfisher
 
 final class ChatRoomViewController: MessagesViewController{
   let outgoingAvatarOverlap: CGFloat = 17.5
@@ -25,7 +26,6 @@ final class ChatRoomViewController: MessagesViewController{
     self.sender = Sender(id: "\(globalUserInfo?.user.id ?? 0)", displayName: globalUserInfo?.user.username ?? String())
     self.conversation = conversation
     super.init(nibName: nil, bundle: nil)
-    
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -46,11 +46,19 @@ final class ChatRoomViewController: MessagesViewController{
     initSetting()
     configureMessageCollectionView()
     
+    barButton.rx.tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          let pannel = BottomPannelViewController()
+          pannel.modalPresentationStyle = .overFullScreen
+          weakSelf.present(pannel, animated: true, completion: nil)
+        }
+      }.disposed(by: disposeBag)
   }
   
   func fetchData() {
     
-    ChatMessage.downloadAllMessages(forUserID: "\(conversation.targetUser.id)", completion: {[weak weakSelf = self] (message) in
+    ChatMessage.downloadAllMessages(forUserID: "\(conversation.targetUser.user.id)", completion: {[weak weakSelf = self] (message) in
       weakSelf?.messages.append(message)
       weakSelf?.messages.sort{ $0.sentDate < $1.sentDate }
       DispatchQueue.main.async {
@@ -60,7 +68,7 @@ final class ChatRoomViewController: MessagesViewController{
         }
       }
     })
-    //      ChatMessage.markMessagesRead(forUserID: self.currentUser!.id)
+    ChatMessage.markMessagesRead(forUserID: "\(conversation.targetUser.user.id)")
   }
   
   private func sectionUpdate(models: [MessageType]){
@@ -68,25 +76,6 @@ final class ChatRoomViewController: MessagesViewController{
     messagesCollectionView.reloadData()
     refreshControl.endRefreshing()
     messagesCollectionView.scrollToBottom(animated: true)
-//    log.info(messagesCollectionView.visibleCells.count)
-//
-//    log.info(viewModel.messagesSubject.value.count)
-//    log.info(models.count)
-//    if !refreshControl.isRefreshing {
-//      messagesCollectionView.performBatchUpdates({
-////        messagesCollectionView.insertSections([models.count - 1])
-////        if models.count >= 2 {
-////          messagesCollectionView.reloadSections([models.count - 2])
-////        }
-//      }) { [weak self](_) in
-//        if self?.isLastSectionVisible() == true {
-//          self?.messagesCollectionView.scrollToBottom(animated: true)
-//        }
-//      }
-//    }else{
-//      messagesCollectionView.reloadDataAndKeepOffset()
-//      refreshControl.endRefreshing()
-//    }
   }
 
   
@@ -141,7 +130,7 @@ final class ChatRoomViewController: MessagesViewController{
     messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     messageInputBar.backgroundView.backgroundColor = .white
     messageInputBar.inputTextView.placeholder = "메시지를 입력해 주세요."
-    messageInputBar.sendButton.setTitle("hello", for: .normal)
+    messageInputBar.sendButton.setTitle("전송", for: .normal)
   }
   
   func isTimeLabelVisible(at indexPath: IndexPath) -> Bool {
@@ -180,7 +169,7 @@ extension ChatRoomViewController: MessagesDataSource{
   }
   
   func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-    return messages[indexPath.item]
+    return messages[indexPath.section]
   }
 }
 
@@ -235,7 +224,12 @@ extension ChatRoomViewController: MessagesDisplayDelegate {
   }
   
   func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-    avatarView.set(avatar: Avatar(image: nil, initials: "SS"))
+    KingfisherManager.shared.retrieveImage(with: URL(string: conversation.targetUser.profile.image1.addSumwhereImageURL())!) {[weak self] (result) in
+      if result.isSuccess{
+        avatarView.set(avatar: Avatar(image: result.value?.image ?? UIImage(), initials: self?.conversation.targetUser.user.nickname ?? String()))
+      }
+    }
+    
     avatarView.isHidden = isNextMessageSameSender(at: indexPath)
   }
   
@@ -284,9 +278,14 @@ extension ChatRoomViewController: MessagesLayoutDelegate{
 }
 
 extension ChatRoomViewController: MessageInputBarDelegate{
-//  func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-//    viewModel.publishMessage.accept((text, self.sender.displayName))
-//    inputBar.inputTextView.text = String()
-//    messagesCollectionView.scrollToBottom(animated: true)
-//  }
+  func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+    ChatMessage.send(message: ChatMessage(sender: sender, messageId: "", sentDate: Date(), kind: .text(text), isRead: false), toID: "\(conversation.targetUser.user.id)") {[weak self] (result) in
+      if result{
+         inputBar.inputTextView.text = String()
+        self?.messagesCollectionView.scrollToBottom(animated: true)
+      }else{
+        log.info("전송 실패")
+      }
+    }
+  }
 }

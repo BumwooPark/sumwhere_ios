@@ -23,9 +23,8 @@ class MyPageViewController: UIViewController, ListAdapterDataSource {
   var items: [ListDiffable] = [
     MyPageModel(header: "default",viewControllers: [
       PageCellDataModel(name: "알림 설정", type: .ViewController(viewController: AlertSettingViewController())),
-      PageCellDataModel(name: "계정 설정", type: .ViewController(viewController: UIViewController()))]),
+      PageCellDataModel(name: "계정 설정", type: .ViewController(viewController: AccountSettingViewController()))]),
     SupportModel(header: "고객 지원", viewControllers: [
-      PageCellDataModel(name: "문의하기", type: .ViewController(viewController: UIViewController())),
       PageCellDataModel(name: "접근권한", type: .openURL(string: "App-prefs:com.bum.galmal")),
       PageCellDataModel(name: "문의하기", type: .ViewController(viewController: UIViewController())),
       PageCellDataModel(name: "공지 & 이벤트", type: .ViewController(viewController: EventInfoViewController()))])]

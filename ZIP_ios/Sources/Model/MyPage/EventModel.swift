@@ -31,16 +31,16 @@ struct EventModel: Codable{
   let imageURL: String
   let title: String
   let text: String
-  let createAt: String
-  let updateAt: String
+  let startAt: Date
+  let endAt: Date
   
   enum CodingKeys: String, CodingKey {
     case id
     case imageURL = "image_url"
     case title
     case text
-    case createAt = "create_at"
-    case updateAt = "update_at"
+    case startAt
+    case endAt
   }
   
   public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ struct EventModel: Codable{
     imageURL = try container.decode(String.self, forKey: .imageURL)
     title = try container.decode(String.self, forKey: .title)
     text = try container.decode(String.self, forKey: .text)
-    createAt = try container.decode(String.self, forKey: .createAt)
-    updateAt = try container.decode(String.self, forKey: .updateAt)
+    startAt = try container.decode(String.self, forKey: .startAt).toISODate()?.date ?? Date()
+    endAt = try container.decode(String.self, forKey: .endAt).toISODate()?.date ?? Date()
   }
 }
