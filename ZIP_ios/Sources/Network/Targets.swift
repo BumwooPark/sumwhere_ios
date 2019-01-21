@@ -46,14 +46,16 @@ public enum ZIP{
   case Notice
   case banner
   case SignOut
+  case GetPush
+  case UpdatePush(model: Encodable)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-//    return URL(string: "http://192.168.0.18:8080")!
-    return URL(string: "https://www.sumwhere.kr")!
+    return URL(string: "http://192.168.1.49:8080")!
+//    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif
@@ -131,6 +133,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/banner"
     case .SignOut:
       return "/restrict/signout"
+    case .GetPush,.UpdatePush:
+      return "/restrict/push"
     }
   }
   
@@ -140,6 +144,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .post
     case .deleteMyTrip,.SignOut:
       return .delete
+    case .UpdatePush:
+      return .put
     default:
       return .get
     }
@@ -155,7 +161,6 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestJSONEncodable(json)
     case .signIn(let email,let password):
       return .requestParameters(parameters: ["email":email,"password":password], encoding: URLEncoding.queryString)
-      
     case .userWithProfile(let id):
       if let id = id {
         return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
@@ -171,7 +176,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .uploadMultipart(data)
     case .searchDestination(let data):
       return .requestParameters(parameters: ["name":data], encoding: URLEncoding.queryString)
-    case .createTrip(let json):
+    case .createTrip(let json),.MatchRequest(let json),.UpdatePush(let json):
       return .requestJSONEncodable(json)
     case .AllTripList(let sortby, let order, let skipCount, let maxResultCount):
       return .requestParameters(parameters: ["sortby": sortby,"order":order,"skipCount":skipCount,"maxResultCount": maxResultCount], encoding: URLEncoding.queryString)
@@ -183,8 +188,6 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["tripid":tripId,"start":startDate,"end":endDate], encoding: URLEncoding.queryString)
     case .deleteMyTrip(let id):
       return .requestParameters(parameters: ["id": id], encoding: URLEncoding.queryString)
-    case .MatchRequest(let json):
-      return .requestJSONEncodable(json)
     case .IAPSuccess(let receipt,let identifier):
       return .requestParameters(parameters: ["receiptdata": receipt,"identifier": identifier], encoding: URLEncoding.httpBody)
     case .IAPInfo(let productName):

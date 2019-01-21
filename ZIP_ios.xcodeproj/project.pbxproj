@@ -76,6 +76,7 @@
 		0A397CC021F36D2700F65BE0 /* MatchSelectGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CBF21F36D2700F65BE0 /* MatchSelectGenderViewController.swift */; };
 		0A397CC221F4453400F65BE0 /* InfoPageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC121F4453400F65BE0 /* InfoPageSectionController.swift */; };
 		0A397CC421F46D0E00F65BE0 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC321F46D0E00F65BE0 /* AccountSettingViewController.swift */; };
+		0A397CC621F60D7C00F65BE0 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC521F60D7C00F65BE0 /* AlertModel.swift */; };
 		0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */; };
 		0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */; };
 		0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */; };
@@ -295,6 +296,7 @@
 		0A397CBF21F36D2700F65BE0 /* MatchSelectGenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSelectGenderViewController.swift; sourceTree = "<group>"; };
 		0A397CC121F4453400F65BE0 /* InfoPageSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageSectionController.swift; sourceTree = "<group>"; };
 		0A397CC321F46D0E00F65BE0 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
+		0A397CC521F60D7C00F65BE0 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
@@ -1055,6 +1057,7 @@
 				B1913BB221991072009F9191 /* PageCellDataModel.swift */,
 				0A1B0EF221EB61960035E657 /* EventModel.swift */,
 				0A1B0EFA21EB74370035E657 /* NoticeModel.swift */,
+				0A397CC521F60D7C00F65BE0 /* AlertModel.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1442,6 +1445,7 @@
 				B1055997211021F300AC769C /* MatchViewModel.swift in Sources */,
 				0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */,
 				B16BD8BE21B10C4C0010EEE0 /* CalendarHeader.swift in Sources */,
+				0A397CC621F60D7C00F65BE0 /* AlertModel.swift in Sources */,
 				B1A3933E21C2594500E7A71F /* EmptyChatView.swift in Sources */,
 				B16BD8AD21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
