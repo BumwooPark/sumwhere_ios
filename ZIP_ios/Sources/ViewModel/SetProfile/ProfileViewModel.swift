@@ -9,10 +9,8 @@
 import RxSwift
 import RxCocoa
 import Moya
-import SwiftyJSON
 import JDStatusBarNotification
 import NVActivityIndicatorView
-
 
 class ProfileViewModel{
   private let disposeBag = DisposeBag()

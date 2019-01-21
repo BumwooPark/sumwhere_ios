@@ -10,18 +10,18 @@ import Foundation
 
 extension UIFont{
   
-  static func NotoSansKRBold(size: CGFloat) -> UIFont {
-    return UIFont(name: "NotoSansKR-Bold", size: size)!
-  }
-  static func NotoSansKRLight(size: CGFloat) -> UIFont {
-    return UIFont(name: "NotoSansKR-Light", size: size)!
-  }
-  static func NotoSansKRMedium(size: CGFloat) -> UIFont {
-    return UIFont(name: "NotoSansKR-Medium", size: size)!
-  }
-  static func NotoSansKRRegular(size: CGFloat) -> UIFont {
-    return UIFont(name: "NotoSansKR-Regular", size: size)!
-  }
+//  static func NotoSansKRBold(size: CGFloat) -> UIFont {
+//    return UIFont(name: "NotoSansKR-Bold", size: size)!
+//  }
+//  static func NotoSansKRLight(size: CGFloat) -> UIFont {
+//    return UIFont(name: "NotoSansKR-Light", size: size)!
+//  }
+//  static func NotoSansKRMedium(size: CGFloat) -> UIFont {
+//    return UIFont(name: "NotoSansKR-Medium", size: size)!
+//  }
+//  static func NotoSansKRRegular(size: CGFloat) -> UIFont {
+//    return UIFont(name: "NotoSansKR-Regular", size: size)!
+//  }
   static func GodoRoundedL(size: CGFloat) -> UIFont {
     return UIFont(name: "godoRounded L", size: size)!
   }
@@ -30,13 +30,6 @@ extension UIFont{
   }
   static func GodoMaum(size: CGFloat) -> UIFont {
     return UIFont(name: "godoMaum", size: size)!
-  }
-  
-  static func BMHANNA(size: CGFloat) -> UIFont {
-    return UIFont(name: "BMHANNA11yrsoldOTF", size: size)!
-  }
-  static func BMJUA(size: CGFloat) -> UIFont {
-    return UIFont(name: "BMJUAOTF", size: size)!
   }
   
   static func AppleSDGothicNeoMedium(size: CGFloat) -> UIFont {
@@ -61,7 +54,6 @@ extension UIFont{
   
   static func NanumSquareRoundB(size: CGFloat) -> UIFont {
     return UIFont(name: "NanumSquareRoundB", size: size)!
-    
   }
   
   static func NanumSquareRoundEB(size: CGFloat) -> UIFont {
@@ -78,18 +70,6 @@ extension UIFont{
   
   static func KoreanSWGI1R(size:CGFloat) -> UIFont{
     return UIFont(name: "KoreanSWGI1R", size: size)!
-  }
-  
-  static func KoreanSWGI2R(size:CGFloat) -> UIFont{
-    return UIFont(name: "KoreanSWGI2R", size: size)!
-  }
-  
-  static func KoreanSWGI3R(size:CGFloat) -> UIFont{
-    return UIFont(name: "KoreanSWGI3R", size: size)!
-  }
-  
-  static func KoreanSWGI4R(size:CGFloat) -> UIFont{
-    return UIFont(name: "KoreanSWGI4R", size: size)!
   }
   
   static func OTGulimL(size:CGFloat) -> UIFont{

@@ -15,13 +15,11 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Moya
-import SwiftyJSON
 import Firebase
 import FirebaseMessaging
 import FirebaseDatabase
 import UserNotifications
 import FBSDKCoreKit
-import SwiftyImage
 import SwiftyUserDefaults
 import Fabric
 import Crashlytics

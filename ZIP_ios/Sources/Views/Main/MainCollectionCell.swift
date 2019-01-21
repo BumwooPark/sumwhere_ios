@@ -19,7 +19,7 @@ class MainCollectionCell: UICollectionViewCell{
   
   let titleLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.NotoSansKRBold(size: 17)
+    label.font = UIFont.AppleSDGothicNeoRegular(size: 17)
     label.textColor = .white
     label.numberOfLines = 0
     return label
@@ -28,7 +28,7 @@ class MainCollectionCell: UICollectionViewCell{
   let detailLabel: UILabel = {
     let label = UILabel()
     label.textColor = .white
-    label.font = UIFont.NotoSansKRMedium(size: 13.5)
+    label.font = UIFont.AppleSDGothicNeoRegular(size: 13.5)
     return label
   }()
   

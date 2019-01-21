@@ -18,11 +18,11 @@ final class FirstViewController: UIViewController, ProfileCompletor{
   let titleLabel: UILabel = {
     let attributeString = NSMutableAttributedString(
       string: "입국심사에 오신걸 환영합니다.\n\n",
-      attributes: [.foregroundColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1),.font: UIFont.NotoSansKRBold(size: 25)])
+      attributes: [.foregroundColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1),.font: UIFont.AppleSDGothicNeoRegular(size: 25)])
     
     attributeString.append(NSAttributedString(
       string: "여행에 가치를 더하기 위해\n몇가지 질문을 드리겠습니다.",
-      attributes: [.font : UIFont.NotoSansKRMedium(size: 15)]))
+      attributes: [.font : UIFont.AppleSDGothicNeoRegular(size: 15)]))
     
     let label = UILabel()
     label.attributedText = attributeString

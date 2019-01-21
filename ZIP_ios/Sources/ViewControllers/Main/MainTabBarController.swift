@@ -9,7 +9,6 @@
 import UIKit
 import PopupDialog
 import SwiftyUserDefaults
-import SwiftyImage
 import RxSwift
 import RxCocoa
 
@@ -18,8 +17,7 @@ class MainTabBarController: UITabBarController{
   private let disposeBag = DisposeBag()
   
   let mainViewController: UINavigationController = {
-//    let naviVC = UINavigationController(rootViewController: MainViewController())
-    let naviVC = UINavigationController(rootViewController: MapViewController())
+    let naviVC = UINavigationController(rootViewController: MainViewController())
     naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "arrowicon.png")
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "arrowicon.png").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
@@ -48,7 +46,7 @@ class MainTabBarController: UITabBarController{
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.NotoSansKRBold(size: 40)]
+    naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.AppleSDGothicNeoBold(size: 40)]
     let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "taskbarMacthingNot.png").withRenderingMode(.alwaysOriginal), tag: 0)
     tabBar.selectedImage = #imageLiteral(resourceName: "taskbarMacthing.png").withRenderingMode(.alwaysOriginal)
     tabBar.setTitleTextAttributes([.foregroundColor: #colorLiteral(red: 0.1019607843, green: 0.1960784314, blue: 0.3333333333, alpha: 1)], for: .selected)
@@ -88,7 +86,7 @@ class MainTabBarController: UITabBarController{
     
     let titleLabel = UILabel()
     titleLabel.text = "갈래말래"
-    titleLabel.font = UIFont.NotoSansKRMedium(size: 12)
+    titleLabel.font = UIFont.AppleSDGothicNeoBold(size: 12)
     titleLabel.textColor = #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)
     self.navigationItem.titleView = titleLabel
     self.viewControllers = [

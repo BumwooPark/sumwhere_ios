@@ -9,7 +9,6 @@
 import RxCocoa
 import RxSwift
 import Moya
-import SwiftyJSON
 import SwiftyUserDefaults
 import Result
 

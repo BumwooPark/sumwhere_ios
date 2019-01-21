@@ -6,7 +6,7 @@
 //  Copyright © 2018 park bumwoo. All rights reserved.
 //
 import UIKit
-import SwiftyImage
+
 
 class PurchaseRewardCell: UICollectionViewCell{
   

@@ -11,7 +11,6 @@ import Hero
 import SkyFloatingLabelTextField
 import LGButton
 import Moya
-import SwiftyJSON
 import TTTAttributedLabel
 import Firebase
 

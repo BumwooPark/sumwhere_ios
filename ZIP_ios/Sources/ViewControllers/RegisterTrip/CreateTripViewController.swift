@@ -21,8 +21,6 @@ final class CreateTripViewController: UIViewController{
   
   private let pageView: PageViewController
   
-  
-  
   init() {
     let searchVC = SearchDestinationViewController(viewModel: viewModel)
     let planVC = InsertPlanViewController(viewModel: viewModel)

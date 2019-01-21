@@ -175,11 +175,6 @@ PODS:
   - Protobuf (3.6.1)
   - PySwiftyRegex (2.0.1)
   - ReachabilitySwift (4.3.0)
-  - Realm (3.13.1):
-    - Realm/Headers (= 3.13.1)
-  - Realm/Headers (3.13.1)
-  - RealmSwift (3.13.1):
-    - Realm (= 3.13.1)
   - Result (4.1.0)
   - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
@@ -202,9 +197,6 @@ PODS:
   - RxKeyboard (0.9.0):
     - RxCocoa (>= 4.3.1)
     - RxSwift (>= 4.3.1)
-  - RxRealm (0.7.6):
-    - RealmSwift (~> 3.0)
-    - RxSwift (~> 4.0)
   - RxSwift (4.3.1)
   - RxSwiftExt (3.4.0):
     - RxSwiftExt/Core (= 3.4.0)
@@ -216,14 +208,13 @@ PODS:
     - RxSwiftExt/Core
   - SkyFloatingLabelTextField (3.6.0)
   - SnapKit (4.2.0)
-  - SwiftDate (5.0.13)
+  - SwiftDate (5.1.0)
   - SwiftyBeaver (1.6.1)
-  - SwiftyImage (1.3.0)
-  - SwiftyJSON (4.2.0)
   - SwiftyUserDefaults (3.0.1)
   - TagListView (1.3.2)
   - TLPhotoPicker (1.8.0)
   - TTTAttributedLabel (2.0.0)
+  - UICountingLabel (1.4.1)
 
 DEPENDENCIES:
   - BetterSegmentedControl
@@ -262,26 +253,23 @@ DEPENDENCIES:
   - PopupDialog
   - PySwiftyRegex
   - ReachabilitySwift
-  - RealmSwift
   - RxCocoa
   - RxCoreLocation
   - RxDataSources
   - RxGesture
   - RxGoogleMaps
   - RxKeyboard
-  - RxRealm
   - RxSwift
   - RxSwiftExt
   - SkyFloatingLabelTextField
   - SnapKit
   - SwiftDate
   - SwiftyBeaver
-  - SwiftyImage
-  - SwiftyJSON
   - SwiftyUserDefaults
   - TagListView
   - TLPhotoPicker
   - TTTAttributedLabel
+  - UICountingLabel
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -336,8 +324,6 @@ SPEC REPOS:
     - Protobuf
     - PySwiftyRegex
     - ReachabilitySwift
-    - Realm
-    - RealmSwift
     - Result
     - RxCocoa
     - RxCoreLocation
@@ -345,19 +331,17 @@ SPEC REPOS:
     - RxGesture
     - RxGoogleMaps
     - RxKeyboard
-    - RxRealm
     - RxSwift
     - RxSwiftExt
     - SkyFloatingLabelTextField
     - SnapKit
     - SwiftDate
     - SwiftyBeaver
-    - SwiftyImage
-    - SwiftyJSON
     - SwiftyUserDefaults
     - TagListView
     - TLPhotoPicker
     - TTTAttributedLabel
+    - UICountingLabel
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -411,8 +395,6 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
-  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxCoreLocation: e8d0b77260e3c82186f897fe2dee6547af9fbc5d
@@ -420,20 +402,18 @@ SPEC CHECKSUMS:
   RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7
   RxGoogleMaps: a198248c04b9769fc26bd57fa06c20da8bab3b5e
   RxKeyboard: 4f782303f499f41577b41c96c6a9a5d7acd51a47
-  RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
+  SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
-  SwiftyImage: 62a73a6d8cafb83d7ebbf98795c6d1ad8666bf02
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   TagListView: 0c7e9c26b9aff858224ee6b155f5fcacd9e27c83
   TLPhotoPicker: e68572b74b5c36ccf146493b7d71568984c239d1
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  UICountingLabel: faf890b505d96312e324a86718f031fafffb0ccb
 
-PODFILE CHECKSUM: 25349f2ef473cb7ca4435e385642fc181024e9d4
+PODFILE CHECKSUM: a38e184a7fa496b1993f11e47020b48e8a0196f1
 
 COCOAPODS: 1.6.0.beta.2

@@ -45,6 +45,7 @@ public enum ZIP{
   case event
   case Notice
   case banner
+  case SignOut
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
@@ -128,6 +129,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/notice"
     case .banner:
       return "/restrict/banner"
+    case .SignOut:
+      return "/restrict/signout"
     }
   }
   
@@ -135,7 +138,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     switch self {
     case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest,.IAPSuccess:
       return .post
-    case .deleteMyTrip:
+    case .deleteMyTrip,.SignOut:
       return .delete
     default:
       return .get

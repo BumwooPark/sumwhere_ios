@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class MatchSelectGenderViewController: UIViewController {
   
+  private let disposeBag = DisposeBag()
   private var didUpdateConstraint = false
   let titleLabel: UILabel = {
     let label = UILabel()
@@ -20,21 +23,21 @@ class MatchSelectGenderViewController: UIViewController {
     return label
   }()
   
-  let manButton: UIButton = {
+  private let manButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "buttonGenderManFin.png"), for: .highlighted)
     button.setImage(#imageLiteral(resourceName: "buttonGenderMan.png"), for: .normal)
     return button
   }()
   
-  let girlButton: UIButton = {
+  private let girlButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "buttonGenderWomanFin.png"), for: .highlighted)
     button.setImage(#imageLiteral(resourceName: "buttonGenderWoman.png"), for: .normal)
     return button
   }()
   
-  let nobodyButton: UIButton = {
+  private let nobodyButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "buttonGenderFin.png"), for: .highlighted)
     button.setImage(#imageLiteral(resourceName: "buttonGender.png"), for: .normal)
@@ -50,6 +53,14 @@ class MatchSelectGenderViewController: UIViewController {
     view.addSubview(nobodyButton)
     self.navigationController?.navigationBar.topItem?.title = String()
     view.setNeedsUpdateConstraints()
+    
+    Observable.merge([manButton.rx.tap.asObservable(),girlButton.rx.tap.asObservable(),nobodyButton.rx.tap.asObservable()])
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.navigationController?.pushViewController(CreateTripViewController(), animated: true)
+        }
+      }.disposed(by: disposeBag)
+    
   }
   
   override func updateViewConstraints() {

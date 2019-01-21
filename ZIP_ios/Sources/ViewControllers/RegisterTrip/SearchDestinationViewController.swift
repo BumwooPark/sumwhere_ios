@@ -42,14 +42,7 @@ class SearchDestinationViewController: UIViewController{
     label.font = .KoreanSWGI1R(size: 30)
     return label
   }()
-  
-  private let backButton: UIButton = {
-    let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "popupDismiss.png").withRenderingMode(.alwaysTemplate), for: .normal)
-    button.tintColor = .black
-    return button
-  }()
-  
+
   lazy var textField: UITextField = {
     let textField = UITextField()
     textField.attributedPlaceholder = NSAttributedString(
@@ -93,7 +86,6 @@ class SearchDestinationViewController: UIViewController{
     scrollView.addSubview(contentView)
     contentView.addSubview(tableView)
     contentView.addSubview(textField)
-    contentView.addSubview(backButton)
     contentView.addSubview(titleLabel)
     contentView.addSubview(gradientView)
     view.backgroundColor = .white
@@ -122,7 +114,7 @@ class SearchDestinationViewController: UIViewController{
           if point.y >= 60 {
             weakSelf.textField.snp.remakeConstraints({ (make) in
               make.left.right.equalToSuperview().inset(16)
-              make.top.equalTo(weakSelf.backButton.snp.bottom)
+//              make.top.equalTo(weakSelf.backButton.snp.bottom)
               make.height.equalTo(46)
             })
           }else{
@@ -149,12 +141,7 @@ class SearchDestinationViewController: UIViewController{
       .bind(to: tableView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    backButton.rx.tap
-      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
-        return {_ in
-          weakSelf.dismiss(animated: true, completion: nil)
-        }
-      }.disposed(by:disposeBag)
+
     
     view.setNeedsUpdateConstraints()
   }
@@ -191,12 +178,6 @@ class SearchDestinationViewController: UIViewController{
         make.left.right.equalTo(textField)
         make.top.equalTo(textField.snp.bottom)
         make.height.equalTo(2)
-      }
-      
-      backButton.snp.makeConstraints { (make) in
-        make.left.equalToSuperview().inset(16)
-        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(25)
-        make.width.height.equalTo(40)
       }
       
       tableView.snp.makeConstraints { (make) in

@@ -12,7 +12,6 @@ import RxCocoa
 import RxGesture
 import Moya
 import JTAppleCalendar
-import LTMorphingLabel
 import SwiftDate
 import EventKit
 

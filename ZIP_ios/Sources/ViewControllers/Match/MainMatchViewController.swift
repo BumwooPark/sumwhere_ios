@@ -7,8 +7,10 @@
 //
 
 import RxSwift
+import UICountingLabel
 
 final class MainMatchViewController: UIViewController {
+  private var isFirst = false
   private let disposeBag = DisposeBag()
   private var didUpdateConstraint = false
   private let bgImage: UIImageView = {
@@ -18,14 +20,19 @@ final class MainMatchViewController: UIViewController {
     return imageView
   }()
   
-  private let titleLabel: UILabel = {
-    let label = UILabel()
-    label.textAlignment = .center
+  private let countingLabel: UICountingLabel = {
+    let label = UICountingLabel()
+    label.font = UIFont.AppleSDGothicNeoBold(size: 21)
+    label.textColor = .white
     label.numberOfLines = 0
-    let attributedString = NSMutableAttributedString(string: "누적동행 20123 건\n\n", attributes: [.font: UIFont.OTGulimH(size: 30),.foregroundColor: UIColor.white])
-    attributedString.append(NSAttributedString(string: "여행자가 당신을 기다리고 있어요!", attributes: [.font: UIFont.AppleSDGothicNeoSemiBold(size: 21),.foregroundColor: UIColor.white]))
-    label.attributedText = attributedString
-    return label
+    label.textAlignment = .center
+    label.attributedFormatBlock = { value in
+      let attributedString = NSMutableAttributedString(string: "누적동행 \(Int(value)) 건\n\n", attributes: [.font: UIFont.OTGulimH(size: 30),.foregroundColor: UIColor.white])
+      attributedString.append(NSAttributedString(string: "여행자가 당신을 기다리고 있어요!", attributes: [.font: UIFont.AppleSDGothicNeoSemiBold(size: 21),.foregroundColor: UIColor.white]))
+      return attributedString
+    }
+    label.method = UILabelCountingMethod.easeInOut
+    return label 
   }()
   
   private let addMatchButton: UIButton = {
@@ -51,9 +58,9 @@ final class MainMatchViewController: UIViewController {
     super.viewDidLoad()
     view = bgImage
     
-    bgImage.addSubview(titleLabel)
     bgImage.addSubview(addMatchButton)
     bgImage.addSubview(explainLabel)
+    bgImage.addSubview(countingLabel)
     view.setNeedsUpdateConstraints()
     
     addMatchButton.rx.tap
@@ -63,13 +70,20 @@ final class MainMatchViewController: UIViewController {
           weakSelf.navigationController?.pushViewController(MatchTypeViewController(), animated: true)
         }
     }.disposed(by: disposeBag)
-    
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    if !isFirst{
+      countingLabel.count(from: 50, to: 130)
+      isFirst = true
+    }
   }
   
   override func updateViewConstraints() {
     if !didUpdateConstraint {
       
-      titleLabel.snp.makeConstraints { (make) in
+      countingLabel.snp.makeConstraints { (make) in
         make.centerX.equalToSuperview()
         make.top.centerY.equalToSuperview().inset(-120)
       }

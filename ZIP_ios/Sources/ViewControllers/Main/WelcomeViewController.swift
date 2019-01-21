@@ -10,7 +10,6 @@ import UIKit
 
 import SnapKit
 import Moya
-import SwiftyJSON
 import Firebase
 import Security
 import FBSDKLoginKit

@@ -52,7 +52,7 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "icons8-key-2-24") , for: .normal)
     button.setTitleColor(.black, for: .normal)
-    button.titleLabel?.font = UIFont.NotoSansKRBold(size: 17)
+    button.titleLabel?.font = UIFont.AppleSDGothicNeoRegular(size: 17)
     return button
   }()
   
@@ -89,7 +89,7 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
     let myString = NSMutableAttributedString(string: String())
     myString.append(attributeString)
     myString.append(NSAttributedString(string: "갈래말래",
-                                       attributes: [NSAttributedString.Key.font : UIFont.NotoSansKRMedium(size: 24),
+                                       attributes: [NSAttributedString.Key.font : UIFont.AppleSDGothicNeoRegular(size: 24),
                                                     .foregroundColor: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1)]))
     titleLabel.attributedText = myString
     return titleLabel
