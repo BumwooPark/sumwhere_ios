@@ -55,7 +55,6 @@ class NewSetProfileViewController: UIViewController{
       return percent
       }.subscribeNext(weak: self) { (weakSelf) -> (Float) -> Void in
         return {progress in
-          log.info(progress)
           weakSelf.progressView.setProgress(progress, animated: true)
         }
     }.disposed(by: disposeBag)

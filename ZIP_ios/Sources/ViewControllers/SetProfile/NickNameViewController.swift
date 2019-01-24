@@ -160,7 +160,7 @@ final class NickNameViewController: UIViewController, ProfileCompletor{
             guard let err = error as? MoyaError else {return}
             err.GalMalErrorHandler()
           case .completed:
-            log.info("completed")
+            break
           }
         }
     }.disposed(by: disposeBag)

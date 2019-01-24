@@ -46,6 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
 
     window?.rootViewController = ProxyViewController()
+    
+    Reachability.shared.didBecomeReachable.asObservable()
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          log.info("reach")
+        }
+      }.disposed(by: disposeBag)
 
     tokenObserver
       .do(onNext: { (token) in
@@ -254,6 +261,18 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 extension AppDelegate : MessagingDelegate {
   // [START refresh_token]
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    AuthManager.instance.provider.request(.FcmUpdate(token: fcmToken))
+      .filterSuccessfulStatusCodes()
+      .asObservable()
+      .retry(RepeatBehavior.exponentialDelayed(maxCount: 10, initial: 2, multiplier: 2))
+      .subscribe()
+      .disposed(by: disposeBag)
+    
+    if Messaging.messaging().fcmToken != nil {
+      log.info(fcmToken)
+    }
+    
+    
     log.info("Firebase registration token: \(fcmToken)")
     
     // TODO: If necessary send token to application server.

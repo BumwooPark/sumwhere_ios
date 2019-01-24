@@ -283,8 +283,6 @@ extension ChatRoomViewController: MessageInputBarDelegate{
       if result{
          inputBar.inputTextView.text = String()
         self?.messagesCollectionView.scrollToBottom(animated: true)
-      }else{
-        log.info("전송 실패")
       }
     }
   }

@@ -24,7 +24,6 @@ class ReceiveHistorySectionController: ListSectionController {
   }
   
   override func didUpdate(to object: Any) {
-    log.info(object)
   }
   
 }

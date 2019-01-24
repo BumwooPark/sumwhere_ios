@@ -28,21 +28,12 @@ class AuthManager{
       return data // fallback to original data if it can't be serialized.
     }
   }
-  
-  let activityClosure: NetworkActivityPlugin.NetworkActivityClosure = { activityType, targetType in
-    switch activityType {
-    case .began:
-      log.info("began")
-    case .ended:
-      log.info("ended")
-    }
-  }
-  
+    
   lazy var provider: Reactive<MoyaProvider<ZIP>> = {
     if Defaults.hasKey("token"){
       #if DEBUG
       let token = DefaultsKey<String>("token")
-      return MoyaProvider<ZIP>(plugins: [NetworkActivityPlugin(networkActivityClosure: activityClosure),AccessTokenPlugin{Defaults[token]},NetworkLoggerPlugin(verbose: true ,responseDataFormatter: { (data: Data) -> Data in
+      return MoyaProvider<ZIP>(plugins: [AccessTokenPlugin{Defaults[token]},NetworkLoggerPlugin(verbose: true ,responseDataFormatter: { (data: Data) -> Data in
         do {
           let dataAsJSON = try JSONSerialization.jsonObject(with: data)
           let prettyData =  try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)

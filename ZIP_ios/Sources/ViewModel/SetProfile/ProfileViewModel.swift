@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Moya
+import RxSwiftExt
 import JDStatusBarNotification
 import NVActivityIndicatorView
 
@@ -126,6 +127,7 @@ class ProfileViewModel{
       .provider.request(.createProfile(data: multiparts))
       .filterSuccessfulStatusCodes()
       .asObservable()
+      .retry(RepeatBehavior.exponentialDelayed(maxCount: 3, initial: 2, multiplier: 2))
       .materialize()
       .share()
       

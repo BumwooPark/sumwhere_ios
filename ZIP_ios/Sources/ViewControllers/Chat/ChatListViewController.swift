@@ -13,7 +13,7 @@ import RxDataSources
 import MGSwipeTableCell
 import MessageKit
 
-class ChatListViewController: UIViewController{
+class ChatListViewController: UIViewController, UICollectionViewDelegateFlowLayout{
   
   private let disposeBag = DisposeBag()
   private let datas = BehaviorRelay<[ChatListSectionViewModel]>(value: [])
@@ -39,6 +39,8 @@ class ChatListViewController: UIViewController{
     super.viewDidLoad()
     view = tableView
     title = "채팅"
+
+    
     
     collectionViewEmptyView()
     Conversation.showConversations {[weak self] (models) in

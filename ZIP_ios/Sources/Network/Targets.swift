@@ -48,14 +48,15 @@ public enum ZIP{
   case SignOut
   case GetPush
   case UpdatePush(model: Encodable)
+  case FcmUpdate(token: String)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.49:8080")!
-//    return URL(string: "https://www.sumwhere.kr")!
+//    return URL(string: "http://192.168.1.49:8080")!
+    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif
@@ -135,6 +136,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/signout"
     case .GetPush,.UpdatePush:
       return "/restrict/push"
+    case .FcmUpdate:
+      return "/restrict/fcmToken"
     }
   }
   
@@ -144,7 +147,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .post
     case .deleteMyTrip,.SignOut:
       return .delete
-    case .UpdatePush:
+    case .UpdatePush,.FcmUpdate:
       return .put
     default:
       return .get
@@ -192,6 +195,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["receiptdata": receipt,"identifier": identifier], encoding: URLEncoding.httpBody)
     case .IAPInfo(let productName):
       return .requestParameters(parameters: ["productName": productName], encoding: URLEncoding.queryString)
+    case .FcmUpdate(let token):
+      return .requestParameters(parameters: ["fcmtoken": token], encoding: URLEncoding.httpBody)
     default:
       return .requestPlain
     }

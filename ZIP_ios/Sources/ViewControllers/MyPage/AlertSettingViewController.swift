@@ -8,6 +8,7 @@
 
 import Eureka
 import RxSwift
+import RxSwiftExt
 import NVActivityIndicatorView
 
 class AlertSettingViewController: FormViewController, NVActivityIndicatorViewable{
@@ -18,6 +19,7 @@ class AlertSettingViewController: FormViewController, NVActivityIndicatorViewabl
     .map(ResultModel<AlertModel>.self)
     .map{$0.result}
     .asObservable()
+    .retry(.delayed(maxCount: 3, time: 5.0)) 
     .unwrap()
     .materialize()
     .share()
@@ -81,22 +83,22 @@ class AlertSettingViewController: FormViewController, NVActivityIndicatorViewabl
     
     form +++
       Section("알림 설정")
-      <<< SwitchRow("모든알림", { (row) in
-        row.title = "모든알림"
-        row.value = pushAlertItem?.isAllTrue() ?? true
-      }).cellSetup({ (cell, row) in
-        cell.backgroundColor = .clear
-        cell.height = {50}
-        cell.switchControl.onTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-      }).onChange {[weak self] row in
-        guard let value = row.value else {return}
-        self?.pushAlertItem?.setAll(bool: value)
-        self?.form.allSections[0].reload()
-        self?.update()
-        row.updateCell()
-        }.cellUpdate({[weak self] (cell, row) in
-          row.value = self?.pushAlertItem?.isAllTrue()
-        })
+//      <<< SwitchRow("모든알림", { (row) in
+//        row.title = "모든알림"
+//        row.value = pushAlertItem?.isAllTrue() ?? true
+//      }).cellSetup({ (cell, row) in
+//        cell.backgroundColor = .clear
+//        cell.height = {50}
+//        cell.switchControl.onTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+//      }).onChange {[weak self] row in
+//        guard let value = row.value else {return}
+//        self?.pushAlertItem?.setAll(bool: value)
+//        self?.form.allSections[0].reload()
+//        self?.update()
+//        row.updateCell()
+//        }.cellUpdate({[weak self] (cell, row) in
+//          row.value = self?.pushAlertItem?.isAllTrue()
+//        })
     
       <<< SwitchRow("동행매칭알림", { (row) in
         row.title = "동행매칭알림"
@@ -108,11 +110,8 @@ class AlertSettingViewController: FormViewController, NVActivityIndicatorViewabl
       }).onChange({[weak self] (row) in
         guard let pushvalue = row.value else {return}
         self?.pushAlertItem?.matchAlert = pushvalue
-        self?.form.allSections[0].reload()
         self?.update()
         row.updateCell()
-      }).cellUpdate({[weak self] (cell, row) in
-        row.value = self?.pushAlertItem?.matchAlert
       })
     
       <<< SwitchRow("친구요청알림", { (row) in
@@ -125,11 +124,8 @@ class AlertSettingViewController: FormViewController, NVActivityIndicatorViewabl
       }).onChange({[weak self] (row) in
         guard let pushvalue = row.value else {return}
         self?.pushAlertItem?.friendAlert = pushvalue
-        self?.form.allSections[0].reload()
         self?.update()
         row.updateCell()
-      }).cellUpdate({[weak self] (cell, row) in
-        row.value = self?.pushAlertItem?.friendAlert
       })
     
       <<< SwitchRow("채팅알림", { (row) in
@@ -142,11 +138,8 @@ class AlertSettingViewController: FormViewController, NVActivityIndicatorViewabl
       }).onChange({[weak self] (row) in
         guard let pushvalue = row.value else {return}
         self?.pushAlertItem?.chatAlert = pushvalue
-        self?.form.allSections[0].reload()
         self?.update()
         row.updateCell()
-      }).cellUpdate({[weak self] (cell, row) in
-        row.value = self?.pushAlertItem?.chatAlert
       })
     
       <<< SwitchRow("이벤트알림", { (row) in
@@ -159,11 +152,8 @@ class AlertSettingViewController: FormViewController, NVActivityIndicatorViewabl
       }).onChange({[weak self] (row) in
         guard let pushvalue = row.value else {return}
         self?.pushAlertItem?.eventAlert = pushvalue
-        self?.form.allSections[0].reload()
         self?.update()
         row.updateCell()
-      }).cellUpdate({[weak self] (cell, row) in
-        row.value = self?.pushAlertItem?.eventAlert
       })
   }
   

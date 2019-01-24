@@ -8,9 +8,11 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 import Moya
 import NVActivityIndicatorView
 import SwiftyUserDefaults
+import FirebaseMessaging
 
 class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
   
@@ -31,6 +33,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       .map(ResultModel<Bool>.self)
       .map{$0.result}
       .asObservable()
+      .retry(.exponentialDelayed(maxCount: 3, initial: 2, multiplier: 2))
       .unwrap()
       .materialize()
       .share()
@@ -43,6 +46,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       .map(ResultModel<Bool>.self)
       .map{$0.result}
       .asObservable()
+      .retry(.exponentialDelayed(maxCount: 3, initial: 2, multiplier: 2))
       .unwrap()
       .materialize()
       .share()
@@ -63,7 +67,6 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       Observable.combineLatest(tokenLogin.elements(), isProfile.elements()) {($0, $1)}
         .subscribeNext(weak: self) { (weakSelf) -> ((Bool, Bool)) -> Void in
           return { result in
-            
             let loginVC = UINavigationController(rootViewController: WelcomeViewController())
             loginVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.AppleSDGothicNeoRegular(size: 40),.foregroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)]
             loginVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -84,8 +87,8 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       let naviVC = UINavigationController(rootViewController: WelcomeViewController())
       naviVC.hero.isEnabled = true
       naviVC.hero.navigationAnimationType = .fade
-      naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "fill1.png")
-      naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "fill1.png")
+      naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "backArrow.png")
+      naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backArrow.png")
       naviVC.navigationBar.backItem?.title = String()
       
       let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {[weak self] in
@@ -95,9 +98,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       animator.startAnimation()
     }
 
-    
     kakaoTokenCheck()
-    
     
     // 유저 정보 저장
     AuthManager.instance.provider
@@ -106,6 +107,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       .map(ResultModel<UserWithProfile>.self)
       .map{$0.result}
       .asObservable()
+      .retry(RepeatBehavior.exponentialDelayed(maxCount: 3, initial: 2, multiplier: 2))
       .unwrap()
       .materialize()
       .elements()

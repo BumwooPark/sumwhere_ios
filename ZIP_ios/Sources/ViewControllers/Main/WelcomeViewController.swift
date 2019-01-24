@@ -8,12 +8,9 @@
 
 import UIKit
 
-import SnapKit
-import Moya
-import Firebase
-import Security
 import FBSDKLoginKit
-import SwiftyUserDefaults
+import AVFoundation
+import AVKit
 #if !RX_NO_MODULE
 import RxSwift
 import RxCocoa
@@ -22,12 +19,24 @@ import RxKeyboard
 
 class WelcomeViewController: UIViewController{
   
+  private var didUpdateConstraint = false
   let disposeBag = DisposeBag()
   let joinVC = JoinViewController()
   lazy var viewModel = LoginViewModel(viewController: self)
   
+  let avPlayerController: AVPlayerViewController = {
+    let controller = AVPlayerViewController()
+    controller.player = AVPlayer(url: Bundle.main.url(forResource: "mainlogo", withExtension: "mp4")!)
+    controller.showsPlaybackControls = false
+    controller.player?.actionAtItemEnd = .none
+    controller.videoGravity = .resizeAspectFill
+    controller.player?.play()
+    return controller
+  }()
+  
   lazy var loginView: LoginView = {
     let view = LoginView.loadXib(nibName: "LoginView") as! LoginView
+    view.backgroundColor = .clear
     return view
   }()
   
@@ -39,8 +48,32 @@ class WelcomeViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view = loginView
+
+    self.view.addSubview(avPlayerController.view)
+    self.view.addSubview(loginView)
     self.view.hero.id = "loginToDefaultLogin"
+    
+    NotificationCenter
+      .default
+      .rx
+      .notification(.AVPlayerItemDidPlayToEndTime, object: avPlayerController.player?.currentItem)
+      .subscribeNext(weak: self) { (weakSelf) -> (Notification) -> Void in
+        return {noti in
+          let currentVideo = noti.object as? AVPlayerItem
+          currentVideo?.seek(to: .zero, completionHandler: nil)
+        }
+    }.disposed(by: disposeBag)
+    
+    NotificationCenter
+      .default
+      .rx
+      .notification(UIApplication.didBecomeActiveNotification)
+      .subscribeNext(weak: self) { (weakSelf) -> (Notification) -> Void in
+        return {_ in
+          weakSelf.avPlayerController.player?.play()
+        }
+      }.disposed(by: disposeBag)
+    
     
     loginView.emailButton.rx
       .tap
@@ -58,6 +91,24 @@ class WelcomeViewController: UIViewController{
       .map {return FBSDKLoginManager()}
       .bind(onNext: viewModel.facebookLogin)
       .disposed(by: disposeBag)
+    self.view.setNeedsUpdateConstraints()
+    
+  }
+  
+  override func updateViewConstraints() {
+    if !didUpdateConstraint{
+      
+      avPlayerController.view.snp.makeConstraints { (make) in
+        make.edges.equalToSuperview()
+      }
+      
+      loginView.snp.makeConstraints { (make) in
+        make.edges.equalToSuperview()
+      }
+      
+      didUpdateConstraint = true
+    }
+    super.updateViewConstraints()
   }
   
   private func signIn(){

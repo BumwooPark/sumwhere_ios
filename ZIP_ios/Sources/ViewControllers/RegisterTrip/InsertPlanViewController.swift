@@ -185,7 +185,6 @@ final class InsertPlanViewController: UIViewController{
     calendarView.rx.swipeGesture(.up)
       .subscribeNext(weak: self) { (weakSelf) -> (UISwipeGestureRecognizer) -> Void in
         return {_ in
-          log.info("upupup")
         }
     }.disposed(by: disposeBag)
     

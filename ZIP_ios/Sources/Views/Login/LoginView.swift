@@ -13,14 +13,11 @@ import FBSDKLoginKit
 import FLAnimatedImage
 
 final class LoginView: UIView{
-  
-  @IBOutlet weak var backImageView: FLAnimatedImageView!
   @IBOutlet weak var faceBookButton: UIButton!
   @IBOutlet weak var kakaoButton: UIButton!
   @IBOutlet weak var emailButton: UIButton!
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    backImageView.animatedImage = FLAnimatedImage(animatedGIFData: try! Data(contentsOf: Bundle.main.url(forResource: "logo", withExtension: "gif")!))
   }
 }

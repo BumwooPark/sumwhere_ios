@@ -16,9 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0IV-6v-ow7" customClass="FLAnimatedImageView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DX0-JN-Q5C" userLabel="dividLine">
                     <rect key="frame" x="47" y="557" width="281" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -89,14 +86,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0IV-6v-ow7" secondAttribute="trailing" id="1eI-AQ-Wio"/>
-                <constraint firstItem="0IV-6v-ow7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2sV-go-Ym5"/>
-                <constraint firstItem="0IV-6v-ow7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7v4-Ht-6tl"/>
                 <constraint firstItem="DX0-JN-Q5C" firstAttribute="top" secondItem="Om5-pG-f26" secondAttribute="bottom" constant="25" id="TR9-am-NYL"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Ul2-1f-CkQ" secondAttribute="bottom" constant="70" id="bC7-jR-tho"/>
                 <constraint firstItem="ztG-VQ-VCA" firstAttribute="top" secondItem="iwm-Da-WFv" secondAttribute="bottom" constant="25" id="eFD-lN-MaL"/>
                 <constraint firstItem="Ul2-1f-CkQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="47" id="iin-93-Nuh"/>
-                <constraint firstAttribute="bottom" secondItem="0IV-6v-ow7" secondAttribute="bottom" id="oWP-Fc-eSv"/>
                 <constraint firstItem="ztG-VQ-VCA" firstAttribute="trailing" secondItem="Ul2-1f-CkQ" secondAttribute="trailing" id="ohf-e7-HS5"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ul2-1f-CkQ" secondAttribute="trailing" constant="47" id="p9g-VK-JWi"/>
                 <constraint firstItem="ztG-VQ-VCA" firstAttribute="leading" secondItem="aJE-GF-1U1" secondAttribute="leading" id="qxD-dw-O3Y"/>
@@ -105,7 +98,6 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="backImageView" destination="0IV-6v-ow7" id="AOC-xd-hh4"/>
                 <outlet property="emailButton" destination="rFa-5O-XXj" id="iRI-oc-QcA"/>
                 <outlet property="faceBookButton" destination="iwm-Da-WFv" id="Liw-uz-GUg"/>
                 <outlet property="kakaoButton" destination="Om5-pG-f26" id="5Re-gC-a05"/>

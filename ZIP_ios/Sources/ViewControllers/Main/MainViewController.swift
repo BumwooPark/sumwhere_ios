@@ -16,7 +16,7 @@ import SnapKit
 import Moya
 import NVActivityIndicatorView
 
-final class MainViewController: UIViewController, NVActivityIndicatorViewable{
+final class MainViewController: UIViewController, NVActivityIndicatorViewable, UICollectionViewDelegateFlowLayout{
   
   let disposeBag = DisposeBag()
   var didUpdateConstraint = false
@@ -116,7 +116,6 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
     startAnimating(CGSize(width: 50, height: 50), type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
     
     Observable<Int>.interval(4, scheduler: MainScheduler.instance)
@@ -162,6 +161,8 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable{
         self?.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
       }).bind(to: datas)
       .disposed(by: disposeBag)
+    
+    
     
     viewModel
       .userAPI

@@ -15,7 +15,7 @@ class MyPageHeaderView: UICollectionReusableView{
       idLabel.text = "\(user.user.nickname ?? String())님"
       emailLabel.text = user.user.email
       storeButton.setAttributedTitle(self.storeAttributeString(key: user.user.point), for: .normal)
-      profileImage.kf.setImage(with: URL(string: user.profile.image1.addSumwhereImageURL())!)
+      profileImage.kf.setImage(with: URL(string: user.profile.image1.addSumwhereImageURL())!,options: [.transition(.fade(0.2))])
       joinTypeImage.image = joinTypeMapper(joinType: user.user.joinType)
     }
   }
@@ -40,10 +40,11 @@ class MyPageHeaderView: UICollectionReusableView{
   }()
   
   let profileImage: UIImageView = {
-    let profile = UIImageView()
+    var profile = UIImageView()
     profile.contentMode = .scaleAspectFill
     profile.layer.cornerRadius = 50
     profile.layer.masksToBounds = true
+    profile.kf.indicatorType = .activity
     return profile
   }()
   

@@ -45,7 +45,6 @@ class CreateOneTimeViewController: FormViewController {
             return { coor in
               GMSGeocoder().reverseGeocodeCoordinate(coor, completionHandler: { (response, err) in
                 row.value = response?.results()?.first?.lines?.first
-                log.info(response?.firstResult())
                 row.updateCell()
               })
             }
