@@ -9,7 +9,13 @@
 import RxSwift
 import RxCocoa
 
-struct SampleModel{
+
+enum MatchType{
+  case onetime(MatchTypeModel)
+  case schedule(MatchTypeModel)
+}
+
+struct MatchTypeModel{
   let image: UIImage
   let title: String
   let subTitle: String
@@ -18,17 +24,16 @@ struct SampleModel{
 
 final class MatchTypeViewController: UIViewController{
   let disposeBag = DisposeBag()
-  var items: [SampleModel] = [SampleModel(image: #imageLiteral(resourceName: "onetimematchImage.png"),title: "즉흥 매칭", subTitle: "새로운 인연과 함께하는 여행", isSelected: true),
-                              SampleModel(image: #imageLiteral(resourceName: "planmatchImage.png"),title: "계획 매칭", subTitle: "같은 시간, 같은 공간 우리 동행하자", isSelected: false)]
+  var items: [MatchType] = [MatchType.onetime(MatchTypeModel(image: #imageLiteral(resourceName: "onetimematchImage.png"),title: "즉흥 매칭", subTitle: "새로운 인연과 함께하는 여행", isSelected: true)),MatchType.schedule(MatchTypeModel(image: #imageLiteral(resourceName: "planmatchImage.png"),title: "계획 매칭", subTitle: "같은 시간, 같은 공간 우리 동행하자", isSelected: false))]
   
   let submitAction = PublishRelay<Int>()
   
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    layout.minimumLineSpacing = 0
-    layout.minimumInteritemSpacing = 0
-    layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 100)
+    layout.minimumLineSpacing = 10
+    layout.minimumInteritemSpacing = 10
+    layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 150)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(MatchTypeCell.self, forCellWithReuseIdentifier: String(describing: MatchTypeCell.self))
     collectionView.backgroundColor = .white
@@ -46,12 +51,29 @@ final class MatchTypeViewController: UIViewController{
     collectionView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()
     }
-    if #available(iOS 11.0, *) {
-      collectionView.contentInsetAdjustmentBehavior = .never
-    }
     
-    Observable.just(items).bind(to: collectionView.rx.items(cellIdentifier: String(describing: MatchTypeCell.self), cellType: MatchTypeCell.self)){ idx, item, cell in
-      cell.item = item
+    Observable.just(items)
+      .bind(to: collectionView.rx.items(cellIdentifier: String(describing: MatchTypeCell.self), cellType: MatchTypeCell.self)){
+        idx, item, cell in
+        switch item{
+        case .onetime(let model),.schedule(let model):
+          cell.item = model
+        }
+      
+    }.disposed(by: disposeBag)
+    
+    collectionView.rx
+      .itemSelected
+      .subscribeNext(weak: self) {(weakSelf) -> (IndexPath) -> Void in
+        return { idx in
+          switch weakSelf.items[idx.item]{
+          case .onetime:
+            weakSelf.present(CreateTripViewController(), animated: true, completion: nil)
+          case .schedule:
+            weakSelf.present(CreateTripViewController(), animated: true, completion: nil)
+          }
+          
+        }
     }.disposed(by: disposeBag)
   }
 }

@@ -134,7 +134,6 @@
 		B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597A210992EC00AC769C /* LoginVIewModel.swift */; };
 		B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597C2109C0E800AC769C /* CreateTripViewController.swift */; };
 		B1055997211021F300AC769C /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1055996211021F300AC769C /* MatchViewModel.swift */; };
-		B10559992110223300AC769C /* MatchTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10559982110223300AC769C /* MatchTypeModel.swift */; };
 		B10F11FE21F6ECC00045FBF9 /* mainlogo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */; };
 		B10F120021F953B70045FBF9 /* PurchaseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F11FF21F953B70045FBF9 /* PurchaseEmptyView.swift */; };
 		B10F120221F990400045FBF9 /* TripSearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120121F990400045FBF9 /* TripSearchHeader.swift */; };
@@ -365,7 +364,6 @@
 		B105597A210992EC00AC769C /* LoginVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVIewModel.swift; sourceTree = "<group>"; };
 		B105597C2109C0E800AC769C /* CreateTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripViewController.swift; sourceTree = "<group>"; };
 		B1055996211021F300AC769C /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
-		B10559982110223300AC769C /* MatchTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeModel.swift; sourceTree = "<group>"; };
 		B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainlogo.mp4; sourceTree = "<group>"; };
 		B10F11FF21F953B70045FBF9 /* PurchaseEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseEmptyView.swift; sourceTree = "<group>"; };
 		B10F120121F990400045FBF9 /* TripSearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSearchHeader.swift; sourceTree = "<group>"; };
@@ -670,7 +668,6 @@
 				B1D4E51120FC232900524CE2 /* JoinModel.swift */,
 				0A90EBCF2109E8420057F1A9 /* UserModel.swift */,
 				0A74567B210D877E00F8A0C9 /* FriendsModel.swift */,
-				B10559982110223300AC769C /* MatchTypeModel.swift */,
 				0A375C1D21327C8500E35ED9 /* TopTripModel.swift */,
 				0A375C1F21329B8500E35ED9 /* MatchRequestModel.swift */,
 				0A1B0F0221ECC0880035E657 /* BannerModel.swift */,
@@ -729,11 +726,6 @@
 				0A397CBD21F364EC00F65BE0 /* MatchSuccessViewController.swift */,
 				B10F120421F9AC380045FBF9 /* schedule */,
 				B10F120321F9AC310045FBF9 /* onetime */,
-				B105597C2109C0E800AC769C /* CreateTripViewController.swift */,
-				0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */,
-				0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */,
-				B163846621F5964F00665060 /* RegisterViewController.swift */,
-				B163846821F5965800665060 /* CreateOnetimeViewController.swift */,
 			);
 			path = RegisterTrip;
 			sourceTree = "<group>";
@@ -928,6 +920,11 @@
 		B10F120421F9AC380045FBF9 /* schedule */ = {
 			isa = PBXGroup;
 			children = (
+				B105597C2109C0E800AC769C /* CreateTripViewController.swift */,
+				0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */,
+				0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */,
+				B163846621F5964F00665060 /* RegisterViewController.swift */,
+				B163846821F5965800665060 /* CreateOnetimeViewController.swift */,
 			);
 			path = schedule;
 			sourceTree = "<group>";
@@ -1463,7 +1460,6 @@
 				0A1B0EFB21EB74370035E657 /* NoticeModel.swift in Sources */,
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
-				B10559992110223300AC769C /* MatchTypeModel.swift in Sources */,
 				0A33277B213BBCCF00BC2906 /* NewSetProfileViewController.swift in Sources */,
 				0A19A9D42159249000977AF6 /* TripStyleCell.swift in Sources */,
 				0A1B0EF721EB68100035E657 /* EventHeaderView.swift in Sources */,

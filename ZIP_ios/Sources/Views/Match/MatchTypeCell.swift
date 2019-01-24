@@ -10,23 +10,12 @@ import RxSwift
 import RxCocoa
 
 class MatchTypeCell: UICollectionViewCell{
-  var disposeBag = DisposeBag()
   
-  var submitAction: PublishRelay<Int>?
-  var item: SampleModel?{
+  var item: MatchTypeModel?{
     didSet{
       titleLabel.text = item?.title
       bgImage.image = item?.image
       explainLabel.text = item?.subTitle
-      submitButton.isHidden = !item!.isSelected
-      explainLabel.isHidden = !item!.isSelected
-    }
-  }
-  
-  override var isSelected: Bool{
-    didSet{
-      submitButton.isHidden = isSelected
-      explainLabel.isHidden = isSelected
     }
   }
 
@@ -53,44 +42,14 @@ class MatchTypeCell: UICollectionViewCell{
     return label
   }()
   
-  private let submitButton: UIButton = {
-    let button = UIButton()
-    button.setTitle("매칭하러 가기", for: .normal)
-    button.setTitleColor(.white, for: .normal)
-    button.titleLabel?.font = .AppleSDGothicNeoBold(size: 12)
-    button.layer.cornerRadius = 14
-    button.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 0.59)
-    return button
-  }()
-  
-  
   override init(frame: CGRect) {
     super.init(frame: frame)
+    contentView.layer.cornerRadius = 10
+    contentView.layer.masksToBounds = true
     contentView.addSubview(bgImage)
     contentView.addSubview(titleLabel)
-    contentView.addSubview(submitButton)
     contentView.addSubview(explainLabel)
     setNeedsUpdateConstraints()
-    
-    submitButton.rx.tap
-      .map{self.tag}
-      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
-        return {idx in
-          weakSelf.submitAction?.accept(idx)
-        }
-    }.disposed(by: disposeBag)
-  }
-  
-  override func prepareForReuse() {
-    super.prepareForReuse()
-    disposeBag = DisposeBag()
-    submitButton.rx.tap
-      .map{self.tag}
-      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
-        return {idx in
-          weakSelf.submitAction?.accept(idx)
-        }
-      }.disposed(by: disposeBag)
   }
   
   override func updateConstraints() {
@@ -106,13 +65,6 @@ class MatchTypeCell: UICollectionViewCell{
       explainLabel.snp.makeConstraints { (make) in
         make.bottom.equalTo(titleLabel.snp.top).offset(-6)
         make.centerX.equalToSuperview()
-      }
-      
-      submitButton.snp.makeConstraints { (make) in
-        make.top.equalTo(titleLabel.snp.bottom).offset(14)
-        make.centerX.equalToSuperview()
-        make.width.equalTo(121)
-        make.height.equalTo(29)
       }
       
       didUpdateConstraint = true
