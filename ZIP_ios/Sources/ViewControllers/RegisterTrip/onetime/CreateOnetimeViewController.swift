@@ -59,7 +59,5 @@ class CreateOneTimeViewController: FormViewController {
     
       +++ Section("활동")
       <<< TextAreaRow()
-    
-
   }
 }

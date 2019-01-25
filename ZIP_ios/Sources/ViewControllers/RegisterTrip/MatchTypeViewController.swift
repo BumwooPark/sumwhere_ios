@@ -68,9 +68,9 @@ final class MatchTypeViewController: UIViewController{
         return { idx in
           switch weakSelf.items[idx.item]{
           case .onetime:
-            weakSelf.present(CreateTripViewController(), animated: true, completion: nil)
+            weakSelf.navigationController?.pushViewController(CreateOneTimeViewController(), animated: true)
           case .schedule:
-            weakSelf.present(CreateTripViewController(), animated: true, completion: nil)
+            weakSelf.navigationController?.pushViewController(SearchDestinationViewController(), animated: true)
           }
           
         }

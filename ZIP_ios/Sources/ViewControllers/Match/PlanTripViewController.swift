@@ -37,8 +37,8 @@ class PlanTripViewController: UIViewController, ListAdapterDataSource {
     emptyView.addButton.rx.tap
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return {_ in
-          let tripView = CreateTripViewController()
-          weakSelf.present(tripView, animated: true, completion: nil)
+//          let tripView = CreateTripViewController()
+//          weakSelf.present(tripView, animated: true, completion: nil)
         }
       }.disposed(by: disposeBag)
     return emptyView

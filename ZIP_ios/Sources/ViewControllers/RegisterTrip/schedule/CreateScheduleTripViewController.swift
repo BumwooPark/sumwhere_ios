@@ -12,7 +12,7 @@ import RxSwift
 import PopupDialog
 import Moya
 
-final class CreateTripViewController: UIViewController{
+final class CreateScheduleTripViewController: UIViewController{
   
   let viewModel = RegisterTripViewModel()
   
@@ -22,12 +22,12 @@ final class CreateTripViewController: UIViewController{
   private let pageView: PageViewController
   
   init() {
-    let searchVC = SearchDestinationViewController(viewModel: viewModel)
+//    let searchVC = SearchDestinationViewController(viewModel: viewModel)
     let planVC = InsertPlanViewController(viewModel: viewModel)
     let completeVC = RegisterViewController(viewModel: viewModel)
     _ = planVC.view
     _ = completeVC.view
-    self.pageView = PageViewController(pages: [searchVC,planVC,completeVC], spin: false)
+    self.pageView = PageViewController(pages: [planVC,completeVC], spin: false)
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -55,11 +55,6 @@ final class CreateTripViewController: UIViewController{
           weakSelf.dismiss(animated: true, completion: nil)
         }
       }.disposed(by: disposeBag)
-    
-    viewModel
-      .completeAction
-      .bind(onNext: pageView.scrollToAutoForward)
-      .disposed(by: disposeBag)
     
     viewModel
       .backAction

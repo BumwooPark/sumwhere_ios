@@ -30,12 +30,12 @@ class TripSearchHeader: UIView{
     textField.font = .AppleSDGothicNeoMedium(size: 15)
     textField.setZIPClearButton()
     textField.clearButtonMode = .never
-    textField.backgroundColor = .white
     return textField
   }()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    backgroundColor = .white
     addSubview(titleLabel)
     addSubview(textField)
     addSubview(gradientView)
@@ -44,18 +44,18 @@ class TripSearchHeader: UIView{
   override func updateConstraints() {
     if !didUpdateConstraint {
       titleLabel.snp.makeConstraints { (make) in
-        make.left.equalToSuperview().inset(23)
+        make.leading.equalToSuperview().inset(23)
         make.bottom.equalTo(textField.snp.top).offset(-20)
       }
       
       textField.snp.makeConstraints { (make) in
-        make.left.right.equalToSuperview().inset(16)
+        make.leading.trailing.equalToSuperview().inset(16)
         make.bottom.equalTo(gradientView.snp.top)
         make.height.equalTo(46)
       }
       
       gradientView.snp.makeConstraints { (make) in
-        make.left.right.equalTo(textField)
+        make.leading.trailing.equalTo(textField)
         make.bottom.equalToSuperview()
         make.height.equalTo(2)
       }

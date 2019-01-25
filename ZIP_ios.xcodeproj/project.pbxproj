@@ -72,7 +72,6 @@
 		0A397CBA21F338D800F65BE0 /* MatchTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CB921F338D800F65BE0 /* MatchTypeViewController.swift */; };
 		0A397CBC21F33B8900F65BE0 /* MatchTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CBB21F33B8900F65BE0 /* MatchTypeCell.swift */; };
 		0A397CBE21F364EC00F65BE0 /* MatchSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CBD21F364EC00F65BE0 /* MatchSuccessViewController.swift */; };
-		0A397CC021F36D2700F65BE0 /* MatchSelectGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CBF21F36D2700F65BE0 /* MatchSelectGenderViewController.swift */; };
 		0A397CC221F4453400F65BE0 /* InfoPageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC121F4453400F65BE0 /* InfoPageSectionController.swift */; };
 		0A397CC421F46D0E00F65BE0 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC321F46D0E00F65BE0 /* AccountSettingViewController.swift */; };
 		0A397CC621F60D7C00F65BE0 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC521F60D7C00F65BE0 /* AlertModel.swift */; };
@@ -132,11 +131,15 @@
 		0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02220FE23BD00775EA8 /* TripModel.swift */; };
 		0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02420FE2AB600775EA8 /* MyTripViewModel.swift */; };
 		B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597A210992EC00AC769C /* LoginVIewModel.swift */; };
-		B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597C2109C0E800AC769C /* CreateTripViewController.swift */; };
+		B105597D2109C0E800AC769C /* CreateScheduleTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597C2109C0E800AC769C /* CreateScheduleTripViewController.swift */; };
 		B1055997211021F300AC769C /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1055996211021F300AC769C /* MatchViewModel.swift */; };
 		B10F11FE21F6ECC00045FBF9 /* mainlogo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */; };
 		B10F120021F953B70045FBF9 /* PurchaseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F11FF21F953B70045FBF9 /* PurchaseEmptyView.swift */; };
 		B10F120221F990400045FBF9 /* TripSearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120121F990400045FBF9 /* TripSearchHeader.swift */; };
+		B10F120621FAD7B20045FBF9 /* AlertHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120521FAD7B20045FBF9 /* AlertHistoryViewController.swift */; };
+		B10F120821FADB310045FBF9 /* AlertHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120721FADB310045FBF9 /* AlertHistoryCell.swift */; };
+		B10F120D21FADDDA0045FBF9 /* AlertHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120C21FADDDA0045FBF9 /* AlertHistory.swift */; };
+		B10F120F21FADEC30045FBF9 /* AlertHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120E21FADEC30045FBF9 /* AlertHistoryViewModel.swift */; };
 		B132A58221B7B9300050D6DE /* OTGulimL.otf in Resources */ = {isa = PBXBuildFile; fileRef = B132A58021B7B9300050D6DE /* OTGulimL.otf */; };
 		B132A58321B7B9940050D6DE /* OTGulimB.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AA21B7B8F000DCCD2B /* OTGulimB.otf */; };
 		B132A58521B7BFC80050D6DE /* OTGulimH.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AB21B7B90400DCCD2B /* OTGulimH.otf */; };
@@ -294,7 +297,6 @@
 		0A397CB921F338D800F65BE0 /* MatchTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeViewController.swift; sourceTree = "<group>"; };
 		0A397CBB21F33B8900F65BE0 /* MatchTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeCell.swift; sourceTree = "<group>"; };
 		0A397CBD21F364EC00F65BE0 /* MatchSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSuccessViewController.swift; sourceTree = "<group>"; };
-		0A397CBF21F36D2700F65BE0 /* MatchSelectGenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSelectGenderViewController.swift; sourceTree = "<group>"; };
 		0A397CC121F4453400F65BE0 /* InfoPageSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageSectionController.swift; sourceTree = "<group>"; };
 		0A397CC321F46D0E00F65BE0 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		0A397CC521F60D7C00F65BE0 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
@@ -362,11 +364,15 @@
 		7B9C4226FE4FE2EB23EB73C6 /* Pods-ZIP_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		B1016CDF21C739D8008A8C59 /* SearchPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPasswordViewController.swift; sourceTree = "<group>"; };
 		B105597A210992EC00AC769C /* LoginVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVIewModel.swift; sourceTree = "<group>"; };
-		B105597C2109C0E800AC769C /* CreateTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripViewController.swift; sourceTree = "<group>"; };
+		B105597C2109C0E800AC769C /* CreateScheduleTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateScheduleTripViewController.swift; sourceTree = "<group>"; };
 		B1055996211021F300AC769C /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainlogo.mp4; sourceTree = "<group>"; };
 		B10F11FF21F953B70045FBF9 /* PurchaseEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseEmptyView.swift; sourceTree = "<group>"; };
 		B10F120121F990400045FBF9 /* TripSearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSearchHeader.swift; sourceTree = "<group>"; };
+		B10F120521FAD7B20045FBF9 /* AlertHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistoryViewController.swift; sourceTree = "<group>"; };
+		B10F120721FADB310045FBF9 /* AlertHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistoryCell.swift; sourceTree = "<group>"; };
+		B10F120C21FADDDA0045FBF9 /* AlertHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistory.swift; sourceTree = "<group>"; };
+		B10F120E21FADEC30045FBF9 /* AlertHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistoryViewModel.swift; sourceTree = "<group>"; };
 		B132A58021B7B9300050D6DE /* OTGulimL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTGulimL.otf; sourceTree = "<group>"; };
 		B132A58621BE59E30050D6DE /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		B14495B12191535F00B4D135 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
@@ -655,6 +661,7 @@
 		0A71238D1FACC16100512EB7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B10F120B21FADDCF0045FBF9 /* main */,
 				B16BD8BF21B4F12B0010EEE0 /* RegisterTrip */,
 				0A13CA4F21A6F3E60081C55F /* Purchase */,
 				B1913BAF21990FD8009F9191 /* MyPage */,
@@ -722,7 +729,6 @@
 			children = (
 				0A397CB521F32FE200F65BE0 /* MainMatchViewController.swift */,
 				0A397CB921F338D800F65BE0 /* MatchTypeViewController.swift */,
-				0A397CBF21F36D2700F65BE0 /* MatchSelectGenderViewController.swift */,
 				0A397CBD21F364EC00F65BE0 /* MatchSuccessViewController.swift */,
 				B10F120421F9AC380045FBF9 /* schedule */,
 				B10F120321F9AC310045FBF9 /* onetime */,
@@ -763,6 +769,7 @@
 				0A1B0F0021ECBFC90035E657 /* BannerViewController.swift */,
 				B1911FBA21746A6E005A4E85 /* MapViewController.swift */,
 				0A13CA4D21A6F1C40081C55F /* WelcomeViewController.swift */,
+				B10F120521FAD7B20045FBF9 /* AlertHistoryViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -906,6 +913,7 @@
 				0A09A8011FDD3CEF00DC47A7 /* MainCellViewModel.swift */,
 				B1055996211021F300AC769C /* MatchViewModel.swift */,
 				B1E014662179C9E100348FB6 /* MainViewModel.swift */,
+				B10F120E21FADEC30045FBF9 /* AlertHistoryViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -913,6 +921,7 @@
 		B10F120321F9AC310045FBF9 /* onetime */ = {
 			isa = PBXGroup;
 			children = (
+				B163846821F5965800665060 /* CreateOnetimeViewController.swift */,
 			);
 			path = onetime;
 			sourceTree = "<group>";
@@ -920,13 +929,20 @@
 		B10F120421F9AC380045FBF9 /* schedule */ = {
 			isa = PBXGroup;
 			children = (
-				B105597C2109C0E800AC769C /* CreateTripViewController.swift */,
+				B105597C2109C0E800AC769C /* CreateScheduleTripViewController.swift */,
 				0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */,
 				0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */,
 				B163846621F5964F00665060 /* RegisterViewController.swift */,
-				B163846821F5965800665060 /* CreateOnetimeViewController.swift */,
 			);
 			path = schedule;
+			sourceTree = "<group>";
+		};
+		B10F120B21FADDCF0045FBF9 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				B10F120C21FADDDA0045FBF9 /* AlertHistory.swift */,
+			);
+			path = main;
 			sourceTree = "<group>";
 		};
 		B14495B02191534300B4D135 /* Purchase */ = {
@@ -1067,6 +1083,7 @@
 				0A6EB9DC2169E1A000117526 /* MainFooterView.xib */,
 				0A375C17213275AA00E35ED9 /* TopTripCell.swift */,
 				0A375C19213275D200E35ED9 /* TopTripCell.xib */,
+				B10F120721FADB310045FBF9 /* AlertHistoryCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1443,6 +1460,7 @@
 				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
 				B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */,
 				0A7C50792198679D00558F62 /* MyPageSectionController.swift in Sources */,
+				B10F120621FAD7B20045FBF9 /* AlertHistoryViewController.swift in Sources */,
 				B1913BC1219977C2009F9191 /* InfoPageViewController.swift in Sources */,
 				B1913BBD21997464009F9191 /* EventInfoViewController.swift in Sources */,
 				0A397CC421F46D0E00F65BE0 /* AccountSettingViewController.swift in Sources */,
@@ -1495,6 +1513,7 @@
 				0A7C50812198736900558F62 /* SupportHeaderView.swift in Sources */,
 				0A332779213BBB7A00BC2906 /* FirstViewController.swift in Sources */,
 				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,
+				B10F120F21FADEC30045FBF9 /* AlertHistoryViewModel.swift in Sources */,
 				0A7C507D2198680F00558F62 /* MyPageCell.swift in Sources */,
 				0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */,
 				0A1F47AD21C7C9E00003AF7A /* SearchPasswordViewController.swift in Sources */,
@@ -1502,7 +1521,6 @@
 				0A78139721A13B97006AA31F /* ReceiveHistorySectionController.swift in Sources */,
 				0A375C2F2132BCBC00E35ED9 /* ReceiveViewModel.swift in Sources */,
 				B166603721B6560100063AFA /* OneTimeMatchSelectCell.swift in Sources */,
-				0A397CC021F36D2700F65BE0 /* MatchSelectGenderViewController.swift in Sources */,
 				B1913BBF219977A7009F9191 /* EventPageViewController.swift in Sources */,
 				B16BD8C121B4F1470010EEE0 /* InputTrip.swift in Sources */,
 				B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */,
@@ -1536,7 +1554,7 @@
 				B14495BE21916CE800B4D135 /* PurchaseHeaderView.swift in Sources */,
 				B16BD8C321B50E580010EEE0 /* TripSectionModel.swift in Sources */,
 				B1EF955F21193FB900F6418F /* CharacterViewModel.swift in Sources */,
-				B105597D2109C0E800AC769C /* CreateTripViewController.swift in Sources */,
+				B105597D2109C0E800AC769C /* CreateScheduleTripViewController.swift in Sources */,
 				B1913BB121990FFD009F9191 /* MyPageModel.swift in Sources */,
 				B132A58721BE59E30050D6DE /* ChatListCell.swift in Sources */,
 				B166603921B7666500063AFA /* OneTimeSectionController.swift in Sources */,
@@ -1584,7 +1602,9 @@
 				B166603121B6174700063AFA /* StrokeView.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
 				0A895BEF212EE59800FDF834 /* MatchRequestViewController.swift in Sources */,
+				B10F120D21FADDDA0045FBF9 /* AlertHistory.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
+				B10F120821FADB310045FBF9 /* AlertHistoryCell.swift in Sources */,
 				B1FE037021A6770F00DE242A /* PurchaseProduct.swift in Sources */,
 				B16BD8A121A790970010EEE0 /* PurchaseRewardCell.swift in Sources */,
 				0A78139921A13FE3006AA31F /* PageCollectionLayout.swift in Sources */,

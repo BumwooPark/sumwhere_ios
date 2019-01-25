@@ -14,6 +14,7 @@ import Moya
 import JTAppleCalendar
 import SwiftDate
 import EventKit
+import MXParallaxHeader
 
 class DateControl{
   
@@ -25,7 +26,7 @@ class DateControl{
     calendar.deselectAllDates(triggerSelectionDelegate: false)
     calendar.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
   }
-  
+
   func selectHandler(calendar: JTAppleCalendarView, date: Date) {
     switch selectCount{
     case 0:
@@ -73,20 +74,7 @@ final class InsertPlanViewController: UIViewController{
   private var didUpdateConstraint = false
   private let headerView = CalendarHeaderView.loadXib(nibName: "CalendarHeaderView") as! CalendarHeaderView
   private let dateControl = DateControl()
-  
-  private let backButton: UIButton = {
-    let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "backArrow.png"), for: .normal)
-    return button
-  }()
-  
-  private let titleLabel: UILabel = {
-    let label = UILabel()
-    label.numberOfLines = 0
-    label.font = .KoreanSWGI1R(size: 30)
-    return label
-  }()
-  
+  lazy var registerVC = RegisterViewController(viewModel: viewModel)
   private let gregorian: Calendar = {
     var calendar = Calendar(identifier: .gregorian)
     calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!
@@ -103,17 +91,10 @@ final class InsertPlanViewController: UIViewController{
     button.isEnabled = false
     return button
   }()
-  private let totalLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont.init(name: "AppleSDGothicNeo-Bold", size: 16)
-    label.textAlignment = .center
-    return label
-  }()
-  
 
   lazy var calendarView: JTAppleCalendarView = {
     let calendar = JTAppleCalendarView()
-    calendar.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9882352941, blue: 0.9882352941, alpha: 1)
+    calendar.backgroundColor = .white
     calendar.calendarDelegate = self
     calendar.minimumLineSpacing = 0
     calendar.minimumInteritemSpacing = 0
@@ -124,38 +105,67 @@ final class InsertPlanViewController: UIViewController{
     calendar.allowsMultipleSelection = true
     calendar.isRangeSelectionUsed = true
     calendar.isPagingEnabled = false
+    calendar.parallaxHeader.view = headerView
+    calendar.parallaxHeader.height = 160
+    calendar.parallaxHeader.delegate = self
+    calendar.parallaxHeader.mode = .bottom
     calendar.register(CalendarHeader.self, forSupplementaryViewOfKind: JTAppleCalendarView.elementKindSectionHeader, withReuseIdentifier: String(describing: CalendarHeader.self))
     calendar.register(CalendarCell.self, forCellWithReuseIdentifier: String(describing: CalendarCell.self))
     return calendar
   }()
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBar.backgroundColor = .white
+    let height = UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.frame.height ?? 0)
+    calendarView.parallaxHeader.minimumHeight = height + 100
+  }
 
   init(viewModel: RegisterTripViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
+    _ = registerVC.view
+    viewModel.saver
+      .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
+        return {type in
+          switch type{
+          case .place(let model):
+            weakSelf.headerView.titleLabel.text = model.trip + "\n언제 떠날까요?"
+          default:
+            break
+          }
+        }
+      }.disposed(by: disposeBag)
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+   super.viewWillDisappear(animated)
+    self.navigationController?.navigationBar.backgroundColor = .clear
+    setStatusBarBackgroundColor(color: .clear)
+  }
+  
+  private func setStatusBarBackgroundColor(color: UIColor) {
+    guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+    statusBar.backgroundColor = color
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     _ = calendarView
     view.backgroundColor = .white
-    view.addSubview(titleLabel)
-    view.addSubview(headerView)
     view.addSubview(calendarView)
     view.addSubview(completeButton)
-    view.addSubview(backButton)
     view.setNeedsUpdateConstraints()
     
-    backButton.rx.tap
-      .bind(to: viewModel.backAction)
-      .disposed(by: disposeBag)
-    
     completeButton.rx.tap
-      .bind(to: viewModel.completeAction)
-      .disposed(by: disposeBag)
+      .subscribeNext(weak: self){ (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.navigationController?.pushViewController(weakSelf.registerVC, animated: true)
+        }
+      }.disposed(by: disposeBag)
     
     dateControl
       .selectSubject
@@ -177,28 +187,12 @@ final class InsertPlanViewController: UIViewController{
           }else{
             weakSelf.completeButton.setTitle("여행 등록", for: .normal)
           }
+          
+          log.info(result.result)
           weakSelf.completeButton.backgroundColor = result.result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
           weakSelf.completeButton.isEnabled = result.result ? true : false
         }
       }).disposed(by: disposeBag)
-    
-    calendarView.rx.swipeGesture(.up)
-      .subscribeNext(weak: self) { (weakSelf) -> (UISwipeGestureRecognizer) -> Void in
-        return {_ in
-        }
-    }.disposed(by: disposeBag)
-    
-    viewModel.saver
-      .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
-        return { types in
-          switch types{
-          case .place(let model):
-            weakSelf.titleLabel.text = model.trip + "\n언제떠날까요?"
-          default:
-            break
-          }
-        }
-    }.disposed(by: disposeBag)
   }
   
   private func deSelectDate(){
@@ -218,34 +212,16 @@ final class InsertPlanViewController: UIViewController{
   override func updateViewConstraints() {
     if !didUpdateConstraint{
       
-      titleLabel.snp.makeConstraints { (make) in
-        make.left.equalToSuperview().inset(35)
-        make.top.equalTo(backButton.snp.bottom).offset(7)
-      }
-      
-      headerView.snp.makeConstraints { (make) in
-        make.left.right.equalToSuperview().inset(30)
-        make.top.equalTo(titleLabel.snp.bottom).offset(29)
-        make.height.equalTo(50)
-      }
-      
       calendarView.snp.makeConstraints { (make) in
-        make.left.right.equalToSuperview().inset(30)
-        make.top.equalTo(headerView.snp.bottom)
-        make.height.equalTo(calendarView.snp.width)
+        make.left.right.top.equalToSuperview()
+        make.bottom.equalTo(completeButton.snp.top)
       }
       
       completeButton.snp.makeConstraints { (make) in
-        make.bottom.left.right.equalToSuperview().inset(10)
+        make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(10)
         make.height.equalTo(50)
       }
-      
-      backButton.snp.makeConstraints { (make) in
-        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(27)
-        make.left.equalToSuperview().inset(12)
-        make.width.height.equalTo(50)
-      }
-      
+
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
@@ -302,6 +278,9 @@ extension InsertPlanViewController: JTAppleCalendarViewDataSource{
     
     return parameters
   }
-  
-  
+}
+
+extension InsertPlanViewController: MXParallaxHeaderDelegate{
+  func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
+  }
 }

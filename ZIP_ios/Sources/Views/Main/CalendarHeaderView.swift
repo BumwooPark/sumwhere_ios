@@ -10,10 +10,12 @@ import LTMorphingLabel
 
 class CalendarHeaderView: UIView {
   
+  @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var monthLabel: LTMorphingLabel!
   @IBOutlet weak var yearLabel: LTMorphingLabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    titleLabel.numberOfLines = 0
   }
 }

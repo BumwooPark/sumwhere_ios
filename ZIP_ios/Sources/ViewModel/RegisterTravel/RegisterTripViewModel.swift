@@ -19,13 +19,12 @@ final class RegisterTripViewModel{
   public let saver = PublishRelay<SaveType>()
   private let disposeBag = DisposeBag()
   public let dismissAction = PublishSubject<Void>()
-  public let completeAction = PublishSubject<Void>()
   public let submitAction = PublishSubject<Void>()
   public let backAction = PublishSubject<Void>()
   public let scrollToFirst = PublishRelay<Void>()
   public let tripPlaceBinder = PublishRelay<String>()
   public let tripPlaceMapper = PublishRelay<[TripType]>()
-  private var inputModel = InputTrip()
+  public var inputModel = InputTrip()
   
   
   lazy var submitResult = submitAction

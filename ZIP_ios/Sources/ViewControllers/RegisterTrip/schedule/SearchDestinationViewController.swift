@@ -13,17 +13,16 @@ import MXParallaxHeader
 
 
 class SearchDestinationViewController: UIViewController{
-  
+  let viewModel = RegisterTripViewModel()
   private let disposeBag = DisposeBag()
   var didUpdateConstraint = false
-  
-  private let viewModel: RegisterTripViewModel
   let headerView = TripSearchHeader()
+  lazy var planVC = InsertPlanViewController(viewModel: viewModel)
   
   
   lazy var dataSources = RxTableViewSectionedReloadDataSource<SearchDestTVModel>(configureCell: {[weak self] (ds, tv, idx, item) -> UITableViewCell in
     let cell = tv.dequeueReusableCell(withIdentifier: String(describing: DestinationSearchCell.self), for: idx) as! DestinationSearchCell
-//    cell.item = (item,self?.textField.text)
+    cell.item = (item,self?.headerView.textField.text)
     return cell
   })
   
@@ -31,31 +30,33 @@ class SearchDestinationViewController: UIViewController{
     let tableView = UITableView()
     tableView.separatorStyle = .none
     tableView.keyboardDismissMode = .interactive
-    tableView.parallaxHeader.height = 100
+    tableView.parallaxHeader.height = 130
     tableView.parallaxHeader.view = headerView
     tableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
     tableView.alwaysBounceVertical = true
     tableView.backgroundColor = .white
-    tableView.parallaxHeader.minimumHeight = 50
     tableView.register(DestinationSearchCell.self, forCellReuseIdentifier: String(describing: DestinationSearchCell.self))
     return tableView
   }()
   
-  init(viewModel: RegisterTripViewModel) {
-    self.viewModel = viewModel
-    super.init(nibName: nil, bundle: nil)
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  override func viewDidLoad() {
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBar.backgroundColor = .white
     
+    let height = UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.frame.height ?? 0)
+    tableView.parallaxHeader.minimumHeight = (height + 60)
+    setStatusBarBackgroundColor(color: .white)
+  }
+    
+  private func setStatusBarBackgroundColor(color: UIColor) {
+    guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+    statusBar.backgroundColor = color
+  }
+  override func viewDidLoad() {
+    _ = planVC
     view = tableView
     hideKeyboardWhenTappedAround()
     
-//    (55 - point.y)/55
     headerView
       .textField
       .rx
@@ -65,11 +66,12 @@ class SearchDestinationViewController: UIViewController{
       .bind(to: viewModel.tripPlaceBinder)
       .disposed(by: disposeBag)
 
-    tableView.rx.modelSelected(TripType.self)
+    tableView.rx
+      .modelSelected(TripType.self)
       .subscribeNext(weak: self) { (weakSelf) -> (TripType) -> Void in
         return {type in
-          weakSelf.viewModel.saver.accept(RegisterTripViewModel.SaveType.place(model: type))
-          weakSelf.viewModel.completeAction.onNext(())
+          weakSelf.viewModel.saver.accept(.place(model: type))
+          weakSelf.navigationController?.pushViewController(weakSelf.planVC, animated: true)
         }
       }.disposed(by: disposeBag)
     
@@ -78,16 +80,6 @@ class SearchDestinationViewController: UIViewController{
       .bind(to: tableView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-
     view.setNeedsUpdateConstraints()
-  }
-
-
-  override func updateViewConstraints() {
-    if !didUpdateConstraint{
-      
-      didUpdateConstraint = true
-    }
-    super.updateViewConstraints()
   }
 }

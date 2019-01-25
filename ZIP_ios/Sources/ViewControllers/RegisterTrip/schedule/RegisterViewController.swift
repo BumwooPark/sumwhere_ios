@@ -185,7 +185,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
         return { model in
           weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
           DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            weakSelf.dismiss(animated: true, completion: nil)
+            weakSelf.navigationController?.popToRootViewController(animated: true)
           })
         }
       }.disposed(by: disposeBag)

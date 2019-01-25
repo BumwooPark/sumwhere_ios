@@ -46,7 +46,7 @@ class MainTabBarController: UITabBarController{
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.AppleSDGothicNeoBold(size: 40)]
+//    naviVC.navigationBar.largeTitleTextAttributes = [.font: UIFont.AppleSDGothicNeoBold(size: 40)]
     let tabBar = UITabBarItem(title: "매칭", image: #imageLiteral(resourceName: "taskbarMacthingNot.png").withRenderingMode(.alwaysOriginal), tag: 0)
     tabBar.selectedImage = #imageLiteral(resourceName: "taskbarMacthing.png").withRenderingMode(.alwaysOriginal)
     tabBar.setTitleTextAttributes([.foregroundColor: #colorLiteral(red: 0.1019607843, green: 0.1960784314, blue: 0.3333333333, alpha: 1)], for: .selected)
