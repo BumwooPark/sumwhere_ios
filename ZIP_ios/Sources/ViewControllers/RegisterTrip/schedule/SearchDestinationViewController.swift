@@ -12,7 +12,8 @@ import RxSwift
 import MXParallaxHeader
 
 
-class SearchDestinationViewController: UIViewController{
+class SearchDestinationViewController: UIViewController, MatchTypeApplier{
+
   let viewModel = RegisterTripViewModel()
   private let disposeBag = DisposeBag()
   var didUpdateConstraint = false
@@ -39,6 +40,12 @@ class SearchDestinationViewController: UIViewController{
     return tableView
   }()
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.navigationController?.navigationBar.backgroundColor = .clear
+    setStatusBarBackgroundColor(color: .clear)
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.navigationBar.backgroundColor = .white
@@ -55,6 +62,7 @@ class SearchDestinationViewController: UIViewController{
   override func viewDidLoad() {
     _ = planVC
     view = tableView
+    self.navigationController?.navigationBar.topItem?.title = String()
     hideKeyboardWhenTappedAround()
     
     headerView
@@ -81,5 +89,9 @@ class SearchDestinationViewController: UIViewController{
       .disposed(by: disposeBag)
     
     view.setNeedsUpdateConstraints()
+  }
+  
+  func matchIDApply(matchID: Int) {
+    viewModel.inputModel.matchTypeId = matchID
   }
 }

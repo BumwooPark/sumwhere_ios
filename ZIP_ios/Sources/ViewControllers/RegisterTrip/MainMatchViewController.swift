@@ -54,6 +54,10 @@ final class MainMatchViewController: UIViewController {
     return label
   }()
   
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view = bgImage
@@ -62,7 +66,7 @@ final class MainMatchViewController: UIViewController {
     bgImage.addSubview(explainLabel)
     bgImage.addSubview(countingLabel)
     view.setNeedsUpdateConstraints()
-    
+    setNeedsStatusBarAppearanceUpdate()
     addMatchButton.rx.tap
       .debounce(0.3, scheduler: MainScheduler.instance)
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
@@ -98,10 +102,9 @@ final class MainMatchViewController: UIViewController {
         make.centerX.equalToSuperview()
         make.bottom.equalTo(addMatchButton.snp.top).inset(-31)
       }
-      
-      
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
   }
 }
+

@@ -12,6 +12,8 @@ import RxSwift
 import PopupDialog
 import Moya
 
+
+
 final class CreateScheduleTripViewController: UIViewController{
   
   let viewModel = RegisterTripViewModel()

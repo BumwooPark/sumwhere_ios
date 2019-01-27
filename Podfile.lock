@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.1)
+  - AMScrollingNavbar (5.2.0)
   - BetterSegmentedControl (1.0.3)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
@@ -217,6 +218,7 @@ PODS:
   - UICountingLabel (1.4.1)
 
 DEPENDENCIES:
+  - AMScrollingNavbar
   - BetterSegmentedControl
   - CHIPageControl
   - CHIPageControl/Aleppo
@@ -274,6 +276,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AMScrollingNavbar
     - BetterSegmentedControl
     - Bolts
     - CHIPageControl
@@ -345,6 +348,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
   BetterSegmentedControl: 4e3bd0bd517b0f6077c9e17f5663a01cff48e2c5
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CHIPageControl: bbe1ddd0c688c02ec65b7f7e7d34551a3d16f37c
@@ -414,6 +418,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UICountingLabel: faf890b505d96312e324a86718f031fafffb0ccb
 
-PODFILE CHECKSUM: a38e184a7fa496b1993f11e47020b48e8a0196f1
+PODFILE CHECKSUM: 5f6f71b076170560033fa62f3ef2f49e6e69a567
 
 COCOAPODS: 1.6.0.beta.2

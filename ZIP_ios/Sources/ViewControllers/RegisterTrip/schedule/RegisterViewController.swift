@@ -171,6 +171,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
     centerView.addSubview(strokeView)
     centerView.addSubview(completeButton)
     centerView.addSubview(lastChanceLabel)
+    self.navigationController?.navigationBar.topItem?.title = String()
     
     completeButton.rx.tap
       .do(onNext: {[weak self] (_) in
@@ -192,8 +193,11 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
     
     viewModel.submitResult
       .errors()
-      .subscribe(onNext: { (err) in
-        (err as? MoyaError)?.GalMalErrorHandler()
+      .subscribeNext(weak: self, { (weakSelf) -> (Error) -> Void in
+        return { err in
+          weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
+          (err as? MoyaError)?.GalMalErrorHandler()
+        }
       }).disposed(by: disposeBag)
        
     
@@ -226,7 +230,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
       
       titleLabel.snp.makeConstraints { (make) in
         make.centerX.equalToSuperview()
-        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(80)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(20)
       }
       
       centerView.snp.makeConstraints { (make) in

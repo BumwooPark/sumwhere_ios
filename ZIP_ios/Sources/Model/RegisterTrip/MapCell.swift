@@ -14,15 +14,20 @@ public class MapCell: Cell<Bool>, CellType{
     let mapView: GMSMapView = {
       let mapView = GMSMapView()
       let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+      mapView.isMyLocationEnabled = true
+      mapView.settings.compassButton = true
+      mapView.settings.myLocationButton = true
       mapView.camera = camera
       return mapView
     }()
   
   public override func setup() {
     super.setup()
+    
     contentView.addSubview(mapView)
     height = {150}
     setNeedsUpdateConstraints()
+    
   }
   public override func update() {
     super.update()

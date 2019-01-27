@@ -6,7 +6,7 @@
 //  Copyright © 2019 park bumwoo. All rights reserved.
 //
 
-import RxDataSource
+import RxDataSources
 
 struct AlertHistoryViewModel{
   var items: [AlertHistory]

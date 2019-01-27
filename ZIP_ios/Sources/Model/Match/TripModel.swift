@@ -16,10 +16,10 @@ struct TripModel: Codable{
 struct Trip: Codable{
   let id: Int
   let userId: Int
+  let matchTypeId: Int
   let tripTypeId: Int
   let startDate: String
   let endDate: String
-  let expired: Bool
 }
 
 struct TripType: Codable{

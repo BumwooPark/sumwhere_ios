@@ -48,11 +48,9 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable, U
     return vc
   }()
   
-  private let customRightButton: UIButton = {
+  private let keyStoreButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "icons8-key-2-24") , for: .normal)
-    button.setTitleColor(.black, for: .normal)
-    button.titleLabel?.font = UIFont.AppleSDGothicNeoRegular(size: 17)
+    button.setImage(#imageLiteral(resourceName: "mainkeystoreicon.png") , for: .normal)
     return button
   }()
   
@@ -108,9 +106,9 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable, U
   
   override func loadView() {
     super.loadView()
-    view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customRightButton)
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: alertButton)
+    view.backgroundColor = .white
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: keyStoreButton)
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "mainvclogo.png"), style: .plain, target: nil, action: nil)
   }
   
   override func viewDidLoad() {
@@ -169,7 +167,7 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable, U
       .elements()
       .subscribeNext(weak: self, { (weakSelf) -> (ResultModel<UserModel>) -> Void in
         return {model in
-          weakSelf.customRightButton.setTitle("\(model.result?.point ?? 0)", for: .normal)
+          weakSelf.keyStoreButton.setTitle("\(model.result?.point ?? 0)", for: .normal)
         }
       })
       .disposed(by: disposeBag)

@@ -65,10 +65,10 @@ final class RegisterTripViewModel{
       return {model in
         switch model{
         case .place(let type):
-          self.inputModel.tripTypeId = type.id
+          weakSelf.inputModel.tripTypeId = type.id
         case .date(let start, let end):
-          self.inputModel.startDate = start.toFormat("yyyy-MM-dd")
-          self.inputModel.endDate = end.toFormat("yyyy-MM-dd")
+          weakSelf.inputModel.startDate = start.toFormat("yyyy-MM-dd")
+          weakSelf.inputModel.endDate = end.toFormat("yyyy-MM-dd")
         }
       }
     }.disposed(by: disposeBag)

@@ -11,11 +11,12 @@ import RxCocoa
 
 class MatchTypeCell: UICollectionViewCell{
   
-  var item: MatchTypeModel?{
+  var item: MatchType?{
     didSet{
-      titleLabel.text = item?.title
-      bgImage.image = item?.image
-      explainLabel.text = item?.subTitle
+      guard let item = item else {return}
+      titleLabel.text = item.title
+      bgImage.kf.setImage(with: URL(string: item.imageUrl.addSumwhereImageURL())!,options: [.transition(.fade(0.2))])
+      explainLabel.text = item.subTitle
     }
   }
 

@@ -46,15 +46,8 @@ class OneTimeMatchViewController: UIViewController, ListAdapterDataSource{
   }
   
   func emptyView(for listAdapter: ListAdapter) -> UIView? {
-    let emptyView = MatchEmptyView()
-    emptyView.addButton.rx.tap
-      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
-        return {_ in
-          let tripView = CreateOneTimeViewController()
-          weakSelf.present(tripView, animated: true, completion: nil)
-        }
-      }.disposed(by: disposeBag)
-    return emptyView
+  
+    return nil
   }
   
   lazy var collectionView: UICollectionView = {

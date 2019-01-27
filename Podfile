@@ -55,6 +55,7 @@ pod 'FLAnimatedImage'
 pod 'MGSwipeTableCell'
 pod 'LTMorphingLabel'
 pod 'UICountingLabel'
+pod 'AMScrollingNavbar'
 
 # RX
 pod 'RxSwift'

@@ -37,6 +37,7 @@ public enum ZIP{
   case MatchRequest(model: Encodable)
   case MatchRequestReceive
   case MatchRequestSend
+  case MatchType
   case GetChatRoom
   case IAPList
   case IAPInfo(productName: String)
@@ -55,8 +56,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-//    return URL(string: "http://192.168.1.49:8080")!
-    return URL(string: "https://www.sumwhere.kr")!
+    return URL(string: "http://192.168.1.49:8080")!
+//    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif
@@ -116,6 +117,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/receive"
     case .MatchRequestSend:
       return "/restrict/match/send"
+    case .MatchType:
+      return "/restrict/matchType"
     case .GetChatRoom:
       return "/restrict/chat/room"
     case .IAPSuccess:

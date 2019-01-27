@@ -37,7 +37,7 @@ final class ChatRoomViewController: MessagesViewController{
     messagesCollectionView.addSubview(refreshControl)
     
     let barButton = UIBarButtonItem()
-    barButton.image = #imageLiteral(resourceName: "icons8-menu-vertical-30.png")
+//    barButton.image = #imageLiteral(resourceName: "icons8-menu-vertical-30.png")
     barButton.style = .plain
     
     self.navigationItem.rightBarButtonItem = barButton

@@ -41,7 +41,8 @@ class MainTabBarController: UITabBarController{
   }()
   
   let writerViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: MainMatchViewController())
+//    let naviVC = UINavigationController(rootViewController: MainMatchViewController())
+    let naviVC = TripProxyController()
     naviVC.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "backButton").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()

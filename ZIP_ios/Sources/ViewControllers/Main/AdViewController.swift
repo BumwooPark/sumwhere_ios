@@ -76,21 +76,6 @@ final class AdViewController: UIViewController{
     completed = true
   }
   
-  
-//  override func updateViewConstraints() {
-//    if !didUpdateConstraint{
-//      pageView.view.snp.makeConstraints { (make) in
-//        make.edges.equalToSuperview()
-//      }
-//
-//      pageControl.snp.makeConstraints { (make) in
-//        make.top.right.equalToSuperview().inset(10)
-//      }
-//      didUpdateConstraint = true
-//    }
-//    super.updateViewConstraints()
-//  }
-  
   override func willMove(toParent parent: UIViewController?) {
     super.willMove(toParent: parent)
   }

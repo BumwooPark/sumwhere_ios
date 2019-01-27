@@ -26,7 +26,6 @@
 		0A13CA5121A963710081C55F /* spinnerSectionController.temp_caseinsensitive_rename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13CA5021A963710081C55F /* spinnerSectionController.temp_caseinsensitive_rename.swift */; };
 		0A13CA5321A96C9E0081C55F /* Operator + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13CA5221A96C9E0081C55F /* Operator + Extension.swift */; };
 		0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6CF21280F420060290A /* MatchResultCell.swift */; };
-		0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A15A6D1212810450060290A /* MatchResultCell.xib */; };
 		0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15A6D52128143E0060290A /* MatchResultViewModel.swift */; };
 		0A19A9D22159246B00977AF6 /* TripStyleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19A9D12159246B00977AF6 /* TripStyleHeaderView.swift */; };
 		0A19A9D42159249000977AF6 /* TripStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19A9D32159249000977AF6 /* TripStyleCell.swift */; };
@@ -75,6 +74,11 @@
 		0A397CC221F4453400F65BE0 /* InfoPageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC121F4453400F65BE0 /* InfoPageSectionController.swift */; };
 		0A397CC421F46D0E00F65BE0 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC321F46D0E00F65BE0 /* AccountSettingViewController.swift */; };
 		0A397CC621F60D7C00F65BE0 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC521F60D7C00F65BE0 /* AlertModel.swift */; };
+		0A397CC821FB2C0500F65BE0 /* TripProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC721FB2C0500F65BE0 /* TripProxyController.swift */; };
+		0A397CCA21FB30FB00F65BE0 /* RegisterdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CC921FB30FB00F65BE0 /* RegisterdViewController.swift */; };
+		0A397CCC21FD78B400F65BE0 /* MatchTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CCB21FD78B400F65BE0 /* MatchTypeViewModel.swift */; };
+		0A397CCE21FD78FA00F65BE0 /* MatchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CCD21FD78FA00F65BE0 /* MatchType.swift */; };
+		0A397CD021FD826400F65BE0 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CCF21FD826400F65BE0 /* UINavigationController + Extension.swift */; };
 		0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */; };
 		0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */; };
 		0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */; };
@@ -132,7 +136,6 @@
 		0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02420FE2AB600775EA8 /* MyTripViewModel.swift */; };
 		B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597A210992EC00AC769C /* LoginVIewModel.swift */; };
 		B105597D2109C0E800AC769C /* CreateScheduleTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597C2109C0E800AC769C /* CreateScheduleTripViewController.swift */; };
-		B1055997211021F300AC769C /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1055996211021F300AC769C /* MatchViewModel.swift */; };
 		B10F11FE21F6ECC00045FBF9 /* mainlogo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */; };
 		B10F120021F953B70045FBF9 /* PurchaseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F11FF21F953B70045FBF9 /* PurchaseEmptyView.swift */; };
 		B10F120221F990400045FBF9 /* TripSearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120121F990400045FBF9 /* TripSearchHeader.swift */; };
@@ -251,7 +254,6 @@
 		0A13CA5021A963710081C55F /* spinnerSectionController.temp_caseinsensitive_rename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spinnerSectionController.temp_caseinsensitive_rename.swift; sourceTree = "<group>"; };
 		0A13CA5221A96C9E0081C55F /* Operator + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Operator + Extension.swift"; sourceTree = "<group>"; };
 		0A15A6CF21280F420060290A /* MatchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultCell.swift; sourceTree = "<group>"; };
-		0A15A6D1212810450060290A /* MatchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchResultCell.xib; sourceTree = "<group>"; };
 		0A15A6D52128143E0060290A /* MatchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultViewModel.swift; sourceTree = "<group>"; };
 		0A19A9D12159246B00977AF6 /* TripStyleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleHeaderView.swift; sourceTree = "<group>"; };
 		0A19A9D32159249000977AF6 /* TripStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleCell.swift; sourceTree = "<group>"; };
@@ -300,6 +302,11 @@
 		0A397CC121F4453400F65BE0 /* InfoPageSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageSectionController.swift; sourceTree = "<group>"; };
 		0A397CC321F46D0E00F65BE0 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		0A397CC521F60D7C00F65BE0 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		0A397CC721FB2C0500F65BE0 /* TripProxyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProxyController.swift; sourceTree = "<group>"; };
+		0A397CC921FB30FB00F65BE0 /* RegisterdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterdViewController.swift; sourceTree = "<group>"; };
+		0A397CCB21FD78B400F65BE0 /* MatchTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeViewModel.swift; sourceTree = "<group>"; };
+		0A397CCD21FD78FA00F65BE0 /* MatchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchType.swift; sourceTree = "<group>"; };
+		0A397CCF21FD826400F65BE0 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
 		0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
@@ -365,7 +372,6 @@
 		B1016CDF21C739D8008A8C59 /* SearchPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPasswordViewController.swift; sourceTree = "<group>"; };
 		B105597A210992EC00AC769C /* LoginVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVIewModel.swift; sourceTree = "<group>"; };
 		B105597C2109C0E800AC769C /* CreateScheduleTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateScheduleTripViewController.swift; sourceTree = "<group>"; };
-		B1055996211021F300AC769C /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainlogo.mp4; sourceTree = "<group>"; };
 		B10F11FF21F953B70045FBF9 /* PurchaseEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseEmptyView.swift; sourceTree = "<group>"; };
 		B10F120121F990400045FBF9 /* TripSearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSearchHeader.swift; sourceTree = "<group>"; };
@@ -727,6 +733,8 @@
 		0A74566A210CA9EE00F8A0C9 /* RegisterTrip */ = {
 			isa = PBXGroup;
 			children = (
+				0A397CC721FB2C0500F65BE0 /* TripProxyController.swift */,
+				0A397CC921FB30FB00F65BE0 /* RegisterdViewController.swift */,
 				0A397CB521F32FE200F65BE0 /* MainMatchViewController.swift */,
 				0A397CB921F338D800F65BE0 /* MatchTypeViewController.swift */,
 				0A397CBD21F364EC00F65BE0 /* MatchSuccessViewController.swift */,
@@ -881,6 +889,7 @@
 				B14495BF2191929500B4D135 /* NotificationCenter + Extension.swift */,
 				0A13CA5221A96C9E0081C55F /* Operator + Extension.swift */,
 				0A397CB121F1F9A900F65BE0 /* Dictionary + Extension.swift */,
+				0A397CCF21FD826400F65BE0 /* UINavigationController + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -911,7 +920,6 @@
 			isa = PBXGroup;
 			children = (
 				0A09A8011FDD3CEF00DC47A7 /* MainCellViewModel.swift */,
-				B1055996211021F300AC769C /* MatchViewModel.swift */,
 				B1E014662179C9E100348FB6 /* MainViewModel.swift */,
 				B10F120E21FADEC30045FBF9 /* AlertHistoryViewModel.swift */,
 			);
@@ -1125,7 +1133,6 @@
 			children = (
 				B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */,
 				0A15A6CF21280F420060290A /* MatchResultCell.swift */,
-				0A15A6D1212810450060290A /* MatchResultCell.xib */,
 				B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */,
 				B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */,
 				B1D1CB02212D2086001A9801 /* DetailCommitView.swift */,
@@ -1143,6 +1150,7 @@
 				0AF2C02420FE2AB600775EA8 /* MyTripViewModel.swift */,
 				0A15A6D52128143E0060290A /* MatchResultViewModel.swift */,
 				B1A1D9A4212A9EB50022D2A0 /* RelationShipViewModel.swift */,
+				0A397CCB21FD78B400F65BE0 /* MatchTypeViewModel.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -1152,6 +1160,7 @@
 			children = (
 				0AF2C02220FE23BD00775EA8 /* TripModel.swift */,
 				B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */,
+				0A397CCD21FD78FA00F65BE0 /* MatchType.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -1245,7 +1254,6 @@
 				B1FE037221A6940400DE242A /* NanumSquareRoundEB.ttf in Resources */,
 				0A71236D1FACC01200512EB7 /* art.scnassets in Resources */,
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
-				0A15A6D2212810450060290A /* MatchResultCell.xib in Resources */,
 				B1FE037321A6940600DE242A /* NanumSquareRoundR.ttf in Resources */,
 				B1FE037121A6940200DE242A /* NanumSquareRoundB.ttf in Resources */,
 				B1FE037421A6940800DE242A /* NanumSquareRoundL.ttf in Resources */,
@@ -1308,6 +1316,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AMScrollingNavbar/AMScrollingNavbar.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BetterSegmentedControl/BetterSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -1363,6 +1372,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMScrollingNavbar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BetterSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
@@ -1478,10 +1488,10 @@
 				0A1B0EFB21EB74370035E657 /* NoticeModel.swift in Sources */,
 				0A74567C210D877E00F8A0C9 /* FriendsModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
+				0A397CCA21FB30FB00F65BE0 /* RegisterdViewController.swift in Sources */,
 				0A33277B213BBCCF00BC2906 /* NewSetProfileViewController.swift in Sources */,
 				0A19A9D42159249000977AF6 /* TripStyleCell.swift in Sources */,
 				0A1B0EF721EB68100035E657 /* EventHeaderView.swift in Sources */,
-				B1055997211021F300AC769C /* MatchViewModel.swift in Sources */,
 				0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */,
 				B10F120021F953B70045FBF9 /* PurchaseEmptyView.swift in Sources */,
 				B16BD8BE21B10C4C0010EEE0 /* CalendarHeader.swift in Sources */,
@@ -1511,6 +1521,7 @@
 				0A09A8041FDD3D3B00DC47A7 /* MainModel.swift in Sources */,
 				B16BD8AB21A7DD5C0010EEE0 /* PurchaseHistoryModel.swift in Sources */,
 				0A7C50812198736900558F62 /* SupportHeaderView.swift in Sources */,
+				0A397CC821FB2C0500F65BE0 /* TripProxyController.swift in Sources */,
 				0A332779213BBB7A00BC2906 /* FirstViewController.swift in Sources */,
 				B1D4E51220FC232900524CE2 /* JoinModel.swift in Sources */,
 				B10F120F21FADEC30045FBF9 /* AlertHistoryViewModel.swift in Sources */,
@@ -1541,9 +1552,11 @@
 				0A397CB421F320CF00F65BE0 /* BottomPannelViewController.swift in Sources */,
 				0A1B0F0121ECBFC90035E657 /* BannerViewController.swift in Sources */,
 				0A397CBC21F33B8900F65BE0 /* MatchTypeCell.swift in Sources */,
+				0A397CD021FD826400F65BE0 /* UINavigationController + Extension.swift in Sources */,
 				B16BD8A721A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift in Sources */,
 				0A075C0121562406004A4DBF /* MoyaError + Extension.swift in Sources */,
 				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
+				0A397CCE21FD78FA00F65BE0 /* MatchType.swift in Sources */,
 				B1911FBB21746A6E005A4E85 /* MapViewController.swift in Sources */,
 				B1A1D9A5212A9EB50022D2A0 /* RelationShipViewModel.swift in Sources */,
 				0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */,
@@ -1588,6 +1601,7 @@
 				0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
 				B163846B21F6ADA500665060 /* Reachability.swift in Sources */,
+				0A397CCC21FD78B400F65BE0 /* MatchTypeViewModel.swift in Sources */,
 				B16BD8CD21B529CE0010EEE0 /* GADateCell.swift in Sources */,
 				B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */,
 				B16BD8A521A7BFE50010EEE0 /* PurchaseKeyViewModel.swift in Sources */,

@@ -79,14 +79,7 @@ class MapViewController: UIViewController {
       })
       .disposed(by: disposeBag)
 
-    
-    
     title = "경기도"
-    
-    if let coordinate = locationManager.location?.coordinate{
-      let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 14.0)
-      mapView.camera = camera
-    }
   }
   
   override func updateViewConstraints() {

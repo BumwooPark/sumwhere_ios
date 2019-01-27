@@ -8,23 +8,34 @@
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
-
-enum MatchType{
-  case onetime(MatchTypeModel)
-  case schedule(MatchTypeModel)
-}
-
-struct MatchTypeModel{
-  let image: UIImage
-  let title: String
-  let subTitle: String
-  var isSelected: Bool
+protocol MatchTypeApplier{
+  func matchIDApply(matchID: Int)
 }
 
 final class MatchTypeViewController: UIViewController{
-  let disposeBag = DisposeBag()
-  var items: [MatchType] = [MatchType.onetime(MatchTypeModel(image: #imageLiteral(resourceName: "onetimematchImage.png"),title: "즉흥 매칭", subTitle: "새로운 인연과 함께하는 여행", isSelected: true)),MatchType.schedule(MatchTypeModel(image: #imageLiteral(resourceName: "planmatchImage.png"),title: "계획 매칭", subTitle: "같은 시간, 같은 공간 우리 동행하자", isSelected: false))]
+  private let disposeBag = DisposeBag()
+  
+  private let API = AuthManager.instance
+    .provider
+    .request(.MatchType)
+    .filterSuccessfulStatusCodes()
+    .map(ResultModel<[MatchType]>.self)
+    .map{$0.result}
+    .asObservable()
+    .unwrap()
+    .materialize()
+    .share()
+  
+  let dataSources = RxCollectionViewSectionedReloadDataSource<MatchTypeViewModel>(configureCell: {ds,cv,idx,item in
+    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MatchTypeCell.self), for: idx) as! MatchTypeCell
+    cell.item = item
+    return cell
+  })
+  
+  private let matchVCPush = PublishRelay<MatchTypeApplier>()
+  
   
   let submitAction = PublishRelay<Int>()
   
@@ -52,27 +63,29 @@ final class MatchTypeViewController: UIViewController{
       make.edges.equalToSuperview()
     }
     
-    Observable.just(items)
-      .bind(to: collectionView.rx.items(cellIdentifier: String(describing: MatchTypeCell.self), cellType: MatchTypeCell.self)){
-        idx, item, cell in
-        switch item{
-        case .onetime(let model),.schedule(let model):
-          cell.item = model
+    API.elements()
+      .map{[MatchTypeViewModel(items: $0)]}
+      .bind(to: collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
+    
+    API.errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return {err in
+          log.error(err)
         }
-      
     }.disposed(by: disposeBag)
     
     collectionView.rx
-      .itemSelected
-      .subscribeNext(weak: self) {(weakSelf) -> (IndexPath) -> Void in
-        return { idx in
-          switch weakSelf.items[idx.item]{
-          case .onetime:
-            weakSelf.navigationController?.pushViewController(CreateOneTimeViewController(), animated: true)
-          case .schedule:
-            weakSelf.navigationController?.pushViewController(SearchDestinationViewController(), animated: true)
+      .modelSelected(MatchType.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (MatchType) -> Void in
+        return {type in
+          if type.id == 1{
+           weakSelf.navigationController?.pushViewController(CreateOneTimeViewController(matchTypeId: type.id), animated: true)
+          }else {
+            let vc = SearchDestinationViewController()
+            vc.matchIDApply(matchID: type.id)
+            weakSelf.navigationController?.pushViewController(vc, animated: true)
           }
-          
         }
     }.disposed(by: disposeBag)
   }

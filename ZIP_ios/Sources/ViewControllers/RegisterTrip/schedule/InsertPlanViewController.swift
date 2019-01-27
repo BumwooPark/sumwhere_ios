@@ -85,6 +85,7 @@ final class InsertPlanViewController: UIViewController{
     let button = UIButton()
     button.setTitleColor(.white, for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoSemiBold(size: 22.8)
+    button.setTitle("여행 등록", for: .normal)
     button.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
     button.layer.cornerRadius = 11
     button.layer.masksToBounds = true
@@ -105,10 +106,6 @@ final class InsertPlanViewController: UIViewController{
     calendar.allowsMultipleSelection = true
     calendar.isRangeSelectionUsed = true
     calendar.isPagingEnabled = false
-    calendar.parallaxHeader.view = headerView
-    calendar.parallaxHeader.height = 160
-    calendar.parallaxHeader.delegate = self
-    calendar.parallaxHeader.mode = .bottom
     calendar.register(CalendarHeader.self, forSupplementaryViewOfKind: JTAppleCalendarView.elementKindSectionHeader, withReuseIdentifier: String(describing: CalendarHeader.self))
     calendar.register(CalendarCell.self, forCellWithReuseIdentifier: String(describing: CalendarCell.self))
     return calendar
@@ -156,13 +153,17 @@ final class InsertPlanViewController: UIViewController{
     super.viewDidLoad()
     _ = calendarView
     view.backgroundColor = .white
+    view.addSubview(headerView)
     view.addSubview(calendarView)
     view.addSubview(completeButton)
     view.setNeedsUpdateConstraints()
     
+    
+    
+    self.navigationController?.navigationBar.topItem?.title = String()
     completeButton.rx.tap
       .subscribeNext(weak: self){ (weakSelf) -> (()) -> Void in
-        return {_ in
+        return { _ in
           weakSelf.navigationController?.pushViewController(weakSelf.registerVC, animated: true)
         }
       }.disposed(by: disposeBag)
@@ -188,7 +189,6 @@ final class InsertPlanViewController: UIViewController{
             weakSelf.completeButton.setTitle("여행 등록", for: .normal)
           }
           
-          log.info(result.result)
           weakSelf.completeButton.backgroundColor = result.result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
           weakSelf.completeButton.isEnabled = result.result ? true : false
         }
@@ -212,8 +212,14 @@ final class InsertPlanViewController: UIViewController{
   override func updateViewConstraints() {
     if !didUpdateConstraint{
       
+      headerView.snp.makeConstraints { (make) in
+        make.top.left.right.equalToSuperview()
+        make.height.equalTo(250)
+      }
+      
       calendarView.snp.makeConstraints { (make) in
-        make.left.right.top.equalToSuperview()
+        make.top.equalTo(headerView.snp.bottom)
+        make.left.right.equalToSuperview()
         make.bottom.equalTo(completeButton.snp.top)
       }
       
@@ -277,10 +283,5 @@ extension InsertPlanViewController: JTAppleCalendarViewDataSource{
     let parameters = ConfigurationParameters(startDate: Date(), endDate: gregorian.date(byAdding: .year, value: 1, to: Date())!, numberOfRows: 7, calendar: Calendar.current, generateInDates: .forAllMonths, generateOutDates: .tillEndOfGrid, firstDayOfWeek: .sunday, hasStrictBoundaries: true)
     
     return parameters
-  }
-}
-
-extension InsertPlanViewController: MXParallaxHeaderDelegate{
-  func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
   }
 }

@@ -16,7 +16,7 @@ import Eureka
 
 class CreateOneTimeViewController: FormViewController {
   
-  
+  let matchTypeId: Int
   let disposeBag = DisposeBag()
   
   lazy var locationManager: CLLocationManager = {
@@ -33,11 +33,25 @@ class CreateOneTimeViewController: FormViewController {
     .unwrap()
     .share()
   
+  init(matchTypeId: Int){
+    self.matchTypeId = matchTypeId
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     form +++ Section()
-      <<< MapRow()
+      <<< MapRow().cellSetup({[weak self] (cell, row) in
+        if let coordinate = self?.locationManager.location?.coordinate{
+          let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 14.0)
+          cell.mapView.camera = camera
+        }
+      })
       <<< GALabelRow("location", {[weak self] (row) in
         guard let weakSelf = self else {return}
         weakSelf.locationObserver.take(1)
@@ -59,5 +73,11 @@ class CreateOneTimeViewController: FormViewController {
     
       +++ Section("활동")
       <<< TextAreaRow()
+    
+      +++ Section("등록")
+      <<< ButtonRow().cellSetup({ (cell, row) in
+        cell.backgroundColor = .blue
+        
+      })
   }
 }
