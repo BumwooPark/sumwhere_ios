@@ -143,6 +143,8 @@
 		B10F120821FADB310045FBF9 /* AlertHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120721FADB310045FBF9 /* AlertHistoryCell.swift */; };
 		B10F120D21FADDDA0045FBF9 /* AlertHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120C21FADDDA0045FBF9 /* AlertHistory.swift */; };
 		B10F120F21FADEC30045FBF9 /* AlertHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120E21FADEC30045FBF9 /* AlertHistoryViewModel.swift */; };
+		B10F121121FFE3F10045FBF9 /* RegisterdSubviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F121021FFE3F10045FBF9 /* RegisterdSubviewController.swift */; };
+		B10F121321FFE8420045FBF9 /* GenericSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F121221FFE8420045FBF9 /* GenericSectionModel.swift */; };
 		B132A58221B7B9300050D6DE /* OTGulimL.otf in Resources */ = {isa = PBXBuildFile; fileRef = B132A58021B7B9300050D6DE /* OTGulimL.otf */; };
 		B132A58321B7B9940050D6DE /* OTGulimB.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AA21B7B8F000DCCD2B /* OTGulimB.otf */; };
 		B132A58521B7BFC80050D6DE /* OTGulimH.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AB21B7B90400DCCD2B /* OTGulimH.otf */; };
@@ -379,6 +381,8 @@
 		B10F120721FADB310045FBF9 /* AlertHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistoryCell.swift; sourceTree = "<group>"; };
 		B10F120C21FADDDA0045FBF9 /* AlertHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistory.swift; sourceTree = "<group>"; };
 		B10F120E21FADEC30045FBF9 /* AlertHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistoryViewModel.swift; sourceTree = "<group>"; };
+		B10F121021FFE3F10045FBF9 /* RegisterdSubviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterdSubviewController.swift; sourceTree = "<group>"; };
+		B10F121221FFE8420045FBF9 /* GenericSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSectionModel.swift; sourceTree = "<group>"; };
 		B132A58021B7B9300050D6DE /* OTGulimL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTGulimL.otf; sourceTree = "<group>"; };
 		B132A58621BE59E30050D6DE /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		B14495B12191535F00B4D135 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
@@ -702,6 +706,7 @@
 				0A745681210DFB5C00F8A0C9 /* RegisterTravel */,
 				B105597A210992EC00AC769C /* LoginVIewModel.swift */,
 				0A375C1B2132796D00E35ED9 /* TopTripViewModel.swift */,
+				B10F121221FFE8420045FBF9 /* GenericSectionModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -735,6 +740,7 @@
 			children = (
 				0A397CC721FB2C0500F65BE0 /* TripProxyController.swift */,
 				0A397CC921FB30FB00F65BE0 /* RegisterdViewController.swift */,
+				B10F121021FFE3F10045FBF9 /* RegisterdSubviewController.swift */,
 				0A397CB521F32FE200F65BE0 /* MainMatchViewController.swift */,
 				0A397CB921F338D800F65BE0 /* MatchTypeViewController.swift */,
 				0A397CBD21F364EC00F65BE0 /* MatchSuccessViewController.swift */,
@@ -1613,11 +1619,13 @@
 				0AF2C02520FE2AB600775EA8 /* MyTripViewModel.swift in Sources */,
 				0A375C2021329B8500E35ED9 /* MatchRequestModel.swift in Sources */,
 				0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */,
+				B10F121321FFE8420045FBF9 /* GenericSectionModel.swift in Sources */,
 				B166603121B6174700063AFA /* StrokeView.swift in Sources */,
 				0A7123981FACC1FB00512EB7 /* JoinViewController.swift in Sources */,
 				0A895BEF212EE59800FDF834 /* MatchRequestViewController.swift in Sources */,
 				B10F120D21FADDDA0045FBF9 /* AlertHistory.swift in Sources */,
 				B1D4E50A20F8446400524CE2 /* ResultModel.swift in Sources */,
+				B10F121121FFE3F10045FBF9 /* RegisterdSubviewController.swift in Sources */,
 				B10F120821FADB310045FBF9 /* AlertHistoryCell.swift in Sources */,
 				B1FE037021A6770F00DE242A /* PurchaseProduct.swift in Sources */,
 				B16BD8A121A790970010EEE0 /* PurchaseRewardCell.swift in Sources */,

@@ -13,7 +13,7 @@ import Moya
 class TripViewModel{
   
   let planTripGetApi = AuthManager.instance
-    .provider.request(.myTrip)
+    .provider.request(.GetAllTrip)
     .filterSuccessfulStatusCodes()
     .map(ResultModel<[TripModel]>.self)
     .map{$0.result}

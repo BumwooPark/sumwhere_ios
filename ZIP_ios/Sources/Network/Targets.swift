@@ -18,13 +18,12 @@ public enum ZIP{
   case nicknameConfirm(nickname: String)
   case isProfile
   case country
-  case GetAllTrip(order: String, sortby: String, skipCount: Int)
+  case GetAllTrip
   case createProfile(data: [MultipartFormData])
   case user
   case anotherUser(id: String)
   case userWithProfile(id: String?)
   case createTrip(model: Encodable)
-  case myTrip
   case deleteMyTrip(id: Int)
   case searchDestination(data: String)
   case AllTripList(sortby: String, order: String, skipCount: Int, maxResultCount: Int)
@@ -56,8 +55,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.49:8080")!
-//    return URL(string: "https://www.sumwhere.kr")!
+//    return URL(string: "http://192.168.1.49:8080")!
+    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif
@@ -89,7 +88,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/tripplaces"
     case .createTrip:
       return "/restrict/trip"
-    case .myTrip,.deleteMyTrip:
+    case .deleteMyTrip:
       return "/restrict/mytrip"
     case .user:
       return "/restrict/user"
@@ -176,8 +175,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
     case .facebook(let token),.kakao(let token):
       return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
-    case let .GetAllTrip(order, sortby, skipCount):
-      return .requestParameters(parameters: ["order":order,"password":sortby,"skipCount": skipCount], encoding: URLEncoding.queryString)
+//    case let .GetAllTrip(order, sortby, skipCount):
+//      return .requestParameters(parameters: ["order":order,"password":sortby,"skipCount": skipCount], encoding: URLEncoding.queryString)
     case .createProfile(let data):
       return .uploadMultipart(data)
     case .searchDestination(let data):

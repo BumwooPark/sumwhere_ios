@@ -35,7 +35,7 @@ class TripProxyController: ScrollingNavigationController {
   }
   
   func RegisterdTrip(register: @escaping (([TripModel]) -> Void)){
-    AuthManager.instance.provider.request(.myTrip)
+    AuthManager.instance.provider.request(.GetAllTrip)
       .filterSuccessfulStatusCodes()
       .map(ResultModel<[TripModel]>.self)
       .map{$0.result}

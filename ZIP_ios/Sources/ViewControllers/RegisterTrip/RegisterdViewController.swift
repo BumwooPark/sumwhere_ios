@@ -10,17 +10,15 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import AMScrollingNavbar
+import TagListView
 
 class RegisterdViewController: UIViewController{
   
   var didUpdateConstraint = false
   let model: TripModel
   let disposeBag = DisposeBag()
-  let subView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .white
-    return view
-  }()
+  
+  let tagViewController = RegisterdSubviewController()
   
   private let deleteButton: UIButton = {
     let button = UIButton()
@@ -83,7 +81,10 @@ class RegisterdViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.navigationBar.backgroundColor = .white
-    self.view.addSubview(subView)
+    self.navigationController?.navigationBar.isTranslucent = false
+    
+    self.view.addSubview(tagViewController.view)
+    self.addChild(tagViewController)
     self.view.addSubview(collectionView)
     
     Observable.just(["","",""])
@@ -102,15 +103,15 @@ class RegisterdViewController: UIViewController{
   override func updateViewConstraints() {
     if !didUpdateConstraint{
       
-      subView.snp.makeConstraints { (make) in
+      tagViewController.view.snp.makeConstraints { (make) in
         make.top.equalTo((self.navigationController?.navigationBar.snp.bottom)!)
         make.left.right.equalToSuperview()
-        make.height.equalTo(100)
+        make.height.equalTo(50)
       }
       
       collectionView.snp.makeConstraints { (make) in
         make.left.right.equalToSuperview()
-        make.top.equalTo(subView.snp.bottom)
+        make.top.equalTo(tagViewController.view.snp.bottom)
         make.bottom.equalTo(self.view.safeAreaLayoutGuide)
       }
       didUpdateConstraint = true
