@@ -33,7 +33,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       .map(ResultModel<Bool>.self)
       .map{$0.result}
       .asObservable()
-      .retry(.exponentialDelayed(maxCount: 3, initial: 2, multiplier: 2))
+      .retry(.exponentialDelayed(maxCount: 20, initial: 2, multiplier: 2))
       .unwrap()
       .materialize()
       .share()
@@ -46,7 +46,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       .map(ResultModel<Bool>.self)
       .map{$0.result}
       .asObservable()
-      .retry(.exponentialDelayed(maxCount: 3, initial: 2, multiplier: 2))
+      .retry(.exponentialDelayed(maxCount: 20, initial: 2, multiplier: 2))
       .unwrap()
       .materialize()
       .share()
@@ -107,7 +107,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
       .map(ResultModel<UserWithProfile>.self)
       .map{$0.result}
       .asObservable()
-      .retry(RepeatBehavior.exponentialDelayed(maxCount: 3, initial: 2, multiplier: 2))
+      .retry(RepeatBehavior.exponentialDelayed(maxCount: 20, initial: 2, multiplier: 2))
       .unwrap()
       .materialize()
       .elements()

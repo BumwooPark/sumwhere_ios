@@ -24,7 +24,7 @@ class TripViewModel{
   
   let planTripDeleteApi = { (id: Int) in
     return AuthManager.instance
-      .provider.request(.deleteMyTrip(id: id))
+      .provider.request(.deleteTrip(tripId: id))
       .map(ResultModel<Trip>.self)
   }
   

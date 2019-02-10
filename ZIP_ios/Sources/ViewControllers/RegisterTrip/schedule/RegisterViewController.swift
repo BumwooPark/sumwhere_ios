@@ -148,6 +148,8 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
   init(viewModel: RegisterTripViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
+    
+    self.resultPlace.text = viewModel.inputModel.tripName
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -186,7 +188,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
         return { model in
           weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
           DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            weakSelf.navigationController?.popToRootViewController(animated: true)
+            (weakSelf.navigationController as? TripProxyController)?.checkUserRegisterd()
           })
         }
       }.disposed(by: disposeBag)
@@ -210,14 +212,14 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
         case .date(let start, let end):
           let startString = start.toFormat("MM월 dd일")
           let endString = end.toFormat("MM월 dd일")
-          
-          
           let calendar = Calendar.current
           let date1 = calendar.startOfDay(for: start)
           let date2 = calendar.startOfDay(for: end)
           let components = calendar.dateComponents([.day], from: date1, to: date2)
           let diffday = components.day ?? 0
           weakSelf.resultDataLabel.text = "\(startString) - \(endString)\n(\(diffday)박 \(diffday+1)일)"
+        default:
+          break
         }
       }
     }.disposed(by: disposeBag)
@@ -305,9 +307,6 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
     super.updateViewConstraints()
   }
 }
-
-
-
 
 extension RegisterViewController: TTTAttributedLabelDelegate{
   func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {

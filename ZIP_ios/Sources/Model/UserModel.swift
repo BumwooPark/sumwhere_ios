@@ -13,7 +13,9 @@ struct UserModel: Codable{
   let password: String?
   var username: String?
   var joinType: String
+  var mainProfileImage: String?
   var gender: String?
+  var age: Int?
   var nickname: String?
   let hasProfile: Bool
   let kakao_token: String?

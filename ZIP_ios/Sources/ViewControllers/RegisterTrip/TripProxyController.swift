@@ -10,6 +10,7 @@ import RxSwift
 import NVActivityIndicatorView
 import AMScrollingNavbar
 
+
 class TripProxyController: ScrollingNavigationController {
   private let disposeBag = DisposeBag()
   
@@ -22,45 +23,47 @@ class TripProxyController: ScrollingNavigationController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    RegisterdTrip {[weak self] (model) in
-      if model.count == 0 {
-        self?.setViewControllers([MainMatchViewController()], animated: true)
-      }else {
-        let tempdata = model[0]
-        self?.setViewControllers([RegisterdViewController(model: tempdata)], animated: true)
-      }
-    }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    checkUserRegisterd()
   }
   
-  func RegisterdTrip(register: @escaping (([TripModel]) -> Void)){
-    AuthManager.instance.provider.request(.GetAllTrip)
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+  
+  func checkUserRegisterd(){
+    AuthManager.instance.provider
+      .request(.GetAllTrip)
       .filterSuccessfulStatusCodes()
-      .map(ResultModel<[TripModel]>.self)
+      .map(ResultModel<TripModel>.self)
       .map{$0.result}
       .asObservable()
-      .map{
-        guard let item = $0 else {return []}
-        return item
-      }
-      .retry(.exponentialDelayed(maxCount: 3, initial: 2, multiplier: 2))
-      .subscribe(weak: self) { (weakSelf) -> (Event<[TripModel]>) -> Void in
+      .retry(.exponentialDelayed(maxCount: 2, initial: 2, multiplier: 2))
+      .subscribe(weak: self) { (weakSelf) -> (Event<TripModel?>) -> Void in
         return {event in
+          log.info(event)
           switch event {
           case .next(let model):
-            register(model)
+            if let model = model {
+              weakSelf.setViewControllers([RegisterdViewController(model: model)], animated: true)
+            }else {
+              weakSelf.setViewControllers([MainMatchViewController()], animated: true)
+            }
           case .error(let error):
+            
             log.error(error)
+            break
           default:
             break
           }
         }
-    }.disposed(by: disposeBag)
+      }.disposed(by: disposeBag)
   }
   
-  
-  
+  func RegisterdTrip(register: @escaping ((TripModel?) -> Void)){
+   
+  }
 }
 
 

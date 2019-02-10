@@ -13,4 +13,5 @@ struct MatchType: Codable{
   let title: String
   let subTitle: String
   let imageUrl: String
+  let isEnable: Bool
 }

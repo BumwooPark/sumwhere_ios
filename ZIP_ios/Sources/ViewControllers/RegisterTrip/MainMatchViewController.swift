@@ -76,6 +76,12 @@ final class MainMatchViewController: UIViewController {
     }.disposed(by: disposeBag)
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBar.isTranslucent = true
+    self.navigationController?.navigationBar.backgroundColor = .clear
+  }
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if !isFirst{

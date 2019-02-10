@@ -17,6 +17,9 @@ class MatchTypeCell: UICollectionViewCell{
       titleLabel.text = item.title
       bgImage.kf.setImage(with: URL(string: item.imageUrl.addSumwhereImageURL())!,options: [.transition(.fade(0.2))])
       explainLabel.text = item.subTitle
+      if !item.isEnable{
+        titleLabel.text = "업데이트 예정"
+      }
     }
   }
 

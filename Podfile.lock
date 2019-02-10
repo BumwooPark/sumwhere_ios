@@ -173,6 +173,7 @@ PODS:
   - NVActivityIndicatorView/Presenter (4.5.1)
   - PopupDialog (0.9.2):
     - DynamicBlurView (~> 3.0.1)
+  - PreviewTransition (4.0.0)
   - Protobuf (3.6.1)
   - PySwiftyRegex (2.0.1)
   - ReachabilitySwift (4.3.0)
@@ -207,6 +208,7 @@ PODS:
   - RxSwiftExt/RxCocoa (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
+  - SkeletonView (1.4.1)
   - SkyFloatingLabelTextField (3.6.0)
   - SnapKit (4.2.0)
   - SwiftDate (5.1.0)
@@ -253,6 +255,7 @@ DEPENDENCIES:
   - MXParallaxHeader
   - NVActivityIndicatorView
   - PopupDialog
+  - PreviewTransition
   - PySwiftyRegex
   - ReachabilitySwift
   - RxCocoa
@@ -263,6 +266,7 @@ DEPENDENCIES:
   - RxKeyboard
   - RxSwift
   - RxSwiftExt
+  - SkeletonView
   - SkyFloatingLabelTextField
   - SnapKit
   - SwiftDate
@@ -324,6 +328,7 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - PopupDialog
+    - PreviewTransition
     - Protobuf
     - PySwiftyRegex
     - ReachabilitySwift
@@ -336,6 +341,7 @@ SPEC REPOS:
     - RxKeyboard
     - RxSwift
     - RxSwiftExt
+    - SkeletonView
     - SkyFloatingLabelTextField
     - SnapKit
     - SwiftDate
@@ -396,6 +402,7 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: ec34a7b88c51fab270004a1a1f32116e711010cd
   PopupDialog: f4bb461bf70ff422be0b56656566424ee9273080
+  PreviewTransition: 5495edbb67a5e041383ad1760e7f71906bd5dd76
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PySwiftyRegex: 18ee6bede93377ce133ca9c1e8cc0446ac988be4
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
@@ -408,6 +415,7 @@ SPEC CHECKSUMS:
   RxKeyboard: 4f782303f499f41577b41c96c6a9a5d7acd51a47
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
+  SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
@@ -418,6 +426,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UICountingLabel: faf890b505d96312e324a86718f031fafffb0ccb
 
-PODFILE CHECKSUM: 5f6f71b076170560033fa62f3ef2f49e6e69a567
+PODFILE CHECKSUM: cb5b4c78f61f050db9bf42fac933a5c6fa1dcaef
 
 COCOAPODS: 1.6.0.beta.2

@@ -82,11 +82,12 @@ final class MatchHistoryViewController: UIViewController, ListAdapterDataSource{
         .disposed(by: disposeBag)
       
     case .Send:
-      viewModel
-        .sendHistoryApi()
-        .map{[MatchRequestHistoryViewModel(items: $0)]}
-        .bind(to: datas)
-        .disposed(by: disposeBag)
+      break
+//      viewModel
+//        .sendHistoryApi()
+//        .map{[MatchRequestHistoryViewModel(items: $0)]}
+//        .bind(to: datas)
+//        .disposed(by: disposeBag)
     }
   }
 }

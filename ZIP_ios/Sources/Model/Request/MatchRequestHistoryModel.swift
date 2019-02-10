@@ -10,3 +10,11 @@ struct MatchRequestHistoryModel: Codable{
   let fromMatchModel: Trip
   let toMatchModel: Trip
 }
+
+
+struct MatchRequstModel: Codable{
+  let fromMatchId: Int
+  let toMatchId: Int
+}
+
+

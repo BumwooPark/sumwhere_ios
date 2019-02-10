@@ -11,14 +11,26 @@ import RxCocoa
 import RxDataSources
 import AMScrollingNavbar
 import TagListView
+import PopupDialog
 
 class RegisterdViewController: UIViewController{
   
   var didUpdateConstraint = false
-  let model: TripModel
+  var model: TripModel{
+    didSet{
+      tagViewController.data.accept(model)
+    }
+  }
   let disposeBag = DisposeBag()
   
   let tagViewController = RegisterdSubviewController()
+  
+  private let datas = BehaviorRelay<[GenericSectionModel<UserTripJoinModel>]>(value: [])
+  private let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<UserTripJoinModel>>(configureCell: {ds,cv,idx,item in
+    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MatchResultCell.self), for: idx) as! MatchResultCell
+    cell.item = item
+    return cell
+  })
   
   private let deleteButton: UIButton = {
     let button = UIButton()
@@ -58,7 +70,7 @@ class RegisterdViewController: UIViewController{
     collectionView.register(MatchResultCell.self, forCellWithReuseIdentifier: String(describing: MatchResultCell.self))
     collectionView.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
     collectionView.alwaysBounceVertical = true
-    collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+    collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     return collectionView
   }()
   
@@ -73,6 +85,7 @@ class RegisterdViewController: UIViewController{
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    GetMatchList()
     if let navigationController = navigationController as? ScrollingNavigationController {
       navigationController.followScrollView(collectionView, delay: 50.0)
     }
@@ -87,16 +100,152 @@ class RegisterdViewController: UIViewController{
     self.addChild(tagViewController)
     self.view.addSubview(collectionView)
     
-    Observable.just(["","",""])
-      .bind(to: collectionView.rx.items(cellIdentifier: String(describing: MatchResultCell.self), cellType: MatchResultCell.self)){
-        idx,item,cell in
-        
-    }.disposed(by: disposeBag)
-    
+
     navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: titleButton),UIBarButtonItem(customView: typeButton)]
     navigationItem.rightBarButtonItem = UIBarButtonItem(customView: deleteButton)
     
     view.setNeedsUpdateConstraints()
+    
+    tagViewController.data.accept(model)
+    
+    tagViewController
+      .selectAction
+      .subscribeNext(weak: self) { (weakSelf) -> (TripSelectorType) -> Void in
+      return {type in
+        
+        switch type {
+        case .comment:
+          let vc = ChangeConceptViewController(trip: weakSelf.model.trip)
+          vc.completed = {
+            weakSelf.tagViewController.data.accept($0)
+          }
+          weakSelf.present(vc, animated: true, completion: nil)
+        case .date:
+          break
+        case .gender:
+          let vc = ChangeGenderViewController(trip: weakSelf.model.trip)
+          vc.completed = {
+            weakSelf.tagViewController.data.accept($0)
+          }
+          weakSelf.present(vc, animated: true, completion: nil)
+        }
+      }
+    }.disposed(by: disposeBag)
+    
+    GetMatchList()
+    
+    datas.asDriver()
+      .drive(collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
+    
+    deleteButton.rx.tap
+      .bind(onNext: deleteTrip)
+      .disposed(by: disposeBag)
+    
+    collectionView.rx.modelSelected(UserTripJoinModel.self)
+      .bind(onNext: selectCard)
+      .disposed(by: disposeBag)
+  }
+  
+  func GetMatchList(){
+    let api = AuthManager
+      .instance
+      .provider
+      .request(.GetMatchList(tripId: model.trip.id))
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<[UserTripJoinModel]>.self)
+      .map{$0.result}
+      .asObservable()
+      .unwrap()
+      .materialize()
+      .share()
+      
+    api.elements()
+      .map{[GenericSectionModel<UserTripJoinModel>(items: $0)]}
+      .bind(to: datas)
+      .disposed(by: disposeBag)
+    
+    api.errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return {error in
+          log.error(error)
+        }
+    }.disposed(by: disposeBag)
+  }
+  
+  private func selectCard(model: UserTripJoinModel){
+    
+    AuthManager.instance
+      .provider
+      .request(.PossibleMatchCount)
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<Int>.self)
+      .map{$0.result}
+      .asObservable()
+      .unwrap()
+      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
+        return {count in
+          let popup = PopupDialog(title: "동행을 신청하시겠습니까?",
+                                  message:"신청 가능횟수 \(count)",
+            buttonAlignment: .horizontal,
+            transitionStyle: .zoomIn,
+            tapGestureDismissal: true,
+            panGestureDismissal: true)
+          
+          popup.addButtons([Init(CancelButton(title: "취소", action: nil)){ (bt) in
+            bt.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
+            },DefaultButton(title: "확인", action: {
+              let request = MatchRequstModel(fromMatchId: model.trip.id, toMatchId: weakSelf.model.trip.id)
+              AuthManager.instance.provider.request(.MatchRequest(model: request))
+                .filterSuccessfulStatusCodes()
+                .subscribe(onSuccess: { (response) in
+                  log.info(response)
+                }, onError: { (error) in
+                  log.error(error)
+                }).disposed(by: weakSelf.disposeBag)
+            })])
+          
+          weakSelf.present(popup, animated: true, completion: nil)
+        }
+    }.disposed(by: disposeBag)
+
+  }
+  
+  
+  private func selectMatchAction(){
+    
+  }
+  
+  private func deleteTrip(){
+    
+    let dialogAppearance = PopupDialogDefaultView.appearance()
+    dialogAppearance.titleFont = UIFont.AppleSDGothicNeoRegular(size: 16)
+    dialogAppearance.titleColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    dialogAppearance.messageFont = UIFont.AppleSDGothicNeoBold(size: 16)
+    dialogAppearance.messageColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    
+    let popup = PopupDialog(title: "여행을 삭제하시겠습니까?", message: "\(model.tripType.trip)",buttonAlignment: .horizontal,transitionStyle: .zoomIn,
+                            tapGestureDismissal: true,
+                            panGestureDismissal: true)
+    
+    
+    popup.addButtons([Init(CancelButton(title: "취소", action: nil)){ (bt) in
+      bt.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
+      },DefaultButton(title: "확인", action: deleteAction)])
+    
+    self.present(popup, animated: true, completion: nil)
+  }
+  
+  
+  private func deleteAction(){
+    AuthManager.instance.provider.request(.deleteTrip(tripId: model.trip.id))
+      .filterSuccessfulStatusCodes()
+      .subscribe(onSuccess: {[weak self] (response) in
+        AlertType.JDStatusBar.getInstance().show(isSuccess: true, message: "삭제 되었습니다.")
+        (self?.navigationController as? TripProxyController)?.checkUserRegisterd()
+      }) { (error) in
+        log.error(error)
+      }.disposed(by: disposeBag)
   }
   
   

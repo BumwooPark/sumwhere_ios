@@ -71,6 +71,7 @@ class MatchSuccessViewController: UIViewController{
     super.viewDidLoad()
     view = bgImage
     
+    self.navigationController?.navigationBar.topItem?.title = String()
     bgImage.addSubview(myProfileImage)
     bgImage.addSubview(targetProfileImage)
     bgImage.addSubview(targetNickName)

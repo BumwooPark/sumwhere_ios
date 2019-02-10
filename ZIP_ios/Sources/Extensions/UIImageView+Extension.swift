@@ -10,8 +10,7 @@ import Foundation
 import Kingfisher
 
 extension UIImageView{
-  func addBlurEffect()
-  {
+  func addBlurEffect(){
     let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
     let blurEffectView = UIVisualEffectView(effect: blurEffect)
     blurEffectView.frame = self.bounds

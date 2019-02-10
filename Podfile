@@ -56,6 +56,8 @@ pod 'MGSwipeTableCell'
 pod 'LTMorphingLabel'
 pod 'UICountingLabel'
 pod 'AMScrollingNavbar'
+pod "SkeletonView"
+pod "PreviewTransition"
 
 # RX
 pod 'RxSwift'

@@ -20,14 +20,14 @@ class ReceiveViewModel{
       .unwrap()
   }
   
-  let sendHistoryApi = {
-    return AuthManager.instance
-      .provider.request(.MatchRequestSend)
-      .map(ResultModel<[MatchRequestHistoryModel]>.self)
-      .map{$0.result}
-      .asObservable()
-      .unwrap()
-  }
+//  let sendHistoryApi = {
+//    return AuthManager.instance
+//      .provider.request(.MatchRequestSend)
+//      .map(ResultModel<[MatchRequestHistoryModel]>.self)
+//      .map{$0.result}
+//      .asObservable()
+//      .unwrap()
+//  }
   
   
   

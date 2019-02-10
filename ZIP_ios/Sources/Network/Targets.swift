@@ -9,7 +9,6 @@
 import Moya
 
 public enum ZIP{
-  
   case signUp(model: Encodable)
   case signIn(email: String, password: String)
   case tokenLogin
@@ -24,18 +23,15 @@ public enum ZIP{
   case anotherUser(id: String)
   case userWithProfile(id: String?)
   case createTrip(model: Encodable)
-  case deleteMyTrip(id: Int)
+  case deleteTrip(tripId: Int)
   case searchDestination(data: String)
   case AllTripList(sortby: String, order: String, skipCount: Int, maxResultCount: Int)
   case GetAllTripStyle
   case GetAllInterest
   case GetAllCharacter
-  case TripDateValidate(start: String, end: String)
-  case TripDestinationValidate(id: Int)
   case RelationShipMatch(tripId: Int, startDate: String, endDate: String)
   case MatchRequest(model: Encodable)
   case MatchRequestReceive
-  case MatchRequestSend
   case MatchType
   case GetChatRoom
   case IAPList
@@ -49,14 +45,20 @@ public enum ZIP{
   case GetPush
   case UpdatePush(model: Encodable)
   case FcmUpdate(token: String)
+  case GetMatchList(tripId: Int)
+  case NewMatchList(tripId: Int)
+  case UpdateTrip(tripId: Int, data: [String: String])
+  case PossibleMatchCount
+  case Countrys
+  case tripPlaces(countryId: Int)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-//    return URL(string: "http://192.168.1.49:8080")!
-    return URL(string: "https://www.sumwhere.kr")!
+    return URL(string: "http://172.30.1.45:8080/v1")!
+//    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
     #endif
@@ -82,14 +84,16 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "signup/nickname/\(nickname)"
     case .GetAllTrip:
       return "/restrict/trip"
+    case .Countrys:
+      return "/restrict/trip/country"
+    case .tripPlaces(let countryID):
+      return "/restrict/trip/place/\(countryID)"
     case .createProfile:
       return "/restrict/profile"
     case .searchDestination:
       return "/restrict/tripplaces"
-    case .createTrip:
+    case .createTrip,.deleteTrip:
       return "/restrict/trip"
-    case .deleteMyTrip:
-      return "/restrict/mytrip"
     case .user:
       return "/restrict/user"
     case .anotherUser:
@@ -104,20 +108,14 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/interests"
     case .GetAllCharacter:
       return "/restrict/characters"
-    case .TripDestinationValidate:
-      return "/restrict/trip/destination/validate"
-    case .TripDateValidate:
-      return "/restrict/trip/date/validate"
     case .RelationShipMatch:
       return "/restrict/match/relationship"
     case .MatchRequest:
       return "/restrict/match/request"
     case .MatchRequestReceive:
       return "/restrict/match/receive"
-    case .MatchRequestSend:
-      return "/restrict/match/send"
     case .MatchType:
-      return "/restrict/matchType"
+      return "/restrict/match/type"
     case .GetChatRoom:
       return "/restrict/chat/room"
     case .IAPSuccess:
@@ -140,17 +138,27 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/push"
     case .FcmUpdate:
       return "/restrict/fcmToken"
+    case .GetMatchList:
+      return "/restrict/match/list"
+    case .NewMatchList:
+      return "/restrict/match/new"
+    case .UpdateTrip(let id, let _):
+      return "/restrict/trip/\(id)"
+    case .PossibleMatchCount:
+      return "/restrict/match/check"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest,.IAPSuccess:
+    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest,.IAPSuccess,.MatchRequest:
       return .post
-    case .deleteMyTrip,.SignOut:
+    case .deleteTrip,.SignOut:
       return .delete
     case .UpdatePush,.FcmUpdate:
       return .put
+    case .UpdateTrip:
+      return .patch
     default:
       return .get
     }
@@ -181,24 +189,24 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .uploadMultipart(data)
     case .searchDestination(let data):
       return .requestParameters(parameters: ["name":data], encoding: URLEncoding.queryString)
-    case .createTrip(let json),.MatchRequest(let json),.UpdatePush(let json):
+    case .createTrip(let json),.MatchRequest(let json),.UpdatePush(let json),.MatchRequest(let json):
       return .requestJSONEncodable(json)
     case .AllTripList(let sortby, let order, let skipCount, let maxResultCount):
       return .requestParameters(parameters: ["sortby": sortby,"order":order,"skipCount":skipCount,"maxResultCount": maxResultCount], encoding: URLEncoding.queryString)
-    case .TripDateValidate(let start, let end):
-      return .requestParameters(parameters: ["start": start,"end":end],encoding: URLEncoding.queryString)
-    case .TripDestinationValidate(let id):
-      return .requestParameters(parameters: ["id": id],encoding: URLEncoding.queryString)
     case .RelationShipMatch(let tripId, let startDate, let endDate):
       return .requestParameters(parameters: ["tripid":tripId,"start":startDate,"end":endDate], encoding: URLEncoding.queryString)
-    case .deleteMyTrip(let id):
-      return .requestParameters(parameters: ["id": id], encoding: URLEncoding.queryString)
+    case .deleteTrip(let id):
+      return .requestParameters(parameters: ["tripId": id], encoding: URLEncoding.queryString)
     case .IAPSuccess(let receipt,let identifier):
       return .requestParameters(parameters: ["receiptdata": receipt,"identifier": identifier], encoding: URLEncoding.httpBody)
     case .IAPInfo(let productName):
       return .requestParameters(parameters: ["productName": productName], encoding: URLEncoding.queryString)
     case .FcmUpdate(let token):
       return .requestParameters(parameters: ["fcmtoken": token], encoding: URLEncoding.httpBody)
+    case .GetMatchList(let id):
+      return .requestParameters(parameters: ["tripId": id], encoding: URLEncoding.queryString)
+    case .UpdateTrip(let _, let data):
+      return .requestParameters(parameters: data, encoding: URLEncoding.httpBody)
     default:
       return .requestPlain
     }

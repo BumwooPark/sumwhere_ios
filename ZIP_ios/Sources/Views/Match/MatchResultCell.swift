@@ -6,14 +6,27 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
+import SwiftDate
 
 class MatchResultCell: UICollectionViewCell{
   
   private var didUpdateConstraint = false
+  var item: UserTripJoinModel?{
+    didSet{
+      guard let item = item else {return}
+      profileImage.kf.setImage(with: URL(string: item.user.mainProfileImage?.addSumwhereImageURL() ?? "")!)
+      titleLabel.text = timeCalculate(time: item.trip.startDate)
+      nickNameLabel.attributedText = nameAgePlaceAttributedString(item: item)
+      explainLabel.text = item.trip.concept
+      
+      if let dateString = item.trip.startDate.toDate()?.date.toFormat("yyyy MM월 dd일"){
+          startTimeButton.setTitle(dateString, for: .normal)
+      }
+    }
+  }
   
   private let titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "2시간 15분뒤 여행 시작"
     label.font = UIFont.AppleSDGothicNeoBold(size: 17.8)
     return label
   }()
@@ -21,7 +34,6 @@ class MatchResultCell: UICollectionViewCell{
   private let startTimeButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "currentTimeIcon.png"), for: .normal)
-    button.setTitle("오늘, AM 08:00", for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoRegular(size: 14.7)
     button.setTitleColor(#colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 1), for: .normal)
     button.isEnabled = false
@@ -45,6 +57,7 @@ class MatchResultCell: UICollectionViewCell{
   private let profileImage: UIImageView = {
     let imageView = UIImageView()
     imageView.layer.masksToBounds = true
+    imageView.contentMode = .scaleAspectFill
     return imageView
   }()
   
@@ -56,7 +69,8 @@ class MatchResultCell: UICollectionViewCell{
   private let explainLabel: UILabel = {
     let label = UILabel()
     label.layer.cornerRadius = 6
-    label.layer.masksToBounds = true 
+    label.layer.masksToBounds = true
+    label.textAlignment = .center
     label.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
     return label
   }()
@@ -86,6 +100,32 @@ class MatchResultCell: UICollectionViewCell{
     gradientView.gradientBackground(from: #colorLiteral(red: 0.4352941176, green: 0.4117647059, blue: 1, alpha: 1), to: #colorLiteral(red: 0.1803921569, green: 0.5647058824, blue: 0.8823529412, alpha: 1), direction: GradientDirection.bottomToTop)
     emptyView.layer.cornerRadius = emptyView.frame.width/2
     profileImage.layer.cornerRadius = profileImage.frame.width/2
+  }
+  
+  func nameAgePlaceAttributedString(item: UserTripJoinModel) -> NSMutableAttributedString{
+    var attributedString = NSMutableAttributedString()
+    if let nickname = item.user.nickname {
+      attributedString.append(NSAttributedString(string: nickname, attributes: [.font: UIFont.OTGulimB(size: 20)]))
+    }
+    
+    if let age = item.user.age {
+      attributedString.append(NSAttributedString(string: " \(age)살", attributes: [.font: UIFont.AppleSDGothicNeoLight(size: 17.6)]))
+    }
+    
+    return attributedString
+  }
+  
+  
+  func timeCalculate(time: String) -> String {
+    guard let startDate = time.toDate()?.date else {return String()}
+    
+    let result = startDate - Date()
+    
+    let day = result.day ?? 0
+    let week = result.weekOfYear ?? 0
+    let days = day + (week * 7)
+    
+    return days > 0 ? "D-\(days)일뒤 여행시작" : "D+\(abs(days))일전 여행시작"
   }
   
   override func updateConstraints() {

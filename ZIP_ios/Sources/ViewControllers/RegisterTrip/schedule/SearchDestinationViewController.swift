@@ -18,8 +18,7 @@ class SearchDestinationViewController: UIViewController, MatchTypeApplier{
   private let disposeBag = DisposeBag()
   var didUpdateConstraint = false
   let headerView = TripSearchHeader()
-  lazy var planVC = InsertPlanViewController(viewModel: viewModel)
-  
+  lazy var conceptVC = MatchConceptViewController(viewModel: viewModel)
   
   lazy var dataSources = RxTableViewSectionedReloadDataSource<SearchDestTVModel>(configureCell: {[weak self] (ds, tv, idx, item) -> UITableViewCell in
     let cell = tv.dequeueReusableCell(withIdentifier: String(describing: DestinationSearchCell.self), for: idx) as! DestinationSearchCell
@@ -60,7 +59,7 @@ class SearchDestinationViewController: UIViewController, MatchTypeApplier{
     statusBar.backgroundColor = color
   }
   override func viewDidLoad() {
-    _ = planVC
+    _ = conceptVC
     view = tableView
     self.navigationController?.navigationBar.topItem?.title = String()
     hideKeyboardWhenTappedAround()
@@ -79,7 +78,7 @@ class SearchDestinationViewController: UIViewController, MatchTypeApplier{
       .subscribeNext(weak: self) { (weakSelf) -> (TripType) -> Void in
         return {type in
           weakSelf.viewModel.saver.accept(.place(model: type))
-          weakSelf.navigationController?.pushViewController(weakSelf.planVC, animated: true)
+          weakSelf.navigationController?.pushViewController(weakSelf.conceptVC, animated: true)
         }
       }.disposed(by: disposeBag)
     

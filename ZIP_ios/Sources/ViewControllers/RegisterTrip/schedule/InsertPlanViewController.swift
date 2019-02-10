@@ -122,17 +122,7 @@ final class InsertPlanViewController: UIViewController{
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
     _ = registerVC.view
-    viewModel.saver
-      .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
-        return {type in
-          switch type{
-          case .place(let model):
-            weakSelf.headerView.titleLabel.text = model.trip + "\n언제 떠날까요?"
-          default:
-            break
-          }
-        }
-      }.disposed(by: disposeBag)
+    headerView.titleLabel.text = "  \(viewModel.inputModel.tripName)\n  언제 떠날까요?"
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -157,8 +147,6 @@ final class InsertPlanViewController: UIViewController{
     view.addSubview(calendarView)
     view.addSubview(completeButton)
     view.setNeedsUpdateConstraints()
-    
-    
     
     self.navigationController?.navigationBar.topItem?.title = String()
     completeButton.rx.tap

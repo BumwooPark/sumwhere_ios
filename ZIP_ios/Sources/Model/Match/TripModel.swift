@@ -17,9 +17,22 @@ struct Trip: Codable{
   let id: Int
   let userId: Int
   let matchTypeId: Int
+  var concept: String
   let tripTypeId: Int
-  let startDate: String
-  let endDate: String
+  var genderType: String
+  var startDate: String
+  var endDate: String
+  
+  func toInputModel() -> InputTrip{
+    var trip = InputTrip()
+    trip.concept = self.concept
+    trip.tripTypeId = self.tripTypeId
+    trip.endDate = self.endDate
+    trip.startDate = self.startDate
+    trip.genderType = self.genderType
+    trip.matchTypeId = self.matchTypeId
+    return trip
+  }
 }
 
 struct TripType: Codable{

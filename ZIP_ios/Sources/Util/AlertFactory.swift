@@ -35,3 +35,5 @@ struct StatusBarJD: AlertAction{
   func close() {
   }
 }
+
+

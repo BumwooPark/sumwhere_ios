@@ -12,6 +12,7 @@ import Moya
 
 final class RegisterTripViewModel{
   enum SaveType{
+    case concept(title: String)
     case place(model: TripType)
     case date(start: Date, end: Date)
   }
@@ -65,10 +66,13 @@ final class RegisterTripViewModel{
       return {model in
         switch model{
         case .place(let type):
+          weakSelf.inputModel.tripName = type.trip
           weakSelf.inputModel.tripTypeId = type.id
         case .date(let start, let end):
           weakSelf.inputModel.startDate = start.toFormat("yyyy-MM-dd")
           weakSelf.inputModel.endDate = end.toFormat("yyyy-MM-dd")
+        case .concept(let title):
+          weakSelf.inputModel.concept = title
         }
       }
     }.disposed(by: disposeBag)
