@@ -115,11 +115,12 @@ class RegisterdViewController: UIViewController{
         
         switch type {
         case .comment:
-          let vc = ChangeConceptViewController(trip: weakSelf.model.trip)
-          vc.completed = {
-            weakSelf.tagViewController.data.accept($0)
-          }
-          weakSelf.present(vc, animated: true, completion: nil)
+          break
+//          let vc = ChangeConceptViewController(trip: weakSelf.model.trip)
+//          vc.completed = {
+//            weakSelf.tagViewController.data.accept($0)
+//          }
+//          weakSelf.present(vc, animated: true, completion: nil)
         case .date:
           break
         case .gender:

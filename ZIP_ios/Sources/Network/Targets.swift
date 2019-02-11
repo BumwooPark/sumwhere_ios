@@ -51,13 +51,14 @@ public enum ZIP{
   case PossibleMatchCount
   case Countrys
   case tripPlaces(countryId: Int)
+  case TotalMatchCount
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://172.30.1.45:8080/v1")!
+    return URL(string: "http://192.168.1.10:8080/v1")!
 //    return URL(string: "https://www.sumwhere.kr")!
     #else
     return URL(string: "https://www.sumwhere.kr")!
@@ -144,6 +145,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/new"
     case .UpdateTrip(let id, let _):
       return "/restrict/trip/\(id)"
+    case .TotalMatchCount:
+      return "/restrict/match/totalcount"
     case .PossibleMatchCount:
       return "/restrict/match/check"
     }

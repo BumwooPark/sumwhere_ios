@@ -15,18 +15,22 @@ class DetailCountryViewController: PTDetailViewController{
   
   private let disposeBag = DisposeBag()
   private var didUpdateConstraint = false
+  private let selectAction = PublishRelay<Int>()
   private let API: Observable<Event<[CountryTripPlace]>>
 
   private let datas = BehaviorRelay<[GenericSectionModel<CountryTripPlace>]>(value: [])
-  private let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<CountryTripPlace>>(
-    configureCell: {ds,cv,idx,item in
+  lazy var dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<CountryTripPlace>>(
+    configureCell: {[weak self] ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: DetailTripCell.self), for: idx) as! DetailTripCell
     cell.item = item
+    cell.tag = idx.row
+    cell.selectAction = self?.selectAction
     return cell
     })
   
   lazy var backButton: UIBarButtonItem = {
     let button = UIBarButtonItem()
+    button.image = #imageLiteral(resourceName: "arrowicon.png")
     button.title = "국가 선택"
     self.navigationItem.leftBarButtonItem = button
     return button
@@ -102,6 +106,13 @@ class DetailCountryViewController: PTDetailViewController{
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
+    
+    selectAction
+      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
+      return {idx in
+        weakSelf.present(InsertPlanViewController(viewModel: RegisterTripViewModel()), animated: true, completion: nil)
+      }
+      }.disposed(by: disposeBag)
   }
   
   override func viewDidAppear(_ animated: Bool) {

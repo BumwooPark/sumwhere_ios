@@ -85,9 +85,26 @@ final class MainMatchViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if !isFirst{
-      countingLabel.count(from: 50, to: 130)
+      animationStart()
       isFirst = true
     }
+  }
+  
+  private func animationStart(){
+    AuthManager.instance.provider.request(.TotalMatchCount)
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<Int>.self)
+      .map{$0.result}
+      .asObservable()
+      .unwrap()
+      .materialize()
+      .elements()
+      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
+        return {count in
+          weakSelf.countingLabel.count(from: 0, to: CGFloat(integerLiteral: count))
+        }
+      }.disposed(by: disposeBag)
+    
   }
   
   override func updateViewConstraints() {

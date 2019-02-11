@@ -5,9 +5,13 @@
 //  Created by park bumwoo on 10/02/2019.
 //  Copyright © 2019 park bumwoo. All rights reserved.
 //
+import RxSwift
+import RxCocoa
 
 final class DetailTripCell: UICollectionViewCell {
   
+  var disposeBag = DisposeBag()
+  var selectAction: PublishRelay<Int>?
   var item: CountryTripPlace?{
     didSet{
       guard let item = item else {return}
@@ -38,9 +42,9 @@ final class DetailTripCell: UICollectionViewCell {
     button.layer.cornerRadius = 5
     button.setTitle("여행지 선택", for: .normal)
     button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 15)
+    button.isUserInteractionEnabled = true
     return button
   }()
-  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -49,9 +53,19 @@ final class DetailTripCell: UICollectionViewCell {
     contentView.addSubview(submitButton)
     contentView.backgroundColor = .white
     contentView.layer.cornerRadius = 10
-    
+    submitButton.rx.tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.selectAction?.accept(weakSelf.tag)
+        }
+      }.disposed(by: disposeBag)
     
     setNeedsUpdateConstraints()
+  }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    disposeBag = DisposeBag()
   }
   
   override func updateConstraints() {

@@ -60,10 +60,6 @@ class TripProxyController: ScrollingNavigationController {
         }
       }.disposed(by: disposeBag)
   }
-  
-  func RegisterdTrip(register: @escaping ((TripModel?) -> Void)){
-   
-  }
 }
 
 
