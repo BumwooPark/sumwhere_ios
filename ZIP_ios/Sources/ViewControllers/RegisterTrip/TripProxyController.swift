@@ -7,29 +7,35 @@
 //
 
 import RxSwift
+import RxCocoa
 import NVActivityIndicatorView
 import AMScrollingNavbar
+import Swinject
 
+let tripRegisterContainer = Container()
 
 class TripProxyController: ScrollingNavigationController {
+  static let changer = PublishRelay<Void>()
   private let disposeBag = DisposeBag()
   
   init() {
     super.init(nibName: nil, bundle: nil)
     view.backgroundColor = .white
+    tripRegisterContainer.register(InsertPlanViewController.self) { r in
+      InsertPlanViewController(viewModel: r.resolve(RegisterTripViewModel.self)!)
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    checkUserRegisterd()
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
+    checkUserRegisterd()
+    TripProxyController.changer
+      .bind(onNext: checkUserRegisterd)
+      .disposed(by: disposeBag)
   }
   
   func checkUserRegisterd(){
@@ -42,7 +48,6 @@ class TripProxyController: ScrollingNavigationController {
       .retry(.exponentialDelayed(maxCount: 2, initial: 2, multiplier: 2))
       .subscribe(weak: self) { (weakSelf) -> (Event<TripModel?>) -> Void in
         return {event in
-          log.info(event)
           switch event {
           case .next(let model):
             if let model = model {

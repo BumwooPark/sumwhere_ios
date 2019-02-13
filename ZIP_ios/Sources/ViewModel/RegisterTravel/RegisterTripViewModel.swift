@@ -10,7 +10,23 @@ import RxSwift
 import RxCocoa
 import Moya
 
-final class RegisterTripViewModel{
+internal protocol RegisterTripInputs{
+}
+
+internal protocol RegisterTripOutputs{
+  
+}
+
+internal protocol RegisterTripType{
+  var inputs: RegisterTripInputs { get }
+  var outputs: RegisterTripOutputs { get }
+}
+
+
+final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,RegisterTripOutputs{
+  var inputs: RegisterTripInputs {return self}
+  var outputs: RegisterTripOutputs {return self}
+  
   enum SaveType{
     case concept(title: String)
     case place(model: TripType)

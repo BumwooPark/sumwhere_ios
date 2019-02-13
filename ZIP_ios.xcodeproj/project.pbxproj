@@ -79,7 +79,6 @@
 		0A397CCC21FD78B400F65BE0 /* MatchTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CCB21FD78B400F65BE0 /* MatchTypeViewModel.swift */; };
 		0A397CCE21FD78FA00F65BE0 /* MatchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CCD21FD78FA00F65BE0 /* MatchType.swift */; };
 		0A397CD021FD826400F65BE0 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CCF21FD826400F65BE0 /* UINavigationController + Extension.swift */; };
-		0A397CD22205682400F65BE0 /* MatchConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CD12205682300F65BE0 /* MatchConceptViewController.swift */; };
 		0A397CD42205896A00F65BE0 /* ChangeGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CD32205896A00F65BE0 /* ChangeGenderViewController.swift */; };
 		0A397CD72208277600F65BE0 /* ChangeConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CD62208277600F65BE0 /* ChangeConceptViewController.swift */; };
 		0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */; };
@@ -107,9 +106,7 @@
 		0A745665210C971C00F8A0C9 /* DestinationSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */; };
 		0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745666210C98ED00F8A0C9 /* UITextField + Extension.swift */; };
 		0A745669210CA37D00F8A0C9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745668210CA37D00F8A0C9 /* PageViewController.swift */; };
-		0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */; };
 		0A745685210E013900F8A0C9 /* SearchDestinationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */; };
-		0A745687210E04C600F8A0C9 /* SearchDestTVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745686210E04C600F8A0C9 /* SearchDestTVModel.swift */; };
 		0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568C210E132B00F8A0C9 /* String + Extension.swift */; };
 		0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */; };
 		0A78138C219F0B71006AA31F /* TripSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78138B219F0B71006AA31F /* TripSelectViewController.swift */; };
@@ -209,6 +206,8 @@
 		B1A1D9A5212A9EB50022D2A0 /* RelationShipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A4212A9EB50022D2A0 /* RelationShipViewModel.swift */; };
 		B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */; };
 		B1A3933E21C2594500E7A71F /* EmptyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A3933D21C2594500E7A71F /* EmptyChatView.swift */; };
+		B1CCFF6522129149004A9500 /* InsertDetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */; };
+		B1CCFF67221293E0004A9500 /* DetailScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */; };
 		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
 		B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */; };
 		B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB02212D2086001A9801 /* DetailCommitView.swift */; };
@@ -315,7 +314,6 @@
 		0A397CCB21FD78B400F65BE0 /* MatchTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTypeViewModel.swift; sourceTree = "<group>"; };
 		0A397CCD21FD78FA00F65BE0 /* MatchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchType.swift; sourceTree = "<group>"; };
 		0A397CCF21FD826400F65BE0 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
-		0A397CD12205682300F65BE0 /* MatchConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchConceptViewController.swift; sourceTree = "<group>"; };
 		0A397CD32205896A00F65BE0 /* ChangeGenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGenderViewController.swift; sourceTree = "<group>"; };
 		0A397CD62208277600F65BE0 /* ChangeConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeConceptViewController.swift; sourceTree = "<group>"; };
 		0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -348,9 +346,7 @@
 		0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchCell.swift; sourceTree = "<group>"; };
 		0A745666210C98ED00F8A0C9 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		0A745668210CA37D00F8A0C9 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestinationViewController.swift; sourceTree = "<group>"; };
 		0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestinationViewModel.swift; sourceTree = "<group>"; };
-		0A745686210E04C600F8A0C9 /* SearchDestTVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestTVModel.swift; sourceTree = "<group>"; };
 		0A74568C210E132B00F8A0C9 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		0A78138B219F0B71006AA31F /* TripSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSelectViewController.swift; sourceTree = "<group>"; };
@@ -453,6 +449,8 @@
 		B1A1D9A4212A9EB50022D2A0 /* RelationShipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationShipViewModel.swift; sourceTree = "<group>"; };
 		B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTripJoinModel.swift; sourceTree = "<group>"; };
 		B1A3933D21C2594500E7A71F /* EmptyChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChatView.swift; sourceTree = "<group>"; };
+		B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDetailScheduleViewController.swift; sourceTree = "<group>"; };
+		B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewModel.swift; sourceTree = "<group>"; };
 		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
 		B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserImageCell.xib; sourceTree = "<group>"; };
 		B1D1CB02212D2086001A9801 /* DetailCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommitView.swift; sourceTree = "<group>"; };
@@ -749,6 +747,7 @@
 				0A895BEC2129A59900FDF834 /* Login */,
 				B16B3DF52117E6E3001D278A /* SetProfile */,
 				0A74566A210CA9EE00F8A0C9 /* RegisterTrip */,
+				0A397CBD21F364EC00F65BE0 /* MatchSuccessViewController.swift */,
 				0A895BF0212EEC1E00FDF834 /* Request */,
 				0A7C50742198637F00558F62 /* MyPage */,
 			);
@@ -758,17 +757,16 @@
 		0A74566A210CA9EE00F8A0C9 /* RegisterTrip */ = {
 			isa = PBXGroup;
 			children = (
+				B1CCFF682213D849004A9500 /* registered */,
 				0A397CD52208274F00F65BE0 /* change */,
 				0A397CC721FB2C0500F65BE0 /* TripProxyController.swift */,
-				0A397CC921FB30FB00F65BE0 /* RegisterdViewController.swift */,
-				B10F121021FFE3F10045FBF9 /* RegisterdSubviewController.swift */,
 				0A397CB521F32FE200F65BE0 /* MainMatchViewController.swift */,
 				0A397CB921F338D800F65BE0 /* MatchTypeViewController.swift */,
 				0A6812DB220EDB2D00A84715 /* SelectCountryViewController.swift */,
 				0A6812DD220EEA9900A84715 /* DetailCountryViewController.swift */,
-				0A397CBD21F364EC00F65BE0 /* MatchSuccessViewController.swift */,
 				B10F120421F9AC380045FBF9 /* schedule */,
 				B10F120321F9AC310045FBF9 /* onetime */,
+				B163846821F5965800665060 /* CreateOnetimeViewController.swift */,
 			);
 			path = RegisterTrip;
 			sourceTree = "<group>";
@@ -777,8 +775,8 @@
 			isa = PBXGroup;
 			children = (
 				0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */,
-				0A745686210E04C600F8A0C9 /* SearchDestTVModel.swift */,
 				0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */,
+				B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */,
 			);
 			path = RegisterTravel;
 			sourceTree = "<group>";
@@ -958,7 +956,6 @@
 		B10F120321F9AC310045FBF9 /* onetime */ = {
 			isa = PBXGroup;
 			children = (
-				B163846821F5965800665060 /* CreateOnetimeViewController.swift */,
 			);
 			path = onetime;
 			sourceTree = "<group>";
@@ -966,9 +963,8 @@
 		B10F120421F9AC380045FBF9 /* schedule */ = {
 			isa = PBXGroup;
 			children = (
-				0A74566B210CAA2300F8A0C9 /* SearchDestinationViewController.swift */,
-				0A397CD12205682300F65BE0 /* MatchConceptViewController.swift */,
 				0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */,
+				B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */,
 				B163846621F5964F00665060 /* RegisterViewController.swift */,
 			);
 			path = schedule;
@@ -1197,6 +1193,15 @@
 			path = Match;
 			sourceTree = "<group>";
 		};
+		B1CCFF682213D849004A9500 /* registered */ = {
+			isa = PBXGroup;
+			children = (
+				0A397CC921FB30FB00F65BE0 /* RegisterdViewController.swift */,
+				B10F121021FFE3F10045FBF9 /* RegisterdSubviewController.swift */,
+			);
+			path = registered;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1397,6 +1402,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
@@ -1455,6 +1461,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TLPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
@@ -1536,7 +1543,7 @@
 				B1A3933E21C2594500E7A71F /* EmptyChatView.swift in Sources */,
 				B16BD8AD21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
-				0A397CD22205682400F65BE0 /* MatchConceptViewController.swift in Sources */,
+				B1CCFF6522129149004A9500 /* InsertDetailScheduleViewController.swift in Sources */,
 				0A075BFD2153EC2C004A4DBF /* CharacterViewController.swift in Sources */,
 				B1D1CB07212D35D9001A9801 /* MainCollectionCell.swift in Sources */,
 				B163845D21F16ABE00665060 /* Conversation.swift in Sources */,
@@ -1552,7 +1559,6 @@
 				0A78139D21A14D0C006AA31F /* RequestProfileCell.swift in Sources */,
 				B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */,
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
-				0A74566C210CAA2300F8A0C9 /* SearchDestinationViewController.swift in Sources */,
 				0A33277D213BBD9700BC2906 /* GenderAgeJobViewController.swift in Sources */,
 				0A075BFF21553611004A4DBF /* DefaultLoginViewModel.swift in Sources */,
 				0A1B0F0321ECC0880035E657 /* BannerModel.swift in Sources */,
@@ -1577,7 +1583,6 @@
 				B14495C02191929500B4D135 /* NotificationCenter + Extension.swift in Sources */,
 				0A332781213BC1FD00BC2906 /* NickNameViewController.swift in Sources */,
 				0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */,
-				0A745687210E04C600F8A0C9 /* SearchDestTVModel.swift in Sources */,
 				0A1B0EF121EB61030035E657 /* EventInfoViewModel.swift in Sources */,
 				0A6EB9DB2169E12C00117526 /* MainFooterView.swift in Sources */,
 				0A745665210C971C00F8A0C9 /* DestinationSearchCell.swift in Sources */,
@@ -1594,6 +1599,7 @@
 				0A397CBC21F33B8900F65BE0 /* MatchTypeCell.swift in Sources */,
 				0A397CD021FD826400F65BE0 /* UINavigationController + Extension.swift in Sources */,
 				B16BD8A721A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift in Sources */,
+				B1CCFF67221293E0004A9500 /* DetailScheduleViewModel.swift in Sources */,
 				0A075C0121562406004A4DBF /* MoyaError + Extension.swift in Sources */,
 				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
 				0A397CCE21FD78FA00F65BE0 /* MatchType.swift in Sources */,

@@ -10,10 +10,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-protocol MatchTypeApplier{
-  func matchIDApply(matchID: Int)
-}
-
 final class MatchTypeViewController: UIViewController{
   private let disposeBag = DisposeBag()
   
@@ -33,9 +29,6 @@ final class MatchTypeViewController: UIViewController{
     cell.item = item
     return cell
   })
-  
-  private let matchVCPush = PublishRelay<MatchTypeApplier>()
-  
   
   let submitAction = PublishRelay<Int>()
   
@@ -80,10 +73,6 @@ final class MatchTypeViewController: UIViewController{
       .subscribeNext(weak: self) { (weakSelf) -> (MatchType) -> Void in
         return {type in
           weakSelf.navigationController?.pushViewController(SelectCountryViewController(), animated: true)
-          
-          
-          
-          
 //          if type.isEnable{
 //            let vc = SearchDestinationViewController()
 //            vc.matchIDApply(matchID: type.id)

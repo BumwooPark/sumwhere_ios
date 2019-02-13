@@ -36,6 +36,7 @@ class SelectCountryViewController: PTTableViewController{
           cell.setImage(UIImage(), title: item.name)
           return
         }
+        
         cell.setImage(image, title: item.name)
       })
       return cell
@@ -49,17 +50,18 @@ class SelectCountryViewController: PTTableViewController{
     tableView.rowHeight = 200
     tableView.dataSource = nil
     
-    datas.asDriver()
+    datas
+      .asDriver()
       .drive(tableView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
-    
     
     UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.AppleSDGothicNeoSemiBold(size: 30),.foregroundColor: UIColor.white]
     
     tableView.rx.modelSelected(Country.self)
       .subscribeNext(weak: self) { (weakSelf) -> (Country) -> Void in
         return {item in
-          let vc = DetailCountryViewController(CountryID: item.id)
+          tripRegisterContainer.register(Country.self, factory: { _ in item})
+          let vc = DetailCountryViewController(model: item)
           weakSelf.pushViewController(vc)
         }
       }.disposed(by: disposeBag)

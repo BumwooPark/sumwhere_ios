@@ -15,7 +15,7 @@ class MatchTypeCell: UICollectionViewCell{
     didSet{
       guard let item = item else {return}
       titleLabel.text = item.title
-      bgImage.kf.setImage(with: URL(string: item.imageUrl.addSumwhereImageURL())!,options: [.transition(.fade(0.2))])
+      bgImage.kf.setImage(with: URL(string: item.imageUrl.addSumwhereImageURL())!,options: [.transition(.fade(0.2)),.cacheOriginalImage])
       explainLabel.text = item.subTitle
       if !item.isEnable{
         titleLabel.text = "업데이트 예정"
@@ -26,9 +26,10 @@ class MatchTypeCell: UICollectionViewCell{
   private var didUpdateConstraint = false
   
   private let bgImage: UIImageView = {
-    let imageView = UIImageView()
+    var imageView = UIImageView()
     imageView.contentMode = .scaleAspectFill
     imageView.clipsToBounds = true
+    imageView.kf.indicatorType = .activity
     return imageView
   }()
   

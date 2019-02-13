@@ -29,6 +29,7 @@ pod 'PySwiftyRegex'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'Firebase/AdMob'
+pod 'Swinject'
 
 
 # UI

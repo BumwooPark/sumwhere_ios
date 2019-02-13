@@ -91,7 +91,9 @@ final class MainMatchViewController: UIViewController {
   }
   
   private func animationStart(){
-    AuthManager.instance.provider.request(.TotalMatchCount)
+    AuthManager.instance
+      .provider
+      .request(.TotalMatchCount)
       .filterSuccessfulStatusCodes()
       .map(ResultModel<Int>.self)
       .map{$0.result}

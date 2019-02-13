@@ -11,7 +11,7 @@ import RxCocoa
 final class DetailTripCell: UICollectionViewCell {
   
   var disposeBag = DisposeBag()
-  var selectAction: PublishRelay<Int>?
+  var selectAction: PublishRelay<CountryTripPlace>?
   var item: CountryTripPlace?{
     didSet{
       guard let item = item else {return}
@@ -56,7 +56,8 @@ final class DetailTripCell: UICollectionViewCell {
     submitButton.rx.tap
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return {_ in
-          weakSelf.selectAction?.accept(weakSelf.tag)
+          guard let item = weakSelf.item else {return}
+          weakSelf.selectAction?.accept(item)
         }
       }.disposed(by: disposeBag)
     

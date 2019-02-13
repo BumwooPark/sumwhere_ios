@@ -188,7 +188,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
         return { model in
           weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
           DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            (weakSelf.navigationController as? TripProxyController)?.checkUserRegisterd()
+            TripProxyController.changer.accept(())
           })
         }
       }.disposed(by: disposeBag)

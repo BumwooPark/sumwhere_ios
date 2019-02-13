@@ -16,6 +16,7 @@ import SwiftDate
 import EventKit
 import MXParallaxHeader
 
+
 class DateControl{
   
   var startDate: Date = Date()
@@ -63,8 +64,7 @@ class DateControl{
     }
   }
   
-  func deSelectHandler(calendar: JTAppleCalendarView, date: Date) {
-  }
+  func deSelectHandler(calendar: JTAppleCalendarView, date: Date) {}
 }
 
 final class InsertPlanViewController: UIViewController{
@@ -74,6 +74,7 @@ final class InsertPlanViewController: UIViewController{
   private var didUpdateConstraint = false
   private let headerView = CalendarHeaderView.loadXib(nibName: "CalendarHeaderView") as! CalendarHeaderView
   private let dateControl = DateControl()
+  
   lazy var registerVC = RegisterViewController(viewModel: viewModel)
   private let gregorian: Calendar = {
     var calendar = Calendar(identifier: .gregorian)
@@ -149,6 +150,7 @@ final class InsertPlanViewController: UIViewController{
     view.setNeedsUpdateConstraints()
     
     self.navigationController?.navigationBar.topItem?.title = String()
+    
     completeButton.rx.tap
       .subscribeNext(weak: self){ (weakSelf) -> (()) -> Void in
         return { _ in
@@ -204,7 +206,7 @@ final class InsertPlanViewController: UIViewController{
         make.top.left.right.equalToSuperview()
         make.height.equalTo(250)
       }
-      
+
       calendarView.snp.makeConstraints { (make) in
         make.top.equalTo(headerView.snp.bottom)
         make.left.right.equalToSuperview()

@@ -15,7 +15,7 @@ class DetailCountryViewController: PTDetailViewController{
   
   private let disposeBag = DisposeBag()
   private var didUpdateConstraint = false
-  private let selectAction = PublishRelay<Int>()
+  private let selectAction = PublishRelay<CountryTripPlace>()
   private let API: Observable<Event<[CountryTripPlace]>>
 
   private let datas = BehaviorRelay<[GenericSectionModel<CountryTripPlace>]>(value: [])
@@ -49,9 +49,9 @@ class DetailCountryViewController: PTDetailViewController{
     return collectionView
   }()
   
-  init(CountryID: Int) {
+  init(model: Country) {
     self.API = AuthManager.instance.provider
-      .request(.tripPlaces(countryId: CountryID))
+      .request(.tripPlaces(countryId: model.id))
       .filterSuccessfulStatusCodes()
       .map(ResultModel<[CountryTripPlace]>.self)
       .map{$0.result}
@@ -59,6 +59,12 @@ class DetailCountryViewController: PTDetailViewController{
       .unwrap()
       .materialize()
       .share()
+    
+
+//    tripRegisterContainer.register(InsertPlanViewController.self) { r in
+//      let country = r.resolve(Country.self) as! Country
+//      InsertPlanViewController()
+//    }
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -108,11 +114,8 @@ class DetailCountryViewController: PTDetailViewController{
       .disposed(by: disposeBag)
     
     selectAction
-      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
-      return {idx in
-        weakSelf.present(InsertPlanViewController(viewModel: RegisterTripViewModel()), animated: true, completion: nil)
-      }
-      }.disposed(by: disposeBag)
+      .bind(onNext: pushViewController)
+      .disposed(by: disposeBag)
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -122,6 +125,10 @@ class DetailCountryViewController: PTDetailViewController{
         self.collectionView.alpha = 1
       }
     }
+  }
+  
+  private func pushViewController(place: CountryTripPlace){
+    self.navigationController?.pushViewController(InsertPlanViewController(viewModel: RegisterTripViewModel()), animated: true)
   }
   
   override func updateViewConstraints() {
