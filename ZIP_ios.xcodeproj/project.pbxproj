@@ -106,7 +106,6 @@
 		0A745665210C971C00F8A0C9 /* DestinationSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */; };
 		0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745666210C98ED00F8A0C9 /* UITextField + Extension.swift */; };
 		0A745669210CA37D00F8A0C9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745668210CA37D00F8A0C9 /* PageViewController.swift */; };
-		0A745685210E013900F8A0C9 /* SearchDestinationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */; };
 		0A74568D210E132B00F8A0C9 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568C210E132B00F8A0C9 /* String + Extension.swift */; };
 		0A74568F210EE12200F8A0C9 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */; };
 		0A78138C219F0B71006AA31F /* TripSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78138B219F0B71006AA31F /* TripSelectViewController.swift */; };
@@ -208,6 +207,7 @@
 		B1A3933E21C2594500E7A71F /* EmptyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A3933D21C2594500E7A71F /* EmptyChatView.swift */; };
 		B1CCFF6522129149004A9500 /* InsertDetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */; };
 		B1CCFF67221293E0004A9500 /* DetailScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */; };
+		B1CCFF6A22155B9D004A9500 /* PlanDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */; };
 		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
 		B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */; };
 		B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB02212D2086001A9801 /* DetailCommitView.swift */; };
@@ -346,7 +346,6 @@
 		0A745664210C971C00F8A0C9 /* DestinationSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchCell.swift; sourceTree = "<group>"; };
 		0A745666210C98ED00F8A0C9 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		0A745668210CA37D00F8A0C9 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestinationViewModel.swift; sourceTree = "<group>"; };
 		0A74568C210E132B00F8A0C9 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		0A74568E210EE12200F8A0C9 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		0A78138B219F0B71006AA31F /* TripSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSelectViewController.swift; sourceTree = "<group>"; };
@@ -451,6 +450,7 @@
 		B1A3933D21C2594500E7A71F /* EmptyChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChatView.swift; sourceTree = "<group>"; };
 		B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDetailScheduleViewController.swift; sourceTree = "<group>"; };
 		B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewModel.swift; sourceTree = "<group>"; };
+		B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDateViewModel.swift; sourceTree = "<group>"; };
 		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
 		B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserImageCell.xib; sourceTree = "<group>"; };
 		B1D1CB02212D2086001A9801 /* DetailCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommitView.swift; sourceTree = "<group>"; };
@@ -774,9 +774,9 @@
 		0A745681210DFB5C00F8A0C9 /* RegisterTravel */ = {
 			isa = PBXGroup;
 			children = (
-				0A745684210E013900F8A0C9 /* SearchDestinationViewModel.swift */,
 				0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */,
 				B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */,
+				B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */,
 			);
 			path = RegisterTravel;
 			sourceTree = "<group>";
@@ -1526,7 +1526,6 @@
 				0A1B0EF321EB61960035E657 /* EventModel.swift in Sources */,
 				B16BD8C721B51F560010EEE0 /* MapCell.swift in Sources */,
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
-				0A745685210E013900F8A0C9 /* SearchDestinationViewModel.swift in Sources */,
 				B163846721F5965000665060 /* RegisterViewController.swift in Sources */,
 				0A13CA4A21A6F0030081C55F /* PHeaderView.swift in Sources */,
 				B16BD8A321A79F460010EEE0 /* AdMobViewController.swift in Sources */,
@@ -1541,6 +1540,7 @@
 				B16BD8BE21B10C4C0010EEE0 /* CalendarHeader.swift in Sources */,
 				0A397CC621F60D7C00F65BE0 /* AlertModel.swift in Sources */,
 				B1A3933E21C2594500E7A71F /* EmptyChatView.swift in Sources */,
+				B1CCFF6A22155B9D004A9500 /* PlanDateViewModel.swift in Sources */,
 				B16BD8AD21A7DDB60010EEE0 /* PurchaseHistorySectionController.swift in Sources */,
 				0A1B11DB1FF1181D004B42B6 /* LoginView.swift in Sources */,
 				B1CCFF6522129149004A9500 /* InsertDetailScheduleViewController.swift in Sources */,

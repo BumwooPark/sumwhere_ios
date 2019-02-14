@@ -60,11 +60,6 @@ class DetailCountryViewController: PTDetailViewController{
       .materialize()
       .share()
     
-
-//    tripRegisterContainer.register(InsertPlanViewController.self) { r in
-//      let country = r.resolve(Country.self) as! Country
-//      InsertPlanViewController()
-//    }
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -128,7 +123,7 @@ class DetailCountryViewController: PTDetailViewController{
   }
   
   private func pushViewController(place: CountryTripPlace){
-    self.navigationController?.pushViewController(InsertPlanViewController(viewModel: RegisterTripViewModel()), animated: true)
+    self.navigationController?.pushViewController(InsertPlanViewController(), animated: true)
   }
   
   override func updateViewConstraints() {

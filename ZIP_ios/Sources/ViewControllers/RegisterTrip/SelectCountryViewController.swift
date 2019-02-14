@@ -36,7 +36,6 @@ class SelectCountryViewController: PTTableViewController{
           cell.setImage(UIImage(), title: item.name)
           return
         }
-        
         cell.setImage(image, title: item.name)
       })
       return cell
@@ -77,7 +76,6 @@ class SelectCountryViewController: PTTableViewController{
           log.error(error)
         }
     }.disposed(by: disposeBag)
-    
   }
 }
 

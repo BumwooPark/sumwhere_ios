@@ -21,9 +21,6 @@ class TripProxyController: ScrollingNavigationController {
   init() {
     super.init(nibName: nil, bundle: nil)
     view.backgroundColor = .white
-    tripRegisterContainer.register(InsertPlanViewController.self) { r in
-      InsertPlanViewController(viewModel: r.resolve(RegisterTripViewModel.self)!)
-    }
   }
   
   required init?(coder aDecoder: NSCoder) {

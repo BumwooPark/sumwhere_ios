@@ -73,11 +73,6 @@ final class MatchTypeViewController: UIViewController{
       .subscribeNext(weak: self) { (weakSelf) -> (MatchType) -> Void in
         return {type in
           weakSelf.navigationController?.pushViewController(SelectCountryViewController(), animated: true)
-//          if type.isEnable{
-//            let vc = SearchDestinationViewController()
-//            vc.matchIDApply(matchID: type.id)
-//            weakSelf.navigationController?.pushViewController(vc, animated: true)
-//          }
         }
     }.disposed(by: disposeBag)
   }
