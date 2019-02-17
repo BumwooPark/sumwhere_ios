@@ -10,7 +10,6 @@ import RxSwift
 
 class ChangeGenderViewController: UIViewController{
   
-  
   var completed: ((TripModel) -> ())?
   var trip: Trip
   var didUpdateConstraint = false

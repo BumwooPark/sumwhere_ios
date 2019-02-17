@@ -20,10 +20,18 @@ import MXParallaxHeader
 final class InsertPlanViewController: UIViewController{
   let store = EKEventStore()
   private let disposeBag = DisposeBag()
-  
   private var viewModel = PlanDateViewModel()
   private var didUpdateConstraint = false
   private let headerView = CalendarHeaderView.loadXib(nibName: "CalendarHeaderView") as! CalendarHeaderView
+  
+  private let titleLabel: UILabel = {
+    let label = UILabel()
+    label.numberOfLines = 0
+    label.font = UIFont.AppleSDGothicNeoSemiBold(size: 30)
+    label.textColor = .black
+    label.text = "언제떠날까요??"
+    return label
+  }()
   
   private let gregorian: Calendar = {
     var calendar = Calendar(identifier: .gregorian)
@@ -64,6 +72,9 @@ final class InsertPlanViewController: UIViewController{
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.navigationBar.backgroundColor = .white
+    guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+    statusBar.backgroundColor = .white
+    self.navigationController?.navigationBar.backgroundColor = .white
     let height = UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.frame.height ?? 0)
     calendarView.parallaxHeader.minimumHeight = height + 100
   }
@@ -82,6 +93,7 @@ final class InsertPlanViewController: UIViewController{
     super.viewDidLoad()
     _ = calendarView
     view.backgroundColor = .white
+    view.addSubview(titleLabel)
     view.addSubview(headerView)
     view.addSubview(calendarView)
     view.addSubview(completeButton)
@@ -122,8 +134,8 @@ final class InsertPlanViewController: UIViewController{
     
     viewModel.outputs.successSubmit
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
-        return {_ in
-          log.info("next step")
+        return {_ in  
+          weakSelf.navigationController?.pushViewController(InsertDetailScheduleViewController(), animated: true)
         }
     }.disposed(by: disposeBag)
   }
@@ -145,9 +157,15 @@ final class InsertPlanViewController: UIViewController{
   override func updateViewConstraints() {
     if !didUpdateConstraint{
       
+      titleLabel.snp.makeConstraints { (make) in
+        make.left.equalToSuperview().inset(10)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(20)
+      }
+      
       headerView.snp.makeConstraints { (make) in
-        make.top.left.right.equalToSuperview()
-        make.height.equalTo(250)
+        make.top.equalTo(titleLabel.snp.bottom)
+        make.left.right.equalToSuperview()
+        make.height.equalTo(40)
       }
       
       calendarView.snp.makeConstraints { (make) in
@@ -175,6 +193,7 @@ extension InsertPlanViewController: JTAppleCalendarViewDelegate{
   
   func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
     handleSelection(cell: cell, cellState: cellState)
+    deSelectDate()
   }
   
   func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {

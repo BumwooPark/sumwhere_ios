@@ -16,7 +16,6 @@ import NVActivityIndicatorView
 class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
   var didUpdateConstraint = false
   let disposeBag = DisposeBag()
-  let viewModel: RegisterTripViewModel
   
   private let backImageView: UIImageView = {
     let imageView = UIImageView()
@@ -143,18 +142,6 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
     label.addLink(to: URL(fileURLWithPath: ""), with: range)
     return label
   }()
-
-  
-  init(viewModel: RegisterTripViewModel) {
-    self.viewModel = viewModel
-    super.init(nibName: nil, bundle: nil)
-    
-    self.resultPlace.text = viewModel.inputModel.tripName
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -174,55 +161,55 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
     centerView.addSubview(completeButton)
     centerView.addSubview(lastChanceLabel)
     self.navigationController?.navigationBar.topItem?.title = String()
-    
-    completeButton.rx.tap
-      .do(onNext: {[weak self] (_) in
-            self?.startAnimating(CGSize(width: 50, height: 50),type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),backgroundColor: .clear, fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
-      })
-      .bind(to: viewModel.submitAction)
-      .disposed(by: disposeBag)
-    
-    viewModel.submitResult
-      .elements()
-      .subscribeNext(weak: self) { (weakSelf) -> (Trip) -> Void in
-        return { model in
-          weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
-          DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            TripProxyController.changer.accept(())
-          })
-        }
-      }.disposed(by: disposeBag)
-    
-    viewModel.submitResult
-      .errors()
-      .subscribeNext(weak: self, { (weakSelf) -> (Error) -> Void in
-        return { err in
-          weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
-          (err as? MoyaError)?.GalMalErrorHandler()
-        }
-      }).disposed(by: disposeBag)
-       
-    
-    viewModel.saver
-      .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
-      return {type in
-        switch type{
-        case .place(let model):
-          weakSelf.resultPlace.text = model.trip
-        case .date(let start, let end):
-          let startString = start.toFormat("MM월 dd일")
-          let endString = end.toFormat("MM월 dd일")
-          let calendar = Calendar.current
-          let date1 = calendar.startOfDay(for: start)
-          let date2 = calendar.startOfDay(for: end)
-          let components = calendar.dateComponents([.day], from: date1, to: date2)
-          let diffday = components.day ?? 0
-          weakSelf.resultDataLabel.text = "\(startString) - \(endString)\n(\(diffday)박 \(diffday+1)일)"
-        default:
-          break
-        }
-      }
-    }.disposed(by: disposeBag)
+//
+//    completeButton.rx.tap
+//      .do(onNext: {[weak self] (_) in
+//            self?.startAnimating(CGSize(width: 50, height: 50),type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),backgroundColor: .clear, fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
+//      })
+//      .bind(to: viewModel.submitAction)
+//      .disposed(by: disposeBag)
+//
+//    viewModel.submitResult
+//      .elements()
+//      .subscribeNext(weak: self) { (weakSelf) -> (Trip) -> Void in
+//        return { model in
+//          weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
+//          DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//            TripProxyController.changer.accept(())
+//          })
+//        }
+//      }.disposed(by: disposeBag)
+//
+//    viewModel.submitResult
+//      .errors()
+//      .subscribeNext(weak: self, { (weakSelf) -> (Error) -> Void in
+//        return { err in
+//          weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
+//          (err as? MoyaError)?.GalMalErrorHandler()
+//        }
+//      }).disposed(by: disposeBag)
+//
+//
+//    viewModel.saver
+//      .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
+//      return {type in
+//        switch type{
+//        case .place(let model):
+//          weakSelf.resultPlace.text = model.trip
+//        case .date(let start, let end):
+//          let startString = start.toFormat("MM월 dd일")
+//          let endString = end.toFormat("MM월 dd일")
+//          let calendar = Calendar.current
+//          let date1 = calendar.startOfDay(for: start)
+//          let date2 = calendar.startOfDay(for: end)
+//          let components = calendar.dateComponents([.day], from: date1, to: date2)
+//          let diffday = components.day ?? 0
+//          weakSelf.resultDataLabel.text = "\(startString) - \(endString)\n(\(diffday)박 \(diffday+1)일)"
+//        default:
+//          break
+//        }
+//      }
+//    }.disposed(by: disposeBag)
     
     view.setNeedsUpdateConstraints()
   }
@@ -310,6 +297,6 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
 
 extension RegisterViewController: TTTAttributedLabelDelegate{
   func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
-    self.viewModel.scrollToFirst.accept(())
+//    self.viewModel.scrollToFirst.accept(())
   }
 }

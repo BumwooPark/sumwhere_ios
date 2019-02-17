@@ -7,6 +7,7 @@
 //
 import RxSwift
 import RxCocoa
+import RxKeyboard
 
 internal protocol ScheduleInputs{
   func detailRegionTextUpdater(text: String)
@@ -15,6 +16,8 @@ internal protocol ScheduleInputs{
 
 internal protocol ScheduleOutputs{
   var imageData: Observable<String> {get}
+  var iskeyBoardShow: BehaviorRelay<Bool> {get}
+  var isSuccess: BehaviorRelay<Bool> {get}
   func nextStep()
 }
 
@@ -25,18 +28,43 @@ internal protocol ScheduleModelType{
 
 class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutputs {
   let imageData: Observable<String>
+  let iskeyBoardShow: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+  let disposeBag = DisposeBag()
+  let isSuccess = BehaviorRelay<Bool>(value: false)
+  
+  var regionText = String(){
+    didSet{
+      tripRegisterContainer
+    }
+  }
+  var activityText = String()
+  
   var inputs: ScheduleInputs { return self }
   var outputs: ScheduleOutputs { return self }
   
   init() {
     imageData = Observable.just("").asObservable()
+    RxKeyboard.instance.visibleHeight
+      .map{$0 > 0}
+      .drive(iskeyBoardShow)
+      .disposed(by: disposeBag)
   }
   
   func detailRegionTextUpdater(text: String) {
-    
+    regionText = text
+    checkSuccess()
   }
   
   func activityTextUpdater(text: String) {
+    activityText = text
+    checkSuccess()
+  }
+  
+  func checkSuccess() {
+    Observable
+      .just(regionText.count > 2 && activityText.count > 2)
+      .bind(to: isSuccess)
+      .disposed(by: disposeBag)
   }
   
   func nextStep() {

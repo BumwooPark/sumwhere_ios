@@ -42,6 +42,10 @@ class PlanDateViewModel: PlanDateType, PlanDateOutputs, PlanDateInputs{
   }
   
   func complete() {
+    
+    let input = tripRegisterContainer.resolve(InputTrip.self)
+    log.info(input)
+    
     successSubmit.accept(())
   }
   
@@ -51,7 +55,6 @@ class PlanDateViewModel: PlanDateType, PlanDateOutputs, PlanDateInputs{
       calendar.deselectAllDates(triggerSelectionDelegate: false)
       calendar.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
     }
-    
     switch selectedCount{
     case 0:
       self.selectedCount += 1
