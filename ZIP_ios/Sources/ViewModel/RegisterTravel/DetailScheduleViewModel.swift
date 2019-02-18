@@ -18,7 +18,7 @@ internal protocol ScheduleOutputs{
   var imageData: Observable<String> {get}
   var iskeyBoardShow: BehaviorRelay<Bool> {get}
   var isSuccess: BehaviorRelay<Bool> {get}
-  func nextStep()
+  func complete()
 }
 
 internal protocol ScheduleModelType{
@@ -32,11 +32,7 @@ class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutput
   let disposeBag = DisposeBag()
   let isSuccess = BehaviorRelay<Bool>(value: false)
   
-  var regionText = String(){
-    didSet{
-      tripRegisterContainer
-    }
-  }
+  var regionText = String()
   var activityText = String()
   
   var inputs: ScheduleInputs { return self }
@@ -67,8 +63,8 @@ class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutput
       .disposed(by: disposeBag)
   }
   
-  func nextStep() {
-    
+  func complete() {
+    var trip = tripRegisterContainer.resolve(InputTrip.self)
+    trip?.concept = self.activityText
   }
-
 }

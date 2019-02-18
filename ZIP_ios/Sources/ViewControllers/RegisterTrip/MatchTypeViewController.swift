@@ -50,9 +50,12 @@ final class MatchTypeViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(collectionView)
+    
+    
     tripRegisterContainer.register(InputTrip.self) { _ in
       InputTrip()
     }
+    
     self.navigationController?.navigationBar.topItem?.title = String()
     collectionView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()

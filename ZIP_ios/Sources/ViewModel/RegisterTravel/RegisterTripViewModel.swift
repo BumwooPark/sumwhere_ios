@@ -14,7 +14,7 @@ internal protocol RegisterTripInputs{
 }
 
 internal protocol RegisterTripOutputs{
-  
+  var dateString: Observable<String> {get}
 }
 
 internal protocol RegisterTripType{
@@ -24,73 +24,14 @@ internal protocol RegisterTripType{
 
 
 final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,RegisterTripOutputs{
+  var dateString: Observable<String>
+  
   var inputs: RegisterTripInputs {return self}
   var outputs: RegisterTripOutputs {return self}
   
-  enum SaveType{
-    case concept(title: String)
-    case place(model: TripType)
-    case date(start: Date, end: Date)
-  }
-  
-  public let saver = PublishRelay<SaveType>()
-  private let disposeBag = DisposeBag()
-  public let dismissAction = PublishSubject<Void>()
-  public let submitAction = PublishSubject<Void>()
-  public let backAction = PublishSubject<Void>()
-  public let scrollToFirst = PublishRelay<Void>()
-  public let tripPlaceBinder = PublishRelay<String>()
-  public let tripPlaceMapper = PublishRelay<[TripType]>()
-  public var inputModel = InputTrip()
-  
-  
-  lazy var submitResult = submitAction
-    .map{[unowned self] _ in return self.inputModel.ToModel()}
-    .flatMapLatest { (model) in
-      AuthManager.instance.provider.request(.createTrip(model: model))
-        .filterSuccessfulStatusCodes()
-        .map(ResultModel<Trip>.self)
-        .map{$0.result}
-        .asObservable()
-        .unwrap()
-        .materialize()
-    }.share()
-  
   init() {
-    let binder = tripPlaceBinder.flatMapLatest {
-      return AuthManager.instance
-        .provider
-        .request(.searchDestination(data: $0))
-        .filterSuccessfulStatusCodes()
-        .map(ResultModel<[TripType]>.self)
-        .map{$0.result}
-        .asObservable()
-        .unwrap()
-    }.materialize()
-      .share()
-    
-    binder.elements()
-      .bind(to: tripPlaceMapper)
-      .disposed(by: disposeBag)
-    binder.errors()
-    .subscribe(onNext: { (err) in
-        (err as? MoyaError)?.GalMalErrorHandler()
-      }).disposed(by: disposeBag)
-  
-    saver
-      .subscribeNext(weak: self) { (weakSelf) -> (RegisterTripViewModel.SaveType) -> Void in
-      return {model in
-        switch model{
-        case .place(let type):
-          weakSelf.inputModel.tripName = type.trip
-          weakSelf.inputModel.tripTypeId = type.id
-        case .date(let start, let end):
-          weakSelf.inputModel.startDate = start.toFormat("yyyy-MM-dd")
-          weakSelf.inputModel.endDate = end.toFormat("yyyy-MM-dd")
-        case .concept(let title):
-          weakSelf.inputModel.concept = title
-        }
-      }
-    }.disposed(by: disposeBag)
+    dateString = Observable.empty()
+    guard let model = tripRegisterContainer.resolve(InputTrip.self) else {return}
+    dateString = Observable<String>.just("\(model.startDate.toFormat("MM월 dd일")) - \( model.endDate.toFormat("MM월 dd일")))")
   }
 }

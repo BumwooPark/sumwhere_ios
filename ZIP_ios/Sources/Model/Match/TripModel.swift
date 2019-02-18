@@ -27,8 +27,8 @@ struct Trip: Codable{
     var trip = InputTrip()
     trip.concept = self.concept
     trip.tripTypeId = self.tripTypeId
-    trip.endDate = self.endDate
-    trip.startDate = self.startDate
+    trip.endDate = self.endDate.toDate()?.date ?? Date()
+    trip.startDate = self.startDate.toDate()?.date ?? Date()
     trip.genderType = self.genderType
     trip.matchTypeId = self.matchTypeId
     return trip

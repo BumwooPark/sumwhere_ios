@@ -15,10 +15,10 @@ struct InputTrip {
   var matchTypeId: Int = 0
   var genderType: String = "NONE"
   var concept: String = String()
-  var startDate: String = String()
-  var endDate: String = String()
+  var startDate: Date = Date()
+  var endDate: Date = Date()
   
   func ToModel() -> Trip{
-    return Trip(id: 0, userId: 0,matchTypeId: self.matchTypeId,concept: self.concept,tripTypeId: self.tripTypeId, genderType: self.genderType, startDate: self.startDate, endDate: self.endDate)
+    return Trip(id: 0, userId: 0,matchTypeId: self.matchTypeId,concept: self.concept,tripTypeId: self.tripTypeId, genderType: self.genderType, startDate: self.startDate.toFormat("yyyy-MM-dd"), endDate: self.endDate.toFormat("yyyy-MM-dd"))
   }
 }

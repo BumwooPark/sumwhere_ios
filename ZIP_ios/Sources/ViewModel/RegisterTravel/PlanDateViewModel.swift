@@ -43,9 +43,9 @@ class PlanDateViewModel: PlanDateType, PlanDateOutputs, PlanDateInputs{
   
   func complete() {
     
-    let input = tripRegisterContainer.resolve(InputTrip.self)
-    log.info(input)
-    
+    var input = tripRegisterContainer.resolve(InputTrip.self)
+    input?.startDate = startDate
+    input?.endDate = endDate
     successSubmit.accept(())
   }
   

@@ -16,7 +16,7 @@ import NVActivityIndicatorView
 class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
   var didUpdateConstraint = false
   let disposeBag = DisposeBag()
-  
+  let viewModel: RegisterTripViewModel = RegisterTripViewModel()
   private let backImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.image = #imageLiteral(resourceName: "bgMactingfin.png")
@@ -161,6 +161,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
     centerView.addSubview(completeButton)
     centerView.addSubview(lastChanceLabel)
     self.navigationController?.navigationBar.topItem?.title = String()
+    bind()
 //
 //    completeButton.rx.tap
 //      .do(onNext: {[weak self] (_) in
@@ -212,6 +213,16 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
 //    }.disposed(by: disposeBag)
     
     view.setNeedsUpdateConstraints()
+  }
+  
+  private func bind(){
+    viewModel.outputs
+      .dateString
+      .bind(to: resultDataLabel.rx.text)
+      .disposed(by: disposeBag)
+    
+    
+    
   }
   
   override func updateViewConstraints() {
