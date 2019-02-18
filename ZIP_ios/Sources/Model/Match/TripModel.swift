@@ -18,6 +18,7 @@ struct Trip: Codable{
   let userId: Int
   let matchTypeId: Int
   var concept: String
+  var region: String
   let tripTypeId: Int
   var genderType: String
   var startDate: String
@@ -31,6 +32,7 @@ struct Trip: Codable{
     trip.startDate = self.startDate.toDate()?.date ?? Date()
     trip.genderType = self.genderType
     trip.matchTypeId = self.matchTypeId
+    trip.region = self.region
     return trip
   }
 }

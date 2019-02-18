@@ -66,5 +66,6 @@ class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutput
   func complete() {
     var trip = tripRegisterContainer.resolve(InputTrip.self)
     trip?.concept = self.activityText
+    trip?.region = self.regionText
   }
 }
