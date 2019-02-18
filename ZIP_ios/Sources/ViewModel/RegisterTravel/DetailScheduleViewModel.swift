@@ -15,6 +15,7 @@ internal protocol ScheduleInputs{
 }
 
 internal protocol ScheduleOutputs{
+  var countryPlace: Observable<String> {get}
   var imageData: Observable<String> {get}
   var iskeyBoardShow: BehaviorRelay<Bool> {get}
   var isSuccess: BehaviorRelay<Bool> {get}
@@ -31,6 +32,7 @@ class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutput
   let iskeyBoardShow: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
   let disposeBag = DisposeBag()
   let isSuccess = BehaviorRelay<Bool>(value: false)
+  let countryPlace: Observable<String>
   
   var regionText = String()
   var activityText = String()
@@ -39,11 +41,18 @@ class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutput
   var outputs: ScheduleOutputs { return self }
   
   init() {
-    imageData = Observable.just("").asObservable()
+    let countryModel = tripRegisterContainer.resolve(CountryTripPlace.self)
+    imageData = Observable.just(countryModel?.imageURL ?? String()).asObservable()
     RxKeyboard.instance.visibleHeight
       .map{$0 > 0}
       .drive(iskeyBoardShow)
       .disposed(by: disposeBag)
+    
+    let trip = tripRegisterContainer.resolve(CountryWithTrip.self)
+    let country = trip?.country.name ?? String()
+    let place = trip?.tripPlace.trip ?? String()
+    
+    countryPlace = Observable<String>.just("\(country), \(place)")
   }
   
   func detailRegionTextUpdater(text: String) {

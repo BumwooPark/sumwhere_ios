@@ -16,6 +16,7 @@ internal protocol PlanDateInputs{
 }
 
 internal protocol PlanDateOutputs{
+  var titleBinder: Observable<String> {get}
   var selectedBinder: PublishRelay<(result: Bool, start:Date, end: Date)> { get }
   var successSubmit: PublishRelay<()> { get }
 }
@@ -29,7 +30,7 @@ class PlanDateViewModel: PlanDateType, PlanDateOutputs, PlanDateInputs{
   
   var inputs: PlanDateInputs {return self}
   var outputs: PlanDateOutputs {return self}
-  
+  var titleBinder: Observable<String>
   var startDate: Date = Date()
   var endDate: Date = Date()
   var selectedCount = 0
@@ -39,13 +40,14 @@ class PlanDateViewModel: PlanDateType, PlanDateOutputs, PlanDateInputs{
   init() {
     self.selectedBinder = PublishRelay<(result: Bool, start:Date, end: Date)>()
     self.successSubmit = PublishRelay<()>()
+    let trip = tripRegisterContainer.resolve(CountryWithTrip.self)
+    titleBinder = Observable.just("\(trip?.tripPlace.trip ?? String())\n언제떠날까요?")
   }
   
   func complete() {
-    
-    var input = tripRegisterContainer.resolve(InputTrip.self)
-    input?.startDate = startDate
-    input?.endDate = endDate
+    tripRegisterContainer.register(StartEndDate.self) { [weak self] _ in
+      StartEndDate(startDate: self?.startDate ?? Date(),endDate: self?.endDate ?? Date())
+    }
     successSubmit.accept(())
   }
   

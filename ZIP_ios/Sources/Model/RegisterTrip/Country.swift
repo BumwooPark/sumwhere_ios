@@ -11,3 +11,15 @@ struct Country: Codable {
   let name: String
   let imageUrl: String
 }
+
+///DI용 나라와 여행지 네이밍위함
+struct CountryWithTrip{
+  let country: Country
+  let tripPlace: CountryTripPlace
+}
+
+///DI용 시작날짜와 종료날짜
+struct StartEndDate{
+  let startDate: Date
+  let endDate: Date
+}

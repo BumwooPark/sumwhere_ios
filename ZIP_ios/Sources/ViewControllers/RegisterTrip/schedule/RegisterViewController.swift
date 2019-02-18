@@ -221,6 +221,10 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
       .bind(to: resultDataLabel.rx.text)
       .disposed(by: disposeBag)
     
+    viewModel.outputs
+      .placeName
+      .bind(to: resultPlace.rx.text)
+      .disposed(by: disposeBag)
     
     
   }

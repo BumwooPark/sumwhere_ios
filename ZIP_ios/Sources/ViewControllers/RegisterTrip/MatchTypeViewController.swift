@@ -49,12 +49,20 @@ final class MatchTypeViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationController?.navigationBar.topItem?.title = String()
     view.addSubview(collectionView)
     
     
     tripRegisterContainer.register(InputTrip.self) { _ in
       InputTrip()
     }
+    
+    tripRegisterContainer.register(CountryWithTrip.self) { r in
+      CountryWithTrip(country: r.resolve(Country.self)!,tripPlace: r.resolve(CountryTripPlace.self)!)
+    }
+    
+    
+    
     
     self.navigationController?.navigationBar.topItem?.title = String()
     collectionView.snp.makeConstraints { (make) in
@@ -77,6 +85,7 @@ final class MatchTypeViewController: UIViewController{
       .modelSelected(MatchType.self)
       .subscribeNext(weak: self) { (weakSelf) -> (MatchType) -> Void in
         return {type in
+          tripRegisterContainer.register(MatchType.self, factory: { _ in type })
           weakSelf.navigationController?.pushViewController(SelectCountryViewController(), animated: true)
         }
     }.disposed(by: disposeBag)

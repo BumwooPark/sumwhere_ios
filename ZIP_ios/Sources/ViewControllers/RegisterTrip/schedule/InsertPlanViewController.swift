@@ -27,9 +27,8 @@ final class InsertPlanViewController: UIViewController{
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.numberOfLines = 0
-    label.font = UIFont.AppleSDGothicNeoSemiBold(size: 30)
+    label.font = UIFont.AppleSDGothicNeoSemiBold(size: 20)
     label.textColor = .black
-    label.text = "언제떠날까요??"
     return label
   }()
   
@@ -138,6 +137,11 @@ final class InsertPlanViewController: UIViewController{
           weakSelf.navigationController?.pushViewController(InsertDetailScheduleViewController(), animated: true)
         }
     }.disposed(by: disposeBag)
+    
+    viewModel.outputs
+      .titleBinder
+      .bind(to: titleLabel.rx.text)
+      .disposed(by: disposeBag)
   }
   
   private func deSelectDate(){
@@ -158,7 +162,7 @@ final class InsertPlanViewController: UIViewController{
     if !didUpdateConstraint{
       
       titleLabel.snp.makeConstraints { (make) in
-        make.left.equalToSuperview().inset(10)
+        make.left.equalToSuperview().inset(40)
         make.top.equalTo(self.view.safeAreaLayoutGuide).inset(20)
       }
       

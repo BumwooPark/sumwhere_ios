@@ -774,9 +774,9 @@
 		0A745681210DFB5C00F8A0C9 /* RegisterTravel */ = {
 			isa = PBXGroup;
 			children = (
-				0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */,
-				B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */,
 				B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */,
+				B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */,
+				0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */,
 			);
 			path = RegisterTravel;
 			sourceTree = "<group>";

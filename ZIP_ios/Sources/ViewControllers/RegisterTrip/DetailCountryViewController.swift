@@ -123,6 +123,7 @@ class DetailCountryViewController: PTDetailViewController{
   }
   
   private func pushViewController(place: CountryTripPlace){
+    tripRegisterContainer.register(CountryTripPlace.self) { _ in place }
     self.navigationController?.pushViewController(InsertPlanViewController(), animated: true)
   }
   

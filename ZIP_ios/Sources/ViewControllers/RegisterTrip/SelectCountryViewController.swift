@@ -45,6 +45,7 @@ class SelectCountryViewController: PTTableViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationController?.navigationBar.topItem?.title = String()
     tableView.register(ParallaxCell.self, forCellReuseIdentifier: String(describing: ParallaxCell.self))
     tableView.rowHeight = 200
     tableView.dataSource = nil

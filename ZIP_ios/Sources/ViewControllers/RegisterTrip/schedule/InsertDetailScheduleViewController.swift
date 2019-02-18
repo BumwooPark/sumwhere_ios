@@ -7,6 +7,7 @@
 //
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class InsertDetailScheduleViewController: UIViewController{
   private var didUpdateConstraint = false
@@ -24,7 +25,6 @@ class InsertDetailScheduleViewController: UIViewController{
   
   private let currentRegionButton: UIButton = {
     let button = UIButton()
-    button.setTitle("일본, 오사카", for: .normal)
     button.setImage(#imageLiteral(resourceName: "iconPreocation.png"), for: .normal)
     button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: -10)
     button.titleLabel?.font = .AppleSDGothicNeoSemiBold(size: 12.9)
@@ -67,7 +67,7 @@ class InsertDetailScheduleViewController: UIViewController{
   private let imageView: UIImageView = {
     var view = UIImageView()
     view.kf.indicatorType = .activity
-    view.backgroundColor = .blue
+    view.contentMode = .scaleAspectFill
     return view
   }()
   
@@ -120,6 +120,7 @@ class InsertDetailScheduleViewController: UIViewController{
     contentView.addSubview(detailRegionField)
     contentView.addSubview(detailConceptButton)
     contentView.addSubview(activityField)
+    
     view.setNeedsUpdateConstraints()
     bind()
   }
@@ -136,7 +137,8 @@ class InsertDetailScheduleViewController: UIViewController{
     viewModel.outputs.imageData
       .subscribeNext(weak: self) { (weakSelf) -> (String) -> Void in
         return {url in
-          weakSelf.imageView.kf.setImage(with: URL(string: url.addSumwhereImageURL()), options: [.transition(.fade(0.2)),.cacheOriginalImage])
+          let processor = BlendImageProcessor(blendMode: .darken, alpha: 1.0, backgroundColor: .lightGray)
+          weakSelf.imageView.kf.setImage(with: URL(string: url.addSumwhereImageURL()), options: [.processor(processor),.transition(.fade(0.2)),.cacheOriginalImage])
         }
       }.disposed(by: disposeBag)
     
@@ -153,6 +155,10 @@ class InsertDetailScheduleViewController: UIViewController{
           weakSelf.completeButton.backgroundColor = result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
         }
     }.disposed(by: disposeBag)
+    
+    viewModel.outputs.countryPlace
+      .bind(to: currentRegionButton.rx.title())
+      .disposed(by: disposeBag)
     
     completeButton.rx.tap
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in

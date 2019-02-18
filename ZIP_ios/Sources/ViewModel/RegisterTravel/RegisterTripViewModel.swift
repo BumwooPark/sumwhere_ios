@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Moya
+import SwiftDate
 
 internal protocol RegisterTripInputs{
   func upLoad()
@@ -16,6 +17,7 @@ internal protocol RegisterTripInputs{
 
 internal protocol RegisterTripOutputs{
   var dateString: Observable<String> {get}
+  var placeName: Observable<String>{get}
 }
 
 internal protocol RegisterTripType{
@@ -26,14 +28,18 @@ internal protocol RegisterTripType{
 
 final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,RegisterTripOutputs{
   var dateString: Observable<String>
-  
+  var placeName: Observable<String>
   var inputs: RegisterTripInputs {return self}
   var outputs: RegisterTripOutputs {return self}
   
   init() {
-    dateString = Observable.empty()
-    guard let model = tripRegisterContainer.resolve(InputTrip.self) else {return}
-    dateString = Observable<String>.just("\(model.startDate.toFormat("MM월 dd일")) - \( model.endDate.toFormat("MM월 dd일")))")
+    let model = tripRegisterContainer.resolve(StartEndDate.self)!
+    let date = model.endDate - model.startDate
+    dateString = Observable<String>.just("\(model.startDate.toFormat("MM월 dd일")) -\n \( model.endDate.toFormat("MM월 dd일")) (\(date.day ?? 0)박\((date.day ?? 0)+1)일)")
+    let trip = tripRegisterContainer.resolve(CountryWithTrip.self)
+    let country = trip?.country.name ?? String()
+    let place = trip?.tripPlace.trip ?? String()
+    placeName = Observable<String>.just("\(country), \(place)")
   }
   
   func upLoad() {
@@ -44,5 +50,7 @@ final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,Register
       .map{$0.result}
       .asObservable()
       .unwrap()
+      .materialize()
+      .share()
   }
 }
