@@ -12,12 +12,13 @@ import Moya
 import SwiftDate
 
 internal protocol RegisterTripInputs{
-  func upLoad() -> Observable<Event<Trip>>
+  func upLoad()
 }
 
 internal protocol RegisterTripOutputs{
   var dateString: Observable<String> {get}
   var placeName: Observable<String>{get}
+  var isSubmitSuccess: PublishRelay<Event<Trip>> {get}
 }
 
 internal protocol RegisterTripType{
@@ -25,14 +26,16 @@ internal protocol RegisterTripType{
   var outputs: RegisterTripOutputs { get }
 }
 
-
 final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,RegisterTripOutputs{
+  let disposeBag = DisposeBag()
   var dateString: Observable<String>
   var placeName: Observable<String>
+  var isSubmitSuccess: PublishRelay<Event<Trip>>
   var inputs: RegisterTripInputs {return self}
   var outputs: RegisterTripOutputs {return self}
   
   init() {
+    isSubmitSuccess = PublishRelay<Event<Trip>>()
     let model = tripRegisterContainer.resolve(StartEndDate.self)!
     let date = model.endDate - model.startDate
     dateString = Observable<String>.just("\(model.startDate.toFormat("MM월 dd일")) -\n \( model.endDate.toFormat("MM월 dd일")) (\(date.day ?? 0)박\((date.day ?? 0)+1)일)")
@@ -42,7 +45,7 @@ final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,Register
     placeName = Observable<String>.just("\(country), \(place)")
   }
   
-  func upLoad() -> Observable<Event<Trip>> {
+  func upLoad(){
     if let matchType = tripRegisterContainer.resolve(MatchType.self),
       let concept = tripRegisterContainer.resolve(Concept.self),
       let place = tripRegisterContainer.resolve(CountryTripPlace.self),
@@ -56,16 +59,15 @@ final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,Register
            genderType: "NONE",
            startDate: date.startDate.toFormat("yyyy-MM-dd"),
            endDate: date.endDate.toFormat("yyyy-MM-dd"))
-      return AuthManager.instance.provider.request(.createTrip(model: model))
+      AuthManager.instance.provider.request(.createTrip(model: model))
         .filterSuccessfulStatusCodes()
         .map(ResultModel<Trip>.self)
         .map{$0.result}
         .asObservable()
         .unwrap()
         .materialize()
-        .share()
+        .bind(to: isSubmitSuccess)
+        .disposed(by: disposeBag)
     }
-    
-    return Observable.empty()
   }
 }

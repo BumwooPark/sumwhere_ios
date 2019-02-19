@@ -209,6 +209,7 @@
 		B1CCFF67221293E0004A9500 /* DetailScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */; };
 		B1CCFF6A22155B9D004A9500 /* PlanDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */; };
 		B1CCFF6C221B8CB3004A9500 /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6B221B8CB3004A9500 /* Concept.swift */; };
+		B1CCFF6E221BD2CE004A9500 /* RegisterdTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6D221BD2CE004A9500 /* RegisterdTripViewModel.swift */; };
 		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
 		B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */; };
 		B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB02212D2086001A9801 /* DetailCommitView.swift */; };
@@ -453,6 +454,7 @@
 		B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewModel.swift; sourceTree = "<group>"; };
 		B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDateViewModel.swift; sourceTree = "<group>"; };
 		B1CCFF6B221B8CB3004A9500 /* Concept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
+		B1CCFF6D221BD2CE004A9500 /* RegisterdTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterdTripViewModel.swift; sourceTree = "<group>"; };
 		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
 		B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserImageCell.xib; sourceTree = "<group>"; };
 		B1D1CB02212D2086001A9801 /* DetailCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommitView.swift; sourceTree = "<group>"; };
@@ -779,6 +781,7 @@
 				B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */,
 				B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */,
 				0A6EB9E0216CB89F00117526 /* RegisterTripViewModel.swift */,
+				B1CCFF6D221BD2CE004A9500 /* RegisterdTripViewModel.swift */,
 			);
 			path = RegisterTravel;
 			sourceTree = "<group>";
@@ -1565,6 +1568,7 @@
 				B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */,
 				0A33277D213BBD9700BC2906 /* GenderAgeJobViewController.swift in Sources */,
 				0A075BFF21553611004A4DBF /* DefaultLoginViewModel.swift in Sources */,
+				B1CCFF6E221BD2CE004A9500 /* RegisterdTripViewModel.swift in Sources */,
 				0A1B0F0321ECC0880035E657 /* BannerModel.swift in Sources */,
 				0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */,
 				0A13CA5321A96C9E0081C55F /* Operator + Extension.swift in Sources */,

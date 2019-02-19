@@ -12,6 +12,7 @@ import RxKeyboard
 internal protocol ScheduleInputs{
   func detailRegionTextUpdater(text: String)
   func activityTextUpdater(text: String)
+  func complete()
 }
 
 internal protocol ScheduleOutputs{
@@ -19,7 +20,6 @@ internal protocol ScheduleOutputs{
   var imageData: Observable<String> {get}
   var iskeyBoardShow: BehaviorRelay<Bool> {get}
   var isSuccess: BehaviorRelay<Bool> {get}
-  func complete()
 }
 
 internal protocol ScheduleModelType{
@@ -73,8 +73,10 @@ class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutput
   }
   
   func complete() {
-    tripRegisterContainer.register(Concept.self) {[weak self] _ in
-      Concept(region: self?.regionText ?? String() ,activity: self?.activityText ?? String())
+    let region = self.regionText
+    let activity = self.activityText
+    tripRegisterContainer.register(Concept.self) { _ in
+      Concept(region: region ,activity: activity)
     }
   }
 }

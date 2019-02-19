@@ -9,7 +9,7 @@
 class DestinationSearchCell: UITableViewCell{
   
   var didUpdateConstraint = false
-  var item: (TripType?,String?){
+  var item: (TripPlace?,String?){
     didSet{
       guard let itemString = item.0?.trip ,let searchString = item.1 else {return}
       let attributeString = NSMutableAttributedString(string: itemString)
@@ -19,7 +19,7 @@ class DestinationSearchCell: UITableViewCell{
       let length : Int = searchString.count
       attributeString.addAttributes([.foregroundColor : UIColor.black], range: NSRange(location: location, length: length))
       destinationLabel.attributedText = attributeString
-      countryLabel.text = item.0?.country
+      countryLabel.text = item.0?.trip
     }
   }
   

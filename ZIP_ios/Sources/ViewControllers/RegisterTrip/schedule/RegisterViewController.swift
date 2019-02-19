@@ -73,7 +73,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
   
   private let resultPlace: UILabel = {
     let label = UILabel()
-    label.font = UIFont.AppleSDGothicNeoSemiBold(size: 20.4)
+    label.font = .AppleSDGothicNeoSemiBold(size: 20.4)
     return label
   }()
   
@@ -93,7 +93,7 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
   
   private let resultDataLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.AppleSDGothicNeoSemiBold(size: 20.4)
+    label.font = .AppleSDGothicNeoSemiBold(size: 20.4)
     label.textAlignment = .right
     label.numberOfLines = 0
     return label
@@ -177,7 +177,37 @@ class RegisterViewController: UIViewController, NVActivityIndicatorViewable{
       .bind(to: resultPlace.rx.text)
       .disposed(by: disposeBag)
     
+    completeButton
+      .rx
+      .tap
+      .do(onNext: {[weak self] _ in
+        self?.startAnimating(CGSize(width: 50, height: 50), type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),backgroundColor: .clear,fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
+      })
+      .bind(onNext: viewModel.inputs.upLoad)
+      .disposed(by: disposeBag)
+      
+    let isSuccess = viewModel.outputs
+      .isSubmitSuccess
+      .do(onNext: {[weak self] (_) in
+        self?.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
+      })
+      .share()
+      
+    isSuccess
+      .elements()
+      .subscribeNext(weak: self) { (weakSelf) -> (Trip) -> Void in
+        return {t in
+          TripProxyController.changer.accept(())
+        }
+      }.disposed(by: disposeBag)
     
+    isSuccess
+      .errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return {err in
+          log.info(err)
+        }
+      }.disposed(by: disposeBag)
   }
   
   override func updateViewConstraints() {

@@ -10,24 +10,25 @@ import Foundation
 
 struct TripModel: Codable{
   let trip: Trip
-  let tripType: TripType
+  let tripPlace: TripPlace
 }
 
 struct Trip: Codable{
   let id: Int
   let userId: Int
   let matchTypeId: Int
-  var activity: String
-  var region: String
+  let activity: String
+  let region: String
   let tripPlaceId: Int
   var genderType: String
   var startDate: String
   var endDate: String
 }
 
-struct TripType: Codable{
+struct TripPlace: Codable{
   let id: Int
   let trip: String
-  let country: String
+  let discription: String
+  let countryId: Int
   let imageURL: String
 }

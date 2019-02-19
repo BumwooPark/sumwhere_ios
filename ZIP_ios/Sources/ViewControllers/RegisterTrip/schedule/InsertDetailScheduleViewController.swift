@@ -126,11 +126,15 @@ class InsertDetailScheduleViewController: UIViewController{
   }
   
   private func bind(){
-    activityField.rx.text.orEmpty
+    activityField.rx
+      .text
+      .orEmpty
       .bind(onNext: viewModel.inputs.activityTextUpdater)
       .disposed(by: disposeBag)
     
-    detailRegionField.rx.text.orEmpty
+    detailRegionField.rx
+      .text
+      .orEmpty
       .bind(onNext: viewModel.inputs.detailRegionTextUpdater)
       .disposed(by: disposeBag)
     
@@ -142,27 +146,30 @@ class InsertDetailScheduleViewController: UIViewController{
         }
       }.disposed(by: disposeBag)
     
-    viewModel.outputs.iskeyBoardShow
+    viewModel.outputs
+      .iskeyBoardShow
       .observeOn(MainScheduler.asyncInstance)
       .bind(onNext: topImageViewAdjust)
       .disposed(by: disposeBag)
     
-    viewModel.outputs.isSuccess
+    viewModel.outputs
+      .isSuccess
       .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
         return {result in
-          log.info(result)
           weakSelf.completeButton.isEnabled = result
           weakSelf.completeButton.backgroundColor = result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.9294117647, green: 0.9294117647, blue: 0.9294117647, alpha: 1)
         }
     }.disposed(by: disposeBag)
     
-    viewModel.outputs.countryPlace
+    viewModel.outputs
+      .countryPlace
       .bind(to: currentRegionButton.rx.title())
       .disposed(by: disposeBag)
     
     completeButton.rx.tap
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return { _ in
+          weakSelf.viewModel.inputs.complete()
           weakSelf.navigationController?.pushViewController(RegisterViewController(), animated: true)
         }
       }.disposed(by: disposeBag)
