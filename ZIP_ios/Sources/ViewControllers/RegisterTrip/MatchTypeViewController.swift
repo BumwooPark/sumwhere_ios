@@ -60,10 +60,7 @@ final class MatchTypeViewController: UIViewController{
     tripRegisterContainer.register(CountryWithTrip.self) { r in
       CountryWithTrip(country: r.resolve(Country.self)!,tripPlace: r.resolve(CountryTripPlace.self)!)
     }
-    
-    
-    
-    
+
     self.navigationController?.navigationBar.topItem?.title = String()
     collectionView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()

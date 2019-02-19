@@ -73,8 +73,8 @@ class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutput
   }
   
   func complete() {
-    var trip = tripRegisterContainer.resolve(InputTrip.self)
-    trip?.concept = self.activityText
-    trip?.region = self.regionText
+    tripRegisterContainer.register(Concept.self) {[weak self] _ in
+      Concept(region: self?.regionText ?? String() ,activity: self?.activityText ?? String())
+    }
   }
 }

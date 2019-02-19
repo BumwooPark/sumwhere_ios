@@ -51,7 +51,7 @@ class RegisterdSubviewController: UIViewController, UICollectionViewDelegateFlow
       return Observable<[TripSelectorType]>
         .just([.gender(icon: #imageLiteral(resourceName: "currentTimeIcon.png"), title: model.trip.genderType),
                .date(icon: #imageLiteral(resourceName: "currentTimeIcon.png"), start: model.trip.startDate,end: model.trip.endDate),
-               .comment(icon: #imageLiteral(resourceName: "currentTimeIcon.png"), title: model.trip.concept)])
+               .comment(icon: #imageLiteral(resourceName: "currentTimeIcon.png"), title: model.trip.activity)])
       }.map{[GenericSectionModel<TripSelectorType>(items: $0)]}
       .bind(to: collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)

@@ -12,7 +12,7 @@ import Moya
 import SwiftDate
 
 internal protocol RegisterTripInputs{
-  func upLoad()
+  func upLoad() -> Observable<Event<Trip>>
 }
 
 internal protocol RegisterTripOutputs{
@@ -42,15 +42,30 @@ final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,Register
     placeName = Observable<String>.just("\(country), \(place)")
   }
   
-  func upLoad() {
-    guard let model = tripRegisterContainer.resolve(InputTrip.self)?.ToModel() else {return}
-    AuthManager.instance.provider.request(.createTrip(model: model))
-      .filterSuccessfulStatusCodes()
-      .map(ResultModel<Trip>.self)
-      .map{$0.result}
-      .asObservable()
-      .unwrap()
-      .materialize()
-      .share()
+  func upLoad() -> Observable<Event<Trip>> {
+    if let matchType = tripRegisterContainer.resolve(MatchType.self),
+      let concept = tripRegisterContainer.resolve(Concept.self),
+      let place = tripRegisterContainer.resolve(CountryTripPlace.self),
+      let date = tripRegisterContainer.resolve(StartEndDate.self){
+      let model = Trip(id: 0,
+           userId: 0,
+           matchTypeId: matchType.id,
+           activity: concept.activity,
+           region: concept.region,
+           tripPlaceId: place.id,
+           genderType: "NONE",
+           startDate: date.startDate.toFormat("yyyy-MM-dd"),
+           endDate: date.endDate.toFormat("yyyy-MM-dd"))
+      return AuthManager.instance.provider.request(.createTrip(model: model))
+        .filterSuccessfulStatusCodes()
+        .map(ResultModel<Trip>.self)
+        .map{$0.result}
+        .asObservable()
+        .unwrap()
+        .materialize()
+        .share()
+    }
+    
+    return Observable.empty()
   }
 }

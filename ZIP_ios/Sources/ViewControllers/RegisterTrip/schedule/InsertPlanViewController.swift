@@ -131,7 +131,8 @@ final class InsertPlanViewController: UIViewController{
       }.disposed(by: disposeBag)
     
     
-    viewModel.outputs.successSubmit
+    viewModel.outputs
+      .successSubmit
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return {_ in  
           weakSelf.navigationController?.pushViewController(InsertDetailScheduleViewController(), animated: true)

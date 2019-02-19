@@ -208,6 +208,7 @@
 		B1CCFF6522129149004A9500 /* InsertDetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */; };
 		B1CCFF67221293E0004A9500 /* DetailScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */; };
 		B1CCFF6A22155B9D004A9500 /* PlanDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */; };
+		B1CCFF6C221B8CB3004A9500 /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6B221B8CB3004A9500 /* Concept.swift */; };
 		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
 		B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */; };
 		B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB02212D2086001A9801 /* DetailCommitView.swift */; };
@@ -451,6 +452,7 @@
 		B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDetailScheduleViewController.swift; sourceTree = "<group>"; };
 		B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewModel.swift; sourceTree = "<group>"; };
 		B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDateViewModel.swift; sourceTree = "<group>"; };
+		B1CCFF6B221B8CB3004A9500 /* Concept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
 		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
 		B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserImageCell.xib; sourceTree = "<group>"; };
 		B1D1CB02212D2086001A9801 /* DetailCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommitView.swift; sourceTree = "<group>"; };
@@ -1102,6 +1104,7 @@
 				B16BD8CC21B529CE0010EEE0 /* GADateCell.swift */,
 				0A6812E1220FDE6900A84715 /* CountryTripPlace.swift */,
 				0A6812E3220FEA0700A84715 /* Country.swift */,
+				B1CCFF6B221B8CB3004A9500 /* Concept.swift */,
 			);
 			path = RegisterTrip;
 			sourceTree = "<group>";
@@ -1527,6 +1530,7 @@
 				B16BD8C721B51F560010EEE0 /* MapCell.swift in Sources */,
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
 				B163846721F5965000665060 /* RegisterViewController.swift in Sources */,
+				B1CCFF6C221B8CB3004A9500 /* Concept.swift in Sources */,
 				0A13CA4A21A6F0030081C55F /* PHeaderView.swift in Sources */,
 				B16BD8A321A79F460010EEE0 /* AdMobViewController.swift in Sources */,
 				0A1B0EFB21EB74370035E657 /* NoticeModel.swift in Sources */,

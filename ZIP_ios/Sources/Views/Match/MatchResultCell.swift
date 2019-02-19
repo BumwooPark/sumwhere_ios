@@ -17,7 +17,7 @@ class MatchResultCell: UICollectionViewCell{
       profileImage.kf.setImage(with: URL(string: item.user.mainProfileImage?.addSumwhereImageURL() ?? "")!)
       titleLabel.text = timeCalculate(time: item.trip.startDate)
       nickNameLabel.attributedText = nameAgePlaceAttributedString(item: item)
-      explainLabel.text = item.trip.concept
+      explainLabel.text = item.trip.activity
       
       if let dateString = item.trip.startDate.toDate()?.date.toFormat("yyyy MM월 dd일"){
           startTimeButton.setTitle(dateString, for: .normal)
