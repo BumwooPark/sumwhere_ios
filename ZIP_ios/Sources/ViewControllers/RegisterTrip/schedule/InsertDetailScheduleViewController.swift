@@ -82,11 +82,18 @@ class InsertDetailScheduleViewController: UIViewController{
     return textField
   }()
   
-  private let activityField: UITextFieldPadding = {
-    let textField = UITextFieldPadding(padding: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0))
-    textField.placeholder = "ex)  카오산 로드에서 맥도날드 앞에서 사진을 찍고싶어요!"
+  private let placeholderLabel: UILabel = {
+    let label = UILabel()
+    label.text = "ex) 카오산 로드에서 맥도날드 앞에서 사진을 찍고싶어요!"
+    label.numberOfLines = 2
+    label.textColor = .lightGray
+    label.font = .AppleSDGothicNeoRegular(size: 12.4)
+    return label
+  }()
+  
+  private let activityTextView: UITextView = {
+    let textField = UITextView()
     textField.textAlignment = .left
-    textField.contentVerticalAlignment = .top
     textField.layer.cornerRadius = 2.7
     textField.layer.borderWidth = 0.7
     textField.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
@@ -119,14 +126,15 @@ class InsertDetailScheduleViewController: UIViewController{
     contentView.addSubview(detailRegionButton)
     contentView.addSubview(detailRegionField)
     contentView.addSubview(detailConceptButton)
-    contentView.addSubview(activityField)
+    contentView.addSubview(activityTextView)
+    activityTextView.addSubview(placeholderLabel)
     
     view.setNeedsUpdateConstraints()
     bind()
   }
   
   private func bind(){
-    activityField.rx
+    activityTextView.rx
       .text
       .orEmpty
       .bind(onNext: viewModel.inputs.activityTextUpdater)
@@ -164,6 +172,12 @@ class InsertDetailScheduleViewController: UIViewController{
     viewModel.outputs
       .countryPlace
       .bind(to: currentRegionButton.rx.title())
+      .disposed(by: disposeBag)
+    
+    activityTextView.rx.text
+      .orEmpty
+      .map{!$0.isEmpty}
+      .bind(to: placeholderLabel.rx.isHidden)
       .disposed(by: disposeBag)
     
     completeButton.rx.tap
@@ -238,7 +252,7 @@ class InsertDetailScheduleViewController: UIViewController{
         make.height.equalTo(16)
       }
       
-      activityField.snp.makeConstraints { (make) in
+      activityTextView.snp.makeConstraints { (make) in
         make.left.equalTo(detailConceptButton)
         make.right.equalTo(detailRegionField)
         make.top.equalTo(detailConceptButton.snp.bottom).offset(8)
@@ -248,6 +262,10 @@ class InsertDetailScheduleViewController: UIViewController{
       completeButton.snp.makeConstraints { (make) in
         make.bottom.left.right.equalTo(self.view.safeAreaLayoutGuide).inset(10)
         make.height.equalTo(50)
+      }
+      
+      placeholderLabel.snp.makeConstraints { (make) in
+        make.left.top.right.equalToSuperview().inset(10)
       }
       
       didUpdateConstraint = true

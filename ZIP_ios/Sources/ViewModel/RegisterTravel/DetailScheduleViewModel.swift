@@ -67,7 +67,7 @@ class DetailScheduleViewModel: ScheduleModelType, ScheduleInputs, ScheduleOutput
   
   func checkSuccess() {
     Observable
-      .just(regionText.count > 2 && activityText.count > 2)
+      .just(regionText.count > 1 && activityText.count > 2)
       .bind(to: isSuccess)
       .disposed(by: disposeBag)
   }

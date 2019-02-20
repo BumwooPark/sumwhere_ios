@@ -114,4 +114,3 @@ class RegisterdTripViewModel: RegisterdTypes, RegisterdOutputs, RegisterdInputs{
       }.disposed(by: disposeBag)
   }
 }
-

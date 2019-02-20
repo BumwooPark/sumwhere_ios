@@ -114,7 +114,7 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable, U
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    startAnimating(CGSize(width: 50, height: 50), type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
+    startAnimating(CGSize(width: 50, height: 50), type: .circleStrokeSpin, color: #colorLiteral(red: 0.07450980392, green: 0.4823529412, blue: 0.7803921569, alpha: 1),backgroundColor: .clear,fadeInAnimation: NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION)
     
     Observable<Int>.interval(4, scheduler: MainScheduler.instance)
       .filter({[unowned self] (_) -> Bool in

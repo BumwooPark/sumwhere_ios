@@ -14,13 +14,15 @@ class MatchResultCell: UICollectionViewCell{
   var item: UserTripJoinModel?{
     didSet{
       guard let item = item else {return}
-      profileImage.kf.setImage(with: URL(string: item.user.mainProfileImage?.addSumwhereImageURL() ?? "")!)
-      titleLabel.text = timeCalculate(time: item.trip.startDate)
+      profileImage.kf.setImage(with: URL(string: item.user.mainProfileImage?.addSumwhereImageURL() ?? "")!,options: [.transition(.fade(0.2))])
       nickNameLabel.attributedText = nameAgePlaceAttributedString(item: item)
       explainLabel.text = item.trip.activity
+      titleLabel.text = item.trip.region
       
-      if let dateString = item.trip.startDate.toDate()?.date.toFormat("yyyy MM월 dd일"){
-          startTimeButton.setTitle(dateString, for: .normal)
+      if let start = item.trip.startDate.toDate(),
+        let end = item.trip.endDate.toDate(){
+        let strings = "\(start.toFormat("MM월dd일")) - \(end.toFormat("MM월dd일"))"
+        tripTimeButton.setTitle(strings, for: .normal)
       }
     }
   }
@@ -31,9 +33,10 @@ class MatchResultCell: UICollectionViewCell{
     return label
   }()
   
-  private let startTimeButton: UIButton = {
+  private let tripTimeButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "currentTimeIcon.png"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "calendaricon.png"), for: .normal)
+    button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5)
     button.titleLabel?.font = .AppleSDGothicNeoRegular(size: 14.7)
     button.setTitleColor(#colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 1), for: .normal)
     button.isEnabled = false
@@ -81,7 +84,7 @@ class MatchResultCell: UICollectionViewCell{
     contentView.layer.cornerRadius = 20
     contentView.backgroundColor = .white
     contentView.addSubview(titleLabel)
-    contentView.addSubview(startTimeButton)
+    contentView.addSubview(tripTimeButton)
     contentView.addSubview(dividLine)
     contentView.addSubview(gradientView)
     gradientView.addSubview(emptyView)
@@ -115,19 +118,6 @@ class MatchResultCell: UICollectionViewCell{
     return attributedString
   }
   
-  
-  func timeCalculate(time: String) -> String {
-    guard let startDate = time.toDate()?.date else {return String()}
-    
-    let result = startDate - Date()
-    
-    let day = result.day ?? 0
-    let week = result.weekOfYear ?? 0
-    let days = day + (week * 7)
-    
-    return days > 0 ? "D-\(days)일뒤 여행시작" : "D+\(abs(days))일전 여행시작"
-  }
-  
   override func updateConstraints() {
     if !didUpdateConstraint {
       
@@ -136,13 +126,13 @@ class MatchResultCell: UICollectionViewCell{
         make.centerX.equalToSuperview()
       }
       
-      startTimeButton.snp.makeConstraints { (make) in
+      tripTimeButton.snp.makeConstraints { (make) in
         make.top.equalTo(titleLabel.snp.bottom).offset(4.2)
         make.centerX.equalToSuperview()
       }
       
       dividLine.snp.makeConstraints { (make) in
-        make.top.equalTo(startTimeButton.snp.bottom).offset(22.8)
+        make.top.equalTo(tripTimeButton.snp.bottom).offset(22.8)
         make.left.right.equalToSuperview().inset(26)
         make.height.equalTo(2)
       }
