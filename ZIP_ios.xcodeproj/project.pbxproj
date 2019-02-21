@@ -210,6 +210,10 @@
 		B1CCFF6A22155B9D004A9500 /* PlanDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */; };
 		B1CCFF6C221B8CB3004A9500 /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6B221B8CB3004A9500 /* Concept.swift */; };
 		B1CCFF6E221BD2CE004A9500 /* RegisterdTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6D221BD2CE004A9500 /* RegisterdTripViewModel.swift */; };
+		B1CCFF74221E84FE004A9500 /* ProfileCharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF73221E84FE004A9500 /* ProfileCharacterCell.swift */; };
+		B1CCFF76221E8D32004A9500 /* ProfileStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF75221E8D32004A9500 /* ProfileStyleCell.swift */; };
+		B1CCFF79221E9A9D004A9500 /* ProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF78221E9A9D004A9500 /* ProfileSectionModel.swift */; };
+		B1CCFF7B221E9F00004A9500 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF7A221E9F00004A9500 /* UserProfileViewModel.swift */; };
 		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
 		B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */; };
 		B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB02212D2086001A9801 /* DetailCommitView.swift */; };
@@ -455,6 +459,10 @@
 		B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDateViewModel.swift; sourceTree = "<group>"; };
 		B1CCFF6B221B8CB3004A9500 /* Concept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
 		B1CCFF6D221BD2CE004A9500 /* RegisterdTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterdTripViewModel.swift; sourceTree = "<group>"; };
+		B1CCFF73221E84FE004A9500 /* ProfileCharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCharacterCell.swift; sourceTree = "<group>"; };
+		B1CCFF75221E8D32004A9500 /* ProfileStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStyleCell.swift; sourceTree = "<group>"; };
+		B1CCFF78221E9A9D004A9500 /* ProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionModel.swift; sourceTree = "<group>"; };
+		B1CCFF7A221E9F00004A9500 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
 		B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserImageCell.xib; sourceTree = "<group>"; };
 		B1D1CB02212D2086001A9801 /* DetailCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommitView.swift; sourceTree = "<group>"; };
@@ -509,6 +517,7 @@
 		0A09A8051FDD3F1900DC47A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1CCFF72221E84EB004A9500 /* Profile */,
 				B179B8A921B76EB600DCCD2B /* Main */,
 				B16BD8BA21AF838B0010EEE0 /* RegisterTrip */,
 				B14495B72191663A00B4D135 /* Purchase */,
@@ -717,6 +726,7 @@
 		0A71238E1FACC16B00512EB7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B1CCFF77221E9A8E004A9500 /* Profile */,
 				0A1B0EEF21EB60EB0035E657 /* MyPage */,
 				B14495BA219166BA00B4D135 /* Purchase */,
 				B1996C59214A009C00BC95C5 /* Chat */,
@@ -1208,6 +1218,24 @@
 			path = registered;
 			sourceTree = "<group>";
 		};
+		B1CCFF72221E84EB004A9500 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B1CCFF73221E84FE004A9500 /* ProfileCharacterCell.swift */,
+				B1CCFF75221E8D32004A9500 /* ProfileStyleCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B1CCFF77221E9A8E004A9500 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B1CCFF78221E9A9D004A9500 /* ProfileSectionModel.swift */,
+				B1CCFF7A221E9F00004A9500 /* UserProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1534,6 +1562,7 @@
 				0A1B11DD1FF12D02004B42B6 /* KeyChainManager.swift in Sources */,
 				B163846721F5965000665060 /* RegisterViewController.swift in Sources */,
 				B1CCFF6C221B8CB3004A9500 /* Concept.swift in Sources */,
+				B1CCFF76221E8D32004A9500 /* ProfileStyleCell.swift in Sources */,
 				0A13CA4A21A6F0030081C55F /* PHeaderView.swift in Sources */,
 				B16BD8A321A79F460010EEE0 /* AdMobViewController.swift in Sources */,
 				0A1B0EFB21EB74370035E657 /* NoticeModel.swift in Sources */,
@@ -1612,6 +1641,7 @@
 				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
 				0A397CCE21FD78FA00F65BE0 /* MatchType.swift in Sources */,
 				B1911FBB21746A6E005A4E85 /* MapViewController.swift in Sources */,
+				B1CCFF7B221E9F00004A9500 /* UserProfileViewModel.swift in Sources */,
 				B1A1D9A5212A9EB50022D2A0 /* RelationShipViewModel.swift in Sources */,
 				0A6812DC220EDB2D00A84715 /* SelectCountryViewController.swift in Sources */,
 				0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */,
@@ -1686,6 +1716,7 @@
 				B1EF956121193FC500F6418F /* CharacterModel.swift in Sources */,
 				B1EF95652119481700F6418F /* SetProfileViewModel.swift in Sources */,
 				B155F02E21894DC100E4911A /* ProxyViewController.swift in Sources */,
+				B1CCFF79221E9A9D004A9500 /* ProfileSectionModel.swift in Sources */,
 				0A78139321A000A0006AA31F /* TripSectionController.swift in Sources */,
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				0A1F47B321CA72840003AF7A /* TripSelectCell.swift in Sources */,
@@ -1702,6 +1733,7 @@
 				0A78138C219F0B71006AA31F /* TripSelectViewController.swift in Sources */,
 				0A895BF4212EEC5A00FDF834 /* MatchHistoryViewController.swift in Sources */,
 				B14495B92191664A00B4D135 /* PurchaseCell.swift in Sources */,
+				B1CCFF74221E84FE004A9500 /* ProfileCharacterCell.swift in Sources */,
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,
 				B16BD89F21A78D480010EEE0 /* RewardPurchase.swift in Sources */,
 				0A375C2D2132BC0500E35ED9 /* MatchRequestHistoryViewModel.swift in Sources */,

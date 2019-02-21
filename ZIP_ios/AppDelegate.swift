@@ -45,9 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
 
-    window?.rootViewController = ProxyViewController()
+//    window?.rootViewController = ProxyViewController()
+    window?.rootViewController = ProfileViewController()
     
-    Reachability.shared.didBecomeReachable.asObservable()
+    Reachability.shared
+      .didBecomeReachable
+      .asObservable()
       .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
         return {_ in
           log.info("reach")
