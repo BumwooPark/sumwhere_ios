@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController{
   private let viewModel = UserProfileViewModel()
   private let headerView = PHeaderView()
   
+  
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
@@ -42,19 +43,23 @@ class ProfileViewController: UIViewController{
     }
   })
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     view = collectionView
     bind()
   }
   
-  
   private func bind(){
     collectionView.rx
       .setDelegate(self)
       .disposed(by: disposeBag)
     
+    viewModel.outputs
+      .profileImageBinder
+      .bind(to: headerView.datas)
+      .disposed(by: disposeBag)
+    
+    viewModel.inputs.getUserProfile(userID: 8)
     
     
   }

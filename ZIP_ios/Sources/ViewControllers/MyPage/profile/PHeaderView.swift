@@ -19,7 +19,6 @@ class PHeaderView: UIView {
   
   let datas = BehaviorRelay<[String]>(value: [])
   
-  
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
@@ -86,8 +85,8 @@ final class ProfileHeaderCell: UICollectionViewCell{
     }
   }
   private let profileImageView: UIImageView = {
-    let imageView = UIImageView()
-    imageView.backgroundColor = .blue
+    var imageView = UIImageView()
+    imageView.kf.indicatorType = .activity
     return imageView
   }()
   

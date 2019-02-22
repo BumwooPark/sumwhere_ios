@@ -12,7 +12,7 @@ import RxCocoa
 
 internal protocol UserProfileOutputs{
   var profileImageBinder: PublishRelay<[String]> {get}
-  var profile: PublishRelay<UserProfileModel> {get}
+  var profile: PublishRelay<UserWithProfile> {get}
 }
 
 internal protocol UserProfileInputs{
@@ -30,16 +30,17 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
   var outputs: UserProfileOutputs {return self}
   var inputs: UserProfileInputs {return self}
   var profileImageBinder: PublishRelay<[String]>
-  var profile: PublishRelay<UserProfileModel>
+  
+  var profile: PublishRelay<UserWithProfile>
   
   init() {
     profileImageBinder = PublishRelay<[String]>()
-    profile = PublishRelay<UserProfileModel>()
+    profile = PublishRelay<UserWithProfile>()
   }
   
   func getUserProfile(userID: Int){
     let result = AuthManager.instance.provider.request(.userWithProfile(id: "\(userID)"))
-      .map(ResultModel<UserProfileModel>.self)
+      .map(ResultModel<UserWithProfile>.self)
       .map{$0.result}
       .asObservable()
       .unwrap()
@@ -50,13 +51,26 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
       .bind(to: profile)
       .disposed(by: disposeBag)
     
-    result.elements()
-      .flatMap { (model)  in
-        return Observable.just([model.image1,model.image2,model.image3,model.image4].compactMap{$0})
-    }.bind(to: profileImageBinder)
-      .disposed(by: disposeBag)
     
     result.elements()
+      .flatMap { (model)  in
+        return Observable<[String]>.just([model.profile.image1,model.profile.image2,model.profile.image3,model.profile.image4]
+          .compactMap{$0}
+          .filter{!$0.isEmpty})
+    }.debug().bind(to: profileImageBinder)
+      .disposed(by: disposeBag)
+    
+    
+    result.errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return {err in
+          log.error(err)
+        }
+      }.disposed(by: disposeBag)
+    
+    result.elements()
+      
+    
     
     
     
