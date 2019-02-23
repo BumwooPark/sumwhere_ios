@@ -26,7 +26,6 @@ class PHeaderView: UIView {
     layout.minimumInteritemSpacing = 0
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: String(describing: ProfileHeaderCell.self))
-    collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     collectionView.isPagingEnabled = true
     collectionView.backgroundColor = .white
     return collectionView
@@ -87,6 +86,7 @@ final class ProfileHeaderCell: UICollectionViewCell{
   private let profileImageView: UIImageView = {
     var imageView = UIImageView()
     imageView.kf.indicatorType = .activity
+    imageView.contentMode = .scaleAspectFill
     return imageView
   }()
   

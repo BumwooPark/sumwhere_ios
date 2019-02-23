@@ -11,11 +11,13 @@ import RxDataSources
 enum ProfileSectionModel {
   case CharacterSection(items: [ProfileSectionItem])
   case StyleSection(items: [ProfileSectionItem])
+  case DetailStyleSection(item: [ProfileSectionItem])
 }
 
 enum ProfileSectionItem {
-  case CharacterSectionItem(image: UIImage, title: String)
-  case StyleSectionItem(enabled: Bool)
+  case CharacterSectionItem(item: UserWithProfile)
+  case StyleSectionItem(item: UserWithProfile)
+  case DetailStyleSectionItem(item: UserWithProfile)
 }
 
 extension ProfileSectionModel: SectionModelType {
@@ -27,6 +29,8 @@ extension ProfileSectionModel: SectionModelType {
       return items.map {$0}
     case .StyleSection(items: let items):
       return items.map {$0}
+    case .DetailStyleSection(item: let items):
+      return items.map {$0}
     }
   }
   
@@ -36,6 +40,8 @@ extension ProfileSectionModel: SectionModelType {
       self = .CharacterSection(items: items)
     case .StyleSection:
       self = .StyleSection(items: items)
+    case .DetailStyleSection:
+      self = .DetailStyleSection(item: items)
     }
   }
 }

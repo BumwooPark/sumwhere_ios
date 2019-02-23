@@ -128,6 +128,9 @@
 		0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEA2129A10200FDF834 /* CalendarCell.swift */; };
 		0A895BEF212EE59800FDF834 /* MatchRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEE212EE59800FDF834 /* MatchRequestViewController.swift */; };
 		0A895BF4212EEC5A00FDF834 /* MatchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BF3212EEC5A00FDF834 /* MatchHistoryViewController.swift */; };
+		0A8B9A002220F4DF00B9C92D /* ProfileCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B99FF2220F4DF00B9C92D /* ProfileCollectionHeaderView.swift */; };
+		0A8B9A022220FD7700B9C92D /* StyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B9A012220FD7700B9C92D /* StyleCell.swift */; };
+		0A8B9A042220FE5000B9C92D /* StyleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B9A032220FE5000B9C92D /* StyleHeaderView.swift */; };
 		0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBCF2109E8420057F1A9 /* UserModel.swift */; };
 		0A90EBD22109F76D0057F1A9 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90EBD12109F76D0057F1A9 /* TicketView.swift */; };
 		0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A90EBD32109F7B10057F1A9 /* TicketView.xib */; };
@@ -374,6 +377,9 @@
 		0A895BEA2129A10200FDF834 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		0A895BEE212EE59800FDF834 /* MatchRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRequestViewController.swift; sourceTree = "<group>"; };
 		0A895BF3212EEC5A00FDF834 /* MatchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryViewController.swift; sourceTree = "<group>"; };
+		0A8B99FF2220F4DF00B9C92D /* ProfileCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionHeaderView.swift; sourceTree = "<group>"; };
+		0A8B9A012220FD7700B9C92D /* StyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCell.swift; sourceTree = "<group>"; };
+		0A8B9A032220FE5000B9C92D /* StyleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleHeaderView.swift; sourceTree = "<group>"; };
 		0A90EBCF2109E8420057F1A9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0A90EBD12109F76D0057F1A9 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		0A90EBD32109F7B10057F1A9 /* TicketView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketView.xib; sourceTree = "<group>"; };
@@ -558,7 +564,6 @@
 		0A13CA4821A6EFD80081C55F /* profile */ = {
 			isa = PBXGroup;
 			children = (
-				0A13CA4921A6F0030081C55F /* PHeaderView.swift */,
 				0A13CA4B21A6F0180081C55F /* ProfileViewController.swift */,
 			);
 			path = profile;
@@ -1221,8 +1226,12 @@
 		B1CCFF72221E84EB004A9500 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0A13CA4921A6F0030081C55F /* PHeaderView.swift */,
 				B1CCFF73221E84FE004A9500 /* ProfileCharacterCell.swift */,
+				0A8B99FF2220F4DF00B9C92D /* ProfileCollectionHeaderView.swift */,
 				B1CCFF75221E8D32004A9500 /* ProfileStyleCell.swift */,
+				0A8B9A032220FE5000B9C92D /* StyleHeaderView.swift */,
+				0A8B9A012220FD7700B9C92D /* StyleCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1551,6 +1560,7 @@
 				B1913BC1219977C2009F9191 /* InfoPageViewController.swift in Sources */,
 				B1913BBD21997464009F9191 /* EventInfoViewController.swift in Sources */,
 				0A397CC421F46D0E00F65BE0 /* AccountSettingViewController.swift in Sources */,
+				0A8B9A042220FE5000B9C92D /* StyleHeaderView.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,
 				B1EF95692119902D00F6418F /* TripStyleFooterView.swift in Sources */,
@@ -1638,6 +1648,7 @@
 				B16BD8A721A7CCAB0010EEE0 /* PurchaseHistoryViewController.swift in Sources */,
 				B1CCFF67221293E0004A9500 /* DetailScheduleViewModel.swift in Sources */,
 				0A075C0121562406004A4DBF /* MoyaError + Extension.swift in Sources */,
+				0A8B9A002220F4DF00B9C92D /* ProfileCollectionHeaderView.swift in Sources */,
 				B16B3E032117F46B001D278A /* InterestModel.swift in Sources */,
 				0A397CCE21FD78FA00F65BE0 /* MatchType.swift in Sources */,
 				B1911FBB21746A6E005A4E85 /* MapViewController.swift in Sources */,
@@ -1721,6 +1732,7 @@
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				0A1F47B321CA72840003AF7A /* TripSelectCell.swift in Sources */,
 				B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */,
+				0A8B9A022220FD7700B9C92D /* StyleCell.swift in Sources */,
 				B16BD8A921A7D0D30010EEE0 /* PurchaseHistoryCell.swift in Sources */,
 				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,
 				0A1B0EFF21EB745A0035E657 /* NoticeContentCell.swift in Sources */,

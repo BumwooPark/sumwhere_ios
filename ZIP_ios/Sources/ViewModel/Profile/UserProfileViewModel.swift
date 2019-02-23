@@ -13,6 +13,7 @@ import RxCocoa
 internal protocol UserProfileOutputs{
   var profileImageBinder: PublishRelay<[String]> {get}
   var profile: PublishRelay<UserWithProfile> {get}
+  var detailDatas: BehaviorRelay<[ProfileSectionModel]> {get}
 }
 
 internal protocol UserProfileInputs{
@@ -30,12 +31,13 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
   var outputs: UserProfileOutputs {return self}
   var inputs: UserProfileInputs {return self}
   var profileImageBinder: PublishRelay<[String]>
-  
+  var detailDatas: BehaviorRelay<[ProfileSectionModel]>
   var profile: PublishRelay<UserWithProfile>
   
   init() {
     profileImageBinder = PublishRelay<[String]>()
     profile = PublishRelay<UserWithProfile>()
+    detailDatas = BehaviorRelay<[ProfileSectionModel]>(value: [])
   }
   
   func getUserProfile(userID: Int){
@@ -68,11 +70,22 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
         }
       }.disposed(by: disposeBag)
     
+    
     result.elements()
-      
-    
-    
-    
-    
+      .map{[.CharacterSection(items: [.CharacterSectionItem(item: $0)]),
+            .StyleSection(items: [.StyleSectionItem(item: $0)]),
+            .DetailStyleSection(item: [.DetailStyleSectionItem(item: $0),
+                                       .DetailStyleSectionItem(item: $0),
+                                       .DetailStyleSectionItem(item: $0)]),
+            .DetailStyleSection(item: [.DetailStyleSectionItem(item: $0),
+                                       .DetailStyleSectionItem(item: $0),
+                                       .DetailStyleSectionItem(item: $0)]),
+            .DetailStyleSection(item: [.DetailStyleSectionItem(item: $0),
+                                       .DetailStyleSectionItem(item: $0),
+                                       .DetailStyleSectionItem(item: $0),
+                                       .DetailStyleSectionItem(item: $0)])
+        ]}
+      .bind(to: detailDatas)
+      .disposed(by: disposeBag)
   }
 }
