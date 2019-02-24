@@ -52,13 +52,14 @@ public enum ZIP{
   case Countrys
   case tripPlaces(countryId: Int)
   case TotalMatchCount
+  case GetTripStyles(ids: String)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-//    return URL(string: "http://192.168.1.10:8080/v1")!
+//    return URL(string: "http://192.168.0.155:8080/v1")!
     return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
@@ -149,6 +150,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/totalcount"
     case .PossibleMatchCount:
       return "/restrict/match/check"
+    case .GetTripStyles:
+      return "/restrict/trip/style"
     }
   }
   
@@ -210,6 +213,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["tripId": id], encoding: URLEncoding.queryString)
     case .UpdateTrip(let _, let data):
       return .requestParameters(parameters: data, encoding: URLEncoding.httpBody)
+    case .GetTripStyles(let ids):
+      return .requestParameters(parameters: ["numbers":ids], encoding: URLEncoding.queryString)
     default:
       return .requestPlain
     }

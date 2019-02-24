@@ -128,7 +128,7 @@ class InsertDetailScheduleViewController: UIViewController{
     contentView.addSubview(detailConceptButton)
     contentView.addSubview(activityTextView)
     activityTextView.addSubview(placeholderLabel)
-    
+    hideKeyboardWhenTappedAround()
     view.setNeedsUpdateConstraints()
     bind()
   }

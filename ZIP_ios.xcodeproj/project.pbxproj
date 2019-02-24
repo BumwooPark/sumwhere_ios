@@ -123,6 +123,7 @@
 		0A7C50812198736900558F62 /* SupportHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C50802198736900558F62 /* SupportHeaderView.swift */; };
 		0A7C50832198739900558F62 /* SupportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C50822198739900558F62 /* SupportCell.swift */; };
 		0A7E9CED204300F40014D549 /* InsertPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */; };
+		0A8508962222EEAA008E8850 /* ProfileSubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8508952222EEAA008E8850 /* ProfileSubmitButtonView.swift */; };
 		0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */; };
 		0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */; };
 		0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEA2129A10200FDF834 /* CalendarCell.swift */; };
@@ -372,6 +373,7 @@
 		0A7C50802198736900558F62 /* SupportHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportHeaderView.swift; sourceTree = "<group>"; };
 		0A7C50822198739900558F62 /* SupportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportCell.swift; sourceTree = "<group>"; };
 		0A7E9CEC204300F40014D549 /* InsertPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanViewController.swift; sourceTree = "<group>"; };
+		0A8508952222EEAA008E8850 /* ProfileSubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubmitButtonView.swift; sourceTree = "<group>"; };
 		0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarHeaderView.xib; sourceTree = "<group>"; };
 		0A895BEA2129A10200FDF834 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -1232,6 +1234,7 @@
 				B1CCFF75221E8D32004A9500 /* ProfileStyleCell.swift */,
 				0A8B9A032220FE5000B9C92D /* StyleHeaderView.swift */,
 				0A8B9A012220FD7700B9C92D /* StyleCell.swift */,
+				0A8508952222EEAA008E8850 /* ProfileSubmitButtonView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1676,6 +1679,7 @@
 				B1913BB321991072009F9191 /* PageCellDataModel.swift in Sources */,
 				0A1F47B121CA702D0003AF7A /* TripSelectHeaderFooterView.swift in Sources */,
 				0A15A6D62128143E0060290A /* MatchResultViewModel.swift in Sources */,
+				0A8508962222EEAA008E8850 /* ProfileSubmitButtonView.swift in Sources */,
 				B1913BC3219A5D7D009F9191 /* VersionViewController.swift in Sources */,
 				0A78138E219F0D5F006AA31F /* OneTimeMatchViewController.swift in Sources */,
 				0A745667210C98ED00F8A0C9 /* UITextField + Extension.swift in Sources */,

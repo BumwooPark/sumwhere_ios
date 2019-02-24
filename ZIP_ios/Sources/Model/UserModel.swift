@@ -29,11 +29,13 @@ struct UserModel: Codable{
 struct UserProfileModel: Codable {
   let id: Int
   let age: Int
+  let userId: Int
   let characterType: [CharacterModel]
   let image1: String
   let image2: String
   let image3: String?
   let image4: String?
+  let tripStyleType: String
   let createAt: String
   let updateAt: String
 }

@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Kingfisher
+import CHIPageControl
 
 class PHeaderView: UIView {
   
@@ -28,7 +29,17 @@ class PHeaderView: UIView {
     collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: String(describing: ProfileHeaderCell.self))
     collectionView.isPagingEnabled = true
     collectionView.backgroundColor = .white
+    collectionView.showsHorizontalScrollIndicator = false
     return collectionView
+  }()
+  
+  let pageControl: CHIPageControlAleppo = {
+    let control = CHIPageControlAleppo()
+    control.radius = 4
+    control.currentPageTintColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+    control.tintColor = #colorLiteral(red: 0.8588235294, green: 0.8588235294, blue: 0.8588235294, alpha: 1)
+    control.padding = 6
+    return control
   }()
   
   private let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<String>>(configureCell: {ds,cv,idx,item in
@@ -41,7 +52,12 @@ class PHeaderView: UIView {
     super.init(frame: frame)
     backgroundColor = .white
     addSubview(collectionView)
-    
+    addSubview(pageControl)
+    bind()
+    setNeedsUpdateConstraints()
+  }
+  
+  private func bind(){
     collectionView.rx
       .setDelegate(self)
       .disposed(by: disposeBag)
@@ -51,7 +67,24 @@ class PHeaderView: UIView {
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    setNeedsUpdateConstraints()
+    datas.map{$0.count}
+      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
+        return { count in
+          weakSelf.pageControl.numberOfPages = count
+        }
+      }.disposed(by: disposeBag)
+    
+    collectionView.rx.contentOffset
+      .map{Int($0.x / UIScreen.main.bounds.width)}
+      .distinctUntilChanged()
+      .observeOn(MainScheduler.asyncInstance)
+      .subscribeNext(weak: self) { (weakSelf) -> (Int) -> Void in
+        return {data in
+          weakSelf.pageControl.set(progress: data, animated: true)
+        }
+      }.disposed(by: disposeBag)
+    
+    
   }
   
   override func updateConstraints() {
@@ -59,6 +92,11 @@ class PHeaderView: UIView {
       collectionView.snp.makeConstraints { (make) in
         make.left.right.bottom.equalToSuperview()
         make.height.equalTo(200)
+      }
+      
+      pageControl.snp.makeConstraints { (make) in
+        make.bottom.equalToSuperview().inset(13)
+        make.centerX.equalToSuperview()
       }
       didUpdateConstraint = true
     }

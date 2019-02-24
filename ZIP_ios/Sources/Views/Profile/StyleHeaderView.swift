@@ -9,6 +9,14 @@
 import Foundation
 
 class StyleHeaderView: UICollectionReusableView{
+  var item: (icon: UIImage, title: String)? {
+    didSet{
+      titleButton.setImage(item?.icon, for: .normal)
+      titleButton.setTitle(item?.title, for: .normal)
+    }
+  }
+  
+  
   let titleButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "iconPlace.png"), for: .normal)
@@ -23,7 +31,7 @@ class StyleHeaderView: UICollectionReusableView{
     super.init(frame: frame)
     addSubview(titleButton)
     titleButton.snp.makeConstraints { (make) in
-      make.left.equalToSuperview().inset(52)
+      make.left.equalToSuperview().inset(42)
       make.centerY.equalToSuperview()
     }
   }

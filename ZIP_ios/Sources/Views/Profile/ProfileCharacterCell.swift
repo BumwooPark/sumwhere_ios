@@ -10,17 +10,21 @@ import UIKit
 import TagListView
 
 class ProfileCharacterCell: UICollectionViewCell{
+  var item: [CharacterModel]?{
+    didSet{
+      guard let item = item else {return}
+      tagView.addTags(item.map{$0.typeName})
+    }
+  }
   private var didUpdateConstraint = false
  
-  private let tagView: TagListView = {
+  let tagView: TagListView = {
     let tagView = TagListView()
-    tagView.addTags(["차분한","차분한","차분한","차분한"])
     tagView.alignment = .center
     tagView.cornerRadius = 15
     tagView.borderColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
     tagView.borderWidth = 1.5
     tagView.tagBackgroundColor = .white
-    
     tagView.textColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
     tagView.marginX = 5
     tagView.marginY = 5
@@ -38,12 +42,10 @@ class ProfileCharacterCell: UICollectionViewCell{
   
   override func updateConstraints() {
     if !didUpdateConstraint{
-      
+
       tagView.snp.makeConstraints { (make) in
         make.edges.equalToSuperview()
       }
-      tagView.sizeToFit()
-      log.info(tagView.intrinsicContentSize)
       didUpdateConstraint = true
     }
     super.updateConstraints()

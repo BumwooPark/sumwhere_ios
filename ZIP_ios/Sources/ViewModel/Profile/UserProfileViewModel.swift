@@ -53,15 +53,13 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
       .bind(to: profile)
       .disposed(by: disposeBag)
     
-    
     result.elements()
       .flatMap { (model)  in
         return Observable<[String]>.just([model.profile.image1,model.profile.image2,model.profile.image3,model.profile.image4]
           .compactMap{$0}
           .filter{!$0.isEmpty})
-    }.debug().bind(to: profileImageBinder)
+    }.bind(to: profileImageBinder)
       .disposed(by: disposeBag)
-    
     
     result.errors()
       .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
@@ -70,22 +68,42 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
         }
       }.disposed(by: disposeBag)
     
+    let style = result.elements()
+      .flatMapLatest {
+        AuthManager.instance.provider.request(.GetTripStyles(ids: $0.profile.tripStyleType))
+          .filterSuccessfulStatusCodes()
+          .map(ResultModel<[TripStyle]>.self)
+          .map{$0.result}
+          .asObservable()
+          .unwrap()
+      }.flatMap { (models) -> Observable<[String : [TripStyle]]> in
+        var dataDic: Dictionary<String,[TripStyle]> = [:]
+        for i in models{
+          if dataDic[i.type] != nil {
+            dataDic[i.type]?.append(i)
+          }else {
+            dataDic[i.type] = [i]
+          }
+        }
+        return Observable.just(dataDic)
+      }
     
-    result.elements()
-      .map{[.CharacterSection(items: [.CharacterSectionItem(item: $0)]),
-            .StyleSection(items: [.StyleSectionItem(item: $0)]),
-            .DetailStyleSection(item: [.DetailStyleSectionItem(item: $0),
-                                       .DetailStyleSectionItem(item: $0),
-                                       .DetailStyleSectionItem(item: $0)]),
-            .DetailStyleSection(item: [.DetailStyleSectionItem(item: $0),
-                                       .DetailStyleSectionItem(item: $0),
-                                       .DetailStyleSectionItem(item: $0)]),
-            .DetailStyleSection(item: [.DetailStyleSectionItem(item: $0),
-                                       .DetailStyleSectionItem(item: $0),
-                                       .DetailStyleSectionItem(item: $0),
-                                       .DetailStyleSectionItem(item: $0)])
-        ]}
-      .bind(to: detailDatas)
-      .disposed(by: disposeBag)
+    Observable
+      .combineLatest(style, result.elements()) { (style ,result) -> [ProfileSectionModel] in
+        let nickname = result.user.nickname ?? String()
+        return [.CharacterSection(name: nickname, items: [.CharacterSectionItem(item: result)]),
+                .StyleSection(name: nickname, items: [.StyleSectionItem(item: result)]),
+                .DetailStyleSection(icon: #imageLiteral(resourceName: "iconPlace.png"), title: "# 선호하는 장소", item: style["PLACE"]!.map{
+                ProfileSectionItem.DetailStyleSectionItem(item: $0)
+                }),
+                .DetailStyleSection(icon: #imageLiteral(resourceName: "tourstyleicon.png"),title: "# 즐기는 투어스타일" ,item: style["TOUR"]!.map{
+                ProfileSectionItem.DetailStyleSectionItem(item: $0)
+              }),
+          .DetailStyleSection(icon: #imageLiteral(resourceName: "iconActivity.png"),title: "# 좋아하는 액티비티", item: style["ACTIVITY"]!.map{
+                ProfileSectionItem.DetailStyleSectionItem(item: $0)
+              })
+      ]
+      }.bind(to: detailDatas)
+    .disposed(by: disposeBag)
   }
 }

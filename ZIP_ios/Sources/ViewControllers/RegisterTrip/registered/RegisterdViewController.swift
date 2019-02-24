@@ -143,8 +143,13 @@ class RegisterdViewController: UIViewController{
   
   private func bind(){
     collectionView.rx.modelSelected(UserTripJoinModel.self)
-      .bind(onNext: viewModel.inputs.selectCard)
-      .disposed(by: disposeBag)
+      .subscribeNext(weak: self) { (weakSelf) -> (UserTripJoinModel) -> Void in
+        return {model in
+          weakSelf.present(ProfileViewController(id: model.user.id), animated: true, completion: nil)
+        }
+    }.disposed(by: disposeBag)
+//      .bind(onNext: viewModel.inputs.selectCard)
+//      .disposed(by: disposeBag)
     
     viewModel.outputs
       .matchList
