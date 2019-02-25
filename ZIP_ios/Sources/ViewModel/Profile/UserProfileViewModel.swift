@@ -8,16 +8,20 @@
 
 import RxSwift
 import RxCocoa
-
+import PopupDialog
 
 internal protocol UserProfileOutputs{
   var profileImageBinder: PublishRelay<[String]> {get}
   var profile: PublishRelay<UserWithProfile> {get}
   var detailDatas: BehaviorRelay<[ProfileSectionModel]> {get}
+  var popUp: PublishRelay<PopupDialog> {get}
+//  var applyAfter: PublishRelay<>
 }
 
 internal protocol UserProfileInputs{
   func getUserProfile(userID: Int)
+  func getStatus(id: Int)
+  func applyBefore()
 }
 
 internal protocol UserProfileTypes{
@@ -33,6 +37,7 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
   var profileImageBinder: PublishRelay<[String]>
   var detailDatas: BehaviorRelay<[ProfileSectionModel]>
   var profile: PublishRelay<UserWithProfile>
+  var popUp = PublishRelay<PopupDialog>()
   
   init() {
     profileImageBinder = PublishRelay<[String]>()
@@ -105,5 +110,60 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
       ]
       }.bind(to: detailDatas)
     .disposed(by: disposeBag)
+  }
+  
+  func getStatus(id: Int){
+    AuthManager.instance.provider.request(.GetMatchStatus(id: "\(id)"))
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<MatchRequstModel>.self)
+      .map{$0.result}
+      .asObservable()
+      .unwrap()
+      .subscribeNext(weak: self) { (weakSelf) -> (MatchRequstModel) -> Void in
+        return {model in
+          log.info(model)
+        }
+      }.disposed(by: disposeBag)
+  }
+  
+  func applyBefore(){
+    AuthManager.instance
+      .provider
+      .request(.PossibleMatchCount)
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<Int>.self)
+      .map{$0.result}
+      .asObservable()
+      .unwrap()
+      .flatMapLatest({ (count) -> Observable<PopupDialog> in
+        let popup = PopupDialog(title: "동행을 신청하시겠습니까?",
+                                message:"신청 가능횟수 \(count)",
+          buttonAlignment: .horizontal,
+          transitionStyle: .zoomIn,
+          tapGestureDismissal: true,
+          panGestureDismissal: true)
+        
+        popup.addButtons([Init(CancelButton(title: "취소", action: nil)){ (bt) in
+          bt.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
+          },DefaultButton(title: "확인", action: {[weak self] in
+            self?.applyAfter()
+          })])
+        return Observable.just(popup)
+      })
+      .bind(to: popUp)
+      .disposed(by: disposeBag)
+  }
+  
+  func applyAfter(){
+    guard let ownModel = tripRegisterContainer.resolve(TripModel.self, name: "own"),
+      let targetModel = tripRegisterContainer.resolve(Trip.self,name: "target") else {return}
+    let request = MatchRequstModel(fromMatchId: ownModel.trip.id, toMatchId: targetModel.id, accepted: false)
+    AuthManager.instance.provider.request(.MatchRequest(model: request))
+      .filterSuccessfulStatusCodes()
+      .subscribe(onSuccess: { (response) in
+        log.info(response)
+      }, onError: { (error) in
+        log.error(error)
+      }).disposed(by: self.disposeBag)
   }
 }

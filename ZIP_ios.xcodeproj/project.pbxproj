@@ -218,6 +218,8 @@
 		B1CCFF76221E8D32004A9500 /* ProfileStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF75221E8D32004A9500 /* ProfileStyleCell.swift */; };
 		B1CCFF79221E9A9D004A9500 /* ProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF78221E9A9D004A9500 /* ProfileSectionModel.swift */; };
 		B1CCFF7B221E9F00004A9500 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF7A221E9F00004A9500 /* UserProfileViewModel.swift */; };
+		B1CCFF7D22238D4D004A9500 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF7C22238D4D004A9500 /* Interactor.swift */; };
+		B1CCFF7F22238D67004A9500 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF7E22238D67004A9500 /* DismissAnimator.swift */; };
 		B1D1CAE9212BF69B001A9801 /* DetailUserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */; };
 		B1D1CAF3212C0726001A9801 /* DetailUserImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */; };
 		B1D1CB03212D2086001A9801 /* DetailCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D1CB02212D2086001A9801 /* DetailCommitView.swift */; };
@@ -471,6 +473,8 @@
 		B1CCFF75221E8D32004A9500 /* ProfileStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStyleCell.swift; sourceTree = "<group>"; };
 		B1CCFF78221E9A9D004A9500 /* ProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionModel.swift; sourceTree = "<group>"; };
 		B1CCFF7A221E9F00004A9500 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		B1CCFF7C22238D4D004A9500 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		B1CCFF7E22238D67004A9500 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		B1D1CAE8212BF69B001A9801 /* DetailUserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserImageCell.swift; sourceTree = "<group>"; };
 		B1D1CAF2212C0726001A9801 /* DetailUserImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailUserImageCell.xib; sourceTree = "<group>"; };
 		B1D1CB02212D2086001A9801 /* DetailCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommitView.swift; sourceTree = "<group>"; };
@@ -567,6 +571,8 @@
 			isa = PBXGroup;
 			children = (
 				0A13CA4B21A6F0180081C55F /* ProfileViewController.swift */,
+				B1CCFF7C22238D4D004A9500 /* Interactor.swift */,
+				B1CCFF7E22238D67004A9500 /* DismissAnimator.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -1561,6 +1567,7 @@
 				0A7C50792198679D00558F62 /* MyPageSectionController.swift in Sources */,
 				B10F120621FAD7B20045FBF9 /* AlertHistoryViewController.swift in Sources */,
 				B1913BC1219977C2009F9191 /* InfoPageViewController.swift in Sources */,
+				B1CCFF7D22238D4D004A9500 /* Interactor.swift in Sources */,
 				B1913BBD21997464009F9191 /* EventInfoViewController.swift in Sources */,
 				0A397CC421F46D0E00F65BE0 /* AccountSettingViewController.swift in Sources */,
 				0A8B9A042220FE5000B9C92D /* StyleHeaderView.swift in Sources */,
@@ -1753,6 +1760,7 @@
 				0A0FDE1C203988CC0046E76F /* UIFont+Extension.swift in Sources */,
 				B16BD89F21A78D480010EEE0 /* RewardPurchase.swift in Sources */,
 				0A375C2D2132BC0500E35ED9 /* MatchRequestHistoryViewModel.swift in Sources */,
+				B1CCFF7F22238D67004A9500 /* DismissAnimator.swift in Sources */,
 				0A6FEE811FF629C600A2D347 /* EnumManager.swift in Sources */,
 				0A19A9D22159246B00977AF6 /* TripStyleHeaderView.swift in Sources */,
 				0A397CBE21F364EC00F65BE0 /* MatchSuccessViewController.swift in Sources */,

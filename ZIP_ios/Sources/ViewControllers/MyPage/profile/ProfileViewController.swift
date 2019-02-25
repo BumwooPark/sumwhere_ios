@@ -11,14 +11,16 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import RxGesture
+import PopupDialog
 
 class ProfileViewController: UIViewController{
   var didUpdateConstraint = false
+  var interactor:Interactor? = nil
   private let disposeBag = DisposeBag()
   private let viewModel = UserProfileViewModel()
   private let headerView = PHeaderView()
   private let buttonView = ProfileSubmitButtonView()
-  let userID: Int
+  private let userID: Int
   
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -98,6 +100,7 @@ class ProfileViewController: UIViewController{
     view.addSubview(buttonView)
     bind()
     view.setNeedsUpdateConstraints()
+    definesPresentationContext = true
   }
   
   private func bind(){
@@ -106,13 +109,9 @@ class ProfileViewController: UIViewController{
       .setDelegate(self)
       .disposed(by: disposeBag)
     
-    collectionView.rx.swipeGesture(.down)
-      .subscribeNext(weak: self) { (weakSelf) -> (UISwipeGestureRecognizer) -> Void in
-        return {gesture in
-          log.info(gesture)
-          log.info(weakSelf.collectionView.contentOffset)
-        }
-    }.disposed(by: disposeBag)
+    view.rx.panGesture()
+      .bind(onNext: handleGesture)
+      .disposed(by: disposeBag)
     
     viewModel.outputs
       .profileImageBinder
@@ -125,6 +124,66 @@ class ProfileViewController: UIViewController{
       .asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
+    
+    viewModel.inputs.getStatus(id: userID)
+    
+    buttonView.buttonAction
+      .subscribeNext(weak: self) { (weakSelf) -> (ProfileSubmitButtonView.Action) -> Void in
+        return { action in
+          switch action {
+          case .apply:
+            weakSelf.viewModel.inputs.applyBefore()
+          case .accept:
+            break
+          case .deny:
+            break
+          }
+        }
+      }.disposed(by: disposeBag)
+    
+    viewModel.popUp
+      .subscribeNext(weak: self) { (weakSelf) -> (PopupDialog) -> Void in
+        return {pop in
+          weakSelf.present(pop, animated: true, completion: nil)
+        }
+      }.disposed(by: disposeBag)
+  }
+  
+  func handleGesture(_ sender: UIPanGestureRecognizer){
+    let percentThreshold:CGFloat = 0.3
+    
+    // convert y-position to downward pull progress (percentage)
+    let translation = sender.translation(in: view)
+    let verticalMovement = translation.y / view.bounds.height
+    let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+    let downwardMovementPercent = fminf(downwardMovement, 1.0)
+    let progress = CGFloat(downwardMovementPercent)
+    
+    guard let interactor = interactor else { return }
+    
+    switch sender.state {
+    case .began:
+      interactor.hasStarted = true
+      dismiss(animated: true, completion: nil)
+    case .changed:
+      interactor.shouldFinish = progress > percentThreshold
+      interactor.update(progress)
+    case .cancelled:
+      interactor.hasStarted = false
+      interactor.cancel()
+    case .ended:
+      interactor.hasStarted = false
+      interactor.shouldFinish
+        ? interactor.finish()
+        : interactor.cancel()
+    default:
+      break
+    }
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    collectionView.collectionViewLayout.invalidateLayout()
   }
   
   override func updateViewConstraints() {
@@ -158,6 +217,9 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     switch dataSources[indexPath]{
     case .CharacterSectionItem:
+      if let cell = collectionView.cellForItem(at: indexPath) as? ProfileCharacterCell {
+        return CGSize(width: UIScreen.main.bounds.width - 150, height: cell.tagView.intrinsicContentSize.height)
+      }
       return CGSize(width: UIScreen.main.bounds.width - 150, height: 80)
     case .StyleSectionItem:
       return CGSize(width: 0.1, height: 0.1)

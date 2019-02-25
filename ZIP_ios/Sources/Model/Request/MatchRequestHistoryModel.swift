@@ -15,6 +15,7 @@ struct MatchRequestHistoryModel: Codable{
 struct MatchRequstModel: Codable{
   let fromMatchId: Int
   let toMatchId: Int
+  let accepted: Bool
 }
 
 

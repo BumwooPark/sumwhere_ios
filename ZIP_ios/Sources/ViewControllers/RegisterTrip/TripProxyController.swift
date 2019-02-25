@@ -48,8 +48,8 @@ class TripProxyController: ScrollingNavigationController {
           switch event {
           case .next(let model):
             if let model = model {
-              
-              weakSelf.setViewControllers([RegisterdViewController(model: model)], animated: true)
+              tripRegisterContainer.register(TripModel.self, name: "own", factory: { _ in model })
+              weakSelf.setViewControllers([RegisterdViewController()], animated: true)
             }else {
               weakSelf.setViewControllers([MainMatchViewController()], animated: true)
             }

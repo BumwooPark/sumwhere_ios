@@ -12,18 +12,14 @@ import RxDataSources
 import AMScrollingNavbar
 import TagListView
 import PopupDialog
+import Swinject
 
 class RegisterdViewController: UIViewController{
-  
+  private let interactor = Interactor()
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
   
-  lazy var viewModel: RegisterdTripViewModel = RegisterdTripViewModel(model: model)
-  var model: TripModel{
-    didSet{
-      tagViewController.data.accept(model)
-    }
-  }
+  lazy var viewModel: RegisterdTripViewModel = RegisterdTripViewModel()
   
   private let tagViewController = RegisterdSubviewController()
   
@@ -44,8 +40,7 @@ class RegisterdViewController: UIViewController{
   lazy var titleButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "locationIcon.png"), for: .normal)
-    button.setTitle(model.tripPlace.trip, for: .normal)
-    button.titleLabel?.font = UIFont.AppleSDGothicNeoMedium(size: 18)
+    button.titleLabel?.font = .AppleSDGothicNeoMedium(size: 18)
     button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: -10)
     button.setTitleColor(.black, for: .normal)
     return button
@@ -55,11 +50,6 @@ class RegisterdViewController: UIViewController{
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "scheduleMatchIcon.png"), for: .selected) // 계획
     button.setImage(#imageLiteral(resourceName: "onetimematchicon.png"), for: .normal) // 즉흥
-    if self.model.trip.matchTypeId == 1{
-      button.isSelected = false
-    }else {
-      button.isSelected = true
-    }
     button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: -10)
     return button
   }()
@@ -75,16 +65,7 @@ class RegisterdViewController: UIViewController{
     collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     return collectionView
   }()
-  
-  init(model: TripModel) {
-    self.model = model
-    super.init(nibName: nil, bundle: nil)
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     if let navigationController = navigationController as? ScrollingNavigationController {
@@ -100,14 +81,18 @@ class RegisterdViewController: UIViewController{
     self.view.addSubview(tagViewController.view)
     self.addChild(tagViewController)
     self.view.addSubview(collectionView)
-    
-
+  
     navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: titleButton),UIBarButtonItem(customView: typeButton)]
     navigationItem.rightBarButtonItem = UIBarButtonItem(customView: deleteButton)
     
     view.setNeedsUpdateConstraints()
     
-    tagViewController.data.accept(model)
+    if let model = tripRegisterContainer.resolve(TripModel.self, name: "own"){
+      typeButton.isSelected = model.trip.matchTypeId != 1
+      titleButton.setTitle(model.tripPlace.trip, for: .normal)
+      tagViewController.data.accept(model)
+    }
+    
     
     tagViewController
       .selectAction
@@ -125,11 +110,12 @@ class RegisterdViewController: UIViewController{
         case .date:
           break
         case .gender:
-          let vc = ChangeGenderViewController(trip: weakSelf.model.trip)
-          vc.completed = {
-            weakSelf.tagViewController.data.accept($0)
-          }
-          weakSelf.present(vc, animated: true, completion: nil)
+//          let vc = ChangeGenderViewController(trip: weakSelf.model.trip)
+//          vc.completed = {
+//            weakSelf.tagViewController.data.accept($0)
+//          }
+//          weakSelf.present(vc, animated: true, completion: nil)
+          break
         }
       }
     }.disposed(by: disposeBag)
@@ -142,14 +128,17 @@ class RegisterdViewController: UIViewController{
   }
   
   private func bind(){
+    
     collectionView.rx.modelSelected(UserTripJoinModel.self)
       .subscribeNext(weak: self) { (weakSelf) -> (UserTripJoinModel) -> Void in
         return {model in
-          weakSelf.present(ProfileViewController(id: model.user.id), animated: true, completion: nil)
+          tripRegisterContainer.register(Trip.self, name: "target", factory: { _ in model.trip })
+          let vc = ProfileViewController(id: model.user.id)
+          vc.transitioningDelegate = weakSelf
+          vc.interactor = weakSelf.interactor
+          weakSelf.present(vc, animated: true, completion: nil)
         }
     }.disposed(by: disposeBag)
-//      .bind(onNext: viewModel.inputs.selectCard)
-//      .disposed(by: disposeBag)
     
     viewModel.outputs
       .matchList
@@ -188,5 +177,15 @@ class RegisterdViewController: UIViewController{
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
+  }
+}
+
+extension RegisterdViewController: UIViewControllerTransitioningDelegate {
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return DismissAnimator()
+  }
+  
+  func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    return interactor.hasStarted ? interactor : nil
   }
 }

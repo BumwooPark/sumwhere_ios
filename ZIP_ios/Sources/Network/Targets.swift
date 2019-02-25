@@ -53,6 +53,7 @@ public enum ZIP{
   case tripPlaces(countryId: Int)
   case TotalMatchCount
   case GetTripStyles(ids: String)
+  case GetMatchStatus(id: String)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
@@ -152,6 +153,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/check"
     case .GetTripStyles:
       return "/restrict/trip/style"
+    case .GetMatchStatus:
+      return "/restrict/match/status"
     }
   }
   
@@ -215,6 +218,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: data, encoding: URLEncoding.httpBody)
     case .GetTripStyles(let ids):
       return .requestParameters(parameters: ["numbers":ids], encoding: URLEncoding.queryString)
+    case .GetMatchStatus(let id):
+      return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
     default:
       return .requestPlain
     }
