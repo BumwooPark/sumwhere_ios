@@ -17,7 +17,6 @@ class NoticeContentCell: UICollectionViewCell{
     }
   }
   
-  
   private let contentLabel: UILabel = {
     let label = UILabel()
     label.numberOfLines = 0

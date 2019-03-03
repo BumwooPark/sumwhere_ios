@@ -18,20 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fragment.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hrm-Ss-yJB">
-                                <rect key="frame" x="112" y="168" width="150" height="150"/>
+                            <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="landing" translatesAutoresizingMaskIntoConstraints="NO" id="Byh-5W-kJA">
+                                <rect key="frame" x="152" y="298" width="71" height="71"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="SDw-r2-UHA"/>
-                                    <constraint firstAttribute="height" constant="150" id="YQf-BK-ycb"/>
+                                    <constraint firstAttribute="width" constant="71" id="U2E-qB-AFG"/>
+                                    <constraint firstAttribute="height" constant="71" id="sUg-Qu-3xY"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="999" constant="148" id="1B5-bm-1X2"/>
-                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CxP-Jd-4bY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Hrm-Ss-yJB" secondAttribute="bottom" constant="349" id="lOy-47-rbp"/>
-                            <constraint firstItem="Hrm-Ss-yJB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="112" id="uEs-KS-O0C"/>
+                            <constraint firstItem="Byh-5W-kJA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MLH-KS-ZBJ"/>
+                            <constraint firstItem="Byh-5W-kJA" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Urk-Wf-8jc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -42,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Fragment.png" width="3" height="8"/>
+        <image name="landing" width="71" height="71"/>
     </resources>
 </document>

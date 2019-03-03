@@ -14,8 +14,7 @@ internal protocol UserProfileOutputs{
   var profileImageBinder: PublishRelay<[String]> {get}
   var profile: PublishRelay<UserWithProfile> {get}
   var detailDatas: BehaviorRelay<[ProfileSectionModel]> {get}
-  var popUp: PublishRelay<PopupDialog> {get}
-//  var applyAfter: PublishRelay<>
+  var popUp: PublishRelay<UIViewController> {get}
 }
 
 internal protocol UserProfileInputs{
@@ -37,7 +36,7 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
   var profileImageBinder: PublishRelay<[String]>
   var detailDatas: BehaviorRelay<[ProfileSectionModel]>
   var profile: PublishRelay<UserWithProfile>
-  var popUp = PublishRelay<PopupDialog>()
+  var popUp = PublishRelay<UIViewController>()
   
   init() {
     profileImageBinder = PublishRelay<[String]>()
@@ -127,6 +126,7 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
   }
   
   func applyBefore(){
+    
     AuthManager.instance
       .provider
       .request(.PossibleMatchCount)
@@ -135,35 +135,13 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
       .map{$0.result}
       .asObservable()
       .unwrap()
-      .flatMapLatest({ (count) -> Observable<PopupDialog> in
-        let popup = PopupDialog(title: "동행을 신청하시겠습니까?",
-                                message:"신청 가능횟수 \(count)",
-          buttonAlignment: .horizontal,
-          transitionStyle: .zoomIn,
-          tapGestureDismissal: true,
-          panGestureDismissal: true)
-        
-        popup.addButtons([Init(CancelButton(title: "취소", action: nil)){ (bt) in
-          bt.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
-          },DefaultButton(title: "확인", action: {[weak self] in
-            self?.applyAfter()
-          })])
-        return Observable.just(popup)
+      .flatMapLatest({(count) -> Observable<UIViewController> in
+        let vc = MatchPopUpViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.item = count
+        return Observable.just(vc)
       })
       .bind(to: popUp)
       .disposed(by: disposeBag)
-  }
-  
-  func applyAfter(){
-    guard let ownModel = tripRegisterContainer.resolve(TripModel.self, name: "own"),
-      let targetModel = tripRegisterContainer.resolve(Trip.self,name: "target") else {return}
-    let request = MatchRequstModel(fromMatchId: ownModel.trip.id, toMatchId: targetModel.id, accepted: false)
-    AuthManager.instance.provider.request(.MatchRequest(model: request))
-      .filterSuccessfulStatusCodes()
-      .subscribe(onSuccess: { (response) in
-        log.info(response)
-      }, onError: { (error) in
-        log.error(error)
-      }).disposed(by: self.disposeBag)
   }
 }

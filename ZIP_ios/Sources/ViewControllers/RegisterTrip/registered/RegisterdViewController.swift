@@ -65,16 +65,13 @@ class RegisterdViewController: UIViewController{
     collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     return collectionView
   }()
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    if let navigationController = navigationController as? ScrollingNavigationController {
-      navigationController.followScrollView(collectionView, delay: 50.0)
-    }
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    if let navigationController = navigationController as? ScrollingNavigationController {
+      navigationController.followScrollView(collectionView, delay: 50.0)
+    }
     self.navigationController?.navigationBar.backgroundColor = .white
     self.navigationController?.navigationBar.isTranslucent = false
     

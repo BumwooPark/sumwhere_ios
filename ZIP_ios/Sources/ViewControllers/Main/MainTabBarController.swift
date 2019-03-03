@@ -30,7 +30,7 @@ class MainTabBarController: UITabBarController{
   }()
   
   let historyViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: MatchRequestViewController())
+    let naviVC = UINavigationController(rootViewController: MatchHistoryViewController())
     naviVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
     let tabBar = UITabBarItem(title: "매칭리스트", image: #imageLiteral(resourceName: "taskbarListNot.png").withRenderingMode(.alwaysOriginal), tag: 0)
     tabBar.selectedImage = #imageLiteral(resourceName: "taskbarList.png").withRenderingMode(.alwaysOriginal)

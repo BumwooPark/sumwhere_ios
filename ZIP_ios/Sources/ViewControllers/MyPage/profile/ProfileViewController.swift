@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController{
   var didUpdateConstraint = false
   var interactor:Interactor? = nil
   private let disposeBag = DisposeBag()
-  private let viewModel = UserProfileViewModel()
+  private let viewModel: UserProfileTypes = UserProfileViewModel()
   private let headerView = PHeaderView()
   private let buttonView = ProfileSubmitButtonView()
   private let userID: Int
@@ -109,9 +109,9 @@ class ProfileViewController: UIViewController{
       .setDelegate(self)
       .disposed(by: disposeBag)
     
-    view.rx.panGesture()
-      .bind(onNext: handleGesture)
-      .disposed(by: disposeBag)
+//    collectionView.rx.panGesture()
+//      .bind(onNext: handleGesture)
+//      .disposed(by: disposeBag)
     
     viewModel.outputs
       .profileImageBinder
@@ -141,45 +141,46 @@ class ProfileViewController: UIViewController{
         }
       }.disposed(by: disposeBag)
     
-    viewModel.popUp
-      .subscribeNext(weak: self) { (weakSelf) -> (PopupDialog) -> Void in
+    viewModel.outputs
+      .popUp
+      .subscribeNext(weak: self) { (weakSelf) -> (UIViewController) -> Void in
         return {pop in
           weakSelf.present(pop, animated: true, completion: nil)
         }
       }.disposed(by: disposeBag)
   }
   
-  func handleGesture(_ sender: UIPanGestureRecognizer){
-    let percentThreshold:CGFloat = 0.3
-    
-    // convert y-position to downward pull progress (percentage)
-    let translation = sender.translation(in: view)
-    let verticalMovement = translation.y / view.bounds.height
-    let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-    let downwardMovementPercent = fminf(downwardMovement, 1.0)
-    let progress = CGFloat(downwardMovementPercent)
-    
-    guard let interactor = interactor else { return }
-    
-    switch sender.state {
-    case .began:
-      interactor.hasStarted = true
-      dismiss(animated: true, completion: nil)
-    case .changed:
-      interactor.shouldFinish = progress > percentThreshold
-      interactor.update(progress)
-    case .cancelled:
-      interactor.hasStarted = false
-      interactor.cancel()
-    case .ended:
-      interactor.hasStarted = false
-      interactor.shouldFinish
-        ? interactor.finish()
-        : interactor.cancel()
-    default:
-      break
-    }
-  }
+//  func handleGesture(_ sender: UIPanGestureRecognizer){
+//    let percentThreshold:CGFloat = 0.3
+//
+//    // convert y-position to downward pull progress (percentage)
+//    let translation = sender.translation(in: view)
+//    let verticalMovement = translation.y / view.bounds.height
+//    let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+//    let downwardMovementPercent = fminf(downwardMovement, 1.0)
+//    let progress = CGFloat(downwardMovementPercent)
+//
+//    guard let interactor = interactor else { return }
+//
+//    switch sender.state {
+//    case .began:
+//      interactor.hasStarted = true
+//      dismiss(animated: true, completion: nil)
+//    case .changed:
+//      interactor.shouldFinish = progress > percentThreshold
+//      interactor.update(progress)
+//    case .cancelled:
+//      interactor.hasStarted = false
+//      interactor.cancel()
+//    case .ended:
+//      interactor.hasStarted = false
+//      interactor.shouldFinish
+//        ? interactor.finish()
+//        : interactor.cancel()
+//    default:
+//      break
+//    }
+//  }
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
@@ -202,8 +203,6 @@ class ProfileViewController: UIViewController{
     }
     super.updateViewConstraints()
   }
-  
-  
 }
 
 extension ProfileViewController: UICollectionViewDelegateFlowLayout{
@@ -228,4 +227,3 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout{
     }
   }
 }
-
