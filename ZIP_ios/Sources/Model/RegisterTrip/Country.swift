@@ -6,6 +6,13 @@
 //  Copyright © 2019 park bumwoo. All rights reserved.
 //
 
+import RxDataSources
+
+struct CountryWithPlace: Codable{
+  let country: Country
+  let tripPlace: TripPlace
+}
+
 struct Country: Codable {
   let id: Int
   let name: String

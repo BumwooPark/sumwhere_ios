@@ -145,39 +145,39 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable, U
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    viewModel
-      .userAPI
-      .elements()
-      .flatMapLatest { (model) -> Observable<[MainCellViewModel]> in
-        let name = model.result?.nickname ?? String()
-        return Observable.just([MainCellViewModel(header: "\(name)님을\n위한 갈래말래의 추천 여행지", items: [
-          MainModel(title: "01\n인기 급상승 여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
-          MainModel(title: "02\n최다 등록 여행지!", detail:"핫한 10개 도시", image: UIImage()),
-          MainModel(title: "최다 매칭 여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))
-          ])])
-      }.do(onNext: {[weak self] (_) in
-        self?.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
-      }).bind(to: datas)
-      .disposed(by: disposeBag)
-    
-    
-    
-    viewModel
-      .userAPI
-      .elements()
-      .subscribeNext(weak: self, { (weakSelf) -> (ResultModel<UserModel>) -> Void in
-        return {model in
-          weakSelf.keyStoreButton.setTitle("\(model.result?.point ?? 0)", for: .normal)
-        }
-      })
-      .disposed(by: disposeBag)
-    
-    viewModel
-      .userAPI
-      .errors()
-      .subscribe(onNext: { (error) in
-        (error as? MoyaError)?.GalMalErrorHandler()
-      }).disposed(by: disposeBag)
+//    viewModel
+//      .userAPI
+//      .elements()
+//      .flatMapLatest { (model) -> Observable<[MainCellViewModel]> in
+//        let name = model.result?.nickname ?? String()
+//        return Observable.just([MainCellViewModel(header: "\(name)님을\n위한 갈래말래의 추천 여행지", items: [
+//          MainModel(title: "01\n인기 급상승 여행지!", detail:"여행자 필수 구독!" ,image: #imageLiteral(resourceName: "bridge")),
+//          MainModel(title: "02\n최다 등록 여행지!", detail:"핫한 10개 도시", image: UIImage()),
+//          MainModel(title: "최다 매칭 여행지!", detail:"혼행 보단 동행!",image: #imageLiteral(resourceName: "bridge2"))
+//          ])])
+//      }.do(onNext: {[weak self] (_) in
+//        self?.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
+//      }).bind(to: datas)
+//      .disposed(by: disposeBag)
+//    
+//    
+//    
+//    viewModel
+//      .userAPI
+//      .elements()
+//      .subscribeNext(weak: self, { (weakSelf) -> (ResultModel<UserModel>) -> Void in
+//        return {model in
+//          weakSelf.keyStoreButton.setTitle("\(model.result?.point ?? 0)", for: .normal)
+//        }
+//      })
+//      .disposed(by: disposeBag)
+//    
+//    viewModel
+//      .userAPI
+//      .errors()
+//      .subscribe(onNext: { (error) in
+//        (error as? MoyaError)?.GalMalErrorHandler()
+//      }).disposed(by: disposeBag)
     
     scrollView.rx.didScroll
       .subscribe(weak: self) { (retainSelf) -> (Event<()>) -> Void in

@@ -9,6 +9,9 @@
 import Moya
 
 public enum ZIP{
+  //main
+  case mainList
+  //Signin & UP
   case signUp(model: Encodable)
   case signIn(email: String, password: String)
   case tokenLogin
@@ -59,15 +62,17 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.10:8080/v1")!
-//    return URL(string: "https://www.sumwhere.kr/v1")!
+//    return URL(string: "http://192.168.0.155:8080/v1")!
+    return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
     #endif
   }
   
   public var path: String{
-    switch self { 
+    switch self {
+    case .mainList:
+      return "/restrict/main/list"
     case .signUp:
       return "/signup"
     case .signIn:

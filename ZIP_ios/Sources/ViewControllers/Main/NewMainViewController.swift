@@ -7,22 +7,37 @@
 //
 
 import MXParallaxHeader
+import RxSwift
+import RxCocoa
+import RxDataSources
 
-class NewMainViewController: UIViewController {
+final class NewMainViewController: UIViewController {
+  private let disposeBag = DisposeBag()
+  private let viewModel: MainTypes = MainViewModel()
   private let keyStoreButton: UIButton = {
     let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "mainkeystoreicon.png") , for: .normal)
+    button.setImage(#imageLiteral(resourceName: "iconAlarm.png"), for: .normal)
     return button
   }()
   
-  let collectionView: UICollectionView = {
+  private let headerView = MainHeaderView()
+  
+  private let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<CountryWithPlace>>(configureCell: {ds, cv, idx, item in
+    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MainViewCell.self), for: idx) as! MainViewCell
+    cell.item = item
+    return cell
+  })
+  
+  lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
+    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 334)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView.parallaxHeader.view = MainHeaderView()
+    collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: String(describing: MainViewCell.self))
+    collectionView.parallaxHeader.view = headerView
     collectionView.parallaxHeader.minimumHeight = 0
     collectionView.parallaxHeader.height = 461
-    collectionView.parallaxHeader.mode = .fill
+//    collectionView.parallaxHeader.mode = .fill
     collectionView.backgroundColor = .white
     return collectionView
   }()
@@ -32,5 +47,22 @@ class NewMainViewController: UIViewController {
     view = collectionView
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: keyStoreButton)
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "taskbarMacthingNot.png").withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+    
+    bind()
+  }
+  func bind(){
+    viewModel.outputs
+      .placeDatas
+      .map{[GenericSectionModel<CountryWithPlace>(items: $0)]}
+      .asDriver(onErrorJustReturn: [])
+      .drive(collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
+    
+    
+    viewModel.outputs
+      .eventDatas
+      .map{[GenericSectionModel<EventModel>(items: $0)]}
+      .bind(to: headerView.datas)
+      .disposed(by: disposeBag)
   }
 }

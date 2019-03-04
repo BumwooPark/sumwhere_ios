@@ -31,4 +31,5 @@ struct TripPlace: Codable{
   let discription: String
   let countryId: Int
   let imageURL: String
+  let keywords: [String]
 }

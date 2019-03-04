@@ -130,6 +130,7 @@
 		0A87387C22291F9B00A52A77 /* MatchHistorySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A87387B22291F9B00A52A77 /* MatchHistorySectionModel.swift */; };
 		0A87387E222A501200A52A77 /* HistoryEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A87387D222A501200A52A77 /* HistoryEmptyView.swift */; };
 		0A873880222B881900A52A77 /* MatchPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A87387F222B881900A52A77 /* MatchPopUpViewController.swift */; };
+		0A873882222D3F4A00A52A77 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A873881222D3F4A00A52A77 /* MainViewCell.swift */; };
 		0A895BE521299BFE00FDF834 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */; };
 		0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */; };
 		0A895BEB2129A10200FDF834 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A895BEA2129A10200FDF834 /* CalendarCell.swift */; };
@@ -386,6 +387,7 @@
 		0A87387B22291F9B00A52A77 /* MatchHistorySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistorySectionModel.swift; sourceTree = "<group>"; };
 		0A87387D222A501200A52A77 /* HistoryEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEmptyView.swift; sourceTree = "<group>"; };
 		0A87387F222B881900A52A77 /* MatchPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPopUpViewController.swift; sourceTree = "<group>"; };
+		0A873881222D3F4A00A52A77 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		0A895BE421299BFE00FDF834 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		0A895BE621299C2100FDF834 /* CalendarHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarHeaderView.xib; sourceTree = "<group>"; };
 		0A895BEA2129A10200FDF834 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -1171,6 +1173,7 @@
 				B10F120721FADB310045FBF9 /* AlertHistoryCell.swift */,
 				B1CCFF84222D0F95004A9500 /* MainHeaderView.swift */,
 				B1CCFF86222D12FC004A9500 /* MainHeaderCell.swift */,
+				0A873881222D3F4A00A52A77 /* MainViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1606,6 +1609,7 @@
 				0A873880222B881900A52A77 /* MatchPopUpViewController.swift in Sources */,
 				0A13CA4A21A6F0030081C55F /* PHeaderView.swift in Sources */,
 				B16BD8A321A79F460010EEE0 /* AdMobViewController.swift in Sources */,
+				0A873882222D3F4A00A52A77 /* MainViewCell.swift in Sources */,
 				0A1B0EFB21EB74370035E657 /* NoticeModel.swift in Sources */,
 				B1D4E51420FC6C3600524CE2 /* DefaultLoginViewController.swift in Sources */,
 				0A397CCA21FB30FB00F65BE0 /* RegisterdViewController.swift in Sources */,

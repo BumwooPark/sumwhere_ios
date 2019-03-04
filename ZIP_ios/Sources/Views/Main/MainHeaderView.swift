@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class MainHeaderView: UIView{
   
@@ -17,6 +18,13 @@ class MainHeaderView: UIView{
     let imageView = UIImageView(image: #imageLiteral(resourceName: "bgAd.png"))
     return imageView
   }()
+  
+  public let datas = BehaviorRelay<[GenericSectionModel<EventModel>]>(value: [])
+  
+  let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<EventModel>>(configureCell: {ds,cv,idx,item in
+    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MainHeaderCell.self), for: idx) as! MainHeaderCell
+    return cell
+  })
   
   let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -38,10 +46,9 @@ class MainHeaderView: UIView{
     addSubview(bgImage)
     addSubview(collectionView)
     
-    Observable.just([1,2,3])
-      .bind(to: collectionView.rx.items(cellIdentifier: String(describing: MainHeaderCell.self), cellType: MainHeaderCell.self)){
-        dd,cell,idx in
-      }.disposed(by: disposeBag)
+    datas.asDriver()
+      .drive(collectionView.rx.items(dataSource: dataSources))
+      .disposed(by: disposeBag)
     
     setNeedsUpdateConstraints()
   }
