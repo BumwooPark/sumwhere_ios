@@ -108,7 +108,7 @@ final class MainViewController: UIViewController, NVActivityIndicatorViewable, U
     super.loadView()
     view.backgroundColor = .white
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: keyStoreButton)
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "mainvclogo.png"), style: .plain, target: nil, action: nil)
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "taskbarMacthingNot.png"), style: .plain, target: nil, action: nil)
   }
   
   override func viewDidLoad() {

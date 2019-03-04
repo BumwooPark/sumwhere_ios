@@ -70,7 +70,7 @@ class RegisterdTripViewModel: RegisterdTypes, RegisterdOutputs, RegisterdInputs{
     AuthManager.instance.provider.request(.deleteTrip(tripId: model?.trip.id ?? 0))
       .filterSuccessfulStatusCodes()
       .subscribe(onSuccess: {[weak self] (response) in
-        AlertType.JDStatusBar.getInstance().show(isSuccess: true, message: "삭제 되었습니다.")
+        AlertType.JDStatusBar.getInstance().show(isSuccess: true, dismissAfter: 3, message: "삭제 되었습니다.")
         self?.deleteSuccess.accept(())
       }) { (error) in
         log.error(error)

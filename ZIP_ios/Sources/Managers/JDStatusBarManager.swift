@@ -13,7 +13,11 @@ enum JDType: String{
   case Fail = "Fail"
 }
 
+
+
+
 func JDSetting(){
+  
   JDStatusBarNotification.addStyleNamed(JDType.Fail.rawValue) {
     $0.barColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
     $0.textColor = .white

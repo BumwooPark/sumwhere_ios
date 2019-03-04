@@ -115,16 +115,9 @@ final class MatchPopUpViewController: UIViewController{
   }
   
   func applyAfter(){
-    guard let ownModel = tripRegisterContainer.resolve(TripModel.self, name: "own"),
-      let targetModel = tripRegisterContainer.resolve(Trip.self,name: "target") else {return}
-    let request = MatchRequstModel(fromMatchId: ownModel.trip.id, toMatchId: targetModel.id, accepted: false)
-    AuthManager.instance.provider.request(.MatchRequest(model: request))
-      .filterSuccessfulStatusCodes()
-      .subscribe(onSuccess: { (response) in
-        log.info(response)
-      }, onError: { (error) in
-        log.error(error)
-      }).disposed(by: self.disposeBag)
+    guard let action = buttonAction else {return}
+    action()
+    self.dismiss(animated: true, completion: nil)
   }
   
   override func updateViewConstraints() {

@@ -13,12 +13,12 @@ import AMScrollingNavbar
 import TagListView
 import PopupDialog
 import Swinject
+import NVActivityIndicatorView
 
 class RegisterdViewController: UIViewController{
-  private let interactor = Interactor()
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
-  
+
   lazy var viewModel: RegisterdTripViewModel = RegisterdTripViewModel()
   
   private let tagViewController = RegisterdSubviewController()
@@ -66,12 +66,27 @@ class RegisterdViewController: UIViewController{
     return collectionView
   }()
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     if let navigationController = navigationController as? ScrollingNavigationController {
       navigationController.followScrollView(collectionView, delay: 50.0)
     }
+  }
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    if let navigationController = self.navigationController as? ScrollingNavigationController {
+      navigationController.stopFollowingScrollView()
+    }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    NVActivityIndicatorPresenter
+      .sharedInstance
+      .sumwhereStart()
+   
     self.navigationController?.navigationBar.backgroundColor = .white
     self.navigationController?.navigationBar.isTranslucent = false
     
@@ -131,8 +146,6 @@ class RegisterdViewController: UIViewController{
         return {model in
           tripRegisterContainer.register(Trip.self, name: "target", factory: { _ in model.trip })
           let vc = ProfileViewController(id: model.user.id)
-          vc.transitioningDelegate = weakSelf
-          vc.interactor = weakSelf.interactor
           weakSelf.present(vc, animated: true, completion: nil)
         }
     }.disposed(by: disposeBag)
@@ -141,6 +154,9 @@ class RegisterdViewController: UIViewController{
       .matchList
       .elements()
       .map{[GenericSectionModel<UserTripJoinModel>(items: $0)]}
+      .do(onNext: {(_) in
+        NVActivityIndicatorPresenter.sharedInstance.sumwhereStop()
+      })
       .bind(to: datas)
       .disposed(by: disposeBag)
     
@@ -175,14 +191,11 @@ class RegisterdViewController: UIViewController{
     }
     super.updateViewConstraints()
   }
-}
-
-extension RegisterdViewController: UIViewControllerTransitioningDelegate {
-  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    return DismissAnimator()
-  }
   
-  func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-    return interactor.hasStarted ? interactor : nil
+  open func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+    if let navigationController = self.navigationController as? ScrollingNavigationController {
+      navigationController.showNavbar(animated: true)
+    }
+    return true
   }
 }

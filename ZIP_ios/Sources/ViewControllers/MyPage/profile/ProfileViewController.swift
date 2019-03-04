@@ -12,10 +12,12 @@ import RxCocoa
 import RxDataSources
 import RxGesture
 import PopupDialog
+import JDStatusBarNotification
+import NVActivityIndicatorView
 
 class ProfileViewController: UIViewController{
   var didUpdateConstraint = false
-  var interactor:Interactor? = nil
+  var isDismissPossible = false
   private let disposeBag = DisposeBag()
   private let viewModel: UserProfileTypes = UserProfileViewModel()
   private let headerView = PHeaderView()
@@ -96,6 +98,8 @@ class ProfileViewController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    NVActivityIndicatorPresenter.sharedInstance.sumwhereStart()
     view.addSubview(collectionView)
     view.addSubview(buttonView)
     bind()
@@ -109,9 +113,22 @@ class ProfileViewController: UIViewController{
       .setDelegate(self)
       .disposed(by: disposeBag)
     
-//    collectionView.rx.panGesture()
-//      .bind(onNext: handleGesture)
-//      .disposed(by: disposeBag)
+    collectionView.rx
+      .panGesture()
+      .subscribeNext(weak: self) { (weakSelf) -> (UIPanGestureRecognizer) -> Void in
+        return {gs in
+          switch gs.state{
+          case .changed:
+            weakSelf.isDismissPossible = weakSelf.collectionView.contentOffset.y < -350
+          case .ended:
+            if weakSelf.isDismissPossible{
+              weakSelf.dismiss(animated: true, completion: nil)
+            }
+          default:
+            break
+          }
+        }
+      }.disposed(by: disposeBag)
     
     viewModel.outputs
       .profileImageBinder
@@ -122,6 +139,9 @@ class ProfileViewController: UIViewController{
     
     viewModel.outputs.detailDatas
       .asDriver()
+      .do(onNext: { (_) in
+        NVActivityIndicatorPresenter.sharedInstance.sumwhereStop()
+      })
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
@@ -148,40 +168,21 @@ class ProfileViewController: UIViewController{
           weakSelf.present(pop, animated: true, completion: nil)
         }
       }.disposed(by: disposeBag)
+    
+    viewModel
+      .outputs
+      .isSuccessApply
+      .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
+        return {result in
+          if result {
+              AlertType.JDStatusBar.getInstance().show(isSuccess: result, dismissAfter: 3, message: "신청이 완료되었습니다.")
+          }else {
+            AlertType.JDStatusBar.getInstance().show(isSuccess: result, dismissAfter: 3, message: "에러발생 관리자에게 문의하세요.")
+          }
+        }
+      }.disposed(by: disposeBag)
   }
-  
-//  func handleGesture(_ sender: UIPanGestureRecognizer){
-//    let percentThreshold:CGFloat = 0.3
-//
-//    // convert y-position to downward pull progress (percentage)
-//    let translation = sender.translation(in: view)
-//    let verticalMovement = translation.y / view.bounds.height
-//    let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-//    let downwardMovementPercent = fminf(downwardMovement, 1.0)
-//    let progress = CGFloat(downwardMovementPercent)
-//
-//    guard let interactor = interactor else { return }
-//
-//    switch sender.state {
-//    case .began:
-//      interactor.hasStarted = true
-//      dismiss(animated: true, completion: nil)
-//    case .changed:
-//      interactor.shouldFinish = progress > percentThreshold
-//      interactor.update(progress)
-//    case .cancelled:
-//      interactor.hasStarted = false
-//      interactor.cancel()
-//    case .ended:
-//      interactor.hasStarted = false
-//      interactor.shouldFinish
-//        ? interactor.finish()
-//        : interactor.cancel()
-//    default:
-//      break
-//    }
-//  }
-  
+    
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     collectionView.collectionViewLayout.invalidateLayout()

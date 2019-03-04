@@ -9,8 +9,7 @@
 import JDStatusBarNotification
 
 protocol AlertAction {
-  func show(isSuccess: Bool, message: String)
-  func close()
+  func show(isSuccess: Bool,dismissAfter: Double, message: String)
 }
 
 enum AlertType{
@@ -24,15 +23,12 @@ enum AlertType{
 }
 
 struct StatusBarJD: AlertAction{
-  func show(isSuccess: Bool, message: String) {
+  func show(isSuccess: Bool,dismissAfter: Double, message: String) {
     if isSuccess{
-      JDStatusBarNotification.show(withStatus: message, dismissAfter: 2, styleName: JDType.Success.rawValue)
+      JDStatusBarNotification.show(withStatus: message, dismissAfter: dismissAfter, styleName: JDType.Success.rawValue)
     }else{
-      JDStatusBarNotification.show(withStatus: message, dismissAfter: 2, styleName: JDType.Fail.rawValue)
+      JDStatusBarNotification.show(withStatus: message, dismissAfter: dismissAfter, styleName: JDType.Fail.rawValue)
     }
-  }
-  
-  func close() {
   }
 }
 

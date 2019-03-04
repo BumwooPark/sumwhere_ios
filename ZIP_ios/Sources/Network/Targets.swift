@@ -29,7 +29,6 @@ public enum ZIP{
   case GetAllTripStyle
   case GetAllInterest
   case GetAllCharacter
-  case RelationShipMatch(tripId: Int, startDate: String, endDate: String)
   case MatchRequest(model: Encodable)
   case MatchRequestReceive
   case MatchType
@@ -60,7 +59,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.155:8080/v1")!
+    return URL(string: "http://192.168.1.10:8080/v1")!
 //    return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
@@ -111,8 +110,6 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/interests"
     case .GetAllCharacter:
       return "/restrict/characters"
-    case .RelationShipMatch:
-      return "/restrict/match/relationship"
     case .MatchRequest:
       return "/restrict/match/request"
     case .MatchRequestReceive:
@@ -202,8 +199,6 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestJSONEncodable(json)
     case .AllTripList(let sortby, let order, let skipCount, let maxResultCount):
       return .requestParameters(parameters: ["sortby": sortby,"order":order,"skipCount":skipCount,"maxResultCount": maxResultCount], encoding: URLEncoding.queryString)
-    case .RelationShipMatch(let tripId, let startDate, let endDate):
-      return .requestParameters(parameters: ["tripid":tripId,"start":startDate,"end":endDate], encoding: URLEncoding.queryString)
     case .deleteTrip(let id):
       return .requestParameters(parameters: ["tripId": id], encoding: URLEncoding.queryString)
     case .IAPSuccess(let receipt,let identifier):

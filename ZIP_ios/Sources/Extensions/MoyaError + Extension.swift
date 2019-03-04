@@ -17,7 +17,7 @@ extension MoyaError{
       let error = err as NSError
       switch error.code{
       case -1004:
-          AlertType.JDStatusBar.getInstance().show(isSuccess: false, message: "서버에 연결할 수 없습니다. 관리자에게 문의하세요")
+        AlertType.JDStatusBar.getInstance().show(isSuccess: false, dismissAfter: 3, message: "서버에 연결할 수 없습니다. 관리자에게 문의하세요")
       default:
         log.error(self)
         break
@@ -25,9 +25,9 @@ extension MoyaError{
     case let .statusCode(response):
       do {
         let data = try response.map(ResultModel<Bool>.self)
-        AlertType.JDStatusBar.getInstance().show(isSuccess: false, message: data.error?.details ?? String())
+        AlertType.JDStatusBar.getInstance().show(isSuccess: false, dismissAfter: 3, message: data.error?.details ?? String())
       }catch{
-        AlertType.JDStatusBar.getInstance().show(isSuccess: false, message: "에러")
+        AlertType.JDStatusBar.getInstance().show(isSuccess: false, dismissAfter: 3, message: "에러")
       }
     default:
       log.error(self)

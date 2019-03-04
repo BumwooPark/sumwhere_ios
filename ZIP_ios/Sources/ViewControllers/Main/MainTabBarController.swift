@@ -17,7 +17,7 @@ class MainTabBarController: UITabBarController{
   private let disposeBag = DisposeBag()
   
   let mainViewController: UINavigationController = {
-    let naviVC = UINavigationController(rootViewController: MainViewController())
+    let naviVC = UINavigationController(rootViewController: NewMainViewController())
     naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "arrowicon.png")
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "arrowicon.png").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
