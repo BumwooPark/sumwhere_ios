@@ -27,11 +27,11 @@ class MainHeaderCell: UICollectionViewCell{
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentView.addSubview(bgImageView)
-    backgroundColor = .white
-    layer.shadowColor = UIColor.gray.cgColor
-    layer.shadowOffset = CGSize(width: 6, height: 6)
-    layer.shadowRadius = 10
-    layer.shadowOpacity = 5
+    backgroundColor = .clear
+    layer.shadowColor = UIColor.lightGray.cgColor
+    layer.shadowOffset = CGSize(width: 5, height: 5)
+    layer.shadowRadius = 5
+    layer.shadowOpacity = 0.5
     
     bgImageView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()

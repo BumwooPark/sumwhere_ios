@@ -213,6 +213,7 @@
 		B1A1D99D211D23FB0022D2A0 /* TripTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */; };
 		B1A1D9A7212ABC2C0022D2A0 /* UserTripJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */; };
 		B1A3933E21C2594500E7A71F /* EmptyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A3933D21C2594500E7A71F /* EmptyChatView.swift */; };
+		B1C1F133222E1CDA00F10D14 /* MainCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1F132222E1CDA00F10D14 /* MainCollectionFooterView.swift */; };
 		B1CCFF6522129149004A9500 /* InsertDetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */; };
 		B1CCFF67221293E0004A9500 /* DetailScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */; };
 		B1CCFF6A22155B9D004A9500 /* PlanDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */; };
@@ -473,6 +474,7 @@
 		B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTicketCell.swift; sourceTree = "<group>"; };
 		B1A1D9A6212ABC2C0022D2A0 /* UserTripJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTripJoinModel.swift; sourceTree = "<group>"; };
 		B1A3933D21C2594500E7A71F /* EmptyChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChatView.swift; sourceTree = "<group>"; };
+		B1C1F132222E1CDA00F10D14 /* MainCollectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionFooterView.swift; sourceTree = "<group>"; };
 		B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDetailScheduleViewController.swift; sourceTree = "<group>"; };
 		B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewModel.swift; sourceTree = "<group>"; };
 		B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDateViewModel.swift; sourceTree = "<group>"; };
@@ -1174,6 +1176,7 @@
 				B1CCFF84222D0F95004A9500 /* MainHeaderView.swift */,
 				B1CCFF86222D12FC004A9500 /* MainHeaderCell.swift */,
 				0A873881222D3F4A00A52A77 /* MainViewCell.swift */,
+				B1C1F132222E1CDA00F10D14 /* MainCollectionFooterView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1592,6 +1595,7 @@
 				B1913BC1219977C2009F9191 /* InfoPageViewController.swift in Sources */,
 				B1913BBD21997464009F9191 /* EventInfoViewController.swift in Sources */,
 				0A397CC421F46D0E00F65BE0 /* AccountSettingViewController.swift in Sources */,
+				B1C1F133222E1CDA00F10D14 /* MainCollectionFooterView.swift in Sources */,
 				0A8B9A042220FE5000B9C92D /* StyleHeaderView.swift in Sources */,
 				0A9174D320272CEC000A055A /* JDStatusBarManager.swift in Sources */,
 				0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */,

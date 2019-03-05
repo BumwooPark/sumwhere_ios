@@ -23,6 +23,7 @@ class MainHeaderView: UIView{
   
   let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<EventModel>>(configureCell: {ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MainHeaderCell.self), for: idx) as! MainHeaderCell
+    cell.item = item
     return cell
   })
   
@@ -37,6 +38,7 @@ class MainHeaderView: UIView{
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 17, bottom: 0, right: 17)
     collectionView.backgroundColor = .clear
     collectionView.showsHorizontalScrollIndicator = false
+    collectionView.alwaysBounceHorizontal = true
     return collectionView
   }()
   
