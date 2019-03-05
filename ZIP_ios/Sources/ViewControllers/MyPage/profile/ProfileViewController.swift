@@ -145,8 +145,6 @@ class ProfileViewController: UIViewController{
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)
     
-    viewModel.inputs.getStatus(id: userID)
-    
     buttonView.buttonAction
       .subscribeNext(weak: self) { (weakSelf) -> (ProfileSubmitButtonView.Action) -> Void in
         return { action in

@@ -13,9 +13,7 @@ struct MatchRequestHistoryModel: Codable{
 
 
 struct MatchRequstModel: Codable{
-  let fromMatchId: Int
-  let toMatchId: Int
-  let accepted: Bool
+  let tripId: Int
+  let toTripId: Int
+  let toUserId: Int
 }
-
-

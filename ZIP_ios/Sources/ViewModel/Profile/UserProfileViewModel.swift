@@ -21,7 +21,6 @@ internal protocol UserProfileOutputs{
 
 internal protocol UserProfileInputs{
   func getUserProfile(userID: Int)
-  func getStatus(id: Int)
   func applyBefore()
 }
 
@@ -118,20 +117,6 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
     .disposed(by: disposeBag)
   }
   
-  func getStatus(id: Int){
-    AuthManager.instance.provider.request(.GetMatchStatus(id: "\(id)"))
-      .filterSuccessfulStatusCodes()
-      .map(ResultModel<MatchRequstModel>.self)
-      .map{$0.result}
-      .asObservable()
-      .unwrap()
-      .subscribeNext(weak: self) { (weakSelf) -> (MatchRequstModel) -> Void in
-        return {model in
-          log.info(model)
-        }
-      }.disposed(by: disposeBag)
-  }
-  
   func applyBefore(){
     
     AuthManager.instance
@@ -157,7 +142,8 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
   func applyAfter(){
     guard let ownModel = tripRegisterContainer.resolve(TripModel.self, name: "own"),
       let targetModel = tripRegisterContainer.resolve(Trip.self,name: "target") else {return}
-    let request = MatchRequstModel(fromMatchId: ownModel.trip.id, toMatchId: targetModel.id, accepted: false)
+    
+    let request = MatchRequstModel(tripId: ownModel.trip.id,toTripId:targetModel.id,toUserId: targetModel.userId)
     AuthManager.instance.provider.request(.MatchRequest(model: request))
       .filterSuccessfulStatusCodes()
       .asObservable()
