@@ -59,6 +59,7 @@ pod 'UICountingLabel'
 pod 'AMScrollingNavbar'
 pod "SkeletonView"
 pod "PreviewTransition"
+pod 'DZNEmptyDataSet'
 
 # RX
 pod 'RxSwift'
