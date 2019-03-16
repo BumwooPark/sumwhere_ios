@@ -37,6 +37,7 @@ final class HistoryViewController: UIViewController{
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
+    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(HistoryHeaderView.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,

@@ -14,18 +14,23 @@ class HistoryHeaderView: UICollectionReusableView{
   var item: Trip?{
     didSet{
       guard let item = item else {return}
-//      placeLabel.text = item
+      placeLabel.text = item.region
     }
   }
   
-  let placeLabel: UILabel = {
+  private let placeLabel: UILabel = {
     let label = UILabel()
     label.font = .AppleSDGothicNeoMedium(size: 19)
     label.textColor = #colorLiteral(red: 0.0431372549, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
     return label
   }()
   
-  let dateLabel: UILabel = {
+  private let imageView: UIImageView = {
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "backlecture.png"))
+    return imageView
+  }()
+  
+  private let dateLabel: UILabel = {
     let label = UILabel()
     return label
   }()
@@ -39,6 +44,20 @@ class HistoryHeaderView: UICollectionReusableView{
   override func updateConstraints() {
     if !didUpdateConstraint{
       
+      placeLabel.snp.makeConstraints { (make) in
+        make.top.equalToSuperview().inset(40)
+        make.left.equalToSuperview().inset(47)
+      }
+      
+      imageView.snp.makeConstraints { (make) in
+        make.right.left.equalTo(placeLabel)
+        make.bottom.equalTo(placeLabel)
+        make.height.equalTo(placeLabel).dividedBy(2)
+      }
+      
+      dateLabel.snp.makeConstraints { (make) in
+        make.
+      }
       
       didUpdateConstraint = true
     }
