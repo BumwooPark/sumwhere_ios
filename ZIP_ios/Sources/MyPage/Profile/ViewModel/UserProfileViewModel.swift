@@ -143,8 +143,9 @@ class UserProfileViewModel: UserProfileTypes, UserProfileInputs, UserProfileOutp
     guard let ownModel = tripRegisterContainer.resolve(TripModel.self, name: "own"),
       let targetModel = tripRegisterContainer.resolve(Trip.self,name: "target") else {return}
     
-    let request = MatchRequstModel(tripId:
-      ownModel.trip.id
+    let request = MatchRequstModel(
+      tripPlaceId: ownModel.tripPlace.id
+      ,tripId:ownModel.trip.id
       ,toTripId:targetModel.id
       ,toUserId: targetModel.userId)
     AuthManager.instance.provider.request(.MatchRequest(model: request))

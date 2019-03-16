@@ -12,7 +12,7 @@ class EmptyChatView: UIView {
   var didUpdateConstraint = false
   private let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.image = #imageLiteral(resourceName: "emptyChatlistIcon.png")
+    imageView.image = #imageLiteral(resourceName: "iconChatnohave.png")
     return imageView
   }()
   

@@ -9,7 +9,7 @@
 import RxDataSources
 
 enum HistorySectionModel{
-  case HistoryTrip(trip: Trip, items: [MatchHistoryModel])
+  case HistoryTrip(trip: TripPlaceJoin, items: [MatchHistoryModel])
 }
 
 extension HistorySectionModel: SectionModelType{
@@ -31,7 +31,7 @@ extension HistorySectionModel: SectionModelType{
 }
 
 extension HistorySectionModel{
-  var trip: Trip{
+  var tripPlaceJoind: TripPlaceJoin{
     switch self {
     case .HistoryTrip(trip: let trip, items: _):
       return trip

@@ -43,11 +43,10 @@ class RequestHistoryViewModel: MatchHistoryTypes, MatchHistoryInputs, MatchHisto
 
     result.elements()
       .flatMap { (models)  -> Observable<[HistorySectionModel]> in
-        var modelData = [Trip:[MatchHistoryModel]]()
+        var modelData = [TripPlaceJoin:[MatchHistoryModel]]()
         for model in models {
-          modelData[model.trip, default: []].append(model)
+          modelData[TripPlaceJoin(trip: model.trip,tripPlace: model.tripPlace), default: []].append(model)
         }
-        
         var sectionModels = [HistorySectionModel]()
         for (k,v) in modelData{
           sectionModels.append(HistorySectionModel.HistoryTrip(trip: k, items: v))

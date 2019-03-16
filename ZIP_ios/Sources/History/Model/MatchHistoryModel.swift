@@ -20,12 +20,7 @@ struct MatchHistory: Codable{
 
 struct MatchHistoryModel: Codable{
   let trip: Trip
+  let tripPlace: TripPlace
   let profile: UserProfileModel
   let user: UserModel
-}
-
-struct MatchRequstModel: Codable{
-  let tripId: Int
-  let toTripId: Int
-  let toUserId: Int
 }

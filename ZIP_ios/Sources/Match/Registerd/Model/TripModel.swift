@@ -13,7 +13,7 @@ struct TripModel: Codable{
   let tripPlace: TripPlace
 }
 
-struct Trip: Codable, Hashable{
+struct Trip: Codable,Hashable{
   let id: Int
   let userId: Int
   let matchTypeId: Int
@@ -25,11 +25,21 @@ struct Trip: Codable, Hashable{
   var endDate: String
 }
 
-struct TripPlace: Codable{
+struct TripPlace: Codable,Hashable{
   let id: Int
   let trip: String
   let discription: String
   let countryId: Int
   let imageURL: String
   let keywords: [String]
+}
+
+
+struct TripPlaceJoin: Hashable{
+  static func == (lhs: TripPlaceJoin, rhs: TripPlaceJoin) -> Bool {
+    return lhs.trip.id == rhs.trip.id
+  }
+  
+  let trip: Trip
+  let tripPlace: TripPlace
 }

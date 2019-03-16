@@ -24,7 +24,7 @@ final class HistoryViewController: UIViewController{
     switch kind {
     case UICollectionView.elementKindSectionHeader:
       let view = cv.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: HistoryHeaderView.self), for: idx) as! HistoryHeaderView
-      view.item = ds[idx].trip
+      view.item = ds[idx.section].tripPlaceJoind
       return view
     case UICollectionView.elementKindSectionFooter:
       let view = cv.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: HistoryFooterView.self), for: idx) as! HistoryFooterView
@@ -37,7 +37,8 @@ final class HistoryViewController: UIViewController{
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
+    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 70)
+    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(HistoryHeaderView.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -56,16 +57,12 @@ final class HistoryViewController: UIViewController{
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
     self.view = collectionView
+    bind()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     viewModel.inputs.getHistoryData()
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    bind()
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -74,7 +71,8 @@ final class HistoryViewController: UIViewController{
 
   private func bind(){
     
-    viewModel.outputs.historyData
+    viewModel.outputs
+      .historyData
       .asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
       .disposed(by: disposeBag)

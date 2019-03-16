@@ -10,22 +10,30 @@ import MXParallaxHeader
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxGesture
 
 final class NewMainViewController: UIViewController {
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
   private let viewModel: MainTypes = MainViewModel()
   
-  private let leftBarButton:UIBarButtonItem = {
+  private let leftBarButton: UIBarButtonItem = {
     let button = UIBarButtonItem(image: #imageLiteral(resourceName: "taskbarMacthingNot.png").withRenderingMode(.alwaysTemplate), style: .plain, target: nil, action: nil)
     button.tintColor = .white
     return button
   }()
-  private let keyStoreButton: UIButton = {
+  
+  private let alertButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "iconAlarm.png"), for: .normal)
     return button
   }()
+  
+  lazy var alertBarButton: UIBarButtonItem = {
+    return UIBarButtonItem(customView: alertButton)
+  }()
+  
+  
   
   private let headerView = MainHeaderView()
   private let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<CountryWithPlace>>(
@@ -57,7 +65,6 @@ final class NewMainViewController: UIViewController {
     collectionView.parallaxHeader.view = headerView
     collectionView.parallaxHeader.minimumHeight = 0
     collectionView.parallaxHeader.height = 461
-
     collectionView.backgroundColor = .white
     return collectionView
   }()
@@ -65,8 +72,9 @@ final class NewMainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view = collectionView
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: keyStoreButton)
+    self.navigationItem.rightBarButtonItems = [alertBarButton]
     self.navigationItem.leftBarButtonItem = leftBarButton
+    alertBarButton.addBadge(number: 1, withOffset: CGPoint(x: -30, y: -5), andColor: .red, andFilled: true)
     bind()
     view.setNeedsUpdateConstraints()
   }
@@ -85,5 +93,12 @@ final class NewMainViewController: UIViewController {
       .map{[GenericSectionModel<EventModel>(items: $0)]}
       .bind(to: headerView.datas)
       .disposed(by: disposeBag)
+    
+    alertButton.rx.tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.present(UINavigationController(rootViewController: AlertHistoryViewController()), animated: true, completion: nil)
+        }
+      }.disposed(by: disposeBag)
   }
 }
