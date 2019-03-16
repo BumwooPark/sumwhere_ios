@@ -11,21 +11,26 @@ import Foundation
 class HistoryHeaderView: UICollectionReusableView{
   
   private var didUpdateConstraint = false
-  var item: Trip?{
+  var item: TripPlaceJoin?{
     didSet{
       guard let item = item else {return}
-//      placeLabel.text = item
+      placeLabel.text = item.tripPlace.trip
     }
   }
   
-  let placeLabel: UILabel = {
+  private let imageView: UIImageView = {
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "emptyChatlistIcon.png"))
+    return imageView
+  }()
+  
+  private let placeLabel: UILabel = {
     let label = UILabel()
     label.font = .AppleSDGothicNeoMedium(size: 19)
     label.textColor = #colorLiteral(red: 0.0431372549, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
     return label
   }()
   
-  let dateLabel: UILabel = {
+  private let dateLabel: UILabel = {
     let label = UILabel()
     return label
   }()
@@ -33,12 +38,27 @@ class HistoryHeaderView: UICollectionReusableView{
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(placeLabel)
+    addSubview(imageView)
+    addSubview(dateLabel)
     setNeedsUpdateConstraints()
   }
   
   override func updateConstraints() {
     if !didUpdateConstraint{
+      placeLabel.snp.makeConstraints { (make) in
+        make.top.equalToSuperview().inset(30)
+        make.left.equalToSuperview().inset(50)
+      }
       
+      imageView.snp.makeConstraints { (make) in
+        make.left.right.bottom.equalTo(placeLabel)
+        make.height.equalTo(10)
+      }
+      
+      dateLabel.snp.makeConstraints { (make) in
+        make.left.equalTo(placeLabel)
+        make.top.equalTo(placeLabel.snp.bottom).offset(5)
+      }
       
       didUpdateConstraint = true
     }

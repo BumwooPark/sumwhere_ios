@@ -12,7 +12,6 @@ import RxCocoa
 #endif
 
 internal protocol MainInputs{
-  
 }
 
 internal protocol MainOutputs{
@@ -82,8 +81,6 @@ class MainViewModel: MainTypes, MainInputs, MainOutputs {
         }
     }.disposed(by: disposeBag)
   }
-  
- 
 }
 
 

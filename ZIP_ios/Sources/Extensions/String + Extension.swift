@@ -6,6 +6,8 @@
 //  Copyright © 2018년 park bumwoo. All rights reserved.
 //
 
+import SwiftDate
+
 extension String {
   func ranges(of string: String, options: CompareOptions = .literal) -> [Range<Index>] {
     let lowerCaseString = string.lowercased()
@@ -39,5 +41,21 @@ extension String {
 extension String {
   func addSumwhereImageURL() -> String {
     return AuthManager.imageURL + self
+  }
+}
+
+extension String{
+  func dateTimeKoreaConverter() -> String?{
+    guard let date = self.toISODate(nil, region: Region(calendar: Calendars.gregorian, zone: Zones.asiaSeoul, locale: Locales.korean))
+      else {return nil}
+    
+    if date.compare(.isToday){
+      return "오늘"
+    }else if date.isInRange(date: Date().dateByAdding(-7, .day), and: Date().inDefaultRegion()){
+      let day = Date().inDefaultRegion().timeIntervalSince(date).toUnit(.day) ?? 0
+      return "\(day)일 전"
+    }else{
+      return date.toFormat("yyyy-MM-dd")
+    }
   }
 }

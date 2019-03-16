@@ -44,8 +44,12 @@ public enum ZIP{
   case Notice
   case banner
   case SignOut
+  
+  // Push
+  case GetPushHistory
   case GetPush
   case UpdatePush(model: Encodable)
+  
   case FcmUpdate(token: String)
   case GetMatchList(tripId: Int)
   case NewMatchList(tripId: Int)
@@ -64,7 +68,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.10:8080/v1")!
+    return URL(string: "http://192.168.1.3:8080/v1")!
 //    return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
@@ -143,6 +147,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/signout"
     case .GetPush,.UpdatePush:
       return "/restrict/push"
+    case .GetPushHistory:
+      return "/restrict/push/history"
     case .FcmUpdate:
       return "/restrict/fcmToken"
     case .GetMatchList:
