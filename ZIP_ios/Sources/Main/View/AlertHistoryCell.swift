@@ -14,7 +14,7 @@ final class AlertHistoryCell: UICollectionViewCell{
       guard let item = item else {return}
       imageView.kf.setImage(with: URL(string: item.pushType.imageURL.addSumwhereImageURL()), options: [.transition(.fade(0.2))])
       titleLabel.text = item.pushHistory.title
-      dateLabel.text = item.pushHistory.createAt.dateTimeKoreaConverter()
+      dateLabel.text = item.pushHistory.createdAt.dateTimeKoreaConverter()
     }
   }
   
@@ -34,6 +34,8 @@ final class AlertHistoryCell: UICollectionViewCell{
   
   private let dateLabel: UILabel = {
     let label = UILabel()
+    label.font = UIFont.AppleSDGothicNeoMedium(size: 13)
+    label.textColor = #colorLiteral(red: 0.5490196078, green: 0.5490196078, blue: 0.5490196078, alpha: 1)
     return label
   }()
   

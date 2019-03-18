@@ -62,14 +62,15 @@ public enum ZIP{
   case GetTripStyles(ids: String)
   case GetMatchStatus(id: String)
   case GetMatchRequestHistory
+  case GetMatchReceiveHistory
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-//    return URL(string: "http://192.168.1.10:8080/v1")!
-    return URL(string: "https://www.sumwhere.kr/v1")!
+    return URL(string: "http://localhost:8080/v1")!
+//    return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
     #endif
@@ -167,6 +168,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/status"
     case .GetMatchRequestHistory:
       return "/restrict/match/history/request"
+    case .GetMatchReceiveHistory:
+      return "/restrict/match/history/receive"
     }
   }
   

@@ -55,7 +55,7 @@ extension String{
       let day = Date().inDefaultRegion().timeIntervalSince(date).toUnit(.day) ?? 0
       return "\(day)일 전"
     }else{
-      return date.toFormat("yyyy-MM-dd")
+      return date.toFormat("MM월 dd일 yyyy")
     }
   }
 }

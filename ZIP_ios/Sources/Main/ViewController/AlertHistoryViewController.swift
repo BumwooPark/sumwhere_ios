@@ -10,9 +10,11 @@ import RxCocoa
 import RxDataSources
 
 class AlertHistoryViewController: UIViewController{
+  private var isDismissPossible = false
   private let disposeBag = DisposeBag()
   private let datas = BehaviorRelay<[GenericSectionModel<AlertHistory>]>(value: [])
   
+  private let cancelBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "imagecancel"), style: .plain, target: nil, action: nil)
   private let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<AlertHistory>>(configureCell: {ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: AlertHistoryCell.self), for: idx) as! AlertHistoryCell
     cell.item = item
@@ -26,6 +28,7 @@ class AlertHistoryViewController: UIViewController{
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(AlertHistoryCell.self, forCellWithReuseIdentifier: String(describing: AlertHistoryCell.self))
     collectionView.backgroundColor = .white
+    collectionView.alwaysBounceVertical = true
     return collectionView
   }()
   
@@ -33,6 +36,14 @@ class AlertHistoryViewController: UIViewController{
     super.viewDidLoad()
     view = collectionView
     title = "알림"
+    self.navigationItem.leftBarButtonItem = cancelBarButton
+    cancelBarButton.rx.tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.dismiss(animated: true, completion: nil)
+        }
+    }.disposed(by: disposeBag)
+    
     API()
     bind()
   }

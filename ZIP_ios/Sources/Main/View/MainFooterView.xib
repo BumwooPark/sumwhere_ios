@@ -17,28 +17,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainvclogo" translatesAutoresizingMaskIntoConstraints="NO" id="dXR-PR-lXv">
-                    <rect key="frame" x="19" y="31" width="88" height="23"/>
+                    <rect key="frame" x="19" y="31" width="88" height="13"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="88" id="Vfo-Tx-akT"/>
-                        <constraint firstAttribute="height" constant="23" id="xUx-g0-pjq"/>
+                        <constraint firstAttribute="height" constant="13" id="xUx-g0-pjq"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BuA-PY-lD1">
-                    <rect key="frame" x="19" y="65" width="83" height="28"/>
+                    <rect key="frame" x="19" y="55" width="83" height="28"/>
                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="13"/>
                     <state key="normal" title="서비스 이용약관">
                         <color key="titleColor" red="0.63137254901960782" green="0.63137254901960782" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iW4-QM-M7e">
-                    <rect key="frame" x="127" y="65" width="94" height="28"/>
+                    <rect key="frame" x="127" y="55" width="94" height="28"/>
                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="13"/>
                     <state key="normal" title="개인정보 처리방침">
                         <color key="titleColor" red="0.63137254901960782" green="0.63137254901960782" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAU-cR-XOE">
-                    <rect key="frame" x="19" y="100" width="341" height="47"/>
+                    <rect key="frame" x="19" y="90" width="341" height="47"/>
                     <string key="text">(주) sumwhere는 통신판매중개사로서 통신판매의 당사자가 아니며 상품 거래정보 및 거래 등에 책임을 지지 않습니다.
 </string>
                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
@@ -46,7 +46,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWV-P8-JfW">
-                    <rect key="frame" x="113" y="71" width="2" height="16"/>
+                    <rect key="frame" x="113" y="61" width="2" height="16"/>
                     <color key="backgroundColor" red="0.63137254901960782" green="0.63137254901960782" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="2" id="f9z-Nw-2wr"/>

@@ -14,21 +14,22 @@ import TagListView
 import PopupDialog
 import Swinject
 import NVActivityIndicatorView
+import EmptyDataSet_Swift
 
 class RegisterdViewController: UIViewController{
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
 
   lazy var viewModel: RegisterdTypes = RegisterdTripViewModel()
-  
   private let tagViewController = RegisterdSubviewController()
-  
   private let datas = BehaviorRelay<[GenericSectionModel<UserTripJoinModel>]>(value: [])
   private let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<UserTripJoinModel>>(configureCell: {ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MatchResultCell.self), for: idx) as! MatchResultCell
     cell.item = item
     return cell
   })
+  
+  private let emptyView = RegisterdEmptyView()
   
   private let deleteButton: UIButton = {
     let button = UIButton()
@@ -54,7 +55,7 @@ class RegisterdViewController: UIViewController{
     return button
   }()
   
-  private let collectionView: UICollectionView = {
+  lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
     layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 68, height: 413)
@@ -68,6 +69,7 @@ class RegisterdViewController: UIViewController{
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    viewModel.inputs.patchTrip()
     if let navigationController = navigationController as? ScrollingNavigationController {
       navigationController.followScrollView(collectionView, delay: 50.0)
     }
@@ -93,6 +95,7 @@ class RegisterdViewController: UIViewController{
     self.view.addSubview(tagViewController.view)
     self.addChild(tagViewController)
     self.view.addSubview(collectionView)
+    
   
     navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: titleButton),UIBarButtonItem(customView: typeButton)]
     navigationItem.rightBarButtonItem = UIBarButtonItem(customView: deleteButton)
@@ -154,12 +157,28 @@ class RegisterdViewController: UIViewController{
       .matchList
       .do(onNext: { (_) in
         NVActivityIndicatorPresenter.sharedInstance.sumwhereStop()
-      })
+      }).share()
     
-    list.elements()
+    list
       .map{[GenericSectionModel<UserTripJoinModel>(items: $0)]}
       .bind(to: datas)
       .disposed(by: disposeBag)
+    
+    list
+      .map{$0.count > 0}
+      .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
+        return {result in
+          if !result {
+            weakSelf.view.insertSubview(weakSelf.emptyView, aboveSubview: weakSelf.collectionView)
+            weakSelf.emptyView.snp.remakeConstraints({ (make) in
+              make.edges.equalTo(weakSelf.collectionView)
+            })
+          }else {
+            weakSelf.emptyView.removeFromSuperview()
+            weakSelf.emptyView.snp.removeConstraints()
+          }
+        }
+      }.disposed(by: disposeBag)
     
     deleteButton.rx.tap
       .bind(onNext: viewModel.inputs.deleteTrip)
@@ -188,6 +207,9 @@ class RegisterdViewController: UIViewController{
         make.top.equalTo(tagViewController.view.snp.bottom)
         make.bottom.equalTo(self.view.safeAreaLayoutGuide)
       }
+      
+      
+      
       didUpdateConstraint = true
     }
     super.updateViewConstraints()
@@ -200,3 +222,15 @@ class RegisterdViewController: UIViewController{
     return true
   }
 }
+
+
+//extension RegisterdViewController: EmptyDataSetSource{
+//
+//  func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> UIImage? {
+//    return #imageLiteral(resourceName: "registedemptyimage.png")
+//  }
+//
+//  func customView(forEmptyDataSet scrollView: UIScrollView) -> UIView? {
+//    return RegisterdEmptyView()
+//  }
+//}

@@ -19,6 +19,7 @@ final class HistoryViewController: UIViewController{
   
   private let dataSources = RxCollectionViewSectionedReloadDataSource<HistorySectionModel>(configureCell: {ds,cv,idx,item in
     let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: HistoryCell.self), for: idx) as! HistoryCell
+    cell.item = item
     return cell
   },configureSupplementaryView: {ds,cv,kind,idx in
     switch kind {
@@ -37,8 +38,9 @@ final class HistoryViewController: UIViewController{
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 70)
-    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
+    layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
+    layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+    layout.itemSize = CGSize(width: 102, height: 151)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(HistoryHeaderView.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -49,7 +51,8 @@ final class HistoryViewController: UIViewController{
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                             withReuseIdentifier: String(describing: HistoryFooterView.self))
     collectionView.emptyDataSetSource = self
-    collectionView.backgroundColor = .white
+    collectionView.backgroundColor = #colorLiteral(red: 0.9685427547, green: 0.9686817527, blue: 0.9685124755, alpha: 1)
+    collectionView.alwaysBounceVertical = true 
     return collectionView
   }()
   
@@ -60,8 +63,8 @@ final class HistoryViewController: UIViewController{
     bind()
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+  override func didMove(toParent parent: UIViewController?) {
+    super.didMove(toParent: parent)
     viewModel.inputs.getHistoryData()
   }
   
@@ -71,6 +74,13 @@ final class HistoryViewController: UIViewController{
 
   private func bind(){
     
+    collectionView.rx.modelSelected(MatchHistoryModel.self)
+      .subscribeNext(weak: self) { (weakSelf) -> (MatchHistoryModel) -> Void in
+        return {model in
+          log.info(model)
+        }
+      }.disposed(by: disposeBag)
+  
     viewModel.outputs
       .historyData
       .asDriver()

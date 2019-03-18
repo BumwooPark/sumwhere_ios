@@ -58,7 +58,8 @@ final class RegisterTripViewModel: RegisterTripType, RegisterTripInputs,Register
            tripPlaceId: place.id,
            genderType: "NONE",
            startDate: date.startDate.toFormat("yyyy-MM-dd"),
-           endDate: date.endDate.toFormat("yyyy-MM-dd"))
+           endDate: date.endDate.toFormat("yyyy-MM-dd"),
+           createdAt: String())
       AuthManager.instance.provider.request(.createTrip(model: model))
         .filterSuccessfulStatusCodes()
         .map(ResultModel<Trip>.self)

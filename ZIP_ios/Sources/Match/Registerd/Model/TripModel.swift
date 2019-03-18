@@ -23,6 +23,7 @@ struct Trip: Codable,Hashable{
   var genderType: String
   var startDate: String
   var endDate: String
+  var createdAt: String
 }
 
 struct TripPlace: Codable,Hashable{

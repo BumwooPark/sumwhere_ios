@@ -11,11 +11,12 @@ import RxCocoa
 import PopupDialog
 
 internal protocol RegisterdOutputs {
-  var matchList: Observable<Event<[UserTripJoinModel]>> {get}
+  var matchList: BehaviorRelay<[UserTripJoinModel]> {get}
   var deleteSuccess: PublishRelay<Void> {get}
 }
 
 internal protocol RegisterdInputs{
+  func patchTrip()
   func deleteTrip()
 }
 
@@ -25,16 +26,21 @@ internal protocol RegisterdTypes{
 }
 
 class RegisterdTripViewModel: RegisterdTypes, RegisterdOutputs, RegisterdInputs{
+  var matchList: BehaviorRelay<[UserTripJoinModel]> = BehaviorRelay<[UserTripJoinModel]>(value: [])
   var inputs: RegisterdInputs {return self}
   var outputs: RegisterdOutputs {return self}
   let disposeBag = DisposeBag()
   let model: TripModel? = tripRegisterContainer.resolve(TripModel.self, name: "own")
-  let matchList: Observable<Event<[UserTripJoinModel]>>
+//  let matchList: Observable<Event<[UserTripJoinModel]>>
   let deleteSuccess: PublishRelay<Void> = PublishRelay<Void>()
   
   
   init() {
-    matchList = AuthManager
+    patchTrip()
+  }
+  
+  func patchTrip() {
+    let api = AuthManager
       .instance
       .provider
       .request(.GetMatchList(tripId: model?.trip.id ?? 0))
@@ -45,6 +51,17 @@ class RegisterdTripViewModel: RegisterdTypes, RegisterdOutputs, RegisterdInputs{
       .asObservable()
       .materialize()
       .share()
+    
+    api.elements()
+      .bind(to: matchList)
+      .disposed(by: disposeBag)
+    
+    api.errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return {err in
+          log.error(err)
+        }
+      }.disposed(by: disposeBag)
     
   }
 

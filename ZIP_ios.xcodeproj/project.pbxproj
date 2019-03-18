@@ -70,6 +70,7 @@
 		0A397CD72208277600F65BE0 /* ChangeConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A397CD62208277600F65BE0 /* ChangeConceptViewController.swift */; };
 		0A3C3FEB1FE7E938005FF52B /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */; };
 		0A4AC70B1FB1D24200F9FE85 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */; };
+		0A554158223FD8DC00FB44F3 /* RegisterdEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A554157223FD8DC00FB44F3 /* RegisterdEmptyView.swift */; };
 		0A671AC420345CC400034CE0 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */; };
 		0A6812DC220EDB2D00A84715 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6812DB220EDB2D00A84715 /* SelectCountryViewController.swift */; };
 		0A6812DE220EEA9900A84715 /* DetailCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6812DD220EEA9900A84715 /* DetailCountryViewController.swift */; };
@@ -294,6 +295,7 @@
 		0A397CD62208277600F65BE0 /* ChangeConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeConceptViewController.swift; sourceTree = "<group>"; };
 		0A3C3FEA1FE7E938005FF52B /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		0A4AC70A1FB1D24200F9FE85 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		0A554157223FD8DC00FB44F3 /* RegisterdEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterdEmptyView.swift; sourceTree = "<group>"; };
 		0A671AC320345CC400034CE0 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		0A6812DB220EDB2D00A84715 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		0A6812DD220EEA9900A84715 /* DetailCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCountryViewController.swift; sourceTree = "<group>"; };
@@ -1185,6 +1187,7 @@
 			children = (
 				B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */,
 				0A15A6CF21280F420060290A /* MatchResultCell.swift */,
+				0A554157223FD8DC00FB44F3 /* RegisterdEmptyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1519,6 +1522,7 @@
 				0A1B0EF921EB72740035E657 /* EventContentCell.swift in Sources */,
 				B1C1F16B2230E68800F10D14 /* UIBarButtonItem + Extension.swift in Sources */,
 				0A332776213BA65D00BC2906 /* JoinViewModel.swift in Sources */,
+				0A554158223FD8DC00FB44F3 /* RegisterdEmptyView.swift in Sources */,
 				B1D1CB12212EAA6A001A9801 /* AlertSettingViewController.swift in Sources */,
 				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
 				0A7C50792198679D00558F62 /* MyPageSectionController.swift in Sources */,
@@ -1849,7 +1853,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ZIP_ios/ZIP_ios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = GHQ6X3NQRK;
 				INFOPLIST_FILE = ZIP_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -1874,7 +1878,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ZIP_ios/ZIP_ios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = GHQ6X3NQRK;
 				INFOPLIST_FILE = ZIP_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;

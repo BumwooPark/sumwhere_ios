@@ -13,7 +13,7 @@ struct PushHistory: Codable{
   let typeId: Int
   let userId: Int
   let title: String
-  let createAt: String
+  let createdAt: String
 }
 
 struct PushType: Codable{

@@ -15,6 +15,7 @@ class HistoryHeaderView: UICollectionReusableView{
     didSet{
       guard let item = item else {return}
       placeLabel.text = item.tripPlace.trip
+      dateLabel.text = "\(item.trip.createdAt.dateTimeKoreaConverter() ?? String())"
     }
   }
   
@@ -32,6 +33,8 @@ class HistoryHeaderView: UICollectionReusableView{
   
   private let dateLabel: UILabel = {
     let label = UILabel()
+    label.font = UIFont.AppleSDGothicNeoBold(size: 11)
+    label.textColor = #colorLiteral(red: 0.0431372549, green: 0.0431372549, blue: 0.0431372549, alpha: 1)
     return label
   }()
   
