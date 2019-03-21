@@ -58,4 +58,11 @@ extension String{
       return date.toFormat("MM월 dd일 yyyy")
     }
   }
+  
+  func dateTimetoFormat(format: String) -> String? {
+    guard let date = self.toISODate(nil, region: Region(calendar: Calendars.gregorian, zone: Zones.asiaSeoul, locale: Locales.korean))
+      else {return nil}
+    
+    return date.toFormat(format)
+  }
 }

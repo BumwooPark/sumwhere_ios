@@ -13,8 +13,6 @@ class TripTicketCell: UICollectionViewCell{
   
   var item: TripModel?{
     didSet{
-//      ticketView.startButton.setTitle(String((item?.trip.startDate ?? String()).prefix(10)), for: .normal)
-//      ticketView.endButton.setTitle(String((item?.trip.endDate ?? String()).prefix(10)), for: .normal)
       ticketView.countryLabel.text = item?.tripPlace.trip
       ticketView.destinationLabel.text = item?.tripPlace.trip
     }

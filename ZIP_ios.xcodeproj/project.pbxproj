@@ -189,6 +189,9 @@
 		B1C1F1672230B26300F10D14 /* MatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1F1662230B26300F10D14 /* MatchRequest.swift */; };
 		B1C1F16B2230E68800F10D14 /* UIBarButtonItem + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1F16A2230E68800F10D14 /* UIBarButtonItem + Extension.swift */; };
 		B1C1F16F2230F90C00F10D14 /* AlertHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1F16E2230F90C00F10D14 /* AlertHistory.swift */; };
+		B1C33A1C224322280041148D /* RegisterdSubviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C33A1B224322280041148D /* RegisterdSubviewCell.swift */; };
+		B1C33A1E224332D60041148D /* DetailHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C33A1D224332D60041148D /* DetailHistoryViewController.swift */; };
+		B1C33A2022433B970041148D /* DetailHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C33A1F22433B970041148D /* DetailHistoryViewModel.swift */; };
 		B1CCFF6522129149004A9500 /* InsertDetailScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */; };
 		B1CCFF67221293E0004A9500 /* DetailScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */; };
 		B1CCFF6A22155B9D004A9500 /* PlanDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */; };
@@ -421,6 +424,9 @@
 		B1C1F1662230B26300F10D14 /* MatchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRequest.swift; sourceTree = "<group>"; };
 		B1C1F16A2230E68800F10D14 /* UIBarButtonItem + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem + Extension.swift"; sourceTree = "<group>"; };
 		B1C1F16E2230F90C00F10D14 /* AlertHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistory.swift; sourceTree = "<group>"; };
+		B1C33A1B224322280041148D /* RegisterdSubviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterdSubviewCell.swift; sourceTree = "<group>"; };
+		B1C33A1D224332D60041148D /* DetailHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryViewController.swift; sourceTree = "<group>"; };
+		B1C33A1F22433B970041148D /* DetailHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryViewModel.swift; sourceTree = "<group>"; };
 		B1CCFF6422129149004A9500 /* InsertDetailScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDetailScheduleViewController.swift; sourceTree = "<group>"; };
 		B1CCFF66221293E0004A9500 /* DetailScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScheduleViewModel.swift; sourceTree = "<group>"; };
 		B1CCFF6922155B9D004A9500 /* PlanDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDateViewModel.swift; sourceTree = "<group>"; };
@@ -790,6 +796,7 @@
 				0A78139821A13FE3006AA31F /* PageCollectionLayout.swift */,
 				0A895BEE212EE59800FDF834 /* MatchHistoryViewController.swift */,
 				0A87386D222912E800A52A77 /* HistoryViewController.swift */,
+				B1C33A1D224332D60041148D /* DetailHistoryViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -799,6 +806,7 @@
 			children = (
 				0A8738722229157300A52A77 /* MatchHistoryViewModel.swift */,
 				0A87387B22291F9B00A52A77 /* MatchHistorySectionModel.swift */,
+				B1C33A1F22433B970041148D /* DetailHistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1188,6 +1196,7 @@
 				B1A1D99C211D23FB0022D2A0 /* TripTicketCell.swift */,
 				0A15A6CF21280F420060290A /* MatchResultCell.swift */,
 				0A554157223FD8DC00FB44F3 /* RegisterdEmptyView.swift */,
+				B1C33A1B224322280041148D /* RegisterdSubviewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1570,6 +1579,7 @@
 				0A6812E4220FEA0700A84715 /* Country.swift in Sources */,
 				B1911FB5216B2C63005A4E85 /* ProfileImageViewController.swift in Sources */,
 				0A6812E2220FDE6900A84715 /* CountryTripPlace.swift in Sources */,
+				B1C33A1E224332D60041148D /* DetailHistoryViewController.swift in Sources */,
 				0A23C1FA1FC057A8005DCE32 /* AuthManager.swift in Sources */,
 				0A1F47AF21CA6F4E0003AF7A /* TripStyleSelectViewController.swift in Sources */,
 				B1C1F16F2230F90C00F10D14 /* AlertHistory.swift in Sources */,
@@ -1660,6 +1670,7 @@
 				0A397CBA21F338D800F65BE0 /* MatchTypeViewController.swift in Sources */,
 				0A90EBD02109E8420057F1A9 /* UserModel.swift in Sources */,
 				0A7123961FACC1E900512EB7 /* MainTabBarController.swift in Sources */,
+				B1C33A1C224322280041148D /* RegisterdSubviewCell.swift in Sources */,
 				B163846B21F6ADA500665060 /* Reachability.swift in Sources */,
 				B16BD8A521A7BFE50010EEE0 /* PurchaseKeyViewModel.swift in Sources */,
 				0A1B0EF521EB64A80035E657 /* EventSectionController.swift in Sources */,
@@ -1689,6 +1700,7 @@
 				0A71236B1FACC01200512EB7 /* AppDelegate.swift in Sources */,
 				0A1F47B321CA72840003AF7A /* TripSelectCell.swift in Sources */,
 				B18BC89621536EB000642BB0 /* PageViewController + Extension.swift in Sources */,
+				B1C33A2022433B970041148D /* DetailHistoryViewModel.swift in Sources */,
 				0A8B9A022220FD7700B9C92D /* StyleCell.swift in Sources */,
 				B16BD8A921A7D0D30010EEE0 /* PurchaseHistoryCell.swift in Sources */,
 				B16B3DF92117E782001D278A /* InitUtil.swift in Sources */,
@@ -1856,7 +1868,7 @@
 				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = GHQ6X3NQRK;
 				INFOPLIST_FILE = ZIP_ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1881,7 +1893,7 @@
 				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = GHQ6X3NQRK;
 				INFOPLIST_FILE = ZIP_ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

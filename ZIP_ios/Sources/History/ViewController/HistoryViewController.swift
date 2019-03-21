@@ -74,10 +74,11 @@ final class HistoryViewController: UIViewController{
 
   private func bind(){
     
-    collectionView.rx.modelSelected(MatchHistoryModel.self)
+    collectionView.rx
+      .modelSelected(MatchHistoryModel.self)
       .subscribeNext(weak: self) { (weakSelf) -> (MatchHistoryModel) -> Void in
         return {model in
-          log.info(model)
+          weakSelf.navigationController?.pushViewController(DetailHistoryViewController(matchHistoryModel: model), animated: true)
         }
       }.disposed(by: disposeBag)
   

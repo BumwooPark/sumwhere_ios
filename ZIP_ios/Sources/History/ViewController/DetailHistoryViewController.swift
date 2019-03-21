@@ -1,45 +1,37 @@
 //
-//  ResultMatchCell.swift
+//  DetailHistoryViewController.swift
 //  ZIP_ios
 //
-//  Created by park bumwoo on 2018. 8. 18..
-//  Copyright © 2018년 park bumwoo. All rights reserved.
+//  Created by xiilab on 21/03/2019.
+//  Copyright © 2019 park bumwoo. All rights reserved.
 //
 
-import SwiftDate
+import Kingfisher
 
-class MatchResultCell: UICollectionViewCell{
-  
+final class DetailHistoryViewController: UIViewController {
   private var didUpdateConstraint = false
-  var item: UserTripJoinModel?{
-    didSet{
-      guard let item = item else {return}
-      profileImage.kf.setImage(with: URL(string: item.user.mainProfileImage?.addSumwhereImageURL() ?? "")!
-        ,options: [.transition(.fade(0.2))])
-      nickNameLabel.attributedText = nameAgePlaceAttributedString(item: item)
-      explainLabel.text = item.trip.activity
-      titleLabel.text = item.trip.region
-      
-      if let start = item.trip.startDate.toDate(),
-        let end = item.trip.endDate.toDate(){
-        let strings = "\(start.toFormat("MM월dd일")) - \(end.toFormat("MM월dd일"))"
-        tripTimeButton.setTitle(strings, for: .normal)
-      }
-    }
-  }
+  let model: MatchHistoryModel
+  let viewModel: DetailHistoryTypes = DetailHistoryViewModel()
+  private let contentView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    return view
+  }()
   
-  private let titleLabel: UILabel = {
+  lazy var titleLabel: UILabel = {
     let label = UILabel()
+    label.text = model.trip.region
     label.font = UIFont.AppleSDGothicNeoBold(size: 17.8)
     return label
   }()
   
-  private let tripTimeButton: UIButton = {
+  lazy var tripTimeButton: UIButton = {
     let button = UIButton()
     button.setImage(#imageLiteral(resourceName: "calendaricon.png"), for: .normal)
     button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5)
-    button.titleLabel?.font = .AppleSDGothicNeoRegular(size: 14.7)
+    button.titleLabel?.font = .AppleSDGothicNeoRegular(size: 14)
     button.setTitleColor(#colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 1), for: .normal)
+    button.setTitle("\(model.trip.startDate.dateTimetoFormat(format: "yyyy-MM-dd") ?? String()) - \(model.trip.endDate.dateTimetoFormat(format: "yyyy-MM-dd") ?? String())", for: .normal)
     button.isEnabled = false
     return button
   }()
@@ -58,10 +50,11 @@ class MatchResultCell: UICollectionViewCell{
     return view
   }()
   
-  private let profileImage: UIImageView = {
+  lazy var profileImage: UIImageView = {
     let imageView = UIImageView()
     imageView.layer.masksToBounds = true
     imageView.contentMode = .scaleAspectFill
+    imageView.kf.setImage(with: URL(string: model.profile.image1.addSumwhereImageURL()), options: [.transition(.fade(0.2))])
     return imageView
   }()
   
@@ -79,11 +72,20 @@ class MatchResultCell: UICollectionViewCell{
     return label
   }()
   
+  init(matchHistoryModel: MatchHistoryModel) {
+    model = matchHistoryModel
+    super.init(nibName: nil, bundle: nil)
+    
+  }
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    contentView.layer.cornerRadius = 20
-    contentView.backgroundColor = .white
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
+    view.addSubview(contentView)
     contentView.addSubview(titleLabel)
     contentView.addSubview(tripTimeButton)
     contentView.addSubview(dividLine)
@@ -94,11 +96,12 @@ class MatchResultCell: UICollectionViewCell{
     contentView.addSubview(nickNameLabel)
     contentView.addSubview(explainLabel)
     
-    setNeedsUpdateConstraints()
+    
   }
   
-  override func layoutSubviews() {
-    super.layoutSubviews()
+  override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    contentView.layer.cornerRadius = 19.4
     gradientView.layer.cornerRadius = gradientView.frame.width/2
     gradientView.clipsToBounds = true
     gradientView.gradientBackground(from: #colorLiteral(red: 0.4352941176, green: 0.4117647059, blue: 1, alpha: 1), to: #colorLiteral(red: 0.1803921569, green: 0.5647058824, blue: 0.8823529412, alpha: 1), direction: GradientDirection.bottomToTop)
@@ -106,21 +109,12 @@ class MatchResultCell: UICollectionViewCell{
     profileImage.layer.cornerRadius = profileImage.frame.width/2
   }
   
-  func nameAgePlaceAttributedString(item: UserTripJoinModel) -> NSMutableAttributedString{
-    let attributedString = NSMutableAttributedString()
-    if let nickname = item.user.nickname {
-      attributedString.append(NSAttributedString(string: nickname, attributes: [.font: UIFont.OTGulimB(size: 20)]))
-    }
-    
-    if let age = item.user.age {
-      attributedString.append(NSAttributedString(string: " \(age)살", attributes: [.font: UIFont.AppleSDGothicNeoLight(size: 17.6)]))
-    }
-    
-    return attributedString
-  }
-  
-  override func updateConstraints() {
+  override func updateViewConstraints() {
     if !didUpdateConstraint {
+      
+      contentView.snp.makeConstraints { (make) in
+        make.edges.equalToSuperview().inset(UIEdgeInsets(top: 100, left: 34, bottom: 100, right: 34))
+      }
       
       titleLabel.snp.makeConstraints { (make) in
         make.top.equalToSuperview().inset(33)
@@ -164,10 +158,7 @@ class MatchResultCell: UICollectionViewCell{
       
       didUpdateConstraint = true
     }
-    super.updateConstraints()
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    
+    super.updateViewConstraints()
   }
 }

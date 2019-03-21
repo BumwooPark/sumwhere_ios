@@ -111,28 +111,21 @@ class RegisterdViewController: UIViewController{
     tagViewController
       .selectAction
       .subscribeNext(weak: self) { (weakSelf) -> (TripSelectorType) -> Void in
-      return {type in
-        
-        switch type {
-        case .comment:
-          break
-//          let vc = ChangeConceptViewController(trip: weakSelf.model.trip)
-//          vc.completed = {
-//            weakSelf.tagViewController.data.accept($0)
-//          }
-//          weakSelf.present(vc, animated: true, completion: nil)
-        case .date:
-          break
-        case .gender:
-//          let vc = ChangeGenderViewController(trip: weakSelf.model.trip)
-//          vc.completed = {
-//            weakSelf.tagViewController.data.accept($0)
-//          }
-//          weakSelf.present(vc, animated: true, completion: nil)
-          break
+        return {type in
+          
+          switch type {
+          case .comment:
+            break
+            //          let vc = ChangeConceptViewController(trip: weakSelf.model.trip)
+            //          vc.completed = {
+            //            weakSelf.tagViewController.data.accept($0)
+            //          }
+          //          weakSelf.present(vc, animated: true, completion: nil)
+          case .date:
+            break
+          }
         }
-      }
-    }.disposed(by: disposeBag)
+      }.disposed(by: disposeBag)
     
     datas.asDriver()
       .drive(collectionView.rx.items(dataSource: dataSources))
