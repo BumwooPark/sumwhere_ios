@@ -39,7 +39,6 @@ class Conversation {
             .map{$0.result}
             .asObservable()
             .unwrap()
-            .debug()
             .subscribe({ (event) in
               switch event {
               case .next(let element):

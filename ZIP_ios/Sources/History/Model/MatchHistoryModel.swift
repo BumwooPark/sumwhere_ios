@@ -14,11 +14,12 @@ struct MatchHistory: Codable{
   let tripId: Int
   let toUserId: Int
   let toTripId: Int
-  let accept: Bool
-  let createAt: String
+  let state: String
+  let createdAt: String
 }
 
 struct MatchHistoryModel: Codable{
+  let matchHistory: MatchHistory
   let trip: Trip
   let tripPlace: TripPlace
   let profile: UserProfileModel

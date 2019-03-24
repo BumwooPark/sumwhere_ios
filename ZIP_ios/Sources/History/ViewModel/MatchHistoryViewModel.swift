@@ -54,6 +54,13 @@ class RequestHistoryViewModel: MatchHistoryTypes, MatchHistoryInputs, MatchHisto
         return Observable.just(sectionModels)
       }.bind(to: historyData)
       .disposed(by: disposeBag)
+    
+    result.errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return {err in
+          log.error(err)
+        }
+    }.disposed(by: disposeBag)
 
     
   }
@@ -91,6 +98,13 @@ class ReceiveHistoryViewModel: MatchHistoryTypes, MatchHistoryInputs, MatchHisto
         return Observable.just(sectionModels)
       }.bind(to: historyData)
       .disposed(by: disposeBag)
+    
+    result.errors()
+      .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
+        return {error in
+          log.error(error)
+        }
+    }.disposed(by: disposeBag)
   }
 }
 

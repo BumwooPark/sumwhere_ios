@@ -63,13 +63,15 @@ public enum ZIP{
   case GetMatchStatus(id: String)
   case GetMatchRequestHistory
   case GetMatchReceiveHistory
+  case MatchAccept(historyID: Int)
+  case MatchRefuse(historyID: Int)
 }
 
 extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.3:8080/v1")!
+    return URL(string: "http://192.168.0.49:8080/v1")!
 //    return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
@@ -170,6 +172,10 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/history/request"
     case .GetMatchReceiveHistory:
       return "/restrict/match/history/receive"
+    case .MatchAccept:
+      return "/restrict/match/accept"
+    case .MatchRefuse:
+      return "/restrict/match/refuse"
     }
   }
   
@@ -181,7 +187,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .delete
     case .UpdatePush,.FcmUpdate:
       return .put
-    case .UpdateTrip:
+    case .UpdateTrip,.MatchRefuse,.MatchAccept:
       return .patch
     default:
       return .get
@@ -233,6 +239,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["numbers":ids], encoding: URLEncoding.queryString)
     case .GetMatchStatus(let id):
       return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
+    case .MatchAccept(let id),.MatchRefuse(let id):
+      return .requestParameters(parameters: ["historyID": id], encoding: URLEncoding.queryString)
     default:
       return .requestPlain
     }

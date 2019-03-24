@@ -40,7 +40,7 @@ final class HistoryViewController: UIViewController{
     layout.scrollDirection = .vertical
     layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
     layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
-    layout.itemSize = CGSize(width: 102, height: 151)
+    layout.itemSize = CGSize(width: 90, height: 151)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(HistoryHeaderView.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -71,16 +71,29 @@ final class HistoryViewController: UIViewController{
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  
   private func bind(){
     
-    collectionView.rx
-      .modelSelected(MatchHistoryModel.self)
-      .subscribeNext(weak: self) { (weakSelf) -> (MatchHistoryModel) -> Void in
-        return {model in
-          weakSelf.navigationController?.pushViewController(DetailHistoryViewController(matchHistoryModel: model), animated: true)
-        }
-      }.disposed(by: disposeBag)
+    switch viewModel{
+    case is RequestHistoryViewModel:
+      collectionView.rx
+        .modelSelected(MatchHistoryModel.self)
+        .subscribeNext(weak: self) { (weakSelf) -> (MatchHistoryModel) -> Void in
+          return { model in
+            weakSelf.navigationController?.pushViewController(DetailHistoryViewController(matchHistoryModel: model,isReceive: false), animated: true)
+          }
+        }.disposed(by: disposeBag)
+    case is ReceiveHistoryViewModel:
+      collectionView.rx
+        .modelSelected(MatchHistoryModel.self)
+        .subscribeNext(weak: self) { (weakSelf) -> (MatchHistoryModel) -> Void in
+          return {model in
+            weakSelf.navigationController?.pushViewController(DetailHistoryViewController(matchHistoryModel: model,isReceive: true), animated: true)
+          }
+        }.disposed(by: disposeBag)
+    default:
+      break
+    }
   
     viewModel.outputs
       .historyData
