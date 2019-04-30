@@ -28,11 +28,11 @@ class Conversation {
         .child("\(user.id)")
         .child("conversations")
         .observe(.childAdded, with: { (snapshot) in
+          
         if snapshot.exists() {
           let fromID = snapshot.key // 키로 타겟 유저 조회후 삽입
           let values = snapshot.value as! [String: String]
           let location = values["location"]!
-          
           AuthManager.instance.provider.request(.userWithProfile(id: fromID))
             .filterSuccessfulStatusCodes()
             .map(ResultModel<UserWithProfile>.self)

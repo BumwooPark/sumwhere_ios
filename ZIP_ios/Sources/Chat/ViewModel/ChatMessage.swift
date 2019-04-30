@@ -111,6 +111,8 @@ class ChatMessage: MessageType {
           self.sentDate = receivedMessage.sentDate
           completion()
         }
+      }else {
+        completion()
       }
     })
   }
@@ -146,10 +148,11 @@ class ChatMessage: MessageType {
         Database.database().reference()
           .child("conversations")
           .childByAutoId()
-          .childByAutoId().setValue(withValues, withCompletionBlock: { (error, reference) in
+          .childByAutoId()
+          .setValue(withValues, withCompletionBlock: { (error, reference) in
             let data = ["location": reference.parent!.key]
-            Database.database().reference().child("users").child("\(user.id)").child("conversations").child(toID).updateChildValues(data)
-            Database.database().reference().child("users").child(toID).child("conversations").child("\(user.id)").updateChildValues(data)
+            Database.database().reference().child("users").child("\(user.id)").child("conversations").child(toID).updateChildValues(data as [AnyHashable : Any])
+            Database.database().reference().child("users").child(toID).child("conversations").child("\(user.id)").updateChildValues(data as [AnyHashable : Any])
             completion(true)
           })
       }

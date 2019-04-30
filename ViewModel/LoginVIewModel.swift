@@ -19,28 +19,19 @@ class LoginViewModel{
   init(viewController: UIViewController) {
     self.viewController = viewController
   }
-  
-  
+
   func facebookLogin(manager: FBSDKLoginManager){
     
     LoginKit.facebookLogin(manager: manager, Permissions: ["public_profile","email"], from: self.viewController) {(result) in
       log.info(result)
       if result{
-        
-        
-        
         guard let token = FBSDKAccessToken.current().tokenString else {return}
-        
         AuthManager.instance
           .provider
           .request(.facebook(access_token: token))
-          .map(ResultModel<TokenModel>.self)
+          .map(TokenModel.self)
           .subscribe(onSuccess: { (result) in
-            if result.success{
-              tokenObserver.accept(result.result?.token ?? String())
-            }else {
-              JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
-            }
+            tokenObserver.accept(result.token)
           }, onError: { (error) in
             JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
           })
@@ -55,13 +46,9 @@ class LoginViewModel{
         AuthManager.instance
           .provider
           .request(.kakao(access_token: KOSession.shared().token.accessToken))
-          .map(ResultModel<TokenModel>.self)
+          .map(TokenModel.self)
           .subscribe(onSuccess: {(result) in
-            if result.success{
-              tokenObserver.accept(result.result?.token ?? "")
-            }else {
-              JDStatusBarNotification.show(withStatus: result.error?.details ?? "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
-            }
+            tokenObserver.accept(result.token)
           }, onError: { (error) in
             JDStatusBarNotification.show(withStatus: "로그인 실패", dismissAfter: 1, styleName: JDType.Fail.rawValue)
           }).disposed(by: self.disposeBag)

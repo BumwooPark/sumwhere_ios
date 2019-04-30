@@ -149,7 +149,7 @@ PODS:
   - KakaoOpenSDK/KakaoOpenSDK (1.11.0)
   - KakaoOpenSDK/KakaoS2 (1.11.0):
     - KakaoOpenSDK/KakaoCommon
-  - Kingfisher (5.1.0)
+  - Kingfisher (5.3.0)
   - leveldb-library (1.20)
   - LGButton (1.1.2)
   - LTMorphingLabel (0.6.0)
@@ -397,7 +397,7 @@ SPEC CHECKSUMS:
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   KakaoOpenSDK: d93f0a192ae2ba1491ae82748acbff1261607f12
-  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
+  Kingfisher: 4692c783ffb99e9e2e40a6eb3e518c3b96c6fa8c
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   LGButton: 0e07c243d1655b507502c3b9271d3c3a7c22dcaa
   LTMorphingLabel: c73ebfef9009c0a098546c29f566024442d1a91e

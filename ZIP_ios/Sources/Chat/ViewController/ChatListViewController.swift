@@ -40,8 +40,6 @@ class ChatListViewController: UIViewController, UICollectionViewDelegateFlowLayo
     view = tableView
     title = "채팅"
 
-    
-    
     collectionViewEmptyView()
     Conversation.showConversations {[weak self] (models) in
       self?.datas.accept([ChatListSectionViewModel(items: models)])

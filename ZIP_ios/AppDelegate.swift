@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     Fabric.with([Crashlytics.self])
+    
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
 
@@ -95,8 +96,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     application.registerForRemoteNotifications()
     
     GADMobileAds.configure(withApplicationID: "ca-app-pub-4059652237278086~5901401126")
-    GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
-                                                withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+    GADRewardBasedVideoAd
+      .sharedInstance()
+      .load(GADRequest(),
+            withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
     GMSServices.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     GMSPlacesClient.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     return true
@@ -263,6 +266,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 extension AppDelegate : MessagingDelegate {
   // [START refresh_token]
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    Defaults[.fcmToken] = fcmToken
     AuthManager.instance.provider.request(.FcmUpdate(token: fcmToken))
       .filterSuccessfulStatusCodes()
       .asObservable()
@@ -285,61 +289,3 @@ extension AppDelegate : MessagingDelegate {
     log.info("Received data message: \(remoteMessage.appData)")
   }
 }
-
-
-//extension AppDelegate: SKPaymentTransactionObserver{
-//  public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-//    for transaction in transactions{
-//      switch transaction.transactionState{
-//      case .purchased:
-//        complete(transaction: transaction)
-//      case .failed:
-//        fail(transaction: transaction)
-//      case .restored:
-//        restore(transaction: transaction)
-//      case .deferred:
-//        break
-//      case .purchasing:
-//        break
-//      }
-//    }
-//  }
-//
-//  public func complete(transaction: SKPaymentTransaction){
-//
-//    SKPaymentQueue.default().finishTransaction(transaction)
-//
-//    let receiptURL = Bundle.main.appStoreReceiptURL
-//    do {
-//      let receipt = try Data(contentsOf: receiptURL!)
-//
-//      AuthManager.instance
-//        .provider
-//        .request(.IAPSuccess(receipt: receipt.base64EncodedString()))
-//        .subscribe(onSuccess: { (response) in
-//          log.info(response)
-//        }) { (error) in
-//          log.error(error)
-//      }.disposed(by: disposeBag)
-//
-//    }catch let error {
-//      log.error(error)
-//    }
-//  }
-//
-//  private func restore(transaction: SKPaymentTransaction) {
-//    guard let productIdentifier = transaction.original?.payment.productIdentifier else { return }
-//    log.info("restore... \(productIdentifier)")
-//    SKPaymentQueue.default().finishTransaction(transaction)
-//  }
-//
-//  private func fail(transaction: SKPaymentTransaction) {
-//    log.info("fail...")
-//    if let transactionError = transaction.error as NSError?,
-//      let localizedDescription = transaction.error?.localizedDescription,
-//      transactionError.code != SKError.paymentCancelled.rawValue {
-//      log.info("Transaction Error: \(localizedDescription)")
-//    }
-//    SKPaymentQueue.default().finishTransaction(transaction)
-//  }
-//}

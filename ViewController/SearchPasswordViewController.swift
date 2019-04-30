@@ -45,8 +45,6 @@ final class SearchPasswordViewController: UIViewController {
     return field
   }()
   
-
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.navigationBar.topItem?.title = String()

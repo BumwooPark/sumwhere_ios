@@ -71,7 +71,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.49:8080/v1")!
+    return URL(string: "http://192.168.1.3:8000")!
 //    return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
@@ -89,9 +89,9 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .tokenLogin:
       return "/restrict/token/vaild"
     case .facebook:
-      return "/signin/facebook"
+      return "/rest-auth/facebook"
     case .kakao:
-      return "/signin/kakao"
+      return "/rest-auth/kakao"
     case .isProfile:
       return "/restrict/existProfile"
     case .country:
@@ -158,7 +158,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/restrict/match/list"
     case .NewMatchList:
       return "/restrict/match/new"
-    case .UpdateTrip(let id, let _):
+    case .UpdateTrip(let id, _):
       return "/restrict/trip/\(id)"
     case .TotalMatchCount:
       return "/restrict/match/totalcount"
@@ -181,7 +181,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var method: Moya.Method {
     switch self {
-    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest,.IAPSuccess,.MatchRequest:
+    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest,.IAPSuccess:
       return .post
     case .deleteTrip,.SignOut:
       return .delete
@@ -212,14 +212,12 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .anotherUser(let id):
       return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
     case .facebook(let token),.kakao(let token):
-      return .requestParameters(parameters: ["access_token": token], encoding: URLEncoding.httpBody)
-//    case let .GetAllTrip(order, sortby, skipCount):
-//      return .requestParameters(parameters: ["order":order,"password":sortby,"skipCount": skipCount], encoding: URLEncoding.queryString)
+      return .requestParameters(parameters: ["access_token": token], encoding: JSONEncoding.default)
     case .createProfile(let data):
       return .uploadMultipart(data)
     case .searchDestination(let data):
       return .requestParameters(parameters: ["name":data], encoding: URLEncoding.queryString)
-    case .createTrip(let json),.MatchRequest(let json),.UpdatePush(let json),.MatchRequest(let json):
+    case .createTrip(let json),.MatchRequest(let json),.UpdatePush(let json):
       return .requestJSONEncodable(json)
     case .AllTripList(let sortby, let order, let skipCount, let maxResultCount):
       return .requestParameters(parameters: ["sortby": sortby,"order":order,"skipCount":skipCount,"maxResultCount": maxResultCount], encoding: URLEncoding.queryString)
@@ -233,7 +231,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["fcmtoken": token], encoding: URLEncoding.httpBody)
     case .GetMatchList(let id):
       return .requestParameters(parameters: ["tripId": id], encoding: URLEncoding.queryString)
-    case .UpdateTrip(let _, let data):
+    case .UpdateTrip( _, let data):
       return .requestParameters(parameters: data, encoding: URLEncoding.httpBody)
     case .GetTripStyles(let ids):
       return .requestParameters(parameters: ["numbers":ids], encoding: URLEncoding.queryString)

@@ -14,4 +14,5 @@ extension DefaultsKeys {
   static let token = DefaultsKey<String>("token")
   static let isLogin = DefaultsKey<Bool>("isLogin")
   static let isProfileSet = DefaultsKey<Bool>("isProfileSet")
+  static let fcmToken = DefaultsKey<String?>("fcmToken")
 }
