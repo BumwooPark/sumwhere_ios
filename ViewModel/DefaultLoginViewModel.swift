@@ -14,7 +14,7 @@ import Moya
 class DefaultLoginViewModel{
   
   let isEnable: Observable<Bool>
-  let API: Observable<Event<ResultModel<TokenModel>>>
+  let API: Observable<Event<TokenModel>>
   
   init(email:  ControlProperty<String>, password: ControlProperty<String>,tap: Observable<UITapGestureRecognizer>) {
     
@@ -27,7 +27,7 @@ class DefaultLoginViewModel{
           .provider
           .request(.signIn(email: email, password: password))
           .filterSuccessfulStatusCodes()
-          .map(ResultModel<TokenModel>.self)
+          .map(TokenModel.self)
           .asObservable()
           .materialize()
       }).share()

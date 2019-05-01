@@ -14,6 +14,9 @@ public enum ZIP{
   //Signin & UP
   case signUp(model: Encodable)
   case signIn(email: String, password: String)
+  case verifyToken(token: String)
+  
+  
   case tokenLogin
   case facebook(access_token: String)
   case kakao(access_token: String)
@@ -71,7 +74,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.1.3:8000")!
+    return URL(string: "http://192.168.0.49:8000")!
 //    return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
@@ -83,9 +86,12 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .mainList:
       return "/restrict/main/list"
     case .signUp:
-      return "/signup"
+      return "/rest-auth/registration/"
     case .signIn:
-      return "/signin/email"
+      return "/rest-auth/login/"
+    case .verifyToken:
+      return "/api-token-verify/"
+      
     case .tokenLogin:
       return "/restrict/token/vaild"
     case .facebook:
@@ -181,7 +187,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
   
   public var method: Moya.Method {
     switch self {
-    case .signUp,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest,.IAPSuccess:
+    case .signUp,.signIn,.createProfile,.kakao,.facebook,.createTrip,.MatchRequest,.IAPSuccess,.verifyToken:
       return .post
     case .deleteTrip,.SignOut:
       return .delete
@@ -203,12 +209,14 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
     case .signUp(let json):
       return .requestJSONEncodable(json)
     case .signIn(let email,let password):
-      return .requestParameters(parameters: ["email":email,"password":password], encoding: URLEncoding.queryString)
+      return .requestParameters(parameters: ["email":email,"password":password], encoding: JSONEncoding.default)
     case .userWithProfile(let id):
       if let id = id {
         return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
       }
       return .requestPlain
+    case .verifyToken(let token):
+      return .requestParameters(parameters: ["token":token], encoding: JSONEncoding.default)
     case .anotherUser(let id):
       return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
     case .facebook(let token),.kakao(let token):

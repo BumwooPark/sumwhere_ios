@@ -42,12 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     Fabric.with([Crashlytics.self])
-    
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
 
     window?.rootViewController = ProxyViewController()
-    
+    Defaults.removeAll()
     Reachability.shared
       .didBecomeReachable
       .asObservable()
@@ -64,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           Defaults.synchronize()
           AuthManager.instance.updateProvider()
         }else{
-          Defaults.remove("token")
+          Defaults.remove(.token)
           Defaults.synchronize()
         }
       })
@@ -94,12 +93,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       options: authOptions,
       completionHandler: {_, _ in })
     application.registerForRemoteNotifications()
-    
-    GADMobileAds.configure(withApplicationID: "ca-app-pub-4059652237278086~5901401126")
-    GADRewardBasedVideoAd
-      .sharedInstance()
-      .load(GADRequest(),
-            withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+    GADMobileAds.sharedInstance().start(completionHandler: nil)
+
+//    GADRewardBasedVideoAd
+//      .sharedInstance()
+//      .load(GADRequest(),
+//            withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
     GMSServices.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     GMSPlacesClient.provideAPIKey("AIzaSyBPAZRNVRsxpYAHm_7_sReQOoQWVc8umf8")
     return true
@@ -267,12 +266,12 @@ extension AppDelegate : MessagingDelegate {
   // [START refresh_token]
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
     Defaults[.fcmToken] = fcmToken
-    AuthManager.instance.provider.request(.FcmUpdate(token: fcmToken))
-      .filterSuccessfulStatusCodes()
-      .asObservable()
-      .retry(RepeatBehavior.exponentialDelayed(maxCount: 10, initial: 2, multiplier: 2))
-      .subscribe()
-      .disposed(by: disposeBag)
+//    AuthManager.instance.provider.request(.FcmUpdate(token: fcmToken))
+//      .filterSuccessfulStatusCodes()
+//      .asObservable()
+//      .retry(RepeatBehavior.exponentialDelayed(maxCount: 10, initial: 2, multiplier: 2))
+//      .subscribe()
+//      .disposed(by: disposeBag)
     
     if Messaging.messaging().fcmToken != nil {
       log.info(fcmToken)

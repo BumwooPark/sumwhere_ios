@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,14 +17,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DX0-JN-Q5C" userLabel="dividLine">
-                    <rect key="frame" x="47" y="557" width="281" height="1"/>
+                    <rect key="frame" x="47" y="527" width="281" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="lXl-3r-fSR"/>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="Ul2-1f-CkQ">
-                    <rect key="frame" x="47" y="448" width="281" height="149"/>
+                    <rect key="frame" x="47" y="418" width="281" height="149"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJE-GF-1U1">
                             <rect key="frame" x="0.0" y="0.0" width="281" height="19"/>
@@ -77,17 +77,26 @@
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztG-VQ-VCA" userLabel="dividLine">
-                    <rect key="frame" x="47" y="492" width="281" height="1"/>
+                    <rect key="frame" x="47" y="462" width="281" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="G87-gO-YLQ"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTS-ab-b8c">
+                    <rect key="frame" x="163" y="597" width="49" height="29"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                    <state key="normal" title="회원가입">
+                        <color key="titleColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             <constraints>
+                <constraint firstItem="XTS-ab-b8c" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KAd-co-iY6"/>
                 <constraint firstItem="DX0-JN-Q5C" firstAttribute="top" secondItem="Om5-pG-f26" secondAttribute="bottom" constant="25" id="TR9-am-NYL"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Ul2-1f-CkQ" secondAttribute="bottom" constant="70" id="bC7-jR-tho"/>
+                <constraint firstItem="XTS-ab-b8c" firstAttribute="top" secondItem="Ul2-1f-CkQ" secondAttribute="bottom" constant="30" id="UaU-Ol-H6b"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Ul2-1f-CkQ" secondAttribute="bottom" constant="100" id="bC7-jR-tho"/>
                 <constraint firstItem="ztG-VQ-VCA" firstAttribute="top" secondItem="iwm-Da-WFv" secondAttribute="bottom" constant="25" id="eFD-lN-MaL"/>
                 <constraint firstItem="Ul2-1f-CkQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="47" id="iin-93-Nuh"/>
                 <constraint firstItem="ztG-VQ-VCA" firstAttribute="trailing" secondItem="Ul2-1f-CkQ" secondAttribute="trailing" id="ohf-e7-HS5"/>
@@ -101,6 +110,7 @@
                 <outlet property="emailButton" destination="rFa-5O-XXj" id="iRI-oc-QcA"/>
                 <outlet property="faceBookButton" destination="iwm-Da-WFv" id="Liw-uz-GUg"/>
                 <outlet property="kakaoButton" destination="Om5-pG-f26" id="5Re-gC-a05"/>
+                <outlet property="signUpButton" destination="XTS-ab-b8c" id="itS-Rv-rSa"/>
             </connections>
             <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>

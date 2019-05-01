@@ -16,6 +16,7 @@ final class LoginView: UIView{
   @IBOutlet weak var faceBookButton: UIButton!
   @IBOutlet weak var kakaoButton: UIButton!
   @IBOutlet weak var emailButton: UIButton!
+  @IBOutlet weak var signUpButton: UIButton!
   
   override func awakeFromNib() {
     super.awakeFromNib()

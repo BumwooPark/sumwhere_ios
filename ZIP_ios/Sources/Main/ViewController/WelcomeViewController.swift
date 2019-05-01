@@ -24,6 +24,10 @@ class WelcomeViewController: UIViewController{
   let joinVC = JoinViewController()
   lazy var viewModel = LoginViewModel(viewController: self)
   
+  override var preferredStatusBarStyle: UIStatusBarStyle{
+    return .lightContent
+  }
+  
   let avPlayerController: AVPlayerViewController = {
     let controller = AVPlayerViewController()
     controller.player = AVPlayer(url: Bundle.main.url(forResource: "mainlogo", withExtension: "mp4")!)
@@ -91,6 +95,13 @@ class WelcomeViewController: UIViewController{
       .map {return FBSDKLoginManager()}
       .bind(onNext: viewModel.facebookLogin)
       .disposed(by: disposeBag)
+    
+    loginView.signUpButton.rx
+      .tap
+      .bind(onNext: signUp)
+      .disposed(by: disposeBag)
+    
+    
     self.view.setNeedsUpdateConstraints()
     
   }
@@ -113,6 +124,10 @@ class WelcomeViewController: UIViewController{
   
   private func signIn(){
     self.navigationController?.pushViewController(DefaultLoginViewController(), animated: true)
+  }
+  
+  private func signUp(){
+    self.navigationController?.pushViewController(JoinViewController(), animated: true)
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

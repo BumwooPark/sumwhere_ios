@@ -25,6 +25,19 @@ class JoinViewController: UIViewController{
 
   private let disposeBag = DisposeBag()
   private var didUpdateConstraint = false
+  
+  private let floatingTextFieldSetting = { (field: SkyFloatingLabelTextField) in
+    field.errorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
+    field.lineColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+    field.placeholderFont = .AppleSDGothicNeoMedium(size: 16)
+    field.titleFont = .AppleSDGothicNeoMedium(size: 16)
+    field.font = .AppleSDGothicNeoMedium(size: 16)
+    field.lineErrorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
+    field.selectedLineColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
+    field.placeholderColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+    field.selectedTitleColor = .black
+    field.returnKeyType = .done
+  }
 
   private let titleLabel: UILabel = {
     let label = UILabel()
@@ -35,38 +48,21 @@ class JoinViewController: UIViewController{
     return label
   }()
   
-  private let emailField: SkyFloatingLabelTextField = {
+  private lazy var emailField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
-    field.errorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
-    field.placeholderFont = .AppleSDGothicNeoMedium(size: 16)
-    field.titleFont = .AppleSDGothicNeoMedium(size: 16)
-    field.font = .AppleSDGothicNeoMedium(size: 16)
-    field.lineColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
-    field.lineErrorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
-    field.selectedLineColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
-    field.selectedTitleColor = .black
+    self.floatingTextFieldSetting(field)
     field.placeholder = "이메일 주소"
     field.placeholderColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
     field.keyboardType = .emailAddress
-    field.returnKeyType = .done
     field.hero.id = "email"
     return field
   }()
   
   private lazy var passwordField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
-    field.errorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
-    field.lineColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
-    field.placeholderFont = .AppleSDGothicNeoMedium(size: 16)
-    field.titleFont = .AppleSDGothicNeoMedium(size: 16)
-    field.font = .AppleSDGothicNeoMedium(size: 16)
-    field.lineErrorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
-    field.selectedLineColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
-    field.selectedTitleColor = .black
+    self.floatingTextFieldSetting(field)
     field.placeholder = "비밀번호"
-    field.placeholderColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
     field.isSecureTextEntry = true
-    field.returnKeyType = .done
     field.keyboardType = .asciiCapable
     field.hero.id = "password"
     return field
@@ -74,14 +70,7 @@ class JoinViewController: UIViewController{
   
   private lazy var passwordConfirmField: SkyFloatingLabelTextField = {
     let field = SkyFloatingLabelTextField()
-    field.errorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
-    field.lineColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
-    field.placeholderFont = .AppleSDGothicNeoMedium(size: 16)
-    field.titleFont = .AppleSDGothicNeoMedium(size: 16)
-    field.font = .AppleSDGothicNeoMedium(size: 16)
-    field.lineErrorColor = #colorLiteral(red: 0.8156862745, green: 0.007843137255, blue: 0.1058823529, alpha: 1)
-    field.selectedLineColor = #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1)
-    field.selectedTitleColor = .black
+    self.floatingTextFieldSetting(field)
     field.placeholder = "비밀번호확인"
     field.placeholderColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
     field.isSecureTextEntry = true
@@ -97,18 +86,12 @@ class JoinViewController: UIViewController{
     button.titleFontName = "AppleSDGothicNeo-Medium"
     button.titleFontSize = 17
     button.bgColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+    button.isEnabled = false
     button.hero.id = "button"
     return button
   }()
-
-  let joinView = JoinView()
   
-  lazy var viewModel = JoinViewModel(email: emailField,
-                                     password: passwordField,
-                                     passwordConfirm: passwordConfirmField,
-                                     tap: signUpButton.rx.tapGesture().when(.ended).do(onNext: {[weak self] (_) in
-                                      self?.signUpButton.isLoading = true
-                                     }))
+  lazy var viewModel: JoinType = JoinViewModel()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -124,59 +107,49 @@ class JoinViewController: UIViewController{
     
     self.navigationController?.navigationBar.topItem?.title = String()
     view.setNeedsUpdateConstraints()
-    behavior()
+    bind()
     hero.modalAnimationType = .selectBy(presenting: .push(direction: .up), dismissing: .pull(direction: .down))
   }
   
-  private func behavior(){
+  private func bind(){
     
-    viewModel.emailValid
-      .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
-        return {result in
-          retainSelf.emailField.errorMessage = result ? nil : "이메일형식이 아닙니다!"
-        }
-      }.disposed(by: disposeBag)
-
-    viewModel.passwordValid
-      .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
-        return {result in
-          retainSelf.passwordField.errorMessage = result ? nil : "패스워드는 6자에서 20자 사이입니다."
-        }
-      }.disposed(by: disposeBag)
+    Observable.merge([
+      emailField.rx.text.orEmpty
+      .map{DataType.email($0)}
+      ,passwordField.rx.text.orEmpty
+        .map{DataType.password1($0)}
+      ,passwordConfirmField.rx.text.orEmpty
+        .map{DataType.password2($0)}])
+      .bind(onNext: viewModel.input.assign)
+      .disposed(by: disposeBag)
     
-    viewModel.passwordConfirmValid
-      .subscribeNext(weak: self) { (retainSelf) -> (Bool) -> Void in
-        return {result in
-          retainSelf.passwordConfirmField.errorMessage = result ? nil : "비밀번호가 일치하지 않습니다."
-        }
-      }.disposed(by: disposeBag)
-
-    viewModel
-      .isButtonEnable
+    viewModel.output.isCanSubmit
       .subscribeNext(weak: self) { (weakSelf) -> (Bool) -> Void in
-        return { result in
-          weakSelf.signUpButton.bgColor = result ? #colorLiteral(red: 0.3176470588, green: 0.4784313725, blue: 0.8941176471, alpha: 1) : #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
+        return {result in
+          weakSelf.signUpButton.bgColor = result ? #colorLiteral(red: 0.3371393681, green: 0.4714460969, blue: 0.8907750249, alpha: 1) : #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
           weakSelf.signUpButton.isEnabled = result
         }
     }.disposed(by: disposeBag)
     
-    viewModel
-      .taped
-      .elements()
-      .do(onNext: {[weak self] (_) in self?.signUpButton.isLoading = false})
-      .map{$0.result?.token}
-      .unwrap()
-      .bind(to: tokenObserver)
+    signUpButton.rx.tapGesture()
+      .when(.ended)
+      .map{_ in return ()}
+      .bind(onNext: viewModel.input.submit)
       .disposed(by: disposeBag)
     
-    viewModel
-      .taped
+    viewModel.output.submitResult
+      .elements()
+      .subscribeNext(weak: self) { (weakSelf) -> (TokenModel) -> Void in
+        return { data in
+          log.info(data)
+        }
+      }.disposed(by: disposeBag)
+    
+    viewModel.output.submitResult
       .errors()
-      .do(onNext: {[weak self] (_) in self?.signUpButton.isLoading = false})
       .subscribeNext(weak: self) { (weakSelf) -> (Error) -> Void in
-        return { error in
-          (error as? MoyaError)?.GalMalErrorHandler()
-          weakSelf.signUpButton.isLoading = false
+        return {error in
+          log.error(error)
         }
       }.disposed(by: disposeBag)
   }
@@ -184,9 +157,7 @@ class JoinViewController: UIViewController{
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
   }
-  
-  private func logoHidden(_ hidden: Bool){
-  }
+
   
   override func updateViewConstraints() {
     if !didUpdateConstraint{

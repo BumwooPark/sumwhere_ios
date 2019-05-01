@@ -195,7 +195,7 @@ final class DefaultLoginViewController: UIViewController{
       .API
       .do(onNext: {[weak self] _ in self?.loginButton.isLoading = false})
       .elements()
-      .map{$0.result?.token}
+      .map{$0.token}
       .unwrap()
       .bind(to: tokenObserver)
       .disposed(by: disposeBag)
@@ -250,7 +250,7 @@ final class DefaultLoginViewController: UIViewController{
     if !didUpdateConstraint{
       logoImageView.snp.makeConstraints { (make) in
         make.centerX.equalToSuperview()
-        make.centerY.equalToSuperview().inset(-100)
+        make.centerY.equalToSuperview().offset(-100)
       }
       
       emailField.snp.makeConstraints { (make) in
