@@ -17,7 +17,6 @@ final class NewMainViewController: UIViewController {
   private let disposeBag = DisposeBag()
   private let viewModel: MainTypes = MainViewModel()
   
-  
   override var preferredStatusBarStyle: UIStatusBarStyle{
     return .lightContent
   }
@@ -34,43 +33,20 @@ final class NewMainViewController: UIViewController {
     return imageView
   }()
   
-  private let headerView = MainHeaderView()
-  private let dataSources = RxCollectionViewSectionedReloadDataSource<GenericSectionModel<CountryWithPlace>>(
-    configureCell: {ds, cv, idx, item in
-    let cell = cv.dequeueReusableCell(withReuseIdentifier: String(describing: MainViewCell.self),
-                                      for: idx) as! MainViewCell
-      
-    cell.item = item
-    return cell
-  },configureSupplementaryView: {ds,cv,kind,idx in
-    let view = cv.dequeueReusableSupplementaryView(
-      ofKind: kind,
-      withReuseIdentifier: String(describing: MainCollectionFooterView.self),
-      for: idx)
-    
-    return view
-  })
-  
-  lazy var collectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .vertical
-    layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 334)
-    layout.footerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 200)
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: String(describing: MainViewCell.self))
-    collectionView.register(MainCollectionFooterView.self,
-                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-                            withReuseIdentifier: String(describing: MainCollectionFooterView.self))
-    collectionView.parallaxHeader.view = headerView
-    collectionView.parallaxHeader.minimumHeight = 0
-    collectionView.parallaxHeader.height = 461
-    collectionView.backgroundColor = .white
-    return collectionView
+  private let advertiseView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.backgroundColor = .white
+    return imageView
   }()
+  
+  private let headerView = MainHeaderView()
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(backImageView)
+    view.addSubview(advertiseView)
+    
     
     
 //    view = collectionView
@@ -80,19 +56,18 @@ final class NewMainViewController: UIViewController {
   }
   
   func bind(){
-    viewModel.outputs
-      .placeDatas
-      .map{[GenericSectionModel<CountryWithPlace>(items: $0)]}
-      .asDriver(onErrorJustReturn: [])
-      .drive(collectionView.rx.items(dataSource: dataSources))
-      .disposed(by: disposeBag)
-    
     
     viewModel.outputs
       .eventDatas
       .map{[GenericSectionModel<EventModel>(items: $0)]}
       .bind(to: headerView.datas)
       .disposed(by: disposeBag)
+    
+    
+    viewModel.outputs
+      .backgroundDatas
+      .flatMap {Observable.from($0)}
+      .
   }
   
   override func updateViewConstraints() {
@@ -100,6 +75,12 @@ final class NewMainViewController: UIViewController {
       
       backImageView.snp.makeConstraints { (make) in
         make.edges.equalToSuperview()
+      }
+      
+      advertiseView.snp.makeConstraints { (make) in
+        make.left.right.equalToSuperview().inset(10)
+        make.height.equalTo(67)
+        make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
       }
       
       didUpdateConstraint = true

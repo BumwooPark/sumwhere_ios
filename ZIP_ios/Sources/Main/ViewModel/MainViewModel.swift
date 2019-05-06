@@ -17,6 +17,7 @@ internal protocol MainInputs{
 internal protocol MainOutputs{
   var placeDatas: BehaviorRelay<[CountryWithPlace]> {get}
   var eventDatas: BehaviorRelay<[EventModel]> {get}
+  var backgroundDatas: BehaviorRelay<[Background]> {get}
 }
 
 internal protocol MainTypes{
@@ -28,13 +29,14 @@ class MainViewModel: MainTypes, MainInputs, MainOutputs {
   let disposeBag = DisposeBag()
   var outputs: MainOutputs {return self}
   var inputs: MainInputs {return self}
+  var backgroundDatas = BehaviorRelay<[Background]>(value: [])
   var placeDatas = BehaviorRelay<[CountryWithPlace]>(value: [])
   var eventDatas: BehaviorRelay<[EventModel]> = BehaviorRelay<[EventModel]>(value: [])
   init() {
     getTripPlaceList()
     GetEvent()
+    getBackground()
   }
-  
   
   func getTripPlaceList(){
     let result = AuthManager.instance.provider.request(.mainList)
@@ -57,6 +59,21 @@ class MainViewModel: MainTypes, MainInputs, MainOutputs {
           log.error(error)
         }
     }.disposed(by: disposeBag)
+  }
+  
+  func getBackground(){
+    let result = AuthManager.instance.provider.request(.background)
+      .filterSuccessfulStatusCodes()
+      .map(ResultModel<[Background]>.self)
+      .map{$0.result}
+      .asObservable()
+      .unwrap()
+      .materialize()
+      .share()
+    
+    result.elements()
+      .bind(to: backgroundDatas)
+      .disposed(by: disposeBag)
   }
   
   

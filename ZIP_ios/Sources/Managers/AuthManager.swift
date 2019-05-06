@@ -19,6 +19,17 @@ class AuthManager{
   
   static let instance = AuthManager()
   
+//  let endpointClosure = { (target: ZIP) -> Endpoint<ZIP> in
+//    let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+//
+//    switch target {
+//    case .isAuthenticationRequired:
+//      return defaultEndpoint.adding(newHTTPHeaderFields: ["AUTHENTICATION_TOKEN": GlobalAppStorage.authToken])
+//    default:
+//      return defaultEndpoint.adding
+//    }
+//  }
+  
   let prettyPrint: (Data)-> Data = {(data) in
     do {
       let dataAsJSON = try JSONSerialization.jsonObject(with: data)

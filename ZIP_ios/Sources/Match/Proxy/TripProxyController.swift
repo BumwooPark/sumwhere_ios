@@ -36,32 +36,32 @@ class TripProxyController: ScrollingNavigationController {
   }
   
   func checkUserRegisterd(){
-    AuthManager.instance.provider
-      .request(.GetAllTrip)
-      .filterSuccessfulStatusCodes()
-      .map(ResultModel<TripModel>.self)
-      .map{$0.result}
-      .asObservable()
-      .retry(.exponentialDelayed(maxCount: 2, initial: 2, multiplier: 2))
-      .subscribe(weak: self) { (weakSelf) -> (Event<TripModel?>) -> Void in
-        return {event in
-          switch event {
-          case .next(let model):
-            if let model = model {
-              tripRegisterContainer.register(TripModel.self, name: "own", factory: { _ in model })
-              weakSelf.setViewControllers([RegisterdViewController()], animated: true)
-            }else {
-              weakSelf.setViewControllers([MainMatchViewController()], animated: true)
-            }
-          case .error(let error):
-            
-            log.error(error)
-            break
-          default:
-            break
-          }
-        }
-      }.disposed(by: disposeBag)
+//    AuthManager.instance.provider
+//      .request(.GetAllTrip)
+//      .filterSuccessfulStatusCodes()
+//      .map(ResultModel<TripModel>.self)
+//      .map{$0.result}
+//      .asObservable()
+//      .retry(.exponentialDelayed(maxCount: 2, initial: 2, multiplier: 2))
+//      .subscribe(weak: self) { (weakSelf) -> (Event<TripModel?>) -> Void in
+//        return {event in
+//          switch event {
+//          case .next(let model):
+//            if let model = model {
+//              tripRegisterContainer.register(TripModel.self, name: "own", factory: { _ in model })
+//              weakSelf.setViewControllers([RegisterdViewController()], animated: true)
+//            }else {
+//              weakSelf.setViewControllers([MainMatchViewController()], animated: true)
+//            }
+//          case .error(let error):
+//
+//            log.error(error)
+//            break
+//          default:
+//            break
+//          }
+//        }
+//      }.disposed(by: disposeBag)
   }
 }
 

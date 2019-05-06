@@ -16,6 +16,8 @@ public enum ZIP{
   case signIn(email: String, password: String)
   case verifyToken(token: String)
   
+  // Main
+  case background
   
   case tokenLogin
   case facebook(access_token: String)
@@ -74,7 +76,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
 
   public var baseURL: URL {
     #if DEBUG
-    return URL(string: "http://192.168.0.49:8000")!
+    return URL(string: "http://localhost:8000")!
 //    return URL(string: "https://www.sumwhere.kr/v1")!
     #else
     return URL(string: "https://www.sumwhere.kr/v1")!
@@ -91,6 +93,9 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return "/rest-auth/login/"
     case .verifyToken:
       return "/api-token-verify/"
+      
+    case .background:
+      return "/main/background/"
       
     case .tokenLogin:
       return "/restrict/token/vaild"

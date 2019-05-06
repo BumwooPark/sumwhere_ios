@@ -46,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
 
     window?.rootViewController = ProxyViewController()
-    Defaults.removeAll()
     Reachability.shared
       .didBecomeReachable
       .asObservable()
