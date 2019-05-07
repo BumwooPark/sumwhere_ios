@@ -18,7 +18,6 @@ class MainTabBarController: UITabBarController{
 
   lazy var mainViewController: UINavigationController = {
     let naviVC = UINavigationController(rootViewController: NewMainViewController())
-    
     naviVC.navigationBar.backIndicatorTransitionMaskImage =  #imageLiteral(resourceName: "arrowicon.png")
     naviVC.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "arrowicon.png").withRenderingMode(.alwaysTemplate)
     naviVC.navigationBar.backItem?.title = String()
@@ -83,6 +82,7 @@ class MainTabBarController: UITabBarController{
     super.viewDidLoad()
 
     tabBar.shadowImage = UIImage()
+    tabBar.isTranslucent = false
     
     let titleLabel = UILabel()
     titleLabel.text = "갈래말래"
