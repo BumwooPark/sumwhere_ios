@@ -11,12 +11,13 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import RxGesture
+import Kingfisher
 
 final class NewMainViewController: UIViewController {
   private var didUpdateConstraint = false
   private let disposeBag = DisposeBag()
   private let viewModel: MainTypes = MainViewModel()
-  
+  private var currentIndex = 0
   override var preferredStatusBarStyle: UIStatusBarStyle{
     return .lightContent
   }
@@ -28,7 +29,7 @@ final class NewMainViewController: UIViewController {
   }()
   
   private let backImageView: UIImageView = {
-    let imageView = UIImageView()
+    var imageView = UIImageView()
     imageView.image = #imageLiteral(resourceName: "imgMain01.png")
     return imageView
   }()
@@ -63,11 +64,38 @@ final class NewMainViewController: UIViewController {
       .bind(to: headerView.datas)
       .disposed(by: disposeBag)
     
-    
     viewModel.outputs
       .backgroundDatas
-      .flatMap {Observable.from($0)}
-      .
+      .filter{$0.count > 0}
+      .bind(onNext: backgroundChange)
+      .disposed(by: disposeBag)
+  }
+  
+  private func backgroundChange(data: [Background]){
+    Observable<Int>.interval(10, scheduler: MainScheduler.instance)
+      .map{_ in data}
+      .observeOn(MainScheduler.instance)
+      .subscribeNext(weak: self) { (weakSelf) -> ([Background]) -> Void in
+        return {data in
+          let size = (data.count - 1)
+          KingfisherManager.shared.retrieveImage(with: URL(string: data[weakSelf.currentIndex].image)!, completionHandler: { (result) in
+            do{
+            let image = try result.get().image
+              UIView.transition(with: weakSelf.backImageView, duration: 1, options: .transitionCrossDissolve, animations: {
+                weakSelf.backImageView.image = image
+              }, completion: nil)
+            }catch let error{
+              log.error(error)
+            }
+          })
+          if weakSelf.currentIndex == size {
+            weakSelf.currentIndex = 0
+          }else{
+            weakSelf.currentIndex += 1
+          }
+          
+        }
+      }.disposed(by: disposeBag)
   }
   
   override func updateViewConstraints() {
