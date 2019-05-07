@@ -126,6 +126,12 @@
 		0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */; };
 		0AAD749021170FF700C860ED /* TripStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD748F21170FF700C860ED /* TripStyleModel.swift */; };
 		0AB046C722807315004C2F08 /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB046C622807315004C2F08 /* background.swift */; };
+		0AB046CC22819DC7004C2F08 /* NanumBarunGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB046C822819DC7004C2F08 /* NanumBarunGothic.ttf */; };
+		0AB046CD22819DC7004C2F08 /* NanumBarunGothicUltraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB046C922819DC7004C2F08 /* NanumBarunGothicUltraLight.ttf */; };
+		0AB046CE22819DC7004C2F08 /* NanumBarunGothicLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB046CA22819DC7004C2F08 /* NanumBarunGothicLight.ttf */; };
+		0AB046CF22819DC7004C2F08 /* NanumBarunGothicBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB046CB22819DC7004C2F08 /* NanumBarunGothicBold.ttf */; };
+		0AB046D12281A13E004C2F08 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB046D02281A13E004C2F08 /* SearchButton.swift */; };
+		0AB046D32281A52A004C2F08 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB046D22281A52A004C2F08 /* SearchViewController.swift */; };
 		0AF2C02320FE23BD00775EA8 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2C02220FE23BD00775EA8 /* TripModel.swift */; };
 		B105597B210992EC00AC769C /* LoginVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105597A210992EC00AC769C /* LoginVIewModel.swift */; };
 		B10F11FE21F6ECC00045FBF9 /* mainlogo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */; };
@@ -359,6 +365,12 @@
 		0A9A0B011FF0FFCE004EA239 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AAD748F21170FF700C860ED /* TripStyleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStyleModel.swift; sourceTree = "<group>"; };
 		0AB046C622807315004C2F08 /* background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
+		0AB046C822819DC7004C2F08 /* NanumBarunGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = NanumBarunGothic.ttf; path = "../../../../../../Volumes/나눔바른고딕 맥용 TTF/NanumBarunGothic.ttf"; sourceTree = "<group>"; };
+		0AB046C922819DC7004C2F08 /* NanumBarunGothicUltraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = NanumBarunGothicUltraLight.ttf; path = "../../../../../../Volumes/나눔바른고딕 맥용 TTF/NanumBarunGothicUltraLight.ttf"; sourceTree = "<group>"; };
+		0AB046CA22819DC7004C2F08 /* NanumBarunGothicLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = NanumBarunGothicLight.ttf; path = "../../../../../../Volumes/나눔바른고딕 맥용 TTF/NanumBarunGothicLight.ttf"; sourceTree = "<group>"; };
+		0AB046CB22819DC7004C2F08 /* NanumBarunGothicBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = NanumBarunGothicBold.ttf; path = "../../../../../../Volumes/나눔바른고딕 맥용 TTF/NanumBarunGothicBold.ttf"; sourceTree = "<group>"; };
+		0AB046D02281A13E004C2F08 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		0AB046D22281A52A004C2F08 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0AF2C02220FE23BD00775EA8 /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		0AFC96D21FB7281F003C6F8E /* ZIP_ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZIP_ios.entitlements; sourceTree = "<group>"; };
 		7B9C4226FE4FE2EB23EB73C6 /* Pods-ZIP_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZIP_ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZIP_ios/Pods-ZIP_ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -490,6 +502,10 @@
 		0A0FDE2120398DA70046E76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0AB046C822819DC7004C2F08 /* NanumBarunGothic.ttf */,
+				0AB046CB22819DC7004C2F08 /* NanumBarunGothicBold.ttf */,
+				0AB046CA22819DC7004C2F08 /* NanumBarunGothicLight.ttf */,
+				0AB046C922819DC7004C2F08 /* NanumBarunGothicUltraLight.ttf */,
 				B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */,
 				B132A58021B7B9300050D6DE /* OTGulimL.otf */,
 				0A1D1D4321C298C60028EB48 /* OTGulimM.otf */,
@@ -755,6 +771,7 @@
 				0A1B0F0021ECBFC90035E657 /* BannerViewController.swift */,
 				B1911FBA21746A6E005A4E85 /* MapViewController.swift */,
 				B10F120521FAD7B20045FBF9 /* AlertHistoryViewController.swift */,
+				0AB046D22281A52A004C2F08 /* SearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -777,6 +794,7 @@
 				B1CCFF86222D12FC004A9500 /* MainHeaderCell.swift */,
 				0A873881222D3F4A00A52A77 /* MainViewCell.swift */,
 				B1C1F132222E1CDA00F10D14 /* MainCollectionFooterView.swift */,
+				0AB046D02281A13E004C2F08 /* SearchButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1305,13 +1323,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B132A58521B7BFC80050D6DE /* OTGulimH.otf in Resources */,
+				0AB046CC22819DC7004C2F08 /* NanumBarunGothic.ttf in Resources */,
 				B132A58321B7B9940050D6DE /* OTGulimB.otf in Resources */,
 				B1D4E51E20FDCBB200524CE2 /* godoRounded L.ttf in Resources */,
+				0AB046CE22819DC7004C2F08 /* NanumBarunGothicLight.ttf in Resources */,
 				B16BD8B621AD13510010EEE0 /* KoreanSWGI1.otf in Resources */,
 				B1D4E51F20FDCBB200524CE2 /* godoRounded R.ttf in Resources */,
 				B10F11FE21F6ECC00045FBF9 /* mainlogo.mp4 in Resources */,
 				B1D4E52020FDCBB200524CE2 /* godoMaum.ttf in Resources */,
 				0A375C1A213275D200E35ED9 /* TopTripCell.xib in Resources */,
+				0AB046CD22819DC7004C2F08 /* NanumBarunGothicUltraLight.ttf in Resources */,
 				B1FE037221A6940400DE242A /* NanumSquareRoundEB.ttf in Resources */,
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
 				B1FE037321A6940600DE242A /* NanumSquareRoundR.ttf in Resources */,
@@ -1325,6 +1346,7 @@
 				0A6EB9DD2169E1A000117526 /* MainFooterView.xib in Resources */,
 				0A1D1D4721C2A0BB0028EB48 /* Settings.bundle in Resources */,
 				0A1D1D4421C298C60028EB48 /* OTGulimM.otf in Resources */,
+				0AB046CF22819DC7004C2F08 /* NanumBarunGothicBold.ttf in Resources */,
 				0A0FDE2920398E5E0046E76F /* NotoSans-Regular.otf in Resources */,
 				0A0FDE2820398E5A0046E76F /* NotoSans-Medium.otf in Resources */,
 				0A1D1D4B21C518990028EB48 /* LoginView.xib in Resources */,
@@ -1415,6 +1437,7 @@
 				0A1B0EF921EB72740035E657 /* EventContentCell.swift in Sources */,
 				B1C1F16B2230E68800F10D14 /* UIBarButtonItem + Extension.swift in Sources */,
 				0A332776213BA65D00BC2906 /* JoinViewModel.swift in Sources */,
+				0AB046D32281A52A004C2F08 /* SearchViewController.swift in Sources */,
 				0A554158223FD8DC00FB44F3 /* RegisterdEmptyView.swift in Sources */,
 				B1D1CB12212EAA6A001A9801 /* AlertSettingViewController.swift in Sources */,
 				0A15A6D021280F420060290A /* MatchResultCell.swift in Sources */,
@@ -1521,6 +1544,7 @@
 				0A6812DC220EDB2D00A84715 /* SelectCountryViewController.swift in Sources */,
 				B1C1F164222FC6B500F10D14 /* SearchPasswordViewController.swift in Sources */,
 				0A9A0B021FF0FFCE004EA239 /* UIView+Extension.swift in Sources */,
+				0AB046D12281A13E004C2F08 /* SearchButton.swift in Sources */,
 				B1D5313A21BF9E6E00CEF7C9 /* ChatRoomViewController.swift in Sources */,
 				0A87387A22291AB900A52A77 /* HistoryCell.swift in Sources */,
 				0AB046C722807315004C2F08 /* background.swift in Sources */,

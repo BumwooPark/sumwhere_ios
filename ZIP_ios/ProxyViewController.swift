@@ -53,6 +53,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
         .subscribeNext(weak: self) { (weakSelf) -> (Response) -> Void in
           return {_ in
              AppDelegate.instance?.window?.rootViewController = MainTabBarController()
+            weakSelf.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
           }
       }.disposed(by: disposeBag)
     }else {
@@ -68,6 +69,7 @@ class ProxyViewController: UIViewController, NVActivityIndicatorViewable {
         self?.stopAnimating(NVActivityIndicatorView.DEFAULT_FADE_OUT_ANIMATION)
       }
       animator.startAnimation()
+      
     }
 
     kakaoTokenCheck()

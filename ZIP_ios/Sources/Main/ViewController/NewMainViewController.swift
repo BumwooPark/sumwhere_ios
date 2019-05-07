@@ -12,6 +12,7 @@ import RxCocoa
 import RxDataSources
 import RxGesture
 import Kingfisher
+import SideMenu
 
 final class NewMainViewController: UIViewController {
   private var didUpdateConstraint = false
@@ -29,6 +30,8 @@ final class NewMainViewController: UIViewController {
   }()
   
   private let backImageView: UIImageView = UIImageView()
+  private let searchButton: SearchButton = SearchButton()
+  private let headerView = MainHeaderView()
   
   private let advertiseView: UIImageView = {
     let imageView = UIImageView()
@@ -52,16 +55,16 @@ final class NewMainViewController: UIViewController {
     return label
   }()
   
-  private let headerView = MainHeaderView()
-
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(backImageView)
     view.addSubview(advertiseView)
     view.addSubview(titleLabel)
     view.addSubview(subTitle)
+    view.addSubview(searchButton)
     
+    let leftVC = UISideMenuNavigationController(rootViewController: UIViewController())
+    SideMenuManager.default.menuRightNavigationController = leftVC
     self.navigationItem.rightBarButtonItem = menuButton
     bind()
     view.setNeedsUpdateConstraints()
@@ -80,6 +83,20 @@ final class NewMainViewController: UIViewController {
       .filter{$0.count > 0}
       .bind(onNext: backgroundChange)
       .disposed(by: disposeBag)
+    
+    menuButton.rx.tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          weakSelf.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
+        }
+    }.disposed(by: disposeBag)
+    
+    searchButton.rx.tap
+      .subscribeNext(weak: self) { (weakSelf) -> (()) -> Void in
+        return {_ in
+          self.navigationController?.pushViewController(SearchViewController(), animated: false)
+        }
+      }.disposed(by: disposeBag)
   }
   
   private func backgroundChange(data: [Background]){
@@ -90,7 +107,6 @@ final class NewMainViewController: UIViewController {
       .subscribeNext(weak: self) { (weakSelf) -> ([Background]) -> Void in
         return {data in
           let randNumber = Int.random(in: 0..<data.count)
-//          let size = (data.count - 1)
           KingfisherManager.shared.retrieveImage(with: URL(string: data[randNumber].image)!, completionHandler: { (result) in
             do{
             let image = try result.get().image
@@ -103,12 +119,6 @@ final class NewMainViewController: UIViewController {
               log.error(error)
             }
           })
-//          if weakSelf.currentIndex == size {
-//            weakSelf.currentIndex = 0
-//          }else{
-//            weakSelf.currentIndex += 1
-//          }
-          
         }
       }.disposed(by: disposeBag)
   }
@@ -134,6 +144,13 @@ final class NewMainViewController: UIViewController {
       subTitle.snp.makeConstraints { (make) in
         make.top.equalTo(titleLabel.snp.bottom).offset(20)
         make.centerX.equalToSuperview()
+      }
+      
+      searchButton.snp.makeConstraints { (make) in
+        make.left.equalToSuperview().inset(23)
+        make.right.equalToSuperview().inset(20)
+        make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(60)
+        make.height.equalTo(34)
       }
       
       didUpdateConstraint = true

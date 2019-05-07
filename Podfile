@@ -60,7 +60,7 @@ pod 'AMScrollingNavbar'
 pod "SkeletonView"
 pod "PreviewTransition"
 pod 'DZNEmptyDataSet'
-
+pod 'SideMenu'
 # RX
 pod 'RxSwift'
 pod 'RxCocoa'

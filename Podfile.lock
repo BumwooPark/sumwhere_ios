@@ -212,6 +212,7 @@ PODS:
   - RxSwiftExt/RxCocoa (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
+  - SideMenu (5.0.3)
   - SkeletonView (1.5)
   - SkyFloatingLabelTextField (3.6.0)
   - SnapKit (5.0.0)
@@ -272,6 +273,7 @@ DEPENDENCIES:
   - RxKeyboard
   - RxSwift
   - RxSwiftExt
+  - SideMenu
   - SkeletonView
   - SkyFloatingLabelTextField
   - SnapKit
@@ -349,6 +351,7 @@ SPEC REPOS:
     - RxKeyboard
     - RxSwift
     - RxSwiftExt
+    - SideMenu
     - SkeletonView
     - SkyFloatingLabelTextField
     - SnapKit
@@ -425,6 +428,7 @@ SPEC CHECKSUMS:
   RxKeyboard: 4f782303f499f41577b41c96c6a9a5d7acd51a47
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
+  SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
   SkeletonView: 6cbb80f82f8bdee3f9093e2fa03b84819b4bd826
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
@@ -437,6 +441,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UICountingLabel: faf890b505d96312e324a86718f031fafffb0ccb
 
-PODFILE CHECKSUM: 7be2fc9e6bd3dd4d8f9b77abbde65a410e2b8095
+PODFILE CHECKSUM: ab9619250602d656f6b3abab24bffb81d3f52ad4
 
 COCOAPODS: 1.7.0.beta.3
