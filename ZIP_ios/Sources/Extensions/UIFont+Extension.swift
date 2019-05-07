@@ -87,6 +87,22 @@ extension UIFont{
   static func OTGulimH(size:CGFloat) -> UIFont{
     return UIFont(name: "OTGulimH", size: size)!
   }
+  
+  static func NanumBarunGothic(size: CGFloat) -> UIFont {
+    return UIFont(name:"NanumBarunGothic",size: size)!
+  }
+  
+  static func NanumBarunGothicBold(size: CGFloat) -> UIFont {
+    return UIFont(name:"NanumBarunGothicBold",size: size)!
+  }
+  
+  static func NanumBarunGothicLight(size: CGFloat) -> UIFont {
+    return UIFont(name:"NanumBarunGothicLight",size: size)!
+  }
+  
+  static func NanumBarunGothicUltraLight(size: CGFloat) -> UIFont {
+    return UIFont(name:"NanumBarunGothicUltraLight",size: size)!
+  }
 }
 
 
