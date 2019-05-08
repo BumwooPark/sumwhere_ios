@@ -15,7 +15,8 @@ import Result
 class AuthManager{
   
   var fireBaseId: String?
-  static let imageURL = "https://www.sumwhere.kr/images"
+//  static let imageURL = "https://www.sumwhere.kr/images"
+  static let imageURL = "https://localhost:8000"
   
   static let instance = AuthManager()
   

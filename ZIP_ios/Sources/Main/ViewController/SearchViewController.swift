@@ -6,10 +6,13 @@
 //  Copyright © 2019 park bumwoo. All rights reserved.
 //
 
-
+import RxSwift
+import RxCocoa
 
 class SearchViewController: UIViewController{
-  var didUpdateConstraint = false
+  private var didUpdateConstraint = false
+  private let viewModel: SearchTypes = SearchViewModel()
+  private let disposeBag = DisposeBag()
   
   private let searchTextField: UITextField = {
     let textField = UITextField()
@@ -31,6 +34,14 @@ class SearchViewController: UIViewController{
     view.addSubview(searchTextField)
     view.addSubview(dividLine)
     view.setNeedsUpdateConstraints()
+    bind()
+  }
+  
+  private func bind(){
+    searchTextField.rx.text.orEmpty
+      .bind(onNext: viewModel.input.searchTag)
+      .disposed(by: disposeBag)
+    
   }
   
   override func updateViewConstraints() {

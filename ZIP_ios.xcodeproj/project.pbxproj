@@ -141,6 +141,10 @@
 		B10F120821FADB310045FBF9 /* AlertHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F120721FADB310045FBF9 /* AlertHistoryCell.swift */; };
 		B10F121121FFE3F10045FBF9 /* RegisterdSubviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F121021FFE3F10045FBF9 /* RegisterdSubviewController.swift */; };
 		B10F121321FFE8420045FBF9 /* GenericSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F121221FFE8420045FBF9 /* GenericSectionModel.swift */; };
+		B124AC28228169FC00686D0A /* NanumBarunGothicBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B124AC24228169F800686D0A /* NanumBarunGothicBold.ttf */; };
+		B124AC29228169FC00686D0A /* NanumBarunGothicUltraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B124AC25228169F900686D0A /* NanumBarunGothicUltraLight.ttf */; };
+		B124AC2A228169FC00686D0A /* NanumBarunGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B124AC26228169FA00686D0A /* NanumBarunGothic.ttf */; };
+		B124AC2B228169FC00686D0A /* NanumBarunGothicLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B124AC27228169FC00686D0A /* NanumBarunGothicLight.ttf */; };
 		B132A58221B7B9300050D6DE /* OTGulimL.otf in Resources */ = {isa = PBXBuildFile; fileRef = B132A58021B7B9300050D6DE /* OTGulimL.otf */; };
 		B132A58321B7B9940050D6DE /* OTGulimB.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AA21B7B8F000DCCD2B /* OTGulimB.otf */; };
 		B132A58521B7BFC80050D6DE /* OTGulimH.otf in Resources */ = {isa = PBXBuildFile; fileRef = B179B8AB21B7B90400DCCD2B /* OTGulimH.otf */; };
@@ -383,6 +387,10 @@
 		B10F120721FADB310045FBF9 /* AlertHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistoryCell.swift; sourceTree = "<group>"; };
 		B10F121021FFE3F10045FBF9 /* RegisterdSubviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterdSubviewController.swift; sourceTree = "<group>"; };
 		B10F121221FFE8420045FBF9 /* GenericSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSectionModel.swift; sourceTree = "<group>"; };
+		B124AC24228169F800686D0A /* NanumBarunGothicBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicBold.ttf; sourceTree = "<group>"; };
+		B124AC25228169F900686D0A /* NanumBarunGothicUltraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicUltraLight.ttf; sourceTree = "<group>"; };
+		B124AC26228169FA00686D0A /* NanumBarunGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothic.ttf; sourceTree = "<group>"; };
+		B124AC27228169FC00686D0A /* NanumBarunGothicLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicLight.ttf; sourceTree = "<group>"; };
 		B132A58021B7B9300050D6DE /* OTGulimL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTGulimL.otf; sourceTree = "<group>"; };
 		B132A58621BE59E30050D6DE /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		B14495B12191535F00B4D135 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
@@ -502,10 +510,17 @@
 		0A0FDE2120398DA70046E76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< Updated upstream
 				0AB046C822819DC7004C2F08 /* NanumBarunGothic.ttf */,
 				0AB046CB22819DC7004C2F08 /* NanumBarunGothicBold.ttf */,
 				0AB046CA22819DC7004C2F08 /* NanumBarunGothicLight.ttf */,
 				0AB046C922819DC7004C2F08 /* NanumBarunGothicUltraLight.ttf */,
+=======
+				B124AC26228169FA00686D0A /* NanumBarunGothic.ttf */,
+				B124AC24228169F800686D0A /* NanumBarunGothicBold.ttf */,
+				B124AC27228169FC00686D0A /* NanumBarunGothicLight.ttf */,
+				B124AC25228169F900686D0A /* NanumBarunGothicUltraLight.ttf */,
+>>>>>>> Stashed changes
 				B10F11FD21F6ECC00045FBF9 /* mainlogo.mp4 */,
 				B132A58021B7B9300050D6DE /* OTGulimL.otf */,
 				0A1D1D4321C298C60028EB48 /* OTGulimM.otf */,
@@ -1334,11 +1349,13 @@
 				0A375C1A213275D200E35ED9 /* TopTripCell.xib in Resources */,
 				0AB046CD22819DC7004C2F08 /* NanumBarunGothicUltraLight.ttf in Resources */,
 				B1FE037221A6940400DE242A /* NanumSquareRoundEB.ttf in Resources */,
+				B124AC29228169FC00686D0A /* NanumBarunGothicUltraLight.ttf in Resources */,
 				0A7123771FACC01200512EB7 /* LaunchScreen.storyboard in Resources */,
 				B1FE037321A6940600DE242A /* NanumSquareRoundR.ttf in Resources */,
 				B1FE037121A6940200DE242A /* NanumSquareRoundB.ttf in Resources */,
 				B1FE037421A6940800DE242A /* NanumSquareRoundL.ttf in Resources */,
 				0A0FDE2620398E550046E76F /* NotoSans-Bold.otf in Resources */,
+				B124AC28228169FC00686D0A /* NanumBarunGothicBold.ttf in Resources */,
 				B132A58221B7B9300050D6DE /* OTGulimL.otf in Resources */,
 				0A895BE721299C2100FDF834 /* CalendarHeaderView.xib in Resources */,
 				0A0FDE2720398E580046E76F /* NotoSans-Light.otf in Resources */,
@@ -1353,6 +1370,8 @@
 				0A7123741FACC01200512EB7 /* Assets.xcassets in Resources */,
 				0A7123721FACC01200512EB7 /* Main.storyboard in Resources */,
 				0A90EBD42109F7B10057F1A9 /* TicketView.xib in Resources */,
+				B124AC2A228169FC00686D0A /* NanumBarunGothic.ttf in Resources */,
+				B124AC2B228169FC00686D0A /* NanumBarunGothicLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

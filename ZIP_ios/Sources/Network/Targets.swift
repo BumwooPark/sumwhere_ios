@@ -19,6 +19,9 @@ public enum ZIP{
   // Main
   case background
   
+  //Place
+  case placeSearch(tag: String)
+  
   case tokenLogin
   case facebook(access_token: String)
   case kakao(access_token: String)
@@ -96,7 +99,8 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       
     case .background:
       return "/main/background/"
-      
+    case .placeSearch:
+      return "/place"
     case .tokenLogin:
       return "/restrict/token/vaild"
     case .facebook:
@@ -222,6 +226,11 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestPlain
     case .verifyToken(let token):
       return .requestParameters(parameters: ["token":token], encoding: JSONEncoding.default)
+      
+    case .placeSearch(let tag):
+      return .requestParameters(parameters: ["tag":tag], encoding: URLEncoding.queryString)
+      
+      
     case .anotherUser(let id):
       return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
     case .facebook(let token),.kakao(let token):
@@ -252,6 +261,7 @@ extension ZIP: TargetType, AccessTokenAuthorizable{
       return .requestParameters(parameters: ["id":id], encoding: URLEncoding.queryString)
     case .MatchAccept(let id),.MatchRefuse(let id):
       return .requestParameters(parameters: ["historyID": id], encoding: URLEncoding.queryString)
+      
     default:
       return .requestPlain
     }
